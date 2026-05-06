@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: #f9f9fa;
+  }
+
+  body {
+    margin: 0;
+    background: #f9f9fa;
+    color: #1a1d2e;
+    letter-spacing: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid #f5870a;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .section-y {
+    @apply py-14 lg:py-20;
+  }
+
+  .label,
+  .eyebrow {
+    @apply font-mono text-label uppercase tracking-[0.12em] text-amber-500;
+  }
+
+  .nav-underline {
+    @apply relative after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-amber-500 after:transition-all after:duration-150 hover:text-amber-500 hover:after:w-full;
+  }
+
+  .hero-brand {
+    background:
+      radial-gradient(circle at 78% 12%, rgba(245, 135, 10, 0.22), transparent 28rem),
+      linear-gradient(135deg, #0F2044 0%, #060D1F 100%);
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #f2f2f2 25%, #e8e8e8 50%, #f2f2f2 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .rank-grid {
+    grid-template-columns: 4.5rem minmax(13rem, 1.7fr) 6rem 6rem 9rem minmax(10rem, 1fr) 5rem;
+  }
+
+  .section,
+  .section-band,
+  .page-shell {
+    @apply container-px py-14 pt-28 lg:py-20 lg:pt-32;
+  }
+
+  .section-heading {
+    @apply mb-8 grid gap-5 lg:grid-cols-[1fr_0.75fr] lg:items-end;
+  }
+
+  .section-heading h1,
+  .section-heading h2,
+  .page-shell h1 {
+    @apply font-display text-stat-lg text-ink-900;
+  }
+
+  .section-heading p:not(.eyebrow) {
+    @apply text-ink-600;
+  }
+
+  .button {
+    @apply inline-flex min-h-11 items-center justify-center rounded-md border px-4 py-2 font-semibold transition;
+  }
+
+  .button.primary {
+    @apply border-amber-500 bg-amber-500 text-white hover:bg-amber-600;
+  }
+
+  .button.secondary {
+    @apply border-navy-800 bg-white text-navy-800 hover:bg-navy-50;
+  }
+
+  .login-shell {
+    @apply flex justify-center;
+  }
+
+  .login-panel,
+  .stat-entry,
+  .registry-panel,
+  .request-card,
+  .player-stat-card,
+  .profile-card,
+  .empty-state {
+    @apply rounded-lg border border-surface-300 bg-white p-5 text-ink-900 shadow-sm;
+  }
+
+  .login-panel {
+    @apply grid w-full max-w-xl gap-4;
+  }
+
+  .login-panel h1,
+  .login-panel h2,
+  .stat-entry h2,
+  .portal-header h2,
+  .profile-card strong {
+    @apply font-display text-3xl text-ink-900;
+  }
+
+  .login-panel p,
+  .stat-entry p,
+  .form-message,
+  .card-note,
+  .request-card span {
+    @apply text-ink-600;
+  }
+
+  .login-panel label,
+  .stat-entry label,
+  .ranking-filter-form label,
+  .request-form label,
+  .player-stat-card label {
+    @apply grid gap-2 text-sm font-semibold text-ink-700;
+  }
+
+  .login-panel input,
+  .login-panel select,
+  .login-panel textarea,
+  .stat-entry input,
+  .stat-entry select,
+  .stat-entry textarea,
+  .ranking-filter-form input,
+  .ranking-filter-form select,
+  .request-form input,
+  .request-form select,
+  .request-form textarea {
+    @apply min-h-11 w-full rounded-md border border-surface-300 bg-white px-3 py-2 text-ink-900 placeholder:text-ink-400;
+  }
+
+  .login-panel textarea,
+  .stat-entry textarea,
+  .request-form textarea {
+    @apply min-h-28 resize-y;
+  }
+
+  .form-grid {
+    @apply grid gap-3;
+  }
+
+  .form-grid.two {
+    @apply md:grid-cols-2;
+  }
+
+  .form-grid.three {
+    @apply md:grid-cols-3;
+  }
+
+  .form-grid.four {
+    @apply md:grid-cols-4;
+  }
+
+  .organizer-workspace {
+    @apply grid gap-6;
+  }
+
+  .portal-header {
+    @apply flex flex-wrap items-end justify-between gap-3;
+  }
+
+  .portal-header.compact {
+    @apply items-center;
+  }
+
+  .team-stat-columns,
+  .owner-grid {
+    @apply grid gap-5 lg:grid-cols-2;
+  }
+
+  .player-stat-card {
+    @apply grid gap-4 bg-white;
+  }
+
+  .player-stat-card h3 {
+    @apply font-display text-2xl text-ink-900;
+  }
+
+  .player-stat-card summary {
+    @apply cursor-pointer font-mono text-mono-sm uppercase text-navy-800;
+  }
+
+  .request-list {
+    @apply grid gap-4;
+  }
+
+  .request-card {
+    @apply grid gap-3 bg-white;
+  }
+
+  .request-card p {
+    @apply m-0 grid gap-1 md:grid-cols-[10rem_1fr];
+  }
+
+  .request-card strong {
+    @apply text-ink-900;
+  }
+
+  .request-actions,
+  .button-row {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .request-photo,
+  .submission-preview {
+    @apply h-24 w-24 rounded-lg border border-surface-300 object-cover;
+  }
+
+  .ranking-filter-form {
+    @apply mb-8 grid gap-3 rounded-lg border border-surface-300 bg-white p-4 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto] lg:items-end;
+  }
+
+  .player-search-form {
+    @apply lg:grid-cols-[repeat(4,minmax(0,1fr))_auto];
+  }
+
+  .profile-grid {
+    @apply grid gap-5 md:grid-cols-2;
+  }
+
+  .profile-grid.wide {
+    @apply lg:grid-cols-3;
+  }
+
+  .profile-card {
+    @apply block transition hover:-translate-y-0.5 hover:border-navy-800;
+  }
+
+  .profile-top,
+  .profile-name {
+    @apply flex items-center gap-3;
+  }
+
+  .profile-top {
+    @apply justify-between;
+  }
+
+  .avatar {
+    @apply inline-grid h-11 w-11 place-items-center rounded-full bg-navy-50 font-display font-bold text-navy-800;
+  }
+
+  .image-avatar {
+    @apply object-cover;
+  }
+
+  .rating-badge {
+    @apply rounded-md bg-navy-800 px-3 py-2 font-display text-stat-sm text-white;
+  }
+
+  .stat-row {
+    @apply mt-4 grid gap-3 md:grid-cols-3;
+  }
+
+  .stat-row span {
+    @apply rounded-lg bg-surface-100 p-3 text-ink-600;
+  }
+
+  .stat-row strong {
+    @apply block font-display text-stat-sm text-ink-900;
+  }
+
+  @media (max-width: 767px) {
+    .rank-grid {
+      grid-template-columns: 3.25rem minmax(0, 1fr) 5rem 5rem;
+    }
+  }
+}
