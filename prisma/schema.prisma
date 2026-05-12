@@ -21,8 +21,7 @@ enum PlayerGender {
 enum AgeGroup {
   U13
   U16
-  U18
-  U22
+  U19
 }
 
 enum SeasonStatus {
@@ -376,6 +375,7 @@ model FormulaVersion {
   effectiveFrom     DateTime
   effectiveTo       DateTime?
   performanceScores GamePerformanceScore[]
+  rankingSnapshots  RankingSnapshot[]
   createdAt         DateTime               @default(now())
 
   @@map("formula_versions")
@@ -455,16 +455,20 @@ model PlayerRating {
 }
 
 model RankingSnapshot {
-  id        String               @id @default(uuid()) @db.Uuid
-  scope     RankingScope
-  ageGroup  AgeGroup?
-  city      String?
-  region    String?
-  weekOf    DateTime
-  rows      RankingSnapshotRow[]
-  createdAt DateTime             @default(now())
+  id               String               @id @default(uuid()) @db.Uuid
+  scope            RankingScope
+  ageGroup         AgeGroup?
+  gender           PlayerGender
+  formulaVersionId String               @db.Uuid
+  city             String?
+  region           String?
+  weekOf           DateTime
+  rows             RankingSnapshotRow[]
+  formulaVersion   FormulaVersion       @relation(fields: [formulaVersionId], references: [id])
+  createdAt        DateTime             @default(now())
 
-  @@index([scope, ageGroup, city, region, weekOf])
+  @@index([scope, ageGroup, gender, city, region, weekOf])
+  @@index([formulaVersionId])
   @@index([weekOf])
   @@map("ranking_snapshots")
 }
@@ -502,3 +506,5 @@ model AuditLog {
   @@index([createdAt])
   @@map("audit_log")
 }
+
+

@@ -3,7 +3,7 @@ import { prisma } from "../src/lib/prisma";
 
 const leagueInput = {
   name: "UAAP Season 88 HS Boys Basketball",
-  ageGroup: AgeGroup.U18,
+  ageGroup: AgeGroup.U19,
   organizerName: "UAAP",
   city: "Quezon City",
   region: "NCR"
@@ -174,3 +174,4 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+

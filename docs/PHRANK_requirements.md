@@ -10,7 +10,7 @@ PHRANK is the Philippine National Basketball Ranking System. It is a verified na
 
 - One persistent player profile across leagues, seasons, and competitions.
 - Public rankings by national scope, age bracket, region, and city.
-- Public ranking brackets: U13, U16, U18.
+- Public ranking brackets: U13, U16, U19.
 - Age bracket is derived from birth year relative to the season year and remains fixed for that season.
 - Minimum 15 verified games before leaderboard eligibility.
 - Players below 15 verified games remain searchable but unranked.
@@ -52,6 +52,7 @@ PHRANK is the Philippine National Basketball Ranking System. It is a verified na
 
 ## Current Implementation Notes
 
-- The Next.js app now uses PHRANK branding, U13/U16/U18 public ranking labels, public methodology copy, and league tier display.
+- The Next.js app now uses PHRANK branding, U13/U16/U19 public ranking labels, public methodology copy, and league tier display.
 - The Prisma schema now models the document's core architecture: users, player registry, league access, seasons, rosters, games, raw stats, performance scores, team ratings, player ratings, formula versions, ranking snapshots, and audit logs.
 - The UI still reads from demo data for fast local rendering. Connecting public pages directly to Prisma queries is the next backend integration step.
+
