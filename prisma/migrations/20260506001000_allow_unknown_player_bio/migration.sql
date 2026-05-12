@@ -1,0 +1,2 @@
+ALTER TABLE "players" ALTER COLUMN "birthDate" DROP NOT NULL;
+ALTER TABLE "players" ALTER COLUMN "position" DROP NOT NULL;

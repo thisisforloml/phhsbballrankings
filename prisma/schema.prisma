@@ -83,13 +83,13 @@ model Player {
   firstName         String
   lastName          String
   displayName       String
-  birthDate         DateTime
+  birthDate         DateTime?
   gender            PlayerGender           @default(BOYS)
   photoUrl          String?
   heightCm          Int?
   city              String
   region            String
-  position          String
+  position          String?
   rosterSeasons     PlayerTeamSeason[]
   gameStats         GameStat[]
   performanceScores GamePerformanceScore[]
@@ -210,25 +210,56 @@ model UserLeagueAccess {
 }
 
 model Season {
-  id            String             @id @default(uuid()) @db.Uuid
-  leagueId      String             @db.Uuid
-  name          String
-  seasonYear    Int
-  status        SeasonStatus       @default(UPCOMING)
-  startsOn      DateTime
-  endsOn        DateTime?
-  league        League             @relation(fields: [leagueId], references: [id])
-  rosterSeasons PlayerTeamSeason[]
-  games         Game[]
-  teamRatings   TeamRating[]
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
-  deletedAt     DateTime?
+  id             String               @id @default(uuid()) @db.Uuid
+  leagueId       String               @db.Uuid
+  name           String
+  seasonYear     Int
+  status         SeasonStatus         @default(UPCOMING)
+  startsOn       DateTime
+  endsOn         DateTime?
+  league         League               @relation(fields: [leagueId], references: [id])
+  rosterSeasons  PlayerTeamSeason[]
+  games          Game[]
+  teamRatings    TeamRating[]
+  leagueAverages LeagueSeasonAverage?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  deletedAt      DateTime?
 
   @@unique([leagueId, name])
   @@index([seasonYear, status])
   @@index([deletedAt])
   @@map("seasons")
+}
+
+model LeagueSeasonAverage {
+  id                String   @id @default(uuid()) @db.Uuid
+  seasonId          String   @unique @db.Uuid
+  points            Decimal  @db.Decimal(12, 3)
+  fieldGoalsMade    Decimal  @db.Decimal(12, 3)
+  fieldGoalsAttempt Decimal  @db.Decimal(12, 3)
+  threeMade         Decimal  @db.Decimal(12, 3)
+  threeAttempt      Decimal  @db.Decimal(12, 3)
+  freeThrowsMade    Decimal  @db.Decimal(12, 3)
+  freeThrowsAttempt Decimal  @db.Decimal(12, 3)
+  offensiveRebounds Decimal  @db.Decimal(12, 3)
+  defensiveRebounds Decimal  @db.Decimal(12, 3)
+  rebounds          Decimal  @db.Decimal(12, 3)
+  assists           Decimal  @db.Decimal(12, 3)
+  steals            Decimal  @db.Decimal(12, 3)
+  blocks            Decimal  @db.Decimal(12, 3)
+  turnovers         Decimal  @db.Decimal(12, 3)
+  fouls             Decimal  @db.Decimal(12, 3)
+  possessions       Decimal  @db.Decimal(12, 3)
+  pointsPerPoss     Decimal  @db.Decimal(12, 6)
+  trueShootingPct   Decimal? @db.Decimal(8, 5)
+  averageUper       Decimal? @db.Decimal(8, 5)
+  averageOrtg       Decimal? @db.Decimal(8, 3)
+  averageDrtg       Decimal? @db.Decimal(8, 3)
+  computedAt        DateTime @default(now())
+  season            Season   @relation(fields: [seasonId], references: [id])
+
+  @@map("league_season_averages")
 }
 
 model PlayerTeamSeason {
@@ -351,23 +382,41 @@ model FormulaVersion {
 }
 
 model GamePerformanceScore {
-  id               String         @id @default(uuid()) @db.Uuid
-  gameId           String         @db.Uuid
-  gameStatId       String         @unique @db.Uuid
-  playerId         String         @db.Uuid
-  formulaVersionId String         @db.Uuid
-  productionScore  Decimal        @db.Decimal(8, 3)
-  leagueWeight     Decimal        @db.Decimal(5, 3)
-  opponentFactor   Decimal        @db.Decimal(5, 3)
-  teamFactor       Decimal        @db.Decimal(5, 3)
-  performanceScore Decimal        @db.Decimal(8, 3)
-  game             Game           @relation(fields: [gameId], references: [id])
-  gameStat         GameStat       @relation(fields: [gameStatId], references: [id])
-  player           Player         @relation(fields: [playerId], references: [id])
-  formulaVersion   FormulaVersion @relation(fields: [formulaVersionId], references: [id])
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  deletedAt        DateTime?
+  id                     String         @id @default(uuid()) @db.Uuid
+  gameId                 String         @db.Uuid
+  gameStatId             String         @unique @db.Uuid
+  playerId               String         @db.Uuid
+  formulaVersionId       String         @db.Uuid
+  productionScore        Decimal        @db.Decimal(8, 3)
+  leagueWeight           Decimal        @db.Decimal(5, 3)
+  opponentFactor         Decimal        @db.Decimal(5, 3)
+  teamFactor             Decimal        @db.Decimal(5, 3)
+  performanceScore       Decimal        @db.Decimal(8, 3)
+  formulaVersionTag      Int            @default(2)
+  effectiveFieldGoalPct  Decimal?       @db.Decimal(8, 5)
+  trueShootingPct        Decimal?       @db.Decimal(8, 5)
+  usagePct               Decimal?       @db.Decimal(8, 5)
+  unadjustedPer          Decimal?       @db.Decimal(8, 5)
+  playerEfficiencyRating Decimal?       @db.Decimal(8, 5)
+  offensiveRating        Decimal?       @db.Decimal(8, 3)
+  defensiveRating        Decimal?       @db.Decimal(8, 3)
+  pie                    Decimal?       @db.Decimal(8, 5)
+  offensiveWinShares     Decimal?       @db.Decimal(8, 5)
+  defensiveWinShares     Decimal?       @db.Decimal(8, 5)
+  winShares              Decimal?       @db.Decimal(8, 5)
+  winSharesPer48         Decimal?       @db.Decimal(8, 5)
+  apmBox                 Decimal?       @db.Decimal(8, 5)
+  rpmEstimate            Decimal?       @db.Decimal(8, 5)
+  advancedMetricBonus    Decimal?       @db.Decimal(8, 3)
+  finalPerformanceScore  Decimal?       @db.Decimal(8, 3)
+  processedAt            DateTime?
+  game                   Game           @relation(fields: [gameId], references: [id])
+  gameStat               GameStat       @relation(fields: [gameStatId], references: [id])
+  player                 Player         @relation(fields: [playerId], references: [id])
+  formulaVersion         FormulaVersion @relation(fields: [formulaVersionId], references: [id])
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+  deletedAt              DateTime?
 
   @@index([playerId])
   @@index([formulaVersionId])
