@@ -141,6 +141,24 @@ export async function requirePortalUser() {
   return user;
 }
 
+export async function requireOrganizerUser() {
+  return requirePortalUser();
+}
+
+export async function requireAdminUser() {
+  const user = await requirePortalUser();
+
+  if (user.role !== UserRole.ADMIN) {
+    redirect("/organizer");
+  }
+
+  return user;
+}
+
 export function isPortalRole(role: UserRole) {
   return allowedRoles.has(role);
+}
+
+export function isAdminRole(role: UserRole) {
+  return role === UserRole.ADMIN;
 }

@@ -91,7 +91,7 @@ function n(value: string) {
 }
 
 function pct(value: number | null) {
-  return value === null ? "—" : `${value.toFixed(1)}%`;
+  return value === null ? "â€”" : `${value.toFixed(1)}%`;
 }
 
 function computed(row: StatRow, teamMinutes: number, teamFga: number, teamFta: number, teamTov: number) {
@@ -147,10 +147,10 @@ export function LiveStatsClient() {
             <p className="mx-auto mt-3 max-w-xl text-surface-600">
               This game has been submitted for OnCourt review. Stats will be verified and reflected in national rankings on the next Monday update at 12:00 PM.
             </p>
-            <p className="mt-5 font-semibold text-navy-800">Player of the Game: {playerOfGame?.row.playerName || "—"}</p>
+            <p className="mt-5 font-semibold text-navy-800">Player of the Game: {playerOfGame?.row.playerName || "â€”"}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <button onClick={() => { setSubmitted(false); setStep(1); }} className="button primary">Submit Another Game</button>
-              <Link href="/portal" className="button secondary">Back to Dashboard</Link>
+              <Link href="/organizer" className="button secondary">Back to Dashboard</Link>
             </div>
           </article>
         </section>
@@ -199,7 +199,7 @@ export function LiveStatsClient() {
 function SetupStep({ setup, setSetup, onNext }: { setup: Setup; setSetup: (setup: Setup) => void; onNext: () => void }) {
   return (
     <section className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-      <h2 className="font-display text-3xl text-navy-800">Step 1 · Game Setup</h2>
+      <h2 className="font-display text-3xl text-navy-800">Step 1 Â· Game Setup</h2>
       <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <label className="grid gap-2 text-sm font-semibold text-surface-700">Select League<select value={setup.league} onChange={(event) => setSetup({ ...setup, league: event.target.value })} className="min-h-11 rounded-md border border-surface-200 px-3 py-2"><option>No assigned leagues</option>{leagues.map((league) => <option key={league.id}>{league.name}</option>)}</select></label>
         <label className="grid gap-2 text-sm font-semibold text-surface-700">Select Season<select value={setup.season} onChange={(event) => setSetup({ ...setup, season: event.target.value })} className="min-h-11 rounded-md border border-surface-200 px-3 py-2"><option>Active season unavailable</option></select></label>
@@ -215,7 +215,7 @@ function SetupStep({ setup, setSetup, onNext }: { setup: Setup; setSetup: (setup
           </button>
         ))}
       </div>
-      <button onClick={onNext} className="button primary mt-6">Begin Stat Entry →</button>
+      <button onClick={onNext} className="button primary mt-6">Begin Stat Entry â†’</button>
     </section>
   );
 }
@@ -234,7 +234,7 @@ function EntryStep(props: {
   return (
     <section className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="font-display text-3xl text-navy-800">Step 2 · Player Stat Entry</h2>
+        <h2 className="font-display text-3xl text-navy-800">Step 2 Â· Player Stat Entry</h2>
         <div className="inline-flex rounded-full bg-surface-100 p-1">
           {(["home", "away"] as const).map((team) => (
             <button key={team} onClick={() => props.setActiveTeam(team)} className={`rounded-full px-5 py-2 font-semibold capitalize ${props.activeTeam === team ? "bg-navy-800 text-white" : "text-surface-600"}`}>
@@ -300,12 +300,12 @@ function StatTable({ rows, setRows }: { rows: StatRow[]; setRows: (rows: StatRow
                     <span className="absolute left-0 top-full z-10 mt-1 grid w-72 rounded-md border border-surface-200 bg-white p-2 shadow-panel">
                       {suggestions.map((player) => (
                         <button key={player.id} type="button" onClick={() => updateRow(row.id, "playerName", formatPlayerName(player))} className="rounded px-2 py-1 text-left text-sm hover:bg-amber-50">
-                          {formatPlayerName(player)} · {player.position ?? "Position pending"} · {player.city}
+                          {formatPlayerName(player)} Â· {player.position ?? "Position pending"} Â· {player.city}
                         </button>
                       ))}
                     </span>
                   ) : null}
-                  {column.key === "playerName" && row.isStub ? <small className="mt-1 block text-amber-600">New player — will be verified</small> : null}
+                  {column.key === "playerName" && row.isStub ? <small className="mt-1 block text-amber-600">New player â€” will be verified</small> : null}
                 </span>
               ))}
               <span className="py-2 font-mono text-mono-sm text-surface-400">{pct(metrics.efg)}</span>
@@ -330,20 +330,20 @@ function ReviewStep({ setup, homeRows, awayRows, playerOfGame, onSubmit }: { set
   const awayScore = awayRows.reduce((sum, row) => sum + n(row.pts), 0);
   return (
     <section className="grid gap-5 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-      <h2 className="font-display text-3xl text-navy-800">Step 3 · Review and Submit</h2>
+      <h2 className="font-display text-3xl text-navy-800">Step 3 Â· Review and Submit</h2>
       <div className="grid gap-3 rounded-lg bg-surface-100 p-4 md:grid-cols-3">
         <span><strong className="block text-navy-800">League</strong>{setup.league || "No league selected"}</span>
         <span><strong className="block text-navy-800">Date</strong>{setup.date}</span>
         <span><strong className="block text-navy-800">Phase</strong>{setup.phase}</span>
-        <span><strong className="block text-navy-800">Venue</strong>{setup.venue || "—"}</span>
+        <span><strong className="block text-navy-800">Venue</strong>{setup.venue || "â€”"}</span>
         <span><strong className="block text-navy-800">Home Score</strong>{homeScore}</span>
         <span><strong className="block text-navy-800">Away Score</strong>{awayScore}</span>
       </div>
       <article className="rounded-lg border border-amber-200 bg-amber-50 p-5">
         <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-700">Player of the Game</p>
-        <h3 className="mt-2 font-display text-3xl text-navy-800">{playerOfGame?.row.playerName || "—"}</h3>
+        <h3 className="mt-2 font-display text-3xl text-navy-800">{playerOfGame?.row.playerName || "â€”"}</h3>
         <p className="text-surface-600">
-          {playerOfGame ? `${playerOfGame.row.team} · ${n(playerOfGame.row.pts)} pts · ${n(playerOfGame.row.trb)} reb · ${n(playerOfGame.row.ast)} ast · Performance Score: ${playerOfGame.score.toFixed(1)}` : "Enter player stats to generate the award preview."}
+          {playerOfGame ? `${playerOfGame.row.team} Â· ${n(playerOfGame.row.pts)} pts Â· ${n(playerOfGame.row.trb)} reb Â· ${n(playerOfGame.row.ast)} ast Â· Performance Score: ${playerOfGame.score.toFixed(1)}` : "Enter player stats to generate the award preview."}
         </p>
       </article>
       <article className="rounded-lg border border-surface-200 p-5">

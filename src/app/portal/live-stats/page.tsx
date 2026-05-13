@@ -1,7 +1,7 @@
-import { requirePortalUser } from "@/lib/portal-auth";
-import { LiveStatsClient } from "./LiveStatsClient";
+import { redirect } from "next/navigation";
+import { requireOrganizerUser } from "@/lib/portal-auth";
 
-export default async function LiveStatsPage() {
-  await requirePortalUser();
-  return <LiveStatsClient />;
+export default async function LegacyPortalLiveStatsPage() {
+  await requireOrganizerUser();
+  redirect("/organizer/live-stats");
 }

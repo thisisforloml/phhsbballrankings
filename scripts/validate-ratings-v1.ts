@@ -1,4 +1,4 @@
-﻿import { readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { AgeGroup, PlayerGender } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
@@ -172,7 +172,7 @@ async function resolveExpectedRows() {
         throw new Error(`${batchFile}: missing active season ${seasonName} for ${leagueName}.`);
       }
 
-      for (const sourceGame of data.games) {
+      for (const sourceGame of data.games!) {
         const gameNumber = requiredString(sourceGame.gameNumber, "game.gameNumber");
         const games = await prisma.game.findMany({
           where: {

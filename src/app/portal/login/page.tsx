@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { UserRole } from "@prisma/client";
 import { createPortalSession } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 
@@ -32,22 +33,22 @@ async function login(formData: FormData) {
     redirect("/portal/login?error=invalid");
   }
 
-  if (user.role !== "ADMIN" && user.role !== "ORGANIZER") {
+  if (user.role !== UserRole.ADMIN && user.role !== UserRole.ORGANIZER) {
     redirect("/portal/login?error=forbidden");
   }
 
   createPortalSession(user);
-  redirect("/portal");
+  redirect(user.role === UserRole.ADMIN ? "/admin" : "/organizer");
 }
 
 function errorMessage(error?: string) {
   if (error === "missing") return "Username/email and password are required.";
-  if (error === "forbidden") return "This account cannot access the organizer portal.";
+  if (error === "forbidden") return "This account cannot access OnCourt portals.";
   if (error === "invalid") return "Invalid portal credentials.";
   return null;
 }
 
-export default function OrganizerLoginPage({ searchParams }: { searchParams?: { error?: string } }) {
+export default function PortalLoginPage({ searchParams }: { searchParams?: { error?: string } }) {
   const message = errorMessage(searchParams?.error);
 
   return (
@@ -58,8 +59,8 @@ export default function OrganizerLoginPage({ searchParams }: { searchParams?: { 
           <span className="mt-3 block font-display text-4xl font-extrabold text-navy-800">ONCOURT</span>
           <span className="block font-mono text-[0.65rem] uppercase tracking-[0.18em] text-surface-500">Rankings PH</span>
         </Link>
-        <h1 className="mt-8 font-display text-[1.75rem] font-bold text-navy-800">Organizer Portal</h1>
-        <p className="mt-2 text-surface-500">For league administrators and statisticians partnered with OnCourt.</p>
+        <h1 className="mt-8 font-display text-[1.75rem] font-bold text-navy-800">Portal Sign In</h1>
+        <p className="mt-2 text-surface-500">For OnCourt administrators and approved organizer partners.</p>
         <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-surface-400">
           Not yet a partner?{" "}
           <Link href="/partner" className="text-amber-500 hover:underline">
@@ -79,7 +80,7 @@ export default function OrganizerLoginPage({ searchParams }: { searchParams?: { 
           <button className="button secondary w-full bg-navy-800 text-white hover:bg-navy-700" type="submit">Sign In</button>
         </form>
         <p className="mt-5 text-sm text-surface-500">
-          Organizer accounts are created by OnCourt after partnership approval. If you have not yet applied, visit the partnership page.
+          Admin accounts open the internal Admin Portal. Organizer accounts open the Organizer Portal for submissions and stat entry.
         </p>
       </section>
     </main>

@@ -1,63 +1,86 @@
-﻿"use client";
+import Link from "next/link";
+import { requireAdminUser } from "@/lib/portal-auth";
 
-import { useState } from "react";
+export const metadata = {
+  title: "Admin Portal",
+  description: "Internal OnCourt administration tools."
+};
 
-export default function AdminPage() {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  if (!loggedIn) {
-    return (
-      <main className="bg-surface-50 pb-20">
-        <section className="hero-brand pt-32 text-white">
-          <div className="container-px py-14">
-            <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">OnCourt Admin Panel</p>
-            <h1 className="mt-3 font-display text-stat-lg">Administrator Login</h1>
-          </div>
-        </section>
-        <section className="container-px pt-10">
-          <form onSubmit={(event) => { event.preventDefault(); setLoggedIn(true); }} className="mx-auto grid max-w-xl gap-4 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-            <label className="grid gap-2 font-semibold">Username<input className="rounded-md border border-surface-300 px-3 py-3" defaultValue="DarwinOwner" required /></label>
-            <label className="grid gap-2 font-semibold">Password<input className="rounded-md border border-surface-300 px-3 py-3" type="password" required /></label>
-            <button className="button primary">Login</button>
-          </form>
-        </section>
-      </main>
-    );
+const adminTools = [
+  {
+    title: "Player Bio Editor",
+    description: "Search and update existing player profile fields.",
+    href: "/admin/players",
+    status: "Available"
+  },
+  {
+    title: "Duplicate Player Merge",
+    description: "Review and merge duplicate player records.",
+    href: "#duplicates",
+    status: "Later"
+  },
+  {
+    title: "Ratings and Rankings",
+    description: "Review formula runs and public ranking snapshots.",
+    href: "#ratings",
+    status: "Later"
+  },
+  {
+    title: "Data QA Review",
+    description: "Audit submitted games, stat rows, and validation reports.",
+    href: "#qa",
+    status: "Later"
   }
+];
 
-  const panels = [
-    "Review organizer applications",
-    "Review submitted games and stat sheets",
-    "Manage league tiers and verification status",
-    "Review player profile claim requests",
-    "System-wide compliance and submission stats",
-    "User management",
-    "Full audit log",
-    "System health dashboard",
-    "Revenue/licensing inquiry log"
-  ];
+export default async function AdminPage() {
+  const user = await requireAdminUser();
 
   return (
-    <main className="bg-surface-50 pb-20 pt-28">
-      <section className="container-px">
-        <div className="rounded-lg bg-white p-5 shadow-sm">
-          <p className="label">Owner Account</p>
-          <h1 className="font-display text-stat-md">Administrator Dashboard</h1>
-          <p className="mt-2 text-ink-600">Role hierarchy: owner &gt; oncourt_team &gt; organizer &gt; statistician &gt; player.</p>
-        </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {panels.map((panel, index) => (
-            <article key={panel} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-              <span className="font-display text-stat-sm text-navy-800">{index + 1}</span>
-              <h2 className="mt-2 font-semibold">{panel}</h2>
-              <div className="mt-4 flex gap-2">
-                <button className="button primary">Approve</button>
-                <button className="button secondary">Reject</button>
+    <main className="min-h-screen bg-surface-50 pt-20">
+      <div className="grid lg:grid-cols-[17rem_1fr]">
+        <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
+          <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
+          <nav className="mt-8 grid gap-2 font-semibold">
+            <Link href="/admin" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Dashboard</Link>
+            <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
+            <Link href="/organizer" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Portal</Link>
+            <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
+          </nav>
+        </aside>
+
+        <section className="container-px grid gap-6 py-8">
+          <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
+            <p className="label">Internal team tools</p>
+            <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h1 className="font-display text-stat-md text-navy-800">Admin Portal</h1>
+                <p className="mt-2 max-w-3xl text-ink-600">
+                  Signed in as {user.name}. This area is for OnCourt internal administration only.
+                </p>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+              <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{user.role}</span>
+            </div>
+          </div>
+
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {adminTools.map((tool) => (
+              <article key={tool.title} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+                <div className="flex items-start justify-between gap-3">
+                  <h2 className="font-display text-2xl text-navy-800">{tool.title}</h2>
+                  <span className="rounded-full bg-surface-100 px-3 py-1 font-mono text-mono-sm uppercase text-surface-600">{tool.status}</span>
+                </div>
+                <p className="mt-3 text-sm text-ink-600">{tool.description}</p>
+                {tool.href.startsWith("/") ? (
+                  <Link href={tool.href} className="button primary mt-5 w-fit">Open</Link>
+                ) : (
+                  <span className="mt-5 inline-flex rounded-md bg-surface-100 px-4 py-2 text-sm font-semibold text-surface-500">Planned</span>
+                )}
+              </article>
+            ))}
+          </section>
+        </section>
+      </div>
     </main>
   );
 }
