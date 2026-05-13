@@ -7,7 +7,7 @@ import { PlayerAvatar, RatingBadge, StarRating, StatCard, VerifiedBadge } from "
 
 export function PlayerHero({ player }: { player: Player }) {
   const graduationClass = player.birthYear ? player.birthYear + 18 : null;
-  const positionText = player.position ? `${player.position} � ` : "";
+  const positionText = player.position ? `${player.position} - ` : "";
   const nationalRankText = player.nationalRank > 0 ? `#${player.nationalRank}` : "Provisional";
   const rankCards = [
     ["National Rank", nationalRankText],
@@ -23,7 +23,7 @@ export function PlayerHero({ player }: { player: Player }) {
           <PlayerAvatar player={player} size="lg" />
           <div>
             <h1 className="font-display text-stat-md">{formatPlayerName(player)}</h1>
-            <p className="mt-3 text-white/75">{positionText}{player.school ?? "Team not listed"} � {player.region} � {player.ageGroup}</p>
+            <p className="mt-3 text-white/75">{positionText}{player.school ?? "Team not listed"} - {player.region} - {player.ageGroup}</p>
             <div className="mt-3 flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-white/65">
               <span>{player.birthYear ? `Born ${player.birthYear}` : "Birth year not on record"}</span>
               {graduationClass ? <span>Class of {graduationClass}</span> : null}
@@ -44,8 +44,8 @@ export function PlayerHero({ player }: { player: Player }) {
       </div>
       <div className="container-px grid gap-4 pb-10 md:grid-cols-3">
         <StatCard label="PPG" value={player.avgPoints} />
-        <StatCard label="RPG" value={player.avgRebounds ?? "â€”"} />
-        <StatCard label="APG" value={player.avgAssists ?? "â€”"} />
+        <StatCard label="RPG" value={player.avgRebounds ?? "-"} />
+        <StatCard label="APG" value={player.avgAssists ?? "-"} />
       </div>
       <div className="container-px grid gap-4 pb-10 md:grid-cols-4">
         {rankCards.map(([label, value]) => (
