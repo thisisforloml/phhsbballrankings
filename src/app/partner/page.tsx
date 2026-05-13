@@ -4,7 +4,6 @@ import { useState } from "react";
 import { regions } from "@/lib/mock-data";
 
 const coverageOptions = ["U13 Boys", "U13 Girls", "U16 Boys", "U16 Girls", "U19 Boys", "U19 Girls"];
-const bodies = ["FIBA Philippines", "DepEd", "CHED", "LGU", "Private"];
 
 export default function PartnerPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -37,7 +36,6 @@ We handle the rankings. You focus on the game.`}</p>
                 <label className="grid gap-2 text-sm font-semibold">Organization or League Name<input className="rounded-md border border-surface-300 px-3 py-3" required /></label>
                 <label className="grid gap-2 text-sm font-semibold">Region<select className="rounded-md border border-surface-300 px-3 py-3">{regions.map((region) => <option key={region}>{region}</option>)}</select></label>
                 <label className="grid gap-2 text-sm font-semibold">City<input className="rounded-md border border-surface-300 px-3 py-3" required /></label>
-                <label className="grid gap-2 text-sm font-semibold">Governing or sanctioning body<select className="rounded-md border border-surface-300 px-3 py-3">{bodies.map((body) => <option key={body}>{body}</option>)}</select></label>
                 <label className="grid gap-2 text-sm font-semibold">Estimated number of teams<input className="rounded-md border border-surface-300 px-3 py-3" type="number" min="1" required /></label>
                 <label className="grid gap-2 text-sm font-semibold">Games per team per season<input className="rounded-md border border-surface-300 px-3 py-3" type="number" min="1" required /></label>
                 <label className="grid gap-2 text-sm font-semibold">Contact person full name<input className="rounded-md border border-surface-300 px-3 py-3" required /></label>

@@ -5,7 +5,7 @@
         <div className="container-px py-14">
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Methodology</p>
           <h1 className="mt-3 font-display text-stat-lg">How Ratings Work</h1>
-          <p className="mt-4 max-w-3xl text-white/70">OnCourt Rankings Philippines combines verified production, competition quality, opponent strength, and team context. Boys become leaderboard eligible after 10 verified official games; girls become eligible after 8.</p>
+          <p className="mt-4 max-w-3xl text-white/70">OnCourt Rankings Philippines combines verified production, competition quality, opponent strength, and team context. Boys become leaderboard eligible after 10 verified official games; girls become eligible after 5.</p>
         </div>
       </section>
       <section className="container-px grid gap-4 pt-10 md:grid-cols-2">

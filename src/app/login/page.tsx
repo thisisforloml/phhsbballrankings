@@ -21,7 +21,7 @@ export default function LoginPage() {
       return;
     }
     setError("");
-    router.push("/scores");
+    router.push("/leagues");
   }
 
   return (
@@ -33,7 +33,7 @@ export default function LoginPage() {
           <span className="block font-mono text-[0.65rem] uppercase tracking-[0.18em] text-surface-500">Rankings PH</span>
         </Link>
         <h1 className="mt-8 font-display text-[1.75rem] font-bold text-navy-800">Member Login</h1>
-        <p className="mt-2 text-surface-500">Access scores, analytics, and advanced player data.</p>
+        <p className="mt-2 text-surface-500">Access league details, analytics, and advanced player data.</p>
         <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
           <label className="grid gap-2 text-sm font-semibold text-surface-700">
             Email address

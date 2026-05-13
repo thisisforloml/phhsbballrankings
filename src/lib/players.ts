@@ -17,7 +17,7 @@ function hasDetailedBoxScore(stat: {
 }
 
 function leaderboardMinimumGamesForGender(gender: string) {
-  return gender === "GIRLS" ? 8 : 10;
+  return gender === "GIRLS" ? 5 : 10;
 }
 
 export async function getPlayerSummaries(): Promise<PlayerSummary[]> {

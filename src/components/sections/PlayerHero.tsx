@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import type { Player } from "@/lib/mock-data";
@@ -8,11 +8,14 @@ import { PlayerAvatar, RatingBadge, StarRating, StatCard, VerifiedBadge } from "
 export function PlayerHero({ player }: { player: Player }) {
   const graduationClass = player.birthYear ? player.birthYear + 18 : null;
   const positionText = player.position ? `${player.position} · ` : "";
+  const nationalRankText = player.nationalRank > 0 ? `#${player.nationalRank}` : "Provisional";
+  const regionalRankText = player.regionalRank > 0 ? `#${player.regionalRank}` : "Provisional";
+  const cityRankText = player.cityRank > 0 ? `#${player.cityRank}` : "Provisional";
   const rankCards = [
-    ["National Rank", `#${player.nationalRank}`],
-    ["Regional Rank", `#${player.regionalRank}`],
-    ["Position Rank", player.positionRank && player.position ? `${player.position} #${player.positionRank}` : "â€”"],
-    ["City Rank", `#${player.cityRank}`]
+    ["National Rank", nationalRankText],
+    ["Regional Rank", regionalRankText],
+    ["Position Rank", player.positionRank && player.position ? `${player.position} #${player.positionRank}` : "—"],
+    ["City Rank", cityRankText]
   ];
 
   return (
@@ -31,7 +34,7 @@ export function PlayerHero({ player }: { player: Player }) {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             {player.isVerified ? <VerifiedBadge /> : <span className="rounded-full bg-white/15 px-3 py-1 font-mono text-mono-sm uppercase">Unverified</span>}
-            <span className="font-mono text-mono-sm uppercase text-white/75"><span className="text-amber-500">#{player.nationalRank}</span> Nationally</span>
+            <span className="font-mono text-mono-sm uppercase text-white/75"><span className="text-amber-500">{nationalRankText}</span> Nationally</span>
           </div>
         </div>
         <span className="hidden h-52 w-px bg-white/20 lg:block" aria-hidden="true" />

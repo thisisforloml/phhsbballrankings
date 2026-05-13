@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthContext";
 
 const packages = [
-  { name: "Standard", price: "PHP XXX per month", features: ["Full scores", "League details"], action: "Select" },
+  { name: "Standard", price: "PHP XXX per month", features: ["League details", "Verified game records"], action: "Select" },
   { name: "Pro", price: "PHP XXX per month", features: ["Standard plus", "Trend charts", "Advanced stats", "Ranking history"], action: "Select" },
   { name: "Institutional", price: "PHP XXX per year", features: ["Pro plus", "API access", "Bulk export", "Custom reports"], action: "Contact Us" }
 ];
@@ -45,7 +45,7 @@ export default function RegisterPage() {
       return;
     }
     registerPremium({ email: account.email, name: account.name || account.email.split("@")[0], isPremium: true });
-    router.push("/scores");
+    router.push("/leagues");
   }
 
   return (

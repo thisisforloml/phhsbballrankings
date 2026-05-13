@@ -1,4 +1,4 @@
-﻿import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
+import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
 const formulaVersionNumber = 1;
@@ -6,13 +6,11 @@ const ageGroup = AgeGroup.U19;
 const eligibilityRules = [
   {
     gender: PlayerGender.BOYS,
-    minimumVerifiedGames: 10,
-    expectedRows: 90
+    minimumVerifiedGames: 10
   },
   {
     gender: PlayerGender.GIRLS,
-    minimumVerifiedGames: 5,
-    expectedRows: 44
+    minimumVerifiedGames: 5
   }
 ] as const;
 
@@ -73,11 +71,24 @@ async function main() {
     throw new Error(`Missing FormulaVersion versionNumber ${formulaVersionNumber}.`);
   }
 
+  const totalHistoricalSnapshots = await prisma.rankingSnapshot.count({
+    where: {
+      scope: RankingScope.NATIONAL,
+      ageGroup,
+      formulaVersionId: formulaVersion.id,
+      city: null,
+      region: null
+    }
+  });
+
   const snapshotSummaries = [];
-  let totalRowsChecked = 0;
+  let boysRowsChecked = 0;
+  let girlsRowsChecked = 0;
+  let latestBoysSnapshotId: string | null = null;
+  let latestGirlsSnapshotId: string | null = null;
 
   for (const rule of eligibilityRules) {
-    const snapshots = await prisma.rankingSnapshot.findMany({
+    const snapshot = await prisma.rankingSnapshot.findFirst({
       where: {
         scope: RankingScope.NATIONAL,
         ageGroup,
@@ -100,29 +111,28 @@ async function main() {
           }
         }
       },
-      orderBy: {
-        weekOf: "desc"
-      }
+      orderBy: [
+        {
+          weekOf: "desc"
+        },
+        {
+          createdAt: "desc"
+        }
+      ]
     });
 
-    if (snapshots.length !== 1) {
+    if (!snapshot) {
       issues.push({
         gender: rule.gender,
-        message: `Expected exactly one Formula v1 U19 NATIONAL snapshot, found ${snapshots.length}.`
+        message: "Latest Formula v1 U19 NATIONAL snapshot was not found."
       });
       continue;
     }
 
-    const snapshot = snapshots[0];
-    const expectedRatings = await expectedEligibleRatings(rule.gender, rule.minimumVerifiedGames);
+    if (rule.gender === PlayerGender.BOYS) latestBoysSnapshotId = snapshot.id;
+    if (rule.gender === PlayerGender.GIRLS) latestGirlsSnapshotId = snapshot.id;
 
-    if (expectedRatings.length !== rule.expectedRows) {
-      issues.push({
-        gender: rule.gender,
-        snapshotId: snapshot.id,
-        message: `Expected eligible rating count ${rule.expectedRows}, found ${expectedRatings.length}.`
-      });
-    }
+    const expectedRatings = await expectedEligibleRatings(rule.gender, rule.minimumVerifiedGames);
 
     if (snapshot.rows.length !== expectedRatings.length) {
       issues.push({
@@ -135,19 +145,22 @@ async function main() {
     const expectedByPlayerId = new Map(expectedRatings.map((rating, index) => [rating.playerId, { rating, rank: index + 1 }]));
     const seenRanks = new Set<number>();
     const seenPlayers = new Set<string>();
+    let previousRating: number | null = null;
 
     for (const row of snapshot.rows) {
-      totalRowsChecked += 1;
+      if (rule.gender === PlayerGender.BOYS) boysRowsChecked += 1;
+      if (rule.gender === PlayerGender.GIRLS) girlsRowsChecked += 1;
+
       const expected = expectedByPlayerId.get(row.playerId);
+      const actualRating = Number(row.rating);
 
       if (!expected) {
         issues.push({
           gender: rule.gender,
           snapshotId: snapshot.id,
           playerId: row.playerId,
-          message: "Snapshot row player is not public eligible under Formula v1 rules."
+          message: "Snapshot row player is not public eligible under current Formula v1 rules."
         });
-        continue;
       }
 
       if (seenRanks.has(row.rank)) {
@@ -165,47 +178,68 @@ async function main() {
           gender: rule.gender,
           snapshotId: snapshot.id,
           playerId: row.playerId,
-          message: "Duplicate player in snapshot rows."
+          message: "Duplicate playerId within snapshot."
         });
       }
       seenPlayers.add(row.playerId);
 
-      const expectedRating = Number(expected.rating.adjustedRating);
-      const actualRating = Number(row.rating);
-
-      if (row.rank !== expected.rank) {
+      if (previousRating !== null && actualRating > previousRating) {
         issues.push({
           gender: rule.gender,
           snapshotId: snapshot.id,
           playerId: row.playerId,
-          message: `Expected rank ${expected.rank}, found ${row.rank}.`
+          message: `Rows are not sorted by rating descending: ${actualRating} follows ${previousRating}.`
         });
       }
+      previousRating = actualRating;
 
-      if (Math.abs(actualRating - expectedRating) > 0.01) {
-        issues.push({
-          gender: rule.gender,
-          snapshotId: snapshot.id,
-          playerId: row.playerId,
-          message: `Expected rating ${expectedRating}, found ${actualRating}.`
-        });
+      if (expected) {
+        const expectedRating = Number(expected.rating.adjustedRating);
+
+        if (row.rank !== expected.rank) {
+          issues.push({
+            gender: rule.gender,
+            snapshotId: snapshot.id,
+            playerId: row.playerId,
+            message: `Expected rank ${expected.rank}, found ${row.rank}.`
+          });
+        }
+
+        if (Math.abs(actualRating - expectedRating) > 0.01) {
+          issues.push({
+            gender: rule.gender,
+            snapshotId: snapshot.id,
+            playerId: row.playerId,
+            message: `Expected rating ${expectedRating}, found ${actualRating}.`
+          });
+        }
+
+        if (row.starRating !== expected.rating.starRating) {
+          issues.push({
+            gender: rule.gender,
+            snapshotId: snapshot.id,
+            playerId: row.playerId,
+            message: `Expected starRating ${expected.rating.starRating}, found ${row.starRating}.`
+          });
+        }
+
+        if (row.verifiedGameCount !== expected.rating.verifiedGameCount) {
+          issues.push({
+            gender: rule.gender,
+            snapshotId: snapshot.id,
+            playerId: row.playerId,
+            message: `Expected verifiedGameCount ${expected.rating.verifiedGameCount}, found ${row.verifiedGameCount}.`
+          });
+        }
       }
+    }
 
-      if (row.starRating !== expected.rating.starRating) {
+    for (let rank = 1; rank <= snapshot.rows.length; rank += 1) {
+      if (!seenRanks.has(rank)) {
         issues.push({
           gender: rule.gender,
           snapshotId: snapshot.id,
-          playerId: row.playerId,
-          message: `Expected starRating ${expected.rating.starRating}, found ${row.starRating}.`
-        });
-      }
-
-      if (row.verifiedGameCount !== expected.rating.verifiedGameCount) {
-        issues.push({
-          gender: rule.gender,
-          snapshotId: snapshot.id,
-          playerId: row.playerId,
-          message: `Expected verifiedGameCount ${expected.rating.verifiedGameCount}, found ${row.verifiedGameCount}.`
+          message: `Missing continuous rank ${rank}.`
         });
       }
     }
@@ -214,6 +248,7 @@ async function main() {
       gender: rule.gender,
       snapshotId: snapshot.id,
       weekOf: snapshot.weekOf.toISOString(),
+      createdAt: snapshot.createdAt.toISOString(),
       expectedRows: expectedRatings.length,
       actualRows: snapshot.rows.length,
       top10Preview: snapshot.rows.slice(0, 10).map((row) => ({
@@ -231,17 +266,12 @@ async function main() {
     JSON.stringify(
       {
         formulaVersionId: formulaVersion.id,
-        ageGroup,
-        eligibilityRules: {
-          boys: {
-            minimumVerifiedGames: 10
-          },
-          girls: {
-            minimumVerifiedGames: 5
-          }
-        },
-        snapshotsChecked: snapshotSummaries.length,
-        totalRowsChecked,
+        totalHistoricalSnapshots,
+        latestSnapshotsChecked: snapshotSummaries.length,
+        latestBoysSnapshotId,
+        latestGirlsSnapshotId,
+        boysRowsChecked,
+        girlsRowsChecked,
         snapshotSummaries,
         issues,
         validationPassed: issues.length === 0

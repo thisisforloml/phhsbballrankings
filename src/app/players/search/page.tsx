@@ -26,7 +26,7 @@ export default async function PlayerSearchPage({
         return (
           (!firstName || names[0]?.includes(firstName) || player.displayName.toLowerCase().includes(firstName)) &&
           (!lastName || names.slice(1).join(" ").includes(lastName)) &&
-          (!position || player.position.toLowerCase().includes(position)) &&
+          (!position || (player.position ?? "").toLowerCase().includes(position)) &&
           (!region || player.region.toLowerCase() === region)
         );
       })

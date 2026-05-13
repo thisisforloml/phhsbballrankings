@@ -122,7 +122,6 @@ function LeaguesDropdown() {
   return (
     <div className="absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/leagues">League Directory</Link>
-      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/scores">Scores</Link>
     </div>
   );
 }
@@ -154,7 +153,6 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
                 <p>Leagues</p>
                 <div className="mt-3 grid gap-2 text-sm">
                   <Link onClick={onClose} href="/leagues">League Directory</Link>
-                  <Link onClick={onClose} href="/scores">Scores</Link>
                 </div>
               </section>
               <Link onClick={onClose} href="/about">About</Link>

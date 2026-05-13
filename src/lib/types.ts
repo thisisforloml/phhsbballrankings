@@ -14,7 +14,7 @@ export interface PlayerSummary {
   displayName: string;
   gender: PlayerGender;
   photoUrl?: string | null;
-  position: string;
+  position?: string | null;
   heightCm?: number | null;
   regionRanking?: number | null;
   positionRanking?: number | null;

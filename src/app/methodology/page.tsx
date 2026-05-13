@@ -41,7 +41,7 @@ export default function MethodologyPage() {
         <h2>Leaderboard eligibility</h2>
         <p>
           Boys must have at least 10 verified official games to appear on any public leaderboard. Girls
-          must have at least 8 verified official games. Players below the applicable threshold remain
+          must have at least 5 verified official games. Players below the applicable threshold remain
           searchable in the registry, but they are hidden from ranked lists.
         </p>
       </section>

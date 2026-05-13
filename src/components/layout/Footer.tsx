@@ -6,7 +6,7 @@ export function Footer() {
       <div className="grid gap-8 md:grid-cols-[1fr_auto_auto_auto] md:items-start">
         <div>
           <strong className="font-display text-3xl text-ink-900">OnCourt Rankings <span className="text-amber-700">PH</span></strong>
-          <p className="mt-2 max-w-xl">Verified Philippine basketball rankings, player registry, scores, and competition data.</p>
+          <p className="mt-2 max-w-xl">Verified Philippine basketball rankings, player registry, and competition data.</p>
         </div>
         <nav className="grid gap-3 font-mono text-mono-sm uppercase">
           <strong className="text-ink-900">Rankings</strong>
@@ -17,12 +17,12 @@ export function Footer() {
         <nav className="grid gap-3 font-mono text-mono-sm uppercase">
           <strong className="text-ink-900">Leagues</strong>
           <Link href="/leagues">Leagues</Link>
-          <Link href="/scores">Scores</Link>
         </nav>
         <nav className="grid gap-3 font-mono text-mono-sm uppercase">
           <strong className="text-ink-900">Platform</strong>
           <Link href="/partner">Partner</Link>
           <Link href="/licensed">Licensed Data</Link>
+          <Link href="/careers">Careers</Link>
         </nav>
       </div>
     </footer>

@@ -1,6 +1,7 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { AgeGroup, SeasonStatus, SubmissionType, VerificationStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { getPortalUser } from "@/lib/portal-auth";
 
 interface PlayerStatInput {
   team: "home" | "away";
@@ -67,8 +68,13 @@ export async function POST(request: Request) {
   const body = (await request.json()) as GameSubmissionInput;
   const players = body.players?.filter((player) => player.name.trim() && Number.isFinite(player.points)) ?? [];
 
-  if (
-    !body.username ||
+  const user = await getPortalUser();
+
+  if (!user) {
+    return NextResponse.json({ ok: false, message: "Organizer account required." }, { status: 403 });
+  }
+
+  if (    
     !body.leagueName ||
     !body.date ||
     !body.homeTeam ||
@@ -78,17 +84,6 @@ export async function POST(request: Request) {
     players.length === 0
   ) {
     return NextResponse.json({ ok: false, message: "Missing required game details or player points." }, { status: 400 });
-  }
-
-  const user = await prisma.user.findFirst({
-    where: {
-      username: body.username,
-      deletedAt: null
-    }
-  });
-
-  if (!user || (user.role !== "ADMIN" && user.role !== "ORGANIZER")) {
-    return NextResponse.json({ ok: false, message: "Organizer account required." }, { status: 403 });
   }
 
   const city = body.city?.trim() || "Pending city";

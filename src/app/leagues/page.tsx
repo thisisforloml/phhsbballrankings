@@ -1,6 +1,5 @@
 ﻿"use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { AgeGroup } from "@/lib/mock-data";
 import { ageGroups, leagues, regions } from "@/lib/mock-data";
@@ -29,7 +28,6 @@ export default function LeaguesPage() {
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">League Directory</p>
           <h1 className="mt-3 font-display text-stat-lg">Verified Leagues</h1>
           <p className="mt-4 max-w-2xl text-white/70">Official competitions feeding the national player registry and rankings model.</p>
-          <Link href="/scores" className="mt-6 inline-flex rounded-md bg-amber-500 px-4 py-2 font-semibold text-white hover:bg-amber-600">View Scores</Link>
         </div>
       </section>
       <section className="container-px py-8">
