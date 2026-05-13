@@ -16,6 +16,8 @@ export type NationalRankingRow = {
   city: string;
   region: string;
   position: string | null;
+  heightCm: number | null;
+  currentTeam: string;
   photoUrl: string | null;
   gender: RankingGender;
   ageGroup: RankingAgeGroup;
@@ -80,8 +82,27 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
               city: true,
               region: true,
               position: true,
+              heightCm: true,
               photoUrl: true,
-              gender: true
+              gender: true,
+              gameStats: {
+                where: {
+                  deletedAt: null
+                },
+                include: {
+                  team: {
+                    select: {
+                      name: true
+                    }
+                  }
+                },
+                orderBy: {
+                  game: {
+                    gameDate: "desc"
+                  }
+                },
+                take: 1
+              }
             }
           }
         },
@@ -90,9 +111,14 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
         }
       }
     },
-    orderBy: {
-      weekOf: "desc"
-    }
+    orderBy: [
+      {
+        weekOf: "desc"
+      },
+      {
+        createdAt: "desc"
+      }
+    ]
   });
 
   if (!snapshot) return emptySnapshot(gender, formulaVersionId);
@@ -112,6 +138,8 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
       city: row.player.city,
       region: row.player.region,
       position: row.player.position,
+      heightCm: row.player.heightCm,
+      currentTeam: row.player.gameStats[0]?.team.name ?? "Team not listed",
       photoUrl: row.player.photoUrl,
       gender: toDisplayGender(row.player.gender),
       ageGroup: snapshot.ageGroup ?? currentAgeGroup,

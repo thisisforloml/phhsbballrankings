@@ -7,15 +7,13 @@ import { PlayerAvatar, RatingBadge, StarRating, StatCard, VerifiedBadge } from "
 
 export function PlayerHero({ player }: { player: Player }) {
   const graduationClass = player.birthYear ? player.birthYear + 18 : null;
-  const positionText = player.position ? `${player.position} Â· ` : "";
+  const positionText = player.position ? `${player.position} · ` : "";
   const nationalRankText = player.nationalRank > 0 ? `#${player.nationalRank}` : "Provisional";
-  const regionalRankText = player.regionalRank > 0 ? `#${player.regionalRank}` : "Provisional";
-  const cityRankText = player.cityRank > 0 ? `#${player.cityRank}` : "Provisional";
   const rankCards = [
     ["National Rank", nationalRankText],
-    ["Regional Rank", regionalRankText],
-    ["Position Rank", player.positionRank && player.position ? `${player.position} #${player.positionRank}` : "â€”"],
-    ["City Rank", cityRankText]
+    ["Region", player.region],
+    ["Position Rank", player.positionRank && player.position ? `${player.position} #${player.positionRank}` : "-"],
+    ["Team", player.school ?? "Team not listed"]
   ];
 
   return (
@@ -25,7 +23,7 @@ export function PlayerHero({ player }: { player: Player }) {
           <PlayerAvatar player={player} size="lg" />
           <div>
             <h1 className="font-display text-stat-md">{formatPlayerName(player)}</h1>
-            <p className="mt-3 text-white/75">{positionText}{player.city} Â· {player.region} Â· {player.ageGroup}</p>
+            <p className="mt-3 text-white/75">{positionText}{player.school ?? "Team not listed"} · {player.region} · {player.ageGroup}</p>
             <div className="mt-3 flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-white/65">
               <span>{player.birthYear ? `Born ${player.birthYear}` : "Birth year not on record"}</span>
               {graduationClass ? <span>Class of {graduationClass}</span> : null}

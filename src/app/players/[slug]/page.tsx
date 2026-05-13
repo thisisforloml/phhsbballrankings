@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { getPlayerProfileBySlug, type PlayerProfile } from "@/lib/player-profile";
 import type { GameResult, LeagueHistory, Player } from "@/lib/mock-data";
 import { CompetitionHistory, PlayerHero, RecentGames } from "@/components/sections";
-import { PremiumGate } from "@/components/ui";
+import { PremiumGate, StarRating } from "@/components/ui";
+import { formatHeight } from "@/lib/format";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const profile = await getPlayerProfileBySlug(params.slug);
@@ -91,10 +92,12 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
       <section className="container-px grid gap-10 py-14">
         <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
           <p className="font-mono text-mono-sm uppercase text-ink-500">Profile status</p>
-          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-4">
+          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-3 lg:grid-cols-6">
             <span><strong className="block text-ink-900">{rankLabel}</strong>Rank</span>
+            <span><strong className="block text-ink-900">{profile.rating.toFixed(2)}</strong><span className="mt-1 block"><StarRating stars={profile.starRating} /></span></span>
             <span><strong className="block text-ink-900">{profile.position ?? "Position not on record"}</strong>Position</span>
-            <span><strong className="block text-ink-900">{profile.heightCm ? `${profile.heightCm} cm` : "Height not on record"}</strong>Height</span>
+            <span><strong className="block text-ink-900">{profile.currentTeam}</strong>Team</span>
+            <span><strong className="block text-ink-900">{formatHeight(profile.heightCm)}</strong>Height</span>
             <span><strong className="block text-ink-900">{profile.birthYear ?? "Not on record"}</strong>Birth year</span>
           </div>
         </div>
