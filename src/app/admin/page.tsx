@@ -14,6 +14,12 @@ const adminTools = [
     status: "Available"
   },
   {
+    title: "Submission Review",
+    description: "Review organizer-submitted JSON, CSV, and XLSX intake records.",
+    href: "/admin/submissions",
+    status: "Available"
+  },
+  {
     title: "Duplicate Player Merge",
     description: "Review and merge duplicate player records.",
     href: "#duplicates",
@@ -44,6 +50,7 @@ export default async function AdminPage() {
           <nav className="mt-8 grid gap-2 font-semibold">
             <Link href="/admin" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Dashboard</Link>
             <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
+            <Link href="/admin/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Submissions</Link>
             <Link href="/organizer" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Portal</Link>
             <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
           </nav>

@@ -31,7 +31,8 @@ export function OrganizerDashboardClient() {
               <Activity className="h-4 w-4" aria-hidden="true" />
               Live Stats Entry
             </Link>
-            <a href="#submit" className="rounded-md px-3 py-2 hover:bg-white/10">Submit Game Stats</a>
+            <Link href="/organizer/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Submissions</Link>
+            <a href="#submit" className="rounded-md px-3 py-2 hover:bg-white/10">Draft Game Stats</a>
             <a href="#pending" className="rounded-md px-3 py-2 hover:bg-white/10">Pending Submissions</a>
             <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
           </nav>
@@ -47,7 +48,7 @@ export function OrganizerDashboardClient() {
                   Submit official game data, enter live stats, and track review status. Player bio editing and ratings tools are admin-only.
                 </p>
               </div>
-              <Link href="/organizer/live-stats" className="button primary">Live Stats Entry</Link>
+              <div className="flex flex-wrap gap-2"><Link href="/organizer/submissions" className="button primary">New Submission</Link><Link href="/organizer/live-stats" className="button secondary">Live Stats Entry</Link></div>
             </div>
             <div className="mt-6 grid gap-3 md:grid-cols-3">
               <Metric value="0" label="Assigned leagues" />
