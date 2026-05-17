@@ -33,11 +33,11 @@ function playerSearchText(player: ManagedPlayer) {
 }
 
 function displayHeight(heightCm: number | null) {
-  return heightCm === null ? "Ã¢â‚¬â€" : `${heightCm} cm`;
+  return heightCm === null ? "-" : `${heightCm} cm`;
 }
 
 function displayRating(rating: number | null) {
-  return rating === null ? "Ã¢â‚¬â€" : rating.toFixed(2);
+  return rating === null ? "-" : rating.toFixed(2);
 }
 
 export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }) {
@@ -99,7 +99,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     className="min-h-11 w-full rounded-md border border-surface-300 bg-white pl-10 pr-3 text-ink-900"
-                    placeholder="Name, city, region, gender"
+                    placeholder="Name, hometown, region, gender"
                   />
                 </span>
               </label>
@@ -116,7 +116,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
                       <strong className="text-ink-900">{player.displayName}</strong>
                       <span className="font-mono text-mono-sm text-ink-500">{player.gender}</span>
                     </span>
-                    <span className="text-sm text-ink-500">{player.city} Ã‚Â· {player.region}</span>
+                    <span className="text-sm text-ink-500">{player.city}, {player.region}</span>
                     <span className="grid grid-cols-3 gap-2 font-mono text-mono-sm text-ink-600">
                       <span>{player.position || "No pos"}</span>
                       <span>{displayHeight(player.heightCm)}</span>
@@ -157,7 +157,7 @@ function PlayerEditForm({
         <div>
           <p className="label">Selected Player</p>
           <h2 className="font-display text-3xl text-navy-800">{player.displayName}</h2>
-          <p className="mt-1 text-ink-500">Rating {displayRating(player.rating)} Ã‚Â· {player.verifiedGameCount ?? "Ã¢â‚¬â€"} verified games</p>
+          <p className="mt-1 text-ink-500">Rating {displayRating(player.rating)} - {player.verifiedGameCount ?? "-"} verified games</p>
         </div>
       </div>
 
@@ -175,7 +175,7 @@ function PlayerEditForm({
         <ReadonlyField label="Gender" value={player.gender} />
         <TextField name="firstName" label="First name" defaultValue={player.firstName} required maxLength={80} />
         <TextField name="lastName" label="Last name" defaultValue={player.lastName} required maxLength={80} />
-        <TextField name="city" label="City" defaultValue={player.city} required maxLength={100} />
+        <TextField name="city" label="Hometown" defaultValue={player.city} required maxLength={100} />
         <TextField name="region" label="Region" defaultValue={player.region} required maxLength={100} />
         <TextField name="position" label="Position" defaultValue={player.position ?? ""} maxLength={20} placeholder="Optional" />
         <label className="grid gap-2 text-sm font-semibold text-surface-700">

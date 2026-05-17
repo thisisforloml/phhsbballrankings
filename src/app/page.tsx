@@ -1,4 +1,5 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
+import { getHomeData } from "@/lib/public-site-data";
 import { HomeClient } from "./HomeClient";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description: "Verified Philippine basketball rankings built from official submitted games."
 };
 
-export default function Home() {
-  return <HomeClient />;
+export default async function Home() {
+  const data = await getHomeData();
+  return <HomeClient data={data} />;
 }

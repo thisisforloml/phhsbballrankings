@@ -1,0 +1,337 @@
+{
+  "generatedAt": "2026-05-17T12:21:25.535Z",
+  "groupsChecked": 5,
+  "reports": [
+    {
+      "group": 1,
+      "suspectedNames": [
+        "Audrey Biongco",
+        "Audrey Biongcog"
+      ],
+      "recordsExist": {
+        "Audrey Biongco": true,
+        "Audrey Biongcog": true
+      },
+      "playerRecords": [
+        {
+          "playerId": "a608ffb1-cfc4-41c6-8c54-ec53b6391f01",
+          "displayName": "Audrey Biongco",
+          "gender": "GIRLS",
+          "deletedAt": null,
+          "gameStatCount": 1,
+          "gamePerformanceScoreCount": 1,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "d319ac18-7bc8-451d-81dd-0d99fa487df0",
+              "ageGroup": "U19",
+              "adjustedRating": 88.9,
+              "verifiedGameCount": 1
+            }
+          ],
+          "rankingSnapshotRowCount": 0,
+          "teamsPlayedFor": [
+            "NU"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Girls Basketball / Season 88"
+          ]
+        },
+        {
+          "playerId": "7fc64a83-707e-4259-b834-8a5235ce81d6",
+          "displayName": "Audrey Biongcog",
+          "gender": "GIRLS",
+          "deletedAt": null,
+          "gameStatCount": 4,
+          "gamePerformanceScoreCount": 4,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "c67fc8e4-a6d3-425c-bd82-e9452edcb365",
+              "ageGroup": "U19",
+              "adjustedRating": 45.03,
+              "verifiedGameCount": 4
+            }
+          ],
+          "rankingSnapshotRowCount": 0,
+          "teamsPlayedFor": [
+            "NU"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Girls Basketball / Season 88"
+          ]
+        }
+      ],
+      "suspectedDuplicatePlayersAppearInSameGame": false,
+      "recommendedCanonicalPlayer": {
+        "playerId": "7fc64a83-707e-4259-b834-8a5235ce81d6",
+        "displayName": "Audrey Biongcog"
+      },
+      "riskLevel": "medium",
+      "recommendedAction": "merge",
+      "reason": "Multiple active records have game stats but no same-game conflict."
+    },
+    {
+      "group": 2,
+      "suspectedNames": [
+        "John Addatu"
+      ],
+      "recordsExist": {
+        "John Addatu": true
+      },
+      "playerRecords": [
+        {
+          "playerId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+          "displayName": "John Addatu",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 16,
+          "gamePerformanceScoreCount": 14,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "f26d7bb3-6e9f-4ce2-aaf4-bee95af7e5cf",
+              "ageGroup": "U19",
+              "adjustedRating": 31.3,
+              "verifiedGameCount": 14
+            }
+          ],
+          "rankingSnapshotRowCount": 1,
+          "teamsPlayedFor": [
+            "UP",
+            "UPIS Jrs (UP)"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        },
+        {
+          "playerId": "be4ee3e4-8303-4bb2-bbf9-e29d26380089",
+          "displayName": "John Addatu",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 1,
+          "gamePerformanceScoreCount": 0,
+          "playerRatingCount": 0,
+          "playerRatings": [],
+          "rankingSnapshotRowCount": 0,
+          "teamsPlayedFor": [
+            "UPIS Jrs (UP)"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        }
+      ],
+      "suspectedDuplicatePlayersAppearInSameGame": false,
+      "recommendedCanonicalPlayer": {
+        "playerId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+        "displayName": "John Addatu"
+      },
+      "riskLevel": "medium",
+      "recommendedAction": "merge",
+      "reason": "Multiple active records have game stats but no same-game conflict."
+    },
+    {
+      "group": 3,
+      "suspectedNames": [
+        "John dexter Santos",
+        "John Dexter Santos"
+      ],
+      "recordsExist": {
+        "John dexter Santos": true,
+        "John Dexter Santos": true
+      },
+      "playerRecords": [
+        {
+          "playerId": "307006c0-9fd6-45e1-aca2-7267ccb5e36f",
+          "displayName": "John dexter Santos",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 23,
+          "gamePerformanceScoreCount": 16,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "d818c067-a2e2-4876-87cd-bf82204cf3c9",
+              "ageGroup": "U19",
+              "adjustedRating": 26.89,
+              "verifiedGameCount": 16
+            }
+          ],
+          "rankingSnapshotRowCount": 1,
+          "teamsPlayedFor": [
+            "FEU",
+            "FEU Jrs (FEU)"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        },
+        {
+          "playerId": "90937ead-994a-4056-a826-9b1966d9dba0",
+          "displayName": "John Dexter Santos",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 2,
+          "gamePerformanceScoreCount": 2,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "8a3109b2-2b13-4674-b43c-31a536402c9a",
+              "ageGroup": "U19",
+              "adjustedRating": 22.87,
+              "verifiedGameCount": 2
+            }
+          ],
+          "rankingSnapshotRowCount": 0,
+          "teamsPlayedFor": [
+            "FEU"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        }
+      ],
+      "suspectedDuplicatePlayersAppearInSameGame": false,
+      "recommendedCanonicalPlayer": {
+        "playerId": "307006c0-9fd6-45e1-aca2-7267ccb5e36f",
+        "displayName": "John dexter Santos"
+      },
+      "riskLevel": "medium",
+      "recommendedAction": "merge",
+      "reason": "Multiple active records have game stats but no same-game conflict."
+    },
+    {
+      "group": 4,
+      "suspectedNames": [
+        "Rhon-j Matias",
+        "Rhon-J Matias"
+      ],
+      "recordsExist": {
+        "Rhon-j Matias": true,
+        "Rhon-J Matias": true
+      },
+      "playerRecords": [
+        {
+          "playerId": "b383aaf2-876b-4895-a94c-773f76c40f1c",
+          "displayName": "Rhon-j Matias",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 14,
+          "gamePerformanceScoreCount": 14,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "6136ffd3-cb9a-425b-a82f-c23100ced1c7",
+              "ageGroup": "U19",
+              "adjustedRating": 49.74,
+              "verifiedGameCount": 14
+            }
+          ],
+          "rankingSnapshotRowCount": 1,
+          "teamsPlayedFor": [
+            "NU"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        },
+        {
+          "playerId": "ec49a29d-06ce-40b2-b00a-af9f47e271d3",
+          "displayName": "Rhon-J Matias",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 3,
+          "gamePerformanceScoreCount": 0,
+          "playerRatingCount": 0,
+          "playerRatings": [],
+          "rankingSnapshotRowCount": 0,
+          "teamsPlayedFor": [
+            "NU Jrs (NU)"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        }
+      ],
+      "suspectedDuplicatePlayersAppearInSameGame": false,
+      "recommendedCanonicalPlayer": {
+        "playerId": "b383aaf2-876b-4895-a94c-773f76c40f1c",
+        "displayName": "Rhon-j Matias"
+      },
+      "riskLevel": "medium",
+      "recommendedAction": "merge",
+      "reason": "Multiple active records have game stats but no same-game conflict."
+    },
+    {
+      "group": 5,
+      "suspectedNames": [
+        "Sam Hall"
+      ],
+      "recordsExist": {
+        "Sam Hall": true
+      },
+      "playerRecords": [
+        {
+          "playerId": "c39b215b-fcf5-4760-a392-e4fc415bda42",
+          "displayName": "Sam Hall",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 23,
+          "gamePerformanceScoreCount": 17,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "0174a192-1062-4e1c-ba74-9986c327ee5a",
+              "ageGroup": "U19",
+              "adjustedRating": 54.7,
+              "verifiedGameCount": 17
+            }
+          ],
+          "rankingSnapshotRowCount": 1,
+          "teamsPlayedFor": [
+            "FEU",
+            "FEU Jrs (FEU)"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        },
+        {
+          "playerId": "eda39169-352a-4411-8d41-e521bd99cd29",
+          "displayName": "Sam Hall",
+          "gender": "BOYS",
+          "deletedAt": null,
+          "gameStatCount": 3,
+          "gamePerformanceScoreCount": 2,
+          "playerRatingCount": 1,
+          "playerRatings": [
+            {
+              "id": "e57faae3-2d52-4924-8621-d650215883b8",
+              "ageGroup": "U19",
+              "adjustedRating": 52.36,
+              "verifiedGameCount": 2
+            }
+          ],
+          "rankingSnapshotRowCount": 0,
+          "teamsPlayedFor": [
+            "FEU",
+            "FEU Jrs (FEU)"
+          ],
+          "leaguesSeasons": [
+            "UAAP Season 88 HS Boys Basketball / Season 88"
+          ]
+        }
+      ],
+      "suspectedDuplicatePlayersAppearInSameGame": false,
+      "recommendedCanonicalPlayer": {
+        "playerId": "c39b215b-fcf5-4760-a392-e4fc415bda42",
+        "displayName": "Sam Hall"
+      },
+      "riskLevel": "medium",
+      "recommendedAction": "merge",
+      "reason": "Multiple active records have game stats but no same-game conflict."
+    }
+  ]
+}

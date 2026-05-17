@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-05-17T12:35:30.713Z",
+  "sourceReportPath": "D:\\OnCourt Rankings PH\\scripts\\reports\\duplicate-player-diagnostic-round-2.json",
+  "approvedGroups": [
+    {
+      "group": 1,
+      "canonicalPlayerId": "7fc64a83-707e-4259-b834-8a5235ce81d6",
+      "canonicalPlayerDisplayName": "Audrey Biongcog",
+      "duplicatePlayerIds": [
+        "a608ffb1-cfc4-41c6-8c54-ec53b6391f01"
+      ],
+      "duplicatePlayerDisplayNames": [
+        "Audrey Biongco"
+      ],
+      "approved": true,
+      "reason": "User-confirmed duplicate abbreviation/name variant",
+      "sameGameConflict": false
+    },
+    {
+      "group": 2,
+      "canonicalPlayerId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+      "canonicalPlayerDisplayName": "John Addatu",
+      "duplicatePlayerIds": [
+        "be4ee3e4-8303-4bb2-bbf9-e29d26380089"
+      ],
+      "duplicatePlayerDisplayNames": [
+        "John Addatu"
+      ],
+      "approved": true,
+      "reason": "User-confirmed duplicate abbreviation/name variant",
+      "sameGameConflict": false
+    },
+    {
+      "group": 3,
+      "canonicalPlayerId": "90937ead-994a-4056-a826-9b1966d9dba0",
+      "canonicalPlayerDisplayName": "John Dexter Santos",
+      "duplicatePlayerIds": [
+        "307006c0-9fd6-45e1-aca2-7267ccb5e36f"
+      ],
+      "duplicatePlayerDisplayNames": [
+        "John dexter Santos"
+      ],
+      "approved": true,
+      "reason": "User-confirmed duplicate abbreviation/name variant",
+      "sameGameConflict": false
+    },
+    {
+      "group": 4,
+      "canonicalPlayerId": "ec49a29d-06ce-40b2-b00a-af9f47e271d3",
+      "canonicalPlayerDisplayName": "Rhon-J Matias",
+      "duplicatePlayerIds": [
+        "b383aaf2-876b-4895-a94c-773f76c40f1c"
+      ],
+      "duplicatePlayerDisplayNames": [
+        "Rhon-j Matias"
+      ],
+      "approved": true,
+      "reason": "User-confirmed duplicate abbreviation/name variant",
+      "sameGameConflict": false
+    },
+    {
+      "group": 5,
+      "canonicalPlayerId": "c39b215b-fcf5-4760-a392-e4fc415bda42",
+      "canonicalPlayerDisplayName": "Sam Hall",
+      "duplicatePlayerIds": [
+        "eda39169-352a-4411-8d41-e521bd99cd29"
+      ],
+      "duplicatePlayerDisplayNames": [
+        "Sam Hall"
+      ],
+      "approved": true,
+      "reason": "User-confirmed duplicate abbreviation/name variant",
+      "sameGameConflict": false
+    }
+  ],
+  "excludedGroups": [],
+  "approvedGroupsCount": 5,
+  "excludedGroupsCount": 0,
+  "totalDuplicatePlayersApproved": 5
+}

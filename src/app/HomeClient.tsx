@@ -1,20 +1,25 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { AgeGroup, Gender } from "@/lib/mock-data";
-import { ageGroups, genders, getPlayersByAgeGroup } from "@/lib/mock-data";
+import type { HomeData, PublicAgeGroup, PublicGender } from "@/lib/public-site-data";
 import { HeroSection, LeaderboardPreview, RatingExplainer } from "@/components/sections";
 import { EmptyState } from "@/components/ui";
 
-export function HomeClient() {
-  const [ageGroup, setAgeGroup] = useState<AgeGroup>("U19");
-  const [gender, setGender] = useState<Gender>("Boys");
-  const rankedPlayers = useMemo(() => getPlayersByAgeGroup(ageGroup, gender).slice(0, 10), [ageGroup, gender]);
+const ageGroups: PublicAgeGroup[] = ["U13", "U16", "U19"];
+const genders: PublicGender[] = ["Boys", "Girls"];
+
+export function HomeClient({ data }: { data: HomeData }) {
+  const [ageGroup, setAgeGroup] = useState<PublicAgeGroup>("U19");
+  const [gender, setGender] = useState<PublicGender>("Boys");
+  const rankedPlayers = useMemo(() => {
+    if (ageGroup !== "U19") return [];
+    return gender === "Girls" ? data.leaderboards.girls : data.leaderboards.boys;
+  }, [ageGroup, data.leaderboards.boys, data.leaderboards.girls, gender]);
 
   return (
     <main>
-      <HeroSection />
+      <HeroSection data={data} />
       <section className="container-px border-y border-surface-200 bg-white py-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap gap-2">
@@ -41,7 +46,7 @@ export function HomeClient() {
           </div>
           <Link href={`/rankings?gender=${gender}&age=${ageGroup}`} className="font-mono text-mono-sm uppercase text-navy-800">View Full Rankings</Link>
         </div>
-        {rankedPlayers.length ? <LeaderboardPreview players={rankedPlayers} ageGroup={ageGroup} gender={gender} /> : <EmptyState icon="players" title="No players ranked yet" />}
+        {rankedPlayers.length ? <LeaderboardPreview players={rankedPlayers} /> : <EmptyState icon="players" title="No players ranked yet" />}
       </section>
       <RatingExplainer />
     </main>

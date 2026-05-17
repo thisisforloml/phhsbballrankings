@@ -39,3 +39,8 @@ export function getPlayerProfileHref(player: { id?: string | null; slug?: string
   if (player.displayName) return `/players/${slugify(player.displayName)}`;
   return `/players/${player.id ?? ""}`;
 }
+export function formatAgeLabel(age: number | null | undefined, birthYear: number | null | undefined): string {
+  if (age !== null && age !== undefined) return `${age} years old`;
+  if (birthYear !== null && birthYear !== undefined) return `Born ${birthYear}`;
+  return "Age not listed";
+}

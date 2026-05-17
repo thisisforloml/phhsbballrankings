@@ -17,6 +17,8 @@ export type NationalRankingRow = {
   region: string;
   position: string | null;
   heightCm: number | null;
+  birthYear: number | null;
+  age: number | null;
   currentTeam: string;
   photoUrl: string | null;
   gender: RankingGender;
@@ -46,6 +48,15 @@ export type LatestNationalRankings = {
 
 function toDisplayGender(gender: PlayerGender): RankingGender {
   return gender === PlayerGender.GIRLS ? "Girls" : "Boys";
+}
+
+function calculateAge(birthDate: Date | null) {
+  if (!birthDate) return null;
+  const today = new Date();
+  let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+  const monthDiff = today.getUTCMonth() - birthDate.getUTCMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getUTCDate() < birthDate.getUTCDate())) age -= 1;
+  return age;
 }
 
 function emptySnapshot(gender: PlayerGender, formulaVersionId: string | null): NationalRankingSnapshot {
@@ -83,6 +94,7 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
               region: true,
               position: true,
               heightCm: true,
+              birthDate: true,
               photoUrl: true,
               gender: true,
               gameStats: {
@@ -139,6 +151,8 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
       region: row.player.region,
       position: row.player.position,
       heightCm: row.player.heightCm,
+      birthYear: row.player.birthDate ? row.player.birthDate.getUTCFullYear() : null,
+      age: calculateAge(row.player.birthDate),
       currentTeam: row.player.gameStats[0]?.team.name ?? "Team not listed",
       photoUrl: row.player.photoUrl,
       gender: toDisplayGender(row.player.gender),

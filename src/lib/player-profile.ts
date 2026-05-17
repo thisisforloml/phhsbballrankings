@@ -48,6 +48,7 @@ export type PlayerProfile = {
   heightCm: number | null;
   birthDate: string | null;
   birthYear: number | null;
+  age: number | null;
   photoUrl: string | null;
   currentTeam: string;
   ageGroup: "U19";
@@ -70,6 +71,15 @@ function tierLabel(tier: number): PlayerProfileLeague["tierLabel"] {
   if (tier === 3) return "Competitive";
   if (tier === 2) return "Developmental";
   return "Entry";
+}
+
+function calculateAge(birthDate: Date | null) {
+  if (!birthDate) return null;
+  const today = new Date();
+  let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+  const monthDiff = today.getUTCMonth() - birthDate.getUTCMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getUTCDate() < birthDate.getUTCDate())) age -= 1;
+  return age;
 }
 
 function roundOne(value: number) {
@@ -278,6 +288,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     heightCm: player.heightCm,
     birthDate: player.birthDate ? player.birthDate.toISOString() : null,
     birthYear: player.birthDate ? player.birthDate.getUTCFullYear() : null,
+    age: calculateAge(player.birthDate),
     photoUrl: player.photoUrl,
     currentTeam: mostRecentStat?.team.name ?? "Team not on record",
     ageGroup: profileAgeGroup,

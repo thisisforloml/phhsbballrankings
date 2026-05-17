@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const rankText = profile.nationalRank ? `#${profile.nationalRank}` : "Provisional";
 
   return {
-    title: `${profile.displayName} · ${profile.ageGroup} · ${rankText}`,
+    title: `${profile.displayName} - ${profile.ageGroup} - ${rankText}`,
     description: `${profile.displayName} player profile, ranking, recent games, and competition history on OnCourt.`
   };
 }
@@ -92,13 +92,14 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
       <section className="container-px grid gap-10 py-14">
         <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
           <p className="font-mono text-mono-sm uppercase text-ink-500">Profile status</p>
-          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-3 lg:grid-cols-6">
+          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-3 lg:grid-cols-7">
             <span><strong className="block text-ink-900">{rankLabel}</strong>Rank</span>
             <span><strong className="block text-ink-900">{profile.rating.toFixed(2)}</strong><span className="mt-1 block"><StarRating stars={profile.starRating} /></span></span>
             <span><strong className="block text-ink-900">{profile.position ?? "Position not on record"}</strong>Position</span>
-            <span><strong className="block text-ink-900">{profile.currentTeam}</strong>Team</span>
+            <span><strong className="block text-ink-900">{profile.currentTeam}</strong>School/Team</span>
             <span><strong className="block text-ink-900">{formatHeight(profile.heightCm)}</strong>Height</span>
             <span><strong className="block text-ink-900">{profile.birthYear ?? "Not on record"}</strong>Birth year</span>
+            <span><strong className="block text-ink-900">{profile.age !== null ? `${profile.age} years old` : "Not on record"}</strong>Age</span>
           </div>
         </div>
         <RecentGames games={player.lastFiveGames} />

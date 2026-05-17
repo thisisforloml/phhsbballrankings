@@ -49,6 +49,12 @@ function positionLabel(position: string | null) {
   return position?.trim() || notListedPosition;
 }
 
+function ageLabel(row: NationalRankingRow) {
+  if (row.age !== null) return `${row.age} years old`;
+  if (row.birthYear !== null) return `Born ${row.birthYear}`;
+  return "Age not listed";
+}
+
 function buildPositionRankMap(rows: NationalRankingRow[]) {
   const counts = new Map<string, number>();
   const ranks = new Map<string, number>();
@@ -208,7 +214,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
               </select>
             </label>
             <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              City
+              Hometown
               <select value={city} onChange={(event) => setCity(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
                 <option>All</option>
                 {cityOptions.map((item) => (
@@ -249,38 +255,42 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
 function RankingsTable({ rows, positionRanks }: { rows: NationalRankingRow[]; positionRanks: Map<string, number> }) {
   return (
     <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-      <div className="hidden grid-cols-[5rem_minmax(16rem,1.6fr)_8rem_7rem_8rem_10rem_8rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
+      <div className="hidden grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_9rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
         <span>Rank</span>
-        <span>Player</span>
+        <span>Athlete</span>
+        <span>Height</span>
+        <span>Position</span>
         <span>Rating</span>
-        <span>Stars</span>
-        <span>Games</span>
-        <span>Team</span>
-        <span>Pos Rank</span>
       </div>
       {rows.map((row) => (
         <Link
           key={row.playerId}
           href={getPlayerProfileHref(row)}
-          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(16rem,1.6fr)_8rem_7rem_8rem_10rem_8rem] lg:items-center"
+          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_9rem] lg:items-center"
         >
           <span className="font-mono">
             <strong className="block text-lg text-navy-800">#{row.rank}</strong>
+            <small className="text-ink-500">National</small>
           </span>
           <span className="grid grid-cols-[auto_1fr] items-center gap-3">
-            <span className="grid size-10 place-items-center overflow-hidden rounded-full bg-navy-100 font-mono text-mono-sm text-navy-800">
+            <span className="grid size-12 place-items-center overflow-hidden rounded-full bg-navy-100 font-mono text-mono-sm text-navy-800">
               {row.photoUrl ? <img src={row.photoUrl} alt="" className="h-full w-full object-cover" /> : initials(row.displayName)}
             </span>
             <span>
               <strong className="block text-ink-900">{row.displayName}</strong>
-              <small className="text-ink-500">{positionLabel(row.position)} | {formatHeight(row.heightCm)}</small>
+              <small className="block text-ink-500">{row.city}, {row.region}</small>
+              <small className="block text-ink-500">{row.currentTeam} | {ageLabel(row)}</small>
             </span>
           </span>
-          <span className="font-display text-stat-sm text-navy-800">{row.rating.toFixed(2)}</span>
-          <span><StarRating stars={row.starRating} /></span>
-          <span className="font-mono text-ink-700">{row.verifiedGameCount}</span>
-          <span className="text-ink-600">{row.currentTeam}</span>
-          <span className="font-mono text-ink-700">{positionLabel(row.position)} #{positionRanks.get(row.playerId) ?? "-"}</span>
+          <span className="text-ink-700">{formatHeight(row.heightCm)}</span>
+          <span className="grid gap-1">
+            <span>{positionLabel(row.position)}</span>
+            <small className="font-mono text-ink-500">#{positionRanks.get(row.playerId) ?? "-"} at position</small>
+          </span>
+          <span className="grid gap-1">
+            <strong className="font-display text-stat-sm text-navy-800">{row.rating.toFixed(2)}</strong>
+            <StarRating stars={row.starRating} />
+          </span>
         </Link>
       ))}
     </div>

@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { players, leagues, scoreGames } from "@/lib/mock-data";
+import type { HomeData } from "@/lib/public-site-data";
 import { RatingBadge, StarRating } from "@/components/ui";
+import { getPlayerProfileHref } from "@/lib/format";
 
 function useCountUp(target: number) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -27,11 +28,11 @@ function useCountUp(target: number) {
   return { ref, value };
 }
 
-export function HeroSection() {
-  const ranked = useCountUp(players.filter((player) => player.isRankEligible).length);
-  const leagueCount = useCountUp(leagues.filter((league) => league.isVerified).length);
-  const games = useCountUp(scoreGames.length);
-  const leader = [...players].sort((a, b) => b.rating - a.rating)[0];
+export function HeroSection({ data }: { data: HomeData }) {
+  const ranked = useCountUp(data.counts.rankedPlayers);
+  const leagueCount = useCountUp(data.counts.verifiedLeagues);
+  const games = useCountUp(data.counts.gamesLogged);
+  const leader = data.leader;
 
   return (
     <section className="hero-brand relative isolate overflow-hidden pt-32 text-white">
@@ -49,7 +50,7 @@ export function HeroSection() {
             <Link href="/about" className="button border-white/40 text-white hover:border-amber-500 hover:text-amber-500">How Ratings Work</Link>
           </div>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-mono-sm uppercase text-white/70">
-            <span><strong ref={ranked.ref} className="block font-display text-stat-sm text-white">{ranked.value.toLocaleString()}</strong> Ranked Players</span>
+            <span><strong ref={ranked.ref} className="block font-display text-stat-sm text-white">{ranked.value.toLocaleString()}</strong> Rated Players</span>
             <span><strong ref={leagueCount.ref} className="block font-display text-stat-sm text-white">{leagueCount.value.toLocaleString()}</strong> Verified Leagues</span>
             <span><strong ref={games.ref} className="block font-display text-stat-sm text-white">{games.value.toLocaleString()}</strong> Games Logged</span>
           </div>
@@ -59,16 +60,16 @@ export function HeroSection() {
           {leader ? (
             <>
               <RatingBadge rating={leader.rating} large />
-              <h2 className="font-display text-5xl font-bold">{leader.firstName} {leader.lastName}</h2>
+              <h2 className="font-display text-5xl font-bold"><Link href={getPlayerProfileHref(leader)}>{leader.displayName}</Link></h2>
               <div className="mt-3 flex flex-wrap gap-2">
                 <span className="rounded-full bg-navy-50 px-3 py-1 font-mono text-mono-sm uppercase text-navy-800">{leader.gender}</span>
                 <span className="rounded-full bg-navy-50 px-3 py-1 font-mono text-mono-sm uppercase text-navy-800">{leader.ageGroup}</span>
                 {leader.position ? <span className="rounded-full bg-navy-50 px-3 py-1 font-mono text-mono-sm uppercase text-navy-800">{leader.position}</span> : null}
               </div>
-              <div className="mt-4"><StarRating stars={leader.stars} /></div>
+              <div className="mt-4"><StarRating stars={leader.starRating} /></div>
               <div className="mt-5 grid gap-1">
-                <span className="font-mono text-mono-sm uppercase text-ink-500">School or Club</span>
-                <span className="text-sm text-ink-600">{leader.school ?? "Not on record"}</span>
+                <span className="font-mono text-mono-sm uppercase text-ink-500">School/Team</span>
+                <span className="text-sm text-ink-600">{leader.currentTeam}</span>
               </div>
             </>
           ) : (
