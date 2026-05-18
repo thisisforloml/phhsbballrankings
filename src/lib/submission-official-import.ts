@@ -1,8 +1,8 @@
-﻿import { AgeGroup, PlayerGender, Prisma, SeasonStatus, SubmissionStatus, SubmissionType, VerificationStatus, type Submission } from "@prisma/client";
+import { AgeGroup, PlayerGender, Prisma, SeasonStatus, SubmissionStatus, SubmissionType, VerificationStatus, type Submission } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
-import { getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
+import { getUaapInternalTeamName } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
 type SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "adminNotes">;
@@ -249,13 +249,12 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     const teamBySubmittedName = new Map<string, { id: string; name: string }>();
     const submittedTeamNames = Array.from(new Set(games.flatMap((game) => [game.homeTeamName, game.awayTeamName, ...game.players.map((player) => stringValue(player.team))]).filter(Boolean)));
     for (const submittedTeamName of submittedTeamNames) {
-      const displayName = getUaapSchoolDisplayName(submittedTeamName);
-      const names = Array.from(new Set([submittedTeamName, displayName]));
-      const matches = await tx.team.findMany({ where: { deletedAt: null, OR: names.map((name) => ({ name })) }, orderBy: { name: "asc" } });
-      if (matches.length > 1) throw new Error(`Multiple active Team matches found for ${submittedTeamName}.`);
+      const internalTeamName = getUaapInternalTeamName(submittedTeamName, ageGroup, gender);
+      const matches = await tx.team.findMany({ where: { deletedAt: null, name: internalTeamName }, orderBy: { name: "asc" } });
+      if (matches.length > 1) throw new Error(`Multiple active Team matches found for ${internalTeamName}.`);
       let team = matches[0] ?? null;
       if (!team) {
-        team = await tx.team.create({ data: { name: displayName, city: "Metro Manila", region: "NCR" } });
+        team = await tx.team.create({ data: { name: internalTeamName, city: "Metro Manila", region: "NCR" } });
         summary.teamsCreated += 1;
       } else {
         summary.teamsReused += 1;

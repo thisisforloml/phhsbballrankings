@@ -1,7 +1,7 @@
 import { AgeGroup, PlayerGender, type Submission } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
-import { getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
+import { getUaapInternalTeamName, getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
 type PreflightAction = "reuse" | "create" | "update" | "manual_review";
@@ -106,15 +106,15 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const submittedTeams = Array.from(new Set(review.summary.detectedTeams)).sort((left, right) => left.localeCompare(right));
   const teamPreflight = await Promise.all(submittedTeams.map(async (submittedTeamName) => {
     const normalizedPublicName = getUaapSchoolDisplayName(submittedTeamName);
-    const candidateNames = Array.from(new Set([submittedTeamName, normalizedPublicName]));
+    const internalTeamName = getUaapInternalTeamName(submittedTeamName, targetAgeGroup, inferredGender);
     const matches = await prisma.team.findMany({
-      where: { deletedAt: null, OR: candidateNames.map((name) => ({ name })) },
+      where: { deletedAt: null, name: internalTeamName },
       select: { id: true, name: true, city: true, region: true },
       orderBy: { name: "asc" }
     });
 
     const action: PreflightAction = matches.length === 1 ? "reuse" : matches.length === 0 ? "create" : "manual_review";
-    return { submittedTeamName, normalizedPublicName, matches, action };
+    return { submittedTeamName, internalTeamName, normalizedPublicName, matches, action };
   }));
 
   const uniquePlayerNames = review.summary.uniquePlayerNames;

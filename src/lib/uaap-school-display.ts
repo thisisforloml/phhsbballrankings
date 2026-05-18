@@ -1,4 +1,4 @@
-﻿const schoolNames: Record<string, string> = {
+const schoolNames: Record<string, string> = {
   ADMU: "Ateneo de Manila University",
   ATENEO: "Ateneo de Manila University",
   "ATENEO JRS": "Ateneo de Manila University",
@@ -39,4 +39,26 @@ export function getUaapSchoolDisplayName(value: string | null | undefined): stri
 export function isApprovedUaapSchool(value: string | null | undefined): boolean {
   return approvedUaapSchoolNames.includes(getUaapSchoolDisplayName(value));
 }
+const schoolInternalPrefixes: Record<string, string> = {
+  "Adamson University": "ADU",
+  "Ateneo de Manila University": "ATENEO",
+  "De La Salle Santiago Zobel": "DLSZ",
+  "University of the East": "UE",
+  "National University Nazareth School": "NU",
+  "University of Santo Tomas": "UST",
+  "University of the Philippines Integrated School": "UP",
+  "Far Eastern University": "FEU"
+};
 
+export function getUaapInternalTeamName(
+  submittedTeamName: string | null | undefined,
+  ageGroup: string | null | undefined,
+  gender: string | null | undefined
+): string {
+  const publicName = getUaapSchoolDisplayName(submittedTeamName);
+  const prefix = schoolInternalPrefixes[publicName] ?? (submittedTeamName?.trim() || "Team");
+  const normalizedAgeGroup = ageGroup?.trim().toUpperCase() || "AgeGroup";
+  const normalizedGender = gender === "GIRLS" ? "Girls" : gender === "BOYS" ? "Boys" : "Team";
+
+  return `${prefix} ${normalizedAgeGroup} ${normalizedGender}`;
+}
