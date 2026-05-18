@@ -155,4 +155,46 @@ export async function validateSubmissionRankings(formData: FormData) {
   await runPostImportAction(formData, "Ranking validation", validateImportedSubmissionRankings);
 }
 
+export async function processAndPublishSubmissionRankings(formData: FormData) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+
+  const completedSteps: string[] = [];
+  let redirectParams: Record<string, string>;
+
+  try {
+    await computeImportedSubmissionFormulaScores(submissionId);
+    completedSteps.push("scores");
+
+    await computeImportedSubmissionPlayerRatings(submissionId);
+    completedSteps.push("ratings");
+
+    await generateImportedSubmissionMonthlyRankings(submissionId);
+    completedSteps.push("rankings");
+
+    const validation = await validateImportedSubmissionRankings(submissionId);
+    completedSteps.push("validation");
+
+    if (!validation.validationPassed) {
+      throw new Error("Validation completed with issues. Review the individual validation step for details.");
+    }
+
+    revalidatePath("/admin/submissions");
+    revalidatePath(`/admin/submissions/${submissionId}`);
+    redirectParams = {
+      reviewSuccess: "Process & Publish completed: scores, ratings, monthly rankings, and validation passed."
+    };
+  } catch (error) {
+    redirectParams = {
+      reviewError: `${error instanceof Error ? error.message : "Process & Publish failed."} Completed steps: ${completedSteps.join(", ") || "none"}.`
+    };
+  }
+
+  redirect(reviewRedirectUrl(submissionId, redirectParams));
+}
+
 

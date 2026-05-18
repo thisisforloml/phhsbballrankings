@@ -11,6 +11,7 @@ import {
   computeSubmissionPlayerRatings,
   generateSubmissionMonthlyRankings,
   importSubmissionOfficialData,
+  processAndPublishSubmissionRankings,
   updateSubmissionReviewStatus,
   validateSubmissionRankings
 } from "../actions";
@@ -295,6 +296,16 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Snapshot date</dt><dd>{processingStatus.snapshotDate.slice(0, 10)}</dd></div>
                 <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Missing birthDate</dt><dd>{processingStatus.missingBirthDateCount}</dd></div>
               </dl>
+              <form action={processAndPublishSubmissionRankings} className="rounded-md border border-green-200 bg-green-50 p-4">
+                <input type="hidden" name="submissionId" value={submission.id} />
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <strong className="block text-green-950">Process & Publish Rankings</strong>
+                    <p className="mt-1 text-sm text-green-800">Runs scores, ratings, monthly rankings, and validation in sequence.</p>
+                  </div>
+                  <button type="submit" className="rounded-md bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-800">Process & Publish Rankings</button>
+                </div>
+              </form>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
                 <form action={computeSubmissionFormulaScores} className="rounded-md border border-surface-200 p-4">
                   <input type="hidden" name="submissionId" value={submission.id} />
