@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -22,7 +22,8 @@ function normalizedGender(value: string | null): RankingGender {
   return value?.toLowerCase() === "girls" ? "Girls" : "Boys";
 }
 
-function eligibilityMinimum(gender: RankingGender) {
+function eligibilityMinimum(gender: RankingGender, ageGroup: RankingAgeGroup) {
+  if (ageGroup === "U16" && gender === "Boys") return 1;
   return gender === "Girls" ? 5 : 10;
 }
 
@@ -65,9 +66,10 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
   const [query, setQuery] = useState("");
   const [minIndex, setMinIndex] = useState(gender === "Girls" ? 0 : 1);
 
-  const selectedSnapshot = gender === "Girls" ? rankings.snapshots.girls : rankings.snapshots.boys;
-  const rowsForAge = ageGroup === "U19" ? selectedSnapshot.rows : [];
-  const defaultMinimum = eligibilityMinimum(gender);
+  const selectedAgeSnapshots = rankings.snapshotsByAge?.[ageGroup];
+  const selectedSnapshot = selectedAgeSnapshots ? (gender === "Girls" ? selectedAgeSnapshots.girls : selectedAgeSnapshots.boys) : (gender === "Girls" ? rankings.snapshots.girls : rankings.snapshots.boys);
+  const rowsForAge = selectedSnapshot.rows;
+  const defaultMinimum = eligibilityMinimum(gender, ageGroup);
   const minimumGames = Math.max(minGameStops[minIndex], defaultMinimum);
 
   const regionOptions = useMemo(
@@ -128,7 +130,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
             </div>
           </div>
           <p className="mt-3 font-mono text-mono-sm uppercase text-ink-400">
-            Minimum {defaultMinimum} verified games required to rank
+            Minimum {defaultMinimum} verified games required to rank{ageGroup === "U16" && gender === "Boys" ? " (temporary U16 launch threshold)" : ""}
           </p>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.2fr_1fr_1fr_1fr]">

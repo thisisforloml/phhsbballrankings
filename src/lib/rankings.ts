@@ -5,7 +5,8 @@ import { getMonthStart } from "./ranking-eligibility";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
-const currentAgeGroup = AgeGroup.U19;
+const defaultAgeGroup = AgeGroup.U19;
+const rankingAgeGroups = [AgeGroup.U13, AgeGroup.U16, AgeGroup.U19] as const;
 
 export type RankingGender = "Boys" | "Girls";
 export type RankingAgeGroup = "U13" | "U16" | "U19";
@@ -46,6 +47,7 @@ export type LatestNationalRankings = {
     boys: NationalRankingSnapshot;
     girls: NationalRankingSnapshot;
   };
+  snapshotsByAge: Record<RankingAgeGroup, { boys: NationalRankingSnapshot; girls: NationalRankingSnapshot }>;
 };
 
 function toDisplayGender(gender: PlayerGender): RankingGender {
@@ -61,30 +63,15 @@ function calculateAge(birthDate: Date | null) {
   return age;
 }
 
-function emptySnapshot(gender: PlayerGender, formulaVersionId: string | null): NationalRankingSnapshot {
-  return {
-    snapshotId: null,
-    gender: toDisplayGender(gender),
-    ageGroup: currentAgeGroup,
-    weekOf: null,
-    formulaVersionId,
-    totalRows: 0,
-    rows: []
-  };
+function emptySnapshot(gender: PlayerGender, formulaVersionId: string | null, ageGroup: RankingAgeGroup): NationalRankingSnapshot {
+  return { snapshotId: null, gender: toDisplayGender(gender), ageGroup, weekOf: null, formulaVersionId, totalRows: 0, rows: [] };
 }
 
-async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string | null): Promise<NationalRankingSnapshot> {
-  if (!formulaVersionId) return emptySnapshot(gender, null);
+async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string | null, ageGroup: RankingAgeGroup): Promise<NationalRankingSnapshot> {
+  if (!formulaVersionId) return emptySnapshot(gender, null, ageGroup);
 
   const snapshots = await prisma.rankingSnapshot.findMany({
-    where: {
-      scope: RankingScope.NATIONAL,
-      ageGroup: currentAgeGroup,
-      gender,
-      formulaVersionId,
-      city: null,
-      region: null
-    },
+    where: { scope: RankingScope.NATIONAL, ageGroup: ageGroup as AgeGroup, gender, formulaVersionId, city: null, region: null },
     include: {
       rows: {
         include: {
@@ -100,49 +87,27 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
               photoUrl: true,
               gender: true,
               gameStats: {
-                where: {
-                  deletedAt: null
-                },
-                include: {
-                  team: {
-                    select: {
-                      name: true
-                    }
-                  }
-                },
-                orderBy: {
-                  game: {
-                    gameDate: "desc"
-                  }
-                },
+                where: { deletedAt: null, game: { season: { league: { ageGroup: ageGroup as AgeGroup } } } },
+                include: { team: { select: { name: true } } },
+                orderBy: { game: { gameDate: "desc" } },
                 take: 1
               }
             }
           }
         },
-        orderBy: {
-          rank: "asc"
-        }
+        orderBy: { rank: "asc" }
       }
     },
-    orderBy: [
-      {
-        weekOf: "desc"
-      },
-      {
-        createdAt: "desc"
-      }
-    ]
+    orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }]
   });
 
   const snapshot = snapshots.find((item) => item.weekOf.getTime() === getMonthStart(item.weekOf).getTime()) ?? null;
-
-  if (!snapshot) return emptySnapshot(gender, formulaVersionId);
+  if (!snapshot) return emptySnapshot(gender, formulaVersionId, ageGroup);
 
   return {
     snapshotId: snapshot.id,
     gender: toDisplayGender(snapshot.gender),
-    ageGroup: snapshot.ageGroup ?? currentAgeGroup,
+    ageGroup: (snapshot.ageGroup ?? ageGroup) as RankingAgeGroup,
     weekOf: snapshot.weekOf.toISOString(),
     formulaVersionId: snapshot.formulaVersionId,
     totalRows: snapshot.rows.length,
@@ -160,7 +125,7 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
       currentTeam: getUaapSchoolDisplayName(row.player.gameStats[0]?.team.name),
       photoUrl: row.player.photoUrl,
       gender: toDisplayGender(row.player.gender),
-      ageGroup: snapshot.ageGroup ?? currentAgeGroup,
+      ageGroup: (snapshot.ageGroup ?? ageGroup) as RankingAgeGroup,
       rating: Number(row.rating),
       starRating: row.starRating,
       verifiedGameCount: row.verifiedGameCount
@@ -169,27 +134,15 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
 }
 
 export async function getLatestNationalRankings(): Promise<LatestNationalRankings> {
-  const formulaVersion = await prisma.formulaVersion.findUnique({
-    where: {
-      versionNumber: formulaVersionNumber
-    },
-    select: {
-      id: true
-    }
-  });
-
+  const formulaVersion = await prisma.formulaVersion.findUnique({ where: { versionNumber: formulaVersionNumber }, select: { id: true } });
   const formulaVersionId = formulaVersion?.id ?? null;
-  const [boys, girls] = await Promise.all([
-    getLatestSnapshot(PlayerGender.BOYS, formulaVersionId),
-    getLatestSnapshot(PlayerGender.GIRLS, formulaVersionId)
-  ]);
-
-  return {
-    formulaVersionId,
-    snapshots: {
-      boys,
-      girls
-    }
-  };
+  const entries = await Promise.all(rankingAgeGroups.map(async (ageGroup) => {
+    const [boys, girls] = await Promise.all([
+      getLatestSnapshot(PlayerGender.BOYS, formulaVersionId, ageGroup),
+      getLatestSnapshot(PlayerGender.GIRLS, formulaVersionId, ageGroup)
+    ]);
+    return [ageGroup, { boys, girls }] as const;
+  }));
+  const snapshotsByAge = Object.fromEntries(entries) as Record<RankingAgeGroup, { boys: NationalRankingSnapshot; girls: NationalRankingSnapshot }>;
+  return { formulaVersionId, snapshots: snapshotsByAge[defaultAgeGroup], snapshotsByAge };
 }
-
