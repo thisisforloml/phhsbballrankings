@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
+import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { submissionTypeLabel } from "@/lib/submission-utils";
 import { updateSubmissionReviewStatus } from "../actions";
 
@@ -14,6 +15,10 @@ export const metadata = {
 type PageProps = {
   params: {
     id: string;
+  };
+  searchParams?: {
+    reviewSuccess?: string;
+    reviewError?: string;
   };
 };
 
@@ -45,7 +50,7 @@ function statusBadgeClass(status: string) {
   }
 }
 
-export default async function AdminSubmissionDetailPage({ params }: PageProps) {
+export default async function AdminSubmissionDetailPage({ params, searchParams }: PageProps) {
   await requireAdminUser();
 
   const submission = await prisma.submission.findUnique({
@@ -60,6 +65,9 @@ export default async function AdminSubmissionDetailPage({ params }: PageProps) {
   if (!submission) notFound();
 
   const review = buildSubmissionReview(submission);
+  const preflight = await buildSubmissionImportPreflight(submission);
+  const reviewSuccess = searchParams?.reviewSuccess;
+  const reviewError = searchParams?.reviewError;
 
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
@@ -86,6 +94,13 @@ export default async function AdminSubmissionDetailPage({ params }: PageProps) {
               <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${review.importReady ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>{review.readinessLabel}</span>
             </div>
           </div>
+
+          {reviewSuccess ? (
+            <p className="rounded-lg border border-green-200 bg-green-50 p-4 text-sm font-semibold text-green-800">{reviewSuccess}</p>
+          ) : null}
+          {reviewError ? (
+            <p className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-800">{reviewError}</p>
+          ) : null}
 
           <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <h2 className="font-display text-3xl text-navy-800">Metadata</h2>
@@ -115,6 +130,9 @@ export default async function AdminSubmissionDetailPage({ params }: PageProps) {
               <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Imported submissions are locked in this v1 review UI.</p>
             ) : (
               <form action={updateSubmissionReviewStatus} className="grid gap-4">
+                {submission.status === "SUBMITTED" ? (
+                  <p className="rounded-md bg-amber-50 p-3 text-sm font-semibold text-amber-900">Approve and Reject become available after the submission is marked Under Review.</p>
+                ) : null}
                 <input type="hidden" name="submissionId" value={submission.id} />
                 <label className="grid gap-2 text-sm font-semibold text-navy-800">
                   Admin notes
@@ -143,6 +161,93 @@ export default async function AdminSubmissionDetailPage({ params }: PageProps) {
                 </div>
               </form>
             )}
+          </section>
+
+          <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h2 className="font-display text-3xl text-navy-800">Import Preflight</h2>
+                <p className="mt-1 text-sm text-ink-600">Read-only preview of what an official import would do. No records are created or updated here.</p>
+              </div>
+              <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${preflight.overallSummary.importBlocked ? "bg-red-50 text-red-800" : "bg-green-50 text-green-800"}`}>{preflight.overallSummary.importBlocked ? "Blocked" : "Ready"}</span>
+            </div>
+            <div className="grid gap-3 md:grid-cols-4">
+              <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.statusApproved ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>Approved: {preflight.submissionReadiness.statusApproved ? "yes" : "no"}</span>
+              <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.validParsedJson ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>Valid JSON: {preflight.submissionReadiness.validParsedJson ? "yes" : "no"}</span>
+              <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.importReadyFromReview ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>Review parser ready: {preflight.submissionReadiness.importReadyFromReview ? "yes" : "no"}</span>
+              <span className="rounded-md bg-surface-100 p-3 text-sm font-semibold">Manual review items: {preflight.overallSummary.manualReviewCount}</span>
+            </div>
+            {preflight.overallSummary.blockers.length ? (
+              <div className="rounded-md bg-red-50 p-4 text-sm text-red-900">
+                <strong className="block">Blockers</strong>
+                <ul className="mt-2 list-disc pl-5">
+                  {preflight.overallSummary.blockers.map((blocker) => <li key={blocker}>{blocker}</li>)}
+                </ul>
+              </div>
+            ) : null}
+            <dl className="grid gap-3 text-sm md:grid-cols-3 lg:grid-cols-6">
+              <div><dt className="font-semibold text-surface-500">Leagues</dt><dd>Create {preflight.overallSummary.wouldCreate.leagues} / reuse {preflight.overallSummary.wouldReuse.leagues}</dd></div>
+              <div><dt className="font-semibold text-surface-500">Seasons</dt><dd>Create {preflight.overallSummary.wouldCreate.seasons} / reuse {preflight.overallSummary.wouldReuse.seasons}</dd></div>
+              <div><dt className="font-semibold text-surface-500">Teams</dt><dd>Create {preflight.overallSummary.wouldCreate.teams} / reuse {preflight.overallSummary.wouldReuse.teams}</dd></div>
+              <div><dt className="font-semibold text-surface-500">Players</dt><dd>Create {preflight.overallSummary.wouldCreate.players} / reuse {preflight.overallSummary.wouldReuse.players}</dd></div>
+              <div><dt className="font-semibold text-surface-500">Games</dt><dd>Create {preflight.overallSummary.wouldCreate.games} / update {preflight.overallSummary.wouldReuse.games}</dd></div>
+              <div><dt className="font-semibold text-surface-500">GameStats</dt><dd>Create {preflight.overallSummary.wouldCreate.gameStats} / update {preflight.overallSummary.wouldReuse.gameStats}</dd></div>
+            </dl>
+            <div className="grid gap-4 lg:grid-cols-2">
+              <div className="rounded-md border border-surface-200 p-4">
+                <h3 className="font-semibold text-navy-800">League</h3>
+                <dl className="mt-3 grid gap-2 text-sm">
+                  <div><dt className="font-semibold text-surface-500">Recommended name</dt><dd>{preflight.league.recommendedName}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">Age group</dt><dd>{preflight.league.ageGroup ?? "-"}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">Inferred gender</dt><dd>{preflight.league.inferredGender}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">Action</dt><dd>{preflight.league.action}{preflight.league.existingLeague ? ` (${preflight.league.existingLeague.id})` : ""}</dd></div>
+                </dl>
+              </div>
+              <div className="rounded-md border border-surface-200 p-4">
+                <h3 className="font-semibold text-navy-800">Season</h3>
+                <dl className="mt-3 grid gap-2 text-sm">
+                  <div><dt className="font-semibold text-surface-500">Name</dt><dd>{preflight.season.name ?? "-"}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">Season year</dt><dd>{preflight.season.seasonYear ?? "-"}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">Action</dt><dd>{preflight.season.action}{preflight.season.existingSeason ? ` (${preflight.season.existingSeason.id})` : ""}</dd></div>
+                </dl>
+              </div>
+            </div>
+            <details className="rounded-md bg-surface-100 p-4" open>
+              <summary className="cursor-pointer font-semibold text-navy-800">Team preflight</summary>
+              <div className="mt-3 overflow-x-auto">
+                <table className="min-w-[48rem] w-full text-left text-sm">
+                  <thead className="font-mono text-mono-sm uppercase text-surface-600"><tr><th className="py-2 pr-4">Submitted</th><th className="py-2 pr-4">Public name</th><th className="py-2 pr-4">Action</th><th className="py-2 pr-4">Match</th></tr></thead>
+                  <tbody>{preflight.teams.map((team) => <tr key={team.submittedTeamName} className="border-t border-surface-200"><td className="py-2 pr-4">{team.submittedTeamName}</td><td className="py-2 pr-4">{team.normalizedPublicName}</td><td className="py-2 pr-4">{team.action}</td><td className="py-2 pr-4">{team.matches.map((match) => match.name).join(", ") || "-"}</td></tr>)}</tbody>
+                </table>
+              </div>
+            </details>
+            <details className="rounded-md bg-surface-100 p-4">
+              <summary className="cursor-pointer font-semibold text-navy-800">Player preflight ({preflight.players.length})</summary>
+              <div className="mt-3 max-h-[28rem] overflow-auto rounded-md border border-surface-200 bg-white">
+                <table className="min-w-[54rem] w-full text-left text-sm">
+                  <thead className="sticky top-0 bg-white font-mono text-mono-sm uppercase text-surface-600"><tr><th className="px-3 py-2">Player</th><th className="px-3 py-2">Gender</th><th className="px-3 py-2">Action</th><th className="px-3 py-2">Exact matches</th><th className="px-3 py-2">Possible matches</th></tr></thead>
+                  <tbody>{preflight.players.map((player) => <tr key={player.cleanedName} className="border-t border-surface-200"><td className="px-3 py-2">{player.cleanedName}</td><td className="px-3 py-2">{player.gender}</td><td className="px-3 py-2">{player.action}</td><td className="px-3 py-2">{player.exactMatches.map((match) => match.displayName).join(", ") || "-"}</td><td className="px-3 py-2">{player.possibleCaseMatches.map((match) => match.displayName).join(", ") || "-"}</td></tr>)}</tbody>
+                </table>
+              </div>
+            </details>
+            <details className="rounded-md bg-surface-100 p-4" open>
+              <summary className="cursor-pointer font-semibold text-navy-800">Game preflight</summary>
+              <div className="mt-3 overflow-x-auto">
+                <table className="min-w-[58rem] w-full text-left text-sm">
+                  <thead className="font-mono text-mono-sm uppercase text-surface-600"><tr><th className="py-2 pr-4">Game</th><th className="py-2 pr-4">Teams</th><th className="py-2 pr-4">Score</th><th className="py-2 pr-4">Action</th><th className="py-2 pr-4">Point check</th></tr></thead>
+                  <tbody>{preflight.games.map((game) => <tr key={game.gameNumber} className="border-t border-surface-200"><td className="py-2 pr-4">{game.gameNumber}</td><td className="py-2 pr-4">{game.homeTeamName} vs {game.awayTeamName}</td><td className="py-2 pr-4">{game.homeScore}-{game.awayScore}</td><td className="py-2 pr-4">{game.action}</td><td className="py-2 pr-4">{game.pointCheck?.homePass && game.pointCheck?.awayPass ? "pass" : "fail"}</td></tr>)}</tbody>
+                </table>
+              </div>
+            </details>
+            <details className="rounded-md bg-surface-100 p-4">
+              <summary className="cursor-pointer font-semibold text-navy-800">GameStat preflight</summary>
+              <dl className="mt-3 grid gap-3 text-sm md:grid-cols-4">
+                <div><dt className="font-semibold text-surface-500">Submitted rows</dt><dd>{preflight.gameStats.totalSubmittedRows}</dd></div>
+                <div><dt className="font-semibold text-surface-500">Would create</dt><dd>{preflight.gameStats.wouldCreate}</dd></div>
+                <div><dt className="font-semibold text-surface-500">Would update</dt><dd>{preflight.gameStats.wouldUpdate}</dd></div>
+                <div><dt className="font-semibold text-surface-500">Manual review</dt><dd>{preflight.gameStats.manualReview}</dd></div>
+              </dl>
+            </details>
           </section>
 
           <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
