@@ -4,6 +4,7 @@ import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
+import { getSubmissionImportPublishAudit } from "@/lib/submission-audit";
 import { getImportedSubmissionProcessingStatus, validateImportedSubmissionRankings } from "@/lib/submission-post-import-processing";
 import { submissionTypeLabel } from "@/lib/submission-utils";
 import {
@@ -42,6 +43,14 @@ function formatJson(value: unknown) {
 
 function passFail(pass: boolean) {
   return <span className={`rounded-full px-2 py-1 font-mono text-[0.65rem] uppercase ${pass ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{pass ? "Pass" : "Fail"}</span>;
+}
+
+function healthBadge(pass: boolean) {
+  return <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${pass ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{pass ? "Pass" : "Fail"}</span>;
+}
+
+function yesNoBadge(value: boolean) {
+  return <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${value ? "bg-green-50 text-green-800" : "bg-surface-100 text-surface-700"}`}>{value ? "Yes" : "No"}</span>;
 }
 
 function statusBadgeClass(status: string) {
@@ -150,6 +159,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
   }
 
   const pipelineSteps = buildPipelineSteps(submission.status, processingStatus, processingValidationPassed, processingStatusError);
+  const importAudit = await getSubmissionImportPublishAudit(submission.id);
   const reviewSuccess = searchParams?.reviewSuccess;
   const reviewError = searchParams?.reviewError;
 
@@ -194,7 +204,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               {pipelineSteps.map((step, index) => (
                 <li key={step.label} className={`rounded-lg border p-4 ${pipelineStepClass(step.state)}`}>
                   <div className="flex items-center justify-between gap-3">
-                    <span className={`flex h-7 w-7 items-center justify-center rounded-full font-mono text-xs font-bold ${pipelineDotClass(step.state)}`}>{step.state === "complete" ? "✓" : index + 1}</span>
+                    <span className={`flex h-7 w-7 items-center justify-center rounded-full font-mono text-xs font-bold ${pipelineDotClass(step.state)}`}>{step.state === "complete" ? "âœ“" : index + 1}</span>
                     <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em]">{pipelineStateLabel(step.state)}</span>
                   </div>
                   <h3 className="mt-3 font-semibold">{step.label}</h3>
@@ -203,6 +213,86 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               ))}
             </ol>
           </section>
+          {importAudit.available ? (
+            <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h2 className="font-display text-3xl text-navy-800">Import & Publish Audit</h2>
+                  <p className="mt-1 text-sm text-ink-600">Read-only checks for official import, Formula v1 processing, published rankings, and global safety counts.</p>
+                </div>
+                <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${importAudit.overallStatus === "Healthy" ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{importAudit.overallStatus}</span>
+              </div>
+
+              <div className="grid gap-3 text-sm md:grid-cols-4">
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Status</dt><dd>{importAudit.submission.status}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Imported</dt><dd>{yesNoBadge(importAudit.submission.imported)}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Processed</dt><dd>{yesNoBadge(importAudit.submission.processed)}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Published</dt><dd>{yesNoBadge(importAudit.submission.published)}</dd></div>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="rounded-md border border-surface-200 p-4">
+                  <h3 className="font-semibold text-navy-800">Imported official data</h3>
+                  <dl className="mt-3 grid gap-2 text-sm">
+                    <div><dt className="font-semibold text-surface-500">League</dt><dd>{importAudit.officialData.league ? `${importAudit.officialData.league.name} (${importAudit.officialData.league.id})` : "Not available"}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Season</dt><dd>{importAudit.officialData.season ? `${importAudit.officialData.season.name} (${importAudit.officialData.season.id})` : "Not available"}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Active games</dt><dd>{importAudit.officialData.activeGames}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Active GameStats</dt><dd>{importAudit.officialData.activeGameStats}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Detected teams</dt><dd>{importAudit.officialData.detectedTeams.join(", ") || "Not available"}</dd></div>
+                  </dl>
+                </div>
+                <div className="rounded-md border border-surface-200 p-4">
+                  <h3 className="font-semibold text-navy-800">Ratings and publishing</h3>
+                  <dl className="mt-3 grid gap-2 text-sm">
+                    <div><dt className="font-semibold text-surface-500">GamePerformanceScores</dt><dd>{importAudit.ratingsPublishing.gamePerformanceScores ?? "Not available"}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">PlayerRatings</dt><dd>{importAudit.ratingsPublishing.playerRatings}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Latest monthly snapshot</dt><dd>{importAudit.ratingsPublishing.latestMonthlyRankingSnapshotId ?? "Not available"}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Snapshot rows</dt><dd>{importAudit.ratingsPublishing.latestMonthlyRankingSnapshotRows ?? "Not available"}</dd></div>
+                    <div><dt className="font-semibold text-surface-500">Validation</dt><dd>{importAudit.ratingsPublishing.validationStatus}</dd></div>
+                  </dl>
+                </div>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+                {Object.entries(importAudit.expectedChecks).map(([key, item]) => (
+                  <div key={key} className="rounded-md border border-surface-200 p-3 text-sm">
+                    <div className="flex items-center justify-between gap-2">
+                      <dt className="font-semibold text-surface-500">{key}</dt>
+                      {healthBadge(item.pass)}
+                    </div>
+                    <dd className="mt-2 text-ink-700">{item.actual} / {item.expected}</dd>
+                  </div>
+                ))}
+              </div>
+
+              <details className="rounded-md bg-surface-100 p-4">
+                <summary className="cursor-pointer font-semibold text-navy-800">Point total checks</summary>
+                <div className="mt-3 overflow-x-auto">
+                  <table className="min-w-[52rem] w-full text-left text-sm">
+                    <thead className="font-mono text-mono-sm uppercase text-surface-600"><tr><th className="py-2 pr-4">Game</th><th className="py-2 pr-4">Teams</th><th className="py-2 pr-4">Score</th><th className="py-2 pr-4">Summed PTS</th><th className="py-2 pr-4">Status</th></tr></thead>
+                    <tbody>{importAudit.officialData.pointTotals.map((check) => <tr key={check.gameId} className="border-t border-surface-200"><td className="py-2 pr-4">{check.gameNumber}</td><td className="py-2 pr-4">{check.homeTeam} vs {check.awayTeam}</td><td className="py-2 pr-4">{check.homeScore}-{check.awayScore}</td><td className="py-2 pr-4">{check.summedHomePlayerPoints}-{check.summedAwayPlayerPoints}</td><td className="py-2 pr-4">{healthBadge(check.pass)}</td></tr>)}</tbody>
+                  </table>
+                </div>
+              </details>
+
+              <details className="rounded-md bg-surface-100 p-4">
+                <summary className="cursor-pointer font-semibold text-navy-800">Global safety counts</summary>
+                <dl className="mt-3 grid gap-3 text-sm md:grid-cols-3 lg:grid-cols-6">
+                  <div><dt className="font-semibold text-surface-500">ActiveGame</dt><dd>{importAudit.globalSafetyCounts.activeGame}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">ActiveGameStat</dt><dd>{importAudit.globalSafetyCounts.activeGameStat}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">GamePerformanceScore</dt><dd>{importAudit.globalSafetyCounts.gamePerformanceScore}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">PlayerRating</dt><dd>{importAudit.globalSafetyCounts.playerRating}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">RankingSnapshot</dt><dd>{importAudit.globalSafetyCounts.rankingSnapshot}</dd></div>
+                  <div><dt className="font-semibold text-surface-500">RankingSnapshotRow</dt><dd>{importAudit.globalSafetyCounts.rankingSnapshotRow}</dd></div>
+                </dl>
+              </details>
+            </section>
+          ) : (
+            <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <h2 className="font-display text-3xl text-navy-800">Import & Publish Audit</h2>
+              <p className="mt-2 rounded-md bg-surface-100 p-3 text-sm font-semibold text-ink-600">{importAudit.reason}</p>
+            </section>
+          )}
           {reviewSuccess ? (
             <p className="rounded-lg border border-green-200 bg-green-50 p-4 text-sm font-semibold text-green-800">{reviewSuccess}</p>
           ) : null}
