@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { requireAdminUser } from "@/lib/portal-auth";
 
 export const metadata = {
@@ -11,6 +11,12 @@ const adminTools = [
     title: "Player Bio Editor",
     description: "Search and update existing player profile fields.",
     href: "/admin/players",
+    status: "Available"
+  },
+  {
+    title: "Team Editor",
+    description: "Edit existing team name, city, and region fields.",
+    href: "/admin/teams",
     status: "Available"
   },
   {
@@ -50,6 +56,7 @@ export default async function AdminPage() {
           <nav className="mt-8 grid gap-2 font-semibold">
             <Link href="/admin" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Dashboard</Link>
             <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
+            <Link href="/admin/teams" className="rounded-md px-3 py-2 hover:bg-white/10">Teams</Link>
             <Link href="/admin/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Submissions</Link>
             <Link href="/organizer" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Portal</Link>
             <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
