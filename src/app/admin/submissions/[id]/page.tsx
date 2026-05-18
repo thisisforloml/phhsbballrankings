@@ -4,7 +4,7 @@ import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
-import { getImportedSubmissionProcessingStatus } from "@/lib/submission-post-import-processing";
+import { getImportedSubmissionProcessingStatus, validateImportedSubmissionRankings } from "@/lib/submission-post-import-processing";
 import { submissionTypeLabel } from "@/lib/submission-utils";
 import {
   computeSubmissionFormulaScores,
@@ -59,6 +59,66 @@ function statusBadgeClass(status: string) {
   }
 }
 
+type PipelineStepState = "complete" | "current" | "pending" | "blocked";
+
+type PipelineStep = {
+  label: string;
+  description: string;
+  state: PipelineStepState;
+};
+
+function pipelineStepClass(state: PipelineStepState) {
+  switch (state) {
+    case "complete": return "border-green-200 bg-green-50 text-green-900";
+    case "current": return "border-amber-200 bg-amber-50 text-amber-900";
+    case "blocked": return "border-red-200 bg-red-50 text-red-900";
+    default: return "border-surface-200 bg-surface-50 text-ink-600";
+  }
+}
+
+function pipelineDotClass(state: PipelineStepState) {
+  switch (state) {
+    case "complete": return "bg-green-600 text-white";
+    case "current": return "bg-amber-500 text-white";
+    case "blocked": return "bg-red-600 text-white";
+    default: return "bg-surface-200 text-surface-600";
+  }
+}
+
+function pipelineStateLabel(state: PipelineStepState) {
+  switch (state) {
+    case "complete": return "Complete";
+    case "current": return "Current";
+    case "blocked": return "Blocked";
+    default: return "Pending";
+  }
+}
+
+function buildPipelineSteps(
+  status: string,
+  processingStatus: Awaited<ReturnType<typeof getImportedSubmissionProcessingStatus>> | null,
+  processingValidationPassed: boolean,
+  processingStatusError: string | null
+): PipelineStep[] {
+  const isRejected = status === "REJECTED";
+  const isUnderReviewOrLater = ["UNDER_REVIEW", "APPROVED", "IMPORTED"].includes(status);
+  const isApprovedOrImported = status === "APPROVED" || status === "IMPORTED";
+  const isImported = status === "IMPORTED";
+  const processedComplete = Boolean(processingStatus?.complete.formulaScores && processingStatus.complete.playerRatings);
+  const publishedComplete = Boolean(processingStatus?.complete.monthlySnapshot && processingValidationPassed);
+  const processingBlocked = isImported && Boolean(processingStatusError);
+  const publishedBlocked = isImported && processedComplete && Boolean(processingStatus?.complete.monthlySnapshot) && !publishedComplete;
+
+  return [
+    { label: "Submitted", description: "Organizer submission received.", state: "complete" },
+    { label: isRejected ? "Review Rejected" : "Under Review", description: isRejected ? "Admin review ended with rejection." : "Admin review started.", state: isRejected ? "blocked" : isUnderReviewOrLater ? "complete" : "current" },
+    { label: "Approved", description: "Submission approved for import.", state: isRejected ? "pending" : isApprovedOrImported ? "complete" : isUnderReviewOrLater ? "current" : "pending" },
+    { label: "Imported", description: "Official league/game/stat records created.", state: isImported ? "complete" : isApprovedOrImported ? "current" : "pending" },
+    { label: "Processed", description: processingBlocked ? "Post-import processing status could not be read." : "Formula v1 scores and player ratings computed.", state: processingBlocked ? "blocked" : processedComplete ? "complete" : isImported ? "current" : "pending" },
+    { label: "Published", description: "Monthly rankings generated and validated.", state: publishedComplete ? "complete" : publishedBlocked ? "blocked" : processedComplete ? "current" : "pending" }
+  ];
+}
+
 export default async function AdminSubmissionDetailPage({ params, searchParams }: PageProps) {
   await requireAdminUser();
 
@@ -75,7 +135,21 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
 
   const review = buildSubmissionReview(submission);
   const preflight = await buildSubmissionImportPreflight(submission);
-  const processingStatus = submission.status === "IMPORTED" ? await getImportedSubmissionProcessingStatus(submission.id) : null;
+  let processingStatus: Awaited<ReturnType<typeof getImportedSubmissionProcessingStatus>> | null = null;
+  let processingValidationPassed = false;
+  let processingStatusError: string | null = null;
+
+  if (submission.status === "IMPORTED") {
+    try {
+      processingStatus = await getImportedSubmissionProcessingStatus(submission.id);
+      const validation = await validateImportedSubmissionRankings(submission.id);
+      processingValidationPassed = validation.validationPassed;
+    } catch (error) {
+      processingStatusError = error instanceof Error ? error.message : "Unable to read post-import processing status.";
+    }
+  }
+
+  const pipelineSteps = buildPipelineSteps(submission.status, processingStatus, processingValidationPassed, processingStatusError);
   const reviewSuccess = searchParams?.reviewSuccess;
   const reviewError = searchParams?.reviewError;
 
@@ -105,6 +179,30 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
             </div>
           </div>
 
+          <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h2 className="font-display text-3xl text-navy-800">Pipeline Status</h2>
+                <p className="mt-1 text-sm text-ink-600">Workflow progress from organizer submission through published rankings.</p>
+              </div>
+              {processingStatusError ? <span className="rounded-full bg-red-50 px-3 py-1 font-mono text-[0.65rem] uppercase text-red-800">Status check blocked</span> : null}
+            </div>
+            {processingStatusError ? (
+              <p className="mt-4 rounded-md bg-red-50 p-3 text-sm font-semibold text-red-900">{processingStatusError}</p>
+            ) : null}
+            <ol className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-6">
+              {pipelineSteps.map((step, index) => (
+                <li key={step.label} className={`rounded-lg border p-4 ${pipelineStepClass(step.state)}`}>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className={`flex h-7 w-7 items-center justify-center rounded-full font-mono text-xs font-bold ${pipelineDotClass(step.state)}`}>{step.state === "complete" ? "✓" : index + 1}</span>
+                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em]">{pipelineStateLabel(step.state)}</span>
+                  </div>
+                  <h3 className="mt-3 font-semibold">{step.label}</h3>
+                  <p className="mt-1 text-sm leading-5 opacity-80">{step.description}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
           {reviewSuccess ? (
             <p className="rounded-lg border border-green-200 bg-green-50 p-4 text-sm font-semibold text-green-800">{reviewSuccess}</p>
           ) : null}
