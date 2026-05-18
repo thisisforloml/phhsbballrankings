@@ -1,6 +1,7 @@
 ﻿import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
+import { formatClassYear, getMonthStart } from "./ranking-eligibility";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
@@ -49,6 +50,7 @@ export type PlayerProfile = {
   heightCm: number | null;
   birthDate: string | null;
   birthYear: number | null;
+  classYear: string | null;
   age: number | null;
   photoUrl: string | null;
   currentTeam: string;
@@ -190,7 +192,7 @@ async function resolvePlayerIdBySlug(slug: string) {
 }
 
 function latestSnapshotRow(player: LoadedPlayer) {
-  const matchingRows = player.rankingRows.filter((row) => row.snapshot.gender === player.gender);
+  const matchingRows = player.rankingRows.filter((row) => row.snapshot.gender === player.gender && row.snapshot.weekOf.getTime() === getMonthStart(row.snapshot.weekOf).getTime());
   matchingRows.sort((left, right) => right.snapshot.weekOf.getTime() - left.snapshot.weekOf.getTime());
   return matchingRows[0] ?? null;
 }
@@ -289,6 +291,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     heightCm: player.heightCm,
     birthDate: player.birthDate ? player.birthDate.toISOString() : null,
     birthYear: player.birthDate ? player.birthDate.getUTCFullYear() : null,
+    classYear: formatClassYear(player.birthDate),
     age: calculateAge(player.birthDate),
     photoUrl: player.photoUrl,
     currentTeam: getUaapSchoolDisplayName(mostRecentStat?.team.name),

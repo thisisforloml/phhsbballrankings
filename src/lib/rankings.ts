@@ -1,6 +1,7 @@
 ﻿import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
+import { getMonthStart } from "./ranking-eligibility";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
@@ -75,7 +76,7 @@ function emptySnapshot(gender: PlayerGender, formulaVersionId: string | null): N
 async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string | null): Promise<NationalRankingSnapshot> {
   if (!formulaVersionId) return emptySnapshot(gender, null);
 
-  const snapshot = await prisma.rankingSnapshot.findFirst({
+  const snapshots = await prisma.rankingSnapshot.findMany({
     where: {
       scope: RankingScope.NATIONAL,
       ageGroup: currentAgeGroup,
@@ -133,6 +134,8 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
       }
     ]
   });
+
+  const snapshot = snapshots.find((item) => item.weekOf.getTime() === getMonthStart(item.weekOf).getTime()) ?? null;
 
   if (!snapshot) return emptySnapshot(gender, formulaVersionId);
 

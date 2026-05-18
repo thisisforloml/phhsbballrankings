@@ -54,7 +54,7 @@ Ranking eligibility planning:
 - Athletes remain ranking-eligible through May 31 of their class year.
 - Starting June 1 of their class year, they should be removed from active rankings.
 - Unknown birthDate remains eligible for now but should be flagged as missing age/class data.
-- This has not been implemented as an exclusion rule yet.
+- This exclusion rule is now enforced when generating public RankingSnapshot rows. PlayerRating remains available for players with stats.
 
 ## Formula v1 Star Bands
 

@@ -100,6 +100,7 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
             <span><strong className="block text-ink-900">{formatHeight(profile.heightCm)}</strong>Height</span>
             <span><strong className="block text-ink-900">{profile.birthYear ?? "Not on record"}</strong>Birth year</span>
             <span><strong className="block text-ink-900">{profile.age !== null ? `${profile.age} years old` : "Not on record"}</strong>Age</span>
+            <span><strong className="block text-ink-900">{profile.classYear ?? "Not on record"}</strong>Class year</span>
           </div>
         </div>
         <RecentGames games={player.lastFiveGames} />
@@ -117,10 +118,10 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
           </div>
           <a href="/claim" className="button primary mt-4 md:mt-0">Claim Profile</a>
         </div>
-        <PremiumGate description="Full career history, movement charts, analytics, trend data, and exports are available behind Premium Access.">
+        <PremiumGate description="Full career history, monthly ranking movement, analytics, trend data, and exports are available behind Premium Access.">
           <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
             <h2 className="font-display text-3xl text-ink-900">Licensed Performance Analytics</h2>
-            <p className="text-ink-600">All games played, week-by-week ranking movement, advanced analytics, performance trends, and exportable data.</p>
+            <p className="text-ink-600">All games played, month-by-month ranking movement, advanced analytics, performance trends, and exportable data.</p>
           </section>
         </PremiumGate>
       </section>
