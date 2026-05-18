@@ -1,6 +1,7 @@
 import { AgeGroup, PlayerGender, type Submission } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
+import { safeParseSubmissionJson } from "@/lib/submission-json";
 import { getUaapInternalTeamName, getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
@@ -28,21 +29,17 @@ function cleanPlayerName(value: unknown): string {
   return stringValue(value).replace(/^\*+/, "").trim();
 }
 
+function canonicalPlayerDisplayName(value: string): string {
+  return normalize(value) === "JD JUANGCO" ? "JD Juangco" : value;
+}
+
 function normalize(value: string) {
   return value.trim().replace(/\s+/g, " ").toUpperCase();
 }
 
 function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPreview">) {
-  if (submission.rawText?.trim()) return JSON.parse(submission.rawText);
-
-  if (submission.parsedPreview && typeof submission.parsedPreview === "object") {
-    const preview = submission.parsedPreview as JsonRecord;
-    if ("league" in preview || "season" in preview || "games" in preview) return preview;
-    if (Array.isArray(preview.sample)) return preview.sample;
-    if (preview.sample && typeof preview.sample === "object") return preview.sample;
-  }
-
-  return null;
+  const result = safeParseSubmissionJson(submission);
+  return result.ok ? result.data : null;
 }
 
 function getPackages(parsed: unknown): JsonRecord[] {
@@ -82,8 +79,10 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const seasonName = stringValue(seasonRecord?.name) || review.summary.seasonName;
   const seasonYear = typeof seasonRecord?.seasonYear === "number" ? seasonRecord.seasonYear : review.summary.seasonYear;
   const blockers: string[] = [];
+  const alreadyImported = submission.status === "IMPORTED";
+  const approvedOrImported = submission.status === "APPROVED" || alreadyImported;
 
-  if (submission.status !== "APPROVED") blockers.push("Submission must be APPROVED before import preflight can be considered ready.");
+  if (!approvedOrImported) blockers.push("Submission must be APPROVED before import preflight can be considered ready.");
   if (!review.validJson) blockers.push("Submission JSON is not valid.");
   if (!review.importReady) blockers.push("Submission review parser found validation issues.");
   if (!targetAgeGroup) blockers.push(`Unsupported or missing age group: ${review.summary.ageGroup ?? "missing"}.`);
@@ -119,7 +118,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
 
   const uniquePlayerNames = review.summary.uniquePlayerNames;
   const playerPreflight = await Promise.all(uniquePlayerNames.map(async (submittedName) => {
-    const cleanedName = submittedName.replace(/^\*+/, "").trim();
+    const cleanedName = canonicalPlayerDisplayName(submittedName.replace(/^\*+/, "").trim());
     const exactMatches = await prisma.player.findMany({
       where: { displayName: cleanedName, gender: inferredGender, deletedAt: null },
       select: { id: true, displayName: true, gender: true, city: true, region: true },
@@ -181,7 +180,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     const gamePlayers = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
 
     for (const playerRow of gamePlayers) {
-      const playerName = cleanPlayerName(playerRow.name);
+      const playerName = canonicalPlayerDisplayName(cleanPlayerName(playerRow.name));
       const playerTeam = stringValue(playerRow.team);
       const playerPreflightRow = playerByCleanedName.get(normalize(playerName));
       const teamPreflightRow = teamBySubmittedName.get(normalize(playerTeam));
@@ -246,7 +245,8 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   return {
     submissionReadiness: {
       status: submission.status,
-      statusApproved: submission.status === "APPROVED",
+      statusApproved: approvedOrImported,
+      alreadyImported,
       validParsedJson: review.validJson,
       importReadyFromReview: review.importReady
     },

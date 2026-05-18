@@ -3,6 +3,7 @@ import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { submissionTypeLabel } from "@/lib/submission-utils";
+import { createAdminJsonSubmission } from "./actions";
 
 export const metadata = {
   title: "Submission Review - Admin Portal",
@@ -28,7 +29,14 @@ function statusBadgeClass(status: string) {
   }
 }
 
-export default async function AdminSubmissionsPage() {
+type PageProps = {
+  searchParams?: {
+    jsonCreated?: string;
+    jsonError?: string;
+  };
+};
+
+export default async function AdminSubmissionsPage({ searchParams }: PageProps) {
   await requireAdminUser();
 
   const submissions = await prisma.submission.findMany({
@@ -81,6 +89,45 @@ export default async function AdminSubmissionsPage() {
               {!submissions.length ? <span className="rounded-full bg-surface-100 px-4 py-2 font-mono text-mono-sm uppercase text-surface-500">No submissions</span> : null}
             </div>
           </div>
+
+          {searchParams?.jsonCreated ? <p className="rounded-md bg-green-50 p-4 font-semibold text-green-800">Valid JSON submission created for admin review.</p> : null}
+          {searchParams?.jsonError ? <p className="rounded-md bg-red-50 p-4 font-semibold text-red-800">{decodeURIComponent(searchParams.jsonError)}</p> : null}
+
+          <section className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="label">Admin JSON Intake</p>
+                <h2 className="mt-2 font-display text-3xl text-navy-800">Paste or upload validated JSON</h2>
+                <p className="mt-2 max-w-3xl text-sm text-ink-600">Invalid JSON will not be saved. Organizer users do not have access to JSON submission.</p>
+              </div>
+              <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">Admin only</span>
+            </div>
+            <form action={createAdminJsonSubmission} className="mt-5 grid gap-4" encType="multipart/form-data">
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="grid gap-2 text-sm font-semibold text-surface-700">
+                  Submission title
+                  <input name="title" required maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Example: UAAP S88 16U Boys batch JSON" />
+                </label>
+                <label className="grid gap-2 text-sm font-semibold text-surface-700">
+                  League name
+                  <input name="leagueName" maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Optional" />
+                </label>
+                <label className="grid gap-2 text-sm font-semibold text-surface-700">
+                  Game date
+                  <input name="gameDate" type="date" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" />
+                </label>
+              </div>
+              <label className="grid gap-2 text-sm font-semibold text-surface-700">
+                Paste JSON
+                <textarea name="rawText" rows={8} className="rounded-md border border-surface-200 px-3 py-2 font-mono text-sm" placeholder="Paste JSON here, or upload a JSON file below." />
+              </label>
+              <label className="grid gap-2 text-sm font-semibold text-surface-700">
+                Upload JSON file
+                <input name="file" type="file" accept=".json,application/json" className="rounded-md border border-surface-200 px-3 py-2" />
+              </label>
+              <button type="submit" className="button primary w-fit">Create JSON Submission</button>
+            </form>
+          </section>
 
           <section className="grid gap-4">
             {submissions.map((submission) => {

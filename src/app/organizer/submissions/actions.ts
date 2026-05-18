@@ -1,5 +1,6 @@
 "use server";
 
+import { OrganizerSubmissionType, UserRole } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireOrganizerUser } from "@/lib/portal-auth";
@@ -11,6 +12,9 @@ export async function createOrganizerSubmission(formData: FormData) {
 
   try {
     const type = inferSubmissionType(formData);
+    if (user.role !== UserRole.ADMIN && (type === OrganizerSubmissionType.PASTE_JSON || type === OrganizerSubmissionType.UPLOAD_JSON)) {
+      throw new Error("JSON submissions are handled by admins.");
+    }
     const metadata = readSubmissionMetadata(formData);
     const payload = await parseSubmissionPayload(type, formData);
 

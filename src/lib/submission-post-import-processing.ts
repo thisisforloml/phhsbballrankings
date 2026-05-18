@@ -1,7 +1,8 @@
-﻿import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
+import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getClassYear, getMonthStart, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
 import { buildSubmissionReview } from "@/lib/submission-review";
+import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
 
 const formulaVersionNumber = 1;
 const defaultMinimumVerifiedGames = 1;
@@ -80,16 +81,9 @@ function inferGender(value: "BOYS" | "GIRLS" | null): PlayerGender {
 }
 
 function parseSubmissionJson(submission: { rawText: string | null; parsedPreview: unknown }) {
-  if (submission.rawText?.trim()) return JSON.parse(submission.rawText);
-
-  if (submission.parsedPreview && typeof submission.parsedPreview === "object") {
-    const preview = submission.parsedPreview as JsonRecord;
-    if ("league" in preview || "season" in preview || "games" in preview) return preview;
-    if (Array.isArray(preview.sample)) return preview.sample;
-    if (preview.sample && typeof preview.sample === "object") return preview.sample;
-  }
-
-  return null;
+  const result = safeParseSubmissionJson(submission);
+  if (!result.ok) throw new Error(formatSubmissionJsonParseError(result) ?? "Submission JSON is not valid.");
+  return result.data;
 }
 
 function getPackages(parsed: unknown): JsonRecord[] {

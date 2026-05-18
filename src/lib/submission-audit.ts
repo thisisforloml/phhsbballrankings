@@ -1,4 +1,4 @@
-﻿import { AgeGroup, RankingScope, SubmissionStatus } from "@prisma/client";
+import { AgeGroup, RankingScope, SubmissionStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getMonthStart } from "@/lib/ranking-eligibility";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
@@ -22,7 +22,14 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
 
   let context: Awaited<ReturnType<typeof getImportedSubmissionContext>> | null = null;
   if (submission.status === SubmissionStatus.IMPORTED) {
-    context = await getImportedSubmissionContext(submissionId);
+    try {
+      context = await getImportedSubmissionContext(submissionId);
+    } catch (error) {
+      return {
+        available: false as const,
+        reason: error instanceof Error ? error.message : "Unable to read imported submission context."
+      };
+    }
   }
 
   const formulaVersion = await prisma.formulaVersion.findUnique({
@@ -119,8 +126,12 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
     importedGames: { actual: activeGames, expected: context?.gameIds.length ?? 0, pass: checkAtLeast(activeGames, context?.gameIds.length ?? 0) },
     importedGameStats: { actual: activeGameStats, expected: expectedGameStats, pass: activeGameStats === expectedGameStats },
     submissionGamePerformanceScores: { actual: gamePerformanceScores, expected: expectedGameStats, pass: gamePerformanceScores === expectedGameStats },
-    playerRatings: { actual: playerRatings, expected: 1, pass: playerRatings > 0 },
-    monthlySnapshotRows: { actual: snapshotRows, expected: 1, pass: (snapshotRows ?? 0) > 0 },
+    playerRatings: imported
+      ? { actual: playerRatings, expected: 1, pass: playerRatings > 0 }
+      : { actual: "Not yet available", expected: "After import", pass: true },
+    monthlySnapshotRows: imported
+      ? { actual: snapshotRows, expected: 1, pass: (snapshotRows ?? 0) > 0 }
+      : { actual: "Not yet available", expected: "After import", pass: true },
     u19SnapshotRows: { actual: u19SnapshotRows, expected: 138, pass: u19SnapshotRows === 138 },
     pointTotals: { actual: pointTotals.filter((row) => row.pass).length, expected: pointTotals.length, pass: pointTotalsPass }
   };
@@ -156,7 +167,7 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
       playerRatings,
       latestMonthlyRankingSnapshotId: latestSnapshot?.id ?? null,
       latestMonthlyRankingSnapshotRows: snapshotRows,
-      validationStatus: allExpectedHealthy ? "Healthy" : "Needs attention"
+      validationStatus: !imported ? "Not yet available" : allExpectedHealthy ? "Healthy" : "Needs attention"
     },
     globalSafetyCounts: {
       activeGame: globalCounts[0],
@@ -168,7 +179,7 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
     },
     expectedChecks,
     issues,
-    overallStatus: allExpectedHealthy ? "Healthy" : "Needs attention"
+    overallStatus: !imported ? "Not yet imported" : allExpectedHealthy ? "Healthy" : "Needs attention"
   };
 }
 
@@ -208,7 +219,7 @@ export async function getSubmissionPipelineStatus(submissionId: string) {
     imported,
     processed,
     published,
-    issues: [...issues, ...(auditData?.issues ?? [])],
+    issues: [...issues, ...(submission.status === SubmissionStatus.APPROVED && preflight?.overallSummary.importBlocked ? preflight.overallSummary.blockers : []), ...(auditData?.issues ?? [])],
     debug: {
       submissionStatus: submission.status,
       auditAvailable: Boolean(auditData),
@@ -229,5 +240,6 @@ export async function getSubmissionPipelineStatus(submissionId: string) {
     }
   };
 }
+
 
 

@@ -1,10 +1,12 @@
 "use server";
 
-import { SubmissionStatus } from "@prisma/client";
+import { OrganizerSubmissionType, SubmissionStatus, type Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
+import { parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
 import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-import";
 import {
   computeImportedSubmissionFormulaScores,
@@ -40,6 +42,117 @@ function reviewRedirectUrl(submissionId: string, params: Record<string, string>)
   return `/admin/submissions/${submissionId}?${searchParams.toString()}`;
 }
 
+
+function jsonPreview(value: unknown): Prisma.InputJsonValue {
+  const preview = Array.isArray(value)
+    ? { kind: "array", totalItems: value.length, sample: value.slice(0, 10) }
+    : value && typeof value === "object"
+      ? {
+          kind: "object",
+          keys: Object.keys(value as Record<string, unknown>),
+          sample: Object.fromEntries(Object.entries(value as Record<string, unknown>).slice(0, 10))
+        }
+      : { kind: typeof value, sample: value };
+
+  return JSON.parse(JSON.stringify(preview)) as Prisma.InputJsonValue;
+}
+
+export async function updateSubmissionDraftJson(formData: FormData) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  const rawText = String(formData.get("rawText") ?? "").trim();
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+  if (!rawText) {
+    redirect(reviewRedirectUrl(submissionId, { reviewError: "Draft JSON cannot be empty." }));
+  }
+  if (Buffer.byteLength(rawText, "utf8") > 5 * 1024 * 1024) {
+    redirect(reviewRedirectUrl(submissionId, { reviewError: "Draft JSON must be 5 MB or smaller." }));
+  }
+
+  const submission = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select: { id: true, status: true }
+  });
+  if (!submission) throw new Error("Submission not found.");
+  if (submission.status === "IMPORTED") {
+    redirect(reviewRedirectUrl(submission.id, { reviewError: "Imported submissions are locked. Draft JSON can only be edited before import." }));
+  }
+
+  const parsed = safeJsonParse(rawText);
+  if (!parsed.ok) {
+    redirect(reviewRedirectUrl(submission.id, { reviewError: `Invalid JSON: ${formatSubmissionJsonParseError(parsed) ?? "JSON could not be parsed."}` }));
+  }
+
+  try {
+    await prisma.submission.update({
+      where: { id: submission.id },
+      data: {
+        rawText,
+        parsedPreview: jsonPreview(parsed.data),
+        validationSummary: {
+          ok: true,
+          format: "json",
+          messages: ["Draft JSON updated by admin. No official import was performed."],
+          previewSupported: true
+        }
+      },
+      select: { id: true }
+    });
+  } catch {
+    redirect(reviewRedirectUrl(submission.id, { reviewError: "Draft JSON is not valid. Nothing was saved." }));
+  }
+
+  revalidatePath("/admin/submissions");
+  revalidatePath(`/admin/submissions/${submission.id}`);
+  redirect(reviewRedirectUrl(submission.id, { reviewSuccess: "Draft JSON saved and validation refreshed." }));
+}
+
+export async function createAdminJsonSubmission(formData: FormData) {
+  const user = await requireAdminUser();
+
+  try {
+    const rawText = String(formData.get("rawText") ?? "").trim();
+    const file = formData.get("file");
+    const hasFile = file instanceof File && file.size > 0;
+    const type = rawText ? OrganizerSubmissionType.PASTE_JSON : hasFile ? OrganizerSubmissionType.UPLOAD_JSON : null;
+
+    if (!type) throw new Error("Paste JSON or upload a JSON file.");
+    if (hasFile && file instanceof File && !file.name.toLowerCase().endsWith(".json") && file.type !== "application/json") {
+      throw new Error("Admin JSON Intake accepts JSON files only.");
+    }
+
+    const metadata = readSubmissionMetadata(formData);
+    const payload = await parseSubmissionPayload(type, formData);
+
+    await prisma.submission.create({
+      data: {
+        submittedByUserId: user.id,
+        type,
+        status: "SUBMITTED",
+        title: metadata.title,
+        leagueName: metadata.leagueName,
+        gameDate: metadata.gameDate,
+        originalFilename: payload.originalFilename,
+        mimeType: payload.mimeType,
+        fileSizeBytes: payload.fileSizeBytes,
+        storedFilePath: payload.storedFilePath,
+        rawText: payload.rawText,
+        parsedPreview: payload.parsedPreview === null ? undefined : payload.parsedPreview,
+        validationSummary: payload.validationSummary,
+        adminNotes: null
+      }
+    });
+  } catch (error) {
+    const message = encodeURIComponent(error instanceof Error ? error.message : "Admin JSON submission could not be created.");
+    redirect(`/admin/submissions?jsonError=${message}`);
+  }
+
+  revalidatePath("/admin/submissions");
+  redirect("/admin/submissions?jsonCreated=1");
+}
 export async function updateSubmissionReviewStatus(formData: FormData) {
   await requireAdminUser();
 

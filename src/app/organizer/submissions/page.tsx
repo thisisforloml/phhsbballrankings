@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { UserRole } from "@prisma/client";
 import { requireOrganizerUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
@@ -25,6 +25,27 @@ function formatBytes(bytes: number | null) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function CommonFields({ titlePlaceholder }: { titlePlaceholder: string }) {
+  return (
+    <div className="grid gap-3">
+      <label className="grid gap-2 text-sm font-semibold text-surface-700">
+        Submission title
+        <input name="title" required maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder={titlePlaceholder} />
+      </label>
+      <div className="grid gap-3 md:grid-cols-2">
+        <label className="grid gap-2 text-sm font-semibold text-surface-700">
+          League name
+          <input name="leagueName" maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Optional" />
+        </label>
+        <label className="grid gap-2 text-sm font-semibold text-surface-700">
+          Game date
+          <input name="gameDate" type="date" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" />
+        </label>
+      </div>
+    </div>
+  );
 }
 
 export default async function OrganizerSubmissionsPage({ searchParams }: PageProps) {
@@ -64,43 +85,40 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
         <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
             <p className="label">Submission intake</p>
-            <h1 className="mt-2 font-display text-stat-md text-navy-800">Organizer Submissions</h1>
+            <h1 className="mt-2 font-display text-stat-md text-navy-800">Send Game Stats for Review</h1>
             <p className="mt-2 max-w-3xl text-ink-600">
-              Submit JSON, CSV, or XLSX game data for admin review. Submissions are stored separately and do not affect official games, stats, ratings, or rankings.
+Submit stats by spreadsheet upload or manual entry. JSON import is admin-managed, and every submission is reviewed before it becomes official.
             </p>
           </div>
 
           {searchParams?.created ? <p className="rounded-md bg-green-50 p-4 font-semibold text-green-800">Submission created for admin review.</p> : null}
           {searchParams?.error ? <p className="rounded-md bg-red-50 p-4 font-semibold text-red-800">{decodeURIComponent(searchParams.error)}</p> : null}
 
-          <section className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-            <h2 className="font-display text-3xl text-navy-800">Create New Submission</h2>
-            <form action={createOrganizerSubmission} className="mt-5 grid gap-4" encType="multipart/form-data">
-              <div className="grid gap-4 md:grid-cols-2">
+          <section className="grid gap-4 xl:grid-cols-2">
+            <article className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <h2 className="font-display text-2xl text-navy-800">Upload Excel, CSV, or Sheets</h2>
+              <p className="mt-1 text-sm text-ink-600">Send a spreadsheet file for admin review. Admins will confirm the rows before anything becomes official.</p>
+              <form action={createOrganizerSubmission} className="mt-5 grid gap-4" encType="multipart/form-data">
+                <CommonFields titlePlaceholder="Example: UAAP S88 spreadsheet upload" />
                 <label className="grid gap-2 text-sm font-semibold text-surface-700">
-                  Title
-                  <input name="title" required maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Example: UAAP S88 Game 12 box score" />
+                  Upload spreadsheet
+                  <input name="file" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" className="rounded-md border border-surface-200 px-3 py-2" />
                 </label>
-                <label className="grid gap-2 text-sm font-semibold text-surface-700">
-                  League name
-                  <input name="leagueName" maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Optional" />
-                </label>
-                <label className="grid gap-2 text-sm font-semibold text-surface-700">
-                  Game date
-                  <input name="gameDate" type="date" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" />
-                </label>
+                <button type="submit" className="button primary w-fit">Submit for Review</button>
+              </form>
+            </article>
+
+            <article className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <h2 className="font-display text-2xl text-navy-800">Manual Input</h2>
+              <p className="mt-1 text-sm text-ink-600">Enter game stats manually through the live stats tool, then submit the saved game data for admin review.</p>
+              <div className="mt-5 grid gap-3 rounded-md bg-surface-100 p-4 text-sm text-ink-700">
+                <p>Best for scorekeepers entering one game at a time.</p>
+                <Link href="/organizer/live-stats" className="button secondary w-fit">Open Manual Entry</Link>
               </div>
-              <label className="grid gap-2 text-sm font-semibold text-surface-700">
-                Paste JSON
-                <textarea name="rawText" rows={8} className="rounded-md border border-surface-200 px-3 py-2 font-mono text-sm" placeholder="Paste JSON here. If you upload a file instead, leave this blank." />
-              </label>
-              <label className="grid gap-2 text-sm font-semibold text-surface-700">
-                Upload file
-                <input name="file" type="file" accept=".json,.csv,.xlsx,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" className="rounded-md border border-surface-200 px-3 py-2" />
-              </label>
-              <p className="text-sm text-ink-500">The system infers the file format from pasted JSON or the uploaded file extension. V1 stores submissions for review only. XLSX preview is unsupported until an XLSX parser dependency is approved.</p>
-              <button type="submit" className="button primary w-fit">Submit for Review</button>
-            </form>
+              <div className="mt-4 rounded-md border border-dashed border-surface-300 p-4 text-sm text-ink-500">
+                JSON submissions are handled by admins.
+              </div>
+            </article>
           </section>
 
           <section className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">

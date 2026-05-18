@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { getUaapInternalTeamName } from "@/lib/uaap-school-display";
+import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
 
 type JsonRecord = Record<string, unknown>;
 type SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "adminNotes">;
@@ -44,6 +45,10 @@ function cleanPlayerName(value: unknown): string {
   return stringValue(value).replace(/^\*+/, "").trim();
 }
 
+function canonicalPlayerDisplayName(value: string): string {
+  return normalize(value) === "JD JUANGCO" ? "JD Juangco" : value;
+}
+
 function isStarter(value: unknown): boolean {
   return stringValue(value).startsWith("*");
 }
@@ -69,16 +74,9 @@ function parseMinutes(value: unknown): number | null {
 }
 
 function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPreview">) {
-  if (submission.rawText?.trim()) return JSON.parse(submission.rawText);
-
-  if (submission.parsedPreview && typeof submission.parsedPreview === "object") {
-    const preview = submission.parsedPreview as JsonRecord;
-    if ("league" in preview || "season" in preview || "games" in preview) return preview;
-    if (Array.isArray(preview.sample)) return preview.sample;
-    if (preview.sample && typeof preview.sample === "object") return preview.sample;
-  }
-
-  return null;
+  const result = safeParseSubmissionJson(submission);
+  if (!result.ok) throw new Error(formatSubmissionJsonParseError(result) ?? "Submission JSON is not valid.");
+  return result.data;
 }
 
 function getPrimaryPackage(submission: Pick<Submission, "rawText" | "parsedPreview">) {
@@ -263,7 +261,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     }
 
     const playerByName = new Map<string, { id: string; displayName: string }>();
-    const uniquePlayerNames = Array.from(new Set(games.flatMap((game) => game.players.map((player) => cleanPlayerName(player.name))).filter(Boolean)));
+    const uniquePlayerNames = Array.from(new Set(games.flatMap((game) => game.players.map((player) => canonicalPlayerDisplayName(cleanPlayerName(player.name)))).filter(Boolean)));
     for (const displayName of uniquePlayerNames) {
       const matches = await tx.player.findMany({ where: { displayName, gender, deletedAt: null }, orderBy: { displayName: "asc" } });
       if (matches.length > 1) throw new Error(`Multiple active Player matches found for ${displayName}.`);
@@ -323,7 +321,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       }
 
       for (const playerRow of submittedGame.players) {
-        const cleanedName = cleanPlayerName(playerRow.name);
+        const cleanedName = canonicalPlayerDisplayName(cleanPlayerName(playerRow.name));
         const player = playerByName.get(normalize(cleanedName));
         const team = teamBySubmittedName.get(normalize(stringValue(playerRow.team)));
         if (!player || !team) throw new Error(`Missing player/team mapping for ${cleanedName} in ${submittedGame.gameNumber}.`);

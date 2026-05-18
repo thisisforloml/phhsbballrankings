@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { OrganizerSubmissionType } from "@prisma/client";
+import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
 
 const maxFileSizeBytes = 5 * 1024 * 1024;
 const previewLimit = 10;
@@ -134,20 +135,23 @@ function jsonPreview(value: unknown) {
   };
 }
 
-async function storeUploadedFile(file: File) {
+async function storeUploadedFileBuffer(file: File, buffer: Buffer) {
   const storageRoot = path.join(process.cwd(), "storage", "submissions");
   await mkdir(storageRoot, { recursive: true });
 
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 120) || "submission";
   const storedFilePath = path.join("storage", "submissions", `${Date.now()}-${randomUUID()}-${safeName}`);
   const absolutePath = path.join(process.cwd(), storedFilePath);
-  const buffer = Buffer.from(await file.arrayBuffer());
   await writeFile(absolutePath, buffer);
 
   return {
     storedFilePath,
     buffer
   };
+}
+
+async function storeUploadedFile(file: File) {
+  return storeUploadedFileBuffer(file, Buffer.from(await file.arrayBuffer()));
 }
 
 function fileExtension(file: File) {
@@ -164,7 +168,7 @@ export function inferSubmissionType(formData: FormData): OrganizerSubmissionType
 
   const file = formData.get("file");
   if (!(file instanceof File) || file.size === 0) {
-    throw new Error("Paste JSON or upload a JSON, CSV, or XLSX file.");
+    throw new Error("Upload a supported file. JSON paste is available only in admin intake.");
   }
 
   const extension = fileExtension(file);
@@ -172,7 +176,7 @@ export function inferSubmissionType(formData: FormData): OrganizerSubmissionType
   if (extension === "csv" || file.type === "text/csv") return OrganizerSubmissionType.UPLOAD_CSV;
   if (extension === "xlsx" || file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") return OrganizerSubmissionType.UPLOAD_XLSX;
 
-  throw new Error("Unsupported file type. Upload JSON, CSV, or XLSX only.");
+  throw new Error("Unsupported file type. Upload JSON, CSV, or XLSX only. JSON submissions are admin-managed.");
 }
 
 export async function parseSubmissionPayload(type: OrganizerSubmissionType, formData: FormData): Promise<ParsedSubmissionPayload> {
@@ -181,80 +185,53 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
     if (!rawText) throw new Error("Pasted JSON is required.");
     if (Buffer.byteLength(rawText, "utf8") > maxFileSizeBytes) throw new Error("Pasted JSON must be 5 MB or smaller.");
 
-    try {
-      const parsed = JSON.parse(rawText) as unknown;
-      return {
-        rawText,
-        parsedPreview: jsonPreview(parsed),
-        validationSummary: {
-          ok: true,
-          format: "json",
-          messages: ["Valid JSON parsed. Preview stored only; no official import was performed."],
-          previewSupported: true
-        },
-        originalFilename: null,
-        mimeType: null,
-        fileSizeBytes: Buffer.byteLength(rawText, "utf8"),
-        storedFilePath: null
-      };
-    } catch {
-      return {
-        rawText,
-        parsedPreview: null,
-        validationSummary: {
-          ok: false,
-          format: "json",
-          messages: ["Invalid JSON. Submission stored for review, but preview could not be generated."],
-          previewSupported: true
-        },
-        originalFilename: null,
-        mimeType: null,
-        fileSizeBytes: Buffer.byteLength(rawText, "utf8"),
-        storedFilePath: null
-      };
-    }
+    const parsed = safeJsonParse(rawText);
+    if (!parsed.ok) throw new Error(`Invalid JSON: ${formatSubmissionJsonParseError(parsed) ?? "JSON could not be parsed."}`);
+
+    return {
+      rawText,
+      parsedPreview: jsonPreview(parsed.data),
+      validationSummary: {
+        ok: true,
+        format: "json",
+        messages: ["Valid JSON parsed. Preview stored only; no official import was performed."],
+        previewSupported: true
+      },
+      originalFilename: null,
+      mimeType: null,
+      fileSizeBytes: Buffer.byteLength(rawText, "utf8"),
+      storedFilePath: null
+    };
   }
 
   const file = assertFile(formData.get("file"));
-  const { storedFilePath, buffer } = await storeUploadedFile(file);
   const originalFilename = file.name || "submission";
   const mimeType = file.type || "application/octet-stream";
+  const initialBuffer = Buffer.from(await file.arrayBuffer());
 
   if (type === OrganizerSubmissionType.UPLOAD_JSON) {
-    const rawText = buffer.toString("utf8").trim();
-    try {
-      const parsed = JSON.parse(rawText) as unknown;
-      return {
-        rawText,
-        parsedPreview: jsonPreview(parsed),
-        validationSummary: {
-          ok: true,
-          format: "json",
-          messages: ["Valid JSON uploaded. Preview stored only; no official import was performed."],
-          previewSupported: true
-        },
-        originalFilename,
-        mimeType,
-        fileSizeBytes: file.size,
-        storedFilePath
-      };
-    } catch {
-      return {
-        rawText,
-        parsedPreview: null,
-        validationSummary: {
-          ok: false,
-          format: "json",
-          messages: ["Uploaded file is not valid JSON. Submission stored for review."],
-          previewSupported: true
-        },
-        originalFilename,
-        mimeType,
-        fileSizeBytes: file.size,
-        storedFilePath
-      };
-    }
+    const rawText = initialBuffer.toString("utf8").trim();
+    const parsed = safeJsonParse(rawText);
+    if (!parsed.ok) throw new Error(`Invalid JSON: ${formatSubmissionJsonParseError(parsed) ?? "Uploaded file could not be parsed."}`);
+
+    const { storedFilePath } = await storeUploadedFileBuffer(file, initialBuffer);
+    return {
+      rawText,
+      parsedPreview: jsonPreview(parsed.data),
+      validationSummary: {
+        ok: true,
+        format: "json",
+        messages: ["Valid JSON uploaded. Preview stored only; no official import was performed."],
+        previewSupported: true
+      },
+      originalFilename,
+      mimeType,
+      fileSizeBytes: file.size,
+      storedFilePath
+    };
   }
+
+  const { storedFilePath, buffer } = await storeUploadedFileBuffer(file, initialBuffer);
 
   if (type === OrganizerSubmissionType.UPLOAD_CSV) {
     const rawText = buffer.toString("utf8");

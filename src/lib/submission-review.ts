@@ -1,4 +1,5 @@
-﻿import type { Submission } from "@prisma/client";
+import type { Submission } from "@prisma/client";
+import { safeParseSubmissionJson, formatSubmissionJsonParseError, type SubmissionJsonParseResult } from "@/lib/submission-json";
 
 const gameRequiredFields = [
   "gameNumber",
@@ -97,6 +98,9 @@ type DuplicatePlayerIssue = {
 export type SubmissionReview = {
   validJson: boolean;
   parseError: string | null;
+  parseErrorPosition?: number;
+  parseErrorLine?: number;
+  parseErrorColumn?: number;
   importReady: boolean;
   readinessLabel: string;
   summary: {
@@ -163,23 +167,10 @@ function missingFields(record: JsonRecord, fields: readonly string[]) {
   });
 }
 
-function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPreview">): { parsed: unknown | null; error: string | null } {
-  if (submission.rawText?.trim()) {
-    try {
-      return { parsed: JSON.parse(submission.rawText), error: null };
-    } catch (error) {
-      return { parsed: null, error: error instanceof Error ? error.message : "Invalid JSON." };
-    }
-  }
-
-  if (submission.parsedPreview && typeof submission.parsedPreview === "object") {
-    const preview = submission.parsedPreview as JsonRecord;
-    if ("league" in preview || "season" in preview || "games" in preview) return { parsed: preview, error: null };
-    if (Array.isArray(preview.sample)) return { parsed: preview.sample, error: null };
-    if (preview.sample && typeof preview.sample === "object") return { parsed: preview.sample, error: null };
-  }
-
-  return { parsed: null, error: "Full raw JSON is not available for this submission." };
+function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPreview">): { parsed: unknown | null; error: string | null; result: SubmissionJsonParseResult } {
+  const result = safeParseSubmissionJson(submission);
+  if (result.ok) return { parsed: result.data, error: null, result };
+  return { parsed: null, error: formatSubmissionJsonParseError(result), result };
 }
 
 function getSubmissionPackages(parsed: unknown): { packages: JsonRecord[]; error: string | null; multiplePackagesFound: boolean } {
@@ -196,7 +187,8 @@ function getSubmissionPackages(parsed: unknown): { packages: JsonRecord[]; error
 }
 
 export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "parsedPreview" | "title" | "leagueName">): SubmissionReview {
-  const { parsed, error } = parseSubmissionJson(submission);
+  const parseResult = parseSubmissionJson(submission);
+  const { parsed, error } = parseResult;
   const packageResult = getSubmissionPackages(parsed);
   const packages = packageResult.packages;
   const root = packages[0] ?? null;
@@ -209,6 +201,9 @@ export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "
     return {
       validJson: false,
       parseError: error ?? packageResult.error ?? "JSON root must be an object or array package.",
+      parseErrorPosition: parseResult.result.ok ? undefined : parseResult.result.position,
+      parseErrorLine: parseResult.result.ok ? undefined : parseResult.result.line,
+      parseErrorColumn: parseResult.result.ok ? undefined : parseResult.result.column,
       importReady: false,
       readinessLabel: "Needs review",
       summary: {
