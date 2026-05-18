@@ -4,8 +4,16 @@ import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
+import { getImportedSubmissionProcessingStatus } from "@/lib/submission-post-import-processing";
 import { submissionTypeLabel } from "@/lib/submission-utils";
-import { importSubmissionOfficialData, updateSubmissionReviewStatus } from "../actions";
+import {
+  computeSubmissionFormulaScores,
+  computeSubmissionPlayerRatings,
+  generateSubmissionMonthlyRankings,
+  importSubmissionOfficialData,
+  updateSubmissionReviewStatus,
+  validateSubmissionRankings
+} from "../actions";
 
 export const metadata = {
   title: "Submission Details - Admin Portal",
@@ -66,6 +74,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
 
   const review = buildSubmissionReview(submission);
   const preflight = await buildSubmissionImportPreflight(submission);
+  const processingStatus = submission.status === "IMPORTED" ? await getImportedSubmissionProcessingStatus(submission.id) : null;
   const reviewSuccess = searchParams?.reviewSuccess;
   const reviewError = searchParams?.reviewError;
 
@@ -247,7 +256,8 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 <div><dt className="font-semibold text-surface-500">Would update</dt><dd>{preflight.gameStats.wouldUpdate}</dd></div>
                 <div><dt className="font-semibold text-surface-500">Manual review</dt><dd>{preflight.gameStats.manualReview}</dd></div>
               </dl>
-            </details>`r`n            {submission.status === "APPROVED" && !preflight.overallSummary.importBlocked ? (
+            </details>
+            {submission.status === "APPROVED" && !preflight.overallSummary.importBlocked ? (
               <form action={importSubmissionOfficialData} className="rounded-md border border-green-200 bg-green-50 p-4">
                 <input type="hidden" name="submissionId" value={submission.id} />
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -265,6 +275,54 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
             )}
           </section>
 
+
+          {processingStatus ? (
+            <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h2 className="font-display text-3xl text-navy-800">Post-Import Processing</h2>
+                  <p className="mt-1 text-sm text-ink-600">Run or rerun Formula v1 processing for this imported submission. These actions update scores, ratings, and the monthly U16 Boys snapshot only.</p>
+                </div>
+                <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">Imported</span>
+              </div>
+              <dl className="grid gap-3 text-sm md:grid-cols-2 lg:grid-cols-4">
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">GameStats</dt><dd>{processingStatus.gameStatsCount} / {processingStatus.expectedGameStats}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Formula scores</dt><dd>{processingStatus.gamePerformanceScoresCount} {processingStatus.complete.formulaScores ? "(Already computed)" : "(Needs run)"}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Player ratings</dt><dd>{processingStatus.playerRatingsCount} {processingStatus.complete.playerRatings ? "(Already computed)" : "(Needs run)"}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Monthly snapshot rows</dt><dd>{processingStatus.monthlyRankingSnapshotRows} {processingStatus.complete.monthlySnapshot ? "(Already generated)" : "(Needs run)"}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Age group</dt><dd>{processingStatus.ageGroup}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Gender</dt><dd>{processingStatus.gender}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Snapshot date</dt><dd>{processingStatus.snapshotDate.slice(0, 10)}</dd></div>
+                <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Missing birthDate</dt><dd>{processingStatus.missingBirthDateCount}</dd></div>
+              </dl>
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+                <form action={computeSubmissionFormulaScores} className="rounded-md border border-surface-200 p-4">
+                  <input type="hidden" name="submissionId" value={submission.id} />
+                  <strong className="block text-navy-800">Formula v1 Scores</strong>
+                  <p className="mt-1 text-sm text-ink-600">{processingStatus.complete.formulaScores ? "Already computed; rerun updates existing rows." : "Compute GamePerformanceScore rows."}</p>
+                  <button type="submit" className="button primary mt-3">Compute Formula v1 Scores</button>
+                </form>
+                <form action={computeSubmissionPlayerRatings} className="rounded-md border border-surface-200 p-4">
+                  <input type="hidden" name="submissionId" value={submission.id} />
+                  <strong className="block text-navy-800">Player Ratings</strong>
+                  <p className="mt-1 text-sm text-ink-600">{processingStatus.complete.playerRatings ? "Already computed; rerun updates current ratings." : "Compute current U16 PlayerRating rows."}</p>
+                  <button type="submit" className="button primary mt-3">Compute Player Ratings</button>
+                </form>
+                <form action={generateSubmissionMonthlyRankings} className="rounded-md border border-surface-200 p-4">
+                  <input type="hidden" name="submissionId" value={submission.id} />
+                  <strong className="block text-navy-800">Monthly Rankings</strong>
+                  <p className="mt-1 text-sm text-ink-600">{processingStatus.complete.monthlySnapshot ? "Already generated; rerun refreshes rows." : "Generate the monthly U16 Boys snapshot."}</p>
+                  <button type="submit" className="button primary mt-3">Generate Monthly Rankings</button>
+                </form>
+                <form action={validateSubmissionRankings} className="rounded-md border border-surface-200 p-4">
+                  <input type="hidden" name="submissionId" value={submission.id} />
+                  <strong className="block text-navy-800">Validation</strong>
+                  <p className="mt-1 text-sm text-ink-600">Checks U16 processing and U19 regression counts.</p>
+                  <button type="submit" className="button secondary mt-3">Validate Rankings</button>
+                </form>
+              </div>
+            </section>
+          ) : null}
           <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <h2 className="font-display text-3xl text-navy-800">Parsed JSON Summary</h2>
             <dl className="grid gap-3 text-sm md:grid-cols-4">

@@ -6,6 +6,12 @@ import { redirect } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-import";
+import {
+  computeImportedSubmissionFormulaScores,
+  computeImportedSubmissionPlayerRatings,
+  generateImportedSubmissionMonthlyRankings,
+  validateImportedSubmissionRankings
+} from "@/lib/submission-post-import-processing";
 
 const allowedTransitions: Record<SubmissionStatus, SubmissionStatus[]> = {
   SUBMITTED: ["UNDER_REVIEW"],
@@ -108,3 +114,45 @@ export async function importSubmissionOfficialData(formData: FormData) {
     }));
   }
 }
+async function runPostImportAction(
+  formData: FormData,
+  actionName: string,
+  action: (submissionId: string) => Promise<unknown>
+) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+
+  let redirectParams: Record<string, string>;
+  try {
+    await action(submissionId);
+    revalidatePath("/admin/submissions");
+    revalidatePath(`/admin/submissions/${submissionId}`);
+    redirectParams = { reviewSuccess: `${actionName} completed.` };
+  } catch (error) {
+    redirectParams = { reviewError: error instanceof Error ? error.message : `${actionName} failed.` };
+  }
+
+  redirect(reviewRedirectUrl(submissionId, redirectParams));
+}
+
+export async function computeSubmissionFormulaScores(formData: FormData) {
+  await runPostImportAction(formData, "Formula v1 score computation", computeImportedSubmissionFormulaScores);
+}
+
+export async function computeSubmissionPlayerRatings(formData: FormData) {
+  await runPostImportAction(formData, "Player rating computation", computeImportedSubmissionPlayerRatings);
+}
+
+export async function generateSubmissionMonthlyRankings(formData: FormData) {
+  await runPostImportAction(formData, "Monthly ranking generation", generateImportedSubmissionMonthlyRankings);
+}
+
+export async function validateSubmissionRankings(formData: FormData) {
+  await runPostImportAction(formData, "Ranking validation", validateImportedSubmissionRankings);
+}
+
+
