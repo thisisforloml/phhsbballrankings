@@ -1,0 +1,404 @@
+{
+  "generatedAt": "2026-05-18T07:35:46.974Z",
+  "context": {
+    "league": {
+      "id": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+      "name": "UAAP Season 88 16U Boys Basketball",
+      "ageGroup": "U16"
+    },
+    "season": {
+      "id": "39a4a46c-6362-411f-ae85-6f631414f30b",
+      "name": "Season 88",
+      "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75"
+    },
+    "ageGroup": "U16",
+    "gender": "BOYS",
+    "expectedGames": 3,
+    "expectedGameStats": 79
+  },
+  "currentU16Games": [
+    {
+      "gameId": "702cdcd5-4271-4f1a-bc64-1e08b56b256f",
+      "gameNumber": "UAAP-S88-16U-001",
+      "homeTeam": {
+        "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "name": "FEU"
+      },
+      "awayTeam": {
+        "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "name": "ATENEO"
+      }
+    },
+    {
+      "gameId": "044f1b14-92e6-41fe-a16d-4f004698a88c",
+      "gameNumber": "UAAP-S88-16U-002",
+      "homeTeam": {
+        "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "name": "ADU"
+      },
+      "awayTeam": {
+        "id": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+        "name": "De La Salle Santiago Zobel"
+      }
+    },
+    {
+      "gameId": "5b655d11-d220-444e-97bd-d8e01928f778",
+      "gameNumber": "UAAP-S88-16U-003",
+      "homeTeam": {
+        "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "name": "UP"
+      },
+      "awayTeam": {
+        "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "name": "UST"
+      }
+    }
+  ],
+  "currentU16GameStatsTeamUsage": [
+    {
+      "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+      "name": "ADU",
+      "count": 12
+    },
+    {
+      "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+      "name": "ATENEO",
+      "count": 15
+    },
+    {
+      "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+      "name": "De La Salle Santiago Zobel",
+      "count": 12
+    },
+    {
+      "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+      "name": "FEU",
+      "count": 16
+    },
+    {
+      "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+      "name": "UP",
+      "count": 11
+    },
+    {
+      "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+      "name": "UST",
+      "count": 13
+    }
+  ],
+  "knownReusedU19TeamsNeedingSeparateU16Records": [
+    {
+      "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+      "name": "ADU"
+    },
+    {
+      "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+      "name": "ATENEO"
+    },
+    {
+      "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+      "name": "FEU"
+    },
+    {
+      "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+      "name": "UP"
+    },
+    {
+      "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+      "name": "UST"
+    }
+  ],
+  "laSalleCheck": {
+    "sourceKey": "De La Salle Santiago Zobel",
+    "schoolProgram": "De La Salle Santiago Zobel",
+    "proposedTeamName": "DLSZ U16 Boys",
+    "proposedCity": "Metro Manila",
+    "proposedRegion": "NCR",
+    "activeMatchingU16TeamAlreadyExists": false,
+    "existingMatchingTeams": [
+      {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "city": "Metro Manila",
+        "region": "NCR",
+        "reusedByU19": false
+      },
+      {
+        "id": "ae091b25-12cd-453f-af06-b629247174c9",
+        "name": "DLSU",
+        "city": "Metro Manila",
+        "region": "NCR",
+        "reusedByU19": false
+      },
+      {
+        "id": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "name": "DLSZ",
+        "city": "Metro Manila",
+        "region": "NCR",
+        "reusedByU19": false
+      },
+      {
+        "id": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+        "name": "De La Salle Santiago Zobel",
+        "city": "Metro Manila",
+        "region": "NCR",
+        "reusedByU19": false
+      }
+    ],
+    "action": "create"
+  },
+  "proposedU16TeamRecords": [
+    {
+      "sourceKey": "ADU",
+      "schoolProgram": "Adamson University",
+      "proposedTeamName": "ADU U16 Boys",
+      "proposedCity": "Metro Manila",
+      "proposedRegion": "NCR",
+      "activeMatchingU16TeamAlreadyExists": false,
+      "existingMatchingTeams": [
+        {
+          "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "name": "ADU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": true
+        }
+      ],
+      "action": "create"
+    },
+    {
+      "sourceKey": "ATENEO",
+      "schoolProgram": "Ateneo de Manila University",
+      "proposedTeamName": "ATENEO U16 Boys",
+      "proposedCity": "Metro Manila",
+      "proposedRegion": "NCR",
+      "activeMatchingU16TeamAlreadyExists": false,
+      "existingMatchingTeams": [
+        {
+          "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+          "name": "ATENEO",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": true
+        }
+      ],
+      "action": "create"
+    },
+    {
+      "sourceKey": "De La Salle Santiago Zobel",
+      "schoolProgram": "De La Salle Santiago Zobel",
+      "proposedTeamName": "DLSZ U16 Boys",
+      "proposedCity": "Metro Manila",
+      "proposedRegion": "NCR",
+      "activeMatchingU16TeamAlreadyExists": false,
+      "existingMatchingTeams": [
+        {
+          "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "name": "LA SALLE",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": false
+        },
+        {
+          "id": "ae091b25-12cd-453f-af06-b629247174c9",
+          "name": "DLSU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": false
+        },
+        {
+          "id": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "name": "DLSZ",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": false
+        },
+        {
+          "id": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+          "name": "De La Salle Santiago Zobel",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": false
+        }
+      ],
+      "action": "create"
+    },
+    {
+      "sourceKey": "FEU",
+      "schoolProgram": "Far Eastern University",
+      "proposedTeamName": "FEU U16 Boys",
+      "proposedCity": "Metro Manila",
+      "proposedRegion": "NCR",
+      "activeMatchingU16TeamAlreadyExists": false,
+      "existingMatchingTeams": [
+        {
+          "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "name": "FEU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": true
+        }
+      ],
+      "action": "create"
+    },
+    {
+      "sourceKey": "UP",
+      "schoolProgram": "University of the Philippines Integrated School",
+      "proposedTeamName": "UP U16 Boys",
+      "proposedCity": "Metro Manila",
+      "proposedRegion": "NCR",
+      "activeMatchingU16TeamAlreadyExists": false,
+      "existingMatchingTeams": [
+        {
+          "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "name": "UP",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": true
+        }
+      ],
+      "action": "create"
+    },
+    {
+      "sourceKey": "UST",
+      "schoolProgram": "University of Santo Tomas",
+      "proposedTeamName": "UST U16 Boys",
+      "proposedCity": "Metro Manila",
+      "proposedRegion": "NCR",
+      "activeMatchingU16TeamAlreadyExists": false,
+      "existingMatchingTeams": [
+        {
+          "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "name": "UST",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "reusedByU19": true
+        }
+      ],
+      "action": "create"
+    }
+  ],
+  "proposedReassignment": {
+    "games": [
+      {
+        "gameId": "702cdcd5-4271-4f1a-bc64-1e08b56b256f",
+        "gameNumber": "UAAP-S88-16U-001",
+        "currentHomeTeamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "currentHomeTeamName": "FEU",
+        "newHomeTeamId": "CREATE:FEU U16 Boys",
+        "currentAwayTeamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "currentAwayTeamName": "ATENEO",
+        "newAwayTeamId": "CREATE:ATENEO U16 Boys"
+      },
+      {
+        "gameId": "044f1b14-92e6-41fe-a16d-4f004698a88c",
+        "gameNumber": "UAAP-S88-16U-002",
+        "currentHomeTeamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "currentHomeTeamName": "ADU",
+        "newHomeTeamId": "CREATE:ADU U16 Boys",
+        "currentAwayTeamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+        "currentAwayTeamName": "De La Salle Santiago Zobel",
+        "newAwayTeamId": "CREATE:DLSZ U16 Boys"
+      },
+      {
+        "gameId": "5b655d11-d220-444e-97bd-d8e01928f778",
+        "gameNumber": "UAAP-S88-16U-003",
+        "currentHomeTeamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "currentHomeTeamName": "UP",
+        "newHomeTeamId": "CREATE:UP U16 Boys",
+        "currentAwayTeamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "currentAwayTeamName": "UST",
+        "newAwayTeamId": "CREATE:UST U16 Boys"
+      }
+    ],
+    "gameStatsByCurrentTeam": [
+      {
+        "currentTeamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "currentTeamName": "ADU",
+        "gameStatCount": 12,
+        "newTeamId": "CREATE:ADU U16 Boys"
+      },
+      {
+        "currentTeamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "currentTeamName": "ATENEO",
+        "gameStatCount": 15,
+        "newTeamId": "CREATE:ATENEO U16 Boys"
+      },
+      {
+        "currentTeamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+        "currentTeamName": "De La Salle Santiago Zobel",
+        "gameStatCount": 12,
+        "newTeamId": "CREATE:DLSZ U16 Boys"
+      },
+      {
+        "currentTeamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "currentTeamName": "FEU",
+        "gameStatCount": 16,
+        "newTeamId": "CREATE:FEU U16 Boys"
+      },
+      {
+        "currentTeamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "currentTeamName": "UP",
+        "gameStatCount": 11,
+        "newTeamId": "CREATE:UP U16 Boys"
+      },
+      {
+        "currentTeamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "currentTeamName": "UST",
+        "gameStatCount": 13,
+        "newTeamId": "CREATE:UST U16 Boys"
+      }
+    ]
+  },
+  "safetyChecks": {
+    "noU19GameShouldBeModified": true,
+    "noU19GameStatShouldBeModified": true,
+    "u16GameCountRemains": {
+      "expected": 3,
+      "actual": 3,
+      "pass": true
+    },
+    "u16GameStatCountRemains": {
+      "expected": 79,
+      "actual": 79,
+      "pass": true
+    },
+    "pointTotalsRemainPassing": {
+      "pass": true,
+      "pointTotals": [
+        {
+          "gameNumber": "UAAP-S88-16U-001",
+          "homeScore": 91,
+          "awayScore": 80,
+          "summedHomePlayerPoints": 91,
+          "summedAwayPlayerPoints": 80,
+          "pass": true
+        },
+        {
+          "gameNumber": "UAAP-S88-16U-002",
+          "homeScore": 85,
+          "awayScore": 69,
+          "summedHomePlayerPoints": 85,
+          "summedAwayPlayerPoints": 69,
+          "pass": true
+        },
+        {
+          "gameNumber": "UAAP-S88-16U-003",
+          "homeScore": 61,
+          "awayScore": 114,
+          "summedHomePlayerPoints": 61,
+          "summedAwayPlayerPoints": 114,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "ratingsImpact": {
+    "gamePerformanceScoreDependsOnTeamId": false,
+    "playerRatingDependsOnTeamId": false,
+    "rankingSnapshotDependsOnTeamId": false,
+    "explanation": "Formula v1 GamePerformanceScore is tied to GameStat/game/player/stat fields and does not use teamId in the score math. PlayerRating aggregates GamePerformanceScore by player and ageGroup. RankingSnapshot uses PlayerRating. Reassigning U16 Game.homeTeamId/awayTeamId and GameStat.teamId should not require ratings recomputation if game/player/stat rows remain unchanged.",
+    "recomputationNeeded": false
+  },
+  "recommendedNextStep": "After approval, create missing U16-only Team records, then transactionally update only the 3 U16 games and 79 U16 GameStats to those U16 team IDs. Do not modify U19 games/GameStats. Run point-total and count validation after repair."
+}
