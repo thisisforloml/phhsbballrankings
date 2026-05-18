@@ -1,9 +1,11 @@
-import "server-only";
+﻿import "server-only";
 
 import { AgeGroup, PlayerGender } from "@prisma/client";
-import { formatHeight, slugify } from "./format";
-import { getLatestNationalRankings, type NationalRankingRow, type RankingGender } from "./rankings";
+import { slugify } from "./format";
+import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
 import { prisma } from "./prisma";
+import { getUaapSchoolDisplayName } from "./uaap-school-display";
+import { loadValidatedUaapGames } from "./validated-uaap-data";
 
 export type PublicAgeGroup = "U13" | "U16" | "U19";
 export type PublicGender = "Boys" | "Girls";
@@ -70,10 +72,6 @@ function inferGenderFromLeagueName(name: string): PublicGender | "Mixed" {
   return "Mixed";
 }
 
-function toPublicGender(gender: PlayerGender): PublicGender {
-  return gender === PlayerGender.GIRLS ? "Girls" : "Boys";
-}
-
 function calculateAge(birthDate: Date | null) {
   if (!birthDate) return null;
   const today = new Date();
@@ -101,22 +99,59 @@ async function addAge(rows: NationalRankingRow[]): Promise<HomeLeaderboardRow[]>
   });
 }
 
+async function getValidatedDbGames() {
+  const sourceGames = loadValidatedUaapGames();
+  const validatedGameNumbers = sourceGames.map((game) => game.gameNumber);
+  const leagueNames = Array.from(new Set(sourceGames.map((game) => game.leagueName)));
+
+  return prisma.game.findMany({
+    where: {
+      deletedAt: null,
+      gameNumber: { in: validatedGameNumbers },
+      season: {
+        deletedAt: null,
+        league: {
+          deletedAt: null,
+          name: { in: leagueNames }
+        }
+      }
+    },
+    include: {
+      homeTeam: true,
+      awayTeam: true,
+      season: { include: { league: true } },
+      stats: {
+        where: { deletedAt: null },
+        include: {
+          team: true,
+          player: {
+            include: {
+              currentRatings: {
+                where: { ageGroup: AgeGroup.U19 },
+                take: 1
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
 export async function getHomeData(): Promise<HomeData> {
   const rankings = await getLatestNationalRankings();
-  const [boysRows, girlsRows, playerRatingCount, leagueCount, gameCount] = await Promise.all([
+  const [boysRows, girlsRows] = await Promise.all([
     addAge(rankings.snapshots.boys.rows.slice(0, 10)),
-    addAge(rankings.snapshots.girls.rows.slice(0, 10)),
-    prisma.playerRating.count({ where: { ageGroup: AgeGroup.U19 } }),
-    prisma.league.count({ where: { deletedAt: null } }),
-    prisma.game.count({ where: { deletedAt: null } })
+    addAge(rankings.snapshots.girls.rows.slice(0, 10))
   ]);
+  const validatedGames = loadValidatedUaapGames();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
 
   return {
     counts: {
-      rankedPlayers: playerRatingCount,
-      verifiedLeagues: leagueCount,
-      gamesLogged: gameCount
+      rankedPlayers: rankings.snapshots.boys.totalRows + rankings.snapshots.girls.totalRows,
+      verifiedLeagues: new Set(validatedGames.map((game) => game.leagueName)).size,
+      gamesLogged: validatedGames.length
     },
     leader: allTopRows[0] ?? null,
     leaderboards: {
@@ -127,30 +162,21 @@ export async function getHomeData(): Promise<HomeData> {
 }
 
 export async function getPublicLeagues(): Promise<PublicLeagueRow[]> {
+  const sourceGames = loadValidatedUaapGames();
+  const leagueNames = Array.from(new Set(sourceGames.map((game) => game.leagueName)));
   const leagues = await prisma.league.findMany({
-    where: { deletedAt: null },
-    include: {
-      seasons: {
-        where: { deletedAt: null },
-        include: {
-          games: {
-            where: { deletedAt: null },
-            select: { id: true, homeTeamId: true, awayTeamId: true }
-          }
-        }
-      }
-    },
+    where: { deletedAt: null, name: { in: leagueNames } },
     orderBy: { name: "asc" }
   });
 
   return leagues.map((league) => {
-    const games = league.seasons.flatMap((season) => season.games);
-    const teamIds = new Set<string>();
+    const games = sourceGames.filter((game) => game.leagueName === league.name);
+    const teams = new Set<string>();
     games.forEach((game) => {
-      teamIds.add(game.homeTeamId);
-      teamIds.add(game.awayTeamId);
+      teams.add(getUaapSchoolDisplayName(game.homeTeamName));
+      teams.add(getUaapSchoolDisplayName(game.awayTeamName));
     });
-    const teamCount = teamIds.size;
+    const teamCount = teams.size;
 
     return {
       id: league.id,
@@ -171,27 +197,7 @@ export async function getPublicLeagues(): Promise<PublicLeagueRow[]> {
 }
 
 export async function getPublicTeamRankings(): Promise<PublicTeamRankingRow[]> {
-  const games = await prisma.game.findMany({
-    where: { deletedAt: null },
-    include: {
-      homeTeam: true,
-      awayTeam: true,
-      season: { include: { league: true } },
-      stats: {
-        include: {
-          player: {
-            include: {
-              currentRatings: {
-                where: { ageGroup: AgeGroup.U19 },
-                take: 1
-              }
-            }
-          }
-        }
-      }
-    }
-  });
-
+  const games = await getValidatedDbGames();
   const teams = new Map<string, {
     id: string;
     name: string;
@@ -207,15 +213,18 @@ export async function getPublicTeamRankings(): Promise<PublicTeamRankingRow[]> {
     topPlayer: PublicTeamRankingRow["topPlayer"];
   }>();
 
-  function ensure(team: typeof games[number]["homeTeam"], game: typeof games[number]) {
-    const existing = teams.get(team.id);
+  function ensure(rawName: string, sourceTeam: { id: string; city: string; region: string }, game: typeof games[number]) {
+    const name = getUaapSchoolDisplayName(rawName);
+    const gender = inferGenderFromLeagueName(game.season.league.name) === "Girls" ? "Girls" as PublicGender : "Boys" as PublicGender;
+    const key = `${gender}:${name}`;
+    const existing = teams.get(key);
     if (existing) return existing;
     const next = {
-      id: team.id,
-      name: team.name,
-      city: team.city ?? "Not listed",
-      region: team.region ?? "Not listed",
-      gender: inferGenderFromLeagueName(game.season.league.name) === "Girls" ? "Girls" as PublicGender : "Boys" as PublicGender,
+      id: key,
+      name,
+      city: sourceTeam.city ?? "Not listed",
+      region: sourceTeam.region ?? "Not listed",
+      gender,
       ageGroup: game.season.league.ageGroup as PublicAgeGroup,
       league: game.season.league.name,
       wins: 0,
@@ -224,13 +233,13 @@ export async function getPublicTeamRankings(): Promise<PublicTeamRankingRow[]> {
       games: 0,
       topPlayer: null
     };
-    teams.set(team.id, next);
+    teams.set(key, next);
     return next;
   }
 
   for (const game of games) {
-    const home = ensure(game.homeTeam, game);
-    const away = ensure(game.awayTeam, game);
+    const home = ensure(game.homeTeam.name, game.homeTeam, game);
+    const away = ensure(game.awayTeam.name, game.awayTeam, game);
     home.games += 1;
     away.games += 1;
     home.points += game.homeScore;
@@ -244,7 +253,9 @@ export async function getPublicTeamRankings(): Promise<PublicTeamRankingRow[]> {
     }
 
     for (const stat of game.stats) {
-      const bucket = teams.get(stat.teamId);
+      const teamName = getUaapSchoolDisplayName(stat.team.name);
+      const gender = inferGenderFromLeagueName(game.season.league.name) === "Girls" ? "Girls" : "Boys";
+      const bucket = teams.get(`${gender}:${teamName}`);
       const rating = stat.player.currentRatings[0] ? Number(stat.player.currentRatings[0].adjustedRating) : 0;
       if (bucket && rating > (bucket.topPlayer?.rating ?? 0)) {
         bucket.topPlayer = {

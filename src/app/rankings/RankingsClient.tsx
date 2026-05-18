@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -49,28 +49,8 @@ function positionLabel(position: string | null) {
   return position?.trim() || notListedPosition;
 }
 
-function ageLabel(row: NationalRankingRow) {
-  if (row.age !== null) return `${row.age} years old`;
-  if (row.birthYear !== null) return `Born ${row.birthYear}`;
-  return "Age not listed";
-}
-
-function buildPositionRankMap(rows: NationalRankingRow[]) {
-  const counts = new Map<string, number>();
-  const ranks = new Map<string, number>();
-
-  for (const row of [...rows].sort((left, right) => left.rank - right.rank)) {
-    const key = positionLabel(row.position);
-    const nextRank = (counts.get(key) ?? 0) + 1;
-    counts.set(key, nextRank);
-    ranks.set(row.playerId, nextRank);
-  }
-
-  return ranks;
-}
-
 function searchText(row: NationalRankingRow) {
-  return [row.displayName, row.currentTeam, row.position ?? notListedPosition, row.region, row.city]
+  return [row.displayName, row.currentTeam, row.position ?? notListedPosition, row.city, row.region]
     .join(" ")
     .toLowerCase();
 }
@@ -80,7 +60,6 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
   const [ageGroup, setAgeGroup] = useState<RankingAgeGroup>(normalizedAge(params.get("age")));
   const [gender, setGender] = useState<RankingGender>(normalizedGender(params.get("gender")));
   const [region, setRegion] = useState("All");
-  const [city, setCity] = useState("All");
   const [position, setPosition] = useState("All");
   const [query, setQuery] = useState("");
   const [minIndex, setMinIndex] = useState(gender === "Girls" ? 0 : 1);
@@ -89,16 +68,11 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
   const rowsForAge = ageGroup === "U19" ? selectedSnapshot.rows : [];
   const defaultMinimum = eligibilityMinimum(gender);
   const minimumGames = Math.max(minGameStops[minIndex], defaultMinimum);
-  const positionRanks = useMemo(() => buildPositionRankMap(rowsForAge), [rowsForAge]);
 
   const regionOptions = useMemo(
     () => Array.from(new Set(rowsForAge.map((row) => row.region))).sort(),
     [rowsForAge]
   );
-  const cityOptions = useMemo(() => {
-    const scoped = region === "All" ? rowsForAge : rowsForAge.filter((row) => row.region === region);
-    return Array.from(new Set(scoped.map((row) => row.city))).sort();
-  }, [region, rowsForAge]);
   const positionOptions = useMemo(
     () => Array.from(new Set(rowsForAge.map((row) => positionLabel(row.position)))).sort((left, right) => {
       if (left === notListedPosition) return 1;
@@ -113,12 +87,11 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
 
     return rowsForAge
       .filter((row) => region === "All" || row.region === region)
-      .filter((row) => city === "All" || row.city === city)
       .filter((row) => position === "All" || positionLabel(row.position) === position)
       .filter((row) => !value || searchText(row).includes(value))
       .filter((row) => row.verifiedGameCount >= minimumGames)
       .sort((left, right) => left.rank - right.rank);
-  }, [city, minimumGames, position, query, region, rowsForAge]);
+  }, [minimumGames, position, query, region, rowsForAge]);
 
   return (
     <main className="bg-surface-50 pb-20 pt-28">
@@ -126,8 +99,8 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
         <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="label">Full National Rankings</p>
-              <h1 className="mt-2 font-display text-stat-md text-navy-800">Player Rankings</h1>
+              <p className="label">Player Rankings</p>
+              <h1 className="mt-2 font-display text-stat-md text-navy-800">Rankings</h1>
             </div>
             <div className="inline-flex rounded-full border border-surface-300 bg-surface-50 p-1">
               {genders.map((item) => (
@@ -137,7 +110,6 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                     setGender(item);
                     setMinIndex(item === "Girls" ? 0 : 1);
                     setRegion("All");
-                    setCity("All");
                     setPosition("All");
                     setQuery("");
                   }}
@@ -152,7 +124,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
             Minimum {defaultMinimum} verified games required to rank
           </p>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_1fr_1fr_1fr]">
+          <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.2fr_1fr_1fr_1fr]">
             <section>
               <p className="mb-3 font-mono text-mono-sm uppercase text-ink-500">Age Group</p>
               <div className="flex flex-wrap gap-2">
@@ -162,7 +134,6 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                     onClick={() => {
                       setAgeGroup(group);
                       setRegion("All");
-                      setCity("All");
                       setPosition("All");
                     }}
                     className={`rounded-full px-4 py-2 font-mono text-mono-sm ${ageGroup === group ? "bg-navy-800 text-white" : "bg-surface-100 text-ink-600"}`}
@@ -178,7 +149,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900"
-                placeholder="Name, team, position"
+                placeholder="Name, team, hometown"
               />
             </label>
             <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
@@ -190,44 +161,24 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                 ))}
               </select>
             </label>
-            <label className="grid gap-3 font-mono text-mono-sm uppercase text-ink-500">
-              {minimumGames === 100 ? "Min. 100+ games" : `Min. ${minimumGames} games`}
-              <input type="range" min={0} max={minGameStops.length - 1} step={1} value={minIndex} onChange={(event) => setMinIndex(Number(event.target.value))} className="accent-navy-800" />
-            </label>
-          </div>
-
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
             <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
               Region
-              <select
-                value={region}
-                onChange={(event) => {
-                  setRegion(event.target.value);
-                  setCity("All");
-                }}
-                className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900"
-              >
+              <select value={region} onChange={(event) => setRegion(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
                 <option>All</option>
                 {regionOptions.map((item) => (
                   <option key={item}>{item}</option>
                 ))}
               </select>
             </label>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              Hometown
-              <select value={city} onChange={(event) => setCity(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
-                <option>All</option>
-                {cityOptions.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
+            <label className="grid gap-3 font-mono text-mono-sm uppercase text-ink-500">
+              {minimumGames === 100 ? "Min. 100+ games" : `Min. ${minimumGames} games`}
+              <input type="range" min={0} max={minGameStops.length - 1} step={1} value={minIndex} onChange={(event) => setMinIndex(Number(event.target.value))} className="accent-navy-800" />
             </label>
           </div>
 
           <button
             onClick={() => {
               setRegion("All");
-              setCity("All");
               setPosition("All");
               setQuery("");
               setMinIndex(gender === "Girls" ? 0 : 1);
@@ -242,20 +193,20 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
       <section className="container-px mt-8">
         <div className="mb-6 rounded-lg bg-white p-5 shadow-sm">
           <p className="font-mono text-mono-sm uppercase text-ink-500">
-            Showing {filteredRows.length} players | {ageGroup} {gender} | {position} | Updated {formatDate(selectedSnapshot.weekOf)}
+            Showing {filteredRows.length} players | {ageGroup} {gender} | Updated {formatDate(selectedSnapshot.weekOf)}
           </p>
         </div>
 
-        {filteredRows.length ? <RankingsTable rows={filteredRows.slice(0, 100)} positionRanks={positionRanks} /> : <EmptyState icon="players" title="No players ranked yet" />}
+        {filteredRows.length ? <RankingsTable rows={filteredRows.slice(0, 100)} /> : <EmptyState icon="players" title="No players ranked yet" />}
       </section>
     </main>
   );
 }
 
-function RankingsTable({ rows, positionRanks }: { rows: NationalRankingRow[]; positionRanks: Map<string, number> }) {
+function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
   return (
     <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-      <div className="hidden grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_9rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
+      <div className="hidden grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_10rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
         <span>Rank</span>
         <span>Athlete</span>
         <span>Height</span>
@@ -266,11 +217,10 @@ function RankingsTable({ rows, positionRanks }: { rows: NationalRankingRow[]; po
         <Link
           key={row.playerId}
           href={getPlayerProfileHref(row)}
-          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_9rem] lg:items-center"
+          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_10rem] lg:items-center"
         >
           <span className="font-mono">
             <strong className="block text-lg text-navy-800">#{row.rank}</strong>
-            <small className="text-ink-500">National</small>
           </span>
           <span className="grid grid-cols-[auto_1fr] items-center gap-3">
             <span className="grid size-12 place-items-center overflow-hidden rounded-full bg-navy-100 font-mono text-mono-sm text-navy-800">
@@ -278,16 +228,13 @@ function RankingsTable({ rows, positionRanks }: { rows: NationalRankingRow[]; po
             </span>
             <span>
               <strong className="block text-ink-900">{row.displayName}</strong>
-              <small className="block text-ink-500">{row.city}, {row.region}</small>
-              <small className="block text-ink-500">{row.currentTeam} | {ageLabel(row)}</small>
+              <small className="block text-ink-500">{row.city}</small>
+              <small className="block text-ink-500">{row.currentTeam}</small>
             </span>
           </span>
           <span className="text-ink-700">{formatHeight(row.heightCm)}</span>
-          <span className="grid gap-1">
-            <span>{positionLabel(row.position)}</span>
-            <small className="font-mono text-ink-500">#{positionRanks.get(row.playerId) ?? "-"} at position</small>
-          </span>
-          <span className="grid gap-1">
+          <span>{positionLabel(row.position)}</span>
+          <span className="flex flex-wrap items-center gap-2">
             <strong className="font-display text-stat-sm text-navy-800">{row.rating.toFixed(2)}</strong>
             <StarRating stars={row.starRating} />
           </span>
