@@ -1,8 +1,7 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { UserRole } from "@prisma/client";
 import { requireOrganizerUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { submissionTypeLabel } from "@/lib/submission-utils";
 import { createOrganizerSubmission } from "./actions";
 
 export const metadata = {
@@ -57,7 +56,7 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
             <Link href="/organizer" className="rounded-md px-3 py-2 hover:bg-white/10">Dashboard</Link>
             <Link href="/organizer/live-stats" className="rounded-md px-3 py-2 hover:bg-white/10">Live Stats Entry</Link>
             <Link href="/organizer/submissions" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Submissions</Link>
-            {isAdmin ? <Link href="/admin/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Admin Review</Link> : null}
+            {isAdmin ? <Link href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Admin Home</Link> : null}
             <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
           </nav>
         </aside>
@@ -83,15 +82,6 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
                   <input name="title" required maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Example: UAAP S88 Game 12 box score" />
                 </label>
                 <label className="grid gap-2 text-sm font-semibold text-surface-700">
-                  Submission type
-                  <select name="type" required className="min-h-11 rounded-md border border-surface-200 px-3 py-2">
-                    <option value="PASTE_JSON">Paste JSON</option>
-                    <option value="UPLOAD_JSON">Upload JSON</option>
-                    <option value="UPLOAD_CSV">Upload CSV</option>
-                    <option value="UPLOAD_XLSX">Upload XLSX</option>
-                  </select>
-                </label>
-                <label className="grid gap-2 text-sm font-semibold text-surface-700">
                   League name
                   <input name="leagueName" maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Optional" />
                 </label>
@@ -102,13 +92,13 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
               </div>
               <label className="grid gap-2 text-sm font-semibold text-surface-700">
                 Paste JSON
-                <textarea name="rawText" rows={8} className="rounded-md border border-surface-200 px-3 py-2 font-mono text-sm" placeholder="Paste JSON here when using Paste JSON." />
+                <textarea name="rawText" rows={8} className="rounded-md border border-surface-200 px-3 py-2 font-mono text-sm" placeholder="Paste JSON here. If you upload a file instead, leave this blank." />
               </label>
               <label className="grid gap-2 text-sm font-semibold text-surface-700">
                 Upload file
                 <input name="file" type="file" accept=".json,.csv,.xlsx,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" className="rounded-md border border-surface-200 px-3 py-2" />
               </label>
-              <p className="text-sm text-ink-500">V1 stores submissions for review only. XLSX preview is unsupported until an XLSX parser dependency is approved.</p>
+              <p className="text-sm text-ink-500">The system infers the file format from pasted JSON or the uploaded file extension. V1 stores submissions for review only. XLSX preview is unsupported until an XLSX parser dependency is approved.</p>
               <button type="submit" className="button primary w-fit">Submit for Review</button>
             </form>
           </section>
@@ -125,7 +115,6 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
                 <thead className="bg-surface-100 font-mono text-mono-sm uppercase text-surface-600">
                   <tr>
                     <th className="px-4 py-3">Title</th>
-                    <th className="px-4 py-3">Type</th>
                     <th className="px-4 py-3">Status</th>
                     <th className="px-4 py-3">League</th>
                     <th className="px-4 py-3">Game Date</th>
@@ -138,7 +127,6 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
                   {submissions.map((submission) => (
                     <tr key={submission.id} className="border-t border-surface-200">
                       <td className="px-4 py-3 font-semibold text-ink-900">{submission.title}</td>
-                      <td className="px-4 py-3">{submissionTypeLabel(submission.type)}</td>
                       <td className="px-4 py-3 font-mono text-mono-sm uppercase">{submission.status}</td>
                       <td className="px-4 py-3">{submission.leagueName ?? "-"}</td>
                       <td className="px-4 py-3">{formatDate(submission.gameDate)}</td>
@@ -149,7 +137,7 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
                   ))}
                   {!submissions.length ? (
                     <tr>
-                      <td colSpan={isAdmin ? 8 : 7} className="px-4 py-8 text-center text-ink-500">No submissions yet.</td>
+                      <td colSpan={isAdmin ? 7 : 6} className="px-4 py-8 text-center text-ink-500">No submissions yet.</td>
                     </tr>
                   ) : null}
                 </tbody>

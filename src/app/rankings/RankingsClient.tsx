@@ -11,6 +11,7 @@ const ageGroups: RankingAgeGroup[] = ["U13", "U16", "U19"];
 const genders: RankingGender[] = ["Boys", "Girls"];
 const minGameStops = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const notListedPosition = "Not listed";
+const positionOrder = ["G", "PG", "SG", "F", "SF", "PF", "C"];
 
 function normalizedAge(value: string | null): RankingAgeGroup {
   const upper = value?.toUpperCase();
@@ -77,6 +78,12 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
     () => Array.from(new Set(rowsForAge.map((row) => positionLabel(row.position)))).sort((left, right) => {
       if (left === notListedPosition) return 1;
       if (right === notListedPosition) return -1;
+
+      const leftIndex = positionOrder.indexOf(left.toUpperCase());
+      const rightIndex = positionOrder.indexOf(right.toUpperCase());
+      if (leftIndex !== -1 && rightIndex !== -1) return leftIndex - rightIndex;
+      if (leftIndex !== -1) return -1;
+      if (rightIndex !== -1) return 1;
       return left.localeCompare(right);
     }),
     [rowsForAge]
@@ -211,13 +218,13 @@ function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
         <span>Athlete</span>
         <span>Height</span>
         <span>Position</span>
-        <span>Rating</span>
+        <span className="pl-1">Rating</span>
       </div>
       {rows.map((row) => (
         <Link
           key={row.playerId}
           href={getPlayerProfileHref(row)}
-          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_10rem] lg:items-center"
+          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[4.5rem_minmax(16rem,1.35fr)_8.5rem_7.5rem_12rem] lg:items-center"
         >
           <span className="font-mono">
             <strong className="block text-lg text-navy-800">#{row.rank}</strong>
@@ -234,7 +241,7 @@ function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
           </span>
           <span className="text-ink-700">{formatHeight(row.heightCm)}</span>
           <span>{positionLabel(row.position)}</span>
-          <span className="flex flex-wrap items-center gap-2">
+          <span className="flex flex-wrap items-center gap-2 pl-1">
             <strong className="font-display text-stat-sm text-navy-800">{row.rating.toFixed(2)}</strong>
             <StarRating stars={row.starRating} />
           </span>
@@ -243,3 +250,4 @@ function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
     </div>
   );
 }
+

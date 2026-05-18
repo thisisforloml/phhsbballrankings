@@ -2,24 +2,15 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { OrganizerSubmissionType } from "@prisma/client";
 import { requireOrganizerUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
-
-function readType(formData: FormData) {
-  const rawType = String(formData.get("type") ?? "").trim();
-  if (!Object.values(OrganizerSubmissionType).includes(rawType as OrganizerSubmissionType)) {
-    throw new Error("Unsupported submission type.");
-  }
-  return rawType as OrganizerSubmissionType;
-}
+import { inferSubmissionType, parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
 
 export async function createOrganizerSubmission(formData: FormData) {
   const user = await requireOrganizerUser();
 
   try {
-    const type = readType(formData);
+    const type = inferSubmissionType(formData);
     const metadata = readSubmissionMetadata(formData);
     const payload = await parseSubmissionPayload(type, formData);
 

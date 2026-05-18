@@ -39,6 +39,23 @@ Current official age groups:
 
 High school datasets with unknown birth year default to U19 until player bio data is completed and recalculation rules are approved.
 
+## Class Year Planning
+
+Current planned class-year rule:
+
+- January-May birth month: classYear = birthYear + 19.
+- June-December birth month: classYear = birthYear + 20.
+- Born June 2006 = Class of 2026.
+- Born March 2006 = Class of 2025.
+- Born December 2005 = Class of 2025.
+
+Ranking eligibility planning:
+
+- Athletes remain ranking-eligible through May 31 of their class year.
+- Starting June 1 of their class year, they should be removed from active rankings.
+- Unknown birthDate remains eligible for now but should be flagged as missing age/class data.
+- This has not been implemented as an exclusion rule yet.
+
 ## Formula v1 Star Bands
 
 Formula v1 uses fixed star bands based on adjustedRating:

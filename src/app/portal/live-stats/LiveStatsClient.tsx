@@ -110,7 +110,7 @@ function computed(row: StatRow, teamMinutes: number, teamFga: number, teamFta: n
   return { efg, ts, usg };
 }
 
-export function LiveStatsClient() {
+export function LiveStatsClient({ showAdminHome = false }: { showAdminHome?: boolean }) {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [activeTeam, setActiveTeam] = useState<"home" | "away">("home");
   const [submitted, setSubmitted] = useState(false);
@@ -150,6 +150,7 @@ export function LiveStatsClient() {
             <p className="mt-5 font-semibold text-navy-800">Player of the Game: {playerOfGame?.row.playerName || "Ã¢â‚¬â€"}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <button onClick={() => { setSubmitted(false); setStep(1); }} className="button primary">Submit Another Game</button>
+              {showAdminHome ? <Link href="/admin" className="button secondary">Admin Home</Link> : null}
               <Link href="/organizer" className="button secondary">Back to Dashboard</Link>
             </div>
           </article>
@@ -168,6 +169,7 @@ export function LiveStatsClient() {
           </p>
           <h1 className="mt-3 font-display text-stat-md">Game Statistics Software</h1>
           <p className="mt-3 max-w-2xl text-navy-200">Fast, keyboard-friendly stat entry for partnered organizers.</p>
+          {showAdminHome ? <Link href="/admin" className="mt-5 inline-flex rounded-md bg-white px-4 py-2 text-sm font-semibold text-navy-800 hover:bg-amber-100">Admin Home</Link> : null}
         </div>
 
         <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">

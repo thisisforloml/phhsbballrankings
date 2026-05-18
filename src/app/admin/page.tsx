@@ -6,42 +6,40 @@ export const metadata = {
   description: "Internal OnCourt administration tools."
 };
 
-const adminTools = [
+const sections = [
   {
-    title: "Player Bio Editor",
-    description: "Search and update existing player profile fields.",
-    href: "/admin/players",
-    status: "Available"
+    title: "Player Management",
+    description: "Edit player bio fields and prepare future duplicate review workflows.",
+    links: [{ label: "Player Bio Editor", href: "/admin/players" }]
   },
   {
-    title: "Team Editor",
-    description: "Edit existing team name, city, and region fields.",
-    href: "/admin/teams",
-    status: "Available"
+    title: "Team Management",
+    description: "Review team records, aliases, and school display cleanup needs.",
+    links: [{ label: "Team Editor", href: "/admin/teams" }]
   },
   {
     title: "Submission Review",
     description: "Review organizer-submitted JSON, CSV, and XLSX intake records.",
-    href: "/admin/submissions",
-    status: "Available"
+    links: [{ label: "Admin Review", href: "/admin/submissions" }]
   },
   {
-    title: "Duplicate Player Merge",
-    description: "Review and merge duplicate player records.",
-    href: "#duplicates",
-    status: "Later"
+    title: "Organizer Tools",
+    description: "Access the same external submission workflows that organizers use.",
+    links: [
+      { label: "Organizer Dashboard", href: "/organizer" },
+      { label: "Organizer Submissions", href: "/organizer/submissions" },
+      { label: "Live Stats Entry", href: "/organizer/live-stats" }
+    ]
   },
   {
-    title: "Ratings and Rankings",
-    description: "Review formula runs and public ranking snapshots.",
-    href: "#ratings",
-    status: "Later"
+    title: "Rankings / Data QA",
+    description: "Formula runs, ranking snapshots, validation reports, and data audit workflows.",
+    links: []
   },
   {
-    title: "Data QA Review",
-    description: "Audit submitted games, stat rows, and validation reports.",
-    href: "#qa",
-    status: "Later"
+    title: "Site Settings",
+    description: "Future controls for public content, homepage modules, and platform configuration.",
+    links: []
   }
 ];
 
@@ -58,38 +56,32 @@ export default async function AdminPage() {
             <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
             <Link href="/admin/teams" className="rounded-md px-3 py-2 hover:bg-white/10">Teams</Link>
             <Link href="/admin/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Submissions</Link>
-            <Link href="/organizer" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Portal</Link>
             <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
           </nav>
         </aside>
 
         <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-            <p className="label">Internal team tools</p>
+            <p className="label">Internal operations</p>
             <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <h1 className="font-display text-stat-md text-navy-800">Admin Portal</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">
-                  Signed in as {user.name}. This area is for OnCourt internal administration only.
-                </p>
+                <p className="mt-2 max-w-3xl text-ink-600">Signed in as {user.name}. Admin can access internal tools and organizer workflows.</p>
               </div>
               <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{user.role}</span>
             </div>
           </div>
 
-          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {adminTools.map((tool) => (
-              <article key={tool.title} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-                <div className="flex items-start justify-between gap-3">
-                  <h2 className="font-display text-2xl text-navy-800">{tool.title}</h2>
-                  <span className="rounded-full bg-surface-100 px-3 py-1 font-mono text-mono-sm uppercase text-surface-600">{tool.status}</span>
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {sections.map((section) => (
+              <article key={section.title} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+                <h2 className="font-display text-3xl text-navy-800">{section.title}</h2>
+                <p className="mt-3 min-h-12 text-sm leading-6 text-ink-600">{section.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {section.links.length ? section.links.map((link) => (
+                    <Link key={link.href} href={link.href} className="button primary w-fit">{link.label}</Link>
+                  )) : <span className="rounded-md bg-surface-100 px-4 py-2 text-sm font-semibold text-surface-500">Planned</span>}
                 </div>
-                <p className="mt-3 text-sm text-ink-600">{tool.description}</p>
-                {tool.href.startsWith("/") ? (
-                  <Link href={tool.href} className="button primary mt-5 w-fit">Open</Link>
-                ) : (
-                  <span className="mt-5 inline-flex rounded-md bg-surface-100 px-4 py-2 text-sm font-semibold text-surface-500">Planned</span>
-                )}
               </article>
             ))}
           </section>

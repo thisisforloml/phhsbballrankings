@@ -71,7 +71,6 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
           <nav className="mt-8 grid gap-2 font-semibold">
             <a href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Admin Dashboard</a>
-            <a href="/organizer/live-stats" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Live Stats</a>
             <a href="/admin/players" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Players</a>
             <a href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</a>
           </nav>

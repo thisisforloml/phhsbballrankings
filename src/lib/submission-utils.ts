@@ -150,6 +150,31 @@ async function storeUploadedFile(file: File) {
   };
 }
 
+function fileExtension(file: File) {
+  const name = file.name.toLowerCase();
+  if (name.endsWith(".json")) return "json";
+  if (name.endsWith(".csv")) return "csv";
+  if (name.endsWith(".xlsx")) return "xlsx";
+  return "";
+}
+
+export function inferSubmissionType(formData: FormData): OrganizerSubmissionType {
+  const rawText = String(formData.get("rawText") ?? "").trim();
+  if (rawText) return OrganizerSubmissionType.PASTE_JSON;
+
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    throw new Error("Paste JSON or upload a JSON, CSV, or XLSX file.");
+  }
+
+  const extension = fileExtension(file);
+  if (extension === "json" || file.type === "application/json") return OrganizerSubmissionType.UPLOAD_JSON;
+  if (extension === "csv" || file.type === "text/csv") return OrganizerSubmissionType.UPLOAD_CSV;
+  if (extension === "xlsx" || file.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") return OrganizerSubmissionType.UPLOAD_XLSX;
+
+  throw new Error("Unsupported file type. Upload JSON, CSV, or XLSX only.");
+}
+
 export async function parseSubmissionPayload(type: OrganizerSubmissionType, formData: FormData): Promise<ParsedSubmissionPayload> {
   if (type === OrganizerSubmissionType.PASTE_JSON) {
     const rawText = String(formData.get("rawText") ?? "").trim();

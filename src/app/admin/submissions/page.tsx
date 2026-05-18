@@ -52,7 +52,6 @@ export default async function AdminSubmissionsPage() {
             <Link href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Dashboard</Link>
             <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
             <Link href="/admin/submissions" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Submissions</Link>
-            <Link href="/organizer" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Portal</Link>
             <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
           </nav>
         </aside>
