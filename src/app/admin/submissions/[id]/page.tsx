@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { submissionTypeLabel } from "@/lib/submission-utils";
-import { updateSubmissionReviewStatus } from "../actions";
+import { importSubmissionOfficialData, updateSubmissionReviewStatus } from "../actions";
 
 export const metadata = {
   title: "Submission Details - Admin Portal",
@@ -247,7 +247,22 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 <div><dt className="font-semibold text-surface-500">Would update</dt><dd>{preflight.gameStats.wouldUpdate}</dd></div>
                 <div><dt className="font-semibold text-surface-500">Manual review</dt><dd>{preflight.gameStats.manualReview}</dd></div>
               </dl>
-            </details>
+            </details>`r`n            {submission.status === "APPROVED" && !preflight.overallSummary.importBlocked ? (
+              <form action={importSubmissionOfficialData} className="rounded-md border border-green-200 bg-green-50 p-4">
+                <input type="hidden" name="submissionId" value={submission.id} />
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <strong className="block text-green-900">Import Official Data</strong>
+                    <p className="mt-1 text-sm text-green-800">Creates or reuses League, Season, Teams, Players, Games, and GameStats only. It will not compute ratings or rankings.</p>
+                  </div>
+                  <button type="submit" className="rounded-md bg-green-700 px-4 py-2 font-semibold text-white hover:bg-green-800">Import Official Data</button>
+                </div>
+              </form>
+            ) : submission.status === "IMPORTED" ? (
+              <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-800">This submission has already been imported. Re-running import is disabled from the UI.</p>
+            ) : (
+              <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Official import becomes available only when the submission is APPROVED and preflight is not blocked.</p>
+            )}
           </section>
 
           <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">

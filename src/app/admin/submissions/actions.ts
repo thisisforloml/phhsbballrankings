@@ -2,8 +2,10 @@
 
 import { SubmissionStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-import";
 
 const allowedTransitions: Record<SubmissionStatus, SubmissionStatus[]> = {
   SUBMITTED: ["UNDER_REVIEW"],
@@ -27,6 +29,11 @@ function cleanAdminNotes(value: FormDataEntryValue | null) {
   return trimmed.slice(0, 2000);
 }
 
+function reviewRedirectUrl(submissionId: string, params: Record<string, string>) {
+  const searchParams = new URLSearchParams(params);
+  return `/admin/submissions/${submissionId}?${searchParams.toString()}`;
+}
+
 export async function updateSubmissionReviewStatus(formData: FormData) {
   await requireAdminUser();
 
@@ -39,7 +46,9 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
   }
 
   if (!targetStatus || targetStatus === "IMPORTED") {
-    throw new Error("That submission status change is not available yet.");
+    redirect(reviewRedirectUrl(submissionId, {
+      reviewError: "That submission status change is not available yet."
+    }));
   }
 
   const submission = await prisma.submission.findUnique({
@@ -53,7 +62,9 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
 
   const allowedTargets = allowedTransitions[submission.status] ?? [];
   if (!allowedTargets.includes(targetStatus)) {
-    throw new Error(`Cannot change submission from ${submission.status} to ${targetStatus}.`);
+    redirect(reviewRedirectUrl(submission.id, {
+      reviewError: `Cannot change submission from ${submission.status} to ${targetStatus}. Mark Under Review first if needed.`
+    }));
   }
 
   await prisma.submission.update({
@@ -67,4 +78,33 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
 
   revalidatePath("/admin/submissions");
   revalidatePath(`/admin/submissions/${submission.id}`);
+
+  redirect(reviewRedirectUrl(submission.id, {
+    reviewSuccess: `Submission status updated to ${targetStatus}.`
+  }));
+}
+
+export async function importSubmissionOfficialData(formData: FormData) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+
+  try {
+    const summary = await importApprovedSubmissionOfficialData(submissionId);
+    revalidatePath("/admin/submissions");
+    revalidatePath(`/admin/submissions/${submissionId}`);
+
+    redirect(reviewRedirectUrl(submissionId, {
+      reviewSuccess: summary.alreadyImported
+        ? "Submission was already imported. No duplicate records were created."
+        : "Official import completed. Ratings and rankings were not recomputed."
+    }));
+  } catch (error) {
+    redirect(reviewRedirectUrl(submissionId, {
+      reviewError: error instanceof Error ? error.message : "Official import failed."
+    }));
+  }
 }
