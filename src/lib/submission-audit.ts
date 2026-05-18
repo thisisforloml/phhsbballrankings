@@ -1,23 +1,15 @@
-import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
+﻿import { AgeGroup, RankingScope, SubmissionStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getMonthStart } from "@/lib/ranking-eligibility";
-
-const targetSubmissionId = "a1d0b638-901f-4f89-b8b2-1f2f7281892f";
-const expected = {
-  games: 3,
-  gameStats: 79,
-  gamePerformanceScores: 79,
-  playerRatings: 79,
-  rankingSnapshotRows: 79,
-  u19SnapshotRows: 138
-};
+import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
+import { getImportedSubmissionContext } from "@/lib/submission-post-import-processing";
 
 function unique<T>(values: T[]) {
   return [...new Set(values)];
 }
 
-function check(actual: number | null, expectedValue: number) {
-  return actual === expectedValue;
+function checkAtLeast(actual: number | null, expectedValue: number) {
+  return (actual ?? 0) >= expectedValue;
 }
 
 export async function getSubmissionImportPublishAudit(submissionId: string) {
@@ -28,12 +20,9 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
 
   if (!submission) throw new Error("Submission not found.");
 
-  if (submission.id !== targetSubmissionId) {
-    return {
-      available: false as const,
-      reason: "Import audit is currently available for the imported U16 Boys submission only.",
-      submission: { id: submission.id, status: submission.status, title: submission.title }
-    };
+  let context: Awaited<ReturnType<typeof getImportedSubmissionContext>> | null = null;
+  if (submission.status === SubmissionStatus.IMPORTED) {
+    context = await getImportedSubmissionContext(submissionId);
   }
 
   const formulaVersion = await prisma.formulaVersion.findUnique({
@@ -41,22 +30,9 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
     select: { id: true }
   });
 
-  const league = await prisma.league.findFirst({
-    where: { name: "UAAP Season 88 16U Boys Basketball", ageGroup: AgeGroup.U16, deletedAt: null },
-    select: { id: true, name: true, ageGroup: true }
-  });
-
-  const season = league
-    ? await prisma.season.findUnique({
-        where: { leagueId_name: { leagueId: league.id, name: "Season 88" } },
-        select: { id: true, name: true, deletedAt: true }
-      })
-    : null;
-
-  const monthStart = getMonthStart(new Date());
-  const games = season
+  const games = context
     ? await prisma.game.findMany({
-        where: { seasonId: season.id, deletedAt: null },
+        where: { id: { in: context.gameIds }, deletedAt: null },
         include: {
           homeTeam: { select: { id: true, name: true } },
           awayTeam: { select: { id: true, name: true } },
@@ -91,21 +67,24 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
     };
   });
 
+  const monthStart = getMonthStart(new Date());
   const [gamePerformanceScores, playerRatings, latestSnapshot, globalCounts, u19SnapshotRows] = await Promise.all([
-    formulaVersion
+    formulaVersion && gameStatIds.length
       ? prisma.gamePerformanceScore.count({
           where: { deletedAt: null, formulaVersionId: formulaVersion.id, gameStatId: { in: gameStatIds } }
         })
-      : Promise.resolve(null),
-    prisma.playerRating.count({
-      where: { ageGroup: AgeGroup.U16, player: { gender: PlayerGender.BOYS, deletedAt: null } }
-    }),
-    formulaVersion
+      : Promise.resolve(0),
+    context
+      ? prisma.playerRating.count({
+          where: { ageGroup: context.ageGroup, player: { gender: context.gender, deletedAt: null } }
+        })
+      : Promise.resolve(0),
+    formulaVersion && context
       ? prisma.rankingSnapshot.findFirst({
           where: {
             scope: RankingScope.NATIONAL,
-            ageGroup: AgeGroup.U16,
-            gender: PlayerGender.BOYS,
+            ageGroup: context.ageGroup,
+            gender: context.gender,
             formulaVersionId: formulaVersion.id,
             weekOf: monthStart,
             city: null,
@@ -130,25 +109,30 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
 
   const activeGames = gameIds.length;
   const activeGameStats = gameStatIds.length;
+  const expectedGameStats = context?.expectedGameStats ?? 0;
   const snapshotRows = latestSnapshot?._count.rows ?? null;
-  const imported = submission.status === SubmissionStatus.IMPORTED;
-  const processed = gamePerformanceScores === expected.gamePerformanceScores && playerRatings === expected.playerRatings;
-  const published = snapshotRows === expected.rankingSnapshotRows;
-  const pointTotalsPass = pointTotals.every((row) => row.pass);
+  const imported = submission.status === SubmissionStatus.IMPORTED && Boolean(context) && activeGames === (context?.gameIds.length ?? 0) && activeGameStats > 0;
+  const processed = imported && gamePerformanceScores === expectedGameStats && playerRatings > 0;
+  const published = processed && (snapshotRows ?? 0) > 0;
+  const pointTotalsPass = pointTotals.length === activeGames && pointTotals.every((row) => row.pass);
   const expectedChecks = {
-    u16Games: { actual: activeGames, expected: expected.games, pass: check(activeGames, expected.games) },
-    u16GameStats: { actual: activeGameStats, expected: expected.gameStats, pass: check(activeGameStats, expected.gameStats) },
-    u16GamePerformanceScores: { actual: gamePerformanceScores, expected: expected.gamePerformanceScores, pass: check(gamePerformanceScores, expected.gamePerformanceScores) },
-    u16PlayerRatings: { actual: playerRatings, expected: expected.playerRatings, pass: check(playerRatings, expected.playerRatings) },
-    u16SnapshotRows: { actual: snapshotRows, expected: expected.rankingSnapshotRows, pass: check(snapshotRows, expected.rankingSnapshotRows) },
-    u19SnapshotRows: { actual: u19SnapshotRows, expected: expected.u19SnapshotRows, pass: check(u19SnapshotRows, expected.u19SnapshotRows) },
+    importedGames: { actual: activeGames, expected: context?.gameIds.length ?? 0, pass: checkAtLeast(activeGames, context?.gameIds.length ?? 0) },
+    importedGameStats: { actual: activeGameStats, expected: expectedGameStats, pass: activeGameStats === expectedGameStats },
+    submissionGamePerformanceScores: { actual: gamePerformanceScores, expected: expectedGameStats, pass: gamePerformanceScores === expectedGameStats },
+    playerRatings: { actual: playerRatings, expected: 1, pass: playerRatings > 0 },
+    monthlySnapshotRows: { actual: snapshotRows, expected: 1, pass: (snapshotRows ?? 0) > 0 },
+    u19SnapshotRows: { actual: u19SnapshotRows, expected: 138, pass: u19SnapshotRows === 138 },
     pointTotals: { actual: pointTotals.filter((row) => row.pass).length, expected: pointTotals.length, pass: pointTotalsPass }
   };
 
-  const allExpectedHealthy = Object.values(expectedChecks).every((item) => item.pass);
+  const issues = Object.entries(expectedChecks)
+    .filter(([, item]) => !item.pass)
+    .map(([key, item]) => `${key} check failed: ${item.actual} / ${item.expected}`);
+  const allExpectedHealthy = issues.length === 0;
 
   return {
     available: true as const,
+    reason: null,
     submission: {
       id: submission.id,
       title: submission.title,
@@ -158,8 +142,9 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
       published
     },
     officialData: {
-      league: league ? { id: league.id, name: league.name, ageGroup: league.ageGroup } : null,
-      season: season && !season.deletedAt ? { id: season.id, name: season.name } : null,
+      league: context ? { id: context.leagueId, name: context.leagueName, ageGroup: context.ageGroup } : null,
+      season: context ? { id: context.seasonId, name: context.seasonName } : null,
+      gameNumbers: context?.gameNumbers ?? [],
       activeGames,
       activeGameStats,
       detectedTeams: teamNames,
@@ -182,6 +167,67 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
       rankingSnapshotRow: globalCounts[5]
     },
     expectedChecks,
+    issues,
     overallStatus: allExpectedHealthy ? "Healthy" : "Needs attention"
   };
 }
+
+export async function getSubmissionPipelineStatus(submissionId: string) {
+  const submission = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true }
+  });
+
+  if (!submission) throw new Error("Submission not found.");
+
+  let audit: Awaited<ReturnType<typeof getSubmissionImportPublishAudit>> | null = null;
+  let preflight: Awaited<ReturnType<typeof buildSubmissionImportPreflight>> | null = null;
+  const issues: string[] = [];
+
+  try {
+    audit = await getSubmissionImportPublishAudit(submissionId);
+  } catch (error) {
+    issues.push(error instanceof Error ? error.message : "Unable to read import audit.");
+  }
+
+  try {
+    preflight = await buildSubmissionImportPreflight(submission);
+  } catch (error) {
+    issues.push(error instanceof Error ? error.message : "Unable to read import preflight.");
+  }
+
+  const auditData = audit?.available ? audit : null;
+  const imported = submission.status === SubmissionStatus.IMPORTED && Boolean(auditData?.submission.imported);
+  const processed = imported && Boolean(auditData?.submission.processed);
+  const published = processed && Boolean(auditData?.submission.published);
+
+  return {
+    submitted: true,
+    underReview: submission.status === SubmissionStatus.UNDER_REVIEW || submission.status === SubmissionStatus.APPROVED || submission.status === SubmissionStatus.IMPORTED,
+    approved: submission.status === SubmissionStatus.APPROVED || submission.status === SubmissionStatus.IMPORTED,
+    imported,
+    processed,
+    published,
+    issues: [...issues, ...(auditData?.issues ?? [])],
+    debug: {
+      submissionStatus: submission.status,
+      auditAvailable: Boolean(auditData),
+      auditOverallStatus: auditData?.overallStatus ?? null,
+      auditValidationStatus: auditData?.ratingsPublishing.validationStatus ?? null,
+      auditGamePerformanceScores: auditData?.ratingsPublishing.gamePerformanceScores ?? null,
+      auditPlayerRatings: auditData?.ratingsPublishing.playerRatings ?? null,
+      auditSnapshotRows: auditData?.ratingsPublishing.latestMonthlyRankingSnapshotRows ?? null,
+      auditGamePerformanceScoresCheck: auditData?.expectedChecks.submissionGamePerformanceScores ?? null,
+      auditPlayerRatingsCheck: auditData?.expectedChecks.playerRatings ?? null,
+      auditSnapshotRowsCheck: auditData?.expectedChecks.monthlySnapshotRows ?? null,
+      preflightStatus: preflight?.submissionReadiness.status ?? null,
+      preflightStatusApproved: preflight?.submissionReadiness.statusApproved ?? null,
+      preflightAlreadyImported: preflight?.submissionReadiness.alreadyImported ?? null,
+      preflightImportBlocked: preflight?.overallSummary.importBlocked ?? null,
+      preflightBlockers: preflight?.overallSummary.blockers ?? [],
+      issues
+    }
+  };
+}
+
+

@@ -1,9 +1,9 @@
-import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
+﻿import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getClassYear, getMonthStart, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
+import { buildSubmissionReview } from "@/lib/submission-review";
 
 const formulaVersionNumber = 1;
-const formulaVersionDescription = "Formula v1 possession-informed transparent baseline box-score model";
 const defaultMinimumVerifiedGames = 1;
 
 const assumptions = {
@@ -27,6 +27,8 @@ type SubmissionContext = {
   seasonName: string;
   ageGroup: AgeGroup;
   gender: PlayerGender;
+  gameNumbers: string[];
+  gameIds: string[];
   expectedGameStats: number;
   minimumVerifiedGames: number;
 };
@@ -53,6 +55,52 @@ type StatInput = {
   foulsDrawn: number | null;
 };
 
+type JsonRecord = Record<string, unknown>;
+
+function asRecord(value: unknown): JsonRecord | null {
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as JsonRecord) : null;
+}
+
+function asArray(value: unknown): unknown[] {
+  return Array.isArray(value) ? value : [];
+}
+
+function stringValue(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function coerceAgeGroup(value: string | null): AgeGroup | null {
+  if (!value) return null;
+  const normalized = value.toUpperCase();
+  return Object.values(AgeGroup).includes(normalized as AgeGroup) ? (normalized as AgeGroup) : null;
+}
+
+function inferGender(value: "BOYS" | "GIRLS" | null): PlayerGender {
+  return value === "GIRLS" ? PlayerGender.GIRLS : PlayerGender.BOYS;
+}
+
+function parseSubmissionJson(submission: { rawText: string | null; parsedPreview: unknown }) {
+  if (submission.rawText?.trim()) return JSON.parse(submission.rawText);
+
+  if (submission.parsedPreview && typeof submission.parsedPreview === "object") {
+    const preview = submission.parsedPreview as JsonRecord;
+    if ("league" in preview || "season" in preview || "games" in preview) return preview;
+    if (Array.isArray(preview.sample)) return preview.sample;
+    if (preview.sample && typeof preview.sample === "object") return preview.sample;
+  }
+
+  return null;
+}
+
+function getPackages(parsed: unknown): JsonRecord[] {
+  const root = asRecord(parsed);
+  if (root) return [root];
+  return asArray(parsed).map(asRecord).filter((item): item is JsonRecord => item !== null);
+}
+
+function unique<T>(values: T[]) {
+  return [...new Set(values)];
+}
 function safeDivide(numerator: number, denominator: number) {
   return denominator === 0 ? null : numerator / denominator;
 }
@@ -111,21 +159,6 @@ function requiredStatIssues(stat: StatInput) {
   return fields.filter((field) => stat[field] === null || stat[field] === undefined).map((field) => `Missing ${field}.`);
 }
 
-async function getFormulaVersion() {
-  return prisma.formulaVersion.upsert({
-    where: { versionNumber: formulaVersionNumber },
-    update: { isPublic: false, weights: assumptions },
-    create: {
-      versionNumber: formulaVersionNumber,
-      description: formulaVersionDescription,
-      isPublic: false,
-      weights: assumptions,
-      effectiveFrom: new Date()
-    },
-    select: { id: true, versionNumber: true }
-  });
-}
-
 async function getExistingFormulaVersion() {
   const formulaVersion = await prisma.formulaVersion.findUnique({
     where: { versionNumber: formulaVersionNumber },
@@ -136,10 +169,10 @@ async function getExistingFormulaVersion() {
   return formulaVersion;
 }
 
-async function getImportedSubmissionContext(submissionId: string): Promise<SubmissionContext> {
+export async function getImportedSubmissionContext(submissionId: string): Promise<SubmissionContext> {
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true, title: true }
+    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true }
   });
 
   if (!submission) throw new Error("Submission not found.");
@@ -147,21 +180,58 @@ async function getImportedSubmissionContext(submissionId: string): Promise<Submi
     throw new Error("Post-import processing is available only for IMPORTED submissions.");
   }
 
-  if (submission.id !== "a1d0b638-901f-4f89-b8b2-1f2f7281892f") {
-    throw new Error("This post-import pipeline currently supports the imported U16 Boys submission only.");
-  }
+  const review = buildSubmissionReview(submission);
+  if (!review.validJson) throw new Error(review.parseError ?? "Submission JSON is not valid.");
 
+  const parsed = parseSubmissionJson(submission);
+  const packages = getPackages(parsed);
+  const primaryPackage = packages[0] ?? null;
+  const leagueRecord = asRecord(primaryPackage?.league);
+  const seasonRecord = asRecord(primaryPackage?.season);
+  const games = packages.flatMap((submissionPackage) => asArray(submissionPackage.games).map(asRecord).filter((game): game is JsonRecord => game !== null));
+  const targetAgeGroup = coerceAgeGroup(review.summary.ageGroup);
+  const targetGender = inferGender(review.recommendations.inferredGender);
+  const targetLeagueName = review.recommendations.recommendedLeagueName ?? review.summary.leagueName ?? submission.leagueName ?? submission.title;
+  const seasonName = stringValue(seasonRecord?.name) || review.summary.seasonName;
+  const gameNumbers = unique(games.map((game) => stringValue(game.gameNumber)).filter(Boolean));
+
+  if (!primaryPackage) throw new Error("Submission JSON package was not found.");
+  if (!targetAgeGroup) throw new Error(`Unsupported or missing age group: ${review.summary.ageGroup ?? "missing"}.`);
+  if (!seasonName) throw new Error("Season name is missing.");
+  if (!gameNumbers.length) throw new Error("Submission does not include any game numbers.");
+
+  const submittedLeagueName = stringValue(leagueRecord?.name) || review.summary.leagueName;
   const league = await prisma.league.findFirst({
-    where: { name: "UAAP Season 88 16U Boys Basketball", ageGroup: AgeGroup.U16, deletedAt: null },
+    where: { name: targetLeagueName, ageGroup: targetAgeGroup, deletedAt: null },
     select: { id: true, name: true, ageGroup: true }
   });
-  if (!league) throw new Error("Imported U16 league was not found.");
+  if (!league) {
+    throw new Error(`Imported league was not found for ${targetLeagueName} (${targetAgeGroup}). Submitted league: ${submittedLeagueName ?? "missing"}.`);
+  }
 
   const season = await prisma.season.findUnique({
-    where: { leagueId_name: { leagueId: league.id, name: "Season 88" } },
+    where: { leagueId_name: { leagueId: league.id, name: seasonName } },
     select: { id: true, name: true, deletedAt: true }
   });
-  if (!season || season.deletedAt) throw new Error("Imported U16 season was not found.");
+  if (!season || season.deletedAt) throw new Error(`Imported season was not found for ${league.name} / ${seasonName}.`);
+
+  const importedGames = await prisma.game.findMany({
+    where: { seasonId: season.id, gameNumber: { in: gameNumbers }, deletedAt: null },
+    select: { id: true, gameNumber: true }
+  });
+  const importedGameNumbers = new Set(importedGames.map((game) => game.gameNumber).filter(Boolean));
+  const missingGameNumbers = gameNumbers.filter((gameNumber) => !importedGameNumbers.has(gameNumber));
+  if (missingGameNumbers.length) {
+    throw new Error(`Imported games were not found for submitted game numbers: ${missingGameNumbers.join(", ")}.`);
+  }
+
+  const gameIds = importedGames.map((game) => game.id);
+  const expectedGameStats = await prisma.gameStat.count({
+    where: { deletedAt: null, gameId: { in: gameIds }, player: { gender: targetGender, deletedAt: null } }
+  });
+  if (expectedGameStats === 0) {
+    throw new Error("Imported games do not have active GameStats for the inferred submission gender.");
+  }
 
   return {
     submissionId: submission.id,
@@ -169,18 +239,19 @@ async function getImportedSubmissionContext(submissionId: string): Promise<Submi
     leagueName: league.name,
     seasonId: season.id,
     seasonName: season.name,
-    ageGroup: AgeGroup.U16,
-    gender: PlayerGender.BOYS,
-    expectedGameStats: 79,
+    ageGroup: league.ageGroup,
+    gender: targetGender,
+    gameNumbers,
+    gameIds,
+    expectedGameStats,
     minimumVerifiedGames: defaultMinimumVerifiedGames
   };
 }
-
 async function getGameStatsForContext(context: SubmissionContext) {
   return prisma.gameStat.findMany({
     where: {
       deletedAt: null,
-      game: { seasonId: context.seasonId, deletedAt: null },
+      gameId: { in: context.gameIds },
       player: { gender: context.gender, deletedAt: null }
     },
     select: {
@@ -214,10 +285,10 @@ export async function getImportedSubmissionProcessingStatus(submissionId: string
 
   const [gameStatsCount, gamePerformanceScoresCount, playerRatingsCount, latestSnapshot, missingBirthDateCount] = await Promise.all([
     prisma.gameStat.count({
-      where: { deletedAt: null, game: { seasonId: context.seasonId, deletedAt: null }, player: { gender: context.gender, deletedAt: null } }
+      where: { deletedAt: null, gameId: { in: context.gameIds }, player: { gender: context.gender, deletedAt: null } }
     }),
     prisma.gamePerformanceScore.count({
-      where: { deletedAt: null, formulaVersionId: formulaVersion.id, game: { seasonId: context.seasonId, deletedAt: null }, player: { gender: context.gender, deletedAt: null } }
+      where: { deletedAt: null, formulaVersionId: formulaVersion.id, gameId: { in: context.gameIds }, player: { gender: context.gender, deletedAt: null } }
     }),
     prisma.playerRating.count({
       where: { ageGroup: context.ageGroup, player: { gender: context.gender, deletedAt: null } }
@@ -260,8 +331,8 @@ export async function getImportedSubmissionProcessingStatus(submissionId: string
     missingBirthDateCount,
     complete: {
       formulaScores: gamePerformanceScoresCount === context.expectedGameStats,
-      playerRatings: playerRatingsCount === context.expectedGameStats,
-      monthlySnapshot: (latestSnapshot?._count.rows ?? 0) === context.expectedGameStats
+      playerRatings: playerRatingsCount > 0,
+      monthlySnapshot: (latestSnapshot?._count.rows ?? 0) > 0
     }
   };
 }
@@ -269,18 +340,18 @@ export async function getImportedSubmissionProcessingStatus(submissionId: string
 export async function computeImportedSubmissionFormulaScores(submissionId: string) {
   const context = await getImportedSubmissionContext(submissionId);
   const now = new Date();
-  const formulaVersion = await getFormulaVersion();
+  const formulaVersion = await getExistingFormulaVersion();
   const stats = await getGameStatsForContext(context);
 
   if (stats.length !== context.expectedGameStats) {
-    throw new Error(`Expected ${context.expectedGameStats} U16 GameStats, found ${stats.length}.`);
+    throw new Error(`Expected ${context.expectedGameStats} imported GameStats, found ${stats.length}.`);
   }
 
   const skippedRows = stats
     .map((stat) => ({ statId: stat.id, reasons: requiredStatIssues(stat) }))
     .filter((row) => row.reasons.length);
   if (skippedRows.length) {
-    throw new Error(`U16 GameStats have missing required fields: ${JSON.stringify(skippedRows)}`);
+    throw new Error(`Imported GameStats have missing required fields: ${JSON.stringify(skippedRows)}`);
   }
 
   const totals = stats.reduce(
@@ -300,7 +371,7 @@ export async function computeImportedSubmissionFormulaScores(submissionId: strin
   const leagueDefRebRate = safeDivide(totals.dreb, totals.dreb + totals.oreb);
   const leagueOffRebRate = safeDivide(totals.oreb, totals.oreb + totals.dreb);
   if (leaguePPP === null || leagueDefRebRate === null || leagueOffRebRate === null) {
-    throw new Error("Could not compute U16 league context.");
+    throw new Error("Could not compute imported submission league context.");
   }
 
   const rawScores = stats.map((stat) => {
@@ -414,8 +485,8 @@ export async function computeImportedSubmissionPlayerRatings(submissionId: strin
     include: { player: { select: { id: true, displayName: true } } }
   });
 
-  if (scores.length !== context.expectedGameStats) {
-    throw new Error(`Expected ${context.expectedGameStats} U16 GamePerformanceScores, found ${scores.length}.`);
+  if (scores.length < context.expectedGameStats) {
+    throw new Error(`Expected at least ${context.expectedGameStats} ${context.ageGroup} GamePerformanceScores, found ${scores.length}.`);
   }
 
   const byPlayer = new Map<string, { playerId: string; displayName: string; values: number[] }>();
@@ -574,7 +645,7 @@ export async function generateImportedSubmissionMonthlyRankings(submissionId: st
     ageGroup: context.ageGroup,
     gender: context.gender,
     snapshotDate: snapshotDate.toISOString(),
-    eligibilityRule: { minimumVerifiedGames: context.minimumVerifiedGames, note: "Temporary U16 launch/test threshold because only 3 games are imported." },
+    eligibilityRule: { minimumVerifiedGames: context.minimumVerifiedGames, note: "Temporary U16 launch/test threshold for imported U16 submissions." },
     eligibleByGames: eligibleByGames.length,
     excludedByClassYear: excludedByClassYear.length,
     missingBirthDate: eligibleByGames.filter((row) => row.birthDate === null).length,
@@ -603,11 +674,11 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
   const issues: string[] = [];
 
   const gameStats = await prisma.gameStat.findMany({
-    where: { deletedAt: null, game: { seasonId: context.seasonId, deletedAt: null }, player: { gender: context.gender, deletedAt: null } },
+    where: { deletedAt: null, gameId: { in: context.gameIds }, player: { gender: context.gender, deletedAt: null } },
     include: { player: { select: { displayName: true } } }
   });
   const scores = await prisma.gamePerformanceScore.findMany({
-    where: { formulaVersionId: formulaVersion.id, deletedAt: null, game: { seasonId: context.seasonId, deletedAt: null }, player: { gender: context.gender, deletedAt: null } }
+    where: { formulaVersionId: formulaVersion.id, deletedAt: null, gameId: { in: context.gameIds }, player: { gender: context.gender, deletedAt: null } }
   });
   if (gameStats.length !== context.expectedGameStats) issues.push(`Expected ${context.expectedGameStats} GameStats, found ${gameStats.length}.`);
   if (scores.length !== context.expectedGameStats) issues.push(`Expected ${context.expectedGameStats} GamePerformanceScores, found ${scores.length}.`);
@@ -617,8 +688,11 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
     if (!scoreByGameStat.has(stat.id)) issues.push(`Missing GamePerformanceScore for ${stat.player.displayName} / ${stat.id}.`);
   }
 
+  const seasonScores = await prisma.gamePerformanceScore.findMany({
+    where: { formulaVersionId: formulaVersion.id, deletedAt: null, game: { seasonId: context.seasonId, deletedAt: null }, player: { gender: context.gender, deletedAt: null } }
+  });
   const countsByPlayer = new Map<string, number>();
-  for (const score of scores) countsByPlayer.set(score.playerId, (countsByPlayer.get(score.playerId) ?? 0) + 1);
+  for (const score of seasonScores) countsByPlayer.set(score.playerId, (countsByPlayer.get(score.playerId) ?? 0) + 1);
 
   const missingPlayerRatings: Array<{ playerId: string; expected: number }> = [];
   const invalidRatings: string[] = [];
@@ -705,6 +779,7 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
     expectedGameStats: context.expectedGameStats,
     gameStatsChecked: gameStats.length,
     gamePerformanceScoresChecked: scores.length,
+    seasonGamePerformanceScoresChecked: seasonScores.length,
     playersChecked: countsByPlayer.size,
     missingPlayerRatings,
     invalidRatings,
@@ -723,3 +798,12 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
     validationPassed
   };
 }
+
+
+
+
+
+
+
+
+
