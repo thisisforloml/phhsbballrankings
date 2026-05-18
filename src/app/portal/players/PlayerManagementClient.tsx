@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -33,11 +33,11 @@ function playerSearchText(player: ManagedPlayer) {
 }
 
 function displayHeight(heightCm: number | null) {
-  return heightCm === null ? "â€”" : `${heightCm} cm`;
+  return heightCm === null ? "Ã¢â‚¬â€" : `${heightCm} cm`;
 }
 
 function displayRating(rating: number | null) {
-  return rating === null ? "â€”" : rating.toFixed(2);
+  return rating === null ? "Ã¢â‚¬â€" : rating.toFixed(2);
 }
 
 export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }) {
@@ -115,7 +115,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
                       <strong className="text-ink-900">{player.displayName}</strong>
                       <span className="font-mono text-mono-sm text-ink-500">{player.gender}</span>
                     </span>
-                    <span className="text-sm text-ink-500">{player.city} Â· {player.region}</span>
+                    <span className="text-sm text-ink-500">{player.city} Ã‚ -  {player.region}</span>
                     <span className="grid grid-cols-3 gap-2 font-mono text-mono-sm text-ink-600">
                       <span>{player.position || "No pos"}</span>
                       <span>{displayHeight(player.heightCm)}</span>
@@ -156,7 +156,7 @@ function PlayerEditForm({
         <div>
           <p className="label">Selected Player</p>
           <h2 className="font-display text-3xl text-navy-800">{player.displayName}</h2>
-          <p className="mt-1 text-ink-500">Rating {displayRating(player.rating)} Â· {player.verifiedGameCount ?? "â€”"} verified games</p>
+          <p className="mt-1 text-ink-500">Rating {displayRating(player.rating)} Ã‚ -  {player.verifiedGameCount ?? "Ã¢â‚¬â€"} verified games</p>
         </div>
       </div>
 

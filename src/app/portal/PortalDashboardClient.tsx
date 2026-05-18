@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { Activity, Upload } from "lucide-react";
@@ -51,7 +51,7 @@ export function PortalDashboardClient() {
             <div className="mt-6 grid gap-3 md:grid-cols-3">
               <Metric value="0" label="Assigned leagues" />
               <Metric value="0" label="Pending submissions" />
-              <Metric value="Ã¢â‚¬â€" label="Compliance rate" />
+              <Metric value="ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â" label="Compliance rate" />
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export function PortalDashboardClient() {
                   </span>
                 </label>
                 <button className="button primary w-fit" onClick={() => { setParsing(true); window.setTimeout(() => setParsing(false), 1200); }}>Read statsheet</button>
-                {parsing ? <div className="rounded-lg bg-navy-50 p-5 font-mono text-navy-800">Reading statsheetÃ¢â‚¬Â¦ 68%</div> : <StatEntryGrid />}
+                {parsing ? <div className="rounded-lg bg-navy-50 p-5 font-mono text-navy-800">Reading statsheetÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ 68%</div> : <StatEntryGrid />}
                 <button onClick={() => setSubmitted(true)} className="button primary w-fit">Submit reviewed stats</button>
               </div>
             )}
@@ -143,3 +143,4 @@ function StatEntryGrid() {
     </div>
   );
 }
+
