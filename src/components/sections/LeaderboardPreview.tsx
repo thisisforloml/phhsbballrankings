@@ -1,10 +1,9 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { HomeLeaderboardRow } from "@/lib/public-site-data";
-import { formatAgeLabel, formatHeight } from "@/lib/format";
-import { getPlayerProfileHref } from "@/lib/format";
+import { formatHeight, getPlayerProfileHref } from "@/lib/format";
 import { RatingBadge, StarRating } from "@/components/ui";
 
 function initials(name: string) {
@@ -26,7 +25,7 @@ export function LeaderboardPreview({ players }: { players: HomeLeaderboardRow[] 
         exit={{ opacity: 0, x: -24 }}
         className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm"
       >
-        <div className="hidden grid-cols-[5rem_minmax(18rem,1.7fr)_9rem_7rem_8rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
+        <div className="hidden grid-cols-[5rem_minmax(18rem,1.7fr)_9rem_7rem_9rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
           <span>Rank</span><span>Athlete</span><span>Height</span><span>Position</span><span>Rating</span>
         </div>
         {!players.length ? <div className="p-6 text-ink-500">No eligible players match this view yet.</div> : null}
@@ -36,7 +35,7 @@ export function LeaderboardPreview({ players }: { players: HomeLeaderboardRow[] 
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
-            className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(18rem,1.7fr)_9rem_7rem_8rem] lg:items-center"
+            className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[5rem_minmax(18rem,1.7fr)_9rem_7rem_9rem] lg:items-center"
           >
             <span className="font-mono">
               <strong className="block text-lg text-navy-800">#{player.rank}</strong>
@@ -47,13 +46,13 @@ export function LeaderboardPreview({ players }: { players: HomeLeaderboardRow[] 
               </span>
               <span>
                 <strong className="block text-ink-900">{player.displayName}</strong>
-                <small className="block text-ink-500">{player.city}, {player.region}</small>
-                <small className="block text-ink-500">{player.currentTeam} | {formatAgeLabel(player.age, player.birthYear)}</small>
+                <small className="block text-ink-500">{player.city}</small>
+                <small className="block text-ink-500">{player.currentTeam}</small>
               </span>
             </Link>
             <span className="text-ink-700">{formatHeight(player.heightCm)}</span>
             <span>{player.position ? <span className="rounded-full bg-surface-100 px-2.5 py-1 font-mono text-mono-sm text-ink-600">{player.position}</span> : <span className="text-ink-400">Not listed</span>}</span>
-            <span className="grid gap-1">
+            <span className="flex flex-wrap items-center gap-2">
               <RatingBadge rating={player.rating} />
               <StarRating stars={player.starRating} />
             </span>

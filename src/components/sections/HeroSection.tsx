@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
@@ -50,8 +50,8 @@ export function HeroSection({ data }: { data: HomeData }) {
             <Link href="/about" className="button border-white/40 text-white hover:border-amber-500 hover:text-amber-500">How Ratings Work</Link>
           </div>
           <div className="mt-10 flex flex-wrap gap-8 font-mono text-mono-sm uppercase text-white/70">
-            <span><strong ref={ranked.ref} className="block font-display text-stat-sm text-white">{ranked.value.toLocaleString()}</strong> Rated Players</span>
-            <span><strong ref={leagueCount.ref} className="block font-display text-stat-sm text-white">{leagueCount.value.toLocaleString()}</strong> Verified Leagues</span>
+            <span><strong ref={ranked.ref} className="block font-display text-stat-sm text-white">{ranked.value.toLocaleString()}</strong> Ranked Players</span>
+            <span><strong ref={leagueCount.ref} className="block font-display text-stat-sm text-white">{leagueCount.value.toLocaleString()}</strong> Leagues Covered</span>
             <span><strong ref={games.ref} className="block font-display text-stat-sm text-white">{games.value.toLocaleString()}</strong> Games Logged</span>
           </div>
         </motion.div>

@@ -1,5 +1,6 @@
-import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
+﻿import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
+import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
@@ -206,7 +207,7 @@ function mapGameStat(stat: LoadedPlayer["gameStats"][number]): PlayerProfileGame
     gameDate: stat.game.gameDate.toISOString(),
     leagueName: stat.game.season.league.name,
     seasonName: stat.game.season.name,
-    teamName: stat.team.name,
+    teamName: getUaapSchoolDisplayName(stat.team.name),
     opponentName,
     result: teamScore > opponentScore ? "W" : "L",
     teamScore,
@@ -290,7 +291,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     birthYear: player.birthDate ? player.birthDate.getUTCFullYear() : null,
     age: calculateAge(player.birthDate),
     photoUrl: player.photoUrl,
-    currentTeam: mostRecentStat?.team.name ?? "Team not on record",
+    currentTeam: getUaapSchoolDisplayName(mostRecentStat?.team.name),
     ageGroup: profileAgeGroup,
     rating: Number(rating?.adjustedRating ?? 0),
     observedRating: Number(rating?.observedRating ?? rating?.adjustedRating ?? 0),

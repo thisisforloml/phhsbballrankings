@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import type { Player } from "@/lib/mock-data";
@@ -10,10 +10,10 @@ export function PlayerHero({ player }: { player: Player }) {
   const positionText = player.position ? `${player.position} - ` : "";
   const nationalRankText = player.nationalRank > 0 ? `#${player.nationalRank}` : "Provisional";
   const rankCards = [
-    ["National Rank", nationalRankText],
-    ["Region", player.region],
-    ["Position Rank", player.positionRank && player.position ? `${player.position} #${player.positionRank}` : "-"],
-    ["Team", player.school ?? "Team not listed"]
+    ["Rank", nationalRankText],
+    ["Hometown", player.city],
+    ["Team", player.school ?? "Team not listed"],
+    ["Age Group", player.ageGroup]
   ];
 
   return (
@@ -23,7 +23,7 @@ export function PlayerHero({ player }: { player: Player }) {
           <PlayerAvatar player={player} size="lg" />
           <div>
             <h1 className="font-display text-stat-md">{formatPlayerName(player)}</h1>
-            <p className="mt-3 text-white/75">{positionText}{player.school ?? "Team not listed"} - {player.region} - {player.ageGroup}</p>
+            <p className="mt-3 text-white/75">{positionText}{player.school ?? "Team not listed"} - {player.city} - {player.ageGroup}</p>
             <div className="mt-3 flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-white/65">
               <span>{player.birthYear ? `Born ${player.birthYear}` : "Birth year not on record"}</span>
               {graduationClass ? <span>Class of {graduationClass}</span> : null}
@@ -32,7 +32,7 @@ export function PlayerHero({ player }: { player: Player }) {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             {player.isVerified ? <VerifiedBadge /> : <span className="rounded-full bg-white/15 px-3 py-1 font-mono text-mono-sm uppercase">Unverified</span>}
-            <span className="font-mono text-mono-sm uppercase text-white/75"><span className="text-amber-500">{nationalRankText}</span> Nationally</span>
+            <span className="font-mono text-mono-sm uppercase text-white/75"><span className="text-amber-500">{nationalRankText}</span> Rank</span>
           </div>
         </div>
         <span className="hidden h-52 w-px bg-white/20 lg:block" aria-hidden="true" />
@@ -55,3 +55,4 @@ export function PlayerHero({ player }: { player: Player }) {
     </section>
   );
 }
+

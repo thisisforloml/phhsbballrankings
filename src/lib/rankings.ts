@@ -1,5 +1,6 @@
-import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
+﻿import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
+import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
@@ -153,7 +154,7 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
       heightCm: row.player.heightCm,
       birthYear: row.player.birthDate ? row.player.birthDate.getUTCFullYear() : null,
       age: calculateAge(row.player.birthDate),
-      currentTeam: row.player.gameStats[0]?.team.name ?? "Team not listed",
+      currentTeam: getUaapSchoolDisplayName(row.player.gameStats[0]?.team.name),
       photoUrl: row.player.photoUrl,
       gender: toDisplayGender(row.player.gender),
       ageGroup: snapshot.ageGroup ?? currentAgeGroup,
@@ -188,3 +189,4 @@ export async function getLatestNationalRankings(): Promise<LatestNationalRanking
     }
   };
 }
+

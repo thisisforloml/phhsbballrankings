@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPlayerProfileBySlug, type PlayerProfile } from "@/lib/player-profile";
 import type { GameResult, LeagueHistory, Player } from "@/lib/mock-data";
@@ -84,7 +84,7 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
   if (!profile) notFound();
 
   const player = toMockPlayer(profile);
-  const rankLabel = profile.nationalRank ? `#${profile.nationalRank} National` : "Provisional ranking";
+  const rankLabel = profile.nationalRank ? `#${profile.nationalRank}` : "Provisional ranking";
 
   return (
     <main>
