@@ -29,4 +29,18 @@ Eligibility planning:
 - Athlete remains ranking-eligible through May 31 of their class year.
 - Starting June 1 of their class year, athlete should be removed from active rankings.
 - Unknown birthDate remains eligible for now but should be flagged as missing age/class data.
-- This is documentation/planning only; active ranking exclusion has not been implemented.
+- Public RankingSnapshot generation enforces class-year exclusion; PlayerRating can still exist for players with verified stats.
+
+## Age-Group Progression
+
+Official age groups:
+
+- U13: age 13 and below.
+- U16: ages 14-16.
+- U19: ages 17-19.
+
+Age-group progression happens only after May 31. New age-group eligibility takes effect every June 1.
+
+Players do not reset to zero when advancing age groups. The planned policy is to give advancing players a carryover baseline rating based on previous age-group performance. That carryover should be discounted because the next age group is more competitive, then fade as the player records verified games in the new age group.
+
+Formula v1 does not implement carryover yet. Current ratings still come from verified game data in the player's current age group.

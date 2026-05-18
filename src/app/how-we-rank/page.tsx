@@ -81,7 +81,10 @@ export default function HowWeRankPage() {
           Age matters because production should be interpreted relative to maturity and development stage. A younger athlete producing against older competition may carry more long-term upside. Formula v1 does not apply an age modifier yet because birthDate coverage is still incomplete.
         </p>
         <p>
-          Class-year context is displayed and planned separately from the rating formula. Athletes remain ranking-eligible through May 31 of their class year. Starting June 1 of that class year, they should be removed from active rankings once class-year enforcement is implemented.
+          Class-year context is handled separately from the rating formula. Athletes remain ranking-eligible through May 31 of their class year. Starting June 1 of that class year, they are excluded from active youth ranking snapshots. Age-group eligibility also advances every June 1: U13 covers age 13 and below, U16 covers ages 14-16, and U19 covers ages 17-19.
+        </p>
+        <p>
+          Players do not reset to zero when advancing age groups. A future rating policy should provide a discounted carryover baseline from prior age-group performance, then fade that carryover as new verified games are recorded in the higher age group. Formula v1 does not implement carryover yet; current ratings still come from verified game data in the player's current age group.
         </p>
       </section>
 

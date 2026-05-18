@@ -1,4 +1,4 @@
-﻿# Project Status and Guardrails
+# Project Status and Guardrails
 
 Last updated: 2026-05-18
 
@@ -33,11 +33,20 @@ Latest player bio coverage counts:
 
 Current official age groups:
 
-- U13
-- U16
-- U19
+- U13: age 13 and below
+- U16: ages 14-16
+- U19: ages 17-19
 
-High school datasets with unknown birth year default to U19 until player bio data is completed and recalculation rules are approved.
+Age-group progression happens only after May 31. New age-group eligibility takes effect every June 1. High school datasets with unknown birth year default to U19 until player bio data is completed and recalculation rules are approved.
+
+Rating carryover planning:
+
+- Players do not reset to zero when advancing age groups.
+- Players should receive a carryover baseline rating based on previous age-group performance.
+- Carryover rating should be discounted because the next age group is more competitive.
+- Carryover should fade as the player records verified games in the new age group.
+- Formula v1 does not implement carryover yet; this is a planned rating policy.
+- Current ratings still come from verified game data in the player's current age group.
 
 ## Class Year Planning
 
