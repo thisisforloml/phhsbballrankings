@@ -16,7 +16,7 @@ export function PremiumGate({
   if (session?.isPremium) return <>{children}</>;
 
   return (
-    <section className="relative overflow-hidden rounded-lg border border-navy-50 bg-white shadow-sm">
+    <section className="relative min-h-[18rem] rounded-lg border border-navy-50 bg-white shadow-sm">
       <div className="pointer-events-none blur-[5px]">
         {children ?? (
           <div className="grid gap-3 p-6 md:grid-cols-3">
@@ -26,7 +26,7 @@ export function PremiumGate({
           </div>
         )}
       </div>
-      <div className="absolute inset-0 grid place-items-center bg-white/85 p-6 backdrop-blur-[2px]">
+      <div className="absolute inset-0 grid place-items-center rounded-lg bg-white/85 p-6 backdrop-blur-[2px]">
         <div className="max-w-md text-center">
           <Lock className="mx-auto h-9 w-9 text-navy-800" aria-hidden="true" />
           <p className="mt-3 font-mono text-mono-sm uppercase text-navy-800">Premium Access</p>
@@ -37,3 +37,4 @@ export function PremiumGate({
     </section>
   );
 }
+

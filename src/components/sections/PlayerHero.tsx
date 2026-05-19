@@ -6,14 +6,13 @@ import { formatPlayerName } from "@/lib/mock-data";
 import { PlayerAvatar, RatingBadge, StarRating, StatCard, VerifiedBadge } from "@/components/ui";
 
 export function PlayerHero({ player }: { player: Player }) {
-  const graduationClass = player.birthYear ? player.birthYear + 18 : null;
   const positionText = player.position ? `${player.position} - ` : "";
   const nationalRankText = player.nationalRank > 0 ? `#${player.nationalRank}` : "Provisional";
   const rankCards = [
     ["Rank", nationalRankText],
     ["Hometown", player.city],
-    ["Team", player.school ?? "Team not listed"],
-    ["Age Group", player.ageGroup]
+    ["School", player.school ?? "School not listed"],
+    ["Class", player.classYear ?? "Not on record"]
   ];
 
   return (
@@ -23,15 +22,14 @@ export function PlayerHero({ player }: { player: Player }) {
           <PlayerAvatar player={player} size="lg" />
           <div>
             <h1 className="font-display text-stat-md">{formatPlayerName(player)}</h1>
-            <p className="mt-3 text-white/75">{positionText}{player.school ?? "Team not listed"} - {player.city} - {player.ageGroup}</p>
+            <p className="mt-3 text-white/75">{positionText}{player.school ?? "School not listed"} - {player.city}</p>
             <div className="mt-3 flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-white/65">
               <span>{player.birthYear ? `Born ${player.birthYear}` : "Birth year not on record"}</span>
-              {graduationClass ? <span>Class of {graduationClass}</span> : null}
-              <span>{player.ageGroup} bracket</span>
+              {player.classYear ? <span>{player.classYear}</span> : null}
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            {player.isVerified ? <VerifiedBadge /> : <span className="rounded-full bg-white/15 px-3 py-1 font-mono text-mono-sm uppercase">Unverified</span>}
+            {player.isVerified ? <VerifiedBadge label="" /> : <span className="rounded-full bg-white/15 px-3 py-1 font-mono text-mono-sm uppercase">Unverified</span>}
             <span className="font-mono text-mono-sm uppercase text-white/75"><span className="text-amber-500">{nationalRankText}</span> Rank</span>
           </div>
         </div>
@@ -55,4 +53,5 @@ export function PlayerHero({ player }: { player: Player }) {
     </section>
   );
 }
+
 

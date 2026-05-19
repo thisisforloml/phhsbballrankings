@@ -1,11 +1,10 @@
-﻿import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
+import { AgeGroup, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { formatClassYear, getMonthStart } from "./ranking-eligibility";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
-const profileAgeGroup = AgeGroup.U19;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 type LoadedPlayer = NonNullable<Awaited<ReturnType<typeof loadPlayerById>>>;
@@ -54,12 +53,14 @@ export type PlayerProfile = {
   age: number | null;
   photoUrl: string | null;
   currentTeam: string;
-  ageGroup: "U19";
+  ageGroup: "U13" | "U16" | "U19";
   rating: number;
   observedRating: number;
   starRating: 1 | 2 | 3 | 4 | 5;
   verifiedGameCount: number;
   nationalRank: number | null;
+  regionRank: number | null;
+  positionRank: number | null;
   snapshotWeekOf: string | null;
   gamesPlayed: number;
   ppg: number;
@@ -106,16 +107,12 @@ async function loadPlayerById(id: string) {
       deletedAt: null
     },
     include: {
-      currentRatings: {
-        where: {
-          ageGroup: profileAgeGroup
-        }
-      },
+      currentRatings: true,
       rankingRows: {
         where: {
           snapshot: {
             scope: RankingScope.NATIONAL,
-            ageGroup: profileAgeGroup,
+
             formulaVersion: {
               versionNumber: formulaVersionNumber
             },
@@ -191,17 +188,64 @@ async function resolvePlayerIdBySlug(slug: string) {
   return matches.length === 1 ? matches[0].id : null;
 }
 
-function latestSnapshotRow(player: LoadedPlayer) {
-  const matchingRows = player.rankingRows.filter((row) => row.snapshot.gender === player.gender && row.snapshot.weekOf.getTime() === getMonthStart(row.snapshot.weekOf).getTime());
+function latestSnapshotRow(player: LoadedPlayer, ageGroup: AgeGroup) {
+  const matchingRows = player.rankingRows.filter((row) => row.snapshot.gender === player.gender && row.snapshot.ageGroup === ageGroup && row.snapshot.weekOf.getTime() === getMonthStart(row.snapshot.weekOf).getTime());
   matchingRows.sort((left, right) => right.snapshot.weekOf.getTime() - left.snapshot.weekOf.getTime());
   return matchingRows[0] ?? null;
+}
+
+function normalizePosition(position: string | null) {
+  return position?.trim().toUpperCase().replace(/[^A-Z0-9/ -]/g, "").replace(/\s+/g, " ") || null;
+}
+
+function selectProfileRating(player: LoadedPlayer) {
+  const latestStatAgeGroup = player.gameStats[0]?.game.season.league.ageGroup ?? null;
+  if (latestStatAgeGroup) {
+    const matching = player.currentRatings.find((rating) => rating.ageGroup === latestStatAgeGroup);
+    if (matching) return matching;
+  }
+  return player.currentRatings.slice().sort((left, right) => right.verifiedGameCount - left.verifiedGameCount || Number(right.adjustedRating) - Number(left.adjustedRating))[0] ?? null;
+}
+
+async function deriveSnapshotRanks(player: LoadedPlayer, ageGroup: AgeGroup, snapshotWeekOf: Date | null) {
+  if (!snapshotWeekOf) return { regionRank: null, positionRank: null };
+
+  const snapshot = await prisma.rankingSnapshot.findFirst({
+    where: {
+      scope: RankingScope.NATIONAL,
+      ageGroup,
+      gender: player.gender,
+      formulaVersion: { versionNumber: formulaVersionNumber },
+      city: null,
+      region: null,
+      weekOf: snapshotWeekOf
+    },
+    include: {
+      rows: {
+        include: { player: { select: { id: true, region: true, position: true, deletedAt: true } } },
+        orderBy: { rank: "asc" }
+      }
+    }
+  });
+
+  if (!snapshot) return { regionRank: null, positionRank: null };
+  const region = player.region?.trim().toLowerCase();
+  const position = normalizePosition(player.position);
+
+  const regionRows = region ? snapshot.rows.filter((row) => row.player.deletedAt === null && row.player.region?.trim().toLowerCase() === region) : [];
+  const positionRows = position ? snapshot.rows.filter((row) => row.player.deletedAt === null && normalizePosition(row.player.position) === position) : [];
+
+  return {
+    regionRank: regionRows.findIndex((row) => row.playerId === player.id) >= 0 ? regionRows.findIndex((row) => row.playerId === player.id) + 1 : null,
+    positionRank: positionRows.findIndex((row) => row.playerId === player.id) >= 0 ? positionRows.findIndex((row) => row.playerId === player.id) + 1 : null
+  };
 }
 
 function mapGameStat(stat: LoadedPlayer["gameStats"][number]): PlayerProfileGame {
   const isHome = stat.teamId === stat.game.homeTeamId;
   const teamScore = isHome ? stat.game.homeScore : stat.game.awayScore;
   const opponentScore = isHome ? stat.game.awayScore : stat.game.homeScore;
-  const opponentName = isHome ? stat.game.awayTeam.name : stat.game.homeTeam.name;
+  const opponentName = getUaapSchoolDisplayName(isHome ? stat.game.awayTeam.name : stat.game.homeTeam.name);
   const finalPerformanceScore = stat.performanceScore?.finalPerformanceScore ?? stat.performanceScore?.performanceScore ?? null;
 
   return {
@@ -263,8 +307,10 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
   const player = await loadPlayerById(playerId);
   if (!player) return null;
 
-  const rating = player.currentRatings[0] ?? null;
-  const snapshotRow = latestSnapshotRow(player);
+  const rating = selectProfileRating(player);
+  const profileAgeGroup = rating?.ageGroup ?? player.gameStats[0]?.game.season.league.ageGroup ?? AgeGroup.U19;
+  const snapshotRow = latestSnapshotRow(player, profileAgeGroup);
+  const derivedRanks = await deriveSnapshotRanks(player, profileAgeGroup, snapshotRow?.snapshot.weekOf ?? null);
   const games = player.gameStats.map(mapGameStat);
   const gamesPlayed = games.length;
   const totals = player.gameStats.reduce(
@@ -301,6 +347,8 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     starRating: (rating?.starRating ?? 1) as PlayerProfile["starRating"],
     verifiedGameCount: rating?.verifiedGameCount ?? gamesPlayed,
     nationalRank: snapshotRow?.rank ?? null,
+    regionRank: derivedRanks.regionRank,
+    positionRank: derivedRanks.positionRank,
     snapshotWeekOf: snapshotRow?.snapshot.weekOf.toISOString() ?? null,
     gamesPlayed,
     ppg: gamesPlayed ? roundOne(totals.points / gamesPlayed) : 0,
@@ -310,3 +358,5 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     leagues: buildLeagueHistory(games, player.gameStats)
   };
 }
+
+

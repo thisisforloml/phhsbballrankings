@@ -1,4 +1,4 @@
-const schoolNames: Record<string, string> = {
+﻿const schoolNames: Record<string, string> = {
   ADMU: "Ateneo de Manila University",
   ATENEO: "Ateneo de Manila University",
   "ATENEO JRS": "Ateneo de Manila University",
@@ -25,7 +25,7 @@ const schoolNames: Record<string, string> = {
 export const approvedUaapSchoolNames = Array.from(new Set(Object.values(schoolNames))).sort();
 
 export function normalizeSchoolAlias(value: string): string {
-  const normalized = value.trim().replace(/\s+/g, " ").toUpperCase();
+  const normalized = value.trim().replace(/\s+U(?:13|16|19)\s+(?:BOYS|GIRLS)$/i, "").replace(/\s+/g, " ").toUpperCase();
   const parentheticalAlias = normalized.match(/\(([^)]+)\)$/)?.[1];
   return parentheticalAlias ? parentheticalAlias.trim() : normalized;
 }
@@ -62,3 +62,4 @@ export function getUaapInternalTeamName(
 
   return `${prefix} ${normalizedAgeGroup} ${normalizedGender}`;
 }
+

@@ -43,6 +43,7 @@ export interface Player {
   city: string;
   region: string;
   birthYear?: number;
+  classYear?: string | null;
   ageGroup: AgeGroup;
   rating: number;
   stars: 1 | 2 | 3 | 4 | 5;
@@ -178,3 +179,4 @@ export function getLeagueById(id: string) {
 export function formatPlayerName(player: Player) {
   return `${player.firstName} ${player.lastName}`.trim();
 }
+

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const rankText = profile.nationalRank ? `#${profile.nationalRank}` : "Provisional";
 
   return {
-    title: `${profile.displayName} - ${profile.ageGroup} - ${rankText}`,
+    title: `${profile.displayName} - ${rankText}`,
     description: `${profile.displayName} player profile, ranking, recent games, and competition history on OnCourt.`
   };
 }
@@ -30,6 +30,7 @@ function toMockPlayer(profile: PlayerProfile): Player {
     city: profile.city,
     region: profile.region,
     birthYear: profile.birthYear ?? undefined,
+    classYear: profile.classYear,
     ageGroup: profile.ageGroup,
     rating: profile.rating,
     stars: profile.starRating,
@@ -38,9 +39,9 @@ function toMockPlayer(profile: PlayerProfile): Player {
     isVerified: profile.nationalRank !== null,
     isClaimed: false,
     nationalRank,
-    regionalRank: nationalRank,
-    cityRank: nationalRank,
-    positionRank: profile.position && nationalRank ? nationalRank : undefined,
+    regionalRank: profile.regionRank ?? 0,
+    cityRank: profile.regionRank ?? 0,
+    positionRank: profile.positionRank ?? undefined,
     avgPoints: profile.ppg,
     avgAssists: profile.apg,
     avgRebounds: profile.rpg,
@@ -89,17 +90,17 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
   return (
     <main>
       <PlayerHero player={player} />
-      <section className="container-px grid gap-10 py-14">
+      <section className="container-px grid gap-10 py-14 pb-24">
         <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
           <p className="font-mono text-mono-sm uppercase text-ink-500">Profile status</p>
-          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-3 lg:grid-cols-7">
-            <span><strong className="block text-ink-900">{rankLabel}</strong>Rank</span>
+          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-3 lg:grid-cols-6">
+            <span><strong className="block text-ink-900">{rankLabel}</strong>National rank</span>
+            <span><strong className="block text-ink-900">{profile.regionRank ? `#${profile.regionRank}` : "Unavailable"}</strong>{profile.regionRank ? `${profile.region} rank` : "Region rank unavailable"}</span>
+            <span><strong className="block text-ink-900">{profile.positionRank ? `#${profile.positionRank}` : "Unavailable"}</strong>{profile.positionRank ? `${profile.position} rank` : "Position rank unavailable"}</span>
             <span><strong className="block text-ink-900">{profile.rating.toFixed(2)}</strong><span className="mt-1 block"><StarRating stars={profile.starRating} /></span></span>
             <span><strong className="block text-ink-900">{profile.position ?? "Position not on record"}</strong>Position</span>
             <span><strong className="block text-ink-900">{profile.currentTeam}</strong>School/Team</span>
             <span><strong className="block text-ink-900">{formatHeight(profile.heightCm)}</strong>Height</span>
-            <span><strong className="block text-ink-900">{profile.birthYear ?? "Not on record"}</strong>Birth year</span>
-            <span><strong className="block text-ink-900">{profile.age !== null ? `${profile.age} years old` : "Not on record"}</strong>Age</span>
             <span><strong className="block text-ink-900">{profile.classYear ?? "Not on record"}</strong>Class year</span>
           </div>
         </div>
@@ -116,7 +117,7 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
             <h2 className="font-display text-3xl">Is this you?</h2>
             <p className="mt-1 text-white/75">Claim your profile to add your photo, school, birthdate, contact information, and social links.</p>
           </div>
-          <a href="/claim" className="button primary mt-4 md:mt-0">Claim Profile</a>
+          <a href={`/claim?player=${profile.slug}`} className="button primary mt-4 md:mt-0">Claim Profile</a>
         </div>
         <PremiumGate description="Full career history, monthly ranking movement, analytics, trend data, and exports are available behind Premium Access.">
           <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
@@ -128,3 +129,4 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
     </main>
   );
 }
+
