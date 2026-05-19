@@ -4,9 +4,10 @@ import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
-import { getSubmissionImportPublishAudit } from "@/lib/submission-audit";
-import { getImportedSubmissionProcessingStatus, validateImportedSubmissionRankings } from "@/lib/submission-post-import-processing";
+import { getSubmissionImportPublishAudit, getSubmissionPipelineStatus } from "@/lib/submission-audit";
+import { getImportedSubmissionProcessingStatus } from "@/lib/submission-post-import-processing";
 import { submissionTypeLabel } from "@/lib/submission-utils";
+import { SimplifiedSubmissionReview } from "./SimplifiedSubmissionReview";
 import {
   computeSubmissionFormulaScores,
   computeSubmissionPlayerRatings,
@@ -16,6 +17,9 @@ import {
   updateSubmissionReviewStatus,
   validateSubmissionRankings
 } from "../actions";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata = {
   title: "Submission Details - Admin Portal",
@@ -29,6 +33,7 @@ type PageProps = {
   searchParams?: {
     reviewSuccess?: string;
     reviewError?: string;
+    editStats?: string;
   };
 };
 
@@ -76,6 +81,16 @@ type PipelineStep = {
   state: PipelineStepState;
 };
 
+type DerivedPipelineStatus = {
+  submitted: boolean;
+  underReview: boolean;
+  approved: boolean;
+  imported: boolean;
+  processed: boolean;
+  published: boolean;
+  issues: string[];
+};
+
 function pipelineStepClass(state: PipelineStepState) {
   switch (state) {
     case "complete": return "border-green-200 bg-green-50 text-green-900";
@@ -103,30 +118,6 @@ function pipelineStateLabel(state: PipelineStepState) {
   }
 }
 
-function buildPipelineSteps(
-  status: string,
-  processingStatus: Awaited<ReturnType<typeof getImportedSubmissionProcessingStatus>> | null,
-  processingValidationPassed: boolean,
-  processingStatusError: string | null
-): PipelineStep[] {
-  const isRejected = status === "REJECTED";
-  const isUnderReviewOrLater = ["UNDER_REVIEW", "APPROVED", "IMPORTED"].includes(status);
-  const isApprovedOrImported = status === "APPROVED" || status === "IMPORTED";
-  const isImported = status === "IMPORTED";
-  const processedComplete = Boolean(processingStatus?.complete.formulaScores && processingStatus.complete.playerRatings);
-  const publishedComplete = Boolean(processingStatus?.complete.monthlySnapshot && processingValidationPassed);
-  const processingBlocked = isImported && Boolean(processingStatusError);
-  const publishedBlocked = isImported && processedComplete && Boolean(processingStatus?.complete.monthlySnapshot) && !publishedComplete;
-
-  return [
-    { label: "Submitted", description: "Organizer submission received.", state: "complete" },
-    { label: isRejected ? "Review Rejected" : "Under Review", description: isRejected ? "Admin review ended with rejection." : "Admin review started.", state: isRejected ? "blocked" : isUnderReviewOrLater ? "complete" : "current" },
-    { label: "Approved", description: "Submission approved for import.", state: isRejected ? "pending" : isApprovedOrImported ? "complete" : isUnderReviewOrLater ? "current" : "pending" },
-    { label: "Imported", description: "Official league/game/stat records created.", state: isImported ? "complete" : isApprovedOrImported ? "current" : "pending" },
-    { label: "Processed", description: processingBlocked ? "Post-import processing status could not be read." : "Formula v1 scores and player ratings computed.", state: processingBlocked ? "blocked" : processedComplete ? "complete" : isImported ? "current" : "pending" },
-    { label: "Published", description: "Monthly rankings generated and validated.", state: publishedComplete ? "complete" : publishedBlocked ? "blocked" : processedComplete ? "current" : "pending" }
-  ];
-}
 
 export default async function AdminSubmissionDetailPage({ params, searchParams }: PageProps) {
   await requireAdminUser();
@@ -145,23 +136,35 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
   const review = buildSubmissionReview(submission);
   const preflight = await buildSubmissionImportPreflight(submission);
   let processingStatus: Awaited<ReturnType<typeof getImportedSubmissionProcessingStatus>> | null = null;
-  let processingValidationPassed = false;
   let processingStatusError: string | null = null;
 
   if (submission.status === "IMPORTED") {
     try {
       processingStatus = await getImportedSubmissionProcessingStatus(submission.id);
-      const validation = await validateImportedSubmissionRankings(submission.id);
-      processingValidationPassed = validation.validationPassed;
     } catch (error) {
       processingStatusError = error instanceof Error ? error.message : "Unable to read post-import processing status.";
     }
   }
 
-  const pipelineSteps = buildPipelineSteps(submission.status, processingStatus, processingValidationPassed, processingStatusError);
   const importAudit = await getSubmissionImportPublishAudit(submission.id);
+  const pipelineStatus = await getSubmissionPipelineStatus(submission.id);
+  const pipelineStepInputs = [
+    { key: "submitted", label: "Submitted", description: "Organizer submission received.", complete: pipelineStatus.submitted, blocked: false },
+    { key: "underReview", label: submission.status === "REJECTED" ? "Review Rejected" : "Under Review", description: submission.status === "REJECTED" ? "Admin review ended with rejection." : "Admin review started.", complete: pipelineStatus.underReview, blocked: submission.status === "REJECTED" },
+    { key: "approved", label: "Approved", description: "Submission approved for import.", complete: pipelineStatus.approved, blocked: false },
+    { key: "imported", label: "Imported", description: "Official league/game/stat records created.", complete: pipelineStatus.imported, blocked: false },
+    { key: "processed", label: "Processed", description: "Formula v1 scores and player ratings computed.", complete: pipelineStatus.processed, blocked: false },
+    { key: "published", label: "Published", description: "Monthly rankings generated and validated.", complete: pipelineStatus.published, blocked: false }
+  ] as const;
+  const firstIncompleteStepIndex = pipelineStepInputs.findIndex((step) => !step.complete && !step.blocked);
+  const pipelineSteps = pipelineStepInputs.map((step, index) => ({
+    ...step,
+    state: step.complete ? "complete" as const : step.blocked ? "blocked" as const : index === firstIncompleteStepIndex && pipelineStatus.issues.length === 0 ? "current" as const : "pending" as const,
+    renderedLabel: step.complete ? "OK Complete" : step.blocked ? "Blocked" : index === firstIncompleteStepIndex && pipelineStatus.issues.length === 0 ? "Current" : "Pending"
+  }));
   const reviewSuccess = searchParams?.reviewSuccess;
   const reviewError = searchParams?.reviewError;
+  const editStats = searchParams?.editStats === "1";
 
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
@@ -183,29 +186,45 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               <div>
                 <p className="label">Submission detail</p>
                 <h1 className="mt-2 font-display text-stat-md text-navy-800">{submission.title}</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">Review-only preview. This page does not import games, players, stats, ratings, or snapshots.</p>
+                <p className="mt-2 max-w-3xl text-ink-600">Use the guided review first. Imported submissions are locked as official data.</p>
               </div>
               <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${review.importReady ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>{review.readinessLabel}</span>
             </div>
           </div>
 
+          <SimplifiedSubmissionReview
+            submission={submission}
+            review={review}
+            preflight={preflight}
+            pipelineStatus={pipelineStatus}
+            reviewSuccess={reviewSuccess}
+            reviewError={reviewError}
+          />
+
+          <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+            <summary className="cursor-pointer font-display text-2xl text-navy-800">Advanced details</summary>
+            <div className="mt-4 grid gap-6">
           <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2 className="font-display text-3xl text-navy-800">Pipeline Status</h2>
                 <p className="mt-1 text-sm text-ink-600">Workflow progress from organizer submission through published rankings.</p>
               </div>
-              {processingStatusError ? <span className="rounded-full bg-red-50 px-3 py-1 font-mono text-[0.65rem] uppercase text-red-800">Status check blocked</span> : null}
+              <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${pipelineStatus.issues.length ? "bg-amber-50 text-amber-800" : "bg-green-50 text-green-800"}`}>{pipelineStatus.issues.length ? "Info" : "OK"}</span>
             </div>
-            {processingStatusError ? (
-              <p className="mt-4 rounded-md bg-red-50 p-3 text-sm font-semibold text-red-900">{processingStatusError}</p>
+            {pipelineStatus.issues.length ? (
+              <div className="mt-4 grid gap-2">
+                {pipelineStatus.issues.map((issue) => (
+                  <p key={issue} className="rounded-md bg-amber-50 p-3 text-sm font-semibold text-amber-900">{issue}</p>
+                ))}
+              </div>
             ) : null}
             <ol className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-6">
               {pipelineSteps.map((step, index) => (
-                <li key={step.label} className={`rounded-lg border p-4 ${pipelineStepClass(step.state)}`}>
+                <li key={step.key} className={`rounded-lg border p-4 ${pipelineStepClass(step.state)}`}>
                   <div className="flex items-center justify-between gap-3">
-                    <span className={`flex h-7 w-7 items-center justify-center rounded-full font-mono text-xs font-bold ${pipelineDotClass(step.state)}`}>{step.state === "complete" ? "âœ“" : index + 1}</span>
-                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em]">{pipelineStateLabel(step.state)}</span>
+                    <span className={`flex h-7 w-7 items-center justify-center rounded-full font-mono text-xs font-bold ${pipelineDotClass(step.state)}`}>{step.complete ? "OK" : index + 1}</span>
+                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em]">{step.renderedLabel.replace("OK ", "")}</span>
                   </div>
                   <h3 className="mt-3 font-semibold">{step.label}</h3>
                   <p className="mt-1 text-sm leading-5 opacity-80">{step.description}</p>
@@ -367,10 +386,13 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 <h2 className="font-display text-3xl text-navy-800">Import Preflight</h2>
                 <p className="mt-1 text-sm text-ink-600">Read-only preview of what an official import would do. No records are created or updated here.</p>
               </div>
-              <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${preflight.overallSummary.importBlocked ? "bg-red-50 text-red-800" : "bg-green-50 text-green-800"}`}>{preflight.overallSummary.importBlocked ? "Blocked" : "Ready"}</span>
+              <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${preflight.submissionReadiness.alreadyImported ? "bg-navy-50 text-navy-800" : preflight.overallSummary.importBlocked ? "bg-red-50 text-red-800" : "bg-green-50 text-green-800"}`}>{preflight.submissionReadiness.alreadyImported ? "Historical" : preflight.overallSummary.importBlocked ? "Blocked" : "Ready"}</span>
             </div>
+            {preflight.submissionReadiness.alreadyImported ? (
+              <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-800">Already imported. Preflight is historical/read-only.</p>
+            ) : null}
             <div className="grid gap-3 md:grid-cols-4">
-              <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.statusApproved ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>Approved: {preflight.submissionReadiness.statusApproved ? "yes" : "no"}</span>
+              <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.statusApproved ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>Approved or imported: {preflight.submissionReadiness.statusApproved ? "yes" : "no"}</span>
               <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.validParsedJson ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>Valid JSON: {preflight.submissionReadiness.validParsedJson ? "yes" : "no"}</span>
               <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.importReadyFromReview ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>Review parser ready: {preflight.submissionReadiness.importReadyFromReview ? "yes" : "no"}</span>
               <span className="rounded-md bg-surface-100 p-3 text-sm font-semibold">Manual review items: {preflight.overallSummary.manualReviewCount}</span>
@@ -459,6 +481,13 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               </form>
             ) : submission.status === "IMPORTED" ? (
               <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-800">This submission has already been imported. Re-running import is disabled from the UI.</p>
+            ) : submission.status === "APPROVED" && preflight.overallSummary.importBlocked ? (
+              <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                <strong className="block">Import Official Data is blocked by preflight review.</strong>
+                <ul className="mt-2 grid gap-1">
+                  {preflight.overallSummary.blockers.map((blocker) => <li key={blocker}>{blocker}</li>)}
+                </ul>
+              </div>
             ) : (
               <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Official import becomes available only when the submission is APPROVED and preflight is not blocked.</p>
             )}
@@ -597,8 +626,11 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               <div><h3 className="font-semibold text-navy-800">Parsed Preview</h3><pre className="mt-2 max-h-96 overflow-auto rounded-md bg-surface-100 p-3 text-xs text-ink-700">{formatJson(submission.parsedPreview)}</pre></div>
             </div>
           </details>
+            </div>
+          </details>
         </section>
       </div>
     </main>
   );
 }
+

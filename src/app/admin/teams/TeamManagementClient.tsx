@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -16,6 +16,7 @@ export type ManagedTeam = {
   homeGames: number;
   awayGames: number;
   gameStats: number;
+  context: string;
 };
 
 const initialState: UpdateTeamState = { ok: false, message: "" };
@@ -58,7 +59,7 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
           <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <p className="label">Team Management</p>
             <h1 className="mt-2 font-display text-stat-md text-navy-800">Teams</h1>
-            <p className="mt-2 text-sm text-ink-600">Edit existing Team name, city, and region fields only. Duplicate school mappings are flagged for later approved cleanup.</p>
+            <p className="mt-2 text-sm text-ink-600">Edit existing Team display fields only. Team merges, deletions, and official game/stat changes are handled through separate approved repair workflows.</p>
             {duplicateGroupCount ? <p className="mt-4 rounded-md bg-amber-50 p-3 text-sm text-amber-900">{duplicateGroupCount} public school mapping group{duplicateGroupCount === 1 ? "" : "s"} need cleanup. No merge/delete action is performed here.</p> : null}
             <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search team, school, city, region" className="mt-5 w-full rounded-md border border-surface-300 px-3 py-3" />
             <label className="mt-3 flex items-center gap-2 text-sm text-ink-600">
@@ -72,7 +73,8 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
                     <strong className="text-ink-900">{team.name}</strong>
                     {team.needsCleanup ? <span className="rounded-full bg-amber-100 px-2 py-0.5 font-mono text-[0.65rem] uppercase text-amber-800">Needs cleanup</span> : null}
                   </span>
-                  <span className="text-sm text-ink-600">Public school: {team.publicSchoolName}</span>
+                  <span className="text-sm text-ink-600">Public display: {team.publicSchoolName}</span>
+                  <span className="text-xs font-semibold uppercase text-ink-500">Context: {team.context}</span>
                   <span className="font-mono text-mono-sm uppercase text-ink-500">{team.city}, {team.region}</span>
                   <span className="text-xs text-ink-500">Games: {team.homeGames + team.awayGames} | Stat rows: {team.gameStats} | Alias records: {team.aliasGroupCount}</span>
                 </button>
@@ -87,7 +89,8 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
                 <div>
                   <p className="label">Edit Team</p>
                   <h2 className="mt-2 font-display text-3xl text-navy-800">{selectedTeam.name}</h2>
-                  <p className="mt-1 text-sm text-ink-600">Public school mapping: {selectedTeam.publicSchoolName}</p>
+                  <p className="mt-1 text-sm text-ink-600">Public display name: {selectedTeam.publicSchoolName}</p>
+                  <p className="mt-1 text-sm text-ink-500">Context: {selectedTeam.context}</p>
                   {selectedTeam.needsCleanup ? <p className="mt-3 rounded-md bg-amber-50 p-3 text-sm text-amber-900">Multiple Team records map to this public school. Marked for future merge/cleanup review.</p> : null}
                 </div>
                 {state.message ? <div className={`rounded-md p-3 text-sm ${state.ok ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{state.message}</div> : null}

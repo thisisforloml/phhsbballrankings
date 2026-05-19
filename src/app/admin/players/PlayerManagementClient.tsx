@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -70,7 +70,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
         <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
           <nav className="mt-8 grid gap-2 font-semibold">
-            <a href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Admin Dashboard</a>
+            <a href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Dashboard</a>
             <a href="/admin/players" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Players</a>
             <a href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</a>
           </nav>
@@ -82,7 +82,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
             <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <h1 className="font-display text-stat-md text-navy-800">Edit Player Bio</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">Update existing player profile fields only. Ratings, stats, rankings, games, leagues, and seasons are not editable here.</p>
+                <p className="mt-2 max-w-3xl text-ink-600">Search for a player, update editable profile fields, then save. Ratings, stats, rankings, games, leagues, and seasons are read-only here.</p>
               </div>
               <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{players.length} active players</span>
             </div>
@@ -117,7 +117,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
                     </span>
                     <span className="text-sm text-ink-500">{player.city}, {player.region}</span>
                     <span className="grid grid-cols-3 gap-2 font-mono text-mono-sm text-ink-600">
-                      <span>{player.position || "No pos"}</span>
+                      <span>{player.position || "Position missing"}</span>
                       <span>{displayHeight(player.heightCm)}</span>
                       <span>{displayRating(player.rating)}</span>
                     </span>
@@ -161,8 +161,8 @@ function PlayerEditForm({
       </div>
 
       <div className="grid gap-3 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-        <p>Changing displayName may change the generated public profile URL.</p>
-        <p>Changing birthDate does not automatically recalculate age group or rankings yet.</p>
+        <p>Display name changes may affect the public profile URL.</p>
+        <p>Birth date changes do not recalculate age group or rankings here.</p>
       </div>
 
       {state.message ? (
@@ -230,7 +230,7 @@ function SubmitButton() {
 
   return (
     <button type="submit" className="button primary w-fit" disabled={status.pending}>
-      {status.pending ? "Saving..." : "Save player bio"}
+      {status.pending ? "Saving..." : "Save Player Bio"}
     </button>
   );
 }

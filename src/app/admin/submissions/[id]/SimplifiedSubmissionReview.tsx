@@ -172,7 +172,8 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
   const canEditDraft = submission.status !== "IMPORTED" && Boolean(submission.rawText?.trim());
   const canEditGameStats = canEditDraft && !jsonInvalid && games.length > 0;
   const blockers = publishBlockers(submission, review, preflight, jsonInvalid, jsonParseResult);
-  const canPublish = blockers.length === 0 && ["SUBMITTED", "UNDER_REVIEW", "APPROVED", "IMPORTED"].includes(submission.status);
+  const isPublished = Boolean(pipelineStatus?.published);
+  const canPublish = !isPublished && blockers.length === 0 && ["SUBMITTED", "UNDER_REVIEW", "APPROVED", "IMPORTED"].includes(submission.status);
 
   return (
     <div className="grid gap-6">
@@ -201,7 +202,16 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
           <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Submitted by</dt><dd>{submission.submittedBy.name}</dd></div>
         </dl>
 
-        {canPublish ? (
+        {submission.status === "IMPORTED" ? (
+          <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-900">This submission has been imported and is read-only. To correct official stats, use a future official stat correction workflow.</p>
+        ) : null}
+
+        {isPublished ? (
+          <div className="rounded-md border border-green-200 bg-green-50 p-4 text-sm text-green-900">
+            <strong className="block">Published</strong>
+            <p className="mt-1">This submission has completed import, processing, and publishing checks.</p>
+          </div>
+        ) : canPublish ? (
           <form action={publishSubmission} className="rounded-md border border-green-200 bg-green-50 p-4 text-sm text-green-900">
             <input type="hidden" name="submissionId" value={submission.id} />
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -330,7 +340,7 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
 
       {canEditDraft ? (
         <details className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-          <summary className="cursor-pointer font-display text-2xl text-navy-800">Edit Draft JSON</summary>
+          <summary className="cursor-pointer font-display text-2xl text-navy-800">Advanced details: Edit Draft JSON</summary>
           <form action={updateSubmissionDraftJson} className="mt-4 grid gap-3">
             <input type="hidden" name="submissionId" value={submission.id} />
             <p className="text-sm text-ink-600">Use this only before import to correct names, teams, scores, or stat values in the draft submission. Saving refreshes review validation and does not import official data.</p>
