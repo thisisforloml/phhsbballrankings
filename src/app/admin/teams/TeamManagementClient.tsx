@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { updateTeamBio, type UpdateTeamState } from "./actions";
 
 export type ManagedTeam = {
@@ -16,6 +16,9 @@ export type ManagedTeam = {
   homeGames: number;
   awayGames: number;
   gameStats: number;
+  historicalHomeGames: number;
+  historicalAwayGames: number;
+  historicalGameStats: number;
   context: string;
   contexts: string[];
 };
@@ -64,16 +67,7 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
       <div className="grid lg:grid-cols-[17rem_1fr]">
-        <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
-          <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
-          <nav className="mt-8 grid gap-2 font-semibold">
-            <Link href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Dashboard</Link>
-            <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
-            <Link href="/admin/teams" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Teams</Link>
-            <Link href="/admin/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Submissions</Link>
-            <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
-          </nav>
-        </aside>
+        <AdminSidebar active="teams" />
 
         <section className="container-px grid gap-6 py-8 xl:grid-cols-[minmax(28rem,1.05fr)_minmax(24rem,0.95fr)]">
           <div className="grid gap-6">
@@ -95,7 +89,7 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 className="font-display text-3xl text-navy-800">Active Competition Teams</h2>
-                  <p className="mt-1 text-sm text-ink-600">Grouped by public school/program and active competition context.</p>
+                  <p className="mt-1 text-sm text-ink-600">Grouped by program/team and active competition context.</p>
                 </div>
                 <span className="rounded-full bg-green-50 px-4 py-2 font-mono text-mono-sm uppercase text-green-800">No active same-context duplicates detected</span>
               </div>
@@ -133,7 +127,7 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
                     <strong className="text-ink-900">{team.name}</strong>
                     <span className="text-sm text-ink-600">Public display: {team.publicSchoolName}</span>
                     <span className="font-mono text-mono-sm uppercase text-ink-500">{team.city}, {team.region}</span>
-                    <span className="text-xs text-ink-500">Historical linked rows: home games {team.homeGames}, away games {team.awayGames}, stat rows {team.gameStats}</span>
+                    <span className="text-xs text-ink-500">Historical linked rows: home games {team.historicalHomeGames}, away games {team.historicalAwayGames}, stat rows {team.historicalGameStats}</span>
                   </button>
                 ))}
                 {!filteredInactiveTeams.length ? <p className="rounded-md bg-surface-100 p-4 text-sm text-ink-600">No inactive/unclear records match these filters.</p> : null}
@@ -166,3 +160,4 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
     </main>
   );
 }
+

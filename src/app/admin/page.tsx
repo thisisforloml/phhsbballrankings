@@ -1,4 +1,5 @@
-import Link from "next/link";
+﻿import Link from "next/link";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 
@@ -17,15 +18,17 @@ function statusBadgeClass(status: string) {
 
 export default async function AdminPage() {
   const user = await requireAdminUser();
-  const [submissionCount, pendingSubmissions, playerCount, teamCount, activeGameCount, snapshotCount, organizerCount] = await Promise.all([
+  const [submissionCount, pendingSubmissions, playerCount, officialGames, snapshotCount, organizerCount] = await Promise.all([
     prisma.submission.count(),
     prisma.submission.count({ where: { status: { in: ["SUBMITTED", "UNDER_REVIEW", "APPROVED"] } } }),
     prisma.player.count({ where: { deletedAt: null } }),
-    prisma.team.count({ where: { deletedAt: null } }),
-    prisma.game.count({ where: { deletedAt: null } }),
+    prisma.game.findMany({ where: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } }, select: { homeTeamId: true, awayTeamId: true } }),
     prisma.rankingSnapshot.count(),
     prisma.user.count({ where: { role: "ORGANIZER" } })
   ]);
+
+  const officialTeamRecordCount = new Set(officialGames.flatMap((game) => [game.homeTeamId, game.awayTeamId])).size;
+  const officialGameCount = officialGames.length;
 
   const latestSubmission = await prisma.submission.findFirst({ orderBy: { updatedAt: "desc" }, select: { id: true, title: true, status: true, updatedAt: true } });
 
@@ -46,17 +49,17 @@ export default async function AdminPage() {
     },
     {
       title: "Team Management",
-      description: "Review team names, public school display names, and duplicate/cross-context warnings.",
+      description: "Review team names, program display names, and duplicate/cross-context warnings.",
       href: "/admin/teams",
       action: "Manage teams",
-      status: `${teamCount} active teams`
+      status: `${officialTeamRecordCount} official team records`
     },
     {
       title: "Rankings/Data Health",
       description: "Check public standings, official games, ranking snapshots, and data health indicators.",
       href: "/rankings",
       action: "View rankings",
-      status: `${activeGameCount} active games, ${snapshotCount} snapshots`
+      status: `${officialGameCount} official games, ${snapshotCount} snapshots`
     },
     {
       title: "Organizer Tools",
@@ -70,17 +73,7 @@ export default async function AdminPage() {
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
       <div className="grid lg:grid-cols-[17rem_1fr]">
-        <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
-          <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
-          <nav className="mt-8 grid gap-2 font-semibold">
-            <Link href="/admin" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Dashboard</Link>
-            <Link href="/admin/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Submissions</Link>
-            <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
-            <Link href="/admin/teams" className="rounded-md px-3 py-2 hover:bg-white/10">Teams</Link>
-            <Link href="/organizer/submissions" className="rounded-md px-3 py-2 hover:bg-white/10">Organizer Tools</Link>
-            <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
-          </nav>
-        </aside>
+        <AdminSidebar active="dashboard" />
 
         <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">

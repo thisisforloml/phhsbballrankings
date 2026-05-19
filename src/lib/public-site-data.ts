@@ -5,6 +5,7 @@ import { slugify } from "./format";
 import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
 import { prisma } from "./prisma";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
+import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { loadValidatedUaapGames } from "./validated-uaap-data";
 
 export type PublicAgeGroup = "U13" | "U16" | "U19";
@@ -140,18 +141,18 @@ async function getValidatedDbGames() {
 
 export async function getHomeData(): Promise<HomeData> {
   const rankings = await getLatestNationalRankings();
-  const [boysRows, girlsRows] = await Promise.all([
+  const [boysRows, girlsRows, officialCounts] = await Promise.all([
     addAge(rankings.snapshots.boys.rows.slice(0, 10)),
-    addAge(rankings.snapshots.girls.rows.slice(0, 10))
+    addAge(rankings.snapshots.girls.rows.slice(0, 10)),
+    getOfficialTeamCompetitionCounts()
   ]);
-  const validatedGames = loadValidatedUaapGames();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
 
   return {
     counts: {
       rankedPlayers: rankings.snapshots.boys.totalRows + rankings.snapshots.girls.totalRows,
-      verifiedLeagues: new Set(validatedGames.map((game) => game.leagueName)).size,
-      gamesLogged: validatedGames.length
+      verifiedLeagues: officialCounts.verifiedLeagues,
+      gamesLogged: officialCounts.gamesLogged
     },
     leader: allTopRows[0] ?? null,
     leaderboards: {
@@ -162,19 +163,28 @@ export async function getHomeData(): Promise<HomeData> {
 }
 
 export async function getPublicLeagues(): Promise<PublicLeagueRow[]> {
-  const sourceGames = loadValidatedUaapGames();
-  const leagueNames = Array.from(new Set(sourceGames.map((game) => game.leagueName)));
   const leagues = await prisma.league.findMany({
-    where: { deletedAt: null, name: { in: leagueNames } },
+    where: { deletedAt: null, seasons: { some: { deletedAt: null, games: { some: { deletedAt: null } } } } },
+    include: {
+      seasons: {
+        where: { deletedAt: null },
+        include: {
+          games: {
+            where: { deletedAt: null },
+            include: { homeTeam: true, awayTeam: true }
+          }
+        }
+      }
+    },
     orderBy: { name: "asc" }
   });
 
   return leagues.map((league) => {
-    const games = sourceGames.filter((game) => game.leagueName === league.name);
+    const games = league.seasons.flatMap((season) => season.games);
     const teams = new Set<string>();
     games.forEach((game) => {
-      teams.add(getUaapSchoolDisplayName(game.homeTeamName));
-      teams.add(getUaapSchoolDisplayName(game.awayTeamName));
+      teams.add(game.homeTeamId);
+      teams.add(game.awayTeamId);
     });
     const teamCount = teams.size;
 
@@ -288,3 +298,4 @@ export async function getPublicTeamRankings(): Promise<PublicTeamRankingRow[]> {
     };
   }).sort((left, right) => right.rating - left.rating || right.wins - left.wins || left.name.localeCompare(right.name));
 }
+

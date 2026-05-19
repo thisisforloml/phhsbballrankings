@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { Search, UserRound } from "lucide-react";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { updatePlayerBio, type UpdatePlayerBioState } from "./actions";
 
 const initialFormState: UpdatePlayerBioState = {
@@ -67,14 +68,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
       <div className="grid lg:grid-cols-[17rem_1fr]">
-        <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
-          <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
-          <nav className="mt-8 grid gap-2 font-semibold">
-            <a href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Dashboard</a>
-            <a href="/admin/players" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Players</a>
-            <a href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</a>
-          </nav>
-        </aside>
+        <AdminSidebar active="players" />
 
         <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
@@ -84,7 +78,7 @@ export function PlayerManagementClient({ players }: { players: ManagedPlayer[] }
                 <h1 className="font-display text-stat-md text-navy-800">Edit Player Bio</h1>
                 <p className="mt-2 max-w-3xl text-ink-600">Search for a player, update editable profile fields, then save. Ratings, stats, rankings, games, leagues, and seasons are read-only here.</p>
               </div>
-              <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{players.length} active players</span>
+              <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{players.length} player records</span>
             </div>
           </div>
 
@@ -234,4 +228,5 @@ function SubmitButton() {
     </button>
   );
 }
+
 

@@ -1,4 +1,5 @@
-import Link from "next/link";
+﻿import Link from "next/link";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { notFound } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
@@ -169,15 +170,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
       <div className="grid lg:grid-cols-[17rem_1fr]">
-        <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
-          <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
-          <nav className="mt-8 grid gap-2 font-semibold">
-            <Link href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">Dashboard</Link>
-            <Link href="/admin/players" className="rounded-md px-3 py-2 hover:bg-white/10">Players</Link>
-            <Link href="/admin/submissions" className="rounded-md bg-white/10 px-3 py-2 text-amber-300">Submissions</Link>
-            <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
-          </nav>
-        </aside>
+        <AdminSidebar active="submissions" />
 
         <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
@@ -633,4 +626,5 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
     </main>
   );
 }
+
 

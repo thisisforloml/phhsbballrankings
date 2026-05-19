@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "How We Rank",
@@ -88,6 +88,13 @@ export default function HowWeRankPage() {
         </p>
       </section>
 
+
+      <section className="method-section">
+        <h2>Ranking limitations</h2>
+        <p>
+          Rankings are informational and depend on verified stat availability. Missing box scores, incomplete birth dates, small sample sizes, stat corrections, and roster identity repairs can change ratings and public order. The model does not yet include carryover ratings, full schedule-strength calibration, play-by-play context, or scouting evaluation.
+        </p>
+      </section>
       <section className="method-section">
         <h2>Refresh schedule</h2>
         <p>
@@ -97,3 +104,4 @@ export default function HowWeRankPage() {
     </main>
   );
 }
+
