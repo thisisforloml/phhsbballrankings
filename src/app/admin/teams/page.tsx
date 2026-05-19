@@ -1,60 +1,133 @@
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
-import { TeamManagementClient, type ManagedTeam } from "./TeamManagementClient";
+import { TeamManagementClient, type ManagedTeam, type TeamSchoolGroup } from "./TeamManagementClient";
 
 export const metadata = {
   title: "Team Management - Admin Portal",
   description: "Edit existing team display fields."
 };
 
+type ContextSummary = {
+  ageGroup: string;
+  gender: string;
+  league: string;
+  season: string;
+};
+
+function stripAgeGenderSuffix(name: string) {
+  return name.replace(/\s+U(?:13|16|19)\s+(?:Boys|Girls)$/i, "").trim();
+}
+
+function publicDisplayName(name: string) {
+  const alias = stripAgeGenderSuffix(name);
+  return getUaapSchoolDisplayName(alias || name);
+}
+
+function inferGender(...values: Array<string | null | undefined>) {
+  return values.filter(Boolean).join(" ").toLowerCase().includes("girls") ? "Girls" : "Boys";
+}
+
+function formatContext(context: ContextSummary) {
+  return `${context.ageGroup} ${context.gender} / ${context.league} / ${context.season}`;
+}
+
 export default async function AdminTeamsPage() {
   await requireAdminUser();
 
-  const teams = await prisma.team.findMany({
-    where: { deletedAt: null },
-    include: {
-      _count: {
-        select: {
-          homeGames: true,
-          awayGames: true,
-          gameStats: true
+  const [teams, activeGames] = await Promise.all([
+    prisma.team.findMany({
+      where: { deletedAt: null },
+      include: {
+        _count: {
+          select: {
+            homeGames: true,
+            awayGames: true,
+            gameStats: true
+          }
         }
+      },
+      orderBy: { name: "asc" }
+    }),
+    prisma.game.findMany({
+      where: {
+        deletedAt: null,
+        season: { deletedAt: null, league: { deletedAt: null } },
+        homeTeam: { deletedAt: null },
+        awayTeam: { deletedAt: null }
+      },
+      include: {
+        homeTeam: { select: { id: true, name: true } },
+        awayTeam: { select: { id: true, name: true } },
+        season: { include: { league: true } }
       }
-    },
-    orderBy: { name: "asc" }
-  });
+    })
+  ]);
 
-  const publicNameCounts = new Map<string, number>();
-  for (const team of teams) {
-    const publicSchoolName = getUaapSchoolDisplayName(team.name);
-    publicNameCounts.set(publicSchoolName, (publicNameCounts.get(publicSchoolName) ?? 0) + 1);
+  const contextsByTeamId = new Map<string, Map<string, ContextSummary>>();
+  const teamsByPublicSchoolContext = new Map<string, Set<string>>();
+
+  for (const game of activeGames) {
+    const gender = inferGender(game.season.league.name, game.homeTeam.name, game.awayTeam.name);
+    const context: ContextSummary = {
+      ageGroup: game.season.league.ageGroup,
+      gender,
+      league: game.season.league.name,
+      season: game.season.name
+    };
+    const contextKey = [context.ageGroup, context.gender, game.season.leagueId, game.seasonId].join("|");
+
+    for (const team of [game.homeTeam, game.awayTeam]) {
+      const publicName = publicDisplayName(team.name);
+      const contextMap = contextsByTeamId.get(team.id) ?? new Map<string, ContextSummary>();
+      contextMap.set(contextKey, context);
+      contextsByTeamId.set(team.id, contextMap);
+
+      const publicContextKey = `${publicName}|${contextKey}`;
+      const contextTeams = teamsByPublicSchoolContext.get(publicContextKey) ?? new Set<string>();
+      contextTeams.add(team.id);
+      teamsByPublicSchoolContext.set(publicContextKey, contextTeams);
+    }
   }
 
-  function teamContext(name: string) {
-    const age = name.match(/\bU(13|16|19)\b/i)?.[0]?.toUpperCase() ?? "Age group not listed";
-    const gender = /girls/i.test(name) ? "Girls" : /boys/i.test(name) ? "Boys" : "Gender not listed";
-    return `${age} ${gender}`;
+  const sameContextDuplicateTeamIds = new Set<string>();
+  for (const teamIds of teamsByPublicSchoolContext.values()) {
+    if (teamIds.size > 1) {
+      for (const teamId of teamIds) sameContextDuplicateTeamIds.add(teamId);
+    }
   }
 
   const serializedTeams: ManagedTeam[] = teams.map((team) => {
-    const publicSchoolName = getUaapSchoolDisplayName(team.name);
-    const aliasGroupCount = publicNameCounts.get(publicSchoolName) ?? 1;
+    const publicSchoolName = publicDisplayName(team.name);
+    const contexts = Array.from(contextsByTeamId.get(team.id)?.values() ?? []);
+    const isActiveCompetitionTeam = contexts.length > 0;
 
     return {
       id: team.id,
       name: team.name,
       publicSchoolName,
-      aliasGroupCount,
-      needsCleanup: aliasGroupCount > 1,
+      needsCleanup: sameContextDuplicateTeamIds.has(team.id),
+      isActiveCompetitionTeam,
       city: team.city,
       region: team.region,
       homeGames: team._count.homeGames,
       awayGames: team._count.awayGames,
       gameStats: team._count.gameStats,
-      context: teamContext(team.name)
+      contexts: contexts.map(formatContext).sort(),
+      context: contexts.length ? contexts.map((context) => `${context.ageGroup} ${context.gender}`).join(", ") : "No active competition context"
     };
   });
 
-  return <TeamManagementClient teams={serializedTeams} />;
+  const activeTeams = serializedTeams.filter((team) => team.isActiveCompetitionTeam);
+  const activeSchoolGroups: TeamSchoolGroup[] = Array.from(new Map(activeTeams.map((team) => [team.publicSchoolName, team.publicSchoolName])).keys())
+    .sort((left, right) => left.localeCompare(right))
+    .map((publicSchoolName) => ({
+      publicSchoolName,
+      teams: activeTeams
+        .filter((team) => team.publicSchoolName === publicSchoolName)
+        .sort((left, right) => left.context.localeCompare(right.context) || left.name.localeCompare(right.name)),
+      hasSameContextDuplicate: activeTeams.some((team) => team.publicSchoolName === publicSchoolName && team.needsCleanup)
+    }));
+
+  return <TeamManagementClient teams={serializedTeams} activeSchoolGroups={activeSchoolGroups} />;
 }

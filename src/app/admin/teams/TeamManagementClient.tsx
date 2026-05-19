@@ -9,14 +9,21 @@ export type ManagedTeam = {
   id: string;
   name: string;
   publicSchoolName: string;
-  aliasGroupCount: number;
   needsCleanup: boolean;
+  isActiveCompetitionTeam: boolean;
   city: string;
   region: string;
   homeGames: number;
   awayGames: number;
   gameStats: number;
   context: string;
+  contexts: string[];
+};
+
+export type TeamSchoolGroup = {
+  publicSchoolName: string;
+  teams: ManagedTeam[];
+  hasSameContextDuplicate: boolean;
 };
 
 const initialState: UpdateTeamState = { ok: false, message: "" };
@@ -26,20 +33,33 @@ function SaveButton() {
   return <button type="submit" disabled={pending} className="button primary w-fit disabled:opacity-60">{pending ? "Saving..." : "Save team"}</button>;
 }
 
-export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
+function teamSearchText(team: ManagedTeam) {
+  return [team.name, team.publicSchoolName, team.city, team.region, team.context, ...team.contexts].join(" ").toLowerCase();
+}
+
+export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: ManagedTeam[]; activeSchoolGroups: TeamSchoolGroup[] }) {
   const [query, setQuery] = useState("");
-  const [cleanupOnly, setCleanupOnly] = useState(false);
-  const [selectedId, setSelectedId] = useState(teams[0]?.id ?? "");
+  const [showReviewOnly, setShowReviewOnly] = useState(false);
+  const [selectedId, setSelectedId] = useState(teams.find((team) => team.isActiveCompetitionTeam)?.id ?? teams[0]?.id ?? "");
   const [state, formAction] = useFormState(updateTeamBio, initialState);
 
-  const duplicateGroupCount = useMemo(() => new Set(teams.filter((team) => team.needsCleanup).map((team) => team.publicSchoolName)).size, [teams]);
-  const filteredTeams = useMemo(() => {
+  const activeTeams = useMemo(() => teams.filter((team) => team.isActiveCompetitionTeam), [teams]);
+  const inactiveTeams = useMemo(() => teams.filter((team) => !team.isActiveCompetitionTeam), [teams]);
+  const sameContextDuplicateCount = activeTeams.filter((team) => team.needsCleanup).length;
+  const filteredActiveGroups = useMemo(() => {
     const value = query.trim().toLowerCase();
-    return teams
-      .filter((team) => !cleanupOnly || team.needsCleanup)
-      .filter((team) => !value || [team.name, team.publicSchoolName, team.city, team.region].join(" ").toLowerCase().includes(value));
-  }, [cleanupOnly, query, teams]);
-  const selectedTeam = teams.find((team) => team.id === selectedId) ?? filteredTeams[0] ?? null;
+    return activeSchoolGroups
+      .map((group) => ({
+        ...group,
+        teams: group.teams.filter((team) => (!showReviewOnly || team.needsCleanup) && (!value || teamSearchText(team).includes(value)))
+      }))
+      .filter((group) => group.teams.length > 0);
+  }, [activeSchoolGroups, query, showReviewOnly]);
+  const filteredInactiveTeams = useMemo(() => {
+    const value = query.trim().toLowerCase();
+    return inactiveTeams.filter((team) => !value || teamSearchText(team).includes(value));
+  }, [inactiveTeams, query]);
+  const selectedTeam = teams.find((team) => team.id === selectedId) ?? filteredActiveGroups[0]?.teams[0] ?? filteredInactiveTeams[0] ?? null;
 
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
@@ -55,31 +75,70 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
           </nav>
         </aside>
 
-        <section className="container-px grid gap-6 py-8 xl:grid-cols-[minmax(23rem,0.9fr)_1fr]">
-          <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-            <p className="label">Team Management</p>
-            <h1 className="mt-2 font-display text-stat-md text-navy-800">Teams</h1>
-            <p className="mt-2 text-sm text-ink-600">Edit existing Team display fields only. Team merges, deletions, and official game/stat changes are handled through separate approved repair workflows.</p>
-            {duplicateGroupCount ? <p className="mt-4 rounded-md bg-amber-50 p-3 text-sm text-amber-900">{duplicateGroupCount} public school mapping group{duplicateGroupCount === 1 ? "" : "s"} need cleanup. No merge/delete action is performed here.</p> : null}
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search team, school, city, region" className="mt-5 w-full rounded-md border border-surface-300 px-3 py-3" />
-            <label className="mt-3 flex items-center gap-2 text-sm text-ink-600">
-              <input type="checkbox" checked={cleanupOnly} onChange={(event) => setCleanupOnly(event.target.checked)} />
-              Show needs cleanup only
-            </label>
-            <div className="mt-5 max-h-[34rem] overflow-auto rounded-md border border-surface-200">
-              {filteredTeams.map((team) => (
-                <button key={team.id} type="button" onClick={() => setSelectedId(team.id)} className={`grid w-full gap-1 border-b border-surface-200 px-4 py-3 text-left last:border-b-0 ${selectedTeam?.id === team.id ? "bg-navy-50" : "bg-white hover:bg-surface-50"}`}>
-                  <span className="flex flex-wrap items-center gap-2">
-                    <strong className="text-ink-900">{team.name}</strong>
-                    {team.needsCleanup ? <span className="rounded-full bg-amber-100 px-2 py-0.5 font-mono text-[0.65rem] uppercase text-amber-800">Needs cleanup</span> : null}
-                  </span>
-                  <span className="text-sm text-ink-600">Public display: {team.publicSchoolName}</span>
-                  <span className="text-xs font-semibold uppercase text-ink-500">Context: {team.context}</span>
-                  <span className="font-mono text-mono-sm uppercase text-ink-500">{team.city}, {team.region}</span>
-                  <span className="text-xs text-ink-500">Games: {team.homeGames + team.awayGames} | Stat rows: {team.gameStats} | Alias records: {team.aliasGroupCount}</span>
-                </button>
-              ))}
+        <section className="container-px grid gap-6 py-8 xl:grid-cols-[minmax(28rem,1.05fr)_minmax(24rem,0.95fr)]">
+          <div className="grid gap-6">
+            <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <p className="label">Team Management</p>
+              <h1 className="mt-2 font-display text-stat-md text-navy-800">Teams</h1>
+              <p className="mt-2 text-sm text-ink-600">Edit existing Team display fields only. Team merges, deletions, and official game/stat changes are handled through separate approved repair workflows.</p>
+              <p className="mt-4 rounded-md bg-green-50 p-4 text-sm font-semibold text-green-900">Schools may have multiple internal teams for different age groups or genders. No active duplicate team groups detected.</p>
+              <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto] md:items-center">
+                <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search team, school, city, region" className="w-full rounded-md border border-surface-300 px-3 py-3" />
+                <label className="flex items-center gap-2 text-sm text-ink-600">
+                  <input type="checkbox" checked={showReviewOnly} onChange={(event) => setShowReviewOnly(event.target.checked)} />
+                  Show needs review only
+                </label>
+              </div>
             </div>
+
+            <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h2 className="font-display text-3xl text-navy-800">Active Competition Teams</h2>
+                  <p className="mt-1 text-sm text-ink-600">Grouped by public school/program and active competition context.</p>
+                </div>
+                <span className="rounded-full bg-green-50 px-4 py-2 font-mono text-mono-sm uppercase text-green-800">No active same-context duplicates detected</span>
+              </div>
+              <div className="mt-5 grid gap-4">
+                {filteredActiveGroups.map((group) => (
+                  <article key={group.publicSchoolName} className="rounded-lg border border-surface-200 p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="font-semibold text-ink-900">{group.publicSchoolName}</h3>
+                      <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${group.hasSameContextDuplicate ? "bg-amber-100 text-amber-900" : "bg-green-50 text-green-800"}`}>{group.hasSameContextDuplicate ? "Needs review" : "Expected"}</span>
+                    </div>
+                    <div className="mt-3 grid gap-2">
+                      {group.teams.map((team) => (
+                        <button key={team.id} type="button" onClick={() => setSelectedId(team.id)} className={`grid gap-1 rounded-md border px-3 py-3 text-left ${selectedTeam?.id === team.id ? "border-navy-800 bg-navy-50" : "border-surface-200 bg-white hover:bg-surface-50"}`}>
+                          <span className="flex flex-wrap items-center justify-between gap-2">
+                            <strong className="text-ink-900">{team.name}</strong>
+                            <span className="font-mono text-mono-sm uppercase text-ink-500">{team.context}</span>
+                          </span>
+                          <span className="text-xs text-ink-600">{team.contexts.join(" | ")}</span>
+                          <span className="text-xs text-ink-500">Games: {team.homeGames + team.awayGames} | Stat rows: {team.gameStats}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+                {!filteredActiveGroups.length ? <p className="rounded-md bg-surface-100 p-4 text-sm text-ink-600">No active competition teams match these filters.</p> : null}
+              </div>
+            </section>
+
+            <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive / Unclear Team Records ({inactiveTeams.length})</summary>
+              <p className="mt-3 rounded-md bg-surface-100 p-4 text-sm text-ink-600">These records are not currently used in active official games or do not have a reliable competition context.</p>
+              <div className="mt-4 grid gap-2">
+                {filteredInactiveTeams.map((team) => (
+                  <button key={team.id} type="button" onClick={() => setSelectedId(team.id)} className={`grid gap-1 rounded-md border px-3 py-3 text-left ${selectedTeam?.id === team.id ? "border-navy-800 bg-navy-50" : "border-surface-200 bg-white hover:bg-surface-50"}`}>
+                    <strong className="text-ink-900">{team.name}</strong>
+                    <span className="text-sm text-ink-600">Public display: {team.publicSchoolName}</span>
+                    <span className="font-mono text-mono-sm uppercase text-ink-500">{team.city}, {team.region}</span>
+                    <span className="text-xs text-ink-500">Historical linked rows: home games {team.homeGames}, away games {team.awayGames}, stat rows {team.gameStats}</span>
+                  </button>
+                ))}
+                {!filteredInactiveTeams.length ? <p className="rounded-md bg-surface-100 p-4 text-sm text-ink-600">No inactive/unclear records match these filters.</p> : null}
+              </div>
+            </details>
           </div>
 
           <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
@@ -91,7 +150,7 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
                   <h2 className="mt-2 font-display text-3xl text-navy-800">{selectedTeam.name}</h2>
                   <p className="mt-1 text-sm text-ink-600">Public display name: {selectedTeam.publicSchoolName}</p>
                   <p className="mt-1 text-sm text-ink-500">Context: {selectedTeam.context}</p>
-                  {selectedTeam.needsCleanup ? <p className="mt-3 rounded-md bg-amber-50 p-3 text-sm text-amber-900">Multiple Team records map to this public school. Marked for future merge/cleanup review.</p> : null}
+                  {selectedTeam.isActiveCompetitionTeam ? <p className="mt-3 rounded-md bg-green-50 p-3 text-sm text-green-900">Active competition team. Separate roster records by age group or gender are expected.</p> : <p className="mt-3 rounded-md bg-surface-100 p-3 text-sm text-ink-700">Inactive or unclear record. It is not currently used in active official games, so do not merge/delete without a separate approved cleanup plan.</p>}
                 </div>
                 {state.message ? <div className={`rounded-md p-3 text-sm ${state.ok ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{state.message}</div> : null}
                 <label className="grid gap-2 text-sm font-semibold text-ink-700">Team name<input name="name" required maxLength={120} defaultValue={selectedTeam.name} className="rounded-md border border-surface-300 px-3 py-3" /></label>
