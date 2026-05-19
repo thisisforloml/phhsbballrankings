@@ -159,6 +159,18 @@ function displayTeamName(value: string): string {
   return schoolDisplayMap[normalizeTeamName(value)] ?? value;
 }
 
+function inferSubmissionGender(genderValue: string, contextText: string): "BOYS" | "GIRLS" {
+  const normalizedGender = genderValue.toUpperCase();
+  const normalizedContext = contextText.toUpperCase();
+  if (normalizedGender.includes("GIRL") || normalizedContext.includes("GIRL")) return "GIRLS";
+  if (normalizedGender.includes("BOY") || /\bBOYS\b|\bJUNIORS?\b|JUNIOR'S|\bJRB\b/.test(normalizedContext)) return "BOYS";
+  return "BOYS";
+}
+
+function hasExplicitBoysContext(value: string) {
+  return /\bboys\b|\bjuniors?\b|junior's|\bjrb\b/i.test(value);
+}
+
 function missingFields(record: JsonRecord, fields: readonly string[]) {
   return fields.filter((field) => {
     const value = record[field];
@@ -323,12 +335,12 @@ export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "
   const seasonYear = typeof season?.seasonYear === "number" ? season.seasonYear : null;
   const genderValue = stringValue(root.gender) || stringValue(league?.gender);
   const missingGenderField = !genderValue;
-  const inferredGender = missingGenderField ? "BOYS" : genderValue.toUpperCase().includes("GIRL") ? "GIRLS" : "BOYS";
+  const inferredGender = inferSubmissionGender(genderValue, `${leagueName ?? ""} ${submission.title ?? ""}`);
   const leagueNameIssues: string[] = [];
   const normalizedLeague = leagueName ?? submission.title;
 
   if (/16u/i.test(normalizedLeague)) leagueNameIssues.push('Use uppercase "16U" in league naming.');
-  if (!/boys/i.test(normalizedLeague) && inferredGender === "BOYS") leagueNameIssues.push('Gender is not explicit; confirm and include "Boys" before import.');
+  if (!hasExplicitBoysContext(normalizedLeague) && inferredGender === "BOYS") leagueNameIssues.push('Gender is not explicit; confirm and include "Boys" before import.');
 
   const recommendedLeagueName = /uaap/i.test(normalizedLeague) && /16u/i.test(normalizedLeague)
     ? "UAAP Season 88 16U Boys Basketball"

@@ -79,6 +79,12 @@ function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPre
   return result.data;
 }
 
+function coerceAgeGroup(value: string | null): AgeGroup | null {
+  if (!value) return null;
+  const normalized = value.toUpperCase();
+  return Object.values(AgeGroup).includes(normalized as AgeGroup) ? (normalized as AgeGroup) : null;
+}
+
 function getPrimaryPackage(submission: Pick<Submission, "rawText" | "parsedPreview">) {
   const parsed = parseSubmissionJson(submission);
   const root = asRecord(parsed);
@@ -186,7 +192,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
   if (!games.length) throw new Error("No games found in submission.");
 
   const targetLeagueName = review.recommendations.recommendedLeagueName ?? review.summary.leagueName ?? submission.leagueName ?? submission.title;
-  const ageGroup = review.summary.ageGroup === "U16" ? AgeGroup.U16 : null;
+  const ageGroup = coerceAgeGroup(review.summary.ageGroup);
   if (!ageGroup) throw new Error(`Unsupported age group for this import: ${review.summary.ageGroup ?? "missing"}.`);
   const gender = review.recommendations.inferredGender === "GIRLS" ? PlayerGender.GIRLS : PlayerGender.BOYS;
   const organizerName = stringValue(leagueRecord?.organizerName) || "UAAP";

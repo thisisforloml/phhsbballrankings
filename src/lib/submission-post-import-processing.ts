@@ -5,7 +5,23 @@ import { buildSubmissionReview } from "@/lib/submission-review";
 import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
 
 const formulaVersionNumber = 1;
-const defaultMinimumVerifiedGames = 1;
+function minimumVerifiedGamesForContext(ageGroup: AgeGroup, gender: PlayerGender) {
+  if (ageGroup === AgeGroup.U16 && gender === PlayerGender.BOYS) return 1;
+  if (ageGroup === AgeGroup.U19 && gender === PlayerGender.BOYS) return 10;
+  if (ageGroup === AgeGroup.U19 && gender === PlayerGender.GIRLS) return 5;
+  return 1;
+}
+
+function rankingContextLabel(ageGroup: AgeGroup, gender: PlayerGender) {
+  return `${ageGroup} ${gender === PlayerGender.GIRLS ? "Girls" : "Boys"}`;
+}
+
+function eligibilityNote(ageGroup: AgeGroup, gender: PlayerGender) {
+  if (ageGroup === AgeGroup.U16 && gender === PlayerGender.BOYS) return "Temporary U16 Boys launch/test threshold.";
+  if (ageGroup === AgeGroup.U19 && gender === PlayerGender.BOYS) return "Existing U19 Boys public eligibility threshold.";
+  if (ageGroup === AgeGroup.U19 && gender === PlayerGender.GIRLS) return "Existing U19 Girls public eligibility threshold.";
+  return "Default launch-stage eligibility threshold.";
+}
 
 const assumptions = {
   assistCreationShare: 0.35,
@@ -238,7 +254,7 @@ export async function getImportedSubmissionContext(submissionId: string): Promis
     gameNumbers,
     gameIds,
     expectedGameStats,
-    minimumVerifiedGames: defaultMinimumVerifiedGames
+    minimumVerifiedGames: minimumVerifiedGamesForContext(targetAgeGroup, targetGender)
   };
 }
 async function getGameStatsForContext(context: SubmissionContext) {
@@ -603,7 +619,7 @@ export async function generateImportedSubmissionMonthlyRankings(submissionId: st
     },
     select: { id: true }
   });
-  if (existing.length > 1) throw new Error(`Found ${existing.length} U16 Boys snapshots for ${snapshotDate.toISOString()}.`);
+  if (existing.length > 1) throw new Error(`Found ${existing.length} ${rankingContextLabel(context.ageGroup, context.gender)} snapshots for ${snapshotDate.toISOString()}.`);
 
   let action: "created" | "updated" | "skipped" = "skipped";
   let snapshotId: string | null = null;
@@ -639,7 +655,7 @@ export async function generateImportedSubmissionMonthlyRankings(submissionId: st
     ageGroup: context.ageGroup,
     gender: context.gender,
     snapshotDate: snapshotDate.toISOString(),
-    eligibilityRule: { minimumVerifiedGames: context.minimumVerifiedGames, note: "Temporary U16 launch/test threshold for imported U16 submissions." },
+    eligibilityRule: { minimumVerifiedGames: context.minimumVerifiedGames, note: eligibilityNote(context.ageGroup, context.gender) },
     eligibleByGames: eligibleByGames.length,
     excludedByClassYear: excludedByClassYear.length,
     missingBirthDate: eligibleByGames.filter((row) => row.birthDate === null).length,
@@ -712,7 +728,7 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
     orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }]
   });
   const latest = snapshots.find((snapshot) => isMonthStart(snapshot.weekOf)) ?? null;
-  if (!latest) issues.push("Missing latest monthly U16 Boys snapshot.");
+  if (!latest) issues.push(`Missing latest monthly ${rankingContextLabel(context.ageGroup, context.gender)} snapshot.`);
 
   let snapshotIssues: string[] = [];
   let expectedSnapshotRows = 0;
@@ -728,7 +744,7 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
     expectedSnapshotRows = eligible.length;
     snapshotRowsChecked = latest.rows.length;
     missingBirthDate = eligible.filter((rating) => rating.player.birthDate === null).length;
-    if (!isMonthStart(latest.weekOf)) snapshotIssues.push("Latest U16 Boys snapshot is not monthly.");
+    if (!isMonthStart(latest.weekOf)) snapshotIssues.push(`Latest ${rankingContextLabel(context.ageGroup, context.gender)} snapshot is not monthly.`);
     if (latest.rows.length !== eligible.length) snapshotIssues.push(`Expected ${eligible.length} rows, found ${latest.rows.length}.`);
 
     const expectedByPlayer = new Map(eligible.map((rating, index) => [rating.playerId, { rating, rank: index + 1 }]));
