@@ -1,0 +1,853 @@
+{
+  "generatedAt": "2026-05-19T03:55:38.960Z",
+  "readOnly": true,
+  "diagnostic": "u19-la-salle-team-identity-repair-plan",
+  "targetInternalTeams": [
+    {
+      "targetTeamName": "DLSZ U19 Boys",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    },
+    {
+      "targetTeamName": "DLSZ U19 Girls",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    }
+  ],
+  "exactAffectedGames": [
+    {
+      "gameId": "dbf4429b-f2f8-4b1d-ba55-47fc99e35395",
+      "gameNumber": "UAAP-S88-HSB-004",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-01-11T00:00:00.000Z",
+      "homeTeam": {
+        "id": "ae091b25-12cd-453f-af06-b629247174c9",
+        "name": "DLSU",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "name": "UP",
+        "publicSchoolDisplayName": "University of the Philippines Integrated School"
+      },
+      "scores": {
+        "homeScore": 98,
+        "awayScore": 42
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+          "teamName": "DLSU",
+          "gameStatsCountForAffectedTeam": 14,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "724a65c3-2bde-491e-af77-74fa280c6aac",
+      "gameNumber": "UAAP-S88-HSB-005",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-01-14T00:00:00.000Z",
+      "homeTeam": {
+        "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "name": "NU",
+        "publicSchoolDisplayName": "National University Nazareth School"
+      },
+      "awayTeam": {
+        "id": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "name": "DLSZ",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 60,
+        "awayScore": 50
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "gameStatsCountForAffectedTeam": 10,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "9dc8a366-7cbe-4e0f-90e7-77594c3a89e6",
+      "gameNumber": "UAAP-S88-HSG-002",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "gameDate": "2026-01-14T00:00:00.000Z",
+      "homeTeam": {
+        "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "name": "UST",
+        "publicSchoolDisplayName": "University of Santo Tomas"
+      },
+      "awayTeam": {
+        "id": "ae091b25-12cd-453f-af06-b629247174c9",
+        "name": "DLSU",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 90,
+        "awayScore": 59
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+          "teamName": "DLSU",
+          "gameStatsCountForAffectedTeam": 11,
+          "proposedTeamName": "DLSZ U19 Girls"
+        }
+      ]
+    },
+    {
+      "gameId": "531a8570-f821-4eda-be94-4cfad30bd88a",
+      "gameNumber": "UAAP-S88-HSB-011",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-01-18T00:00:00.000Z",
+      "homeTeam": {
+        "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "name": "ATENEO",
+        "publicSchoolDisplayName": "Ateneo de Manila University"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 80,
+        "awayScore": 65
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 12,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "05df0b92-c7aa-4611-9fcc-b62e7d81162c",
+      "gameNumber": "UAAP-S88-HSB-013",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-01-22T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "name": "UST",
+        "publicSchoolDisplayName": "University of Santo Tomas"
+      },
+      "scores": {
+        "homeScore": 72,
+        "awayScore": 67
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 11,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "fbb40366-abb4-4afc-9783-9ac149186f68",
+      "gameNumber": "UAAP-S88-HSG-004",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "gameDate": "2026-01-22T00:00:00.000Z",
+      "homeTeam": {
+        "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "name": "NU",
+        "publicSchoolDisplayName": "National University Nazareth School"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 95,
+        "awayScore": 45
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 10,
+          "proposedTeamName": "DLSZ U19 Girls"
+        }
+      ]
+    },
+    {
+      "gameId": "b17e089c-edc3-4667-9493-6d362fbc3aa1",
+      "gameNumber": "UAAP-S88-HSB-018",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-01-25T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "name": "ADU",
+        "publicSchoolDisplayName": "Adamson University"
+      },
+      "scores": {
+        "homeScore": 71,
+        "awayScore": 45
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 14,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "e00213f0-98f2-44a6-a702-3146bcc22463",
+      "gameNumber": "UAAP-S88-HSG-005",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "gameDate": "2026-01-25T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "name": "ATENEO",
+        "publicSchoolDisplayName": "Ateneo de Manila University"
+      },
+      "scores": {
+        "homeScore": 101,
+        "awayScore": 21
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 12,
+          "proposedTeamName": "DLSZ U19 Girls"
+        }
+      ]
+    },
+    {
+      "gameId": "3671ca41-2c67-40b4-a549-4d242ab9797f",
+      "gameNumber": "UAAP-S88-HSB-021",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-01-29T00:00:00.000Z",
+      "homeTeam": {
+        "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "name": "FEU",
+        "publicSchoolDisplayName": "Far Eastern University"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 79,
+        "awayScore": 61
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 14,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "89d486da-f48d-4210-b740-eb5997b88046",
+      "gameNumber": "UAAP-S88-HSB-027",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-02-01T00:00:00.000Z",
+      "homeTeam": {
+        "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "name": "UE",
+        "publicSchoolDisplayName": "University of the East"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 64,
+        "awayScore": 60
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 10,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "c92ace73-6d1c-4613-a551-6dd8719e5a04",
+      "gameNumber": "UAAP-S88-HSB-031",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-02-08T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "name": "FEU",
+        "publicSchoolDisplayName": "Far Eastern University"
+      },
+      "scores": {
+        "homeScore": 61,
+        "awayScore": 69
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 11,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "213d3f4e-ab18-4caf-9574-7f77c6222453",
+      "gameNumber": "UAAP-S88-HSG-007",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "gameDate": "2026-02-08T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "name": "NU",
+        "publicSchoolDisplayName": "National University Nazareth School"
+      },
+      "scores": {
+        "homeScore": 62,
+        "awayScore": 82
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 9,
+          "proposedTeamName": "DLSZ U19 Girls"
+        }
+      ]
+    },
+    {
+      "gameId": "c47e2630-d177-49d1-8592-67409c8d4c72",
+      "gameNumber": "UAAP-S88-HSB-036",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-02-15T00:00:00.000Z",
+      "homeTeam": {
+        "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "name": "UP",
+        "publicSchoolDisplayName": "University of the Philippines Integrated School"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 47,
+        "awayScore": 83
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 14,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "6dfb19af-a43f-42cf-94c2-83d350c5e3d2",
+      "gameNumber": "UAAP-S88-HSB-040",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-02-18T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "name": "ATENEO",
+        "publicSchoolDisplayName": "Ateneo de Manila University"
+      },
+      "scores": {
+        "homeScore": 80,
+        "awayScore": 72
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 11,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "aef80963-f16f-4438-8fb8-98370febae2d",
+      "gameNumber": "UAAP-S88-HSB-044",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-02-21T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "name": "UE",
+        "publicSchoolDisplayName": "University of the East"
+      },
+      "scores": {
+        "homeScore": 59,
+        "awayScore": 47
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 12,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "a2e0fbad-4c5d-44aa-9291-64303e7b0cc3",
+      "gameNumber": "UAAP-S88-HSG-009",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "gameDate": "2026-02-21T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "name": "UST",
+        "publicSchoolDisplayName": "University of Santo Tomas"
+      },
+      "scores": {
+        "homeScore": 56,
+        "awayScore": 81
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 9,
+          "proposedTeamName": "DLSZ U19 Girls"
+        }
+      ]
+    },
+    {
+      "gameId": "b996c6f2-fb6c-4986-9328-1756cc0dc674",
+      "gameNumber": "UAAP-S88-HSB-047",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-02-25T00:00:00.000Z",
+      "homeTeam": {
+        "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "name": "ADU",
+        "publicSchoolDisplayName": "Adamson University"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 59,
+        "awayScore": 71
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 11,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "d3d940b8-77a6-4ca3-9cd2-080f2e57ff23",
+      "gameNumber": "UAAP-S88-HSB-051",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-03-01T00:00:00.000Z",
+      "homeTeam": {
+        "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "name": "UST",
+        "publicSchoolDisplayName": "University of Santo Tomas"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 80,
+        "awayScore": 84
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 13,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "6d33400a-5b2b-4dfd-b531-af27a65a77d9",
+      "gameNumber": "UAAP-S88-HSG-011",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "gameDate": "2026-03-01T00:00:00.000Z",
+      "homeTeam": {
+        "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "name": "ATENEO",
+        "publicSchoolDisplayName": "Ateneo de Manila University"
+      },
+      "awayTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "scores": {
+        "homeScore": 47,
+        "awayScore": 100
+      },
+      "affectedTeams": [
+        {
+          "side": "away",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 12,
+          "proposedTeamName": "DLSZ U19 Girls"
+        }
+      ]
+    },
+    {
+      "gameId": "53d14a77-7165-4e8d-acf2-7dfc7790df01",
+      "gameNumber": "UAAP-S88-HSB-053",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-03-08T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "name": "NU",
+        "publicSchoolDisplayName": "National University Nazareth School"
+      },
+      "scores": {
+        "homeScore": 66,
+        "awayScore": 83
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 13,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    },
+    {
+      "gameId": "fad8f7d7-30ec-43f9-b4cd-bc0a0b74c8ee",
+      "gameNumber": "UAAP-S88-HSB-059",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "gameDate": "2026-03-15T00:00:00.000Z",
+      "homeTeam": {
+        "id": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "name": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel"
+      },
+      "awayTeam": {
+        "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "name": "NU",
+        "publicSchoolDisplayName": "National University Nazareth School"
+      },
+      "scores": {
+        "homeScore": 70,
+        "awayScore": 75
+      },
+      "affectedTeams": [
+        {
+          "side": "home",
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "gameStatsCountForAffectedTeam": 10,
+          "proposedTeamName": "DLSZ U19 Boys"
+        }
+      ]
+    }
+  ],
+  "proposedReassignment": {
+    "summary": "Reassign U19 Boys DLSU/DLSZ/LA SALLE games and GameStats to DLSZ U19 Boys; reassign U19 Girls DLSU/LA SALLE games and GameStats to DLSZ U19 Girls.",
+    "byCurrentTeam": [
+      {
+        "currentTeamId": "ae091b25-12cd-453f-af06-b629247174c9",
+        "currentTeamName": "DLSU",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "league": "UAAP Season 88 HS Boys Basketball",
+        "season": "Season 88",
+        "gamesAffected": 1,
+        "gameNumbers": [
+          "UAAP-S88-HSB-004"
+        ],
+        "gameStatsAffected": 14,
+        "proposedTeamName": "DLSZ U19 Boys"
+      },
+      {
+        "currentTeamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "currentTeamName": "DLSZ",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "league": "UAAP Season 88 HS Boys Basketball",
+        "season": "Season 88",
+        "gamesAffected": 1,
+        "gameNumbers": [
+          "UAAP-S88-HSB-005"
+        ],
+        "gameStatsAffected": 10,
+        "proposedTeamName": "DLSZ U19 Boys"
+      },
+      {
+        "currentTeamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "currentTeamName": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "league": "UAAP Season 88 HS Boys Basketball",
+        "season": "Season 88",
+        "gamesAffected": 13,
+        "gameNumbers": [
+          "UAAP-S88-HSB-011",
+          "UAAP-S88-HSB-013",
+          "UAAP-S88-HSB-018",
+          "UAAP-S88-HSB-021",
+          "UAAP-S88-HSB-027",
+          "UAAP-S88-HSB-031",
+          "UAAP-S88-HSB-036",
+          "UAAP-S88-HSB-040",
+          "UAAP-S88-HSB-044",
+          "UAAP-S88-HSB-047",
+          "UAAP-S88-HSB-051",
+          "UAAP-S88-HSB-053",
+          "UAAP-S88-HSB-059"
+        ],
+        "gameStatsAffected": 156,
+        "proposedTeamName": "DLSZ U19 Boys"
+      },
+      {
+        "currentTeamId": "ae091b25-12cd-453f-af06-b629247174c9",
+        "currentTeamName": "DLSU",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "league": "UAAP Season 88 HS Girls Basketball",
+        "season": "Season 88",
+        "gamesAffected": 1,
+        "gameNumbers": [
+          "UAAP-S88-HSG-002"
+        ],
+        "gameStatsAffected": 11,
+        "proposedTeamName": "DLSZ U19 Girls"
+      },
+      {
+        "currentTeamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "currentTeamName": "LA SALLE",
+        "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "league": "UAAP Season 88 HS Girls Basketball",
+        "season": "Season 88",
+        "gamesAffected": 5,
+        "gameNumbers": [
+          "UAAP-S88-HSG-004",
+          "UAAP-S88-HSG-005",
+          "UAAP-S88-HSG-007",
+          "UAAP-S88-HSG-009",
+          "UAAP-S88-HSG-011"
+        ],
+        "gameStatsAffected": 52,
+        "proposedTeamName": "DLSZ U19 Girls"
+      }
+    ]
+  },
+  "safetyChecks": {
+    "noU16TeamRecordsModified": true,
+    "noUnrelatedU19TeamsModified": true,
+    "u19BoysActiveGameCountRemains": {
+      "expected": 62,
+      "actual": 62,
+      "pass": true
+    },
+    "u19GirlsActiveGameCountRemains": {
+      "expected": 14,
+      "actual": 14,
+      "pass": true
+    },
+    "u19BoysGameStatsRemain": {
+      "expected": 1554,
+      "actual": 1554,
+      "pass": true
+    },
+    "u19GirlsGameStatsRemain": {
+      "expected": 331,
+      "actual": 331,
+      "pass": true
+    },
+    "pointTotalsRemainPassing": {
+      "pass": true,
+      "failures": []
+    },
+    "u16LaSalleTeamRecordsObservedButNotInScope": [
+      {
+        "id": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "name": "DLSZ",
+        "city": "Metro Manila",
+        "region": "NCR"
+      },
+      {
+        "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+        "name": "DLSZ U16 Boys",
+        "city": "Metro Manila",
+        "region": "NCR"
+      },
+      {
+        "id": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+        "name": "LA SALLE (DLSZ)",
+        "city": "San Juan",
+        "region": "NCR"
+      }
+    ]
+  },
+  "ratingsImpact": {
+    "gamePerformanceScoreDependsOnTeamId": false,
+    "playerRatingDependsOnTeamId": false,
+    "rankingSnapshotDependsOnTeamId": false,
+    "explanation": "GamePerformanceScore stores gameId, gameStatId, playerId, formulaVersionId, and score fields; it does not store Team ID. PlayerRating stores playerId and ageGroup; RankingSnapshotRow stores playerId. If only Game.homeTeamId, Game.awayTeamId, and GameStat.teamId are reassigned while GameStat IDs, player IDs, and stat values remain unchanged, player score/rating/snapshot recomputation is not needed.",
+    "recomputationNeeded": false
+  },
+  "recommendedRepairPlan": [
+    "Get explicit approval before any data repair.",
+    "Create DLSZ U19 Boys if no active matching Team record exists; otherwise reuse it.",
+    "Create DLSZ U19 Girls if no active matching Team record exists; otherwise reuse it.",
+    "Within one transaction, update only affected U19 Boys Game.homeTeamId/awayTeamId and matching GameStat.teamId from DLSU, DLSZ, and LA SALLE to DLSZ U19 Boys.",
+    "Within the same transaction, update only affected U19 Girls Game.homeTeamId/awayTeamId and matching GameStat.teamId from DLSU and LA SALLE to DLSZ U19 Girls.",
+    "Do not modify U16 team records or unrelated U19 teams.",
+    "After repair, rerun count and point-total validation, then verify dynamic /teams shows U19 Boys 8 public teams and U19 Girls 4 public teams."
+  ]
+}
