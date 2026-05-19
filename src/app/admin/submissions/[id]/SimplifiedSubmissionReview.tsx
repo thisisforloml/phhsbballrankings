@@ -1,7 +1,9 @@
+import Link from "next/link";
 import type { Submission, UserRole } from "@prisma/client";
 import type { SubmissionReview } from "@/lib/submission-review";
-import { updateSubmissionDraftJson } from "../actions";
+import { publishSubmission, updateSubmissionDraftJson } from "../actions";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
+import { EditableGameStatsForm } from "./EditableGameStatsForm";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -22,6 +24,7 @@ type SimplifiedSubmissionReviewProps = {
   pipelineStatus: any;
   reviewSuccess?: string;
   reviewError?: string;
+  editMode?: boolean;
 };
 
 function asRecord(value: unknown): JsonRecord | null {
@@ -93,6 +96,24 @@ function pointTotalStatus(gameNumber: string, review: SubmissionReview) {
   return { label: check.homePass && check.awayPass ? "Passed" : "Failed", pass: check.homePass && check.awayPass };
 }
 
+
+function publishBlockers(submission: Submission, review: SubmissionReview, preflight: any, jsonInvalid: boolean, jsonParseResult: ReturnType<typeof safeParseSubmissionJson>) {
+  const blockers: string[] = [];
+  if (submission.status === "REJECTED") blockers.push("Cannot publish a rejected submission. Move it back under review first.");
+  if (jsonInvalid && !jsonParseResult.ok) {
+    blockers.push(`Invalid JSON: ${jsonParseResult.errorMessage}${jsonParseResult.line && jsonParseResult.column ? ` at line ${jsonParseResult.line}, column ${jsonParseResult.column}` : ""}`);
+  }
+  if (!review.validJson && review.parseError) blockers.push(`Invalid JSON: ${review.parseError}`);
+
+  if (submission.status !== "IMPORTED") {
+    for (const blocker of preflight?.overallSummary?.blockers ?? []) {
+      if (blocker === "Submission must be APPROVED before import preflight can be considered ready.") continue;
+      blockers.push(blocker);
+    }
+  }
+
+  return Array.from(new Set(blockers));
+}
 function plainValidationMessages(review: SubmissionReview, preflight: any) {
   const messages: string[] = [];
 
@@ -141,7 +162,7 @@ function plainValidationMessages(review: SubmissionReview, preflight: any) {
   return Array.from(new Set(messages));
 }
 
-export function SimplifiedSubmissionReview({ submission, review, preflight, pipelineStatus, reviewSuccess, reviewError }: SimplifiedSubmissionReviewProps) {
+export function SimplifiedSubmissionReview({ submission, review, preflight, pipelineStatus, reviewSuccess, reviewError, editMode = false }: SimplifiedSubmissionReviewProps) {
   const jsonParseResult = safeParseSubmissionJson(submission);
   const jsonInvalid = !jsonParseResult.ok;
   const games = jsonInvalid ? [] : getGameRows(submission);
@@ -149,6 +170,9 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
   const messages = plainValidationMessages(review, preflight);
   const gender = review.recommendations.inferredGender ?? preflight?.league?.inferredGender ?? "-";
   const canEditDraft = submission.status !== "IMPORTED" && Boolean(submission.rawText?.trim());
+  const canEditGameStats = canEditDraft && !jsonInvalid && games.length > 0;
+  const blockers = publishBlockers(submission, review, preflight, jsonInvalid, jsonParseResult);
+  const canPublish = blockers.length === 0 && ["SUBMITTED", "UNDER_REVIEW", "APPROVED", "IMPORTED"].includes(submission.status);
 
   return (
     <div className="grid gap-6">
@@ -177,17 +201,25 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
           <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Submitted by</dt><dd>{submission.submittedBy.name}</dd></div>
         </dl>
 
-        {!jsonInvalid ? (
-        <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <strong className="block">Publish</strong>
-              <p className="mt-1">Single-button publish is prepared for this review flow, but remains disabled until the full approve/import/process/publish chain is wired safely.</p>
+        {canPublish ? (
+          <form action={publishSubmission} className="rounded-md border border-green-200 bg-green-50 p-4 text-sm text-green-900">
+            <input type="hidden" name="submissionId" value={submission.id} />
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <strong className="block">Publish</strong>
+                <p className="mt-1">Runs review approval, official import, ratings, rankings, and validation when ready.</p>
+              </div>
+              <button type="submit" className="rounded-md bg-green-700 px-5 py-2 font-semibold text-white hover:bg-green-800">Publish</button>
             </div>
-            <button type="button" disabled className="rounded-md bg-surface-300 px-4 py-2 font-semibold text-surface-700">Publish action coming next</button>
+          </form>
+        ) : (
+          <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+            <strong className="block">Cannot publish yet</strong>
+            <ul className="mt-2 grid gap-1">
+              {blockers.length ? blockers.map((blocker) => <li key={blocker}>{blocker}</li>) : <li>Publish is not available for this submission state.</li>}
+            </ul>
           </div>
-        </div>
-        ) : null}
+        )}
       </section>
 
       {jsonInvalid ? (
@@ -223,11 +255,15 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
       </section>
 
       <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-        <div>
-          <h2 className="font-display text-3xl text-navy-800">Submitted Games</h2>
-          <p className="mt-1 text-sm text-ink-600">Game information, teams, scores, and player stat rows from the submitted draft.</p>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 className="font-display text-3xl text-navy-800">{editMode ? "Edit Game Stats" : "Submitted Games"}</h2>
+            <p className="mt-1 text-sm text-ink-600">{editMode ? "Edits affect the submission draft only. Official data is unchanged until import." : "Game information, teams, scores, and player stat rows from the submitted draft."}</p>
+          </div>
+          {canEditGameStats && !editMode ? <Link href={`/admin/submissions/${submission.id}?editStats=1`} className="button primary">Edit Game Stats</Link> : null}
+          {submission.status === "IMPORTED" ? <span className="rounded-full bg-navy-50 px-3 py-1 font-mono text-[0.65rem] uppercase text-navy-800">Read-only imported</span> : null}
         </div>
-        {!jsonInvalid && games.length ? games.map((game) => {
+        {editMode && canEditGameStats ? <EditableGameStatsForm submission={submission} /> : !jsonInvalid && games.length ? games.map((game) => {
           const gameNumber = stringValue(game.gameNumber) || "Unknown game";
           const players = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
           const pointStatus = pointTotalStatus(gameNumber, review);

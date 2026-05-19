@@ -5,6 +5,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { buildSubmissionReview } from "@/lib/submission-review";
+import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
 import { parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
 import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-import";
@@ -23,6 +25,63 @@ const allowedTransitions: Record<SubmissionStatus, SubmissionStatus[]> = {
   IMPORTED: []
 };
 
+
+type JsonRecord = Record<string, unknown>;
+
+const editableGameFields = ["gameNumber", "gameDate", "homeTeamName", "awayTeamName", "homeScore", "awayScore", "city", "region"] as const;
+const editablePlayerFields = ["name", "team", "MIN", "PTS", "FGM", "FGA", "3PM", "3PA", "2PM", "2PA", "FTM", "FTA", "OREB", "DREB", "TRB", "AST", "STL", "BLK", "TOV", "PF", "FD", "+/-"] as const;
+const numericDraftFields = new Set(["homeScore", "awayScore", "PTS", "FGM", "FGA", "3PM", "3PA", "2PM", "2PA", "FTM", "FTA", "OREB", "DREB", "TRB", "AST", "STL", "BLK", "TOV", "PF", "FD", "+/-"]);
+
+function asRecord(value: unknown): JsonRecord | null {
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as JsonRecord) : null;
+}
+
+function asArray(value: unknown): unknown[] {
+  return Array.isArray(value) ? value : [];
+}
+
+function getPackagesFromParsedSubmission(value: unknown) {
+  const root = asRecord(value);
+  if (root) return { packages: [root], rootWasArray: false };
+  return { packages: asArray(value).map(asRecord).filter((item): item is JsonRecord => item !== null), rootWasArray: true };
+}
+
+function draftValue(formData: FormData, name: string, fallback: unknown) {
+  const value = formData.get(name);
+  if (typeof value !== "string") return fallback;
+  const trimmed = value.trim();
+  if (numericDraftFields.has(name.split(".").at(-1) ?? "")) {
+    if (trimmed === "") return 0;
+    const numberValue = Number(trimmed);
+    return Number.isFinite(numberValue) ? numberValue : fallback;
+  }
+  return trimmed;
+}
+
+function rebuildEditableSubmissionJson(parsed: unknown, formData: FormData) {
+  const { packages, rootWasArray } = getPackagesFromParsedSubmission(parsed);
+  if (!packages.length) throw new Error("Submission JSON package was not found.");
+
+  packages.forEach((submissionPackage, packageIndex) => {
+    const games = asArray(submissionPackage.games).map(asRecord).filter((game): game is JsonRecord => game !== null);
+    games.forEach((game, gameIndex) => {
+      editableGameFields.forEach((field) => {
+        game[field] = draftValue(formData, `game.${packageIndex}.${gameIndex}.${field}`, game[field]);
+      });
+
+      const players = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
+      players.forEach((player, playerIndex) => {
+        editablePlayerFields.forEach((field) => {
+          player[field] = draftValue(formData, `player.${packageIndex}.${gameIndex}.${playerIndex}.${field}`, player[field]);
+        });
+      });
+      game.players = players;
+    });
+    submissionPackage.games = games;
+  });
+
+  return rootWasArray ? packages : packages[0];
+}
 function parseStatus(value: FormDataEntryValue | null): SubmissionStatus | null {
   if (typeof value !== "string") return null;
   return Object.values(SubmissionStatus).includes(value as SubmissionStatus) ? (value as SubmissionStatus) : null;
@@ -35,6 +94,10 @@ function cleanAdminNotes(value: FormDataEntryValue | null) {
   if (!trimmed) return null;
 
   return trimmed.slice(0, 2000);
+}
+
+function appendAdminNotes(existing: string | null, note: string) {
+  return [existing, note].filter(Boolean).join("\n\n");
 }
 
 function reviewRedirectUrl(submissionId: string, params: Record<string, string>) {
@@ -110,6 +173,57 @@ export async function updateSubmissionDraftJson(formData: FormData) {
   redirect(reviewRedirectUrl(submission.id, { reviewSuccess: "Draft JSON saved and validation refreshed." }));
 }
 
+
+export async function updateSubmissionStructuredDraft(formData: FormData) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+
+  const submission = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select: { id: true, status: true, rawText: true, parsedPreview: true }
+  });
+  if (!submission) throw new Error("Submission not found.");
+  if (submission.status === "IMPORTED") {
+    redirect(reviewRedirectUrl(submission.id, { reviewError: "Imported submissions are locked. Draft game stats can only be edited before import." }));
+  }
+
+  const parsed = safeJsonParse(submission.rawText ?? "");
+  if (!parsed.ok) {
+    redirect(reviewRedirectUrl(submission.id, { reviewError: `Current draft JSON is invalid: ${formatSubmissionJsonParseError(parsed) ?? "JSON could not be parsed."}` }));
+  }
+
+  try {
+    const updated = rebuildEditableSubmissionJson(parsed.data, formData);
+    const rawText = JSON.stringify(updated, null, 2);
+    const validation = safeJsonParse(rawText);
+    if (!validation.ok) throw new Error(formatSubmissionJsonParseError(validation) ?? "Updated JSON could not be parsed.");
+
+    await prisma.submission.update({
+      where: { id: submission.id },
+      data: {
+        rawText,
+        parsedPreview: jsonPreview(updated),
+        validationSummary: {
+          ok: true,
+          format: "json",
+          messages: ["Structured game/stat edits saved to the submission draft. Official data was not changed."],
+          previewSupported: true
+        }
+      },
+      select: { id: true }
+    });
+  } catch (error) {
+    redirect(reviewRedirectUrl(submission.id, { reviewError: error instanceof Error ? error.message : "Draft game/stat edits could not be saved." }));
+  }
+
+  revalidatePath("/admin/submissions");
+  revalidatePath(`/admin/submissions/${submission.id}`);
+  redirect(reviewRedirectUrl(submission.id, { reviewSuccess: "Draft game/stat edits saved. Review and preflight have refreshed." }));
+}
 export async function createAdminJsonSubmission(formData: FormData) {
   const user = await requireAdminUser();
 
@@ -152,6 +266,101 @@ export async function createAdminJsonSubmission(formData: FormData) {
 
   revalidatePath("/admin/submissions");
   redirect("/admin/submissions?jsonCreated=1");
+}
+
+async function readSubmissionForPublish(submissionId: string) {
+  const submission = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true, adminNotes: true }
+  });
+  if (!submission) throw new Error("Submission not found.");
+  return submission;
+}
+
+async function setSubmissionStatusForPublish(submissionId: string, status: SubmissionStatus, note: string) {
+  const current = await prisma.submission.findUnique({ where: { id: submissionId }, select: { adminNotes: true } });
+  await prisma.submission.update({
+    where: { id: submissionId },
+    data: { status, adminNotes: appendAdminNotes(current?.adminNotes ?? null, note) },
+    select: { id: true }
+  });
+}
+
+export async function publishSubmission(formData: FormData) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+
+  const completedSteps: string[] = [];
+  let redirectParams: Record<string, string>;
+
+  try {
+    let submission = await readSubmissionForPublish(submissionId);
+    if (submission.status === SubmissionStatus.REJECTED) {
+      throw new Error("Cannot publish a rejected submission. Move it back under review first.");
+    }
+
+    const review = buildSubmissionReview(submission);
+    if (!review.validJson) {
+      throw new Error(`Invalid JSON: ${review.parseError ?? "Fix the draft JSON before publishing."}`);
+    }
+
+    if (submission.status === SubmissionStatus.SUBMITTED) {
+      await setSubmissionStatusForPublish(submission.id, SubmissionStatus.UNDER_REVIEW, "Publish workflow: marked under review.");
+      completedSteps.push("under review");
+      submission = await readSubmissionForPublish(submission.id);
+    }
+
+    if (submission.status === SubmissionStatus.UNDER_REVIEW) {
+      await setSubmissionStatusForPublish(submission.id, SubmissionStatus.APPROVED, "Publish workflow: approved for official import.");
+      completedSteps.push("approved");
+      submission = await readSubmissionForPublish(submission.id);
+    }
+
+    if (submission.status === SubmissionStatus.APPROVED) {
+      const preflight = await buildSubmissionImportPreflight(submission);
+      if (preflight.overallSummary.importBlocked) {
+        throw new Error(`Cannot publish yet: ${preflight.overallSummary.blockers.join(" ")}`);
+      }
+
+      await importApprovedSubmissionOfficialData(submission.id);
+      completedSteps.push("imported");
+      submission = await readSubmissionForPublish(submission.id);
+    }
+
+    if (submission.status !== SubmissionStatus.IMPORTED) {
+      throw new Error(`Cannot publish submission from status ${submission.status}.`);
+    }
+
+    await computeImportedSubmissionFormulaScores(submission.id);
+    completedSteps.push("scores");
+
+    await computeImportedSubmissionPlayerRatings(submission.id);
+    completedSteps.push("ratings");
+
+    await generateImportedSubmissionMonthlyRankings(submission.id);
+    completedSteps.push("rankings");
+
+    const validation = await validateImportedSubmissionRankings(submission.id);
+    completedSteps.push("validation");
+
+    if (!validation.validationPassed) {
+      throw new Error("Validation completed with issues. Review Advanced details for the validation result.");
+    }
+
+    revalidatePath("/admin/submissions");
+    revalidatePath(`/admin/submissions/${submission.id}`);
+    redirectParams = { reviewSuccess: `Publish completed: ${completedSteps.join(", ")}.` };
+  } catch (error) {
+    redirectParams = {
+      reviewError: `${error instanceof Error ? error.message : "Publish failed."} Completed steps: ${completedSteps.join(", ") || "none"}.`
+    };
+  }
+
+  redirect(reviewRedirectUrl(submissionId, redirectParams));
 }
 export async function updateSubmissionReviewStatus(formData: FormData) {
   await requireAdminUser();
