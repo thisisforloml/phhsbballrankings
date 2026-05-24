@@ -50,6 +50,9 @@ export type PlayerProfile = {
   birthDate: string | null;
   birthYear: number | null;
   classYear: string | null;
+  classYearOverride: number | null;
+  schoolOverride: string | null;
+  ageGroupOverride: "U13" | "U16" | "U19" | null;
   age: number | null;
   photoUrl: string | null;
   currentTeam: string;
@@ -107,6 +110,7 @@ async function loadPlayerById(id: string) {
       deletedAt: null
     },
     include: {
+      currentProgram: true,
       currentRatings: true,
       rankingRows: {
         where: {
@@ -135,7 +139,7 @@ async function loadPlayerById(id: string) {
           }
         },
         include: {
-          team: true,
+          team: { include: { program: true } },
           performanceScore: true,
           game: {
             include: {
@@ -309,6 +313,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
 
   const rating = selectProfileRating(player);
   const profileAgeGroup = rating?.ageGroup ?? player.gameStats[0]?.game.season.league.ageGroup ?? AgeGroup.U19;
+  const displayAgeGroup = (player.ageGroupOverride || profileAgeGroup) as AgeGroup;
   const snapshotRow = latestSnapshotRow(player, profileAgeGroup);
   const derivedRanks = await deriveSnapshotRanks(player, profileAgeGroup, snapshotRow?.snapshot.weekOf ?? null);
   const games = player.gameStats.map(mapGameStat);
@@ -337,11 +342,14 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     heightCm: player.heightCm,
     birthDate: player.birthDate ? player.birthDate.toISOString() : null,
     birthYear: player.birthDate ? player.birthDate.getUTCFullYear() : null,
-    classYear: formatClassYear(player.birthDate),
+    classYear: player.classYearOverride ? `Class of ${player.classYearOverride}` : formatClassYear(player.birthDate),
+    classYearOverride: player.classYearOverride,
+    schoolOverride: player.schoolOverride,
+    ageGroupOverride: (player.ageGroupOverride as PlayerProfile["ageGroupOverride"]) ?? null,
     age: calculateAge(player.birthDate),
     photoUrl: player.photoUrl,
-    currentTeam: getUaapSchoolDisplayName(mostRecentStat?.team.name),
-    ageGroup: profileAgeGroup,
+    currentTeam: player.currentProgram?.fullName || player.schoolOverride?.trim() || mostRecentStat?.team.program?.fullName || getUaapSchoolDisplayName(mostRecentStat?.team.name),
+    ageGroup: displayAgeGroup,
     rating: Number(rating?.adjustedRating ?? 0),
     observedRating: Number(rating?.observedRating ?? rating?.adjustedRating ?? 0),
     starRating: (rating?.starRating ?? 1) as PlayerProfile["starRating"],
@@ -358,5 +366,3 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     leagues: buildLeagueHistory(games, player.gameStats)
   };
 }
-
-
