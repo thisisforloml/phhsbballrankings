@@ -43,6 +43,10 @@ function CommonFields({ titlePlaceholder }: { titlePlaceholder: string }) {
           Game date
           <input name="gameDate" type="date" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" />
         </label>
+        <label className="grid gap-2 text-sm font-semibold text-surface-700 md:col-span-2">
+          Game number
+          <input name="gameNumber" maxLength={120} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Optional. A temporary draft number is generated if blank." />
+        </label>
       </div>
     </div>
   );
