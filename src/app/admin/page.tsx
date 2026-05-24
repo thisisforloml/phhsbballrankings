@@ -18,13 +18,15 @@ function statusBadgeClass(status: string) {
 
 export default async function AdminPage() {
   const user = await requireAdminUser();
-  const [submissionCount, pendingSubmissions, playerCount, officialGames, snapshotCount, organizerCount] = await Promise.all([
+  const [submissionCount, pendingSubmissions, programCount, playerCount, officialGames, snapshotCount, organizerCount, legacyTeamCount] = await Promise.all([
     prisma.submission.count(),
     prisma.submission.count({ where: { status: { in: ["SUBMITTED", "UNDER_REVIEW", "APPROVED"] } } }),
+    prisma.program.count({ where: { deletedAt: null } }),
     prisma.player.count({ where: { deletedAt: null } }),
     prisma.game.findMany({ where: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } }, select: { homeTeamId: true, awayTeamId: true } }),
     prisma.rankingSnapshot.count(),
-    prisma.user.count({ where: { role: "ORGANIZER" } })
+    prisma.user.count({ where: { role: "ORGANIZER" } }),
+    prisma.team.count({ where: { deletedAt: null } })
   ]);
 
   const officialTeamRecordCount = new Set(officialGames.flatMap((game) => [game.homeTeamId, game.awayTeamId])).size;
@@ -32,7 +34,7 @@ export default async function AdminPage() {
 
   const latestSubmission = await prisma.submission.findFirst({ orderBy: { updatedAt: "desc" }, select: { id: true, title: true, status: true, updatedAt: true } });
 
-  const cards = [
+  const primaryCards = [
     {
       title: "Submissions",
       description: "Review incoming game stats, fix draft issues, and publish when ready.",
@@ -41,25 +43,35 @@ export default async function AdminPage() {
       status: pendingSubmissions ? `${pendingSubmissions} need attention` : `${submissionCount} total`
     },
     {
-      title: "Player Management",
-      description: "Edit player profile fields such as position, height, birth date, hometown, and region.",
+      title: "Programs",
+      description: "Manage canonical schools, clubs, team programs, linked roster records, and player current program display.",
+      href: "/admin/programs",
+      action: "Manage programs",
+      status: `${programCount} programs`
+    },
+    {
+      title: "Players",
+      description: "Search and edit player bio fields. Use Program detail pages for school/program organization and transfer workflow.",
       href: "/admin/players",
-      action: "Manage players",
-      status: `${playerCount} active players`
+      action: "Search players",
+      status: `${playerCount} player records`
     },
     {
-      title: "Team Management",
-      description: "Review team names, program display names, and duplicate/cross-context warnings.",
-      href: "/admin/teams",
-      action: "Manage teams",
-      status: `${officialTeamRecordCount} official team records`
-    },
-    {
-      title: "Rankings/Data Health",
-      description: "Check public standings, official games, ranking snapshots, and data health indicators.",
+      title: "Rankings / Data Health",
+      description: "Check public rankings, official games, ranking snapshots, and data health indicators.",
       href: "/rankings",
       action: "View rankings",
       status: `${officialGameCount} official games, ${snapshotCount} snapshots`
+    }
+  ];
+
+  const secondaryCards = [
+    {
+      title: "Teams (Legacy)",
+      description: "Compatibility page for old internal Team records. Use Program Management for school, club, and team organization.",
+      href: "/admin/teams",
+      action: "Open legacy teams",
+      status: `${legacyTeamCount} internal Team rows, ${officialTeamRecordCount} used in official games`
     },
     {
       title: "Organizer Tools",
@@ -81,7 +93,7 @@ export default async function AdminPage() {
             <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <h1 className="font-display text-stat-md text-navy-800">Admin Dashboard</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">Signed in as {user.name}. Start with submissions, then use player and team tools for profile and display cleanup.</p>
+                <p className="mt-2 max-w-3xl text-ink-600">Signed in as {user.name}. Start with submissions and Program Management. Player Management is for player search and profile edits; legacy Team records are secondary.</p>
               </div>
               <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{user.role}</span>
             </div>
@@ -100,8 +112,8 @@ export default async function AdminPage() {
             </Link>
           ) : null}
 
-          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {cards.map((card) => (
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {primaryCards.map((card) => (
               <article key={card.title} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
                 <div className="flex min-h-full flex-col gap-4">
                   <div>
@@ -112,6 +124,24 @@ export default async function AdminPage() {
                     <p className="mt-3 text-sm leading-6 text-ink-600">{card.description}</p>
                   </div>
                   <Link href={card.href} className="button primary mt-auto w-fit">{card.action}</Link>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <section className="grid gap-4 md:grid-cols-2">
+            {secondaryCards.map((card) => (
+              <article key={card.title} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+                <div className="flex min-h-full flex-col gap-4">
+                  <div>
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <h2 className="font-display text-2xl text-navy-800">{card.title}</h2>
+                      <span className="rounded-full bg-amber-50 px-3 py-1 font-mono text-[0.65rem] uppercase text-amber-800">Secondary</span>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-ink-600">{card.description}</p>
+                    <p className="mt-2 font-mono text-mono-sm uppercase text-ink-500">{card.status}</p>
+                  </div>
+                  <Link href={card.href} className="button secondary mt-auto w-fit">{card.action}</Link>
                 </div>
               </article>
             ))}

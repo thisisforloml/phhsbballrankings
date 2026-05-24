@@ -80,10 +80,10 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
         <section className="container-px grid gap-6 py-8 xl:grid-cols-[minmax(28rem,1.05fr)_minmax(24rem,0.95fr)]">
           <div className="grid gap-6">
             <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-              <p className="label">Program & Team Management</p>
-              <h1 className="mt-2 font-display text-stat-md text-navy-800">Programs, Teams, and Players</h1>
-              <p className="mt-2 text-sm text-ink-600">Manage existing team monikers and review derived school/program groups. Program group editing and transfer history require the proposed Program model migration.</p>
-              <p className="mt-4 rounded-md bg-green-50 p-4 text-sm font-semibold text-green-900">Program Management is now available at /admin/programs. This page remains available for compatibility team-record edits.</p>
+              <p className="label">Legacy Team Records</p>
+              <h1 className="mt-2 font-display text-stat-md text-navy-800">Teams (Legacy)</h1>
+              <p className="mt-2 text-sm text-ink-600">Use Program Management for school, club, and team organization. This page is for old internal Team records and compatibility edits only.</p>
+              <p className="mt-4 rounded-md bg-amber-50 p-4 text-sm font-semibold text-amber-900">Program Management is the primary workflow at /admin/programs. Editing here changes only the selected internal Team record; it does not merge teams or update Program groups.</p>
               <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto] md:items-center">
                 <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search program, team, player, city, region" className="w-full rounded-md border border-surface-300 px-3 py-3" />
                 <label className="flex items-center gap-2 text-sm text-ink-600">
@@ -108,7 +108,7 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
                       <div><h3 className="font-semibold text-ink-900">{group.publicSchoolName}</h3><p className="text-xs uppercase tracking-wide text-ink-500">{group.programAbbreviation} / {group.programType}</p></div>
                       <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${group.hasSameContextDuplicate ? "bg-amber-100 text-amber-900" : "bg-green-50 text-green-800"}`}>{group.hasSameContextDuplicate ? "Needs review" : "Expected"}</span>
                     </button>
-                    <div className="mt-3 rounded-md bg-surface-100 p-3 text-sm text-ink-600">Program group fields are read-only until the Program model migration exists. Click a team below to edit its moniker.</div>
+                    <div className="mt-3 rounded-md bg-surface-100 p-3 text-sm text-ink-600">Program group fields are managed in Program Management. Click a legacy Team record below only when you need to edit that internal moniker.</div>
                     <div className="mt-3 grid gap-2">
                       {group.teams.map((team) => (
                         <button key={team.id} type="button" onClick={() => setSelectedId(team.id)} className={`grid gap-1 rounded-md border px-3 py-3 text-left ${selectedTeam?.id === team.id ? "border-navy-800 bg-navy-50" : "border-surface-200 bg-white hover:bg-surface-50"}`}>

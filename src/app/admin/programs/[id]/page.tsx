@@ -87,6 +87,8 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
     aliasesText: aliasesToStrings(program.aliases).join("\n")
   };
 
+  const contextTeams = new Map<string, Set<string>>();
+  const contextTeamNames = new Map<string, Set<string>>();
   const teamRows: TeamEditorData[] = program.teams.map((team) => {
     const gameMap = new Map([...team.homeGames, ...team.awayGames].map((game) => [game.id, game]));
     const games = Array.from(gameMap.values());
@@ -95,13 +97,23 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
       return !latest || game.gameDate > latest ? game.gameDate : latest;
     }, null);
 
+    const contexts = uniqueSorted(games.map((game) => `${game.season.league.ageGroup} ${inferGender(game.season.league.name, team.name)} / ${game.season.league.name} / ${game.season.name}`));
+    for (const context of contexts) {
+      const teamIds = contextTeams.get(context) ?? new Set<string>();
+      teamIds.add(team.id);
+      contextTeams.set(context, teamIds);
+      const names = contextTeamNames.get(context) ?? new Set<string>();
+      names.add(team.name);
+      contextTeamNames.set(context, names);
+    }
+
     return {
       id: team.id,
       name: team.name,
       ageGroups: uniqueSorted(games.map((game) => game.season.league.ageGroup)),
       genders: uniqueSorted(games.map((game) => inferGender(game.season.league.name, team.name))),
       leagues: uniqueSorted(games.map((game) => game.season.league.name)),
-      contexts: uniqueSorted(games.map((game) => `${game.season.league.ageGroup} ${inferGender(game.season.league.name, team.name)} / ${game.season.league.name} / ${game.season.name}`)),
+      contexts,
       officialGames: games.length,
       activeGameStats: team.gameStats.length,
       latestGameDate: formatDate(latestGameDate),
@@ -113,6 +125,15 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
 
   const activeTeamRows = teamRows.filter((team) => team.officialGames > 0 || team.activeGameStats > 0);
   const legacyTeamRows = teamRows.filter((team) => team.officialGames === 0 && team.activeGameStats === 0);
+  const duplicateContextGroups = Array.from(contextTeams.entries())
+    .filter(([, teamIds]) => teamIds.size > 1)
+    .map(([context, teamIds]) => ({ context, teamCount: teamIds.size, teams: Array.from(contextTeamNames.get(context) ?? []).sort((left, right) => left.localeCompare(right)) }))
+    .sort((left, right) => left.context.localeCompare(right.context));
+  const highTeamCount = program.teams.length >= 9;
+  const cleanupItems = [
+    ...duplicateContextGroups.map((group) => ({ title: "Same-context team records", detail: `${group.context}: ${group.teams.join(", ")}`, tone: "warning" as const })),
+    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${program.teams.length} linked Team records: ${activeTeamRows.length} current active and ${legacyTeamRows.length} inactive or legacy. Review legacy records before renaming anything.`, tone: "notice" as const }] : [])
+  ];
 
   const playerMap = new Map<string, ProgramPlayerData>();
 
@@ -160,24 +181,17 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
                 <h1 className="font-display text-stat-md text-navy-800">{program.fullName}</h1>
                 <p className="mt-2 text-ink-600">{program.abbreviation || "No abbreviation"} / {program.type} / {[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</p>
               </div>
-              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} active teams</span><span>{legacyTeamRows.length} legacy teams</span><span>{players.length} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
+              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} current active teams</span><span>{legacyTeamRows.length} legacy teams</span><span>{players.length} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
             </div>
           </div>
 
-          <div className="grid gap-6 xl:grid-cols-[minmax(26rem,0.9fr)_minmax(34rem,1.1fr)]">
-            <ProgramEditor program={programData} />
-            <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-              <p className="label">Transfer status</p>
-              <h2 className="mt-2 font-display text-3xl text-navy-800">Player transfers</h2>
-              <p className="mt-2 rounded-md bg-amber-50 p-4 text-sm text-amber-900">Current Program changes are display/admin changes only. Historical games remain tied to the team and Program from that game.</p>
-            </section>
-          </div>
+          <ProgramEditor program={programData} />
 
           <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
-                <h2 className="font-display text-3xl text-navy-800">Active Teams</h2>
-                <p className="mt-1 text-sm text-ink-600">Teams used in official Games or active GameStats.</p>
+                <h2 className="font-display text-3xl text-navy-800">Current Active Teams</h2>
+                <p className="mt-1 text-sm text-ink-600">Internal Team records currently used in official Games or active GameStats.</p>
               </div>
               <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase text-green-800">{activeTeamRows.length} active</span>
             </div>
@@ -187,9 +201,28 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
             </div>
           </section>
 
+          <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <h2 className="font-display text-3xl text-navy-800">Possible Cleanup Needed</h2>
+                <p className="mt-1 text-sm text-ink-600">Read-only diagnostics. This section does not merge, delete, or reassign teams.</p>
+              </div>
+              <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${cleanupItems.length ? "bg-amber-50 text-amber-800" : "bg-green-50 text-green-800"}`}>{cleanupItems.length ? `${cleanupItems.length} notices` : "No duplicate contexts"}</span>
+            </div>
+            <div className="mt-4 grid gap-3">
+              {cleanupItems.map((item) => (
+                <div key={`${item.title}:${item.detail}`} className={`rounded-md p-4 text-sm ${item.tone === "warning" ? "bg-amber-50 text-amber-900" : "bg-surface-100 text-ink-700"}`}>
+                  <strong className="block text-ink-900">{item.title}</strong>
+                  <span>{item.detail}</span>
+                </div>
+              ))}
+              {!cleanupItems.length ? <p className="rounded-md bg-green-50 p-4 text-sm text-green-900">No active same-context duplicate team groups detected. Separate teams by age group, gender, league, or season are expected.</p> : null}
+            </div>
+          </section>
+
           <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive / Legacy Teams ({legacyTeamRows.length})</summary>
-            <p className="mt-3 rounded-md bg-amber-50 p-4 text-sm text-amber-900">Legacy teams are kept for audit/history. Renaming them does not merge team records.</p>
+            <p className="mt-3 rounded-md bg-amber-50 p-4 text-sm text-amber-900">Legacy teams are kept for audit/history. Renaming them does not merge records.</p>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               {legacyTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} legacy />)}
               {!legacyTeamRows.length ? <p className="text-sm text-ink-600">No inactive or legacy teams linked to this Program.</p> : null}
