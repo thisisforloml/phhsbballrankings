@@ -1,4 +1,4 @@
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
+﻿import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { ProgramListClient, type ProgramListRow } from "./ProgramListClient";
@@ -70,7 +70,7 @@ export default async function AdminProgramsPage() {
       aliases: aliasesToStrings(program.aliases),
       linkedTeamCount: program.teams.length,
       activeTeamCount: activeTeamIds.size,
-      legacyTeamCount: program.teams.length - activeTeamIds.size,
+      inactiveTeamCount: program.teams.length - activeTeamIds.size,
       possibleDuplicateContextGroups: Array.from(contextTeams.values()).filter((teamIds) => teamIds.size > 1).length,
       derivedPlayerCount: playerIds.size,
       officialGameCount: officialGameIds.size
@@ -85,7 +85,7 @@ export default async function AdminProgramsPage() {
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
             <p className="label">Program Management</p>
             <h1 className="mt-2 font-display text-stat-md text-navy-800">Schools, Clubs, and Team Programs</h1>
-            <p className="mt-2 max-w-3xl text-ink-600">Use this as the primary structure for school, club, and team organization. Legacy internal Team records remain visible on Program detail pages for audit and cleanup planning.</p>
+            <p className="mt-2 max-w-3xl text-ink-600">Use this as the primary structure for school, club, and team organization. Inactive Team records are hidden from the normal workflow and kept only in collapsed audit sections.</p>
           </div>
           <ProgramListClient programs={rows} />
         </section>

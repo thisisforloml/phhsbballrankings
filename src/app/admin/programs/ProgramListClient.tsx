@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -14,7 +14,7 @@ export type ProgramListRow = {
   aliases: string[];
   linkedTeamCount: number;
   activeTeamCount: number;
-  legacyTeamCount: number;
+  inactiveTeamCount: number;
   possibleDuplicateContextGroups: number;
   derivedPlayerCount: number;
   officialGameCount: number;
@@ -26,12 +26,12 @@ function searchText(program: ProgramListRow) {
 
 function statusLabel(program: ProgramListRow) {
   if (program.possibleDuplicateContextGroups > 0) return "Needs review";
-  if (program.linkedTeamCount >= 9) return "High team count";
+  if (program.activeTeamCount >= 9) return "High active team count";
   return "Clean";
 }
 
 function statusClass(program: ProgramListRow) {
-  if (program.possibleDuplicateContextGroups > 0 || program.linkedTeamCount >= 9) return "bg-amber-50 text-amber-800";
+  if (program.possibleDuplicateContextGroups > 0 || program.activeTeamCount >= 9) return "bg-amber-50 text-amber-800";
   return "bg-green-50 text-green-800";
 }
 
@@ -69,7 +69,7 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
 
       <section className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
         <div className="hidden grid-cols-[1.5fr_8rem_8rem_8rem_8rem_7rem_7rem_9rem] gap-3 border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
-          <span>Program</span><span>Abbrev.</span><span>Type</span><span>Active</span><span>Legacy</span><span>Players</span><span>Games</span><span>Status</span>
+          <span>Program</span><span>Abbrev.</span><span>Type</span><span>Current Teams</span><span>Inactive</span><span>Players</span><span>Games</span><span>Status</span>
         </div>
         {filtered.map((program) => (
           <Link key={program.id} href={`/admin/programs/${program.id}`} className="grid gap-2 border-b border-surface-200 px-4 py-4 transition last:border-b-0 hover:bg-navy-50 lg:grid-cols-[1.5fr_8rem_8rem_8rem_8rem_7rem_7rem_9rem] lg:items-center">
@@ -77,7 +77,7 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
             <span className="font-mono text-sm text-ink-700">{program.abbreviation || "-"}</span>
             <span className="rounded-full bg-surface-100 px-3 py-1 text-center font-mono text-[0.65rem] uppercase text-ink-700">{program.type}</span>
             <span className="font-display text-stat-sm text-navy-800">{program.activeTeamCount}</span>
-            <span className="font-display text-stat-sm text-ink-600">{program.legacyTeamCount}</span>
+            <span className="text-xs font-semibold uppercase text-ink-500">{program.inactiveTeamCount ? `${program.inactiveTeamCount} hidden` : "None"}</span>
             <span className="font-display text-stat-sm text-navy-800">{program.derivedPlayerCount}</span>
             <span className="font-display text-stat-sm text-navy-800">{program.officialGameCount}</span>
             <span className={`rounded-full px-3 py-1 text-center font-mono text-[0.65rem] uppercase ${statusClass(program)}`}>{statusLabel(program)}</span>

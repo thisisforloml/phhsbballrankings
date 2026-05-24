@@ -216,10 +216,10 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
     .filter(([, teamIds]) => teamIds.size > 1)
     .map(([context, teamIds]) => ({ context, teamCount: teamIds.size, teams: Array.from(contextTeamNames.get(context) ?? []).sort((left, right) => left.localeCompare(right)) }))
     .sort((left, right) => left.context.localeCompare(right.context));
-  const highTeamCount = program.teams.length >= 9;
+  const highTeamCount = activeTeamRows.length >= 9;
   const cleanupItems = [
     ...duplicateContextGroups.map((group) => ({ title: "Same-context team records", detail: `${group.context}: ${group.teams.join(", ")}`, tone: "warning" as const })),
-    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${program.teams.length} linked Team records: ${activeTeamRows.length} current active and ${inactiveTeamRows.length} inactive. Review inactive records before renaming anything.`, tone: "notice" as const }] : [])
+    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${activeTeamRows.length} current active Team records. Review possible duplicates before renaming anything.`, tone: "notice" as const }] : [])
   ];
 
   const playerTeamCounts = new Map<string, number>();
@@ -275,7 +275,7 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
                 <h1 className="font-display text-stat-md text-navy-800">{program.fullName}</h1>
                 <p className="mt-2 text-ink-600">{program.abbreviation || "No abbreviation"} / {program.type} / {[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</p>
               </div>
-              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} current active teams</span><span>{inactiveTeamRows.length} inactive teams</span><span>{uniqueProgramPlayers.size} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
+              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} current teams</span><span>{uniqueProgramPlayers.size} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
             </div>
           </div>
 
@@ -284,16 +284,35 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
           <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
-                <h2 className="font-display text-3xl text-navy-800">Current Active Teams</h2>
-                <p className="mt-1 text-sm text-ink-600">Internal Team records currently used in official Games or active GameStats.</p>
+                <h2 className="font-display text-3xl text-navy-800">Current Teams</h2>
+                <p className="mt-1 text-sm text-ink-600">Team / Moniker records currently used by official Games or active GameStats.</p>
               </div>
-              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase text-green-800">{activeTeamRows.length} active</span>
+              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase text-green-800">{activeTeamRows.length} current</span>
             </div>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               {activeTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} />)}
-              {!activeTeamRows.length ? <p className="text-sm text-ink-600">No active teams linked to this Program.</p> : null}
+              {!activeTeamRows.length ? <p className="text-sm text-ink-600">No current teams linked to this Program.</p> : null}
             </div>
           </section>
+
+          <section className="grid gap-4">
+            <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <h2 className="font-display text-3xl text-navy-800">Players by Current Team</h2>
+              <p className="mt-1 text-sm text-ink-600">Players are grouped under each current Team / Moniker from official GameStats. Editing current program does not change historical teams or stats.</p>
+            </div>
+            {teamPlayerSections.map((section) => <TeamPlayerSection key={section.team.id} programId={program.id} section={section} programs={programOptions} />)}
+            {!teamPlayerSections.length ? <p className="rounded-lg border border-surface-200 bg-white p-5 text-sm text-ink-600 shadow-sm">No current player sections found for this Program.</p> : null}
+          </section>
+
+          {unassignedProgramPlayers.length ? (
+            <section className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
+              <div className="border-b border-surface-200 p-5">
+                <h2 className="font-display text-3xl text-navy-800">Unassigned / Program-level Players</h2>
+                <p className="mt-1 text-sm text-ink-600">These players have this Program set as their current program but do not have active GameStats under the current team sections.</p>
+              </div>
+              {unassignedProgramPlayers.map((player) => <ProgramPlayerRow key={player.id} programId={program.id} player={player} programs={programOptions} />)}
+            </section>
+          ) : null}
 
           <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <div className="flex flex-wrap items-end justify-between gap-3">
@@ -316,32 +335,12 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
 
           <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
             <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive Team Records ({inactiveTeamRows.length})</summary>
-            <p className="mt-3 rounded-md bg-amber-50 p-4 text-sm text-amber-900">Inactive team records are kept for audit/history. Renaming them does not merge records.</p>
+            <p className="mt-3 rounded-md bg-surface-100 p-4 text-sm text-ink-700">These records are not currently used by official games or stats. They are hidden from the normal workflow and kept only for audit/review.</p>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               {inactiveTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} inactive />)}
               {!inactiveTeamRows.length ? <p className="text-sm text-ink-600">No inactive teams linked to this Program.</p> : null}
             </div>
-          </details>
-
-          <section className="grid gap-4">
-            <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-              <h2 className="font-display text-3xl text-navy-800">Players by Active Team</h2>
-              <p className="mt-1 text-sm text-ink-600">Players are grouped under each current active Team / Moniker from official GameStats. Editing current program does not change historical teams or stats.</p>
-            </div>
-            {teamPlayerSections.map((section) => <TeamPlayerSection key={section.team.id} programId={program.id} section={section} programs={programOptions} />)}
-            {!teamPlayerSections.length ? <p className="rounded-lg border border-surface-200 bg-white p-5 text-sm text-ink-600 shadow-sm">No active player sections found for this Program.</p> : null}
-          </section>
-
-          {unassignedProgramPlayers.length ? (
-            <section className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-              <div className="border-b border-surface-200 p-5">
-                <h2 className="font-display text-3xl text-navy-800">Unassigned / Program-level Players</h2>
-                <p className="mt-1 text-sm text-ink-600">These players have this Program set as their current program but do not have active GameStats under the current active Team sections.</p>
-              </div>
-              {unassignedProgramPlayers.map((player) => <ProgramPlayerRow key={player.id} programId={program.id} player={player} programs={programOptions} />)}
-            </section>
-          ) : null}
-        </section>
+          </details>        </section>
       </div>
     </main>
   );
