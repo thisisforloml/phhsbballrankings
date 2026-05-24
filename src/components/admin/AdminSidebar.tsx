@@ -1,9 +1,10 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const items = [
   { href: "/admin", label: "Dashboard", key: "dashboard" },
   { href: "/admin/submissions", label: "Submissions", key: "submissions" },
   { href: "/admin/players", label: "Players", key: "players" },
+  { href: "/admin/programs", label: "Programs", key: "programs" },
   { href: "/admin/teams", label: "Teams", key: "teams" },
   { href: "/rankings", label: "Data Health / Rankings", key: "rankings" },
   { href: "/organizer/submissions", label: "Organizer Tools", key: "organizer" }
