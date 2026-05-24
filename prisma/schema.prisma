@@ -74,6 +74,13 @@ enum OrganizerSubmissionType {
   UPLOAD_XLSX
 }
 
+enum ProgramType {
+  SCHOOL
+  CLUB
+  TEAM
+  UNKNOWN
+}
+
 model User {
   id           String             @id @default(uuid()) @db.Uuid
   name         String
@@ -93,6 +100,28 @@ model User {
   @@map("users")
 }
 
+model Program {
+  id             String                 @id @default(uuid()) @db.Uuid
+  fullName       String
+  abbreviation   String?
+  type           ProgramType            @default(UNKNOWN)
+  city           String?
+  region         String?
+  aliases        Json?
+  teams          Team[]
+  currentPlayers Player[]
+  transferFrom   PlayerProgramHistory[] @relation("ProgramTransferFrom")
+  transferTo     PlayerProgramHistory[] @relation("ProgramTransferTo")
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  deletedAt      DateTime?
+
+  @@index([fullName])
+  @@index([abbreviation])
+  @@index([deletedAt])
+  @@map("programs")
+}
+
 model Player {
   id                String                 @id @default(uuid()) @db.Uuid
   firstName         String
@@ -102,9 +131,15 @@ model Player {
   gender            PlayerGender           @default(BOYS)
   photoUrl          String?
   heightCm          Int?
+  classYearOverride Int?
+  schoolOverride    String?
+  ageGroupOverride  String?
+  currentProgramId  String?                @db.Uuid
   city              String
   region            String
   position          String?
+  currentProgram    Program?               @relation(fields: [currentProgramId], references: [id])
+  programHistory    PlayerProgramHistory[]
   rosterSeasons     PlayerTeamSeason[]
   gameStats         GameStat[]
   performanceScores GamePerformanceScore[]
@@ -117,6 +152,7 @@ model Player {
   @@index([displayName])
   @@index([birthDate])
   @@index([gender])
+  @@index([currentProgramId])
   @@index([region, city])
   @@index([deletedAt])
   @@map("players")
@@ -172,8 +208,11 @@ model Team {
   createdAt     DateTime           @default(now())
   updatedAt     DateTime           @updatedAt
   deletedAt     DateTime?
+  program       Program?           @relation(fields: [programId], references: [id])
+  programId     String?            @db.Uuid
 
   @@index([name])
+  @@index([programId])
   @@index([region, city])
   @@index([deletedAt])
   @@map("teams")
@@ -297,6 +336,23 @@ model PlayerTeamSeason {
   @@index([teamId, seasonId])
   @@index([deletedAt])
   @@map("player_team_seasons")
+}
+
+model PlayerProgramHistory {
+  id            String    @id @default(uuid()) @db.Uuid
+  playerId      String    @db.Uuid
+  fromProgramId String?   @db.Uuid
+  toProgramId   String?   @db.Uuid
+  effectiveDate DateTime?
+  note          String?
+  changeType    String
+  player        Player    @relation(fields: [playerId], references: [id])
+  fromProgram   Program?  @relation("ProgramTransferFrom", fields: [fromProgramId], references: [id])
+  toProgram     Program?  @relation("ProgramTransferTo", fields: [toProgramId], references: [id])
+  createdAt     DateTime  @default(now())
+
+  @@index([playerId])
+  @@map("player_program_history")
 }
 
 model Game {
@@ -506,7 +562,6 @@ model RankingSnapshotRow {
   @@map("ranking_snapshot_rows")
 }
 
-
 model Submission {
   id                String                  @id @default(uuid()) @db.Uuid
   submittedByUserId String                  @db.Uuid
@@ -532,6 +587,7 @@ model Submission {
   @@index([type])
   @@map("submissions")
 }
+
 model AuditLog {
   id           String   @id @default(uuid()) @db.Uuid
   userId       String?  @db.Uuid
@@ -548,5 +604,3 @@ model AuditLog {
   @@index([createdAt])
   @@map("audit_log")
 }
-
-
