@@ -1,4 +1,4 @@
-import { AgeGroup } from "@prisma/client";
+﻿import { AgeGroup } from "@prisma/client";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
@@ -6,8 +6,8 @@ import { getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
 import { PlayerManagementClient, type ManagedPlayer } from "./PlayerManagementClient";
 
 export const metadata = {
-  title: "Player Management - Admin Portal",
-  description: "Search and edit existing player bio fields."
+  title: "Player Search - Admin Portal",
+  description: "Secondary search utility for player records."
 };
 
 export default async function AdminPlayersPage() {

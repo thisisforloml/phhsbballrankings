@@ -1,14 +1,29 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { formatHeight, getPlayerProfileHref } from "@/lib/format";
-import { getClassYear } from "@/lib/ranking-eligibility";
-import { PlayerCurrentProgramForm, ProgramEditor, TeamMonikerForm, type ProgramEditorData, type ProgramPlayerData, type ProgramSelectOption, type TeamEditorData } from "./ProgramDetailClient";
+import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
+import {
+  ProgramEditor,
+  ProgramPlayerRow,
+  TeamMonikerForm,
+  TeamPlayerSection,
+  type ProgramEditorData,
+  type ProgramPlayerData,
+  type ProgramSelectOption,
+  type ProgramTeamPlayerSectionData,
+  type TeamEditorData
+} from "./ProgramDetailClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+type LoadedProgram = NonNullable<Awaited<ReturnType<typeof loadProgram>>["program"]>;
+type LoadedTeam = LoadedProgram["teams"][number];
+type LoadedPlayer = LoadedTeam["gameStats"][number]["player"];
+type LoadedCurrentPlayer = LoadedProgram["currentPlayers"][number];
 
 function aliasesToStrings(value: unknown): string[] {
   return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
@@ -31,11 +46,79 @@ function formatDate(date: Date | null) {
   return date ? date.toISOString().slice(0, 10) : null;
 }
 
+function toInputDate(date: Date | null) {
+  return date ? date.toISOString().slice(0, 10) : "";
+}
+
+function getPlayerNameParts(player: { firstName: string | null; lastName: string | null; displayName: string }) {
+  const names = player.displayName.trim().split(/\s+/);
+  return {
+    firstName: player.firstName || names.slice(0, -1).join(" ") || player.displayName,
+    lastName: player.lastName || names.at(-1) || player.displayName
+  };
+}
+
+function createPlayerData(player: LoadedPlayer | LoadedCurrentPlayer, derivedProgram: string, appearsInMultipleTeamSections: boolean): ProgramPlayerData {
+  const names = getPlayerNameParts(player);
+  const calculatedClassYear = getClassYear(player.birthDate);
+  const computedAgeBracket = getAgeBracketAsOfMarch31(player.birthDate);
+
+  return {
+    id: player.id,
+    displayName: player.displayName,
+    firstName: names.firstName,
+    lastName: names.lastName,
+    gender: player.gender,
+    currentProgramId: player.currentProgramId,
+    currentProgram: player.currentProgram?.fullName ?? "Not set",
+    derivedProgram,
+    schoolOverride: player.schoolOverride,
+    classYear: classYearLabel(player.birthDate, player.classYearOverride),
+    calculatedClassYear,
+    classYearOverride: player.classYearOverride,
+    computedAgeBracket: computedAgeBracket ?? "Unknown",
+    ageGroupOverride: player.ageGroupOverride,
+    position: player.position,
+    height: formatHeight(player.heightCm),
+    heightCm: player.heightCm,
+    city: player.city,
+    region: player.region,
+    birthDate: toInputDate(player.birthDate),
+    photoUrl: player.photoUrl,
+    profileHref: getPlayerProfileHref({ id: player.id, displayName: player.displayName }),
+    appearsInMultipleTeamSections,
+    recentTransfers: player.programHistory.map((history) => ({
+      id: history.id,
+      fromProgram: history.fromProgram?.fullName ?? "Not set",
+      toProgram: history.toProgram?.fullName ?? "Not set",
+      effectiveDate: formatDate(history.effectiveDate),
+      note: history.note,
+      createdAt: formatDate(history.createdAt) ?? ""
+    }))
+  };
+}
+
 async function loadProgram(id: string) {
   const [program, programs] = await Promise.all([
     prisma.program.findFirst({
       where: { id, deletedAt: null },
       include: {
+        currentPlayers: {
+          where: { deletedAt: null },
+          include: {
+            currentProgram: true,
+            programHistory: {
+              include: { fromProgram: true, toProgram: true },
+              orderBy: { createdAt: "desc" },
+              take: 3
+            },
+            gameStats: {
+              where: { deletedAt: null, game: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } },
+              select: { teamId: true }
+            }
+          },
+          orderBy: { displayName: "asc" }
+        },
         teams: {
           where: { deletedAt: null },
           include: {
@@ -89,6 +172,8 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
 
   const contextTeams = new Map<string, Set<string>>();
   const contextTeamNames = new Map<string, Set<string>>();
+  const teamById = new Map(program.teams.map((team) => [team.id, team]));
+
   const teamRows: TeamEditorData[] = program.teams.map((team) => {
     const gameMap = new Map([...team.homeGames, ...team.awayGames].map((game) => [game.id, game]));
     const games = Array.from(gameMap.values());
@@ -124,7 +209,9 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
   });
 
   const activeTeamRows = teamRows.filter((team) => team.officialGames > 0 || team.activeGameStats > 0);
-  const legacyTeamRows = teamRows.filter((team) => team.officialGames === 0 && team.activeGameStats === 0);
+  const inactiveTeamRows = teamRows.filter((team) => team.officialGames === 0 && team.activeGameStats === 0);
+  const activeTeamIds = new Set(activeTeamRows.map((team) => team.id));
+
   const duplicateContextGroups = Array.from(contextTeams.entries())
     .filter(([, teamIds]) => teamIds.size > 1)
     .map(([context, teamIds]) => ({ context, teamCount: teamIds.size, teams: Array.from(contextTeamNames.get(context) ?? []).sort((left, right) => left.localeCompare(right)) }))
@@ -132,39 +219,46 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
   const highTeamCount = program.teams.length >= 9;
   const cleanupItems = [
     ...duplicateContextGroups.map((group) => ({ title: "Same-context team records", detail: `${group.context}: ${group.teams.join(", ")}`, tone: "warning" as const })),
-    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${program.teams.length} linked Team records: ${activeTeamRows.length} current active and ${legacyTeamRows.length} inactive or legacy. Review legacy records before renaming anything.`, tone: "notice" as const }] : [])
+    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${program.teams.length} linked Team records: ${activeTeamRows.length} current active and ${inactiveTeamRows.length} inactive. Review inactive records before renaming anything.`, tone: "notice" as const }] : [])
   ];
 
-  const playerMap = new Map<string, ProgramPlayerData>();
-
+  const playerTeamCounts = new Map<string, number>();
   for (const team of program.teams) {
-    for (const stat of team.gameStats) {
-      if (!playerMap.has(stat.player.id)) {
-        playerMap.set(stat.player.id, {
-          id: stat.player.id,
-          displayName: stat.player.displayName,
-          gender: stat.player.gender,
-          currentProgramId: stat.player.currentProgramId,
-          currentProgram: stat.player.currentProgram?.fullName ?? "Not set",
-          derivedProgram: program.fullName,
-          classYear: classYearLabel(stat.player.birthDate, stat.player.classYearOverride),
-          position: stat.player.position ?? "Not listed",
-          height: formatHeight(stat.player.heightCm),
-          profileHref: getPlayerProfileHref({ id: stat.player.id, displayName: stat.player.displayName }),
-          recentTransfers: stat.player.programHistory.map((history) => ({
-            id: history.id,
-            fromProgram: history.fromProgram?.fullName ?? "Not set",
-            toProgram: history.toProgram?.fullName ?? "Not set",
-            effectiveDate: formatDate(history.effectiveDate),
-            note: history.note,
-            createdAt: formatDate(history.createdAt) ?? ""
-          }))
-        });
-      }
+    if (!activeTeamIds.has(team.id)) continue;
+    const uniquePlayerIds = new Set(team.gameStats.map((stat) => stat.player.id));
+    for (const playerId of uniquePlayerIds) {
+      playerTeamCounts.set(playerId, (playerTeamCounts.get(playerId) ?? 0) + 1);
     }
   }
 
-  const players = Array.from(playerMap.values()).sort((left, right) => left.displayName.localeCompare(right.displayName));
+  const teamPlayerSections: ProgramTeamPlayerSectionData[] = activeTeamRows.map((teamRow) => {
+    const team = teamById.get(teamRow.id);
+    const playersById = new Map<string, LoadedPlayer>();
+    for (const stat of team?.gameStats ?? []) {
+      playersById.set(stat.player.id, stat.player);
+    }
+    const players = Array.from(playersById.values())
+      .sort((left, right) => left.displayName.localeCompare(right.displayName))
+      .map((player) => createPlayerData(player, program.fullName, (playerTeamCounts.get(player.id) ?? 0) > 1));
+
+    return { team: teamRow, players };
+  });
+
+  const activeSectionPlayerIds = new Set<string>();
+  for (const section of teamPlayerSections) {
+    for (const player of section.players) activeSectionPlayerIds.add(player.id);
+  }
+
+  const unassignedProgramPlayers = program.currentPlayers
+    .filter((player) => !activeSectionPlayerIds.has(player.id) && !player.gameStats.some((stat) => activeTeamIds.has(stat.teamId)))
+    .map((player) => createPlayerData(player, "Current program assignment", false));
+
+  const uniqueProgramPlayers = new Set<string>();
+  for (const section of teamPlayerSections) {
+    for (const player of section.players) uniqueProgramPlayers.add(player.id);
+  }
+  for (const player of unassignedProgramPlayers) uniqueProgramPlayers.add(player.id);
+
   const officialGames = activeTeamRows.reduce((sum, team) => sum + team.officialGames, 0);
   const gameStats = activeTeamRows.reduce((sum, team) => sum + team.activeGameStats, 0);
 
@@ -181,7 +275,7 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
                 <h1 className="font-display text-stat-md text-navy-800">{program.fullName}</h1>
                 <p className="mt-2 text-ink-600">{program.abbreviation || "No abbreviation"} / {program.type} / {[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</p>
               </div>
-              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} current active teams</span><span>{legacyTeamRows.length} legacy teams</span><span>{players.length} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
+              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} current active teams</span><span>{inactiveTeamRows.length} inactive teams</span><span>{uniqueProgramPlayers.size} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
             </div>
           </div>
 
@@ -205,7 +299,7 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
                 <h2 className="font-display text-3xl text-navy-800">Possible Cleanup Needed</h2>
-                <p className="mt-1 text-sm text-ink-600">Read-only diagnostics. This section does not merge, delete, or reassign teams.</p>
+                <p className="mt-1 text-sm text-ink-600">Read-only diagnostics. Possible duplicates require a separate approved cleanup plan.</p>
               </div>
               <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${cleanupItems.length ? "bg-amber-50 text-amber-800" : "bg-green-50 text-green-800"}`}>{cleanupItems.length ? `${cleanupItems.length} notices` : "No duplicate contexts"}</span>
             </div>
@@ -221,25 +315,32 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
           </section>
 
           <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-            <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive / Legacy Teams ({legacyTeamRows.length})</summary>
-            <p className="mt-3 rounded-md bg-amber-50 p-4 text-sm text-amber-900">Legacy teams are kept for audit/history. Renaming them does not merge records.</p>
+            <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive Team Records ({inactiveTeamRows.length})</summary>
+            <p className="mt-3 rounded-md bg-amber-50 p-4 text-sm text-amber-900">Inactive team records are kept for audit/history. Renaming them does not merge records.</p>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              {legacyTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} legacy />)}
-              {!legacyTeamRows.length ? <p className="text-sm text-ink-600">No inactive or legacy teams linked to this Program.</p> : null}
+              {inactiveTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} inactive />)}
+              {!inactiveTeamRows.length ? <p className="text-sm text-ink-600">No inactive teams linked to this Program.</p> : null}
             </div>
           </details>
 
-          <section className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-            <div className="border-b border-surface-200 p-5">
-              <h2 className="font-display text-3xl text-navy-800">Players</h2>
-              <p className="mt-1 text-sm text-ink-600">Derived from active official GameStats for linked teams. Use Edit only for data correction; use Transfer for real school moves.</p>
+          <section className="grid gap-4">
+            <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <h2 className="font-display text-3xl text-navy-800">Players by Active Team</h2>
+              <p className="mt-1 text-sm text-ink-600">Players are grouped under each current active Team / Moniker from official GameStats. Editing current program does not change historical teams or stats.</p>
             </div>
-            <div className="hidden grid-cols-[1.25fr_7rem_1fr_1fr_8rem_8rem] gap-3 border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
-              <span>Player</span><span>Gender</span><span>Current program</span><span>Derived program</span><span>Class</span><span>Profile</span>
-            </div>
-            {players.map((player) => <PlayerCurrentProgramForm key={player.id} programId={program.id} player={player} programs={programOptions} />)}
-            {!players.length ? <p className="p-5 text-sm text-ink-600">No active players derived from linked team stats.</p> : null}
+            {teamPlayerSections.map((section) => <TeamPlayerSection key={section.team.id} programId={program.id} section={section} programs={programOptions} />)}
+            {!teamPlayerSections.length ? <p className="rounded-lg border border-surface-200 bg-white p-5 text-sm text-ink-600 shadow-sm">No active player sections found for this Program.</p> : null}
           </section>
+
+          {unassignedProgramPlayers.length ? (
+            <section className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
+              <div className="border-b border-surface-200 p-5">
+                <h2 className="font-display text-3xl text-navy-800">Unassigned / Program-level Players</h2>
+                <p className="mt-1 text-sm text-ink-600">These players have this Program set as their current program but do not have active GameStats under the current active Team sections.</p>
+              </div>
+              {unassignedProgramPlayers.map((player) => <ProgramPlayerRow key={player.id} programId={program.id} player={player} programs={programOptions} />)}
+            </section>
+          ) : null}
         </section>
       </div>
     </main>

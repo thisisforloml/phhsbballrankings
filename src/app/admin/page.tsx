@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
@@ -18,7 +18,7 @@ function statusBadgeClass(status: string) {
 
 export default async function AdminPage() {
   const user = await requireAdminUser();
-  const [submissionCount, pendingSubmissions, programCount, playerCount, officialGames, snapshotCount, organizerCount, legacyTeamCount] = await Promise.all([
+  const [submissionCount, pendingSubmissions, programCount, playerCount, officialGames, snapshotCount, organizerCount, internalTeamRecordCount] = await Promise.all([
     prisma.submission.count(),
     prisma.submission.count({ where: { status: { in: ["SUBMITTED", "UNDER_REVIEW", "APPROVED"] } } }),
     prisma.program.count({ where: { deletedAt: null } }),
@@ -50,13 +50,6 @@ export default async function AdminPage() {
       status: `${programCount} programs`
     },
     {
-      title: "Players",
-      description: "Search and edit player bio fields. Use Program detail pages for school/program organization and transfer workflow.",
-      href: "/admin/players",
-      action: "Search players",
-      status: `${playerCount} player records`
-    },
-    {
       title: "Rankings / Data Health",
       description: "Check public rankings, official games, ranking snapshots, and data health indicators.",
       href: "/rankings",
@@ -67,11 +60,18 @@ export default async function AdminPage() {
 
   const secondaryCards = [
     {
-      title: "Teams (Legacy)",
-      description: "Compatibility page for old internal Team records. Use Program Management for school, club, and team organization.",
+      title: "Player Search",
+      description: "Secondary utility for finding players. Edit player profile fields from Program detail team sections when possible.",
+      href: "/admin/players",
+      action: "Search players",
+      status: `${playerCount} player records`
+    },
+    {
+      title: "Internal Team Records",
+      description: "Compatibility page for old internal Team records. Program Management is the main editor.",
       href: "/admin/teams",
-      action: "Open legacy teams",
-      status: `${legacyTeamCount} internal Team rows, ${officialTeamRecordCount} used in official games`
+      action: "Review internal teams",
+      status: `${internalTeamRecordCount} internal Team rows, ${officialTeamRecordCount} used in official games`
     },
     {
       title: "Organizer Tools",
@@ -93,7 +93,7 @@ export default async function AdminPage() {
             <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <h1 className="font-display text-stat-md text-navy-800">Admin Dashboard</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">Signed in as {user.name}. Start with submissions and Program Management. Player Management is for player search and profile edits; legacy Team records are secondary.</p>
+                <p className="mt-2 max-w-3xl text-ink-600">Signed in as {user.name}. Start with submissions and Program Management. Programs are now the main place to edit schools/clubs, teams/monikers, and players.</p>
               </div>
               <span className="rounded-full bg-navy-50 px-4 py-2 font-mono text-mono-sm uppercase text-navy-800">{user.role}</span>
             </div>
@@ -112,7 +112,7 @@ export default async function AdminPage() {
             </Link>
           ) : null}
 
-          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {primaryCards.map((card) => (
               <article key={card.title} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
                 <div className="flex min-h-full flex-col gap-4">

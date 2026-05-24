@@ -1,4 +1,4 @@
-import { requireAdminUser } from "@/lib/portal-auth";
+﻿import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { resolveProgramIdentity } from "@/lib/uaap-school-display";
 import { TeamManagementClient, type ManagedTeam, type TeamSchoolGroup } from "./TeamManagementClient";
@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Teams (Legacy) - Admin Portal",
+  title: "Internal Team Records - Admin Portal",
   description: "Compatibility page for old internal Team records."
 };
 
