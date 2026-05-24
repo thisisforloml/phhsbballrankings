@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const primaryItems = [
   { href: "/admin", label: "Dashboard", key: "dashboard" },
@@ -9,6 +9,7 @@ const primaryItems = [
 
 const utilityItems = [
   { href: "/admin/players", label: "Player Search", key: "players" },
+  { href: "/admin/data-health/player-duplicates", label: "Player Duplicate Review", key: "playerDuplicates" },
   { href: "/organizer/submissions", label: "Organizer Tools", key: "organizer" }
 ] as const;
 
