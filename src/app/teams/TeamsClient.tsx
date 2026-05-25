@@ -2,7 +2,10 @@
 
 import { useMemo, useState } from "react";
 import type { TeamStandingsAgeGroup, TeamStandingsData, TeamStandingsGender } from "@/lib/team-rankings";
-import { EmptyState, WinLossPill } from "@/components/ui";
+import { EmptyState } from "@/components/ui";
+import { FilterBar, FilterControlClass, FilterField } from "@/components/public/FilterBar";
+import { SectionHeader } from "@/components/public/SectionHeader";
+import { TeamStandingTable } from "@/components/public/TeamStandingTable";
 
 const ageGroups: TeamStandingsAgeGroup[] = ["U13", "U16", "U19"];
 const genders: TeamStandingsGender[] = ["Boys", "Girls"];
@@ -73,106 +76,83 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
     setMinimumGames(1);
   }
 
+  const controlClass = FilterControlClass();
+
   return (
     <>
-      <section className="container-px">
-        <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="label">Team Rankings</p>
-              <h1 className="mt-2 font-display text-stat-md text-navy-800">Rankings</h1>
-            </div>
-            <div className="inline-flex rounded-full border border-surface-300 bg-surface-50 p-1">
+      <section className="container-px border-b border-line-500 bg-court-900 py-12 text-white">
+        <SectionHeader
+          eyebrow="Team Rankings"
+          title="Standings Board"
+          description="Official team records from active game results, grouped by competition scope and current team identity."
+          dark
+          action={
+            <div className="inline-flex border border-white/20 bg-white/10 p-1">
               {genders.map((item) => (
                 <button
                   key={item}
                   onClick={() => updateScope(ageGroup, item)}
-                  className={`rounded-full px-6 py-2 font-semibold ${gender === item ? "bg-navy-800 text-white" : "text-ink-600 hover:text-navy-800"}`}
+                  className={`px-6 py-2 text-sm font-black uppercase tracking-[0.08em] ${gender === item ? "bg-gold-500 text-court-900" : "text-white/72 hover:text-white"}`}
                 >
                   {item}
                 </button>
               ))}
             </div>
-          </div>
-          <p className="mt-3 font-mono text-mono-sm uppercase text-ink-400">Standings from official games</p>
+          }
+        />
+      </section>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.2fr_1fr_1fr_1fr]">
+      <FilterBar
+        summary="Standings from official games"
+        action={<button onClick={clearFilters} className="text-xs font-black uppercase tracking-[0.12em] text-court-500 hover:text-hardwood-600">Clear filters</button>}
+      >
             <section>
-              <p className="mb-3 font-mono text-mono-sm uppercase text-ink-500">Age Group</p>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-court-500">Age Group</p>
               <div className="flex flex-wrap gap-2">
                 {ageGroups.map((group) => (
                   <button
                     key={group}
                     onClick={() => updateScope(group)}
-                    className={`rounded-full px-4 py-2 font-mono text-mono-sm ${ageGroup === group ? "bg-navy-800 text-white" : "bg-surface-100 text-ink-600"}`}
+                    className={`border px-4 py-2 text-xs font-black uppercase tracking-[0.12em] ${ageGroup === group ? "border-court-900 bg-court-900 text-white" : "border-line-500 bg-white text-court-600 hover:border-court-900 hover:text-court-900"}`}
                   >
                     {group}
                   </button>
                 ))}
               </div>
             </section>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              Search
+            <FilterField label="Search">
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900"
+                className={controlClass}
                 placeholder="Team, program, league"
               />
-            </label>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              League
-              <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
+            </FilterField>
+            <FilterField label="League">
+              <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
                 <option value="All">All</option>
                 {leagueOptions.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
               </select>
-            </label>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              Region
-              <select value={region} onChange={(event) => setRegion(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
+            </FilterField>
+            <FilterField label="Region">
+              <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
                 <option>All</option>
                 {regionOptions.map((item) => <option key={item}>{item}</option>)}
               </select>
-            </label>
-            <label className="grid gap-3 font-mono text-mono-sm uppercase text-ink-500">
-              {`Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}
-              <input type="range" min={1} max={maxGamesPlayed} step={1} value={selectedMinimumGames} onChange={(event) => setMinimumGames(Number(event.target.value))} className="accent-navy-800" />
-            </label>
-          </div>
-
-          <button onClick={clearFilters} className="mt-5 font-mono text-mono-sm uppercase text-ink-500 hover:text-amber-600">
-            Clear filters
-          </button>
-        </div>
-      </section>
+            </FilterField>
+            <FilterField label={`Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}>
+              <input type="range" min={1} max={maxGamesPlayed} step={1} value={selectedMinimumGames} onChange={(event) => setMinimumGames(Number(event.target.value))} className="h-12 accent-hardwood-600" />
+            </FilterField>
+      </FilterBar>
 
       <section className="container-px mt-8">
-        <div className="mb-6 rounded-lg bg-white p-5 shadow-sm">
-          <p className="font-mono text-mono-sm uppercase text-ink-500">
+        <div className="mb-6 border border-line-500 bg-white p-4">
+          <p className="text-xs font-black uppercase tracking-[0.12em] text-court-500">
             Showing {visibleRows.length} teams | {ageGroup} {gender} | Min. {selectedMinimumGames} game{selectedMinimumGames === 1 ? "" : "s"} played
           </p>
         </div>
 
-        {visibleRows.length ? (
-          <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-            <div className="hidden grid-cols-[5rem_1.2fr_1.2fr_8rem_8rem_7rem_7rem_7rem_1fr] gap-3 border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
-              <span>Rank</span><span>Team</span><span>Internal record</span><span>Record</span><span>Win %</span><span title="Points Scored">PF</span><span title="Points Allowed">PA</span><span title="Point Difference">Diff</span><span>League / Season</span>
-            </div>
-            {visibleRows.map((team) => (
-              <div key={team.id} className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition hover:border-l-[3px] hover:border-l-amber-500 hover:bg-amber-100 last:border-b-0 lg:grid-cols-[5rem_1.2fr_1.2fr_8rem_8rem_7rem_7rem_7rem_1fr] lg:items-center">
-                <span className={`font-mono ${team.visibleRank === 1 ? "text-amber-700" : "text-ink-500"}`}>#{team.visibleRank}</span>
-                <strong className="text-ink-900" title={team.displayName}>{team.displayName}</strong>
-                <span className="text-sm text-ink-500" title={team.internalTeamName}>{team.internalTeamName}</span>
-                <span className="flex gap-2"><WinLossPill result="W" /> <strong className="font-display">{team.wins}</strong><WinLossPill result="L" /> <strong className="font-display">{team.losses}</strong></span>
-                <span className="font-display text-stat-sm">{team.winPercentage.toFixed(3)}</span>
-                <span className="font-mono text-sm text-ink-700" title="Points Scored">{team.pointsFor}</span>
-                <span className="font-mono text-sm text-ink-700" title="Points Allowed">{team.pointsAgainst}</span>
-                <span className={`font-mono text-sm ${team.pointDifferential >= 0 ? "text-green-700" : "text-red-700"}`} title="Point Difference">{team.pointDifferential >= 0 ? "+" : ""}{team.pointDifferential}</span>
-                <span className="truncate text-ink-600" title={`${team.leagueName} / ${team.seasonName}`}>{team.leagueName} / {team.seasonName}</span>
-              </div>
-            ))}
-          </div>
-        ) : <EmptyState icon="teams" title="No official team standings yet" />}
+        {visibleRows.length ? <TeamStandingTable rows={visibleRows} /> : <EmptyState icon="teams" title="No official team standings yet" />}
       </section>
     </>
   );
