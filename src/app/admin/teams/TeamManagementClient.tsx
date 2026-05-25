@@ -86,6 +86,7 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
               <h1 className="mt-2 font-display text-stat-md text-navy-800">Internal Team Records</h1>
               <p className="mt-2 text-sm text-ink-600">Program Management is now the main editor. This secondary page is kept for reviewing individual Team records.</p>
               <p className="mt-4 rounded-md bg-amber-50 p-4 text-sm font-semibold text-amber-900">Use /admin/programs for normal school, club, team, and player editing. Editing here changes only the selected Team record and does not update Program groups.</p>
+              <p className="mt-3 rounded-md bg-surface-100 p-4 text-sm text-ink-700">Inactive/internal records are hidden from Program Management and kept here only for audit/review. Delete them later only after the platform structure is finalized.</p>
               <div className="mt-5 grid gap-3">
                 <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search program, team, player, city, region" className="w-full rounded-md border border-surface-300 px-3 py-3" />
                 <div className="flex flex-wrap gap-2" aria-label="Record filters">

@@ -26,7 +26,14 @@ export default async function AdminProgramsPage() {
     where: { deletedAt: null },
     include: {
       teams: {
-        where: { deletedAt: null },
+        where: {
+          deletedAt: null,
+          OR: [
+            { homeGames: { some: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } } },
+            { awayGames: { some: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } } },
+            { gameStats: { some: { deletedAt: null, game: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } } } }
+          ]
+        },
         select: {
           id: true,
           name: true,
@@ -68,9 +75,7 @@ export default async function AdminProgramsPage() {
       city: program.city,
       region: program.region,
       aliases: aliasesToStrings(program.aliases),
-      linkedTeamCount: program.teams.length,
-      activeTeamCount: activeTeamIds.size,
-      inactiveTeamCount: program.teams.length - activeTeamIds.size,
+      teamCount: activeTeamIds.size,
       possibleDuplicateContextGroups: Array.from(contextTeams.values()).filter((teamIds) => teamIds.size > 1).length,
       derivedPlayerCount: playerIds.size,
       officialGameCount: officialGameIds.size
@@ -85,7 +90,7 @@ export default async function AdminProgramsPage() {
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
             <p className="label">Program Management</p>
             <h1 className="mt-2 font-display text-stat-md text-navy-800">Schools, Clubs, and Team Programs</h1>
-            <p className="mt-2 max-w-3xl text-ink-600">Use this as the primary structure for school, club, and team organization. Inactive Team records are hidden from the normal workflow and kept only in collapsed audit sections.</p>
+            <p className="mt-2 max-w-3xl text-ink-600">Use this as the primary structure for school, club, and team organization. Program Management shows only Teams currently used by official games or stats; inactive/internal records stay in Internal Team Records for audit review.</p>
           </div>
           <ProgramListClient programs={rows} />
         </section>

@@ -29,9 +29,6 @@ export type TeamEditorData = {
   officialGames: number;
   activeGameStats: number;
   latestGameDate: string | null;
-  historicalHomeGames: number;
-  historicalAwayGames: number;
-  historicalGameStats: number;
 };
 
 export type ProgramSelectOption = {
@@ -129,7 +126,7 @@ export function ProgramEditor({ program }: { program: ProgramEditorData }) {
   );
 }
 
-export function TeamMonikerForm({ programId, team, inactive = false }: { programId: string; team: TeamEditorData; inactive?: boolean }) {
+export function TeamMonikerForm({ programId, team }: { programId: string; team: TeamEditorData }) {
   const [state, formAction] = useFormState(updateProgramTeam, initialState);
   return (
     <form action={formAction} className="grid gap-3 rounded-md border border-surface-200 p-4">
@@ -143,7 +140,6 @@ export function TeamMonikerForm({ programId, team, inactive = false }: { program
         <span>Official games: {team.officialGames}</span>
         <span>GameStats: {team.activeGameStats}</span>
         <span>Latest game: {team.latestGameDate ?? "No active games"}</span>
-        {inactive ? <span className="sm:col-span-2">Historical linked rows: home games {team.historicalHomeGames}, away games {team.historicalAwayGames}, stat rows {team.historicalGameStats}</span> : null}
       </div>
       {team.contexts.length ? <p className="text-xs text-ink-500">{team.contexts.join(" | ")}</p> : null}
       <p className="rounded-md bg-surface-100 p-3 text-xs text-ink-600">Editing the moniker changes only this internal Team record. It does not merge teams or move official stats.</p>

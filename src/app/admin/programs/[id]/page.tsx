@@ -120,9 +120,15 @@ async function loadProgram(id: string) {
           orderBy: { displayName: "asc" }
         },
         teams: {
-          where: { deletedAt: null },
+          where: {
+            deletedAt: null,
+            OR: [
+              { homeGames: { some: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } } },
+              { awayGames: { some: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } } },
+              { gameStats: { some: { deletedAt: null, game: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } } } } }
+            ]
+          },
           include: {
-            _count: { select: { homeGames: true, awayGames: true, gameStats: true } },
             homeGames: { where: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } }, include: { season: { include: { league: true } } } },
             awayGames: { where: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } }, include: { season: { include: { league: true } } } },
             gameStats: {
@@ -201,25 +207,20 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
       contexts,
       officialGames: games.length,
       activeGameStats: team.gameStats.length,
-      latestGameDate: formatDate(latestGameDate),
-      historicalHomeGames: team._count.homeGames,
-      historicalAwayGames: team._count.awayGames,
-      historicalGameStats: team._count.gameStats
+      latestGameDate: formatDate(latestGameDate)
     };
   });
 
-  const activeTeamRows = teamRows.filter((team) => team.officialGames > 0 || team.activeGameStats > 0);
-  const inactiveTeamRows = teamRows.filter((team) => team.officialGames === 0 && team.activeGameStats === 0);
-  const activeTeamIds = new Set(activeTeamRows.map((team) => team.id));
+  const activeTeamIds = new Set(teamRows.map((team) => team.id));
 
   const duplicateContextGroups = Array.from(contextTeams.entries())
     .filter(([, teamIds]) => teamIds.size > 1)
     .map(([context, teamIds]) => ({ context, teamCount: teamIds.size, teams: Array.from(contextTeamNames.get(context) ?? []).sort((left, right) => left.localeCompare(right)) }))
     .sort((left, right) => left.context.localeCompare(right.context));
-  const highTeamCount = activeTeamRows.length >= 9;
+  const highTeamCount = teamRows.length >= 9;
   const cleanupItems = [
     ...duplicateContextGroups.map((group) => ({ title: "Same-context team records", detail: `${group.context}: ${group.teams.join(", ")}`, tone: "warning" as const })),
-    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${activeTeamRows.length} current active Team records. Review possible duplicates before renaming anything.`, tone: "notice" as const }] : [])
+    ...(highTeamCount ? [{ title: "High linked team count", detail: `${program.fullName} has ${teamRows.length} current Team records. Review possible duplicates before renaming anything.`, tone: "notice" as const }] : [])
   ];
 
   const playerTeamCounts = new Map<string, number>();
@@ -231,7 +232,7 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
     }
   }
 
-  const teamPlayerSections: ProgramTeamPlayerSectionData[] = activeTeamRows.map((teamRow) => {
+  const teamPlayerSections: ProgramTeamPlayerSectionData[] = teamRows.map((teamRow) => {
     const team = teamById.get(teamRow.id);
     const playersById = new Map<string, LoadedPlayer>();
     for (const stat of team?.gameStats ?? []) {
@@ -259,8 +260,8 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
   }
   for (const player of unassignedProgramPlayers) uniqueProgramPlayers.add(player.id);
 
-  const officialGames = activeTeamRows.reduce((sum, team) => sum + team.officialGames, 0);
-  const gameStats = activeTeamRows.reduce((sum, team) => sum + team.activeGameStats, 0);
+  const officialGames = teamRows.reduce((sum, team) => sum + team.officialGames, 0);
+  const gameStats = teamRows.reduce((sum, team) => sum + team.activeGameStats, 0);
 
   return (
     <main className="min-h-screen bg-surface-50 pt-20">
@@ -275,7 +276,7 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
                 <h1 className="font-display text-stat-md text-navy-800">{program.fullName}</h1>
                 <p className="mt-2 text-ink-600">{program.abbreviation || "No abbreviation"} / {program.type} / {[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</p>
               </div>
-              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{activeTeamRows.length} current teams</span><span>{uniqueProgramPlayers.size} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
+              <div className="flex flex-wrap gap-2 font-mono text-mono-sm uppercase text-ink-600"><span>{teamRows.length} teams</span><span>{uniqueProgramPlayers.size} players</span><span>{officialGames} official games</span><span>{gameStats} stat rows</span></div>
             </div>
           </div>
 
@@ -287,11 +288,11 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
                 <h2 className="font-display text-3xl text-navy-800">Current Teams</h2>
                 <p className="mt-1 text-sm text-ink-600">Team / Moniker records currently used by official Games or active GameStats.</p>
               </div>
-              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase text-green-800">{activeTeamRows.length} current</span>
+              <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold uppercase text-green-800">{teamRows.length} teams</span>
             </div>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              {activeTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} />)}
-              {!activeTeamRows.length ? <p className="text-sm text-ink-600">No current teams linked to this Program.</p> : null}
+              {teamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} />)}
+              {!teamRows.length ? <p className="text-sm text-ink-600">No current teams linked to this Program.</p> : null}
             </div>
           </section>
 
@@ -333,14 +334,7 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
             </div>
           </section>
 
-          <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-            <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive Team Records ({inactiveTeamRows.length})</summary>
-            <p className="mt-3 rounded-md bg-surface-100 p-4 text-sm text-ink-700">These records are not currently used by official games or stats. They are hidden from the normal workflow and kept only for audit/review.</p>
-            <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              {inactiveTeamRows.map((team) => <TeamMonikerForm key={team.id} programId={program.id} team={team} inactive />)}
-              {!inactiveTeamRows.length ? <p className="text-sm text-ink-600">No inactive teams linked to this Program.</p> : null}
-            </div>
-          </details>        </section>
+        </section>
       </div>
     </main>
   );
