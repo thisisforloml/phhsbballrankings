@@ -82,9 +82,9 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
     <>
       <section className="container-px border-b border-line-500 bg-court-900 py-12 text-white">
         <SectionHeader
-          eyebrow="Team Rankings"
+          eyebrow="Team Standings"
           title="Standings Board"
-          description="Official team records from active game results, grouped by competition scope and current team identity."
+          description="Official team records from verified game results, grouped by competition scope and current team identity."
           dark
           action={
             <div className="inline-flex border border-white/20 bg-white/10 p-1">
@@ -103,7 +103,7 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
       </section>
 
       <FilterBar
-        summary="Standings from official games"
+        summary="Standings from verified games"
         action={<button onClick={clearFilters} className="text-xs font-black uppercase tracking-[0.12em] text-court-500 hover:text-hardwood-600">Clear filters</button>}
       >
             <section>

@@ -14,7 +14,7 @@ export function RatingExplainer() {
         <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">How Ratings Work</p>
         <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {items.map(({ title, description, formula, Icon }) => (
-            <article key={title} className="rounded-lg border border-white/15 bg-white/8 p-6">
+            <article key={title} className="rounded-lg border border-white/15 bg-white/10 p-6">
               <Icon className="h-6 w-6 text-amber-500" aria-hidden="true" />
               <h3 className="mt-5 font-display text-2xl font-bold">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-white/70">{description}</p>

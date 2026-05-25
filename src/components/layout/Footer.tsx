@@ -21,7 +21,7 @@ export function Footer() {
         <nav className="grid gap-3 text-xs font-bold uppercase tracking-[0.12em]">
           <strong className="text-white">Rankings</strong>
           <Link href="/rankings">Player Rankings</Link>
-          <Link href="/teams">Team Rankings</Link>
+          <Link href="/teams">Team Standings</Link>
           <Link href="/claim">Claim Your Profile</Link>
         </nav>
         <nav className="grid gap-3 text-xs font-bold uppercase tracking-[0.12em]">
