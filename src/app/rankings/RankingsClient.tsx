@@ -9,7 +9,8 @@ import { formatHeight, getPlayerProfileHref } from "@/lib/format";
 
 const ageGroups: RankingAgeGroup[] = ["U13", "U16", "U19"];
 const genders: RankingGender[] = ["Boys", "Girls"];
-const minGameStops = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+const boysMinGameStops = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+const girlsMinGameStops = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 const notListedPosition = "Not listed";
 const positionOrder = ["G", "PG", "SG", "F", "SF", "PF", "C"];
 
@@ -23,8 +24,17 @@ function normalizedGender(value: string | null): RankingGender {
 }
 
 function eligibilityMinimum(gender: RankingGender, ageGroup: RankingAgeGroup) {
-  if (ageGroup === "U16" && gender === "Boys") return 1;
   return gender === "Girls" ? 5 : 10;
+}
+
+function minGameStopsForGender(gender: RankingGender) {
+  return gender === "Girls" ? girlsMinGameStops : boysMinGameStops;
+}
+
+function defaultMinIndex(gender: RankingGender, ageGroup: RankingAgeGroup) {
+  const minimum = eligibilityMinimum(gender, ageGroup);
+  const index = minGameStopsForGender(gender).findIndex((stop) => stop >= minimum);
+  return index >= 0 ? index : 0;
 }
 
 function formatDate(value: string | null) {
@@ -59,18 +69,22 @@ function searchText(row: NationalRankingRow) {
 
 export function RankingsClient({ rankings }: { rankings: LatestNationalRankings }) {
   const params = useSearchParams();
-  const [ageGroup, setAgeGroup] = useState<RankingAgeGroup>(normalizedAge(params.get("age")));
-  const [gender, setGender] = useState<RankingGender>(normalizedGender(params.get("gender")));
+  const initialAgeGroup = normalizedAge(params.get("age"));
+  const initialGender = normalizedGender(params.get("gender"));
+  const [ageGroup, setAgeGroup] = useState<RankingAgeGroup>(initialAgeGroup);
+  const [gender, setGender] = useState<RankingGender>(initialGender);
   const [region, setRegion] = useState("All");
   const [position, setPosition] = useState("All");
   const [query, setQuery] = useState("");
-  const [minIndex, setMinIndex] = useState(gender === "Girls" ? 0 : 1);
+  const [minIndex, setMinIndex] = useState(defaultMinIndex(initialGender, initialAgeGroup));
 
   const selectedAgeSnapshots = rankings.snapshotsByAge?.[ageGroup];
   const selectedSnapshot = selectedAgeSnapshots ? (gender === "Girls" ? selectedAgeSnapshots.girls : selectedAgeSnapshots.boys) : (gender === "Girls" ? rankings.snapshots.girls : rankings.snapshots.boys);
   const rowsForAge = selectedSnapshot.rows;
   const defaultMinimum = eligibilityMinimum(gender, ageGroup);
-  const minimumGames = Math.max(minGameStops[minIndex], defaultMinimum);
+  const minGameOptions = minGameStopsForGender(gender);
+  const selectedMinIndex = Math.min(minIndex, minGameOptions.length - 1);
+  const minimumGames = Math.max(minGameOptions[selectedMinIndex], defaultMinimum);
 
   const regionOptions = useMemo(
     () => Array.from(new Set(rowsForAge.map((row) => row.region))).sort(),
@@ -99,8 +113,9 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
       .filter((row) => position === "All" || positionLabel(row.position) === position)
       .filter((row) => !value || searchText(row).includes(value))
       .filter((row) => row.verifiedGameCount >= minimumGames)
-      .sort((left, right) => left.rank - right.rank);
-  }, [minimumGames, position, query, region, rowsForAge]);
+      .filter((row) => row.computedAgeBracket === null || row.computedAgeBracket === ageGroup)
+      .sort((left, right) => left.rank - right.rank || right.rating - left.rating || right.verifiedGameCount - left.verifiedGameCount || left.displayName.localeCompare(right.displayName));
+  }, [ageGroup, minimumGames, position, query, region, rowsForAge]);
 
   return (
     <main className="bg-surface-50 pb-20 pt-28">
@@ -117,7 +132,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                   key={item}
                   onClick={() => {
                     setGender(item);
-                    setMinIndex(item === "Girls" ? 0 : 1);
+                    setMinIndex(defaultMinIndex(item, ageGroup));
                     setRegion("All");
                     setPosition("All");
                     setQuery("");
@@ -130,7 +145,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
             </div>
           </div>
           <p className="mt-3 font-mono text-mono-sm uppercase text-ink-400">
-            Minimum {defaultMinimum} verified games required to rank{ageGroup === "U16" && gender === "Boys" ? " (temporary U16 launch threshold)" : ""}
+            Minimum {defaultMinimum} verified games required to rank
           </p>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.2fr_1fr_1fr_1fr]">
@@ -142,6 +157,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                     key={group}
                     onClick={() => {
                       setAgeGroup(group);
+                      setMinIndex(defaultMinIndex(gender, group));
                       setRegion("All");
                       setPosition("All");
                     }}
@@ -181,7 +197,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
             </label>
             <label className="grid gap-3 font-mono text-mono-sm uppercase text-ink-500">
               {minimumGames === 100 ? "Min. 100+ games" : `Min. ${minimumGames} games`}
-              <input type="range" min={0} max={minGameStops.length - 1} step={1} value={minIndex} onChange={(event) => setMinIndex(Number(event.target.value))} className="accent-navy-800" />
+              <input type="range" min={0} max={minGameOptions.length - 1} step={1} value={selectedMinIndex} onChange={(event) => setMinIndex(Number(event.target.value))} className="accent-navy-800" />
             </label>
           </div>
 
@@ -190,7 +206,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
               setRegion("All");
               setPosition("All");
               setQuery("");
-              setMinIndex(gender === "Girls" ? 0 : 1);
+              setMinIndex(defaultMinIndex(gender, ageGroup));
             }}
             className="mt-5 font-mono text-mono-sm uppercase text-ink-500 hover:text-amber-600"
           >
@@ -222,14 +238,14 @@ function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
         <span>Position</span>
         <span className="pl-1">Rating</span>
       </div>
-      {rows.map((row) => (
+      {rows.map((row, index) => (
         <Link
           key={row.playerId}
           href={getPlayerProfileHref(row)}
           className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[4.5rem_minmax(16rem,1.35fr)_8.5rem_7.5rem_12rem] lg:items-center"
         >
           <span className="font-mono">
-            <strong className="block text-lg text-navy-800">#{row.rank}</strong>
+            <strong className="block text-lg text-navy-800">#{index + 1}</strong>
           </span>
           <span className="grid grid-cols-[auto_1fr] items-center gap-3">
             <span className="grid size-12 place-items-center overflow-hidden rounded-full bg-navy-100 font-mono text-mono-sm text-navy-800">
@@ -252,4 +268,3 @@ function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
     </div>
   );
 }
-

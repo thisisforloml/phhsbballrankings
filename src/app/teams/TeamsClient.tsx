@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import type { TeamStandingsAgeGroup, TeamStandingsData, TeamStandingsGender } from "@/lib/team-rankings";
@@ -11,6 +11,14 @@ function searchText(team: TeamStandingsData["rows"][number]) {
   return [team.displayName, team.internalTeamName, team.leagueName, team.seasonName, team.city, team.region]
     .join(" ")
     .toLowerCase();
+}
+
+function sortVisibleStandings(left: TeamStandingsData["rows"][number], right: TeamStandingsData["rows"][number]) {
+  return right.wins - left.wins
+    || right.winPercentage - left.winPercentage
+    || right.pointDifferential - left.pointDifferential
+    || right.pointsFor - left.pointsFor
+    || left.displayName.localeCompare(right.displayName);
 }
 
 export function TeamsClient({ data }: { data: TeamStandingsData }) {
@@ -45,8 +53,9 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
       .filter((team) => region === "All" || team.region === region)
       .filter((team) => !value || searchText(team).includes(value))
       .filter((team) => team.gamesPlayed >= selectedMinimumGames)
-      .sort((left, right) => left.rank - right.rank || left.displayName.localeCompare(right.displayName));
+      .sort(sortVisibleStandings);
   }, [leagueId, query, region, scopeRows, selectedMinimumGames]);
+  const visibleRows = useMemo(() => filtered.map((team, index) => ({ ...team, visibleRank: index + 1 })), [filtered]);
 
   function updateScope(nextAgeGroup: TeamStandingsAgeGroup, nextGender = gender) {
     setAgeGroup(nextAgeGroup);
@@ -108,7 +117,7 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900"
-                placeholder="Team, school, league"
+                placeholder="Team, program, league"
               />
             </label>
             <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
@@ -140,18 +149,18 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
       <section className="container-px mt-8">
         <div className="mb-6 rounded-lg bg-white p-5 shadow-sm">
           <p className="font-mono text-mono-sm uppercase text-ink-500">
-            Showing {filtered.length} teams | {ageGroup} {gender} | Min. {selectedMinimumGames} game{selectedMinimumGames === 1 ? "" : "s"} played
+            Showing {visibleRows.length} teams | {ageGroup} {gender} | Min. {selectedMinimumGames} game{selectedMinimumGames === 1 ? "" : "s"} played
           </p>
         </div>
 
-        {filtered.length ? (
+        {visibleRows.length ? (
           <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
             <div className="hidden grid-cols-[5rem_1.2fr_1.2fr_8rem_8rem_7rem_7rem_7rem_1fr] gap-3 border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
-              <span>Rank</span><span>Team</span><span>Internal team</span><span>Record</span><span>Win %</span><span title="Points Scored">PF</span><span title="Points Allowed">PA</span><span title="Point Difference">Diff</span><span>League / Season</span>
+              <span>Rank</span><span>Team</span><span>Internal record</span><span>Record</span><span>Win %</span><span title="Points Scored">PF</span><span title="Points Allowed">PA</span><span title="Point Difference">Diff</span><span>League / Season</span>
             </div>
-            {filtered.map((team) => (
+            {visibleRows.map((team) => (
               <div key={team.id} className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition hover:border-l-[3px] hover:border-l-amber-500 hover:bg-amber-100 last:border-b-0 lg:grid-cols-[5rem_1.2fr_1.2fr_8rem_8rem_7rem_7rem_7rem_1fr] lg:items-center">
-                <span className={`font-mono ${team.rank === 1 ? "text-amber-700" : "text-ink-500"}`}>#{team.rank}</span>
+                <span className={`font-mono ${team.visibleRank === 1 ? "text-amber-700" : "text-ink-500"}`}>#{team.visibleRank}</span>
                 <strong className="text-ink-900" title={team.displayName}>{team.displayName}</strong>
                 <span className="text-sm text-ink-500" title={team.internalTeamName}>{team.internalTeamName}</span>
                 <span className="flex gap-2"><WinLossPill result="W" /> <strong className="font-display">{team.wins}</strong><WinLossPill result="L" /> <strong className="font-display">{team.losses}</strong></span>
@@ -168,4 +177,3 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
     </>
   );
 }
-
