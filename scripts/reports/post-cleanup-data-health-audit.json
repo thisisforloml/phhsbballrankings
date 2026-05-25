@@ -1,0 +1,286 @@
+{
+  "generatedAt": "2026-05-25T00:30:32.342Z",
+  "readOnly": true,
+  "programs": {
+    "totalPrograms": 20,
+    "programsWithNoActiveTeams": [
+      {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "fullName": "Adamson University",
+        "linkedTeamCount": 3
+      },
+      {
+        "programId": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+        "fullName": "Arellano University",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "linkedTeamCount": 6
+      },
+      {
+        "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+        "fullName": "Colegio de San Juan de Letran",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+        "fullName": "College of Saint Benilde",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "linkedTeamCount": 12
+      },
+      {
+        "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+        "fullName": "Emilio Aguinaldo College",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "fullName": "Far Eastern University",
+        "linkedTeamCount": 3
+      },
+      {
+        "programId": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+        "fullName": "Jose Rizal University",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+        "fullName": "Lyceum of the Philippines University",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+        "fullName": "Mapua University",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "linkedTeamCount": 6
+      },
+      {
+        "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+        "fullName": "San Beda Alabang Spartans",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+        "fullName": "San Beda University",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+        "fullName": "San Sebastian College-Recoletos",
+        "linkedTeamCount": 2
+      },
+      {
+        "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+        "fullName": "SMILE 360 BULLIES",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+        "fullName": "University of Perpetual Help System DALTA",
+        "linkedTeamCount": 1
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "linkedTeamCount": 6
+      },
+      {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "fullName": "University of the East",
+        "linkedTeamCount": 3
+      },
+      {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "fullName": "University of the Philippines Integrated School",
+        "linkedTeamCount": 3
+      }
+    ],
+    "programsWithHighInactiveTeamRecords": [
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "activeTeamCount": 0,
+        "inactiveTeamCount": 12
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "activeTeamCount": 0,
+        "inactiveTeamCount": 6
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "activeTeamCount": 0,
+        "inactiveTeamCount": 6
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "activeTeamCount": 0,
+        "inactiveTeamCount": 6
+      }
+    ],
+    "programsWithPossibleSameContextActiveDuplicateTeams": []
+  },
+  "teams": {
+    "activeTeamRecords": 0,
+    "inactiveTeamRecords": 55,
+    "sameContextDuplicateActiveTeamGroups": [],
+    "sanSebastianDuplicateResolved": true,
+    "sanSebastian": {
+      "sourceTeamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+      "sourceActiveGames": 0,
+      "sourceActiveGameStats": 0,
+      "canonicalTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+      "canonicalActiveGames": 0,
+      "canonicalActiveGameStats": 0
+    }
+  },
+  "players": {
+    "activePlayers": 496,
+    "softDeletedPlayers": 47,
+    "playersWithoutCurrentProgramId": 0,
+    "possibleDuplicatePlayerGroupsAfterMerge": [],
+    "deletedPlayerReferenceIssues": {
+      "gameStatsPointingToDeletedPlayers": 0,
+      "gamePerformanceScoresPointingToDeletedPlayers": 0,
+      "playerRatingsPointingToDeletedPlayers": 0,
+      "snapshotRowsPointingToDeletedPlayers": 0
+    }
+  },
+  "rankings": {
+    "rankingSnapshotCount": 3,
+    "rankingSnapshotRowCount": 404,
+    "u16Boys": {
+      "id": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "weekOf": "2026-05-01T00:00:00.000Z",
+      "exists": true,
+      "startsAtOne": true,
+      "contiguous": true,
+      "rowCount": 149,
+      "duplicatePlayerRows": 0,
+      "deletedPlayers": 0
+    },
+    "u19Boys": {
+      "id": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "weekOf": "2026-05-01T00:00:00.000Z",
+      "exists": true,
+      "startsAtOne": true,
+      "contiguous": true,
+      "rowCount": 210,
+      "duplicatePlayerRows": 0,
+      "deletedPlayers": 0
+    },
+    "u19Girls": {
+      "id": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "weekOf": "2026-05-01T00:00:00.000Z",
+      "exists": true,
+      "startsAtOne": true,
+      "contiguous": true,
+      "rowCount": 45,
+      "duplicatePlayerRows": 0,
+      "deletedPlayers": 0
+    },
+    "duplicateRowsBySnapshot": [],
+    "deletedPlayersInSnapshots": 0,
+    "noDuplicatePlayerRowsInSameSnapshot": true,
+    "noDeletedPlayersInSnapshots": true
+  },
+  "adminReports": {
+    "duplicateCleanupPlan": {
+      "path": "scripts/reports/duplicate-cleanup-plan.json",
+      "exists": true,
+      "modifiedAt": "2026-05-24T12:24:03.425Z",
+      "stale": false,
+      "reason": "Report exists; regenerate only if current duplicate diagnostics are needed."
+    },
+    "allPlayerMergePlan": {
+      "path": "scripts/reports/all-player-merge-plan.json",
+      "exists": true,
+      "modifiedAt": "2026-05-24T12:55:15.587Z",
+      "stale": true,
+      "reason": "Report was part of the pre/post merge planning flow and may reference players that are now soft-deleted or merged."
+    },
+    "recommendation": "Regenerate duplicate cleanup/player merge reports from current data before planning any additional merge or hide/delete action; archive the old merge planning reports after confirming they are no longer used by admin review pages."
+  },
+  "summary": {
+    "validationPassed": true,
+    "remainingIssues": [
+      "4 Program(s) have unusually high inactive team records."
+    ],
+    "duplicateTeamGroupsRemaining": 0,
+    "duplicatePlayerGroupsRemaining": 0,
+    "deletedPlayerReferenceIssues": {
+      "gameStatsPointingToDeletedPlayers": 0,
+      "gamePerformanceScoresPointingToDeletedPlayers": 0,
+      "playerRatingsPointingToDeletedPlayers": 0,
+      "snapshotRowsPointingToDeletedPlayers": 0
+    },
+    "rankingValidation": {
+      "rankingSnapshotCount": 3,
+      "rankingSnapshotRowCount": 404,
+      "u16Boys": {
+        "id": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "exists": true,
+        "startsAtOne": true,
+        "contiguous": true,
+        "rowCount": 149,
+        "duplicatePlayerRows": 0,
+        "deletedPlayers": 0
+      },
+      "u19Boys": {
+        "id": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "exists": true,
+        "startsAtOne": true,
+        "contiguous": true,
+        "rowCount": 210,
+        "duplicatePlayerRows": 0,
+        "deletedPlayers": 0
+      },
+      "u19Girls": {
+        "id": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "exists": true,
+        "startsAtOne": true,
+        "contiguous": true,
+        "rowCount": 45,
+        "duplicatePlayerRows": 0,
+        "deletedPlayers": 0
+      },
+      "duplicateRowsBySnapshot": [],
+      "deletedPlayersInSnapshots": 0,
+      "noDuplicatePlayerRowsInSameSnapshot": true,
+      "noDeletedPlayersInSnapshots": true
+    },
+    "recommendedNextSteps": [
+      "Keep inactive team records hidden in normal Program Management and review whether test-only records should be archived or deleted in a separately approved cleanup.",
+      "Regenerate duplicate-cleanup-plan.json and all-player-merge-plan.json from current data before using them for future repairs.",
+      "Archive pre-merge planning reports once current admin duplicate review no longer depends on them."
+    ]
+  }
+}
