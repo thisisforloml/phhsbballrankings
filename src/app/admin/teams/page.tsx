@@ -8,7 +8,7 @@ export const revalidate = 0;
 
 export const metadata = {
   title: "Internal Team Records - Admin Portal",
-  description: "Compatibility page for old internal Team records."
+  description: "Secondary audit page for individual Team records."
 };
 
 type ContextSummary = {

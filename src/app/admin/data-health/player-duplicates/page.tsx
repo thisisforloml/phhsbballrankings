@@ -55,15 +55,19 @@ export default async function PlayerDuplicateReviewPage() {
             <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <h1 className="font-display text-stat-md text-navy-800">Player Duplicate Review</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">These are possible duplicates only. No automatic merge is performed. Confirm identity manually before any repair.</p>
+                <p className="mt-2 max-w-3xl text-ink-600">{groups.length ? "These are possible duplicates only. Confirm identity manually before any approved repair." : "The refreshed report found no possible player duplicates."}</p>
               </div>
               <div className="grid gap-1 text-right font-mono text-mono-sm uppercase text-ink-600">
                 <span>{groups.length} groups displayed</span>
                 <span>{summary.needsReviewPlayerGroups ?? groups.filter((group) => group.classification === "NEEDS_REVIEW").length} need review</span>
-                <span>{summary.mergeSafePlayerGroups ?? groups.filter((group) => group.classification === "MERGE_SAFE").length} merge safe</span>
+                <span>{summary.mergeSafePlayerGroups ?? groups.filter((group) => group.classification === "MERGE_SAFE").length} approved candidates</span>
               </div>
             </div>
-            <p className="mt-4 rounded-md bg-amber-50 p-4 text-sm font-semibold text-amber-900">Do not merge unless identity is verified. Merge actions require a separate approved repair plan.</p>
+            {groups.length ? (
+              <p className="mt-4 rounded-md bg-amber-50 p-4 text-sm font-semibold text-amber-900">Do not change player records unless identity is verified and a separate repair plan is approved.</p>
+            ) : (
+              <p className="mt-4 rounded-md bg-green-50 p-4 text-sm font-semibold text-green-900">No review work is needed from this report.</p>
+            )}
             <p className="mt-2 text-xs text-ink-500">Report source: scripts/reports/duplicate-cleanup-plan.json{generatedAt ? ` / generated ${generatedAt}` : " / report not found"}</p>
           </div>
           <PlayerDuplicateReviewClient groups={groups} />

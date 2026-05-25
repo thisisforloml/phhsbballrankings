@@ -68,7 +68,7 @@ export default async function AdminPage() {
     },
     {
       title: "Internal Team Records",
-      description: "Compatibility page for old internal Team records. Program Management is the main editor.",
+      description: "Secondary audit page for individual Team records. Program Management is the main editor.",
       href: "/admin/teams",
       action: "Review internal teams",
       status: `${internalTeamRecordCount} internal Team rows, ${officialTeamRecordCount} used in official games`

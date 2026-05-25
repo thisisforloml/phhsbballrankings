@@ -104,7 +104,7 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
                 <div>
                   <p className="label">{group.detectionType.replaceAll("_", " ")}</p>
                   <h2 className="mt-2 font-display text-2xl text-navy-800">{group.displayNames.join(" / ")}</h2>
-                  <p className="mt-2 text-sm font-semibold text-amber-800">Do not merge unless identity is verified.</p>
+                  <p className="mt-2 text-sm font-semibold text-amber-800">Do not change player records unless identity is verified.</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-full bg-amber-50 px-3 py-1 font-mono text-mono-sm uppercase text-amber-800">{group.classification}</span>
@@ -113,8 +113,8 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
               </div>
               <div className="mt-4 grid gap-2 rounded-md bg-surface-100 p-4 text-sm text-ink-700 md:grid-cols-3">
                 <span>Suggested canonical: <strong>{group.recommendedCanonicalPlayer?.displayName ?? "None"}</strong></span>
-                <span>GameStats if merged: <strong>{group.exactAffectedRecordsIfMerged.gameStats}</strong></span>
-                <span>Ranking rows if merged: <strong>{group.exactAffectedRecordsIfMerged.rankingSnapshotRows}</strong></span>
+                <span>GameStats affected if repaired: <strong>{group.exactAffectedRecordsIfMerged.gameStats}</strong></span>
+                <span>Ranking rows affected if repaired: <strong>{group.exactAffectedRecordsIfMerged.rankingSnapshotRows}</strong></span>
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -155,7 +155,7 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-surface-200 p-4">
               <Link href={`/admin/players?search=${encodeURIComponent(group.displayNames[0] ?? "")}`} className="text-sm font-semibold text-navy-700 hover:text-navy-900">Open Player Search</Link>
-              <button type="button" disabled className="button secondary cursor-not-allowed opacity-60">Merge requires approved repair plan</button>
+              <button type="button" disabled className="button secondary cursor-not-allowed opacity-60">Repair requires approved plan</button>
             </div>
           </article>
         ))}
