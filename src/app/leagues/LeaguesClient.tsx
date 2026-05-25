@@ -25,12 +25,6 @@ export function LeaguesClient({ leagues }: { leagues: PublicLeagueRow[] }) {
 
   return (
     <section className="container-px py-8">
-      <article className="mb-8 border border-line-500 border-l-4 border-l-hardwood-600 bg-white p-6">
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-hardwood-600">League quality context</p>
-        <p className="mt-3 max-w-4xl leading-7 text-court-700">
-          League quality is currently displayed as context only. Formula v1 keeps leagueWeight at 1.000 until enough historical data exists for statistical calibration.
-        </p>
-      </article>
       <div className="mb-8 -mx-5 sm:-mx-8 lg:-mx-12 xl:-mx-16">
         <FilterBar summary={`${filtered.length} competitions shown`}>
           <FilterField label="Search">

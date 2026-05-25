@@ -116,9 +116,7 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
     <PublicPageShell className="pb-20 pt-28">
       <section className="container-px border-b border-line-500 bg-court-900 py-12 text-white">
         <SectionHeader
-          eyebrow="Player Rankings"
           title="National Board"
-          description="Filter the current public recruiting board by age group, gender, region, position, and verified game volume."
           dark
           action={
             <div className="inline-flex border border-white/20 bg-white/10 p-1">
@@ -143,7 +141,6 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
       </section>
 
       <FilterBar
-        summary={`Minimum ${defaultMinimum} verified games required to rank`}
         action={
           <button
             onClick={() => {

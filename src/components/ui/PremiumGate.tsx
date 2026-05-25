@@ -30,7 +30,7 @@ export function PremiumGate({
         <div className="max-w-md text-center">
           <Lock className="mx-auto h-9 w-9 text-hardwood-600" aria-hidden="true" />
           <p className="mt-3 text-xs font-black uppercase tracking-[0.14em] text-court-900">Premium Access</p>
-          <p className="mt-2 text-court-600">{description}</p>
+          {description ? <p className="mt-2 text-court-600">{description}</p> : null}
           <Link href="/register" className="button primary mt-5">Unlock Access</Link>
         </div>
       </div>

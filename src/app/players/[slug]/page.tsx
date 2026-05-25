@@ -112,12 +112,10 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
           </div>
           <a href={`/claim?player=${profile.slug}`} className="button primary mt-4 md:mt-0">Claim Profile</a>
         </div>
-        <PremiumGate description="Full career history, monthly ranking movement, analytics, trend data, and exports are available behind Premium Access.">
+        <PremiumGate description="">
           <section className="grid gap-4 border border-line-500 bg-white p-6">
             <SectionHeader
-              eyebrow="Premium Access"
               title="Licensed Performance Analytics"
-              description="All games played, month-by-month ranking movement, advanced analytics, performance trends, and exportable data."
             />
           </section>
         </PremiumGate>

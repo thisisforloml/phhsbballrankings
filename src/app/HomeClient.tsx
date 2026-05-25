@@ -42,9 +42,7 @@ export function HomeClient({ data }: { data: HomeData }) {
       <section className="container-px section-y bg-paper-500">
         <div className="mb-8">
           <SectionHeader
-            eyebrow="Recruiting Board"
             title={`Top 10 ${ageGroup} ${gender}`}
-            description="A quick scan of the current public board, built from official game submissions and Formula v1 ratings."
             action={<Link href={`/rankings?gender=${gender}&age=${ageGroup}`} className="button secondary">View Full Rankings</Link>}
           />
         </div>

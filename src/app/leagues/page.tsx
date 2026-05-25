@@ -11,9 +11,7 @@ export default async function LeaguesPage() {
       <section className="hero-brand pt-32 text-white">
         <div className="container-px py-14">
           <SectionHeader
-            eyebrow="League Directory"
             title="Competition Hubs"
-            description="Official competitions feeding player profiles, team standings, game logs, and rankings."
             dark
           />
         </div>
@@ -22,4 +20,3 @@ export default async function LeaguesPage() {
     </PublicPageShell>
   );
 }
-

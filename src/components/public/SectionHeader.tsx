@@ -17,7 +17,7 @@ export function SectionHeader({ eyebrow, title, description, action, dark = fals
             {eyebrow}
           </p>
         ) : null}
-        <h1 className={`mt-2 font-display text-[clamp(2.4rem,6vw,5.25rem)] font-black leading-none ${dark ? "text-white" : "text-court-900"}`}>
+        <h1 className={`${eyebrow ? "mt-2" : ""} font-display text-[clamp(2.4rem,6vw,5.25rem)] font-black leading-none ${dark ? "text-white" : "text-court-900"}`}>
           {title}
         </h1>
         {description ? <p className={`mt-4 max-w-2xl text-base leading-7 ${dark ? "text-white/72" : "text-court-600"}`}>{description}</p> : null}

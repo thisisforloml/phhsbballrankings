@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/public/SectionHeader";
 export function RecentGames({ games }: { games: GameResult[] }) {
   return (
     <section>
-      <SectionHeader eyebrow="Game Log" title="Recent Games" description="Latest verified box-score performances from official submissions." />
+      <SectionHeader title="Recent Games" />
       {!games.length ? <div className="mt-6"><EmptyState icon="scores" title="No scores available" /></div> : null}
       {games.length ? (
         <div className="mt-6 overflow-hidden border border-line-500 bg-white">
@@ -37,4 +37,3 @@ function Stat({ label, value, highlight = false }: { label: string; value: strin
     </span>
   );
 }
-

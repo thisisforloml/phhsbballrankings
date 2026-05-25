@@ -9,10 +9,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   return { title: league.name };
 }
 
-function inferGender(name: string) {
-  return name.toLowerCase().includes("girls") ? "Girls" : "Boys";
-}
-
 export default async function LeagueDetailPage({ params }: { params: { id: string } }) {
   const league = await getOfficialLeagueDetail(params.id);
   const games = league.seasons.flatMap((season) => season.games.map((game) => ({ ...game, seasonName: season.name })));
@@ -23,9 +19,7 @@ export default async function LeagueDetailPage({ params }: { params: { id: strin
       <section className="hero-brand text-white">
         <div className="container-px py-14">
           <SectionHeader
-            eyebrow="League Detail"
             title={league.name}
-            description={`${league.ageGroup} ${inferGender(league.name)} | ${league.city ?? "Not listed"}, ${league.region ?? "Not listed"}`}
             dark
           />
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -39,9 +33,7 @@ export default async function LeagueDetailPage({ params }: { params: { id: strin
       <section className="container-px py-10">
         <div className="mb-6">
           <SectionHeader
-            eyebrow="Official Games"
             title="Schedule & Results"
-            description="Click any fixture to open the full official box score."
             action={<Link href="/leagues" className="button secondary">Back to leagues</Link>}
           />
         </div>
@@ -59,4 +51,3 @@ function Metric({ label, value }: { label: string; value: string | number }) {
     </div>
   );
 }
-

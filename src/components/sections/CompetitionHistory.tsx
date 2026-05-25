@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/public/SectionHeader";
 export function CompetitionHistory({ leagues }: { leagues: LeagueHistory[] }) {
   return (
     <section>
-      <SectionHeader eyebrow="Competition Context" title="League History" description="Where this profile's verified production has been recorded." />
+      <SectionHeader title="League History" />
       {!leagues.length ? <div className="mt-6"><EmptyState icon="leagues" title="No leagues listed" /></div> : null}
       {leagues.length ? (
         <div className="mt-6 grid gap-3">

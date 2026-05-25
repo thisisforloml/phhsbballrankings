@@ -38,16 +38,14 @@ export function PlayerProfileHeader({ profile }: { profile: PlayerProfile }) {
     <section className="hero-brand pt-32 text-white">
       <div className="container-px grid gap-8 py-12 lg:grid-cols-[1fr_24rem] lg:items-end">
         <div>
-          <div className="flex flex-wrap items-center gap-3">
-            {profile.nationalRank ? <VerifiedBadge label="" /> : null}
-            <span className="text-xs font-black uppercase tracking-[0.16em] text-gold-500">Player Profile</span>
-          </div>
+          {profile.nationalRank ? (
+            <div className="flex flex-wrap items-center gap-3">
+              <VerifiedBadge label="" />
+            </div>
+          ) : null}
           <h1 className="mt-5 max-w-5xl font-display text-[clamp(3.4rem,9vw,7.25rem)] font-black leading-none">
             {profile.displayName}
           </h1>
-          <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-white/72">
-            {profile.currentTeam} | {profile.city}, {profile.region}
-          </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {profileMeta(profile).map(([label, value]) => (
               <div key={label} className="border border-white/15 bg-white/10 p-4">
@@ -60,7 +58,7 @@ export function PlayerProfileHeader({ profile }: { profile: PlayerProfile }) {
 
         <aside className="border border-gold-500 bg-paper-500 p-6 text-court-900 shadow-[8px_8px_0_#d97706]">
           <div className="flex items-start justify-between gap-4 border-b border-line-500 pb-5">
-            <span className="grid size-20 place-items-center overflow-hidden border border-court-900 bg-court-900 text-2xl font-black text-gold-500">
+            <span className="grid size-24 place-items-center overflow-hidden border border-court-900 bg-court-900 text-3xl font-black text-gold-500">
               {profile.photoUrl ? <img src={profile.photoUrl} alt="" className="h-full w-full object-cover" /> : initials(profile.displayName)}
             </span>
             <div className="text-right">
