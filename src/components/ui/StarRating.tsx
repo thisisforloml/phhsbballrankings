@@ -6,7 +6,7 @@ export function StarRating({ stars }: { stars: number }) {
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
-          className={`h-4 w-4 ${index < stars ? "fill-amber-500 text-amber-500" : "fill-surface-200 text-surface-200"}`}
+          className={`h-4 w-4 ${index < stars ? "fill-gold-500 text-gold-500" : "fill-line-500 text-line-500"}`}
           aria-hidden="true"
         />
       ))}

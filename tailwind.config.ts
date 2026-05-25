@@ -5,11 +5,39 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-barlow-condensed)"],
-        sans: ["var(--font-plus-jakarta)"],
-        mono: ["var(--font-ibm-plex-mono)"]
+        display: ["Geist", "Arial", "Helvetica", "sans-serif"],
+        sans: ["Geist", "Arial", "Helvetica", "sans-serif"],
+        mono: ["Geist", "Arial", "Helvetica", "sans-serif"]
       },
       colors: {
+        court: {
+          900: "#111318",
+          800: "#1B1D23",
+          700: "#2B2E36",
+          600: "#464A55",
+          500: "#6B707D",
+          400: "#949AA6",
+          300: "#C0C4CC"
+        },
+        deep: {
+          900: "#07142E",
+          800: "#0B1D42"
+        },
+        hardwood: {
+          700: "#B45309",
+          600: "#D97706",
+          500: "#E98A12"
+        },
+        gold: {
+          500: "#F5A524"
+        },
+        paper: {
+          500: "#F7F4EF",
+          400: "#EFE9DE"
+        },
+        line: {
+          500: "#D9D6CF"
+        },
         navy: {
           950: "#060D1F",
           900: "#0A1530",

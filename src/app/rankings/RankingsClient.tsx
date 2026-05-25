@@ -1,11 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { LatestNationalRankings, NationalRankingRow, RankingAgeGroup, RankingGender } from "@/lib/rankings";
-import { EmptyState, StarRating } from "@/components/ui";
-import { formatHeight, getPlayerProfileHref } from "@/lib/format";
+import { EmptyState } from "@/components/ui";
+import { FilterBar, FilterControlClass, FilterField } from "@/components/public/FilterBar";
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { RankingTable } from "@/components/public/RankingTable";
+import { SectionHeader } from "@/components/public/SectionHeader";
 
 const ageGroups: RankingAgeGroup[] = ["U13", "U16", "U19"];
 const genders: RankingGender[] = ["Boys", "Girls"];
@@ -46,15 +48,6 @@ function formatDate(value: string | null) {
     year: "numeric",
     timeZone: "UTC"
   }).format(new Date(value));
-}
-
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 }
 
 function positionLabel(position: string | null) {
@@ -117,16 +110,18 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
       .sort((left, right) => left.rank - right.rank || right.rating - left.rating || right.verifiedGameCount - left.verifiedGameCount || left.displayName.localeCompare(right.displayName));
   }, [ageGroup, minimumGames, position, query, region, rowsForAge]);
 
+  const controlClass = FilterControlClass();
+
   return (
-    <main className="bg-surface-50 pb-20 pt-28">
-      <section className="container-px">
-        <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="label">Player Rankings</p>
-              <h1 className="mt-2 font-display text-stat-md text-navy-800">Rankings</h1>
-            </div>
-            <div className="inline-flex rounded-full border border-surface-300 bg-surface-50 p-1">
+    <PublicPageShell className="pb-20 pt-28">
+      <section className="container-px border-b border-line-500 bg-court-900 py-12 text-white">
+        <SectionHeader
+          eyebrow="Player Rankings"
+          title="National Board"
+          description="Filter the current public recruiting board by age group, gender, region, position, and verified game volume."
+          dark
+          action={
+            <div className="inline-flex border border-white/20 bg-white/10 p-1">
               {genders.map((item) => (
                 <button
                   key={item}
@@ -137,20 +132,34 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                     setPosition("All");
                     setQuery("");
                   }}
-                  className={`rounded-full px-6 py-2 font-semibold ${gender === item ? "bg-navy-800 text-white" : "text-ink-600 hover:text-navy-800"}`}
+                  className={`px-6 py-2 text-sm font-black uppercase tracking-[0.08em] ${gender === item ? "bg-gold-500 text-court-900" : "text-white/72 hover:text-white"}`}
                 >
                   {item}
                 </button>
               ))}
             </div>
-          </div>
-          <p className="mt-3 font-mono text-mono-sm uppercase text-ink-400">
-            Minimum {defaultMinimum} verified games required to rank
-          </p>
+          }
+        />
+      </section>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.2fr_1fr_1fr_1fr]">
+      <FilterBar
+        summary={`Minimum ${defaultMinimum} verified games required to rank`}
+        action={
+          <button
+            onClick={() => {
+              setRegion("All");
+              setPosition("All");
+              setQuery("");
+              setMinIndex(defaultMinIndex(gender, ageGroup));
+            }}
+            className="text-xs font-black uppercase tracking-[0.12em] text-court-500 hover:text-hardwood-600"
+          >
+            Clear filters
+          </button>
+        }
+      >
             <section>
-              <p className="mb-3 font-mono text-mono-sm uppercase text-ink-500">Age Group</p>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-court-500">Age Group</p>
               <div className="flex flex-wrap gap-2">
                 {ageGroups.map((group) => (
                   <button
@@ -161,110 +170,51 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
                       setRegion("All");
                       setPosition("All");
                     }}
-                    className={`rounded-full px-4 py-2 font-mono text-mono-sm ${ageGroup === group ? "bg-navy-800 text-white" : "bg-surface-100 text-ink-600"}`}
+                    className={`border px-4 py-2 text-xs font-black uppercase tracking-[0.12em] ${ageGroup === group ? "border-court-900 bg-court-900 text-white" : "border-line-500 bg-white text-court-600 hover:border-court-900 hover:text-court-900"}`}
                   >
                     {group}
                   </button>
                 ))}
               </div>
             </section>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              Search
+            <FilterField label="Search">
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900"
+                className={controlClass}
                 placeholder="Name, team, hometown"
               />
-            </label>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              Position
-              <select value={position} onChange={(event) => setPosition(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
+            </FilterField>
+            <FilterField label="Position">
+              <select value={position} onChange={(event) => setPosition(event.target.value)} className={controlClass}>
                 <option>All</option>
                 {positionOptions.map((item) => (
                   <option key={item}>{item}</option>
                 ))}
               </select>
-            </label>
-            <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
-              Region
-              <select value={region} onChange={(event) => setRegion(event.target.value)} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
+            </FilterField>
+            <FilterField label="Region">
+              <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
                 <option>All</option>
                 {regionOptions.map((item) => (
                   <option key={item}>{item}</option>
                 ))}
               </select>
-            </label>
-            <label className="grid gap-3 font-mono text-mono-sm uppercase text-ink-500">
-              {minimumGames === 100 ? "Min. 100+ games" : `Min. ${minimumGames} games`}
-              <input type="range" min={0} max={minGameOptions.length - 1} step={1} value={selectedMinIndex} onChange={(event) => setMinIndex(Number(event.target.value))} className="accent-navy-800" />
-            </label>
-          </div>
-
-          <button
-            onClick={() => {
-              setRegion("All");
-              setPosition("All");
-              setQuery("");
-              setMinIndex(defaultMinIndex(gender, ageGroup));
-            }}
-            className="mt-5 font-mono text-mono-sm uppercase text-ink-500 hover:text-amber-600"
-          >
-            Clear filters
-          </button>
-        </div>
-      </section>
+            </FilterField>
+            <FilterField label={minimumGames === 100 ? "Min. 100+ games" : `Min. ${minimumGames} games`}>
+              <input type="range" min={0} max={minGameOptions.length - 1} step={1} value={selectedMinIndex} onChange={(event) => setMinIndex(Number(event.target.value))} className="h-12 accent-hardwood-600" />
+            </FilterField>
+      </FilterBar>
 
       <section className="container-px mt-8">
-        <div className="mb-6 rounded-lg bg-white p-5 shadow-sm">
-          <p className="font-mono text-mono-sm uppercase text-ink-500">
+        <div className="mb-6 border border-line-500 bg-white p-4">
+          <p className="text-xs font-black uppercase tracking-[0.12em] text-court-500">
             Showing {filteredRows.length} players | {ageGroup} {gender} | Updated {formatDate(selectedSnapshot.weekOf)}
           </p>
         </div>
 
-        {filteredRows.length ? <RankingsTable rows={filteredRows.slice(0, 100)} /> : <EmptyState icon="players" title="No players ranked yet" />}
+        {filteredRows.length ? <RankingTable rows={filteredRows.slice(0, 100)} /> : <EmptyState icon="players" title="No players ranked yet" />}
       </section>
-    </main>
-  );
-}
-
-function RankingsTable({ rows }: { rows: NationalRankingRow[] }) {
-  return (
-    <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-      <div className="hidden grid-cols-[5rem_minmax(20rem,1.8fr)_9rem_8rem_10rem] border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
-        <span>Rank</span>
-        <span>Athlete</span>
-        <span>Height</span>
-        <span>Position</span>
-        <span className="pl-1">Rating</span>
-      </div>
-      {rows.map((row, index) => (
-        <Link
-          key={row.playerId}
-          href={getPlayerProfileHref(row)}
-          className="grid gap-3 border-b border-l-0 border-surface-200 px-4 py-4 transition-all duration-150 last:border-b-0 hover:border-l-[3px] hover:border-l-navy-800 hover:bg-navy-50 lg:grid-cols-[4.5rem_minmax(16rem,1.35fr)_8.5rem_7.5rem_12rem] lg:items-center"
-        >
-          <span className="font-mono">
-            <strong className="block text-lg text-navy-800">#{index + 1}</strong>
-          </span>
-          <span className="grid grid-cols-[auto_1fr] items-center gap-3">
-            <span className="grid size-12 place-items-center overflow-hidden rounded-full bg-navy-100 font-mono text-mono-sm text-navy-800">
-              {row.photoUrl ? <img src={row.photoUrl} alt="" className="h-full w-full object-cover" /> : initials(row.displayName)}
-            </span>
-            <span>
-              <strong className="block text-ink-900">{row.displayName}</strong>
-              <small className="block text-ink-500">{row.city}</small>
-              <small className="block text-ink-500">{row.currentTeam}</small>
-            </span>
-          </span>
-          <span className="text-ink-700">{formatHeight(row.heightCm)}</span>
-          <span>{positionLabel(row.position)}</span>
-          <span className="flex flex-wrap items-center gap-2 pl-1">
-            <strong className="font-display text-stat-sm text-navy-800">{row.rating.toFixed(2)}</strong>
-            <StarRating stars={row.starRating} />
-          </span>
-        </Link>
-      ))}
-    </div>
+    </PublicPageShell>
   );
 }

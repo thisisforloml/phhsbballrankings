@@ -49,14 +49,17 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-navy-800">
+      <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-court-900">
         <div className="container-px flex min-h-20 items-center justify-between gap-6">
           <BrandMark />
 
-          <nav className="hidden items-center gap-7 font-semibold text-white lg:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-7 text-sm font-bold uppercase tracking-[0.04em] text-white lg:flex" aria-label="Main navigation">
             <div className="relative" onMouseEnter={() => openDropdown("rankings")} onMouseLeave={closeDropdown}>
               <Link className="nav-underline" href="/rankings">Rankings</Link>
               {openMenu === "rankings" ? <RankingsDropdown /> : null}
+            </div>
+            <div className="relative">
+              <Link className="nav-underline" href="/teams">Teams</Link>
             </div>
             <div className="relative" onMouseEnter={() => openDropdown("leagues")} onMouseLeave={closeDropdown}>
               <Link className="nav-underline" href="/leagues">Leagues</Link>
@@ -69,11 +72,11 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <button aria-label="Open search" onClick={() => setSearchOpen(true)} className="rounded-full border border-white/35 p-2.5 text-white hover:border-amber-500 hover:text-amber-500">
+            <button aria-label="Open search" onClick={() => setSearchOpen(true)} className="rounded-sm border border-white/30 p-2.5 text-white hover:border-gold-500 hover:text-gold-500">
               <Search className="h-5 w-5" aria-hidden="true" />
             </button>
             <DesktopAccount portalSession={portalSession} memberSession={session} logout={logout} accountOpen={accountOpen} setAccountOpen={setAccountOpen} />
-            <button className="rounded-md border border-white/35 p-2.5 text-white lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open menu">
+            <button className="rounded-sm border border-white/30 p-2.5 text-white lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open menu">
               <Menu className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
@@ -97,24 +100,24 @@ function DesktopAccount({ portalSession, memberSession, logout, accountOpen, set
   }
 
   if (portalSession?.authenticated && portalSession.role === "ADMIN") {
-    return <Link href="/admin" className="hidden rounded-md border border-amber-500 bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:border-amber-600 hover:bg-amber-600 sm:inline-flex">Admin</Link>;
+    return <Link href="/admin" className="hidden rounded-sm border border-hardwood-600 bg-hardwood-600 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-hardwood-700 hover:bg-hardwood-700 sm:inline-flex">Admin</Link>;
   }
 
   if (portalSession?.authenticated && portalSession.role === "ORGANIZER") {
-    return <Link href="/organizer" className="hidden rounded-md border border-white/65 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-navy-800 sm:inline-flex">Organizer Portal</Link>;
+    return <Link href="/organizer" className="hidden rounded-sm border border-white/65 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:bg-white hover:text-court-900 sm:inline-flex">Organizer Portal</Link>;
   }
 
   if (memberSession) {
     return (
       <div className="relative hidden sm:block">
-        <button onClick={() => setAccountOpen((open) => !open)} className="inline-flex items-center gap-2 rounded-md border border-white/55 px-4 py-2 text-sm font-semibold text-white hover:border-amber-500 hover:text-amber-500">
+        <button onClick={() => setAccountOpen((open) => !open)} className="inline-flex items-center gap-2 rounded-sm border border-white/55 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-gold-500 hover:text-gold-500">
           <User className="h-4 w-4" aria-hidden="true" />
           {memberSession.name}
         </button>
         {accountOpen ? (
           <div className="absolute right-0 top-full mt-3 w-56 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
             <p className="truncate px-2 py-2 text-sm text-ink-600" title={memberSession.email}>{memberSession.email}</p>
-            <button onClick={() => { logout(); setAccountOpen(false); }} className="w-full rounded-md px-2 py-2 text-left font-semibold text-navy-800 hover:bg-navy-50">Logout</button>
+            <button onClick={() => { logout(); setAccountOpen(false); }} className="w-full rounded-sm px-2 py-2 text-left font-semibold text-court-900 hover:bg-paper-500">Logout</button>
           </div>
         ) : null}
       </div>
@@ -123,8 +126,8 @@ function DesktopAccount({ portalSession, memberSession, logout, accountOpen, set
 
   return (
     <div className="hidden items-center gap-3 sm:flex">
-      <Link href="/portal/login" className="rounded-md border border-white/65 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white hover:text-navy-800">Organizer Portal</Link>
-      <Link href="/login" className="rounded-md border border-amber-500 bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:border-amber-600 hover:bg-amber-600">Member Login</Link>
+      <Link href="/portal/login" className="rounded-sm border border-white/65 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:bg-white hover:text-court-900">Organizer Portal</Link>
+      <Link href="/login" className="rounded-sm border border-hardwood-600 bg-hardwood-600 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-hardwood-700 hover:bg-hardwood-700">Member Login</Link>
     </div>
   );
 }
@@ -135,7 +138,7 @@ function BrandMark() {
       <img src="/oncourt-logo.png" alt="" className="h-12 w-12 rounded-sm object-contain" />
       <span>
         <span className="block font-display text-3xl font-extrabold tracking-normal text-white">ONCOURT</span>
-        <span className="block font-mono text-[0.58rem] uppercase tracking-[0.18em] text-amber-500">Rankings PH</span>
+        <span className="block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-gold-500">Rankings PH</span>
       </span>
     </Link>
   );

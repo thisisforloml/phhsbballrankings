@@ -9,13 +9,14 @@
 
   html {
     scroll-behavior: smooth;
-    background: #f9f9fa;
+    background: #f7f4ef;
   }
 
   body {
     margin: 0;
-    background: #f9f9fa;
-    color: #1a1d2e;
+    background: #f7f4ef;
+    color: #111318;
+    font-family: "Geist", Arial, Helvetica, sans-serif;
     letter-spacing: 0;
   }
 
@@ -61,8 +62,11 @@
 
   .hero-brand {
     background:
-      radial-gradient(circle at 78% 12%, rgba(245, 135, 10, 0.22), transparent 28rem),
-      linear-gradient(135deg, #0F2044 0%, #060D1F 100%);
+      linear-gradient(90deg, rgba(245, 165, 36, 0.1) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(245, 165, 36, 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 82% 18%, rgba(217, 119, 6, 0.3), transparent 24rem),
+      linear-gradient(135deg, #111318 0%, #07142e 100%);
+    background-size: 56px 56px, 56px 56px, auto, auto;
   }
 
   .skeleton {
@@ -105,15 +109,27 @@
   }
 
   .button {
-    @apply inline-flex min-h-11 items-center justify-center rounded-md border px-4 py-2 font-semibold transition;
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm border px-4 py-2 font-bold uppercase tracking-[0.04em] transition;
   }
 
   .button.primary {
-    @apply border-amber-500 bg-amber-500 text-white hover:bg-amber-600;
+    @apply border-hardwood-600 bg-hardwood-600 text-white hover:bg-hardwood-700;
   }
 
   .button.secondary {
-    @apply border-navy-800 bg-white text-navy-800 hover:bg-navy-50;
+    @apply border-court-900 bg-white text-court-900 hover:bg-paper-500;
+  }
+
+  .scoreboard-panel {
+    @apply border border-line-500 bg-white;
+  }
+
+  .scoreboard-label {
+    @apply text-xs font-bold uppercase tracking-[0.12em] text-court-500;
+  }
+
+  .scoreboard-value {
+    @apply font-display text-3xl font-black leading-none text-court-900;
   }
 
   .login-shell {

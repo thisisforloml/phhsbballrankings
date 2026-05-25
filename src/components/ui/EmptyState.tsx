@@ -32,10 +32,10 @@ const icons: Record<EmptyIcon, React.ReactNode> = {
 
 export function EmptyState({ icon, title }: { icon: EmptyIcon; title: string }) {
   return (
-    <div className="grid place-items-center rounded-lg border border-surface-200 bg-white px-6 py-16 text-center">
-      <div className="text-navy-800">{icons[icon]}</div>
-      <h2 className="mt-5 font-display text-2xl font-bold text-ink-800">{title}</h2>
-      <p className="mt-2 max-w-sm text-ink-500">Data will appear here as verified games are submitted.</p>
+    <div className="grid place-items-center border border-line-500 bg-white px-6 py-16 text-center">
+      <div className="text-hardwood-600">{icons[icon]}</div>
+      <h2 className="mt-5 font-display text-2xl font-black text-court-900">{title}</h2>
+      <p className="mt-2 max-w-sm text-court-500">Official data will appear here once the selected scope has verified submissions.</p>
     </div>
   );
 }
