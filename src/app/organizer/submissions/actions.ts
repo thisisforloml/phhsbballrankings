@@ -9,6 +9,8 @@ import { inferSubmissionType, parseSubmissionPayload, readSubmissionMetadata } f
 
 export async function createOrganizerSubmission(formData: FormData) {
   const user = await requireOrganizerUser();
+  const returnTo = String(formData.get("returnTo") ?? "/organizer/submissions").trim();
+  const safeReturnTo = returnTo.startsWith("/admin/tools/submissions") && user.role === UserRole.ADMIN ? "/admin/tools/submissions" : "/organizer/submissions";
 
   try {
     const type = inferSubmissionType(formData);
@@ -38,10 +40,11 @@ export async function createOrganizerSubmission(formData: FormData) {
     });
   } catch (error) {
     const message = encodeURIComponent(error instanceof Error ? error.message : "Submission could not be created.");
-    redirect(`/organizer/submissions?error=${message}`);
+    redirect(`${safeReturnTo}?error=${message}`);
   }
 
   revalidatePath("/organizer/submissions");
+  revalidatePath("/admin/tools/submissions");
   revalidatePath("/admin/submissions");
-  redirect("/organizer/submissions?created=1");
+  redirect(`${safeReturnTo}?created=1`);
 }

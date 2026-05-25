@@ -142,7 +142,7 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
             </FilterField>
       </FilterBar>
 
-      <section className="container-px mt-8">
+      <section id="team-profiles" className="container-px mt-8">
         <div className="mb-6 border border-line-500 bg-white p-4">
           <p className="text-xs font-black uppercase tracking-[0.12em] text-court-500">
             Showing {visibleRows.length} teams | {ageGroup} {gender} | Min. {selectedMinimumGames} game{selectedMinimumGames === 1 ? "" : "s"} played

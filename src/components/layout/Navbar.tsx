@@ -8,7 +8,7 @@ import { useAuth } from "@/components/auth/AuthContext";
 import { SearchOverlay } from "./SearchOverlay";
 
 const groups = ["U13", "U16", "U19"] as const;
-type MenuKey = "rankings" | "leagues" | "about";
+type MenuKey = "rankings" | "teams" | "leagues" | "about";
 type PortalSession = { authenticated: false } | { authenticated: true; role: "ADMIN" | "ORGANIZER"; name: string; username: string };
 
 type MemberSession = ReturnType<typeof useAuth>["session"];
@@ -55,11 +55,12 @@ export function Navbar() {
 
           <nav className="hidden items-center gap-7 text-sm font-bold uppercase tracking-[0.04em] text-white lg:flex" aria-label="Main navigation">
             <div className="relative" onMouseEnter={() => openDropdown("rankings")} onMouseLeave={closeDropdown}>
-              <Link className="nav-underline" href="/rankings">Rankings</Link>
+              <Link className="nav-underline" href="/rankings">Players</Link>
               {openMenu === "rankings" ? <RankingsDropdown /> : null}
             </div>
-            <div className="relative">
+            <div className="relative" onMouseEnter={() => openDropdown("teams")} onMouseLeave={closeDropdown}>
               <Link className="nav-underline" href="/teams">Teams</Link>
+              {openMenu === "teams" ? <TeamsDropdown /> : null}
             </div>
             <div className="relative" onMouseEnter={() => openDropdown("leagues")} onMouseLeave={closeDropdown}>
               <Link className="nav-underline" href="/leagues">Leagues</Link>
@@ -146,11 +147,11 @@ function BrandMark() {
 
 function RankingsDropdown() {
   return (
-    <div className="absolute left-1/2 top-full z-50 mt-4 w-[32rem] -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-5 text-ink-900 shadow-panel">
-      <div className="grid grid-cols-[1fr_1fr_auto] gap-6">
+    <div className="absolute left-1/2 top-full z-50 mt-4 w-[24rem] -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-5 text-ink-900 shadow-panel">
+      <div className="grid grid-cols-2 gap-6">
         {(["boys", "girls"] as const).map((gender) => (
           <section key={gender}>
-            <h3 className="font-mono text-mono-sm uppercase text-navy-800">Players {gender}</h3>
+            <h3 className="font-mono text-mono-sm uppercase text-navy-800">{gender === "boys" ? "Boys Rankings" : "Girls Rankings"}</h3>
             <div className="mt-3 grid gap-2 border-t border-surface-200 pt-3">
               {groups.map((group) => (
                 <Link key={group} className="rounded-md px-2 py-1 hover:bg-amber-50 hover:text-amber-700" href={`/rankings/${gender}/${group.toLowerCase()}`}>{group}</Link>
@@ -158,13 +159,16 @@ function RankingsDropdown() {
             </div>
           </section>
         ))}
-        <section>
-          <h3 className="font-mono text-mono-sm uppercase text-navy-800">Teams</h3>
-          <div className="mt-3 grid gap-2 border-t border-surface-200 pt-3">
-            <Link className="rounded-md px-2 py-1 hover:bg-amber-50 hover:text-amber-700" href="/teams">Team Rankings</Link>
-          </div>
-        </section>
       </div>
+    </div>
+  );
+}
+
+function TeamsDropdown() {
+  return (
+    <div className="absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
+      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/teams">Team Standings</Link>
+      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/teams#team-profiles">Team Profiles</Link>
     </div>
   );
 }
@@ -199,16 +203,22 @@ function MobileDrawer({ open, onClose, portalSession, memberSession }: { open: b
             </div>
             <nav className="mt-8 grid gap-5 text-lg font-semibold">
               <section>
-                <p>Rankings</p>
+                <p>Players</p>
                 <div className="mt-3 grid grid-cols-2 gap-4 text-sm">
                   {(["boys", "girls"] as const).map((gender) => (
                     <div key={gender}>
-                      <p className="font-mono uppercase text-amber-500">Players {gender}</p>
+                      <p className="font-mono uppercase text-amber-500">{gender === "boys" ? "Boys Rankings" : "Girls Rankings"}</p>
                       {groups.map((group) => <Link key={group} onClick={onClose} className="mt-2 block" href={`/rankings/${gender}/${group.toLowerCase()}`}>{group}</Link>)}
                     </div>
                   ))}
                 </div>
-                <Link onClick={onClose} className="mt-4 block text-sm text-amber-500" href="/teams">Team Rankings</Link>
+              </section>
+              <section>
+                <p>Teams</p>
+                <div className="mt-3 grid gap-2 text-sm">
+                  <Link onClick={onClose} href="/teams">Team Standings</Link>
+                  <Link onClick={onClose} href="/teams#team-profiles">Team Profiles</Link>
+                </div>
               </section>
               <section>
                 <p>Leagues</p>

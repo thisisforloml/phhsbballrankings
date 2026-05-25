@@ -69,6 +69,12 @@ export type PlayerProfile = {
   ppg: number;
   rpg: number;
   apg: number;
+  spg: number;
+  bpg: number;
+  bestFourthStat: {
+    label: string;
+    value: number | string;
+  };
   latestFiveGames: PlayerProfileGame[];
   leagues: PlayerProfileLeague[];
 };
@@ -211,6 +217,12 @@ function selectProfileRating(player: LoadedPlayer) {
   return player.currentRatings.slice().sort((left, right) => right.verifiedGameCount - left.verifiedGameCount || Number(right.adjustedRating) - Number(left.adjustedRating))[0] ?? null;
 }
 
+function bestFourthStat(values: { spg: number; bpg: number; rating: number }) {
+  if (values.spg > 0) return { label: "SPG", value: values.spg };
+  if (values.bpg > 0) return { label: "BPG", value: values.bpg };
+  return { label: "Rating", value: values.rating.toFixed(1) };
+}
+
 async function deriveSnapshotRanks(player: LoadedPlayer, ageGroup: AgeGroup, snapshotWeekOf: Date | null) {
   if (!snapshotWeekOf) return { regionRank: null, positionRank: null };
 
@@ -326,8 +338,18 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     }),
     { points: 0, rebounds: 0, assists: 0 }
   );
+  const defensiveTotals = player.gameStats.reduce(
+    (sum, stat) => ({
+      steals: sum.steals + (stat.steals ?? 0),
+      blocks: sum.blocks + (stat.blocks ?? 0)
+    }),
+    { steals: 0, blocks: 0 }
+  );
   const mostRecentStat = player.gameStats[0] ?? null;
   const names = playerNameParts(player.displayName, player.firstName, player.lastName);
+  const ratingValue = Number(rating?.adjustedRating ?? 0);
+  const spg = gamesPlayed ? roundOne(defensiveTotals.steals / gamesPlayed) : 0;
+  const bpg = gamesPlayed ? roundOne(defensiveTotals.blocks / gamesPlayed) : 0;
 
   return {
     id: player.id,
@@ -350,7 +372,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     photoUrl: player.photoUrl,
     currentTeam: player.currentProgram?.fullName || player.schoolOverride?.trim() || mostRecentStat?.team.program?.fullName || getUaapSchoolDisplayName(mostRecentStat?.team.name),
     ageGroup: displayAgeGroup,
-    rating: Number(rating?.adjustedRating ?? 0),
+    rating: ratingValue,
     observedRating: Number(rating?.observedRating ?? rating?.adjustedRating ?? 0),
     starRating: (rating?.starRating ?? 1) as PlayerProfile["starRating"],
     verifiedGameCount: rating?.verifiedGameCount ?? gamesPlayed,
@@ -362,6 +384,9 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     ppg: gamesPlayed ? roundOne(totals.points / gamesPlayed) : 0,
     rpg: gamesPlayed ? roundOne(totals.rebounds / gamesPlayed) : 0,
     apg: gamesPlayed ? roundOne(totals.assists / gamesPlayed) : 0,
+    spg,
+    bpg,
+    bestFourthStat: bestFourthStat({ spg, bpg, rating: ratingValue }),
     latestFiveGames: games.slice(0, 5),
     leagues: buildLeagueHistory(games, player.gameStats)
   };

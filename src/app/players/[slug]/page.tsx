@@ -92,11 +92,6 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
     <PublicPageShell>
       <PlayerProfileHeader profile={profile} />
       <section className="container-px grid gap-10 py-12 pb-28">
-        <section className="grid gap-4 border-y border-line-500 bg-white px-5 py-5 md:grid-cols-3">
-          <StatTile label="PPG" value={profile.ppg} />
-          <StatTile label="RPG" value={profile.rpg} />
-          <StatTile label="APG" value={profile.apg} />
-        </section>
         <RecentGames games={player.lastFiveGames} />
         <CompetitionHistory leagues={player.leaguesPlayed} />
         <details className="border border-line-500 bg-white p-5">
@@ -121,14 +116,5 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
         </PremiumGate>
       </section>
     </PublicPageShell>
-  );
-}
-
-function StatTile({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="border-l-4 border-hardwood-600 pl-4">
-      <strong className="block font-display text-stat-md font-black leading-none text-court-900">{value}</strong>
-      <span className="mt-1 block text-xs font-black uppercase tracking-[0.12em] text-court-500">{label}</span>
-    </div>
   );
 }

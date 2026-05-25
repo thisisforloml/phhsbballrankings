@@ -19,19 +19,18 @@ function positionLabel(position: string | null) {
 export function RankingTable({ rows }: { rows: NationalRankingRow[] }) {
   return (
     <div className="overflow-hidden border border-line-500 bg-white">
-      <div className="hidden grid-cols-[5.5rem_minmax(20rem,1.8fr)_8rem_8rem_11rem_8rem] border-b border-court-900 bg-court-900 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white/72 lg:grid">
+      <div className="hidden grid-cols-[5.5rem_minmax(20rem,1.8fr)_8rem_8rem_11rem] border-b border-court-900 bg-court-900 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white/72 lg:grid">
         <span>Rank</span>
         <span>Athlete</span>
         <span>Height</span>
         <span>Position</span>
         <span>Rating</span>
-        <span>Games</span>
       </div>
       {rows.map((row, index) => (
         <Link
           key={row.playerId}
           href={getPlayerProfileHref(row)}
-          className="group grid gap-3 border-b border-line-500 bg-white px-4 py-4 transition last:border-b-0 hover:bg-paper-500 lg:grid-cols-[5.5rem_minmax(20rem,1.8fr)_8rem_8rem_11rem_8rem] lg:items-center"
+          className="group grid gap-3 border-b border-line-500 bg-white px-4 py-4 transition last:border-b-0 hover:bg-paper-500 lg:grid-cols-[5.5rem_minmax(20rem,1.8fr)_8rem_8rem_11rem] lg:items-center"
         >
           <span className="flex items-center gap-3">
             <strong className="text-[2.25rem] font-black leading-none text-court-900 group-hover:text-hardwood-600">#{index + 1}</strong>
@@ -54,10 +53,8 @@ export function RankingTable({ rows }: { rows: NationalRankingRow[] }) {
             <strong className="block text-2xl font-black leading-none text-court-900">{row.rating.toFixed(2)}</strong>
             <span className="mt-1 block"><StarRating stars={row.starRating} /></span>
           </span>
-          <span className="text-sm font-bold uppercase tracking-[0.08em] text-court-500">{row.verifiedGameCount} GP</span>
         </Link>
       ))}
     </div>
   );
 }
-

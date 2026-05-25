@@ -10,7 +10,8 @@ const primaryItems = [
 const utilityItems = [
   { href: "/admin/players", label: "Player Search", key: "players" },
   { href: "/admin/data-health/player-duplicates", label: "Player Duplicate Review", key: "playerDuplicates" },
-  { href: "/organizer/submissions", label: "Organizer Tools", key: "organizer" }
+  { href: "/admin/tools/submissions", label: "Submission Tools", key: "adminTools" },
+  { href: "/admin/tools/live-stats", label: "Manual Stats Entry", key: "manualStats" }
 ] as const;
 
 export type AdminNavKey = typeof primaryItems[number]["key"] | typeof utilityItems[number]["key"] | "teams";
