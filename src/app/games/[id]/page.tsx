@@ -59,8 +59,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
       <section className="hero-brand text-white">
         <div className="container-px py-14">
           <Link href={`/leagues/${game.season.league.id}`} className="text-xs font-black uppercase tracking-[0.14em] text-gold-500 hover:text-white">Back to league</Link>
-          <p className="mt-6 text-xs font-black uppercase tracking-[0.16em] text-gold-500">Official Game</p>
-          <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+          <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
             <TeamScore name={game.homeTeam.name} score={game.homeScore} winner={homeWon} align="left" />
             <span className="hidden text-center text-xs font-black uppercase tracking-[0.16em] text-white/42 lg:block">Final</span>
             <TeamScore name={game.awayTeam.name} score={game.awayScore} winner={awayWon} align="right" />
@@ -105,4 +104,3 @@ function Meta({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-

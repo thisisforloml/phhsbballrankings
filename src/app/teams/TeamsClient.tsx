@@ -82,7 +82,7 @@ export function TeamsClient({ data }: { data: TeamStandingsData }) {
     <>
       <section className="container-px border-b border-line-500 bg-court-900 py-12 text-white">
         <SectionHeader
-          title="Standings Board"
+          title="Team Standings Board"
           dark
           action={
             <div className="inline-flex border border-white/20 bg-white/10 p-1">
