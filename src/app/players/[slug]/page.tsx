@@ -1,10 +1,12 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPlayerProfileBySlug, type PlayerProfile } from "@/lib/player-profile";
 import type { GameResult, LeagueHistory, Player } from "@/lib/mock-data";
-import { CompetitionHistory, PlayerHero, RecentGames } from "@/components/sections";
-import { PremiumGate, StarRating } from "@/components/ui";
-import { formatHeight } from "@/lib/format";
+import { CompetitionHistory, RecentGames } from "@/components/sections";
+import { PremiumGate } from "@/components/ui";
+import { PlayerProfileHeader } from "@/components/public/PlayerProfileHeader";
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { SectionHeader } from "@/components/public/SectionHeader";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const profile = await getPlayerProfileBySlug(params.slug);
@@ -85,48 +87,50 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
   if (!profile) notFound();
 
   const player = toMockPlayer(profile);
-  const rankLabel = profile.nationalRank ? `#${profile.nationalRank}` : "Provisional ranking";
 
   return (
-    <main>
-      <PlayerHero player={player} />
-      <section className="container-px grid gap-10 py-14 pb-24">
-        <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-          <p className="font-mono text-mono-sm uppercase text-ink-500">Profile status</p>
-          <div className="mt-3 grid gap-3 text-ink-700 md:grid-cols-3 lg:grid-cols-6">
-            <span><strong className="block text-ink-900">{rankLabel}</strong>National rank</span>
-            <span><strong className="block text-ink-900">{profile.regionRank ? `#${profile.regionRank}` : "Unavailable"}</strong>{profile.regionRank ? `${profile.region} rank` : "Region rank unavailable"}</span>
-            <span><strong className="block text-ink-900">{profile.positionRank ? `#${profile.positionRank}` : "Unavailable"}</strong>{profile.positionRank ? `${profile.position} rank` : "Position rank unavailable"}</span>
-            <span><strong className="block text-ink-900">{profile.rating.toFixed(2)}</strong><span className="mt-1 block"><StarRating stars={profile.starRating} /></span></span>
-            <span><strong className="block text-ink-900">{profile.position ?? "Position not on record"}</strong>Position</span>
-            <span><strong className="block text-ink-900">{profile.currentTeam}</strong>School/Team</span>
-            <span><strong className="block text-ink-900">{formatHeight(profile.heightCm)}</strong>Height</span>
-            <span><strong className="block text-ink-900">{profile.classYear ?? "Not on record"}</strong>Class year</span>
-          </div>
-        </div>
+    <PublicPageShell>
+      <PlayerProfileHeader profile={profile} />
+      <section className="container-px grid gap-10 py-12 pb-28">
+        <section className="grid gap-4 border-y border-line-500 bg-white px-5 py-5 md:grid-cols-3">
+          <StatTile label="PPG" value={profile.ppg} />
+          <StatTile label="RPG" value={profile.rpg} />
+          <StatTile label="APG" value={profile.apg} />
+        </section>
         <RecentGames games={player.lastFiveGames} />
         <CompetitionHistory leagues={player.leaguesPlayed} />
-        <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-          <summary className="cursor-pointer font-mono text-label uppercase tracking-[0.12em] text-navy-800">How is this rating calculated?</summary>
-          <p className="mt-4 max-w-4xl leading-7 text-ink-700">
+        <details className="border border-line-500 bg-white p-5">
+          <summary className="cursor-pointer text-xs font-black uppercase tracking-[0.14em] text-court-900">How is this rating calculated?</summary>
+          <p className="mt-4 max-w-4xl leading-7 text-court-700">
             This profile uses Formula v1, a possession-informed baseline rating from submitted box-score data. Game performance scores are scaled within the same competition pool, then averaged into the current player rating. Public ranking eligibility is currently 10 verified games for U19 boys and 5 verified games for U19 girls.
           </p>
         </details>
-        <div className="rounded-lg bg-navy-800 p-5 text-white md:flex md:items-center md:justify-between md:gap-6">
+        <div className="border border-court-900 bg-court-900 p-6 text-white md:flex md:items-center md:justify-between md:gap-6">
           <div>
-            <h2 className="font-display text-3xl">Is this you?</h2>
-            <p className="mt-1 text-white/75">Claim your profile to add your photo, school, birthdate, contact information, and social links.</p>
+            <h2 className="font-display text-3xl font-black">Is this you?</h2>
+            <p className="mt-1 text-white/75">Claim your profile to add your photo, program, birthdate, contact information, and social links.</p>
           </div>
           <a href={`/claim?player=${profile.slug}`} className="button primary mt-4 md:mt-0">Claim Profile</a>
         </div>
         <PremiumGate description="Full career history, monthly ranking movement, analytics, trend data, and exports are available behind Premium Access.">
-          <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-            <h2 className="font-display text-3xl text-ink-900">Licensed Performance Analytics</h2>
-            <p className="text-ink-600">All games played, month-by-month ranking movement, advanced analytics, performance trends, and exportable data.</p>
+          <section className="grid gap-4 border border-line-500 bg-white p-6">
+            <SectionHeader
+              eyebrow="Premium Access"
+              title="Licensed Performance Analytics"
+              description="All games played, month-by-month ranking movement, advanced analytics, performance trends, and exportable data."
+            />
           </section>
         </PremiumGate>
       </section>
-    </main>
+    </PublicPageShell>
   );
 }
 
+function StatTile({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="border-l-4 border-hardwood-600 pl-4">
+      <strong className="block font-display text-stat-md font-black leading-none text-court-900">{value}</strong>
+      <span className="mt-1 block text-xs font-black uppercase tracking-[0.12em] text-court-500">{label}</span>
+    </div>
+  );
+}
