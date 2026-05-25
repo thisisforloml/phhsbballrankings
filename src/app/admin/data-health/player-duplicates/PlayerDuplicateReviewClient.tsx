@@ -159,7 +159,11 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
             </div>
           </article>
         ))}
-        {!filteredGroups.length ? <p className="rounded-lg border border-surface-200 bg-white p-5 text-sm text-ink-600 shadow-sm">No duplicate groups match these filters.</p> : null}
+        {!filteredGroups.length ? (
+          <p className="rounded-lg border border-surface-200 bg-white p-5 text-sm text-ink-600 shadow-sm">
+            {groups.length === 0 ? "No possible player duplicates found." : "No duplicate groups match these filters."}
+          </p>
+        ) : null}
       </section>
     </div>
   );

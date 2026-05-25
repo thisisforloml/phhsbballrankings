@@ -1,0 +1,4355 @@
+{
+  "generatedAt": "2026-05-25T00:34:30.728Z",
+  "readOnly": true,
+  "guardrails": {
+    "databaseModified": false,
+    "mergesPerformed": false,
+    "deletesPerformed": false,
+    "migrationsRun": false,
+    "importsOrPublishRun": false,
+    "ratingsOrSnapshotsRecomputed": false,
+    "formulaV1Changed": false
+  },
+  "baselineCounts": {
+    "activeGames": 215,
+    "activeGameStats": 5363,
+    "gamePerformanceScores": 5363,
+    "playerRatings": 506,
+    "rankingSnapshots": 3,
+    "rankingSnapshotRows": 404
+  },
+  "classificationRules": {
+    "team": {
+      "MERGE_SAFE": "Same Program, same age group, same gender, same league/season, same team meaning, and multiple active records. Requires approved repair script before execution.",
+      "HIDE_INACTIVE_ONLY": "One active team and one or more unused/inactive similar records, or inactive records with no active official usage. Hide from primary UI; do not delete yet.",
+      "NEEDS_REVIEW": "Ambiguous names/context or active records where the same-team meaning cannot be proven automatically.",
+      "KEEP_SEPARATE": "Similar names across different age/gender/league/season contexts. Do not merge."
+    },
+    "player": {
+      "MERGE_SAFE": "Same normalized name, same current Program, same gender, and no conflicting birthDate. Requires approved merge script before execution.",
+      "NEEDS_REVIEW": "Same/similar names with different programs or incomplete/conflicting bio context.",
+      "KEEP_SEPARATE": "Known separate athletes; no automatic groups are classified this way without an allowlist."
+    }
+  },
+  "teamDuplicatePlan": [
+    {
+      "groupId": "similar:3f5093b4-afba-4028-b662-d7ef22d91f1b:28eaa2c2-be45-4de6-a030-acf090e0069c,e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "fullName": "Adamson University",
+        "abbreviation": "ADU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8"
+      ],
+      "teamNames": [
+        "ADU",
+        "ADU Jrs (ADU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "teamName": "ADU",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "teamName": "ADU Jrs (ADU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 168,
+      "recommendedCanonicalTeam": {
+        "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "teamName": "ADU"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "teamName": "ADU Jrs (ADU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:3f5093b4-afba-4028-b662-d7ef22d91f1b:28eaa2c2-be45-4de6-a030-acf090e0069c,685e9651-ad77-4824-b70c-f032365e1f80",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "fullName": "Adamson University",
+        "abbreviation": "ADU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "685e9651-ad77-4824-b70c-f032365e1f80"
+      ],
+      "teamNames": [
+        "ADU",
+        "ADU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "teamName": "ADU",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "teamName": "ADU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 29,
+      "gameStatCount": 341,
+      "recommendedCanonicalTeam": {
+        "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+        "teamName": "ADU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "teamName": "ADU",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:3f5093b4-afba-4028-b662-d7ef22d91f1b:685e9651-ad77-4824-b70c-f032365e1f80,e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "fullName": "Adamson University",
+        "abbreviation": "ADU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+        "685e9651-ad77-4824-b70c-f032365e1f80"
+      ],
+      "teamNames": [
+        "ADU Jrs (ADU)",
+        "ADU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "teamName": "ADU Jrs (ADU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "teamName": "ADU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 173,
+      "recommendedCanonicalTeam": {
+        "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+        "teamName": "ADU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "teamName": "ADU Jrs (ADU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:139a2c1d-8615-4019-8209-a634cd6abbb8,f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "139a2c1d-8615-4019-8209-a634cd6abbb8",
+        "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661"
+      ],
+      "teamNames": [
+        "ADMU Girls",
+        "ADMU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "teamName": "ADMU Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "teamName": "ADMU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 20,
+      "gameStatCount": 271,
+      "recommendedCanonicalTeam": {
+        "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+        "teamName": "ADMU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "teamName": "ADMU Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:139a2c1d-8615-4019-8209-a634cd6abbb8,3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "139a2c1d-8615-4019-8209-a634cd6abbb8",
+        "3e29df0f-062d-4e43-bb01-a3960fdcbb43"
+      ],
+      "teamNames": [
+        "ADMU Girls",
+        "ADMU U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "teamName": "ADMU Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "teamName": "ADMU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 HS Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 22,
+      "gameStatCount": 254,
+      "recommendedCanonicalTeam": {
+        "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+        "teamName": "ADMU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "teamName": "ADMU Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:3e29df0f-062d-4e43-bb01-a3960fdcbb43,f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+        "3e29df0f-062d-4e43-bb01-a3960fdcbb43"
+      ],
+      "teamNames": [
+        "ADMU U16 Boys",
+        "ADMU U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "teamName": "ADMU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "teamName": "ADMU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 30,
+      "gameStatCount": 377,
+      "recommendedCanonicalTeam": {
+        "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+        "teamName": "ADMU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "teamName": "ADMU U16 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:a1d6a2b9-f100-4677-bbd4-853254e9de91,acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "acb69a9e-e10c-4486-b3e1-9fe8c056c57c"
+      ],
+      "teamNames": [
+        "ATENEO",
+        "ATENEO Girls (ATENEO)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+          "teamName": "ATENEO",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "teamName": "ATENEO Girls (ATENEO)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "teamName": "ATENEO"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "teamName": "ATENEO Girls (ATENEO)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:1f44864b-91c6-4b52-a1d3-1b88eee3b487,a1d6a2b9-f100-4677-bbd4-853254e9de91",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "1f44864b-91c6-4b52-a1d3-1b88eee3b487"
+      ],
+      "teamNames": [
+        "ATENEO",
+        "ATENEO JRS (ATENEO)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+          "teamName": "ATENEO",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "teamName": "ATENEO JRS (ATENEO)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "teamName": "ATENEO"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "teamName": "ATENEO JRS (ATENEO)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:1f44864b-91c6-4b52-a1d3-1b88eee3b487,acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+        "1f44864b-91c6-4b52-a1d3-1b88eee3b487"
+      ],
+      "teamNames": [
+        "ATENEO Girls (ATENEO)",
+        "ATENEO JRS (ATENEO)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "teamName": "ATENEO Girls (ATENEO)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "teamName": "ATENEO JRS (ATENEO)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+        "teamName": "ATENEO Girls (ATENEO)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "teamName": "ATENEO JRS (ATENEO)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:4108ff02-d59f-41aa-9219-070d56cfa5bc,ae091b25-12cd-453f-af06-b629247174c9",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "ae091b25-12cd-453f-af06-b629247174c9"
+      ],
+      "teamNames": [
+        "DE LA SALLE Jrs (DLSU)",
+        "DLSU"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+          "teamName": "DE LA SALLE Jrs (DLSU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+          "teamName": "DLSU",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "teamName": "DE LA SALLE Jrs (DLSU)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+          "teamName": "DLSU",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:4108ff02-d59f-41aa-9219-070d56cfa5bc,99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "99d138ba-9679-4f6b-adfa-ace87d9125b4"
+      ],
+      "teamNames": [
+        "DE LA SALLE Jrs (DLSU)",
+        "LA SALLE"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+          "teamName": "DE LA SALLE Jrs (DLSU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "teamName": "DE LA SALLE Jrs (DLSU)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:4108ff02-d59f-41aa-9219-070d56cfa5bc,c010e83f-8a2d-4084-8497-0bea7119c6db",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "c010e83f-8a2d-4084-8497-0bea7119c6db"
+      ],
+      "teamNames": [
+        "DE LA SALLE Jrs (DLSU)",
+        "LA SALLE Girls (DLSU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+          "teamName": "DE LA SALLE Jrs (DLSU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "teamName": "DE LA SALLE Jrs (DLSU)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee,99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+        "99d138ba-9679-4f6b-adfa-ace87d9125b4"
+      ],
+      "teamNames": [
+        "De La Salle Santiago Zobel",
+        "LA SALLE"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+          "teamName": "De La Salle Santiago Zobel",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+        "teamName": "De La Salle Santiago Zobel"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:ae091b25-12cd-453f-af06-b629247174c9,c010e83f-8a2d-4084-8497-0bea7119c6db",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "ae091b25-12cd-453f-af06-b629247174c9",
+        "c010e83f-8a2d-4084-8497-0bea7119c6db"
+      ],
+      "teamNames": [
+        "DLSU",
+        "LA SALLE Girls (DLSU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+          "teamName": "DLSU",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+        "teamName": "DLSU"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:3739a9f4-21ef-4938-83ff-811433a47656,ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "3739a9f4-21ef-4938-83ff-811433a47656"
+      ],
+      "teamNames": [
+        "DLSZ",
+        "DLSZ U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "DLSZ U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 176,
+      "recommendedCanonicalTeam": {
+        "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+        "teamName": "DLSZ U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:f5480f4e-456e-427c-b2f2-6802f94b7470,ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "f5480f4e-456e-427c-b2f2-6802f94b7470"
+      ],
+      "teamNames": [
+        "DLSZ",
+        "DLSZ U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "teamName": "DLSZ U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 180,
+      "recommendedCanonicalTeam": {
+        "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "teamName": "DLSZ U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:564ae4ca-61d1-496e-9472-ee3819df8ce6,ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "564ae4ca-61d1-496e-9472-ee3819df8ce6"
+      ],
+      "teamNames": [
+        "DLSZ",
+        "DLSZ U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "teamName": "DLSZ U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 6,
+      "gameStatCount": 63,
+      "recommendedCanonicalTeam": {
+        "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+        "teamName": "DLSZ U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:53650e64-ec1e-48cd-b2eb-5f575362e691,ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "53650e64-ec1e-48cd-b2eb-5f575362e691"
+      ],
+      "teamNames": [
+        "DLSZ",
+        "LA SALLE (DLSZ)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "teamName": "DLSZ",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+        "teamName": "DLSZ"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:3739a9f4-21ef-4938-83ff-811433a47656,f5480f4e-456e-427c-b2f2-6802f94b7470",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "3739a9f4-21ef-4938-83ff-811433a47656",
+        "f5480f4e-456e-427c-b2f2-6802f94b7470"
+      ],
+      "teamNames": [
+        "DLSZ U16 Boys",
+        "DLSZ U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "DLSZ U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "teamName": "DLSZ U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 29,
+      "gameStatCount": 356,
+      "recommendedCanonicalTeam": {
+        "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "teamName": "DLSZ U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "DLSZ U16 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:3739a9f4-21ef-4938-83ff-811433a47656,564ae4ca-61d1-496e-9472-ee3819df8ce6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "3739a9f4-21ef-4938-83ff-811433a47656",
+        "564ae4ca-61d1-496e-9472-ee3819df8ce6"
+      ],
+      "teamNames": [
+        "DLSZ U16 Boys",
+        "DLSZ U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "DLSZ U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "teamName": "DLSZ U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 20,
+      "gameStatCount": 239,
+      "recommendedCanonicalTeam": {
+        "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+        "teamName": "DLSZ U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "teamName": "DLSZ U19 Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:3739a9f4-21ef-4938-83ff-811433a47656,53650e64-ec1e-48cd-b2eb-5f575362e691",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "3739a9f4-21ef-4938-83ff-811433a47656",
+        "53650e64-ec1e-48cd-b2eb-5f575362e691"
+      ],
+      "teamNames": [
+        "DLSZ U16 Boys",
+        "LA SALLE (DLSZ)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "DLSZ U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 176,
+      "recommendedCanonicalTeam": {
+        "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+        "teamName": "DLSZ U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:564ae4ca-61d1-496e-9472-ee3819df8ce6,f5480f4e-456e-427c-b2f2-6802f94b7470",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "564ae4ca-61d1-496e-9472-ee3819df8ce6"
+      ],
+      "teamNames": [
+        "DLSZ U19 Boys",
+        "DLSZ U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "teamName": "DLSZ U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "teamName": "DLSZ U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 HS Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 21,
+      "gameStatCount": 243,
+      "recommendedCanonicalTeam": {
+        "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "teamName": "DLSZ U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "teamName": "DLSZ U19 Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:53650e64-ec1e-48cd-b2eb-5f575362e691,f5480f4e-456e-427c-b2f2-6802f94b7470",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "53650e64-ec1e-48cd-b2eb-5f575362e691"
+      ],
+      "teamNames": [
+        "DLSZ U19 Boys",
+        "LA SALLE (DLSZ)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "teamName": "DLSZ U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 180,
+      "recommendedCanonicalTeam": {
+        "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "teamName": "DLSZ U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:53650e64-ec1e-48cd-b2eb-5f575362e691,564ae4ca-61d1-496e-9472-ee3819df8ce6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+        "53650e64-ec1e-48cd-b2eb-5f575362e691"
+      ],
+      "teamNames": [
+        "DLSZ U19 Girls",
+        "LA SALLE (DLSZ)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "teamName": "DLSZ U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 6,
+      "gameStatCount": 63,
+      "recommendedCanonicalTeam": {
+        "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+        "teamName": "DLSZ U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:53650e64-ec1e-48cd-b2eb-5f575362e691,99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "53650e64-ec1e-48cd-b2eb-5f575362e691"
+      ],
+      "teamNames": [
+        "LA SALLE",
+        "LA SALLE (DLSZ)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "teamName": "LA SALLE"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:99d138ba-9679-4f6b-adfa-ace87d9125b4,c010e83f-8a2d-4084-8497-0bea7119c6db",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "c010e83f-8a2d-4084-8497-0bea7119c6db"
+      ],
+      "teamNames": [
+        "LA SALLE",
+        "LA SALLE Girls (DLSU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "teamName": "LA SALLE"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:8b25947c-21d2-4878-a44f-32dc5160b5bd,99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "8b25947c-21d2-4878-a44f-32dc5160b5bd"
+      ],
+      "teamNames": [
+        "LA SALLE",
+        "LA SALLE Girls (LA SALLE)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "teamName": "LA SALLE Girls (LA SALLE)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "teamName": "LA SALLE"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "teamName": "LA SALLE Girls (LA SALLE)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:8f999ac0-0823-4eac-91af-842957c026ff,99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "8f999ac0-0823-4eac-91af-842957c026ff"
+      ],
+      "teamNames": [
+        "LA SALLE",
+        "LA SALLE Jrs (LA SALLE)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "teamName": "LA SALLE",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "teamName": "LA SALLE Jrs (LA SALLE)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+        "teamName": "LA SALLE"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "teamName": "LA SALLE Jrs (LA SALLE)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:8b25947c-21d2-4878-a44f-32dc5160b5bd,8f999ac0-0823-4eac-91af-842957c026ff",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+        "8f999ac0-0823-4eac-91af-842957c026ff"
+      ],
+      "teamNames": [
+        "LA SALLE Girls (LA SALLE)",
+        "LA SALLE Jrs (LA SALLE)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "teamName": "LA SALLE Girls (LA SALLE)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "teamName": "LA SALLE Jrs (LA SALLE)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+        "teamName": "LA SALLE Girls (LA SALLE)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "teamName": "LA SALLE Jrs (LA SALLE)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:89c66328-4c0a-43d1-ac0b-bdd613db6fa8:8f5d2b7d-e353-482f-8665-9f16e7c8290d,b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "fullName": "Far Eastern University",
+        "abbreviation": "FEU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "b9efc141-ef1a-4214-aebf-3a9db0f2071d"
+      ],
+      "teamNames": [
+        "FEU",
+        "FEU Jrs (FEU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "teamName": "FEU",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "teamName": "FEU Jrs (FEU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 19,
+      "gameStatCount": 260,
+      "recommendedCanonicalTeam": {
+        "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "teamName": "FEU"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "teamName": "FEU Jrs (FEU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:89c66328-4c0a-43d1-ac0b-bdd613db6fa8:604b7ecd-2cfe-4130-882e-28f7213a6240,8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "fullName": "Far Eastern University",
+        "abbreviation": "FEU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "604b7ecd-2cfe-4130-882e-28f7213a6240"
+      ],
+      "teamNames": [
+        "FEU",
+        "FEU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "teamName": "FEU",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "teamName": "FEU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 37,
+      "gameStatCount": 493,
+      "recommendedCanonicalTeam": {
+        "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "teamName": "FEU"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "teamName": "FEU U16 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:89c66328-4c0a-43d1-ac0b-bdd613db6fa8:604b7ecd-2cfe-4130-882e-28f7213a6240,b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "fullName": "Far Eastern University",
+        "abbreviation": "FEU",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+        "604b7ecd-2cfe-4130-882e-28f7213a6240"
+      ],
+      "teamNames": [
+        "FEU Jrs (FEU)",
+        "FEU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "teamName": "FEU Jrs (FEU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "teamName": "FEU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 18,
+      "gameStatCount": 233,
+      "recommendedCanonicalTeam": {
+        "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+        "teamName": "FEU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "teamName": "FEU Jrs (FEU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:205e8c56-cac7-4823-b948-8aba9e8571f4,9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "9ebec3dc-2e89-4a32-9326-54297c71f8bc"
+      ],
+      "teamNames": [
+        "NU",
+        "NU Girls (NU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "teamName": "NU"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:205e8c56-cac7-4823-b948-8aba9e8571f4,d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "d81d5179-b450-4eba-b7a2-07f558a9268c"
+      ],
+      "teamNames": [
+        "NU",
+        "NU Jrs (NU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "teamName": "NU"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:179a4a3e-8dbd-4235-bae5-f0b5125bd0d7,205e8c56-cac7-4823-b948-8aba9e8571f4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7"
+      ],
+      "teamNames": [
+        "NU",
+        "NU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 16,
+      "gameStatCount": 227,
+      "recommendedCanonicalTeam": {
+        "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "teamName": "NU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:0b191fd5-7d10-4496-8a2c-f75a0da3e7a3,205e8c56-cac7-4823-b948-8aba9e8571f4",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3"
+      ],
+      "teamNames": [
+        "NU",
+        "NU U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 18,
+      "gameStatCount": 219,
+      "recommendedCanonicalTeam": {
+        "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "teamName": "NU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:205e8c56-cac7-4823-b948-8aba9e8571f4,97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "97a43fca-47d3-4a56-b98b-4582f86ab5d3"
+      ],
+      "teamNames": [
+        "NU",
+        "NU U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 8,
+      "gameStatCount": 98,
+      "recommendedCanonicalTeam": {
+        "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+        "teamName": "NU U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "teamName": "NU",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:9ebec3dc-2e89-4a32-9326-54297c71f8bc,d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "d81d5179-b450-4eba-b7a2-07f558a9268c"
+      ],
+      "teamNames": [
+        "NU Girls (NU)",
+        "NU Jrs (NU)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "teamName": "NU Girls (NU)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:179a4a3e-8dbd-4235-bae5-f0b5125bd0d7,9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7"
+      ],
+      "teamNames": [
+        "NU Girls (NU)",
+        "NU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 16,
+      "gameStatCount": 227,
+      "recommendedCanonicalTeam": {
+        "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "teamName": "NU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:0b191fd5-7d10-4496-8a2c-f75a0da3e7a3,9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3"
+      ],
+      "teamNames": [
+        "NU Girls (NU)",
+        "NU U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 18,
+      "gameStatCount": 219,
+      "recommendedCanonicalTeam": {
+        "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "teamName": "NU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:97a43fca-47d3-4a56-b98b-4582f86ab5d3,9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "97a43fca-47d3-4a56-b98b-4582f86ab5d3"
+      ],
+      "teamNames": [
+        "NU Girls (NU)",
+        "NU U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 8,
+      "gameStatCount": 98,
+      "recommendedCanonicalTeam": {
+        "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+        "teamName": "NU U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:179a4a3e-8dbd-4235-bae5-f0b5125bd0d7,d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "d81d5179-b450-4eba-b7a2-07f558a9268c",
+        "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7"
+      ],
+      "teamNames": [
+        "NU Jrs (NU)",
+        "NU U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 16,
+      "gameStatCount": 227,
+      "recommendedCanonicalTeam": {
+        "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "teamName": "NU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:0b191fd5-7d10-4496-8a2c-f75a0da3e7a3,d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "d81d5179-b450-4eba-b7a2-07f558a9268c",
+        "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3"
+      ],
+      "teamNames": [
+        "NU Jrs (NU)",
+        "NU U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 18,
+      "gameStatCount": 219,
+      "recommendedCanonicalTeam": {
+        "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "teamName": "NU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:97a43fca-47d3-4a56-b98b-4582f86ab5d3,d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "d81d5179-b450-4eba-b7a2-07f558a9268c",
+        "97a43fca-47d3-4a56-b98b-4582f86ab5d3"
+      ],
+      "teamNames": [
+        "NU Jrs (NU)",
+        "NU U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 8,
+      "gameStatCount": 98,
+      "recommendedCanonicalTeam": {
+        "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+        "teamName": "NU U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:0b191fd5-7d10-4496-8a2c-f75a0da3e7a3,179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3"
+      ],
+      "teamNames": [
+        "NU U16 Boys",
+        "NU U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 34,
+      "gameStatCount": 446,
+      "recommendedCanonicalTeam": {
+        "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "teamName": "NU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NU U16 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:179a4a3e-8dbd-4235-bae5-f0b5125bd0d7,97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "97a43fca-47d3-4a56-b98b-4582f86ab5d3"
+      ],
+      "teamNames": [
+        "NU U16 Boys",
+        "NU U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NU U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 24,
+      "gameStatCount": 325,
+      "recommendedCanonicalTeam": {
+        "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "teamName": "NU U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:697b16be-d6d3-49e4-80c4-ac77daef2093:0b191fd5-7d10-4496-8a2c-f75a0da3e7a3,97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "97a43fca-47d3-4a56-b98b-4582f86ab5d3"
+      ],
+      "teamNames": [
+        "NU U19 Boys",
+        "NU U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NU U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 HS Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 26,
+      "gameStatCount": 317,
+      "recommendedCanonicalTeam": {
+        "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "teamName": "NU U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NU U19 Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:e9b0e32c-0fce-414b-87a4-068c82b9a1c6:08b4a2a4-670b-4a02-a88b-4a6151c0c343,7543e4de-09d2-45e5-869e-341a760b59b8",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+        "fullName": "San Sebastian College-Recoletos",
+        "abbreviation": "SSCR",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "7543e4de-09d2-45e5-869e-341a760b59b8"
+      ],
+      "teamNames": [
+        "SSC-R U19 Boys",
+        "SSCR U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "teamName": "SSC-R U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+          "teamName": "SSCR U19 Boys",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "NCAA Season 101 Junior's Basketball",
+      "season": "Season 101",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 188,
+      "recommendedCanonicalTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "teamName": "SSC-R U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+          "teamName": "SSCR U19 Boys",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:16b51323-3fa8-4f62-8a5f-700fc418f7c5,8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3"
+      ],
+      "teamNames": [
+        "UST",
+        "UST Girls (UST)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "teamName": "UST"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:16b51323-3fa8-4f62-8a5f-700fc418f7c5,7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "7c2934ce-f07a-4f5c-af9e-d3d291b7428c"
+      ],
+      "teamNames": [
+        "UST",
+        "UST Jrs (UST)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "teamName": "UST"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:16b51323-3fa8-4f62-8a5f-700fc418f7c5,da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "da58e619-1ed2-423f-8dac-b7e6c267a9f6"
+      ],
+      "teamNames": [
+        "UST",
+        "UST U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 159,
+      "recommendedCanonicalTeam": {
+        "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "teamName": "UST U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:16b51323-3fa8-4f62-8a5f-700fc418f7c5,d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "d56b5b1a-62c0-4639-993d-b6c2fb15e923"
+      ],
+      "teamNames": [
+        "UST",
+        "UST U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 191,
+      "recommendedCanonicalTeam": {
+        "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "teamName": "UST U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:16b51323-3fa8-4f62-8a5f-700fc418f7c5,d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0"
+      ],
+      "teamNames": [
+        "UST",
+        "UST U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 8,
+      "gameStatCount": 96,
+      "recommendedCanonicalTeam": {
+        "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+        "teamName": "UST U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "teamName": "UST",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:7c2934ce-f07a-4f5c-af9e-d3d291b7428c,8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "7c2934ce-f07a-4f5c-af9e-d3d291b7428c"
+      ],
+      "teamNames": [
+        "UST Girls (UST)",
+        "UST Jrs (UST)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": null,
+      "gender": null,
+      "league": null,
+      "season": null,
+      "context": "Different competition contexts",
+      "officialGameCount": 0,
+      "gameStatCount": 0,
+      "recommendedCanonicalTeam": {
+        "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "teamName": "UST Girls (UST)"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:8d66d8b4-c047-4257-b3b7-3d87b1a09aa3,da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "da58e619-1ed2-423f-8dac-b7e6c267a9f6"
+      ],
+      "teamNames": [
+        "UST Girls (UST)",
+        "UST U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 159,
+      "recommendedCanonicalTeam": {
+        "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "teamName": "UST U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:8d66d8b4-c047-4257-b3b7-3d87b1a09aa3,d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "d56b5b1a-62c0-4639-993d-b6c2fb15e923"
+      ],
+      "teamNames": [
+        "UST Girls (UST)",
+        "UST U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 191,
+      "recommendedCanonicalTeam": {
+        "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "teamName": "UST U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:8d66d8b4-c047-4257-b3b7-3d87b1a09aa3,d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0"
+      ],
+      "teamNames": [
+        "UST Girls (UST)",
+        "UST U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 8,
+      "gameStatCount": 96,
+      "recommendedCanonicalTeam": {
+        "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+        "teamName": "UST U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:7c2934ce-f07a-4f5c-af9e-d3d291b7428c,da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+        "da58e619-1ed2-423f-8dac-b7e6c267a9f6"
+      ],
+      "teamNames": [
+        "UST Jrs (UST)",
+        "UST U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 15,
+      "gameStatCount": 159,
+      "recommendedCanonicalTeam": {
+        "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "teamName": "UST U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:7c2934ce-f07a-4f5c-af9e-d3d291b7428c,d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+        "d56b5b1a-62c0-4639-993d-b6c2fb15e923"
+      ],
+      "teamNames": [
+        "UST Jrs (UST)",
+        "UST U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 191,
+      "recommendedCanonicalTeam": {
+        "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "teamName": "UST U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:7c2934ce-f07a-4f5c-af9e-d3d291b7428c,d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+        "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0"
+      ],
+      "teamNames": [
+        "UST Jrs (UST)",
+        "UST U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Girls",
+      "league": "UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 8,
+      "gameStatCount": 96,
+      "recommendedCanonicalTeam": {
+        "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+        "teamName": "UST U19 Girls"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:d56b5b1a-62c0-4639-993d-b6c2fb15e923,da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "d56b5b1a-62c0-4639-993d-b6c2fb15e923"
+      ],
+      "teamNames": [
+        "UST U16 Boys",
+        "UST U19 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 29,
+      "gameStatCount": 350,
+      "recommendedCanonicalTeam": {
+        "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "teamName": "UST U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST U19 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:d25c88fb-ebca-472b-9d19-6a5ebd28ecf0,da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0"
+      ],
+      "teamNames": [
+        "UST U16 Boys",
+        "UST U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 23,
+      "gameStatCount": 255,
+      "recommendedCanonicalTeam": {
+        "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+        "teamName": "UST U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:85268294-bd6d-4121-b06d-106d2b7d8929:d25c88fb-ebca-472b-9d19-6a5ebd28ecf0,d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0"
+      ],
+      "teamNames": [
+        "UST U19 Boys",
+        "UST U19 Girls"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST U19 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys, Girls",
+      "league": "UAAP Season 88 HS Boys Basketball, UAAP Season 88 HS Girls Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 22,
+      "gameStatCount": 287,
+      "recommendedCanonicalTeam": {
+        "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "teamName": "UST U19 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST U19 Girls",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:0da48409-ec3c-4f8c-a6bd-6a89301d7eee:6e58e1c8-8684-4789-b4be-1ec0752b1057,e560fa7d-c846-465b-98b4-7704cb17416b",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "fullName": "University of the East",
+        "abbreviation": "UE",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "e560fa7d-c846-465b-98b4-7704cb17416b"
+      ],
+      "teamNames": [
+        "UE",
+        "UE Jrs (UE)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+          "teamName": "UE",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+          "teamName": "UE Jrs (UE)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 191,
+      "recommendedCanonicalTeam": {
+        "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "teamName": "UE"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+          "teamName": "UE Jrs (UE)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:0da48409-ec3c-4f8c-a6bd-6a89301d7eee:6e58e1c8-8684-4789-b4be-1ec0752b1057,baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "fullName": "University of the East",
+        "abbreviation": "UE",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3"
+      ],
+      "teamNames": [
+        "UE",
+        "UE U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+          "teamName": "UE",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "teamName": "UE U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 28,
+      "gameStatCount": 338,
+      "recommendedCanonicalTeam": {
+        "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "teamName": "UE"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "teamName": "UE U16 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:0da48409-ec3c-4f8c-a6bd-6a89301d7eee:baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3,e560fa7d-c846-465b-98b4-7704cb17416b",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "fullName": "University of the East",
+        "abbreviation": "UE",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "e560fa7d-c846-465b-98b4-7704cb17416b",
+        "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3"
+      ],
+      "teamNames": [
+        "UE Jrs (UE)",
+        "UE U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+          "teamName": "UE Jrs (UE)",
+          "status": "UNUSED_OR_INACTIVE"
+        },
+        {
+          "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "teamName": "UE U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 147,
+      "recommendedCanonicalTeam": {
+        "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+        "teamName": "UE U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+          "teamName": "UE Jrs (UE)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:ad9a5671-4cd1-4688-9718-7d342f633f87:3e3baff4-9393-4cba-904f-c6aa0216d2a0,7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 1,
+      "classification": "KEEP_SEPARATE",
+      "program": {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "fullName": "University of the Philippines Integrated School",
+        "abbreviation": "UPIS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "7f96dc7f-8690-4fa4-b87b-5497ba3d857b"
+      ],
+      "teamNames": [
+        "UP",
+        "UP U16 Boys"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "teamName": "UP",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "teamName": "UP U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        }
+      ],
+      "ageGroup": "U16, U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball, UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 28,
+      "gameStatCount": 317,
+      "recommendedCanonicalTeam": {
+        "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "teamName": "UP"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "teamName": "UP U16 Boys",
+          "action": "KEEP_SEPARATE"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:ad9a5671-4cd1-4688-9718-7d342f633f87:3e3baff4-9393-4cba-904f-c6aa0216d2a0,e8e50710-0e6a-4482-ae1d-452b3471fdde",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "fullName": "University of the Philippines Integrated School",
+        "abbreviation": "UPIS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "e8e50710-0e6a-4482-ae1d-452b3471fdde"
+      ],
+      "teamNames": [
+        "UP",
+        "UPIS Jrs (UP)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "teamName": "UP",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+          "teamName": "UPIS Jrs (UP)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U19",
+      "gender": "Boys",
+      "league": "UAAP Season 88 HS Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 165,
+      "recommendedCanonicalTeam": {
+        "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "teamName": "UP"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+          "teamName": "UPIS Jrs (UP)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    },
+    {
+      "groupId": "similar:ad9a5671-4cd1-4688-9718-7d342f633f87:7f96dc7f-8690-4fa4-b87b-5497ba3d857b,e8e50710-0e6a-4482-ae1d-452b3471fdde",
+      "detectionType": "SAME_PROGRAM_SIMILAR_NAME_DIFFERENT_CONTEXT",
+      "similarityScore": 0.92,
+      "classification": "HIDE_INACTIVE_ONLY",
+      "program": {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "fullName": "University of the Philippines Integrated School",
+        "abbreviation": "UPIS",
+        "type": "SCHOOL"
+      },
+      "teamIds": [
+        "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+        "e8e50710-0e6a-4482-ae1d-452b3471fdde"
+      ],
+      "teamNames": [
+        "UP U16 Boys",
+        "UPIS Jrs (UP)"
+      ],
+      "activeUnusedStatus": [
+        {
+          "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "teamName": "UP U16 Boys",
+          "status": "ACTIVE_OFFICIAL_USAGE"
+        },
+        {
+          "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+          "teamName": "UPIS Jrs (UP)",
+          "status": "UNUSED_OR_INACTIVE"
+        }
+      ],
+      "ageGroup": "U16",
+      "gender": "Boys",
+      "league": "UAAP Season 88 16U Boys Basketball",
+      "season": "Season 88",
+      "context": "Different competition contexts",
+      "officialGameCount": 14,
+      "gameStatCount": 152,
+      "recommendedCanonicalTeam": {
+        "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+        "teamName": "UP U16 Boys"
+      },
+      "sourceTeamsToReassignOrHide": [
+        {
+          "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+          "teamName": "UPIS Jrs (UP)",
+          "action": "HIDE_INACTIVE_ONLY"
+        }
+      ],
+      "exactAffectedGameIds": [],
+      "exactAffectedGameNumbers": [],
+      "exactAffectedGameCount": 0,
+      "exactAffectedGameStatCount": 0,
+      "ratingsSnapshotsUnchanged": true,
+      "ratingsSnapshotsReason": "Different contexts should remain separate; no rating/snapshot change proposed."
+    }
+  ],
+  "playerDuplicatePlan": [],
+  "inactiveTeamRecordsPlan": [
+    {
+      "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+      "name": "ADU Jrs (ADU)",
+      "program": {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "fullName": "Adamson University",
+        "abbreviation": "ADU",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 11,
+      "historicalGameStatCount": 112,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+      "name": "ATENEO",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+      "name": "ATENEO Girls (ATENEO)",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 3,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+      "name": "ATENEO JRS (ATENEO)",
+      "program": {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "fullName": "Ateneo de Manila University",
+        "abbreviation": "ADMU",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 13,
+      "historicalGameStatCount": 136,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+      "name": "DE LA SALLE Jrs (DLSU)",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 1,
+      "historicalGameStatCount": 14,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+      "name": "De La Salle Santiago Zobel",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+      "name": "DLSU",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+      "name": "DLSZ",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "name": "LA SALLE",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+      "name": "LA SALLE (DLSZ)",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 1,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+      "name": "LA SALLE Girls (DLSU)",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 1,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+      "name": "LA SALLE Girls (LA SALLE)",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 2,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+      "name": "LA SALLE Jrs (LA SALLE)",
+      "program": {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "fullName": "De La Salle Santiago Zobel",
+        "abbreviation": "DLSZ",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 11,
+      "historicalGameStatCount": 105,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+      "name": "FEU Jrs (FEU)",
+      "program": {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "fullName": "Far Eastern University",
+        "abbreviation": "FEU",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 13,
+      "historicalGameStatCount": 98,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+      "name": "NU",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+      "name": "NU Girls (NU)",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 2,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "name": "NU Jrs (NU)",
+      "program": {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "fullName": "National University Nazareth School",
+        "abbreviation": "NUNS",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 8,
+      "historicalGameStatCount": 38,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+      "name": "SSCR U19 Boys",
+      "program": {
+        "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+        "fullName": "San Sebastian College-Recoletos",
+        "abbreviation": "SSCR",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+      "name": "UST",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": false,
+      "historicalGameCount": 0,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "DELETE_IF_TEST_ONLY"
+    },
+    {
+      "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+      "name": "UST Girls (UST)",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 2,
+      "historicalGameStatCount": 0,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+      "name": "UST Jrs (UST)",
+      "program": {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "fullName": "University of Santo Tomas",
+        "abbreviation": "UST",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 6,
+      "historicalGameStatCount": 41,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+      "name": "UE Jrs (UE)",
+      "program": {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "fullName": "University of the East",
+        "abbreviation": "UE",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 11,
+      "historicalGameStatCount": 42,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    },
+    {
+      "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+      "name": "UPIS Jrs (UP)",
+      "program": {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "fullName": "University of the Philippines Integrated School",
+        "abbreviation": "UPIS",
+        "type": "SCHOOL"
+      },
+      "anyHistoricalUsage": true,
+      "historicalGameCount": 7,
+      "historicalGameStatCount": 34,
+      "recommendedAction": "HIDE_INACTIVE_ONLY"
+    }
+  ],
+  "summary": {
+    "totalTeamDuplicateGroups": 69,
+    "mergeSafeTeamGroups": 0,
+    "needsReviewTeamGroups": 0,
+    "keepSeparateTeamGroups": 16,
+    "hideInactiveOnlyTeamGroups": 53,
+    "hideInactiveOnlyTeamRecords": 15,
+    "totalPlayerDuplicateGroups": 0,
+    "mergeSafePlayerGroups": 0,
+    "needsReviewPlayerGroups": 0,
+    "top5SafestRepairsToDoNext": [
+      {
+        "type": "TEAM",
+        "classification": "HIDE_INACTIVE_ONLY",
+        "program": "Adamson University",
+        "names": [
+          "ADU",
+          "ADU Jrs (ADU)"
+        ],
+        "affectedGames": 0,
+        "affectedGameStats": 0,
+        "nextAction": "Hide inactive source records from primary Program UI."
+      },
+      {
+        "type": "TEAM",
+        "classification": "HIDE_INACTIVE_ONLY",
+        "program": "Adamson University",
+        "names": [
+          "ADU Jrs (ADU)",
+          "ADU U16 Boys"
+        ],
+        "affectedGames": 0,
+        "affectedGameStats": 0,
+        "nextAction": "Hide inactive source records from primary Program UI."
+      },
+      {
+        "type": "TEAM",
+        "classification": "HIDE_INACTIVE_ONLY",
+        "program": "Ateneo de Manila University",
+        "names": [
+          "ATENEO",
+          "ATENEO Girls (ATENEO)"
+        ],
+        "affectedGames": 0,
+        "affectedGameStats": 0,
+        "nextAction": "Hide inactive source records from primary Program UI."
+      },
+      {
+        "type": "TEAM",
+        "classification": "HIDE_INACTIVE_ONLY",
+        "program": "Ateneo de Manila University",
+        "names": [
+          "ATENEO",
+          "ATENEO JRS (ATENEO)"
+        ],
+        "affectedGames": 0,
+        "affectedGameStats": 0,
+        "nextAction": "Hide inactive source records from primary Program UI."
+      },
+      {
+        "type": "TEAM",
+        "classification": "HIDE_INACTIVE_ONLY",
+        "program": "Ateneo de Manila University",
+        "names": [
+          "ATENEO Girls (ATENEO)",
+          "ATENEO JRS (ATENEO)"
+        ],
+        "affectedGames": 0,
+        "affectedGameStats": 0,
+        "nextAction": "Hide inactive source records from primary Program UI."
+      }
+    ],
+    "top5RiskiestGroupsToAvoidForNow": [
+      {
+        "type": "TEAM",
+        "groupId": "similar:3f5093b4-afba-4028-b662-d7ef22d91f1b:28eaa2c2-be45-4de6-a030-acf090e0069c,685e9651-ad77-4824-b70c-f032365e1f80",
+        "classification": "KEEP_SEPARATE",
+        "names": [
+          "ADU",
+          "ADU U16 Boys"
+        ],
+        "affectedGameStats": 0,
+        "reason": "Different active competition contexts."
+      },
+      {
+        "type": "TEAM",
+        "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:139a2c1d-8615-4019-8209-a634cd6abbb8,f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+        "classification": "KEEP_SEPARATE",
+        "names": [
+          "ADMU Girls",
+          "ADMU U16 Boys"
+        ],
+        "affectedGameStats": 0,
+        "reason": "Different active competition contexts."
+      },
+      {
+        "type": "TEAM",
+        "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:139a2c1d-8615-4019-8209-a634cd6abbb8,3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+        "classification": "KEEP_SEPARATE",
+        "names": [
+          "ADMU Girls",
+          "ADMU U19 Boys"
+        ],
+        "affectedGameStats": 0,
+        "reason": "Different active competition contexts."
+      },
+      {
+        "type": "TEAM",
+        "groupId": "similar:f3e7480f-e66d-4f7c-b249-6a4bacb70c95:3e29df0f-062d-4e43-bb01-a3960fdcbb43,f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+        "classification": "KEEP_SEPARATE",
+        "names": [
+          "ADMU U16 Boys",
+          "ADMU U19 Boys"
+        ],
+        "affectedGameStats": 0,
+        "reason": "Different active competition contexts."
+      },
+      {
+        "type": "TEAM",
+        "groupId": "similar:a7efc53f-0fc0-4a27-b358-76f2ad16aa4e:3739a9f4-21ef-4938-83ff-811433a47656,f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "classification": "KEEP_SEPARATE",
+        "names": [
+          "DLSZ U16 Boys",
+          "DLSZ U19 Boys"
+        ],
+        "affectedGameStats": 0,
+        "reason": "Different active competition contexts."
+      }
+    ]
+  }
+}

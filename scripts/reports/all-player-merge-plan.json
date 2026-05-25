@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-05-25T00:34:42.406Z",
+  "readOnly": true,
+  "inputPath": "D:\\OnCourt Rankings PH\\scripts\\reports\\duplicate-cleanup-plan.json",
+  "guardrails": {
+    "databaseModified": false,
+    "playersMerged": false,
+    "playersDeleted": false,
+    "migrationsRun": false,
+    "ratingsOrSnapshotsRecomputed": false,
+    "importsOrPublishRun": false,
+    "formulaV1Changed": false
+  },
+  "classificationRules": {
+    "MERGE_APPROVED_CANDIDATE": "Same normalized/similar name, same current Program, same gender, and no conflicting birthDate. Still requires manual identity verification before execution.",
+    "NEEDS_MANUAL_CONFIRMATION": "Same/similar name but different Program or incomplete evidence that needs source review.",
+    "KEEP_SEPARATE": "Conflicting birthDate, gender, or strong evidence of different players. Do not merge."
+  },
+  "mergePlans": [],
+  "summary": {
+    "totalGroupsInspected": 0,
+    "mergeApprovedCandidateCount": 0,
+    "needsManualConfirmationCount": 0,
+    "keepSeparateCount": 0,
+    "approvedCandidateNames": [],
+    "manualConfirmationNames": [],
+    "keepSeparateNames": [],
+    "anyRatingSnapshotCollisionRisks": false,
+    "groupsWithRatingSnapshotCollisionRisk": [],
+    "recommendedNextRepairPrompt": "Review scripts/reports/all-player-merge-plan.json, manually verify identities for MERGE_APPROVED_CANDIDATE groups, then approve a transaction-safe player merge script for selected groups only. Do not merge NEEDS_MANUAL_CONFIRMATION or KEEP_SEPARATE groups without source evidence."
+  }
+}
