@@ -1,22 +1,18 @@
 import { getPublicLeagues } from "@/lib/public-site-data";
 import { PublicPageShell } from "@/components/public/PublicPageShell";
-import { SectionHeader } from "@/components/public/SectionHeader";
+import { PageBand } from "@/components/public/PageBand";
 import { LeaguesClient } from "./LeaguesClient";
 
 export default async function LeaguesPage() {
   const leagues = await getPublicLeagues();
 
   return (
-    <PublicPageShell className="pb-20">
-      <section className="hero-brand pt-28 text-white">
-        <div className="container-px py-14">
-          <SectionHeader
-            title="Leagues & Competitions"
-            dark
-            variant="content"
-          />
-        </div>
-      </section>
+    <PublicPageShell className="pb-12 pt-24">
+      <PageBand
+        eyebrow="Competitions"
+        title="Leagues & Competitions"
+        description="Verified leagues and seasons that feed Peach Basket rankings, team records, and player profiles."
+      />
       <LeaguesClient leagues={leagues} />
     </PublicPageShell>
   );

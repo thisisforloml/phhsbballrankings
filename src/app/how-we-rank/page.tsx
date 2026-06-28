@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { PageBand } from "@/components/public/PageBand";
 import { SectionHeader } from "@/components/public/SectionHeader";
 
 export const metadata: Metadata = {
@@ -26,18 +27,12 @@ const starBands = [
 
 export default function HowWeRankPage() {
   return (
-    <PublicPageShell className="pb-16 pt-28">
-      <section className="hero-brand text-white">
-        <div className="container-px py-10">
-          <SectionHeader
-            eyebrow="Methodology"
-            title="Data first. No guesswork."
-            description="Peach Basket Rankings PH turns official box scores into player rankings, team records, and profile history."
-            dark
-            variant="content"
-          />
-        </div>
-      </section>
+    <PublicPageShell className="pb-16 pt-24">
+      <PageBand
+        eyebrow="Methodology"
+        title="Data first. No guesswork."
+        description="Peach Basket Rankings PH turns official box scores into player rankings, team records, and profile history."
+      />
 
       <section className="container-px grid gap-8 py-8">
         <MethodBlock title="What Data We Use">

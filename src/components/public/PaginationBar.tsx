@@ -5,6 +5,7 @@ type PaginationBarProps = {
   page: number;
   pageCount: number;
   onChange: (page: number) => void;
+  labelSuffix?: string;
   className?: string;
 };
 
@@ -15,12 +16,13 @@ export function PaginationBar({
   page,
   pageCount,
   onChange,
+  labelSuffix,
   className = ""
 }: PaginationBarProps) {
   return (
     <div className={`flex flex-wrap items-center justify-between gap-3 border border-line-500 bg-white px-3 py-2 ${className}`}>
       <p className="text-xs font-bold text-court-500">
-        Showing {pageStart}-{pageEnd} of {total} players
+        Showing {pageStart}-{pageEnd} of {total} players{labelSuffix ? ` | ${labelSuffix}` : ""}
       </p>
       {pageCount > 1 ? (
         <div className="flex items-center gap-1">

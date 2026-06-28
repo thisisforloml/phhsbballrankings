@@ -98,8 +98,8 @@ export function PlayerProfileHeader({ profile, activeTab, onTabChange }: PlayerP
           className={`mx-auto grid w-full items-stretch overflow-hidden rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-raised lg:grid-cols-[14.5rem_minmax(0,1fr)_20rem] ${PLAYER_PROFILE_MAX_WIDTH}`}
         >
 
-          <div className="relative min-h-[16rem] overflow-hidden bg-primary-900 lg:min-h-[22rem]">
-            <span aria-hidden="true" className="absolute -right-10 top-0 h-full w-24 -skew-x-12 bg-accent-500/20" />
+          <div className="relative min-h-[16rem] overflow-hidden bg-court-900 lg:min-h-[22rem]">
+            <span aria-hidden="true" className="absolute -right-10 top-0 h-full w-24 -skew-x-12 bg-hardwood-500/20" />
             <span aria-hidden="true" className="absolute -left-8 bottom-0 h-full w-16 -skew-x-12 bg-white/5" />
             {profile.photoUrl ? (
               <img
@@ -112,7 +112,7 @@ export function PlayerProfileHeader({ profile, activeTab, onTabChange }: PlayerP
                 {initials(profile.displayName)}
               </span>
             )}
-            <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1.5 bg-accent-500" />
+            <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1.5 bg-hardwood-500" />
           </div>
 
           <div className="flex min-h-0 flex-col justify-center border-b border-neutral-200 px-5 py-4 md:px-6 md:py-5 lg:border-b-0 lg:border-r lg:border-neutral-200">
@@ -142,12 +142,12 @@ export function PlayerProfileHeader({ profile, activeTab, onTabChange }: PlayerP
           <aside className="flex min-h-0 flex-col justify-center gap-4 p-4 md:p-5 lg:justify-between lg:py-5">
             <div>
               <div
-                className="rounded-lg border border-accent-200/80 bg-gradient-to-br from-accent-50 via-white to-white px-4 py-3 text-center"
+                className="rounded-lg border border-hardwood-200/80 bg-gradient-to-br from-accent-50 via-white to-white px-4 py-3 text-center"
                 aria-label={`Player rating ${profile.rating.toFixed(2)}, ${profile.starRating} stars`}
               >
                 <p
                   className={`font-display text-[clamp(2.75rem,4vw,3.75rem)] font-extrabold leading-none ${
-                    profile.rating >= 95 ? "text-accent-600" : "text-primary-900"
+                    profile.rating >= 95 ? "text-hardwood-600" : "text-court-900"
                   }`}
                 >
                   {profile.rating.toFixed(2)}

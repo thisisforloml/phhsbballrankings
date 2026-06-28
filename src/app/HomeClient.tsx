@@ -8,6 +8,7 @@ import { BoardLeadersCarousel, HeroSection, LeaderboardPreview } from "@/compone
 import { EmptyState } from "@/components/ui";
 import { AgeGroupPill } from "@/components/public/AgeGroupPill";
 import { SectionHeader } from "@/components/public/SectionHeader";
+import { SegmentedControl } from "@/components/public/SegmentedControl";
 import { getProgramAbbreviation } from "@/lib/uaap-school-display";
 
 const ageGroups: PublicAgeGroup[] = ["U13", "U16", "U19"];
@@ -22,48 +23,45 @@ export function HomeClient({ data }: { data: HomeData }) {
   }, [ageGroup, data.leaderboardsByAge, gender]);
 
   return (
-    <main>
+    <main className="bg-paper-500">
       <HeroSection data={data} />
       <BoardLeadersCarousel data={data} />
       <section className="container-px border-y border-line-500 bg-white py-3">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mx-auto flex max-w-[74rem] flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap gap-2">
             {ageGroups.map((group) => (
               <AgeGroupPill key={group} group={group} active={ageGroup === group} onClick={() => setAgeGroup(group)} />
             ))}
           </div>
-          <div className="inline-flex w-fit border border-line-500 bg-paper-500 p-1">
-            {genders.map((item) => (
-              <button key={item} onClick={() => setGender(item)} className={`px-5 py-2 text-sm font-black uppercase tracking-[0.08em] transition ${gender === item ? "bg-court-900 text-white" : "text-court-600 hover:text-court-900"}`}>
-                {item}
-              </button>
-            ))}
-          </div>
+          <SegmentedControl
+            options={genders.map((item) => ({ value: item, label: item }))}
+            value={gender}
+            onChange={setGender}
+          />
         </div>
       </section>
       <section className="container-px bg-paper-500 py-7 md:py-9">
-        <div className="mb-5">
+        <div className="mx-auto max-w-[74rem]">
           <SectionHeader
             title={`Top 10 ${ageGroup} ${gender}`}
             action={<Link href={`/rankings?gender=${gender}&age=${ageGroup}`} className="button secondary">View Full Rankings</Link>}
             variant="content"
           />
+          {rankedPlayers.length ? (
+            <>
+              {rankedPlayers.length < 10 ? (
+                <p className="mb-4 mt-5 text-sm font-semibold text-court-600">
+                  {publicRankingsCoverageCopy.sparseBoard(ageGroup, gender, rankedPlayers.length)}
+                </p>
+              ) : null}
+              <LeaderboardPreview players={rankedPlayers} />
+            </>
+          ) : (
+            <div className="mt-5">
+              <EmptyState icon="players" title={publicRankingsCoverageCopy.emptyBoardTitle} />
+            </div>
+          )}
         </div>
-        {rankedPlayers.length ? (
-          <>
-            {rankedPlayers.length < 10 ? (
-              <p className="mb-4 text-sm font-semibold text-court-600">
-                {publicRankingsCoverageCopy.sparseBoard(ageGroup, gender, rankedPlayers.length)}
-              </p>
-            ) : null}
-            <LeaderboardPreview players={rankedPlayers} />
-          </>
-        ) : (
-          <EmptyState
-            icon="players"
-            title={publicRankingsCoverageCopy.emptyBoardTitle}
-          />
-        )}
       </section>
       <HomeDatabaseModules data={data} />
     </main>
@@ -74,14 +72,13 @@ function HomeDatabaseModules({ data }: { data: HomeData }) {
   return (
     <>
       <section className="container-px border-y border-line-500 bg-white py-7 md:py-9">
-        <div className="mb-5">
+        <div className="mx-auto max-w-[74rem]">
           <SectionHeader
             title="Team Standings Preview"
             action={<Link href="/teams" className="button secondary">View Team Rankings</Link>}
             variant="content"
           />
-        </div>
-        <article className="overflow-hidden border border-line-500 bg-white">
+          <article className="mt-5 overflow-hidden border border-line-500 bg-white">
           <div className="sports-table-head grid grid-cols-[3rem_1fr_7rem_5rem]">
             <span>#</span><span>Team</span><span>Record</span><span>Diff</span>
           </div>
@@ -104,19 +101,22 @@ function HomeDatabaseModules({ data }: { data: HomeData }) {
               </strong>
             </Link>
           )) : <div className="p-4"><EmptyState icon="teams" title="No team standings yet" /></div>}
-        </article>
+          </article>
+        </div>
       </section>
 
       {data.recentGames.length ? (
         <section className="container-px border-b border-line-500 bg-paper-500 py-7 md:py-9">
-          <div className="mb-5">
+          <div className="mx-auto max-w-[74rem]">
             <SectionHeader
               title="Latest Games"
               action={<Link href="/games" className="button secondary">View All Games</Link>}
               variant="content"
             />
+            <div className="mt-5">
+              <RecentResults games={data.recentGames} />
+            </div>
           </div>
-          <RecentResults games={data.recentGames} />
         </section>
       ) : null}
     </>

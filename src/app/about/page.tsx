@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { PageBand } from "@/components/public/PageBand";
 import { SectionHeader } from "@/components/public/SectionHeader";
 
 export const metadata: Metadata = {
@@ -12,18 +13,12 @@ const audiences = ["Players", "Parents", "Coaches", "Scouts and recruiters", "Le
 
 export default function AboutPage() {
   return (
-    <PublicPageShell className="pb-16 pt-28">
-      <section className="hero-brand text-white">
-        <div className="container-px py-10">
-          <SectionHeader
-            eyebrow="About Peach Basket Rankings PH"
-            title="Philippine youth basketball, made visible."
-            description="A public home for youth basketball rankings, team records, game logs, and player profiles."
-            dark
-            variant="content"
-          />
-        </div>
-      </section>
+    <PublicPageShell className="pb-16 pt-24">
+      <PageBand
+        eyebrow="About Peach Basket Rankings PH"
+        title="Philippine youth basketball, made visible."
+        description="A public home for youth basketball rankings, team records, game logs, and player profiles."
+      />
 
       <section className="container-px grid gap-7 py-8">
         <div className="grid gap-6 border-b border-line-500 pb-7 lg:grid-cols-2">

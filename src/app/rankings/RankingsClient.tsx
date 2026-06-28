@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { LatestNationalRankings, NationalRankingRow } from "@/lib/rankings";
-import { isPlannedPublicAgeGroup } from "@/lib/public-rankings-coverage";
+import { publicRankingsCoverageCopy } from "@/lib/public-rankings-coverage";
 import { getPublicBoardRows, sortRankingRows } from "@/lib/public-board-ranks";
 import {
   buildRankingsSearchParams,
@@ -267,30 +267,33 @@ export function RankingsClient({ rankings }: { rankings: LatestNationalRankings 
       </section>
 
       <section className="container-px mt-6">
-        {!isPlannedPublicAgeGroup(ageGroup) ? (
-          <PaginationBar
-            className="mx-auto mb-3 max-w-[74rem]"
-            pageStart={pageStart}
-            pageEnd={pageEnd}
-            total={visibleRows.length}
-            page={currentPage}
-            pageCount={pageCount}
-            onChange={setPage}
-          />
+        <PaginationBar
+          className="mx-auto mb-3 max-w-[74rem]"
+          pageStart={pageStart}
+          pageEnd={pageEnd}
+          total={visibleRows.length}
+          page={currentPage}
+          pageCount={pageCount}
+          onChange={setPage}
+          labelSuffix={`${ageGroup} ${gender}`}
+        />
+
+        {visibleRows.length > 0 && visibleRows.length < 25 ? (
+          <p className="mx-auto mb-3 max-w-[74rem] text-sm font-semibold text-court-600">
+            {publicRankingsCoverageCopy.sparseBoard(ageGroup, gender, visibleRows.length)}
+          </p>
         ) : null}
 
-        {isPlannedPublicAgeGroup(ageGroup) ? (
+        {pagedRows.length ? (
           <div className="mx-auto max-w-[74rem]">
-            <RankingsCoverageNotice variant="empty" ageGroup={ageGroup} />
+            <RankingTable
+              rows={pagedRows}
+              rankByPlayerId={boardRankByPlayerId}
+              sortKey={sortKey}
+              sortDirection={sortDirection}
+              onSort={updateSort}
+            />
           </div>
-        ) : pagedRows.length ? (
-          <RankingTable
-            rows={pagedRows}
-            rankByPlayerId={boardRankByPlayerId}
-            sortKey={sortKey}
-            sortDirection={sortDirection}
-            onSort={updateSort}
-          />
         ) : (
           <div className="mx-auto max-w-[74rem]">
             <EmptyState icon="players" title="No players ranked yet" />

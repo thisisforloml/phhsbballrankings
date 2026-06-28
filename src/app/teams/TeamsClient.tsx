@@ -10,8 +10,10 @@ import {
 } from "@/lib/team-ratings/national-board-display";
 import { nationalTeamBoardCoverageCopy } from "@/lib/team-ratings/national-board-coverage";
 import { EmptyState } from "@/components/ui";
-import { FilterBar, FilterControlClass, FilterField } from "@/components/public/FilterBar";
-import { SectionHeader } from "@/components/public/SectionHeader";
+import { AgeGroupPill } from "@/components/public/AgeGroupPill";
+import { FilterToolbar, FilterToolbarControlClass, FilterToolbarField, FilterToolbarRow } from "@/components/public/FilterToolbar";
+import { PageBand } from "@/components/public/PageBand";
+import { SegmentedControl } from "@/components/public/SegmentedControl";
 import { TeamStandingTable } from "@/components/public/TeamStandingTable";
 import { NationalTeamRankingTable } from "@/components/public/NationalTeamRankingTable";
 
@@ -165,104 +167,77 @@ export function TeamsClient({
     ? { title: "No programs match your search", description: "Clear search or switch filters to see national rankings for this board." }
     : nationalTeamBoardCoverageCopy.emptyBoard(ageGroup, gender);
 
-  const controlClass = FilterControlClass();
+  const controlClass = FilterToolbarControlClass();
   const isNationalView = nationalEnabled && viewMode === "national";
   const headerTitle = isNationalView ? `${ageGroup} National Team Rankings` : `${ageGroup} Competition Board`;
 
   return (
     <>
-      <section className="container-px border-b border-line-500 bg-court-900 py-6 text-white">
-        <SectionHeader
-          eyebrow="Team Rankings"
-          title={headerTitle}
-          dark
-          variant="content"
-          action={
-            <div className="flex flex-wrap items-center gap-2">
-              {nationalEnabled ? (
-                <div className="inline-flex border border-white/20 bg-white/10 p-1">
-                  <button
-                    type="button"
-                    onClick={() => setViewMode("national")}
-                    className={`px-3 py-1.5 text-xs font-black ${viewMode === "national" ? "bg-gold-500 text-court-900" : "text-white/75 hover:text-white"}`}
-                  >
-                    National
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setViewMode("competition")}
-                    className={`px-3 py-1.5 text-xs font-black ${viewMode === "competition" ? "bg-gold-500 text-court-900" : "text-white/75 hover:text-white"}`}
-                  >
-                    Competition
-                  </button>
-                </div>
-              ) : null}
-              <div className="inline-flex border border-white/20 bg-white/10 p-1">
-                {genders.map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() => updateScope(ageGroup, item)}
-                    className={`px-4 py-1.5 text-sm font-black ${gender === item ? "bg-gold-500 text-court-900" : "text-white/75 hover:text-white"}`}
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </div>
-          }
-        />
-      </section>
-
-      <FilterBar
-        action={<button type="button" onClick={clearFilters} className="text-xs font-bold text-court-500 hover:text-hardwood-600">Clear filters</button>}
-      >
-        <section>
-          <p className="mb-1 text-xs font-bold text-court-500">Age group</p>
-          <div className="flex flex-wrap gap-2">
-            {ageGroups.map((group) => (
-              <button
-                key={group}
-                type="button"
-                onClick={() => updateScope(group)}
-                className={`border px-3 py-1.5 text-xs font-black ${ageGroup === group ? "border-court-900 bg-court-900 text-white" : "border-line-500 bg-white text-court-600 hover:border-court-900 hover:text-court-900"}`}
-              >
-                {group}
-              </button>
-            ))}
+      <PageBand
+        eyebrow="Team Rankings"
+        title={headerTitle}
+        action={
+          <div className="flex flex-wrap items-center gap-2">
+            {nationalEnabled ? (
+              <SegmentedControl
+                dark
+                options={[
+                  { value: "national" as const, label: "National" },
+                  { value: "competition" as const, label: "Competition" }
+                ]}
+                value={viewMode}
+                onChange={setViewMode}
+              />
+            ) : null}
+            <SegmentedControl
+              dark
+              options={genders.map((item) => ({ value: item, label: item }))}
+              value={gender}
+              onChange={(item) => updateScope(ageGroup, item)}
+            />
           </div>
-        </section>
-        <FilterField label="Search">
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            className={controlClass}
-            placeholder={isNationalView ? "Program, city, region" : "Team, program, league"}
-          />
-        </FilterField>
-        {!isNationalView ? (
-          <>
-            <FilterField label="League">
-              <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
-                <option value="All">All</option>
-                {leagueOptions.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
-              </select>
-            </FilterField>
-            <FilterField label="Region">
-              <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
-                <option>All</option>
-                {regionOptions.map((item) => <option key={item}>{item}</option>)}
-              </select>
-            </FilterField>
-            <FilterField label={`Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}>
-              <input type="range" min={1} max={maxGamesPlayed} step={1} value={selectedMinimumGames} onChange={(event) => setMinimumGames(Number(event.target.value))} className="h-12 accent-hardwood-600" />
-            </FilterField>
-          </>
-        ) : null}
-      </FilterBar>
+        }
+      />
+
+      <FilterToolbar action={<button type="button" onClick={clearFilters} className="text-xs font-bold text-court-500 hover:text-hardwood-600">Clear filters</button>}>
+        <div className="flex flex-wrap gap-2">
+          {ageGroups.map((group) => (
+            <AgeGroupPill key={group} group={group} active={ageGroup === group} onClick={() => updateScope(group)} />
+          ))}
+        </div>
+        <FilterToolbarRow>
+          <FilterToolbarField label="Search" className="min-w-[14rem] flex-[1.4]">
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              className={controlClass}
+              placeholder={isNationalView ? "Program, city, region" : "Team, program, league"}
+            />
+          </FilterToolbarField>
+          {!isNationalView ? (
+            <>
+              <FilterToolbarField label="League">
+                <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
+                  <option value="All">All</option>
+                  {leagueOptions.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+                </select>
+              </FilterToolbarField>
+              <FilterToolbarField label="Region">
+                <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
+                  <option>All</option>
+                  {regionOptions.map((item) => <option key={item}>{item}</option>)}
+                </select>
+              </FilterToolbarField>
+              <FilterToolbarField label={`Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`} className="min-w-[12rem]">
+                <input type="range" min={1} max={maxGamesPlayed} step={1} value={selectedMinimumGames} onChange={(event) => setMinimumGames(Number(event.target.value))} className="h-12 w-full accent-hardwood-600" />
+              </FilterToolbarField>
+            </>
+          ) : null}
+        </FilterToolbarRow>
+      </FilterToolbar>
 
       <section id="team-profiles" className="container-px mt-6">
-        <div className="mb-3 border border-line-500 bg-white px-3 py-2">
+        <div className="mx-auto mb-3 max-w-[74rem] border border-line-500 bg-white px-3 py-2">
           <p className="text-xs font-bold text-court-500">
             {isNationalView
               ? `Showing ${sortedNational.length} programs | ${ageGroup} ${gender} | TPI-v1 national board`
