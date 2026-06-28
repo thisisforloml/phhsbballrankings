@@ -39,21 +39,20 @@ const programRules: ProgramRule[] = [
   { key: "mapua", fullName: "Mapua University", abbreviation: "MU", aliases: ["MU", "MAPUA", "MAPUA UNIVERSITY", "MAPÚA UNIVERSITY"] },
   { key: "san-beda-alabang-spartans", fullName: "San Beda Alabang Spartans", abbreviation: "San Beda Alabang Spartans", type: "Club / Team", aliases: ["SAN BEDA ALABANG SPARTANS"] },
   { key: "smile-360-bullies", fullName: "SMILE 360 BULLIES", abbreviation: "SMILE 360 BULLIES", type: "Club / Team", aliases: ["SMILE 360 BULLIES", "SMILE 360 BULLIES 16 U", "SMILE 360 BULLIES 16U", "SMILE 360"] },
-  { key: "spartans", fullName: "SPARTANS", abbreviation: "SPARTANS", type: "Club / Team", aliases: ["SPARTANS", "SPARTANS 16U", "SPARTANS 16 U"] }
+  { key: "san-pedro-spartans", fullName: "San Pedro Spartans", abbreviation: "San Pedro Spartans", type: "Club / Team", aliases: ["SPARTANS", "SPARTANS 16U", "SPARTANS 16 U", "SAN PEDRO SPARTANS"] }
 ];
 
-const aliasToRule = new Map<string, ProgramRule>();
-for (const rule of programRules) {
-  for (const alias of rule.aliases) aliasToRule.set(normalizeProgramAlias(alias), rule);
-}
-
-export const approvedUaapSchoolNames = Array.from(new Set(programRules.slice(0, 9).map((rule) => rule.fullName))).sort();
-export const knownProgramNames = Array.from(new Set(programRules.map((rule) => rule.fullName))).sort();
+const YOUTH_AGE_SUFFIX = /\b(?:U|UNDER)[ -]?(?:1[0-9]|12)\b/gi;
+const YOUTH_AGE_TOKEN = /\b(?:1[0-9]|12)U\b/gi;
 
 export function normalizeProgramAlias(value: string): string {
+  const youthAgeSuffix = /\b(?:U|UNDER)[ -]?(?:1[0-9]|12)\b/gi;
+  const youthAgeToken = /\b(?:1[0-9]|12)U\b/gi;
   return value
     .trim()
     .replace(/\([^)]*\)/g, " ")
+    .replace(youthAgeSuffix, " ")
+    .replace(youthAgeToken, " ")
     .replace(/\b(?:U|UNDER)[ -]?(?:13|16|19)\b/gi, " ")
     .replace(/\b(?:13U|16U|19U)\b/gi, " ")
     .replace(/\b(?:BOYS|GIRLS|HS|HIGH SCHOOL)\b/gi, " ")
@@ -63,8 +62,74 @@ export function normalizeProgramAlias(value: string): string {
     .toUpperCase();
 }
 
+let aliasToRuleCache: Map<string, ProgramRule> | null = null;
+
+function aliasToRule(): Map<string, ProgramRule> {
+  if (!aliasToRuleCache) {
+    aliasToRuleCache = new Map<string, ProgramRule>();
+    for (const rule of programRules) {
+      for (const alias of rule.aliases) aliasToRuleCache.set(normalizeProgramAlias(alias), rule);
+    }
+  }
+  return aliasToRuleCache;
+}
+
+export const approvedUaapSchoolNames = Array.from(new Set(programRules.slice(0, 9).map((rule) => rule.fullName))).sort();
+export const knownProgramNames = Array.from(new Set(programRules.map((rule) => rule.fullName))).sort();
+
 export function normalizeSchoolAlias(value: string): string {
   return normalizeProgramAlias(value);
+}
+
+const displayAcronyms = new Set([
+  "ADMU",
+  "FEU",
+  "DLSZ",
+  "DLSU",
+  "NUNS",
+  "NU",
+  "UST",
+  "UPIS",
+  "UP",
+  "UE",
+  "ADU",
+  "EAC",
+  "CSB",
+  "LPU",
+  "UPHSD",
+  "SBU",
+  "CSJL",
+  "SSCR",
+  "SSC-R",
+  "AU",
+  "JRU",
+  "PYBC",
+  "JMTG",
+  "LEV",
+  "JPM-TEC"
+]);
+
+function stripTeamContextSuffix(value: string): string {
+  return value
+    .replace(YOUTH_AGE_SUFFIX, " ")
+    .replace(YOUTH_AGE_TOKEN, " ")
+    .replace(/\b(?:U|UNDER)[ -]?(?:13|16|19)\s*(?:BOYS|GIRLS)?\b/gi, " ")
+    .replace(/\b(?:13U|16U|19U)\s*(?:BOYS|GIRLS)?\b/gi, " ")
+    .replace(/\b(?:BOYS|GIRLS)\b$/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function formatAllCapsDisplayName(value: string): string {
+  const letters = value.replace(/[^A-Za-z]+/g, "");
+  if (!letters || letters !== letters.toUpperCase()) return value;
+
+  return value.split(/(\s+)/).map((part) => {
+    if (/^\s+$/.test(part)) return part;
+    const upper = part.toUpperCase();
+    if (displayAcronyms.has(upper) || /^\d+$/.test(part)) return upper;
+    return part.toLowerCase().replace(/(^|[-'’])([a-z])/g, (_match, prefix: string, letter: string) => `${prefix}${letter.toUpperCase()}`);
+  }).join("");
 }
 
 function cleanedTeamDisplayName(value: string | null | undefined): string {
@@ -72,12 +137,7 @@ function cleanedTeamDisplayName(value: string | null | undefined): string {
 }
 
 function cleanedProgramFallbackName(value: string): string {
-  return value
-    .replace(/\b(?:U|UNDER)[ -]?(?:13|16|19)\s*(?:BOYS|GIRLS)?\b/gi, " ")
-    .replace(/\b(?:13U|16U|19U)\s*(?:BOYS|GIRLS)?\b/gi, " ")
-    .replace(/\b(?:BOYS|GIRLS)\b$/gi, " ")
-    .replace(/\s+/g, " ")
-    .trim() || value;
+  return stripTeamContextSuffix(value) || value;
 }
 
 function fallbackKey(value: string) {
@@ -86,7 +146,7 @@ function fallbackKey(value: string) {
 
 function findProgramRule(value: string): ProgramRule | null {
   const normalized = normalizeProgramAlias(value);
-  const exact = aliasToRule.get(normalized);
+  const exact = aliasToRule().get(normalized);
   if (exact) return exact;
 
   const compact = ` ${normalized} `;
@@ -131,7 +191,12 @@ export function getProgramAbbreviation(value: string | null | undefined): string
 }
 
 export function getTeamDisplayName(value: string | null | undefined): string {
-  return resolveProgramIdentity(value).teamDisplayName;
+  const identity = resolveProgramIdentity(value);
+  const cleaned = stripTeamContextSuffix(identity.teamDisplayName);
+  if (identity.programType === "Club / Team" && normalizeProgramAlias(cleaned) !== normalizeProgramAlias(identity.programFullName)) {
+    return identity.programFullName;
+  }
+  return formatAllCapsDisplayName(cleaned || "Team not listed");
 }
 
 export function getUaapSchoolDisplayName(value: string | null | undefined): string {

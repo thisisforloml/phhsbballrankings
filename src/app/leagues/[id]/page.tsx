@@ -30,11 +30,12 @@ export default async function LeagueDetailPage({ params }: { params: { id: strin
         </div>
       </section>
 
-      <section className="container-px py-10">
-        <div className="mb-6">
+      <section className="container-px py-7 md:py-9">
+        <div className="mb-5">
           <SectionHeader
             title="Schedule & Results"
             action={<Link href="/leagues" className="button secondary">Back to leagues</Link>}
+            variant="content"
           />
         </div>
         {games.length ? <GameList games={games} /> : <p className="border border-line-500 bg-white p-4 text-court-600">No official games are listed for this league yet.</p>}

@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 import { createPortalSession } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 
@@ -43,7 +44,7 @@ async function login(formData: FormData) {
 
 function errorMessage(error?: string) {
   if (error === "missing") return "Username/email and password are required.";
-  if (error === "forbidden") return "This account cannot access OnCourt portals.";
+  if (error === "forbidden") return "This account cannot access Peach Basket portals.";
   if (error === "invalid") return "Invalid portal credentials.";
   return null;
 }
@@ -54,13 +55,9 @@ export default function PortalLoginPage({ searchParams }: { searchParams?: { err
   return (
     <main className="min-h-screen bg-surface-50 px-5 pb-16 pt-32">
       <section className="mx-auto w-full max-w-[420px] rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-        <Link href="/" className="block text-center leading-none" aria-label="OnCourt Rankings Philippines home">
-          <img src="/oncourt-logo.png" alt="" className="mx-auto h-20 w-20 rounded-md object-contain" />
-          <span className="mt-3 block font-display text-4xl font-extrabold text-navy-800">ONCOURT</span>
-          <span className="block font-mono text-[0.65rem] uppercase tracking-[0.18em] text-surface-500">Rankings PH</span>
-        </Link>
+        <BrandLogo />
         <h1 className="mt-8 font-display text-[1.75rem] font-bold text-navy-800">Portal Sign In</h1>
-        <p className="mt-2 text-surface-500">For OnCourt administrators and approved organizer partners.</p>
+        <p className="mt-2 text-surface-500">For Peach Basket administrators and approved organizer partners.</p>
         <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-surface-400">
           Not yet a partner?{" "}
           <Link href="/partner" className="text-amber-500 hover:underline">
@@ -77,7 +74,7 @@ export default function PortalLoginPage({ searchParams }: { searchParams?: { err
             Password
             <input name="password" type="password" className="min-h-11 w-full rounded-md border border-surface-200 px-3 py-2" required />
           </label>
-          <button className="button secondary w-full bg-navy-800 text-white hover:bg-navy-700" type="submit">Sign In</button>
+          <button className="button primary w-full" type="submit">Sign In</button>
         </form>
         <p className="mt-5 text-sm text-surface-500">
           Admin accounts open the internal Admin Portal. Organizer accounts open the Organizer Portal for submissions and stat entry.

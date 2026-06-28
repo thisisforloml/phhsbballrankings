@@ -1,12 +1,15 @@
 ﻿import "server-only";
 
-import { AgeGroup, PlayerGender } from "@prisma/client";
+import { AgeGroup, PlayerGender, VerificationStatus } from "@prisma/client";
 import { slugify } from "./format";
 import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
 import { prisma } from "./prisma";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { loadValidatedUaapGames } from "./validated-uaap-data";
+import type { PublicTrustMeta } from "./public-rankings-coverage";
+
+export type { PublicTrustMeta };
 
 export type PublicAgeGroup = "U13" | "U16" | "U19";
 export type PublicGender = "Boys" | "Girls";
@@ -16,6 +19,17 @@ export type HomeLeaderboardRow = NationalRankingRow & {
   birthYear: number | null;
 };
 
+export type HomeRecentGame = {
+  id: string;
+  gameDate: string;
+  leagueName: string;
+  seasonName: string;
+  homeTeamName: string;
+  awayTeamName: string;
+  homeScore: number;
+  awayScore: number;
+};
+
 export type HomeData = {
   counts: {
     rankedPlayers: number;
@@ -23,10 +37,23 @@ export type HomeData = {
     gamesLogged: number;
   };
   leader: HomeLeaderboardRow | null;
+  boardLeaders: HomeLeaderboardRow[];
   leaderboards: {
     boys: HomeLeaderboardRow[];
     girls: HomeLeaderboardRow[];
   };
+  leaderboardsByAge: Record<PublicAgeGroup, { boys: HomeLeaderboardRow[]; girls: HomeLeaderboardRow[] }>;
+  teamPreview: Array<{
+    teamId: string;
+    displayName: string;
+    leagueName: string;
+    ageGroup: PublicAgeGroup;
+    gender: PublicGender;
+    wins: number;
+    losses: number;
+    pointDifferential: number;
+  }>;
+  recentGames: HomeRecentGame[];
 };
 
 export type PublicLeagueRow = {
@@ -64,6 +91,25 @@ export type PublicTeamRankingRow = {
     rating: number;
   } | null;
   league: string;
+};
+
+export type PublicGameRow = {
+  id: string;
+  gameNumber: string;
+  gameDate: string;
+  verificationStatus: VerificationStatus;
+  leagueId: string;
+  leagueName: string;
+  seasonName: string;
+  homeTeamName: string;
+  awayTeamName: string;
+  homeScore: number;
+  awayScore: number;
+};
+
+export type PublicGamesIndex = {
+  leagues: Array<{ id: string; name: string }>;
+  games: PublicGameRow[];
 };
 
 function inferGenderFromLeagueName(name: string): PublicGender | "Mixed" {
@@ -147,6 +193,12 @@ export async function getHomeData(): Promise<HomeData> {
     getOfficialTeamCompetitionCounts()
   ]);
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
+  const emptyBoard = { boys: [] as HomeLeaderboardRow[], girls: [] as HomeLeaderboardRow[] };
+  const leaderboardsByAge: HomeData["leaderboardsByAge"] = {
+    U13: emptyBoard,
+    U16: emptyBoard,
+    U19: { boys: boysRows, girls: girlsRows },
+  };
 
   return {
     counts: {
@@ -155,10 +207,14 @@ export async function getHomeData(): Promise<HomeData> {
       gamesLogged: officialCounts.gamesLogged
     },
     leader: allTopRows[0] ?? null,
+    boardLeaders: allTopRows.slice(0, 6),
     leaderboards: {
       boys: boysRows,
       girls: girlsRows
-    }
+    },
+    leaderboardsByAge,
+    teamPreview: [],
+    recentGames: []
   };
 }
 
@@ -297,5 +353,63 @@ export async function getPublicTeamRankings(): Promise<PublicTeamRankingRow[]> {
       league: team.league
     };
   }).sort((left, right) => right.rating - left.rating || right.wins - left.wins || left.name.localeCompare(right.name));
+}
+
+export async function getPublicGamesIndex(): Promise<PublicGamesIndex> {
+  const games = await getValidatedDbGames();
+  const leagues = new Map<string, string>();
+
+  const rows: PublicGameRow[] = games.map((game) => {
+    leagues.set(game.season.league.id, game.season.league.name);
+    return {
+      id: game.id,
+      gameNumber: game.gameNumber ?? game.id,
+      gameDate: game.gameDate.toISOString().slice(0, 10),
+      verificationStatus: game.verificationStatus,
+      leagueId: game.season.league.id,
+      leagueName: game.season.league.name,
+      seasonName: game.season.name,
+      homeTeamName: getUaapSchoolDisplayName(game.homeTeam.name),
+      awayTeamName: getUaapSchoolDisplayName(game.awayTeam.name),
+      homeScore: game.homeScore,
+      awayScore: game.awayScore
+    };
+  }).sort((left, right) => right.gameDate.localeCompare(left.gameDate) || (left.gameNumber ?? "").localeCompare(right.gameNumber ?? ""));
+
+  return {
+    leagues: [...leagues.entries()].map(([id, name]) => ({ id, name })).sort((left, right) => left.name.localeCompare(right.name)),
+    games: rows
+  };
+}
+
+export async function getPublicTrustMeta(): Promise<PublicTrustMeta> {
+  const [latestGame, latestSnapshot] = await Promise.all([
+    prisma.game.findFirst({
+      where: {
+        deletedAt: null,
+        verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] },
+        season: { deletedAt: null, league: { deletedAt: null } }
+      },
+      orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
+      select: { gameDate: true }
+    }),
+    prisma.rankingSnapshot.findFirst({
+      orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
+      select: { weekOf: true, createdAt: true }
+    })
+  ]);
+
+  const candidates = [
+    latestGame?.gameDate,
+    latestSnapshot?.weekOf,
+    latestSnapshot?.createdAt
+  ].filter((value): value is Date => value instanceof Date);
+
+  const latest = candidates.reduce<Date | null>((current, candidate) => {
+    if (!current || candidate > current) return candidate;
+    return current;
+  }, null);
+
+  return { lastUpdated: latest?.toISOString() ?? null };
 }
 

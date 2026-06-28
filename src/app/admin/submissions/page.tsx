@@ -1,167 +1,452 @@
-﻿import Link from "next/link";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import Link from "next/link";
+import { AdminAlert } from "@/components/admin/AdminAlert";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { resolveSubmissionHubTab } from "@/lib/admin/submission-hub-tabs";
+import { SubmissionsHubTabs } from "@/components/admin/SubmissionsHubTabs";
+import { ReadinessBadge, SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
+import { displaySubmissionStatus, submissionReadinessBadgeClass, submissionStatusBadge } from "@/components/admin/submissionStatus";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { buildSubmissionReview } from "@/lib/submission-review";
-import { createAdminJsonSubmission } from "./actions";
+import { buildSubmissionReview, type SubmissionReview } from "@/lib/submission-review";
+import { activeSubmissionWhere, canDeleteDraftSubmission } from "@/lib/submission-lifecycle";
+import type { Submission, SubmissionStatus, User } from "@prisma/client";
+import { SubmissionFileIntakePanel, SubmissionJsonIntakePanel, SubmissionUrlIntakePanel } from "./SubmissionIntakePanels";
+import { SubmissionManualTab } from "./SubmissionManualTab";
+import { SubmissionRowMenu } from "./SubmissionRowMenu";
 
 export const metadata = {
-  title: "Submission Review - Admin Portal",
-  description: "Review organizer-submitted game data intake records."
+  title: "Game Stats | Admin",
+  description: "Submit, review, and publish game statistics."
 };
+
+const QUEUE_LIMIT = 100;
+
+const PRESET_FILTERS = [
+  { key: "all", label: "All" },
+  { key: "open", label: "Open" },
+  { key: "under_review", label: "Under Review" },
+  { key: "approved", label: "Approved" },
+  { key: "ready_to_publish", label: "Ready to Publish" },
+  { key: "imported", label: "Imported" }
+] as const;
+
+type PresetKey = (typeof PRESET_FILTERS)[number]["key"];
+
+type SubmissionRow = Submission & {
+  submittedBy: Pick<User, "id" | "name" | "username" | "email" | "role">;
+};
+
+type PageProps = {
+  searchParams?: {
+    tab?: string;
+    jsonCreated?: string;
+    jsonError?: string;
+    created?: string;
+    error?: string;
+    draftDeleted?: string;
+    status?: string;
+    search?: string;
+    preset?: string;
+  };
+};
+
+function displayStatusLabel(status: string) {
+  return displaySubmissionStatus(status);
+}
+
+function statusBadgeClass(status: string) {
+  return submissionStatusBadge(status);
+}
+
+function readinessBadgeClass(importReady: boolean, status: string) {
+  return submissionReadinessBadgeClass(importReady, status);
+}
 
 function formatDate(date: Date | null) {
   return date ? date.toISOString().slice(0, 10) : "-";
 }
 
-function statusBadgeClass(status: string) {
-  if (status === "PUBLISHED") return "bg-green-50 text-green-800";
-  if (status === "IMPORTED") return "bg-navy-50 text-navy-800";
-  if (status === "APPROVED") return "bg-green-50 text-green-800";
-  if (status === "REJECTED") return "bg-red-50 text-red-800";
-  if (status === "UNDER_REVIEW") return "bg-amber-50 text-amber-800";
-  return "bg-surface-100 text-surface-700";
-}
-
 function nextAction(status: string, importReady: boolean) {
-  if (status === "IMPORTED") return "View Published";
+  if (status === "DRAFT") return "Review";
+  if (status === "IMPORTED") return "View";
   if (status === "APPROVED" && importReady) return "Publish";
-  if (status === "APPROVED") return "Fix Issues";
-  if (status === "REJECTED") return "Fix Issues";
+  if (status === "APPROVED") return "Fix issues";
+  if (status === "REJECTED") return "Reopen";
   return "Review";
 }
 
-type PageProps = {
-  searchParams?: {
-    jsonCreated?: string;
-    jsonError?: string;
-    status?: string;
-    search?: string;
-  };
-};
+function displayReadinessLabel(review: SubmissionReview, status: string) {
+  if (status === "APPROVED" && review.importReady) return "Ready to publish";
+  if (status === "IMPORTED") return "Imported";
+  const normalized = review.readinessLabel.toUpperCase();
+  if (normalized.includes("READY")) return "Parser ready";
+  return "Needs fixes";
+}
+
+function queueHref(params: { preset?: string; search?: string; status?: string }) {
+  const query = new URLSearchParams();
+  if (params.preset && params.preset !== "all") query.set("preset", params.preset);
+  if (params.search?.trim()) query.set("search", params.search.trim());
+  if (params.status && params.status !== "All") query.set("status", params.status);
+  const value = query.toString();
+  return value ? `/admin/submissions?${value}` : "/admin/submissions";
+}
+
+function resolvePreset(searchParams: PageProps["searchParams"]): PresetKey {
+  const preset = searchParams?.preset;
+  if (preset && PRESET_FILTERS.some((item) => item.key === preset)) {
+    return preset as PresetKey;
+  }
+  const legacyStatus = searchParams?.status;
+  if (legacyStatus === "SUBMITTED" || legacyStatus === "UNDER_REVIEW" || legacyStatus === "APPROVED" || legacyStatus === "IMPORTED" || legacyStatus === "REJECTED") {
+    if (legacyStatus === "UNDER_REVIEW") return "under_review";
+    if (legacyStatus === "APPROVED") return "approved";
+    if (legacyStatus === "IMPORTED") return "imported";
+    if (legacyStatus === "SUBMITTED") return "open";
+  }
+  return "all";
+}
+
+function matchesPreset(submission: SubmissionRow, review: SubmissionReview, preset: PresetKey) {
+  switch (preset) {
+    case "open":
+      return submission.status === "SUBMITTED" || submission.status === "UNDER_REVIEW" || submission.status === "APPROVED";
+    case "under_review":
+      return submission.status === "UNDER_REVIEW";
+    case "approved":
+      return submission.status === "APPROVED";
+    case "ready_to_publish":
+      return submission.status === "APPROVED" && review.importReady;
+    case "imported":
+      return submission.status === "IMPORTED";
+    default:
+      return true;
+  }
+}
+
+function matchesLegacyStatus(submission: SubmissionRow, selectedStatus: string) {
+  if (selectedStatus === "All") return true;
+  return submission.status === selectedStatus;
+}
+
+function priorityScore(submission: SubmissionRow, review: SubmissionReview) {
+  if (submission.status === "APPROVED" && review.importReady) return 1;
+  if (submission.status === "UNDER_REVIEW" && review.importReady) return 2;
+  if (submission.status === "SUBMITTED" && review.importReady) return 3;
+  if (submission.status === "SUBMITTED") return 4;
+  if (submission.status === "UNDER_REVIEW") return 5;
+  if (submission.status === "APPROVED") return 6;
+  if (submission.status === "REJECTED") return 7;
+  return 8;
+}
+
+function sortForTriage(left: { submission: SubmissionRow; review: SubmissionReview }, right: { submission: SubmissionRow; review: SubmissionReview }) {
+  const priorityDelta = priorityScore(left.submission, left.review) - priorityScore(right.submission, right.review);
+  if (priorityDelta !== 0) return priorityDelta;
+  return right.submission.updatedAt.getTime() - left.submission.updatedAt.getTime();
+}
+
+function actionButtonClass(action: string) {
+  if (action === "Publish") return "whitespace-nowrap bg-orange-600 px-3 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-white hover:bg-orange-700";
+  if (action === "Review") return "whitespace-nowrap bg-navy-900 px-3 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-white hover:bg-orange-600";
+  return "whitespace-nowrap border border-surface-300 px-3 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-ink-700 hover:border-orange-400 hover:text-orange-700";
+}
 
 export default async function AdminSubmissionsPage({ searchParams }: PageProps) {
   await requireAdminUser();
 
-  const submissions = await prisma.submission.findMany({
-    include: {
-      submittedBy: {
-        select: { id: true, name: true, username: true, email: true, role: true }
-      }
-    },
-    orderBy: { createdAt: "desc" },
-    take: 100
-  });
+  const activeTab = resolveSubmissionHubTab(searchParams?.tab);
+  const tabPreserve = {
+    preset: searchParams?.preset,
+    search: searchParams?.search,
+    status: searchParams?.status
+  };
 
-  const statusCounts = submissions.reduce<Record<string, number>>((counts, submission) => {
+  if (activeTab === "json") {
+    return (
+      <>
+        <AdminPageHeader title="Game Stats" />
+        <SubmissionsHubTabs active={activeTab} preserve={tabPreserve} />
+        <SubmissionJsonIntakePanel jsonCreated={searchParams?.jsonCreated} jsonError={searchParams?.jsonError} />
+      </>
+    );
+  }
+
+  if (activeTab === "file") {
+    return (
+      <>
+        <AdminPageHeader title="Game Stats" />
+        <SubmissionsHubTabs active={activeTab} preserve={tabPreserve} />
+        <SubmissionFileIntakePanel created={searchParams?.created} error={searchParams?.error} />
+      </>
+    );
+  }
+
+  if (activeTab === "url") {
+    return (
+      <>
+        <AdminPageHeader title="Game Stats" />
+        <SubmissionsHubTabs active={activeTab} preserve={tabPreserve} />
+        <SubmissionUrlIntakePanel />
+      </>
+    );
+  }
+
+  if (activeTab === "manual") {
+    return (
+      <>
+        <AdminPageHeader title="Game Stats" />
+        <SubmissionsHubTabs active={activeTab} preserve={tabPreserve} />
+        <SubmissionManualTab errorMessage={searchParams?.error ? decodeURIComponent(searchParams.error) : undefined} />
+      </>
+    );
+  }
+
+  const [submissions, totalSubmissionCount] = await Promise.all([
+    prisma.submission.findMany({
+      where: activeSubmissionWhere,
+      include: {
+        submittedBy: {
+          select: { id: true, name: true, username: true, email: true, role: true }
+        }
+      },
+      orderBy: { createdAt: "desc" },
+      take: QUEUE_LIMIT
+    }),
+    prisma.submission.count({ where: activeSubmissionWhere })
+  ]);
+
+  const enriched = submissions.map((submission) => ({
+    submission,
+    review: buildSubmissionReview(submission)
+  }));
+
+  const selectedPreset = resolvePreset(searchParams);
+  const search = searchParams?.search?.trim().toLowerCase() ?? "";
+  const legacyStatus = searchParams?.status ?? "All";
+
+  const visibleRows = enriched
+    .filter(({ submission, review }) => {
+      if (!matchesPreset(submission, review, selectedPreset)) return false;
+      if (!matchesLegacyStatus(submission, legacyStatus)) return false;
+      if (!search) return true;
+      return [submission.title, submission.leagueName, submission.submittedBy.name, submission.submittedBy.username, submission.submittedBy.email]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase()
+        .includes(search);
+    })
+    .sort(sortForTriage);
+
+  const priorityRows = enriched
+    .filter(({ submission }) => submission.status === "SUBMITTED" || submission.status === "UNDER_REVIEW" || (submission.status === "APPROVED"))
+    .sort(sortForTriage)
+    .slice(0, 5);
+
+  const statusCounts = enriched.reduce<Record<string, number>>((counts, { submission }) => {
     counts[submission.status] = (counts[submission.status] ?? 0) + 1;
     return counts;
   }, {});
-  const statuses = Object.keys(statusCounts).sort();
-  const selectedStatus = searchParams?.status ?? "All";
-  const search = searchParams?.search?.trim().toLowerCase() ?? "";
-  const visibleSubmissions = submissions.filter((submission) => {
-    if (selectedStatus !== "All" && submission.status !== selectedStatus) return false;
-    if (!search) return true;
-    return [submission.title, submission.leagueName, submission.submittedBy.name, submission.submittedBy.username, submission.submittedBy.email]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase()
-      .includes(search);
-  });
+
+  const presetCounts = {
+    open: enriched.filter(({ submission }) => submission.status === "SUBMITTED" || submission.status === "UNDER_REVIEW" || submission.status === "APPROVED").length,
+    under_review: statusCounts.UNDER_REVIEW ?? 0,
+    approved: statusCounts.APPROVED ?? 0,
+    ready_to_publish: enriched.filter(({ submission, review }) => submission.status === "APPROVED" && review.importReady).length,
+    imported: statusCounts.IMPORTED ?? 0
+  };
+
+  const statuses = Object.keys(statusCounts).sort() as SubmissionStatus[];
+
+  const presetChipItems = PRESET_FILTERS.map((item) => ({
+    key: item.key,
+    label: item.label,
+    count:
+      item.key === "all"
+        ? submissions.length
+        : item.key === "open"
+          ? presetCounts.open
+          : item.key === "under_review"
+            ? presetCounts.under_review
+            : item.key === "approved"
+              ? presetCounts.approved
+              : item.key === "ready_to_publish"
+                ? presetCounts.ready_to_publish
+                : presetCounts.imported,
+    href: queueHref({ preset: item.key, search: searchParams?.search })
+  }));
 
   return (
-    <main className="min-h-screen bg-surface-50 pt-20">
-      <div className="grid lg:grid-cols-[17rem_1fr]">
-        <AdminSidebar active="submissions" />
-
-        <section className="container-px grid gap-6 py-8">
-          <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-            <p className="label">Submission queue</p>
-            <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <h1 className="font-display text-stat-md text-navy-800">Organizer Submissions</h1>
-                <p className="mt-2 max-w-3xl text-ink-600">Review submitted game stats, resolve plain-language issues, and publish only when the submission is ready.</p>
-              </div>
-              <Link href="/admin" className="button secondary">Back to Admin</Link>
-            </div>
-            <div className="mt-5 flex flex-wrap gap-2">
+    <>
+          <AdminPageHeader title="Game Stats">
+            <div className="flex flex-wrap gap-2">
               {Object.entries(statusCounts).map(([status, count]) => (
-                <span key={status} className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${statusBadgeClass(status)}`}>{status}: {count}</span>
+                <SubmissionStatusBadge key={status} status={status} count={count} />
               ))}
-              {!submissions.length ? <span className="rounded-full bg-surface-100 px-4 py-2 font-mono text-mono-sm uppercase text-surface-500">No submissions</span> : null}
             </div>
-          </div>
+          </AdminPageHeader>
 
-          {searchParams?.jsonCreated ? <p className="rounded-md bg-green-50 p-4 font-semibold text-green-800">Valid JSON submission created for admin review.</p> : null}
-          {searchParams?.jsonError ? <p className="rounded-md bg-red-50 p-4 font-semibold text-red-800">{decodeURIComponent(searchParams.jsonError)}</p> : null}
+          <SubmissionsHubTabs active="review" preserve={tabPreserve} />
 
-          <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-            <form className="grid gap-4 lg:grid-cols-[1fr_14rem_auto] lg:items-end">
-              <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
+          {totalSubmissionCount > QUEUE_LIMIT ? (
+            <AdminAlert variant="warning" size="md" className="px-4 py-3">
+              Showing latest {QUEUE_LIMIT} of {totalSubmissionCount.toLocaleString()}.
+            </AdminAlert>
+          ) : null}
+
+          {searchParams?.draftDeleted ? (
+            <AdminAlert variant="success" size="md" className="px-4 py-3">
+              Submission deleted. The record is preserved for audit but hidden from review queues.
+            </AdminAlert>
+          ) : null}
+          {searchParams?.jsonCreated ? (
+            <AdminAlert variant="success" size="md" className="px-4 py-3">
+              Valid JSON submission created for admin review.
+            </AdminAlert>
+          ) : null}
+          {searchParams?.jsonError ? (
+            <AdminAlert variant="error" size="md" className="px-4 py-3">
+              {decodeURIComponent(searchParams.jsonError)}
+            </AdminAlert>
+          ) : null}
+
+          {priorityRows.length ? (
+            <section className="border border-orange-200 bg-orange-50/60 p-4 shadow-sm">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h2 className="font-display text-lg font-black text-navy-900">Review next</h2>
+                  <p className="text-xs font-semibold text-ink-600">Highest-priority open work from the latest {QUEUE_LIMIT} records.</p>
+                </div>
+                <Link href={queueHref({ preset: "open", search: searchParams?.search })} className="text-xs font-black uppercase tracking-[0.08em] text-orange-800 hover:text-orange-900">
+                  View all open
+                </Link>
+              </div>
+              <div className="mt-3 grid gap-2">
+                {priorityRows.map(({ submission, review }) => {
+                  const action = nextAction(submission.status, review.importReady);
+                  return (
+                    <div key={submission.id} className="flex flex-wrap items-center justify-between gap-3 border border-white/80 bg-white px-3 py-2">
+                      <div className="min-w-0 flex-1">
+                        <Link href={`/admin/submissions/${submission.id}`} className="truncate font-semibold text-navy-900 hover:text-orange-700">
+                          {submission.title}
+                        </Link>
+                        <div className="mt-1 flex flex-wrap gap-1.5">
+                          <span className={`border px-1.5 py-0.5 font-mono text-[0.58rem] font-bold uppercase tracking-[0.08em] ${statusBadgeClass(submission.status)}`}>{displayStatusLabel(submission.status)}</span>
+                          <span className={`border px-1.5 py-0.5 font-mono text-[0.58rem] font-bold uppercase tracking-[0.08em] ${submissionReadinessBadgeClass(review.importReady, submission.status)}`}>{displayReadinessLabel(review, submission.status)}</span>
+                          <span className="text-xs text-ink-500">Updated {formatDate(submission.updatedAt)}</span>
+                        </div>
+                      </div>
+                      <Link href={`/admin/submissions/${submission.id}`} className={actionButtonClass(action)}>{action}</Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          ) : null}
+
+          <section className="border border-surface-200 bg-white p-4 shadow-sm">
+            <AdminFilterChipBar items={presetChipItems} activeKey={selectedPreset} mode="link" aria-label="Submission queue presets" />
+
+            <form method="get" className="mt-4 grid gap-3 border-t border-surface-200 pt-4 lg:grid-cols-[minmax(18rem,1fr)_12rem_auto] lg:items-end">
+              {selectedPreset !== "all" ? <input type="hidden" name="preset" value={selectedPreset} /> : null}
+              <label className="grid gap-1.5 text-xs font-semibold text-ink-600">
                 Search
-                <input name="search" defaultValue={searchParams?.search ?? ""} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900" placeholder="Title, league, submitter" />
+                <input name="search" defaultValue={searchParams?.search ?? ""} className="h-10 border border-surface-300 bg-white px-3 text-sm text-ink-900 outline-none focus:border-orange-500" placeholder="Title, league, submitter" />
               </label>
-              <label className="grid gap-2 font-mono text-mono-sm uppercase text-ink-500">
+              <label className="grid gap-1.5 text-xs font-semibold text-ink-600">
                 Status
-                <select name="status" defaultValue={selectedStatus} className="rounded-md border border-surface-300 bg-white px-3 py-3 text-ink-900">
-                  <option>All</option>
-                  {statuses.map((status) => <option key={status}>{status}</option>)}
+                <select name="status" defaultValue={legacyStatus} className="h-10 border border-surface-300 bg-white px-3 text-sm text-ink-900 outline-none focus:border-orange-500">
+                  <option value="All">All statuses</option>
+                  {statuses.map((status) => <option key={status} value={status}>{displayStatusLabel(status)}</option>)}
                 </select>
               </label>
-              <div className="flex gap-2">
-                <button type="submit" className="button primary">Filter</button>
-                <Link href="/admin/submissions" className="button secondary">Clear Filters</Link>
+              <div className="flex flex-wrap gap-2">
+                <button type="submit" className="h-10 bg-navy-900 px-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-white hover:bg-orange-600">Search</button>
+                <Link href="/admin/submissions" className="flex h-10 items-center border border-surface-300 px-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink-700 hover:border-orange-400 hover:text-orange-700">Clear</Link>
               </div>
             </form>
           </section>
 
-          <details className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-            <summary className="cursor-pointer font-display text-2xl text-navy-800">Admin JSON Intake</summary>
-            <form action={createAdminJsonSubmission} className="mt-5 grid gap-4" encType="multipart/form-data">
-              <p className="text-sm text-ink-600">Paste or upload validated JSON. Invalid JSON will not be saved. Organizers use spreadsheet upload or manual entry instead.</p>
-              <div className="grid gap-4 md:grid-cols-2">
-                <label className="grid gap-2 text-sm font-semibold text-surface-700">Submission title<input name="title" required maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Example: UAAP S88 16U Boys batch JSON" /></label>
-                <label className="grid gap-2 text-sm font-semibold text-surface-700">League name<input name="leagueName" maxLength={160} className="min-h-11 rounded-md border border-surface-200 px-3 py-2" placeholder="Optional" /></label>
-                <label className="grid gap-2 text-sm font-semibold text-surface-700">Game date<input name="gameDate" type="date" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" /></label>
-              </div>
-              <label className="grid gap-2 text-sm font-semibold text-surface-700">Paste JSON<textarea name="rawText" rows={8} className="rounded-md border border-surface-200 px-3 py-2 font-mono text-sm" placeholder="Paste JSON here, or upload a JSON file below." /></label>
-              <label className="grid gap-2 text-sm font-semibold text-surface-700">Upload JSON file<input name="file" type="file" accept=".json,application/json" className="rounded-md border border-surface-200 px-3 py-2" /></label>
-              <button type="submit" className="button primary w-fit">Create JSON Submission</button>
-            </form>
-          </details>
+          <section className="overflow-x-auto border border-surface-200 bg-white shadow-sm">
+            <div className="hidden min-w-[1120px] grid-cols-[minmax(16rem,1fr)_minmax(8rem,0.8fr)_4.25rem_6.75rem_10rem_6.5rem_minmax(8rem,0.75fr)_9rem] border-b border-surface-200 bg-navy-950 px-4 py-2.5 font-mono text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white lg:grid">
+              <span>Submission</span>
+              <span>League</span>
+              <span className="text-center">Games</span>
+              <span className="text-center">Player rows</span>
+              <span>Status</span>
+              <span>Updated</span>
+              <span>Submitted by</span>
+              <span className="text-right">Action</span>
+            </div>
 
-          <section className="grid gap-4">
-            {visibleSubmissions.map((submission) => {
-              const review = buildSubmissionReview(submission);
-              const action = nextAction(submission.status, review.importReady);
-              return (
-                <article key={submission.id} className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${statusBadgeClass(submission.status)}`}>{submission.status}</span>
-                        <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${review.importReady ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>{review.readinessLabel}</span>
-                      </div>
-                      <h2 className="mt-2 font-display text-3xl text-navy-800">{submission.title}</h2>
-                      <p className="mt-2 text-sm text-ink-500">Submitted by {submission.submittedBy.name} ({submission.submittedBy.username})</p>
+            <div className="divide-y divide-surface-200">
+              {visibleRows.map(({ submission, review }) => {
+                const action = nextAction(submission.status, review.importReady);
+                const submitterName = submission.submittedBy.name ?? submission.submittedBy.username ?? submission.submittedBy.email;
+                return (
+                  <article key={submission.id} className="grid gap-2.5 px-4 py-3 lg:min-w-[1120px] lg:grid-cols-[minmax(16rem,1fr)_minmax(8rem,0.8fr)_4.25rem_6.75rem_10rem_6.5rem_minmax(8rem,0.75fr)_9rem] lg:items-center lg:gap-4 lg:py-2.5">
+                    <div className="min-w-0">
+                      <Link href={`/admin/submissions/${submission.id}`} className="block truncate font-display text-lg leading-tight text-navy-900 hover:text-orange-700 lg:text-base">
+                        {submission.title}
+                      </Link>
+                      <p className="mt-0.5 text-xs text-ink-500">Created {formatDate(submission.createdAt)}</p>
                     </div>
-                    <Link href={`/admin/submissions/${submission.id}`} className={action === "Publish" ? "button primary" : "button secondary"}>{action}</Link>
-                  </div>
-                  <dl className="mt-5 grid gap-3 text-sm md:grid-cols-5">
-                    <div><dt className="font-semibold text-surface-500">League</dt><dd>{review.summary.leagueName ?? submission.leagueName ?? "-"}</dd></div>
-                    <div><dt className="font-semibold text-surface-500">Games</dt><dd>{review.summary.gameCount}</dd></div>
-                    <div><dt className="font-semibold text-surface-500">Player rows</dt><dd>{review.summary.totalPlayerRows}</dd></div>
-                    <div><dt className="font-semibold text-surface-500">Created</dt><dd>{formatDate(submission.createdAt)}</dd></div>
-                    <div><dt className="font-semibold text-surface-500">Updated</dt><dd>{formatDate(submission.updatedAt)}</dd></div>
-                  </dl>
-                </article>
-              );
-            })}
-            {!visibleSubmissions.length ? <p className="rounded-lg border border-surface-200 bg-white p-8 text-center text-ink-500 shadow-sm">No submissions match these filters.</p> : null}
+
+                    <div className="min-w-0 text-sm font-semibold text-ink-700">
+                      <span className="lg:hidden text-xs font-semibold text-surface-500">League: </span>
+                      <span className="break-words">{review.summary.leagueName ?? submission.leagueName ?? "-"}</span>
+                    </div>
+
+                    <div className="flex items-center justify-between text-sm font-bold text-navy-900 lg:block lg:text-center">
+                      <span className="lg:hidden text-xs font-semibold text-surface-500">Games</span>
+                      <span>{review.summary.gameCount}</span>
+                    </div>
+
+                    <div className="flex items-center justify-between text-sm font-bold text-navy-900 lg:block lg:text-center">
+                      <span className="lg:hidden text-xs font-semibold text-surface-500">Player rows</span>
+                      <span>{review.summary.totalPlayerRows}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1 lg:flex-col">
+                      <span className={`w-fit whitespace-nowrap border px-1.5 py-0.5 font-mono text-[0.58rem] font-bold uppercase tracking-[0.08em] ${statusBadgeClass(submission.status)}`}>{displayStatusLabel(submission.status)}</span>
+                      <span className={`w-fit whitespace-nowrap border px-1.5 py-0.5 font-mono text-[0.58rem] font-bold uppercase tracking-[0.08em] ${readinessBadgeClass(review.importReady, submission.status)}`}>{displayReadinessLabel(review, submission.status)}</span>
+                    </div>
+
+                    <div className="flex items-center justify-between text-sm text-ink-600 lg:block">
+                      <span className="lg:hidden text-xs font-semibold text-surface-500">Updated</span>
+                      <span>{formatDate(submission.updatedAt)}</span>
+                    </div>
+
+                    <div className="min-w-0 text-sm text-ink-600">
+                      <span className="lg:hidden text-xs font-semibold text-surface-500">Submitted by: </span>
+                      <span className="break-words">{submitterName}</span>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 lg:justify-end">
+                      <Link href={`/admin/submissions/${submission.id}`} className={actionButtonClass(action)}>{action}</Link>
+                      <SubmissionRowMenu
+                        submissionId={submission.id}
+                        submissionTitle={submission.title}
+                        submissionStatus={submission.status}
+                        canDelete={canDeleteDraftSubmission(submission)}
+                        detailHref={`/admin/submissions/${submission.id}`}
+                      />
+                    </div>
+                  </article>
+                );
+              })}
+              {!visibleRows.length ? (
+                <AdminEmptyState
+                  variant={submissions.length ? "no-matches" : "no-records"}
+                  subject="submissions"
+                  clearFiltersHref={submissions.length ? "/admin/submissions" : undefined}
+                  className="m-4"
+                />
+              ) : null}
+            </div>
           </section>
-        </section>
-      </div>
-    </main>
+    </>
   );
 }

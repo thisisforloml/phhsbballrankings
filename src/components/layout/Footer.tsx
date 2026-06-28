@@ -1,43 +1,75 @@
 import Link from "next/link";
+import { BRAND_NAME_FULL } from "@/lib/brand";
+import type { PublicTrustMeta } from "@/lib/public-rankings-coverage";
 
-const contactNumber = "+63 9762165301";
-const socialLinks = [
-  // TODO: Replace placeholder Facebook URL with the official OnCourt page when available.
+const quickLinks = [
+  { label: "Players", href: "/rankings" },
+  { label: "Teams", href: "/teams" },
+  { label: "Leagues", href: "/leagues" },
+  { label: "Games", href: "/games" },
+  { label: "About", href: "/about" },
+  { label: "How We Rank", href: "/how-we-rank" },
+  { label: "FAQs", href: "/faqs" },
+  { label: "Claim Profile", href: "/claim" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Use", href: "/terms" },
+];
+
+const connectLinks = [
   { label: "Facebook", href: "https://facebook.com/oncourtrankingsph", external: true },
   { label: "WhatsApp", href: "https://wa.me/639762165301", external: true },
   { label: "Viber", href: "tel:+639762165301", external: false },
-  { label: "Telegram", href: "tel:+639762165301", external: false }
 ];
 
-export function Footer() {
+function formatTrustDate(value: string) {
+  return new Date(value).toLocaleDateString("en-PH", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "Asia/Manila",
+  });
+}
+
+export function Footer({ trustMeta }: { trustMeta?: PublicTrustMeta }) {
+  const copyrightYear = new Date().getFullYear();
+  const lastUpdatedLabel = trustMeta?.lastUpdated ? formatTrustDate(trustMeta.lastUpdated) : null;
+
   return (
-    <footer className="container-px border-t border-court-800 bg-court-900 py-10 text-white/62">
-      <div className="grid gap-8 md:grid-cols-[1fr_auto_auto_auto] md:items-start">
-        <div>
-          <strong className="font-display text-3xl font-black text-white">OnCourt Rankings <span className="text-gold-500">PH</span></strong>
-          <p className="mt-3 text-sm text-white/55">Philippine youth hoops rankings from official game data.</p>
-          <p className="mt-2 text-sm text-white/55">Contact: {contactNumber}</p>
-        </div>
-        <nav className="grid gap-3 text-xs font-bold uppercase tracking-[0.12em]">
-          <strong className="text-white">Rankings</strong>
-          <Link href="/rankings">Player Rankings</Link>
-          <Link href="/teams">Team Standings</Link>
-          <Link href="/claim">Claim Your Profile</Link>
-        </nav>
-        <nav className="grid gap-3 text-xs font-bold uppercase tracking-[0.12em]">
-          <strong className="text-white">Platform</strong>
-          <Link href="/leagues">Leagues</Link>
-          <Link href="/how-we-rank">How We Rank</Link>
-          <Link href="/privacy">Privacy Policy</Link>
-          <Link href="/terms">Terms of Use</Link>
-        </nav>
-        <nav className="grid gap-3 text-xs font-bold uppercase tracking-[0.12em]">
-          <strong className="text-white">Contact</strong>
-          {socialLinks.map((link) => (
-            <a key={link.label} href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noreferrer" : undefined}>{link.label}</a>
-          ))}
-        </nav>
+    <footer className="container-px border-t border-white/10 bg-court-900 py-10 text-white">
+      <nav
+        aria-label="Footer navigation"
+        className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-6 gap-y-3 text-center text-sm font-medium text-white/80 [&_a]:transition [&_a:hover]:text-gold-500"
+      >
+        {quickLinks.map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+      <div className="mx-auto mt-8 flex max-w-5xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center text-sm text-white/65">
+        {connectLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noreferrer" : undefined}
+            className="transition hover:text-gold-500"
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
+      <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-6 text-white/55">
+        © {copyrightYear} {BRAND_NAME_FULL}
+        {lastUpdatedLabel ? (
+          <>
+            {" "}
+            · Data from verified official games · Updated {lastUpdatedLabel}
+          </>
+        ) : (
+          <> · Data from verified official games</>
+        )}
+      </p>
     </footer>
   );
 }

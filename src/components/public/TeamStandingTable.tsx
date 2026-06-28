@@ -1,13 +1,33 @@
 import type { TeamStandingRow } from "@/lib/team-rankings";
+import { SortIndicator } from "@/components/public/SortIndicator";
 import { WinLossPill } from "@/components/ui";
 
+type TeamSortKey = "rank" | "team" | "record" | "winPercentage" | "pointsFor" | "pointsAgainst" | "pointDifferential" | "league";
+type SortDirection = "asc" | "desc";
 type VisibleTeamRow = TeamStandingRow & { visibleRank: number };
 
-export function TeamStandingTable({ rows }: { rows: VisibleTeamRow[] }) {
+export function TeamStandingTable({
+  rows,
+  sortKey,
+  sortDirection,
+  onSort
+}: {
+  rows: VisibleTeamRow[];
+  sortKey?: TeamSortKey;
+  sortDirection?: SortDirection;
+  onSort?: (key: TeamSortKey) => void;
+}) {
   return (
     <div className="overflow-hidden border border-line-500 bg-white">
       <div className="hidden grid-cols-[5rem_minmax(13rem,1.2fr)_8rem_8rem_7rem_7rem_7rem_minmax(13rem,1fr)] gap-3 border-b border-court-900 bg-court-900 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white/70 lg:grid">
-        <span>Rank</span><span>Team</span><span>Record</span><span>Win %</span><span title="Points For">PF</span><span title="Points Against">PA</span><span title="Point Difference">Diff</span><span>League</span>
+        <SortHeader label="Rank" column="rank" active={sortKey} direction={sortDirection} onSort={onSort} align="left" />
+        <SortHeader label="Team" column="team" active={sortKey} direction={sortDirection} onSort={onSort} align="left" />
+        <SortHeader label="Record" column="record" active={sortKey} direction={sortDirection} onSort={onSort} />
+        <SortHeader label="Win %" column="winPercentage" active={sortKey} direction={sortDirection} onSort={onSort} />
+        <SortHeader label="PF" column="pointsFor" active={sortKey} direction={sortDirection} onSort={onSort} title="Points For" />
+        <SortHeader label="PA" column="pointsAgainst" active={sortKey} direction={sortDirection} onSort={onSort} title="Points Against" />
+        <SortHeader label="Diff" column="pointDifferential" active={sortKey} direction={sortDirection} onSort={onSort} title="Point Difference" />
+        <SortHeader label="League" column="league" active={sortKey} direction={sortDirection} onSort={onSort} align="left" />
       </div>
       {rows.map((team) => (
         <div key={team.id} className="grid gap-3 border-b border-line-500 px-4 py-4 last:border-b-0 hover:bg-paper-500 lg:grid-cols-[5rem_minmax(13rem,1.2fr)_8rem_8rem_7rem_7rem_7rem_minmax(13rem,1fr)] lg:items-center">
@@ -42,6 +62,32 @@ export function TeamStandingTable({ rows }: { rows: VisibleTeamRow[] }) {
   );
 }
 
+function SortHeader({
+  label,
+  column,
+  active,
+  direction,
+  onSort,
+  align = "center",
+  title
+}: {
+  label: string;
+  column: TeamSortKey;
+  active?: TeamSortKey;
+  direction?: SortDirection;
+  onSort?: (key: TeamSortKey) => void;
+  align?: "left" | "center";
+  title?: string;
+}) {
+  const isActive = active === column;
+  return (
+    <button type="button" title={title} onClick={() => onSort?.(column)} className={`${align === "left" ? "text-left" : "text-center"} font-black hover:text-white`}>
+      {label}
+      {isActive && direction ? <SortIndicator direction={direction} /> : null}
+    </button>
+  );
+}
+
 function Metric({ label, value }: { label: string; value: string | number }) {
   return (
     <span>
@@ -50,4 +96,3 @@ function Metric({ label, value }: { label: string; value: string | number }) {
     </span>
   );
 }
-

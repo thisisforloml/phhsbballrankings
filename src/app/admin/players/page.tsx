@@ -1,19 +1,22 @@
-﻿import { AgeGroup } from "@prisma/client";
+﻿import { AgeGroup, ProgramType } from "@prisma/client";
+import { Suspense } from "react";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
-import { getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
+import { resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
 import { PlayerManagementClient, type ManagedPlayer } from "./PlayerManagementClient";
 
 export const metadata = {
-  title: "Player Search - Admin Portal",
-  description: "Secondary search utility for player records."
+  title: "Players | Admin",
+  description: "Edit player profiles."
 };
 
 export default async function AdminPlayersPage() {
   await requireAdminUser();
 
-  const players = await prisma.player.findMany({
+  const [players, programs] = await Promise.all([
+    prisma.player.findMany({
     where: {
       deletedAt: null
     },
@@ -27,20 +30,33 @@ export default async function AdminPlayersPage() {
       },
       gameStats: {
         where: { deletedAt: null },
-        include: { team: { select: { name: true, program: { select: { fullName: true } } } } },
+        include: {
+          team: { select: { name: true, program: { select: { fullName: true, abbreviation: true, type: true } } } },
+          game: { select: { gameDate: true } }
+        },
         orderBy: { game: { gameDate: "desc" } },
-        take: 1
+        take: 40
       }
     },
     orderBy: {
       displayName: "asc"
     }
-  });
+  }),
+    prisma.program.findMany({
+      where: { deletedAt: null, type: ProgramType.SCHOOL },
+      select: { id: true, fullName: true },
+      orderBy: { fullName: "asc" }
+    })
+  ]);
 
   const serializedPlayers: ManagedPlayer[] = players.map((player) => {
     const rating = player.currentRatings[0] ?? null;
     const computedAgeBracket = getAgeBracketAsOfMarch31(player.birthDate);
-    const schoolDisplay = player.currentProgram?.fullName || player.schoolOverride?.trim() || player.gameStats[0]?.team.program?.fullName || getUaapSchoolDisplayName(player.gameStats[0]?.team.name);
+    const schoolDisplay = resolvePrimaryRankingAffiliation({
+      schoolOverride: player.schoolOverride,
+      currentProgram: player.currentProgram,
+      gameStats: player.gameStats
+    });
 
     return {
       id: player.id,
@@ -53,8 +69,9 @@ export default async function AdminPlayersPage() {
       computedAgeBracket,
       ageGroupOverride: player.ageGroupOverride,
       displayAgeBracket: player.ageGroupOverride || computedAgeBracket || "Unknown",
-      city: player.city,
+      hometown: player.hometown ?? player.city,
       region: player.region,
+      currentProgramId: player.currentProgramId,
       position: player.position,
       heightCm: player.heightCm,
       birthDate: player.birthDate ? player.birthDate.toISOString().slice(0, 10) : "",
@@ -66,5 +83,12 @@ export default async function AdminPlayersPage() {
     };
   });
 
-  return <PlayerManagementClient players={serializedPlayers} />;
+  return (
+    <>
+      <AdminPageHeader title="Players" statusBadge={`${serializedPlayers.length} records`} />
+      <Suspense fallback={null}>
+        <PlayerManagementClient players={serializedPlayers} programs={programs} />
+      </Suspense>
+    </>
+  );
 }

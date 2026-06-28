@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { AdminBadge } from "@/components/admin/AdminBadge";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { formatHeight, getPlayerProfileHref } from "@/lib/format";
@@ -153,7 +154,7 @@ async function loadProgram(id: string) {
     }),
     prisma.program.findMany({
       where: { deletedAt: null },
-      select: { id: true, fullName: true, abbreviation: true },
+      select: { id: true, fullName: true, abbreviation: true, type: true },
       orderBy: [{ fullName: "asc" }, { abbreviation: "asc" }]
     })
   ]);
@@ -165,7 +166,12 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
   const { program, programs } = await loadProgram(params.id);
   if (!program) notFound();
 
-  const programOptions: ProgramSelectOption[] = programs.map((option) => ({ id: option.id, fullName: option.fullName, abbreviation: option.abbreviation }));
+  const programOptions: ProgramSelectOption[] = programs.map((option) => ({
+    id: option.id,
+    fullName: option.fullName,
+    abbreviation: option.abbreviation,
+    type: option.type
+  }));
   const programData: ProgramEditorData = {
     id: program.id,
     fullName: program.fullName,

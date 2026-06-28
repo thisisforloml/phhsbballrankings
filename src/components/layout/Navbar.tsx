@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Search, User, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/components/auth/AuthContext";
+import { BRAND_LOGO_ICON, BRAND_NAME } from "@/lib/brand";
 import { SearchOverlay } from "./SearchOverlay";
 
 const groups = ["U13", "U16", "U19"] as const;
@@ -128,18 +129,19 @@ function DesktopAccount({ portalSession, memberSession, logout, accountOpen, set
   return (
     <div className="hidden items-center gap-3 sm:flex">
       <Link href="/portal/login" className="rounded-sm border border-white/65 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:bg-white hover:text-court-900">Organizer Portal</Link>
-      <Link href="/login" className="rounded-sm border border-hardwood-600 bg-hardwood-600 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-hardwood-700 hover:bg-hardwood-700">Member Login</Link>
+      <Link href="/login" className="rounded-sm border border-hardwood-600 bg-hardwood-600 px-4 py-2 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-hardwood-700 hover:bg-hardwood-700">Login</Link>
     </div>
   );
 }
 
 function BrandMark() {
   return (
-    <Link href="/" className="flex items-center gap-3 leading-none" aria-label="OnCourt Rankings Philippines home">
-      <img src="/oncourt-logo.png" alt="" className="h-12 w-12 rounded-sm object-contain" />
+    <Link href="/" className="flex items-center gap-3 leading-none" aria-label={`${BRAND_NAME} home`}>
+      <img src={BRAND_LOGO_ICON} alt="" className="h-12 w-12 rounded-sm object-contain" />
       <span>
-        <span className="block font-display text-3xl font-extrabold tracking-normal text-white">ONCOURT</span>
-        <span className="block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-gold-500">Rankings PH</span>
+        <span className="block font-display text-[1.65rem] font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl">
+          Peach <span className="text-gold-500">Basket</span>
+        </span>
       </span>
     </Link>
   );
@@ -240,7 +242,7 @@ function MobileDrawer({ open, onClose, portalSession, memberSession }: { open: b
               {portalSession?.authenticated && portalSession.role === "ADMIN" ? <Link onClick={onClose} href="/admin" className="rounded-md bg-amber-500 px-4 py-3 text-center font-semibold text-white">Admin</Link> : null}
               {portalSession?.authenticated && portalSession.role === "ORGANIZER" ? <Link onClick={onClose} href="/organizer" className="rounded-md border border-white/65 bg-white/10 px-4 py-3 text-center font-semibold text-white">Organizer Portal</Link> : null}
               {!portalSession?.authenticated && !memberSession ? <Link onClick={onClose} href="/portal/login" className="rounded-md border border-white/65 bg-white/10 px-4 py-3 text-center font-semibold text-white">Organizer Portal</Link> : null}
-              {!portalSession?.authenticated && !memberSession ? <Link onClick={onClose} href="/login" className="rounded-md bg-amber-500 px-4 py-3 text-center font-semibold text-white">Member Login</Link> : null}
+              {!portalSession?.authenticated && !memberSession ? <Link onClick={onClose} href="/login" className="rounded-md bg-amber-500 px-4 py-3 text-center font-semibold text-white">Login</Link> : null}
               {memberSession && !portalSession?.authenticated ? <Link onClick={onClose} href="/account" className="rounded-md bg-amber-500 px-4 py-3 text-center font-semibold text-white">My Account</Link> : null}
             </div>
           </motion.aside>

@@ -1,4 +1,5 @@
-﻿import { requireAdminUser } from "@/lib/portal-auth";
+﻿import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { resolveProgramIdentity } from "@/lib/uaap-school-display";
 import { TeamManagementClient, type ManagedTeam, type TeamSchoolGroup } from "./TeamManagementClient";
@@ -7,8 +8,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Internal Team Records - Admin Portal",
-  description: "Secondary audit page for individual Team records."
+  title: "Teams | Admin",
+  description: "Edit team records."
 };
 
 type ContextSummary = {
@@ -126,6 +127,7 @@ export default async function AdminTeamsPage() {
       isActiveCompetitionTeam,
       city: team.city,
       region: team.region,
+      logoUrl: team.logoUrl,
       homeGames: activeUsage.homeGames,
       awayGames: activeUsage.awayGames,
       gameStats: activeUsage.gameStats,
@@ -152,5 +154,10 @@ export default async function AdminTeamsPage() {
       hasSameContextDuplicate: activeTeams.some((team) => team.publicSchoolName === publicSchoolName && team.needsCleanup)
     }));
 
-  return <TeamManagementClient teams={serializedTeams} activeSchoolGroups={activeSchoolGroups} />;
+  return (
+    <>
+      <AdminPageHeader title="Teams" statusBadge={`${serializedTeams.length} records`} />
+      <TeamManagementClient teams={serializedTeams} activeSchoolGroups={activeSchoolGroups} />
+    </>
+  );
 }

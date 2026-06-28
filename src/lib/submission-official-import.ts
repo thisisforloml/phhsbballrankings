@@ -1,9 +1,24 @@
-import { AgeGroup, PlayerGender, Prisma, SeasonStatus, SubmissionStatus, SubmissionType, VerificationStatus, type Submission } from "@prisma/client";
+import { AgeGroup, PlayerGender, Prisma, ProgramType, SeasonStatus, SubmissionStatus, SubmissionType, VerificationStatus, type Submission } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { assertSubmissionReviewable } from "@/lib/submission-lifecycle";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
-import { getUaapInternalTeamName } from "@/lib/uaap-school-display";
+import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { getTeamDisplayName, getUaapInternalTeamName, normalizeProgramAlias, resolveProgramIdentity, type ProgramIdentity } from "@/lib/uaap-school-display";
 import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
+import {
+  prepareImportedPlayerName,
+  resolvePlayerForImport
+} from "@/lib/player-import-identity";
+import {
+  buildGameStatBoxScoreFromPlayerRow,
+  evaluateGameStatImmutability,
+  existingGameStatToCompareInput,
+  gameStatBoxScoreSelect,
+  type GameStatBlockedDetail
+} from "@/lib/game-stat-import-integrity";
+import { ensurePlayerRosterFromGameStat } from "@/lib/admin/roster-from-game-evidence";
+import { resolveCanonicalLeagueImport } from "@/lib/league-canonical-naming";
 
 type JsonRecord = Record<string, unknown>;
 type SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "adminNotes">;
@@ -37,22 +52,6 @@ function numberValue(value: unknown): number {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
 }
 
-function nullableNumberValue(value: unknown): number | null {
-  return typeof value === "number" && Number.isFinite(value) ? value : null;
-}
-
-function cleanPlayerName(value: unknown): string {
-  return stringValue(value).replace(/^\*+/, "").trim();
-}
-
-function canonicalPlayerDisplayName(value: string): string {
-  return normalize(value) === "JD JUANGCO" ? "JD Juangco" : value;
-}
-
-function isStarter(value: unknown): boolean {
-  return stringValue(value).startsWith("*");
-}
-
 function normalize(value: string) {
   return value.trim().replace(/\s+/g, " ").toUpperCase();
 }
@@ -63,14 +62,6 @@ function parseDate(value: unknown) {
   const date = new Date(`${raw}T00:00:00.000Z`);
   if (Number.isNaN(date.getTime())) throw new Error(`Invalid game date: ${raw}`);
   return date;
-}
-
-function parseMinutes(value: unknown): number | null {
-  const raw = stringValue(value);
-  if (!raw) return null;
-  const [minutes, seconds] = raw.split(":").map((part) => Number(part));
-  if (!Number.isFinite(minutes) || !Number.isFinite(seconds)) return null;
-  return Math.round((minutes + seconds / 60) * 100) / 100;
 }
 
 function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPreview">) {
@@ -105,41 +96,138 @@ function appendAdminNotes(existing: string | null, summary: string) {
   return [existing, summary].filter(Boolean).join("\n\n");
 }
 
-function gameStatData(playerRow: JsonRecord, gameId: string, playerId: string, teamId: string) {
-  const fieldGoalsMade = nullableNumberValue(playerRow.FGM);
-  const fieldGoalsAttempt = nullableNumberValue(playerRow.FGA);
-  const threeMade = nullableNumberValue(playerRow["3PM"]);
-  const threeAttempt = nullableNumberValue(playerRow["3PA"]);
-  const freeThrowsMade = nullableNumberValue(playerRow.FTM);
-  const freeThrowsAttempt = nullableNumberValue(playerRow.FTA);
+function unique(values: Array<string | null | undefined>) {
+  return Array.from(new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))).sort((left, right) => left.localeCompare(right));
+}
 
-  return {
-    gameId,
-    playerId,
-    teamId,
-    starter: isStarter(playerRow.name),
-    minutes: parseMinutes(playerRow.MIN),
-    points: numberValue(playerRow.PTS),
-    offensiveRebounds: nullableNumberValue(playerRow.OREB),
-    defensiveRebounds: nullableNumberValue(playerRow.DREB),
-    rebounds: numberValue(playerRow.TRB),
-    assists: numberValue(playerRow.AST),
-    steals: nullableNumberValue(playerRow.STL),
-    blocks: nullableNumberValue(playerRow.BLK),
-    turnovers: nullableNumberValue(playerRow.TOV),
-    fouls: nullableNumberValue(playerRow.PF),
-    foulsDrawn: nullableNumberValue(playerRow.FD),
-    plusMinus: nullableNumberValue(playerRow["+/-"]),
-    fieldGoalsMade,
-    fieldGoalsAttempt,
-    twoMade: fieldGoalsMade !== null && threeMade !== null ? fieldGoalsMade - threeMade : null,
-    twoAttempt: fieldGoalsAttempt !== null && threeAttempt !== null ? fieldGoalsAttempt - threeAttempt : null,
-    threeMade,
-    threeAttempt,
-    freeThrowsMade,
-    freeThrowsAttempt,
-    deletedAt: null
-  };
+function programTypeFromIdentity(identity: ProgramIdentity): ProgramType {
+  if (identity.programType === "School") return ProgramType.SCHOOL;
+  if (identity.programType === "Club / Team") return ProgramType.CLUB;
+  return ProgramType.UNKNOWN;
+}
+
+function programKeyFromName(value: string) {
+  return normalizeProgramAlias(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "unknown-program";
+}
+
+function importProgramIdentity(submittedTeamName: string, leagueName: string): ProgramIdentity {
+  if (isPybcCompetitionName(normalizeCompetitionDisplayName(leagueName))) {
+    const teamProgramName = getTeamDisplayName(submittedTeamName);
+    return {
+      programKey: programKeyFromName(teamProgramName),
+      programFullName: teamProgramName,
+      programAbbreviation: teamProgramName,
+      programType: "Club / Team",
+      teamDisplayName: teamProgramName,
+      normalizedAlias: normalizeProgramAlias(teamProgramName)
+    };
+  }
+
+  return resolveProgramIdentity(submittedTeamName);
+}
+
+async function findOrCreateProgram(
+  tx: Prisma.TransactionClient,
+  identity: ProgramIdentity,
+  location: { city: string; region: string }
+) {
+  const existing = await tx.program.findFirst({
+    where: { fullName: identity.programFullName, deletedAt: null },
+    select: { id: true, fullName: true, abbreviation: true, type: true }
+  });
+  if (existing) return existing;
+
+  return tx.program.create({
+    data: {
+      fullName: identity.programFullName,
+      abbreviation: identity.programAbbreviation || null,
+      type: programTypeFromIdentity(identity),
+      city: location.city || null,
+      region: location.region || null,
+      aliases: unique([identity.normalizedAlias, identity.teamDisplayName, identity.programFullName, identity.programAbbreviation])
+    },
+    select: { id: true, fullName: true, abbreviation: true, type: true }
+  });
+}
+
+async function ensureTeamProgram(
+  tx: Prisma.TransactionClient,
+  team: { id: string; name: string; programId: string | null },
+  identity: ProgramIdentity,
+  location: { city: string; region: string }
+) {
+  const program = await findOrCreateProgram(tx, identity, location);
+  if (!team.programId) {
+    await tx.team.update({ where: { id: team.id }, data: { programId: program.id } });
+    return { program, action: "linked" as const };
+  }
+  if (team.programId === program.id) return { program, action: "already_linked" as const };
+  return { program, action: "kept_existing" as const };
+}
+
+function teamDisplayMatchKey(value: string) {
+  return normalizeProgramAlias(getTeamDisplayName(value));
+}
+
+function hasTeamContextSuffix(value: string) {
+  return /\b(?:U|UNDER)[ -]?(?:1[0-9]|12)\b/i.test(value)
+    || /\b(?:1[0-9]|12)U\b/i.test(value)
+    || /\b(?:U|UNDER)[ -]?(?:13|16|19)\s*(?:BOYS|GIRLS)?\b/i.test(value)
+    || /\b(?:13U|16U|19U)\s*(?:BOYS|GIRLS)?\b/i.test(value)
+    || /\b(?:BOYS|GIRLS)\b$/i.test(value);
+}
+
+function chooseEquivalentProgramTeam(
+  submittedTeamName: string,
+  teams: Array<{ id: string; name: string; programId: string | null }>
+) {
+  const submittedDisplayName = getTeamDisplayName(submittedTeamName);
+  const exactDisplayMatches = teams.filter((team) => normalizeProgramAlias(team.name) === normalizeProgramAlias(submittedDisplayName));
+  if (exactDisplayMatches.length === 1) return exactDisplayMatches[0];
+  if (exactDisplayMatches.length > 1) {
+    throw new Error(`Multiple active clean Team matches found under the same Program for ${submittedTeamName}: ${exactDisplayMatches.map((team) => team.name).join(", ")}.`);
+  }
+
+  const cleanMatches = teams.filter((team) => !hasTeamContextSuffix(team.name));
+  if (cleanMatches.length === 1) return cleanMatches[0];
+  if (cleanMatches.length > 1) {
+    throw new Error(`Multiple active clean Team matches found under the same Program for ${submittedTeamName}: ${cleanMatches.map((team) => team.name).join(", ")}.`);
+  }
+
+  return null;
+}
+
+async function findImportTeamMatch(
+  tx: Prisma.TransactionClient,
+  params: {
+    submittedTeamName: string;
+    internalTeamName: string;
+    programId: string;
+    allowProgramDisplayMatch: boolean;
+  }
+) {
+  if (params.allowProgramDisplayMatch) {
+    const submittedKey = teamDisplayMatchKey(params.submittedTeamName);
+    const programTeams = await tx.team.findMany({
+      where: { deletedAt: null, programId: params.programId },
+      orderBy: { name: "asc" }
+    });
+    const equivalentMatches = programTeams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey);
+    const preferredTeam = chooseEquivalentProgramTeam(params.submittedTeamName, equivalentMatches);
+    if (preferredTeam) return preferredTeam;
+    if (equivalentMatches.length === 1) return equivalentMatches[0];
+    if (equivalentMatches.length > 1) {
+      throw new Error(`Multiple active Team matches found under the same Program for ${params.submittedTeamName}: ${equivalentMatches.map((team) => team.name).join(", ")}.`);
+    }
+  }
+
+  const exactMatches = await tx.team.findMany({
+    where: { deletedAt: null, name: params.internalTeamName },
+    orderBy: { name: "asc" }
+  });
+  if (exactMatches.length > 1) throw new Error(`Multiple active Team matches found for ${params.internalTeamName}.`);
+  if (exactMatches.length === 1) return exactMatches[0];
+  return null;
 }
 
 function parseGames(packageRoot: JsonRecord): ParsedGame[] {
@@ -167,11 +255,13 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       leagueName: true,
       rawText: true,
       parsedPreview: true,
-      adminNotes: true
+      adminNotes: true,
+      deletedAt: true
     }
   });
 
   if (!submission) throw new Error("Submission not found.");
+  assertSubmissionReviewable(submission);
   if (submission.status === SubmissionStatus.IMPORTED) {
     return { alreadyImported: true, submissionId, message: "Submission is already imported." };
   }
@@ -191,14 +281,17 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
   const games = parseGames(packageRoot);
   if (!games.length) throw new Error("No games found in submission.");
 
-  const targetLeagueName = review.recommendations.recommendedLeagueName ?? review.summary.leagueName ?? submission.leagueName ?? submission.title;
+  const submittedLeagueName = review.recommendations.recommendedLeagueName ?? review.summary.leagueName ?? submission.leagueName ?? submission.title;
+  const submittedSeasonName = stringValue(seasonRecord?.name) || review.summary.seasonName || "Season 88";
+  const canonicalLeague = resolveCanonicalLeagueImport({ leagueName: submittedLeagueName, seasonName: submittedSeasonName });
+  const targetLeagueName = canonicalLeague.leagueName;
   const ageGroup = coerceAgeGroup(review.summary.ageGroup);
   if (!ageGroup) throw new Error(`Unsupported age group for this import: ${review.summary.ageGroup ?? "missing"}.`);
   const gender = review.recommendations.inferredGender === "GIRLS" ? PlayerGender.GIRLS : PlayerGender.BOYS;
   const organizerName = stringValue(leagueRecord?.organizerName) || "UAAP";
   const leagueCity = stringValue(leagueRecord?.city) || "Quezon City";
   const leagueRegion = stringValue(leagueRecord?.region) || "NCR";
-  const seasonName = stringValue(seasonRecord?.name) || review.summary.seasonName || "Season 88";
+  const seasonName = canonicalLeague.seasonName;
   const seasonYear = typeof seasonRecord?.seasonYear === "number" ? seasonRecord.seasonYear : review.summary.seasonYear ?? 2025;
   const startsOn = games.reduce((earliest, game) => game.gameDate < earliest ? game.gameDate : earliest, games[0].gameDate);
   const endsOn = games.reduce((latest, game) => game.gameDate > latest ? game.gameDate : latest, games[0].gameDate);
@@ -210,12 +303,18 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       season: { action: "reuse" as "reuse" | "create", id: "" },
       teamsCreated: 0,
       teamsReused: 0,
+      teamsProgramLinked: 0,
+      teamsProgramAlreadyLinked: 0,
+      teamsProgramKeptExisting: 0,
       playersCreated: 0,
       playersReused: 0,
+      playersReusedViaAlias: 0,
       gamesCreated: 0,
       gamesReused: 0,
       gameStatsCreated: 0,
-      gameStatsUpdated: 0,
+      gameStatsSkipped: 0,
+      gameStatsBlocked: 0,
+      gameStatBlockedDetails: [] as GameStatBlockedDetail[],
       submissionStatus: SubmissionStatus.IMPORTED
     };
 
@@ -254,27 +353,37 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     const submittedTeamNames = Array.from(new Set(games.flatMap((game) => [game.homeTeamName, game.awayTeamName, ...game.players.map((player) => stringValue(player.team))]).filter(Boolean)));
     for (const submittedTeamName of submittedTeamNames) {
       const internalTeamName = getUaapInternalTeamName(submittedTeamName, ageGroup, gender);
-      const matches = await tx.team.findMany({ where: { deletedAt: null, name: internalTeamName }, orderBy: { name: "asc" } });
-      if (matches.length > 1) throw new Error(`Multiple active Team matches found for ${internalTeamName}.`);
-      let team = matches[0] ?? null;
+      const identity = importProgramIdentity(submittedTeamName, targetLeagueName);
+      const program = await findOrCreateProgram(tx, identity, { city: leagueCity, region: leagueRegion });
+      let team = await findImportTeamMatch(tx, { submittedTeamName, internalTeamName, programId: program.id, allowProgramDisplayMatch: identity.programType === "Club / Team" });
       if (!team) {
-        team = await tx.team.create({ data: { name: internalTeamName, city: "Metro Manila", region: "NCR" } });
+        team = await tx.team.create({ data: { name: internalTeamName, city: "Metro Manila", region: "NCR", programId: program.id } });
         summary.teamsCreated += 1;
+        summary.teamsProgramLinked += 1;
       } else {
         summary.teamsReused += 1;
+        const result = await ensureTeamProgram(tx, team, identity, { city: leagueCity, region: leagueRegion });
+        if (result.action === "linked") summary.teamsProgramLinked += 1;
+        if (result.action === "already_linked") summary.teamsProgramAlreadyLinked += 1;
+        if (result.action === "kept_existing") summary.teamsProgramKeptExisting += 1;
       }
       teamBySubmittedName.set(normalize(submittedTeamName), { id: team.id, name: team.name });
     }
 
     const playerByName = new Map<string, { id: string; displayName: string }>();
-    const uniquePlayerNames = Array.from(new Set(games.flatMap((game) => game.players.map((player) => canonicalPlayerDisplayName(cleanPlayerName(player.name)))).filter(Boolean)));
+    const uniquePlayerNames = Array.from(new Set(games.flatMap((game) => game.players.map((player) => prepareImportedPlayerName(player.name))).filter(Boolean)));
     for (const displayName of uniquePlayerNames) {
-      const matches = await tx.player.findMany({ where: { displayName, gender, deletedAt: null }, orderBy: { displayName: "asc" } });
-      if (matches.length > 1) throw new Error(`Multiple active Player matches found for ${displayName}.`);
-      let player = matches[0] ?? null;
-      if (!player) {
+      const resolved = await resolvePlayerForImport(tx, { cleanedName: displayName, gender });
+      if (resolved.action === "blocked") throw new Error(resolved.reason);
+
+      let player: { id: string; displayName: string };
+      if (resolved.action === "reuse") {
+        player = { id: resolved.playerId, displayName: resolved.displayName };
+        summary.playersReused += 1;
+        if (resolved.via === "alias") summary.playersReusedViaAlias += 1;
+      } else {
         const parts = nameParts(displayName);
-        player = await tx.player.create({
+        const created = await tx.player.create({
           data: {
             displayName,
             firstName: parts.firstName,
@@ -286,11 +395,11 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
             photoUrl: null,
             heightCm: null,
             position: null
-          }
+          },
+          select: { id: true, displayName: true }
         });
+        player = created;
         summary.playersCreated += 1;
-      } else {
-        summary.playersReused += 1;
       }
       playerByName.set(normalize(displayName), { id: player.id, displayName: player.displayName });
     }
@@ -327,21 +436,53 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       }
 
       for (const playerRow of submittedGame.players) {
-        const cleanedName = canonicalPlayerDisplayName(cleanPlayerName(playerRow.name));
+        const cleanedName = prepareImportedPlayerName(playerRow.name);
         const player = playerByName.get(normalize(cleanedName));
         const team = teamBySubmittedName.get(normalize(stringValue(playerRow.team)));
         if (!player || !team) throw new Error(`Missing player/team mapping for ${cleanedName} in ${submittedGame.gameNumber}.`);
 
-        const data = gameStatData(playerRow, game.id, player.id, team.id);
-        const existingStat = await tx.gameStat.findUnique({ where: { gameId_playerId: { gameId: game.id, playerId: player.id } } });
-        if (existingStat) {
-          await tx.gameStat.update({ where: { id: existingStat.id }, data });
-          summary.gameStatsUpdated += 1;
-        } else {
-          await tx.gameStat.create({ data });
+        const submittedBoxScore = buildGameStatBoxScoreFromPlayerRow(playerRow);
+        const existingStat = await tx.gameStat.findUnique({
+          where: { gameId_playerId: { gameId: game.id, playerId: player.id } },
+          select: gameStatBoxScoreSelect()
+        });
+        const decision = evaluateGameStatImmutability(existingGameStatToCompareInput(existingStat), submittedBoxScore);
+
+        if (decision.action === "create") {
+          await tx.gameStat.create({
+            data: {
+              gameId: game.id,
+              playerId: player.id,
+              teamId: team.id,
+              ...submittedBoxScore
+            }
+          });
           summary.gameStatsCreated += 1;
+        } else if (decision.action === "skip") {
+          summary.gameStatsSkipped += 1;
+        } else {
+          summary.gameStatsBlocked += 1;
+          summary.gameStatBlockedDetails.push({
+            gameNumber: submittedGame.gameNumber,
+            playerName: cleanedName,
+            reason: decision.reason,
+            diffs: decision.diffs
+          });
+        }
+
+        if (decision.action === "create" || decision.action === "skip") {
+          await ensurePlayerRosterFromGameStat(tx, {
+            playerId: player.id,
+            teamId: team.id,
+            seasonId: season.id,
+            startsOn: submittedGame.gameDate
+          });
         }
       }
+    }
+
+    if (summary.gameStatsBlocked > 0) {
+      throw new Error(`Import blocked: ${summary.gameStatsBlocked} GameStat row(s) would modify existing historical evidence. ${JSON.stringify(summary.gameStatBlockedDetails)}`);
     }
 
     const importNote = `Official import completed: ${JSON.stringify(summary)}`;
@@ -349,6 +490,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       where: { id: submission.id },
       data: {
         status: SubmissionStatus.IMPORTED,
+        importedAt: new Date(),
         adminNotes: appendAdminNotes(submission.adminNotes, importNote)
       },
       select: { id: true }

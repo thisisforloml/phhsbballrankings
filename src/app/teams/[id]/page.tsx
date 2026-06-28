@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const profile = await getPublicTeamProfile(params.id);
   return {
     title: `${profile.team.name} Team Profile`,
-    description: `${profile.team.name} record, roster, recent games, and official team stats on OnCourt.`
+    description: `${profile.team.name} record, roster, recent games, and official team stats on Peach Basket Rankings PH.`
   };
 }
 
@@ -36,7 +36,7 @@ export default async function TeamProfilePage({ params }: { params: { id: string
               ))}
             </div>
           </div>
-          <aside className="border border-gold-500 bg-paper-500 p-6 text-court-900 shadow-[8px_8px_0_#d97706]">
+          <aside className="rounded-lg border border-amber-200/80 bg-gradient-to-br from-amber-50 via-white to-white p-6 text-court-900 shadow-panel">
             <p className="text-xs font-black uppercase tracking-[0.14em] text-hardwood-600">Current Record</p>
             <div className="mt-4 flex items-center gap-3">
               <WinLossPill result="W" />
@@ -56,11 +56,11 @@ export default async function TeamProfilePage({ params }: { params: { id: string
         </div>
       </section>
 
-      <section className="container-px grid gap-10 py-10">
+      <section className="container-px grid gap-10 py-7 md:py-9">
         <section>
-          <SectionHeader
-            title="Players"
-          />
+          <div className="mb-5">
+            <SectionHeader title="Players" variant="content" />
+          </div>
           <div className="mt-6 overflow-hidden border border-line-500 bg-white">
             <div className="hidden grid-cols-[minmax(14rem,1.4fr)_7rem_8rem_8rem_repeat(4,5rem)] gap-3 border-b border-court-900 bg-court-900 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white/70 lg:grid">
               <span>Player</span><span>Pos</span><span>Class</span><span>Height</span><span>GP</span><span>PPG</span><span>RPG</span><span>APG</span>
@@ -82,9 +82,9 @@ export default async function TeamProfilePage({ params }: { params: { id: string
         </section>
 
         <section>
-          <SectionHeader
-            title="Last 5 Results"
-          />
+          <div className="mb-5">
+            <SectionHeader title="Last 5 Results" variant="content" />
+          </div>
           <div className="mt-6">
             {profile.recentGames.length ? <GameList games={profile.recentGames} /> : <p className="border border-line-500 bg-white p-5 text-court-600">No recent games are listed for this team yet.</p>}
           </div>

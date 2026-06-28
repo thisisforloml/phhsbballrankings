@@ -1,7 +1,12 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminBadge } from "@/components/admin/AdminBadge";
+import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
+import { AdminFilterRow } from "@/components/admin/AdminFilterRow";
+import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
 
 export type DuplicatePlayer = {
   playerId: string;
@@ -35,6 +40,15 @@ export type DuplicatePlayerGroup = {
   };
 };
 
+const FILTER_DEFAULTS = { search: "", program: "ALL", classification: "ALL" };
+
+const CLASSIFICATION_CHIP_ITEMS = [
+  { key: "ALL", label: "All" },
+  { key: "MERGE_SAFE", label: "MERGE_SAFE" },
+  { key: "NEEDS_REVIEW", label: "NEEDS_REVIEW" },
+  { key: "KEEP_SEPARATE", label: "KEEP_SEPARATE" }
+] as const;
+
 function groupSearchText(group: DuplicatePlayerGroup) {
   return [
     group.groupId,
@@ -57,12 +71,30 @@ function formatHeight(height: number | null) {
 }
 
 export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlayerGroup[] }) {
-  const [query, setQuery] = useState("");
-  const [program, setProgram] = useState("ALL");
-  const [classification, setClassification] = useState("ALL");
+  const { filters, patchFilters, clearFilters } = useAdminFilterParams({
+    defaults: FILTER_DEFAULTS,
+    keys: ["search", "program", "classification"],
+    debounceKey: "search"
+  });
+
+  const query = filters.search;
+  const program = filters.program;
+  const classification = filters.classification;
 
   const programOptions = useMemo(() => Array.from(new Set(groups.flatMap((group) => group.players.map((player) => programLabel(player))))).sort(), [groups]);
-  const classificationOptions = useMemo(() => Array.from(new Set(groups.map((group) => group.classification))).sort(), [groups]);
+
+  const classificationCounts = useMemo(() => ({
+    ALL: groups.length,
+    MERGE_SAFE: groups.filter((group) => group.classification === "MERGE_SAFE").length,
+    NEEDS_REVIEW: groups.filter((group) => group.classification === "NEEDS_REVIEW").length,
+    KEEP_SEPARATE: groups.filter((group) => group.classification === "KEEP_SEPARATE").length
+  }), [groups]);
+
+  const chipItems = CLASSIFICATION_CHIP_ITEMS.map((item) => ({
+    ...item,
+    count: classificationCounts[item.key as keyof typeof classificationCounts]
+  }));
+
   const filteredGroups = useMemo(() => {
     const value = query.trim().toLowerCase();
     return groups
@@ -71,34 +103,42 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
       .filter((group) => !value || groupSearchText(group).includes(value));
   }, [classification, groups, program, query]);
 
+  const hasActiveFilters = Boolean(query.trim()) || program !== "ALL" || classification !== "ALL";
+
   return (
-    <div className="grid gap-5">
-      <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-        <div className="grid gap-3 lg:grid-cols-[1fr_16rem_13rem]">
-          <label className="grid gap-2 text-sm font-semibold text-ink-700">
-            Search players
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Player name, id, program" className="rounded-md border border-surface-300 px-3 py-3" />
-          </label>
-          <label className="grid gap-2 text-sm font-semibold text-ink-700">
-            Program
-            <select value={program} onChange={(event) => setProgram(event.target.value)} className="rounded-md border border-surface-300 px-3 py-3">
-              <option value="ALL">All programs</option>
-              {programOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-semibold text-ink-700">
-            Classification
-            <select value={classification} onChange={(event) => setClassification(event.target.value)} className="rounded-md border border-surface-300 px-3 py-3">
-              <option value="ALL">All</option>
-              {classificationOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-        </div>
+    <div className="grid gap-4">
+      <section className="border border-surface-200 bg-white p-4 shadow-sm">
+        <AdminFilterChipBar
+          items={chipItems}
+          activeKey={classification}
+          onSelect={(key) => patchFilters({ classification: key })}
+          aria-label="Duplicate classification filters"
+        />
+        <AdminFilterRow
+          withTopDivider
+          searchLabel="Search players"
+          searchPlaceholder="Player name, id, program"
+          searchValue={query}
+          onSearchChange={(value) => patchFilters({ search: value })}
+          selects={[
+            {
+              name: "program",
+              label: "Program",
+              value: program,
+              options: [{ value: "ALL", label: "All programs" }, ...programOptions.map((option) => ({ value: option, label: option }))]
+            }
+          ]}
+          onSelectChange={(name, value) => patchFilters({ [name]: value } as Partial<typeof FILTER_DEFAULTS>)}
+          onClear={clearFilters}
+          showClear={hasActiveFilters}
+          resultCount={filteredGroups.length}
+          resultLabel="groups shown"
+        />
       </section>
 
       <section className="grid gap-4">
         {filteredGroups.map((group) => (
-          <article key={group.groupId} className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
+          <article key={group.groupId} className="overflow-hidden border border-surface-200 bg-white shadow-sm">
             <div className="border-b border-surface-200 p-5">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -107,7 +147,7 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
                   <p className="mt-2 text-sm font-semibold text-amber-800">Do not change player records unless identity is verified.</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-amber-50 px-3 py-1 font-mono text-mono-sm uppercase text-amber-800">{group.classification}</span>
+                  <AdminBadge variant="warning" size="sm" className="text-mono-sm">{group.classification}</AdminBadge>
                   {typeof group.similarityScore === "number" ? <span className="rounded-full bg-surface-100 px-3 py-1 font-mono text-mono-sm uppercase text-ink-600">Similarity {group.similarityScore}</span> : null}
                 </div>
               </div>
@@ -160,9 +200,11 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
           </article>
         ))}
         {!filteredGroups.length ? (
-          <p className="rounded-lg border border-surface-200 bg-white p-5 text-sm text-ink-600 shadow-sm">
-            {groups.length === 0 ? "No possible player duplicates found." : "No duplicate groups match these filters."}
-          </p>
+          <AdminEmptyState
+            variant={groups.length ? "no-matches" : "no-records"}
+            subject="duplicate groups"
+            onClearFilters={groups.length && hasActiveFilters ? clearFilters : undefined}
+          />
         ) : null}
       </section>
     </div>

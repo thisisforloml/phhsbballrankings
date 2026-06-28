@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthContext";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 const packages = [
   { name: "Standard", price: "PHP XXX per month", features: ["League details", "Verified game records"], action: "Select" },
@@ -51,11 +52,7 @@ export default function RegisterPage() {
   return (
     <main className="min-h-screen bg-surface-50 px-5 pb-16 pt-32">
       <section className="mx-auto w-full max-w-4xl rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-        <div className="text-center leading-none">
-          <img src="/oncourt-logo.png" alt="" className="mx-auto h-20 w-20 rounded-md object-contain" />
-          <span className="mt-3 block font-display text-4xl font-extrabold text-navy-800">ONCOURT</span>
-          <span className="block font-mono text-[0.65rem] uppercase tracking-[0.18em] text-surface-500">Rankings PH</span>
-        </div>
+        <BrandLogo href="" />
         <div className="mx-auto mt-8 flex max-w-xl items-center justify-center gap-3 font-mono text-mono-sm uppercase">
           {["Account", "Package", "Payment"].map((label, index) => (
             <span key={label} className={index + 1 === step ? "text-amber-500" : index + 1 < step ? "text-navy-800" : "text-surface-300"}>

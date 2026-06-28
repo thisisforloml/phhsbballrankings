@@ -1,4 +1,6 @@
-﻿import { slugify } from "./format";
+﻿import { AgeGroup } from "@prisma/client";
+import { slugify } from "./format";
+import { buildEligibilityInput, evaluateEligibility, isPublicBoardVisible } from "./eligibility";
 import { prisma } from "./prisma";
 import type { LeagueParticipation, PlayerSummary } from "./types";
 
@@ -16,8 +18,36 @@ function hasDetailedBoxScore(stat: {
   );
 }
 
-function leaderboardMinimumGamesForGender(gender: string) {
-  return gender === "GIRLS" ? 5 : 10;
+function isPlayerPublicBoardEligible(player: {
+  id: string;
+  gender: string;
+  birthDate: Date | null;
+  firstRankingEligibilityAt: Date | null;
+  classYearOverride: number | null;
+  ageGroupOverride: string | null;
+  currentRatings: Array<{ ageGroup: AgeGroup; verifiedGameCount: number }>;
+}) {
+  const rating = player.currentRatings[0];
+  if (!rating) return false;
+
+  const evaluatedBoard = (rating.ageGroup as PlayerSummary["ageGroup"]) ?? "U19";
+
+  const verdict = evaluateEligibility(
+    buildEligibilityInput({
+      playerId: player.id,
+      gender: player.gender as "BOYS" | "GIRLS",
+      birthDate: player.birthDate,
+      firstRankingEligibilityAt: player.firstRankingEligibilityAt,
+      classYearOverride: player.classYearOverride,
+      ageGroupOverride: player.ageGroupOverride,
+      ratingAgeGroup: evaluatedBoard,
+      verifiedGameCount: rating.verifiedGameCount,
+      evaluatedBoard,
+      formulaVersionId: null
+    })
+  );
+
+  return isPublicBoardVisible(verdict);
 }
 
 export async function getPlayerSummaries(): Promise<PlayerSummary[]> {
@@ -93,6 +123,7 @@ export async function getPlayerSummaries(): Promise<PlayerSummary[]> {
       const normalizedAgeGroup = String(rating?.ageGroup ?? "U16")
         .replace("18", "19")
         .replace("22", "19") as PlayerSummary["ageGroup"];
+      const publicBoardEligible = isPlayerPublicBoardEligible(player);
 
       return {
         id: player.id,
@@ -126,34 +157,25 @@ export async function getPlayerSummaries(): Promise<PlayerSummary[]> {
             day: "numeric",
             year: "numeric"
           })
-        }))
+        })),
+        publicBoardEligible
       };
     });
 
     return summaries.map((player) => ({
       ...player,
-      regionRanking:
-        player.games >= leaderboardMinimumGamesForGender(player.gender)
-          ? summaries
-              .filter(
-                (candidate) =>
-                  candidate.region === player.region &&
-                  candidate.games >= leaderboardMinimumGamesForGender(candidate.gender)
-              )
-              .sort((a, b) => b.rating - a.rating)
-              .findIndex((candidate) => candidate.id === player.id) + 1
-          : null,
-      positionRanking:
-        player.games >= leaderboardMinimumGamesForGender(player.gender)
-          ? summaries
-              .filter(
-                (candidate) =>
-                  candidate.position === player.position &&
-                  candidate.games >= leaderboardMinimumGamesForGender(candidate.gender)
-              )
-              .sort((a, b) => b.rating - a.rating)
-              .findIndex((candidate) => candidate.id === player.id) + 1
-          : null
+      regionRanking: player.publicBoardEligible
+        ? summaries
+            .filter((candidate) => candidate.region === player.region && candidate.publicBoardEligible)
+            .sort((a, b) => b.rating - a.rating)
+            .findIndex((candidate) => candidate.id === player.id) + 1
+        : null,
+      positionRanking: player.publicBoardEligible
+        ? summaries
+            .filter((candidate) => candidate.position === player.position && candidate.publicBoardEligible)
+            .sort((a, b) => b.rating - a.rating)
+            .findIndex((candidate) => candidate.id === player.id) + 1
+        : null
     }));
   } catch {
     return [];
@@ -162,9 +184,7 @@ export async function getPlayerSummaries(): Promise<PlayerSummary[]> {
 
 export async function getEligibleRankings(): Promise<PlayerSummary[]> {
   const players = await getPlayerSummaries();
-  return players
-    .filter((player) => player.games >= leaderboardMinimumGamesForGender(player.gender))
-    .sort((a, b) => b.rating - a.rating);
+  return players.filter((player) => player.publicBoardEligible).sort((a, b) => b.rating - a.rating);
 }
 
 export async function getPlayerBySlug(slug: string): Promise<PlayerSummary | undefined> {

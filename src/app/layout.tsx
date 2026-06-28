@@ -1,44 +1,53 @@
 ﻿import type { Metadata } from "next";
-import { Barlow_Condensed, IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import { Footer, Navbar } from "@/components/layout";
-import { AuthProvider } from "@/components/auth/AuthContext";
+import { AppChrome } from "@/components/layout/AppChrome";
+import { BRAND_DESCRIPTION, BRAND_LOGO_HORIZONTAL, BRAND_LOGO_ICON, BRAND_NAME, BRAND_NAME_FULL } from "@/lib/brand";
+import { getPublicTrustMeta } from "@/lib/public-site-data";
 import "../styles/globals.css";
 
-const barlow = Barlow_Condensed({
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-barlow-condensed"
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plus-jakarta"
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-ibm-plex-mono"
-});
-
 export const metadata: Metadata = {
+  metadataBase: new URL("https://oncourtrankings.ph"),
   title: {
-    default: "OnCourt Rankings PH",
-    template: "%s | OnCourt Rankings PH"
+    default: BRAND_NAME_FULL,
+    template: `%s | ${BRAND_NAME_FULL}`,
   },
-  description: "OnCourt Rankings Philippines tracks verified official basketball games and rankings."
+  description: BRAND_DESCRIPTION,
+  applicationName: BRAND_NAME,
+  icons: {
+    icon: BRAND_LOGO_ICON,
+    shortcut: BRAND_LOGO_ICON,
+    apple: "/peach-basket/logo-stacked.png",
+  },
+  openGraph: {
+    type: "website",
+    siteName: BRAND_NAME,
+    title: BRAND_NAME_FULL,
+    description: BRAND_DESCRIPTION,
+    images: [{ url: BRAND_LOGO_HORIZONTAL, alt: BRAND_NAME_FULL }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: BRAND_NAME_FULL,
+    description: BRAND_DESCRIPTION,
+    images: [BRAND_LOGO_HORIZONTAL],
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const trustMeta = await getPublicTrustMeta();
+
   return (
-    <html lang="en" className={`${barlow.variable} ${plusJakarta.variable} ${plexMono.variable}`}>
+    <html lang="en">
+      <head>
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-sans">
-        <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <AppChrome trustMeta={trustMeta}>{children}</AppChrome>
       </body>
     </html>
   );

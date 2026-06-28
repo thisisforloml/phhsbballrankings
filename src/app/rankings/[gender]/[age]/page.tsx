@@ -6,7 +6,7 @@ export function generateMetadata({ params }: { params: { gender: string; age: st
   const age = params.age.toUpperCase();
   return {
     title: `${age} ${gender} Rankings`,
-    description: `${age} ${gender} player rankings on OnCourt.`
+    description: `${age} ${gender} player rankings on Peach Basket.`
   };
 }
 

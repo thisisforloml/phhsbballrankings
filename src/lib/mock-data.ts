@@ -32,6 +32,8 @@ export interface LeagueHistory {
   avgPoints: number;
   avgAssists?: number;
   avgRebounds?: number;
+  avgBoxEfficiency?: number;
+  productionMarker?: string;
 }
 
 export interface Player {

@@ -1,3 +1,5 @@
+import "server-only";
+
 import { AgeGroup, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
@@ -137,16 +139,22 @@ async function loadPlayerById(id: string) {
       gameStats: {
         where: {
           deletedAt: null,
-          performanceScore: {
-            formulaVersion: {
-              versionNumber: formulaVersionNumber
-            },
-            deletedAt: null
+          performanceScores: {
+            some: {
+              formulaVersion: { versionNumber: formulaVersionNumber },
+              deletedAt: null
+            }
           }
         },
         include: {
           team: { include: { program: true } },
-          performanceScore: true,
+          performanceScores: {
+            where: {
+              formulaVersion: { versionNumber: formulaVersionNumber },
+              deletedAt: null
+            },
+            take: 1
+          },
           game: {
             include: {
               homeTeam: true,
@@ -262,7 +270,8 @@ function mapGameStat(stat: LoadedPlayer["gameStats"][number]): PlayerProfileGame
   const teamScore = isHome ? stat.game.homeScore : stat.game.awayScore;
   const opponentScore = isHome ? stat.game.awayScore : stat.game.homeScore;
   const opponentName = getUaapSchoolDisplayName(isHome ? stat.game.awayTeam.name : stat.game.homeTeam.name);
-  const finalPerformanceScore = stat.performanceScore?.finalPerformanceScore ?? stat.performanceScore?.performanceScore ?? null;
+  const scoreRow = stat.performanceScores[0];
+  const finalPerformanceScore = scoreRow?.finalPerformanceScore ?? scoreRow?.performanceScore ?? null;
 
   return {
     gameId: stat.gameId,

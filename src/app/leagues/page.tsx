@@ -8,11 +8,12 @@ export default async function LeaguesPage() {
 
   return (
     <PublicPageShell className="pb-20">
-      <section className="hero-brand pt-32 text-white">
+      <section className="hero-brand pt-28 text-white">
         <div className="container-px py-14">
           <SectionHeader
-            title="Competition Hubs"
+            title="Leagues & Competitions"
             dark
+            variant="content"
           />
         </div>
       </section>

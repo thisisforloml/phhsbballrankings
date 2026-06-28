@@ -2,7 +2,17 @@ import { AgeGroup, PlayerGender, type Submission } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
-import { getUaapInternalTeamName, getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
+import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
+import {
+  buildGameStatBoxScoreFromPlayerRow,
+  evaluateGameStatImmutability,
+  existingGameStatToCompareInput,
+  gameStatBoxScoreSelect,
+  type GameStatBlockedDetail,
+  type GameStatFieldDiff
+} from "@/lib/game-stat-import-integrity";
+import { prepareImportedPlayerName, resolvePlayerForImport } from "@/lib/player-import-identity";
 
 type JsonRecord = Record<string, unknown>;
 type PreflightAction = "reuse" | "create" | "update" | "manual_review";
@@ -23,14 +33,6 @@ function stringValue(value: unknown): string {
 
 function numberValue(value: unknown): number {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
-}
-
-function cleanPlayerName(value: unknown): string {
-  return stringValue(value).replace(/^\*+/, "").trim();
-}
-
-function canonicalPlayerDisplayName(value: string): string {
-  return normalize(value) === "JD JUANGCO" ? "JD Juangco" : value;
 }
 
 function normalize(value: string) {
@@ -61,6 +63,20 @@ function inferGender(reviewGender: "BOYS" | "GIRLS" | null): PlayerGender {
 function recommendedLeagueName(submission: SubmissionForPreflight, fallback: string | null) {
   const review = buildSubmissionReview(submission);
   return review.recommendations.recommendedLeagueName ?? fallback ?? submission.leagueName ?? submission.title;
+}
+
+function submittedProgramName(submittedTeamName: string, leagueName: string) {
+  return isPybcCompetitionName(normalizeCompetitionDisplayName(leagueName))
+    ? getTeamDisplayName(submittedTeamName)
+    : getUaapSchoolDisplayName(submittedTeamName);
+}
+
+function allowProgramDisplayTeamMatch(leagueName: string) {
+  return isPybcCompetitionName(normalizeCompetitionDisplayName(leagueName));
+}
+
+function teamDisplayMatchKey(value: string) {
+  return normalizeProgramAlias(getTeamDisplayName(value));
 }
 
 export type SubmissionImportPreflight = Awaited<ReturnType<typeof buildSubmissionImportPreflight>>;
@@ -106,39 +122,58 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const teamPreflight = await Promise.all(submittedTeams.map(async (submittedTeamName) => {
     const normalizedPublicName = getUaapSchoolDisplayName(submittedTeamName);
     const internalTeamName = getUaapInternalTeamName(submittedTeamName, targetAgeGroup, inferredGender);
-    const matches = await prisma.team.findMany({
+    const exactMatches = await prisma.team.findMany({
       where: { deletedAt: null, name: internalTeamName },
       select: { id: true, name: true, city: true, region: true },
       orderBy: { name: "asc" }
     });
+    const programName = submittedProgramName(submittedTeamName, targetLeagueName);
+    const canUseProgramDisplayMatch = allowProgramDisplayTeamMatch(targetLeagueName);
+    const program = exactMatches.length || !canUseProgramDisplayMatch ? null : await prisma.program.findFirst({
+      where: { fullName: programName, deletedAt: null },
+      select: {
+        id: true,
+        teams: {
+          where: { deletedAt: null },
+          select: { id: true, name: true, city: true, region: true },
+          orderBy: { name: "asc" }
+        }
+      }
+    });
+    const submittedKey = teamDisplayMatchKey(submittedTeamName);
+    const programDisplayMatches = program?.teams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey) ?? [];
+    const matches = exactMatches.length ? exactMatches : programDisplayMatches;
 
     const action: PreflightAction = matches.length === 1 ? "reuse" : matches.length === 0 ? "create" : "manual_review";
-    return { submittedTeamName, internalTeamName, normalizedPublicName, matches, action };
+    return { submittedTeamName, internalTeamName, normalizedPublicName, programName, matches, action };
   }));
 
   const uniquePlayerNames = review.summary.uniquePlayerNames;
   const playerPreflight = await Promise.all(uniquePlayerNames.map(async (submittedName) => {
-    const cleanedName = canonicalPlayerDisplayName(submittedName.replace(/^\*+/, "").trim());
-    const exactMatches = await prisma.player.findMany({
-      where: { displayName: cleanedName, gender: inferredGender, deletedAt: null },
-      select: { id: true, displayName: true, gender: true, city: true, region: true },
-      orderBy: { displayName: "asc" }
-    });
-    const possibleCaseMatches = exactMatches.length === 0
-      ? await prisma.player.findMany({
-          where: { displayName: { equals: cleanedName, mode: "insensitive" }, gender: inferredGender, deletedAt: null },
-          select: { id: true, displayName: true, gender: true, city: true, region: true },
-          orderBy: { displayName: "asc" }
-        })
-      : [];
+    const cleanedName = prepareImportedPlayerName(submittedName);
+    const resolved = await resolvePlayerForImport(prisma, { cleanedName, gender: inferredGender });
 
-    const action: PreflightAction = exactMatches.length === 1
-      ? "reuse"
-      : exactMatches.length === 0 && possibleCaseMatches.length === 0
-        ? "create"
-        : "manual_review";
+    let action: PreflightAction;
+    let matchedPlayer: { id: string; displayName: string; gender: PlayerGender; city: string; region: string } | null = null;
+    let resolvedVia: "displayName" | "alias" | null = null;
+    let blockReason: string | null = null;
 
-    return { submittedName, cleanedName, gender: inferredGender, exactMatches, possibleCaseMatches, action };
+    if (resolved.action === "blocked") {
+      action = "manual_review";
+      blockReason = resolved.reason;
+    } else if (resolved.action === "reuse") {
+      action = "reuse";
+      resolvedVia = resolved.via;
+      const player = await prisma.player.findUnique({
+        where: { id: resolved.playerId },
+        select: { id: true, displayName: true, gender: true, city: true, region: true }
+      });
+      matchedPlayer = player;
+    } else {
+      action = "create";
+    }
+
+    return { submittedName, cleanedName, gender: inferredGender, matchedPlayer, resolvedVia, blockReason, action };
   }));
 
   const teamBySubmittedName = new Map(teamPreflight.map((team) => [normalize(team.submittedTeamName), team]));
@@ -150,6 +185,8 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     const awayTeamName = stringValue(game.awayTeamName);
     const homeScore = numberValue(game.homeScore);
     const awayScore = numberValue(game.awayScore);
+    const teamResultOnly = game.teamResultOnly === true || game.defaultWin === true;
+    const note = stringValue(game.note);
     const pointCheck = review.validation.pointTotals.find((check) => check.gameNumber === gameNumber) ?? null;
     const existingGame = existingSeason && gameNumber
       ? await prisma.game.findFirst({
@@ -163,14 +200,17 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     const teamReviewNeeded = homeTeam?.action === "manual_review" || awayTeam?.action === "manual_review";
     const action: PreflightAction = teamReviewNeeded ? "manual_review" : existingGame ? "update" : "create";
 
-    return { gameNumber, game: stringValue(game.game), homeTeamName, awayTeamName, homeScore, awayScore, existingGame, action, pointCheck };
+    return { gameNumber, game: stringValue(game.game), homeTeamName, awayTeamName, homeScore, awayScore, teamResultOnly, note, existingGame, action, pointCheck };
   }));
 
   const gameByNumber = new Map(gamePreflight.map((game) => [game.gameNumber, game]));
   let gameStatsWouldCreate = 0;
-  let gameStatsWouldUpdate = 0;
+  let gameStatsWouldSkip = 0;
+  let gameStatsWouldBlock = 0;
   let gameStatsManualReview = 0;
   const gameStatIssues: Array<{ gameNumber: string; playerName: string; team: string; reason: string }> = [];
+  const gameStatBlockedSamples: GameStatBlockedDetail[] = [];
+  const gameStatDiffSamples: Array<{ gameNumber: string; playerName: string; reason: string; diffs: GameStatFieldDiff[] }> = [];
 
   for (const game of games) {
     const gameNumber = stringValue(game.gameNumber);
@@ -180,7 +220,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     const gamePlayers = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
 
     for (const playerRow of gamePlayers) {
-      const playerName = canonicalPlayerDisplayName(cleanPlayerName(playerRow.name));
+      const playerName = prepareImportedPlayerName(playerRow.name);
       const playerTeam = stringValue(playerRow.team);
       const playerPreflightRow = playerByCleanedName.get(normalize(playerName));
       const teamPreflightRow = teamBySubmittedName.get(normalize(playerTeam));
@@ -198,16 +238,37 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
       }
 
       if (playerPreflightRow && submittedGame) {
-        const existingPlayerId = playerPreflightRow.exactMatches[0]?.id;
+        const existingPlayerId = playerPreflightRow.matchedPlayer?.id;
         const existingGameId = submittedGame.existingGame?.id;
 
         if (existingPlayerId && existingGameId) {
           const existingStat = await prisma.gameStat.findUnique({
             where: { gameId_playerId: { gameId: existingGameId, playerId: existingPlayerId } },
-            select: { id: true }
+            select: gameStatBoxScoreSelect()
           });
-          if (existingStat) gameStatsWouldUpdate += 1;
-          else gameStatsWouldCreate += 1;
+          const submittedBoxScore = buildGameStatBoxScoreFromPlayerRow(playerRow);
+          const decision = evaluateGameStatImmutability(existingGameStatToCompareInput(existingStat), submittedBoxScore);
+
+          if (decision.action === "create") gameStatsWouldCreate += 1;
+          else if (decision.action === "skip") gameStatsWouldSkip += 1;
+          else {
+            gameStatsWouldBlock += 1;
+            const blockedDetail: GameStatBlockedDetail = {
+              gameNumber,
+              playerName,
+              reason: decision.reason,
+              diffs: decision.diffs
+            };
+            gameStatBlockedSamples.push(blockedDetail);
+            if (gameStatDiffSamples.length < 10) {
+              gameStatDiffSamples.push({
+                gameNumber,
+                playerName,
+                reason: decision.reason,
+                diffs: decision.diffs
+              });
+            }
+          }
         } else {
           gameStatsWouldCreate += 1;
         }
@@ -215,6 +276,10 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
         gameStatsWouldCreate += 1;
       }
     }
+  }
+
+  if (gameStatsWouldBlock > 0) {
+    blockers.push(`${gameStatsWouldBlock} GameStat row(s) would modify existing historical evidence.`);
   }
 
   const wouldCreate = {
@@ -231,8 +296,9 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     seasons: existingSeason ? 1 : 0,
     teams: teamPreflight.filter((team) => team.action === "reuse").length,
     players: playerPreflight.filter((player) => player.action === "reuse").length,
+    playersViaAlias: playerPreflight.filter((player) => player.resolvedVia === "alias").length,
     games: gamePreflight.filter((game) => game.action === "update").length,
-    gameStats: gameStatsWouldUpdate
+    gameStats: gameStatsWouldSkip
   };
 
   const manualReviewCount = teamPreflight.filter((team) => team.action === "manual_review").length
@@ -270,9 +336,12 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     gameStats: {
       totalSubmittedRows: review.summary.totalPlayerRows,
       wouldCreate: gameStatsWouldCreate,
-      wouldUpdate: gameStatsWouldUpdate,
+      wouldSkip: gameStatsWouldSkip,
+      wouldBlock: gameStatsWouldBlock,
       manualReview: gameStatsManualReview,
-      issues: gameStatIssues.slice(0, 50)
+      issues: gameStatIssues.slice(0, 50),
+      blockedSamples: gameStatBlockedSamples.slice(0, 20),
+      diffSamples: gameStatDiffSamples
     },
     overallSummary: {
       wouldCreate,

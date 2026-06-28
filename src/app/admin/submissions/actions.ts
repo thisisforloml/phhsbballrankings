@@ -13,11 +13,20 @@ import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-
 import {
   computeImportedSubmissionFormulaScores,
   computeImportedSubmissionPlayerRatings,
+  computeImportedSubmissionTeamRatings,
   generateImportedSubmissionMonthlyRankings,
   validateImportedSubmissionRankings
 } from "@/lib/submission-post-import-processing";
+import {
+  assertSubmissionReviewable,
+  canDeleteDraftSubmission,
+  draftDeleteIneligibilityReason,
+  initialSubmissionStatusForCreate,
+  submissionRequiresDeleteReviewWarning
+} from "@/lib/submission-lifecycle";
 
 const allowedTransitions: Record<SubmissionStatus, SubmissionStatus[]> = {
+  DRAFT: ["SUBMITTED"],
   SUBMITTED: ["UNDER_REVIEW"],
   UNDER_REVIEW: ["APPROVED", "REJECTED"],
   APPROVED: ["UNDER_REVIEW"],
@@ -137,9 +146,10 @@ export async function updateSubmissionDraftJson(formData: FormData) {
 
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true }
+    select: { id: true, status: true, deletedAt: true }
   });
   if (!submission) throw new Error("Submission not found.");
+  assertSubmissionReviewable(submission);
   if (submission.status === "IMPORTED") {
     redirect(reviewRedirectUrl(submission.id, { reviewError: "Imported submissions are locked. Draft JSON can only be edited before import." }));
   }
@@ -184,9 +194,10 @@ export async function updateSubmissionStructuredDraft(formData: FormData) {
 
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true, rawText: true, parsedPreview: true }
+    select: { id: true, status: true, rawText: true, parsedPreview: true, deletedAt: true }
   });
   if (!submission) throw new Error("Submission not found.");
+  assertSubmissionReviewable(submission);
   if (submission.status === "IMPORTED") {
     redirect(reviewRedirectUrl(submission.id, { reviewError: "Imported submissions are locked. Draft game stats can only be edited before import." }));
   }
@@ -245,7 +256,7 @@ export async function createAdminJsonSubmission(formData: FormData) {
       data: {
         submittedByUserId: user.id,
         type,
-        status: "SUBMITTED",
+        status: initialSubmissionStatusForCreate({ adminDraft: true }),
         title: metadata.title,
         leagueName: metadata.leagueName,
         gameDate: metadata.gameDate,
@@ -261,19 +272,29 @@ export async function createAdminJsonSubmission(formData: FormData) {
     });
   } catch (error) {
     const message = encodeURIComponent(error instanceof Error ? error.message : "Admin JSON submission could not be created.");
-    redirect(`/admin/submissions?jsonError=${message}`);
+    redirect(`/admin/submissions?tab=json&jsonError=${message}`);
   }
 
   revalidatePath("/admin/submissions");
-  redirect("/admin/submissions?jsonCreated=1");
+  redirect("/admin/submissions?tab=json&jsonCreated=1");
 }
 
 async function readSubmissionForPublish(submissionId: string) {
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true, adminNotes: true }
+    select: {
+      id: true,
+      status: true,
+      title: true,
+      leagueName: true,
+      rawText: true,
+      parsedPreview: true,
+      adminNotes: true,
+      deletedAt: true
+    }
   });
   if (!submission) throw new Error("Submission not found.");
+  assertSubmissionReviewable(submission);
   return submission;
 }
 
@@ -306,6 +327,12 @@ export async function publishSubmission(formData: FormData) {
     const review = buildSubmissionReview(submission);
     if (!review.validJson) {
       throw new Error(`Invalid JSON: ${review.parseError ?? "Fix the draft JSON before publishing."}`);
+    }
+
+    if (submission.status === SubmissionStatus.DRAFT) {
+      await setSubmissionStatusForPublish(submission.id, SubmissionStatus.SUBMITTED, "Publish workflow: draft submitted for review.");
+      completedSteps.push("submitted");
+      submission = await readSubmissionForPublish(submission.id);
     }
 
     if (submission.status === SubmissionStatus.SUBMITTED) {
@@ -341,6 +368,9 @@ export async function publishSubmission(formData: FormData) {
     await computeImportedSubmissionPlayerRatings(submission.id);
     completedSteps.push("ratings");
 
+    await computeImportedSubmissionTeamRatings(submission.id);
+    completedSteps.push("team-ratings");
+
     await generateImportedSubmissionMonthlyRankings(submission.id);
     completedSteps.push("rankings");
 
@@ -350,6 +380,13 @@ export async function publishSubmission(formData: FormData) {
     if (!validation.validationPassed) {
       throw new Error("Validation completed with issues. Review Advanced details for the validation result.");
     }
+
+    await prisma.submission.update({
+      where: { id: submissionId },
+      data: { publishedAt: new Date() },
+      select: { id: true }
+    });
+    completedSteps.push("published");
 
     revalidatePath("/admin/submissions");
     revalidatePath(`/admin/submissions/${submission.id}`);
@@ -367,7 +404,7 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
 
   const submissionId = formData.get("submissionId");
   const targetStatus = parseStatus(formData.get("targetStatus"));
-  const adminNotes = cleanAdminNotes(formData.get("adminNotes"));
+  const note = cleanAdminNotes(formData.get("adminNotes"));
 
   if (typeof submissionId !== "string" || !submissionId) {
     throw new Error("Submission id is required.");
@@ -381,12 +418,14 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
 
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true }
+    select: { id: true, status: true, adminNotes: true, deletedAt: true }
   });
 
   if (!submission) {
     throw new Error("Submission not found.");
   }
+
+  assertSubmissionReviewable(submission);
 
   const allowedTargets = allowedTransitions[submission.status] ?? [];
   if (!allowedTargets.includes(targetStatus)) {
@@ -395,11 +434,13 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
     }));
   }
 
+  const nextAdminNotes = note ? appendAdminNotes(submission.adminNotes, note) : submission.adminNotes;
+
   await prisma.submission.update({
     where: { id: submission.id },
     data: {
       status: targetStatus,
-      adminNotes
+      adminNotes: nextAdminNotes
     },
     select: { id: true }
   });
@@ -495,6 +536,9 @@ export async function processAndPublishSubmissionRankings(formData: FormData) {
     await computeImportedSubmissionPlayerRatings(submissionId);
     completedSteps.push("ratings");
 
+    await computeImportedSubmissionTeamRatings(submissionId);
+    completedSteps.push("team-ratings");
+
     await generateImportedSubmissionMonthlyRankings(submissionId);
     completedSteps.push("rankings");
 
@@ -504,6 +548,12 @@ export async function processAndPublishSubmissionRankings(formData: FormData) {
     if (!validation.validationPassed) {
       throw new Error("Validation completed with issues. Review the individual validation step for details.");
     }
+
+    await prisma.submission.update({
+      where: { id: submissionId },
+      data: { publishedAt: new Date() },
+      select: { id: true }
+    });
 
     revalidatePath("/admin/submissions");
     revalidatePath(`/admin/submissions/${submissionId}`);
@@ -519,4 +569,56 @@ export async function processAndPublishSubmissionRankings(formData: FormData) {
   redirect(reviewRedirectUrl(submissionId, redirectParams));
 }
 
+export async function deleteSubmissionDraft(formData: FormData) {
+  await requireAdminUser();
+
+  const submissionId = formData.get("submissionId");
+  const confirmText = formData.get("confirmText");
+  const redirectTo = formData.get("redirectTo");
+
+  if (typeof submissionId !== "string" || !submissionId) {
+    throw new Error("Submission id is required.");
+  }
+
+  if (confirmText !== "DELETE") {
+    redirect(typeof redirectTo === "string" && redirectTo.startsWith("/admin/submissions")
+      ? `${redirectTo}?error=${encodeURIComponent("Type DELETE to confirm deletion.")}`
+      : `/admin/submissions/${submissionId}?reviewError=${encodeURIComponent("Type DELETE to confirm deletion.")}`);
+  }
+
+  const submission = await prisma.submission.findUnique({
+    where: { id: submissionId },
+    select: { id: true, deletedAt: true, publishedAt: true, importedAt: true, status: true }
+  });
+
+  if (!submission) {
+    throw new Error("Submission not found.");
+  }
+
+  if (!canDeleteDraftSubmission(submission)) {
+    const reason = draftDeleteIneligibilityReason(submission) ?? "This submission cannot be deleted.";
+    redirect(typeof redirectTo === "string" && redirectTo.startsWith("/admin/submissions")
+      ? `${redirectTo}?error=${encodeURIComponent(reason)}`
+      : `/admin/submissions/${submissionId}?reviewError=${encodeURIComponent(reason)}`);
+  }
+
+  if (submissionRequiresDeleteReviewWarning(submission.status) && formData.get("confirmReviewDelete") !== "yes") {
+    redirect(`/admin/submissions/${submissionId}?reviewError=${encodeURIComponent("Confirm that you understand this submission is under review or approved.")}`);
+  }
+
+  await prisma.submission.update({
+    where: { id: submission.id },
+    data: { deletedAt: new Date() },
+    select: { id: true }
+  });
+
+  revalidatePath("/admin/submissions");
+  revalidatePath(`/admin/submissions/${submission.id}`);
+
+  if (typeof redirectTo === "string" && redirectTo.startsWith("/admin/submissions")) {
+    redirect(`${redirectTo}?draftDeleted=1`);
+  }
+
+  redirect("/admin/submissions?draftDeleted=1");
+}
 

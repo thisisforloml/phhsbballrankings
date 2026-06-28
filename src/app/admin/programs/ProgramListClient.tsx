@@ -1,8 +1,13 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { ProgramType } from "@prisma/client";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminBadge } from "@/components/admin/AdminBadge";
+import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
+import { AdminFilterRow } from "@/components/admin/AdminFilterRow";
+import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
 
 export type ProgramListRow = {
   id: string;
@@ -18,6 +23,16 @@ export type ProgramListRow = {
   officialGameCount: number;
 };
 
+const FILTER_DEFAULTS = { search: "", type: "ALL" };
+
+const TYPE_CHIP_ITEMS = [
+  { key: "ALL", label: "All" },
+  { key: "SCHOOL", label: "School" },
+  { key: "CLUB", label: "Club" },
+  { key: "TEAM", label: "Team" },
+  { key: "UNKNOWN", label: "Unknown" }
+] as const;
+
 function searchText(program: ProgramListRow) {
   return [program.fullName, program.abbreviation, program.type, program.city, program.region, ...program.aliases].filter(Boolean).join(" ").toLowerCase();
 }
@@ -28,14 +43,33 @@ function statusLabel(program: ProgramListRow) {
   return "Clean";
 }
 
-function statusClass(program: ProgramListRow) {
-  if (program.possibleDuplicateContextGroups > 0 || program.teamCount >= 9) return "bg-amber-50 text-amber-800";
-  return "bg-green-50 text-green-800";
+function programHealthVariant(program: ProgramListRow): "warning" | "success" {
+  if (program.possibleDuplicateContextGroups > 0 || program.teamCount >= 9) return "warning";
+  return "success";
 }
 
 export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) {
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState<ProgramType | "ALL">("ALL");
+  const { filters, patchFilters, clearFilters } = useAdminFilterParams({
+    defaults: FILTER_DEFAULTS,
+    keys: ["search", "type"],
+    debounceKey: "search"
+  });
+
+  const type = filters.type as ProgramType | "ALL";
+  const query = filters.search;
+
+  const typeCounts = useMemo(() => ({
+    ALL: programs.length,
+    SCHOOL: programs.filter((program) => program.type === "SCHOOL").length,
+    CLUB: programs.filter((program) => program.type === "CLUB").length,
+    TEAM: programs.filter((program) => program.type === "TEAM").length,
+    UNKNOWN: programs.filter((program) => program.type === "UNKNOWN").length
+  }), [programs]);
+
+  const chipItems = TYPE_CHIP_ITEMS.map((item) => ({
+    ...item,
+    count: typeCounts[item.key as keyof typeof typeCounts]
+  }));
 
   const filtered = useMemo(() => {
     const value = query.trim().toLowerCase();
@@ -44,43 +78,52 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
       .filter((program) => !value || searchText(program).includes(value));
   }, [programs, query, type]);
 
+  const hasActiveFilters = Boolean(query.trim()) || type !== "ALL";
+
   return (
-    <div className="grid gap-5">
-      <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-        <div className="grid gap-3 md:grid-cols-[1fr_14rem]">
-          <label className="grid gap-2 text-sm font-semibold text-ink-700">
-            Search programs
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Full name, abbreviation, alias" className="rounded-md border border-surface-300 px-3 py-3" />
-          </label>
-          <label className="grid gap-2 text-sm font-semibold text-ink-700">
-            Type
-            <select value={type} onChange={(event) => setType(event.target.value as ProgramType | "ALL")} className="rounded-md border border-surface-300 px-3 py-3">
-              <option value="ALL">All</option>
-              <option value="SCHOOL">School</option>
-              <option value="CLUB">Club</option>
-              <option value="TEAM">Team</option>
-              <option value="UNKNOWN">Unknown</option>
-            </select>
-          </label>
-        </div>
+    <div className="grid gap-3">
+      <section className="border border-surface-200 bg-white p-4 shadow-sm">
+        <AdminFilterChipBar
+          items={chipItems}
+          activeKey={type}
+          onSelect={(key) => patchFilters({ type: key })}
+          aria-label="Program type filters"
+        />
+        <AdminFilterRow
+          withTopDivider
+          searchPlaceholder="Program, abbreviation, alias"
+          searchValue={query}
+          onSearchChange={(value) => patchFilters({ search: value })}
+          onClear={clearFilters}
+          showClear={hasActiveFilters}
+          resultCount={filtered.length}
+        />
       </section>
 
-      <section className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-        <div className="hidden grid-cols-[1.5fr_8rem_8rem_8rem_7rem_7rem_9rem] gap-3 border-b border-surface-200 px-4 py-3 font-mono text-mono-sm uppercase text-ink-500 lg:grid">
-          <span>Program</span><span>Abbrev.</span><span>Type</span><span>Teams</span><span>Players</span><span>Games</span><span>Status</span>
+      <section className="overflow-hidden border border-surface-200 bg-white shadow-sm">
+        <div className="hidden grid-cols-[minmax(22rem,1fr)_6rem_7rem_5rem_6rem_6rem_9rem_6rem] gap-3 border-b border-surface-200 bg-navy-950 px-4 py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.1em] text-white lg:grid">
+          <span>Program</span><span>Abbrev.</span><span>Type</span><span className="text-center">Teams</span><span className="text-center">Players</span><span className="text-center">Games</span><span>Status</span><span className="text-right">Action</span>
         </div>
         {filtered.map((program) => (
-          <Link key={program.id} href={`/admin/programs/${program.id}`} className="grid gap-2 border-b border-surface-200 px-4 py-4 transition last:border-b-0 hover:bg-navy-50 lg:grid-cols-[1.5fr_8rem_8rem_8rem_7rem_7rem_9rem] lg:items-center">
+          <Link key={program.id} href={`/admin/programs/${program.id}`} className="grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:grid-cols-[minmax(22rem,1fr)_6rem_7rem_5rem_6rem_6rem_9rem_6rem] lg:items-center">
             <span><strong className="block text-ink-900">{program.fullName}</strong>{program.aliases.length ? <small className="text-ink-500">Aliases: {program.aliases.slice(0, 3).join(", ")}</small> : null}<small className="block text-ink-500">{[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</small></span>
             <span className="font-mono text-sm text-ink-700">{program.abbreviation || "-"}</span>
-            <span className="rounded-full bg-surface-100 px-3 py-1 text-center font-mono text-[0.65rem] uppercase text-ink-700">{program.type}</span>
-            <span className="font-display text-stat-sm text-navy-800">{program.teamCount}</span>
-            <span className="font-display text-stat-sm text-navy-800">{program.derivedPlayerCount}</span>
-            <span className="font-display text-stat-sm text-navy-800">{program.officialGameCount}</span>
-            <span className={`rounded-full px-3 py-1 text-center font-mono text-[0.65rem] uppercase ${statusClass(program)}`}>{statusLabel(program)}</span>
+            <span className="border border-surface-200 bg-surface-50 px-2 py-1 text-center font-mono text-[0.65rem] uppercase text-ink-700">{program.type}</span>
+            <span className="text-center font-display text-xl text-navy-900">{program.teamCount}</span>
+            <span className="text-center font-display text-xl text-navy-900">{program.derivedPlayerCount}</span>
+            <span className="text-center font-display text-xl text-navy-900">{program.officialGameCount}</span>
+            <AdminBadge variant={programHealthVariant(program)} shape="tag" size="tagSm" className="text-center">{statusLabel(program)}</AdminBadge>
+            <span className="text-right font-mono text-[0.68rem] font-bold uppercase tracking-[0.1em] text-orange-700">Open</span>
           </Link>
         ))}
-        {!filtered.length ? <p className="p-5 text-sm text-ink-600">No programs match these filters.</p> : null}
+        {!filtered.length ? (
+          <AdminEmptyState
+            variant={programs.length ? "no-matches" : "no-records"}
+            subject="programs"
+            onClearFilters={programs.length && hasActiveFilters ? clearFilters : undefined}
+            className="m-4"
+          />
+        ) : null}
       </section>
     </div>
   );

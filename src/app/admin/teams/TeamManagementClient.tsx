@@ -1,8 +1,11 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { useFormState } from "react-dom";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import { AdminBadge } from "@/components/admin/AdminBadge";
+import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
+import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
 import { updateTeamBio, type UpdateTeamState } from "./actions";
 
 export type ManagedTeam = {
@@ -17,6 +20,7 @@ export type ManagedTeam = {
   isActiveCompetitionTeam: boolean;
   city: string;
   region: string;
+  logoUrl: string | null;
   homeGames: number;
   awayGames: number;
   gameStats: number;
@@ -40,11 +44,6 @@ export type TeamSchoolGroup = {
 type RecordFilter = "ACTIVE" | "INACTIVE" | "NEEDS_CLEANUP";
 
 const initialState: UpdateTeamState = { ok: false, message: "" };
-
-function SaveButton() {
-  const { pending } = useFormStatus();
-  return <button type="submit" disabled={pending} className="button primary w-fit disabled:opacity-60">{pending ? "Saving..." : "Save team"}</button>;
-}
 
 function teamSearchText(team: ManagedTeam) {
   return [team.name, team.publicSchoolName, team.programAbbreviation, team.programType, team.teamDisplayName, team.city, team.region, team.context, ...team.contexts].join(" ").toLowerCase();
@@ -73,22 +72,19 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
     return inactiveTeams.filter((team) => !value || teamSearchText(team).includes(value));
   }, [inactiveTeams, query]);
   const selectedTeam = teams.find((team) => team.id === selectedId) ?? filteredActiveGroups[0]?.teams[0] ?? filteredInactiveTeams[0] ?? null;
+  const hasActiveFilters = Boolean(query.trim()) || recordFilter !== "ACTIVE";
+
+  function clearFilters() {
+    setQuery("");
+    setRecordFilter("ACTIVE");
+  }
 
   return (
-    <main className="min-h-screen bg-surface-50 pt-20">
-      <div className="grid lg:grid-cols-[17rem_1fr]">
-        <AdminSidebar active="teams" />
-
-        <section className="container-px grid gap-6 py-8 xl:grid-cols-[minmax(28rem,1.05fr)_minmax(24rem,0.95fr)]">
-          <div className="grid gap-6">
-            <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-              <p className="label">Internal Team Records</p>
-              <h1 className="mt-2 font-display text-stat-md text-navy-800">Internal Team Records</h1>
-              <p className="mt-2 text-sm text-ink-600">Program Management is now the main editor. This secondary page is kept for reviewing individual Team records.</p>
-              <p className="mt-4 rounded-md bg-amber-50 p-4 text-sm font-semibold text-amber-900">Use /admin/programs for normal school, club, team, and player editing. Editing here changes only the selected Team record and does not update Program groups.</p>
-              <p className="mt-3 rounded-md bg-surface-100 p-4 text-sm text-ink-700">Inactive/internal records are hidden from Program Management and kept here only for audit/review. Delete them later only after the platform structure is finalized.</p>
-              <div className="mt-5 grid gap-3">
-                <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search program, team, player, city, region" className="w-full rounded-md border border-surface-300 px-3 py-3" />
+    <div className="grid gap-4 xl:grid-cols-[minmax(28rem,1.05fr)_minmax(24rem,0.95fr)]">
+      <div className="grid gap-4">
+        <div className="border border-surface-200 bg-white p-4 shadow-sm">
+          <div className="grid gap-3">
+                <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search program, team, city, region" className="w-full rounded-md border border-surface-300 px-3 py-3" />
                 <div className="flex flex-wrap gap-2" aria-label="Record filters">
                   {[
                     { value: "ACTIVE" as const, label: `Active records (${activeTeams.length})` },
@@ -104,22 +100,25 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
             </div>
 
             {recordFilter !== "INACTIVE" ? (
-              <section className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <section className="border border-surface-200 bg-white p-4 shadow-sm">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h2 className="font-display text-3xl text-navy-800">{recordFilter === "NEEDS_CLEANUP" ? "Review Flags" : "Active Records"}</h2>
                     <p className="mt-1 text-sm text-ink-600">Active records are used by official games or stats. Inactive records are hidden unless selected above.</p>
                   </div>
-                  <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${sameContextDuplicateCount ? "bg-amber-50 text-amber-800" : "bg-green-50 text-green-800"}`}>{sameContextDuplicateCount ? `${sameContextDuplicateCount} review flags` : "No active same-context duplicates"}</span>
+                  <AdminBadge variant={sameContextDuplicateCount ? "warning" : "success"} size="md">
+                    {sameContextDuplicateCount ? `${sameContextDuplicateCount} review flags` : "No active same-context duplicates"}
+                  </AdminBadge>
                 </div>
                 <div className="mt-5 grid gap-4">
                   {filteredActiveGroups.map((group) => (
                     <article key={group.publicSchoolName} className="rounded-lg border border-surface-200 p-4">
                       <button type="button" onClick={() => setSelectedId(group.teams[0]?.id ?? selectedId)} className="flex w-full flex-wrap items-center justify-between gap-3 text-left">
                         <div><h3 className="font-semibold text-ink-900">{group.publicSchoolName}</h3><p className="text-xs uppercase tracking-wide text-ink-500">{group.programAbbreviation} / {group.programType}</p></div>
-                        <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${group.hasSameContextDuplicate ? "bg-amber-100 text-amber-900" : "bg-green-50 text-green-800"}`}>{group.hasSameContextDuplicate ? "Needs review" : "Expected"}</span>
+                        <AdminBadge variant={group.hasSameContextDuplicate ? "review" : "success"} size="sm">
+                          {group.hasSameContextDuplicate ? "Needs review" : "Expected"}
+                        </AdminBadge>
                       </button>
-                      <div className="mt-3 rounded-md bg-surface-100 p-3 text-sm text-ink-600">Program group fields are managed in Program Management. Click an internal Team record below only when you need to edit that internal moniker.</div>
                       <div className="mt-3 grid gap-2">
                         {group.teams.map((team) => (
                           <button key={team.id} type="button" onClick={() => setSelectedId(team.id)} className={`grid gap-1 rounded-md border px-3 py-3 text-left ${selectedTeam?.id === team.id ? "border-navy-800 bg-navy-50" : "border-surface-200 bg-white hover:bg-surface-50"}`}>
@@ -135,13 +134,19 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
                       </div>
                     </article>
                   ))}
-                  {!filteredActiveGroups.length ? <p className="rounded-md bg-surface-100 p-4 text-sm text-ink-600">No active records match these filters.</p> : null}
+                  {!filteredActiveGroups.length ? (
+                    <AdminEmptyState
+                      variant={activeTeams.length ? "no-matches" : "no-records"}
+                      subject="active team records"
+                      onClearFilters={activeTeams.length && hasActiveFilters ? clearFilters : undefined}
+                    />
+                  ) : null}
                 </div>
               </section>
             ) : null}
 
             {recordFilter === "INACTIVE" ? (
-              <details open className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+              <details open className="border border-surface-200 bg-white p-4 shadow-sm">
                 <summary className="cursor-pointer font-display text-2xl text-navy-800">Inactive Team Records ({inactiveTeams.length})</summary>
                 <p className="mt-3 rounded-md bg-surface-100 p-4 text-sm text-ink-600">These records are not currently used by official games or stats. They are hidden from the normal workflow and kept only for audit/review.</p>
                 <div className="mt-4 grid gap-2">
@@ -153,35 +158,54 @@ export function TeamManagementClient({ teams, activeSchoolGroups }: { teams: Man
                       <span className="text-xs text-ink-500">Historical linked rows: home games {team.historicalHomeGames}, away games {team.historicalAwayGames}, stat rows {team.historicalGameStats}</span>
                     </button>
                   ))}
-                  {!filteredInactiveTeams.length ? <p className="rounded-md bg-surface-100 p-4 text-sm text-ink-600">No inactive records match these filters.</p> : null}
+                  {!filteredInactiveTeams.length ? (
+                    <AdminEmptyState
+                      variant={inactiveTeams.length ? "no-matches" : "no-records"}
+                      subject="inactive team records"
+                      onClearFilters={inactiveTeams.length && query.trim() ? () => setQuery("") : undefined}
+                    />
+                  ) : null}
                 </div>
               </details>
             ) : null}
           </div>
 
-          <div className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+          <div className="border border-surface-200 bg-white p-4 shadow-sm xl:sticky xl:top-4 xl:self-start">
             {selectedTeam ? (
-              <form action={formAction} className="grid gap-4">
-                <input type="hidden" name="teamId" value={selectedTeam.id} />
+              <form key={selectedTeam.id} action={formAction} className="grid gap-5">
                 <div>
-                  <p className="label">Edit Team</p>
-                  <h2 className="mt-2 font-display text-3xl text-navy-800">{selectedTeam.teamDisplayName}</h2>
-                  <p className="mt-1 text-sm text-ink-600">Program: {selectedTeam.publicSchoolName} ({selectedTeam.programAbbreviation})</p>
-                  <p className="mt-1 text-sm text-ink-500">Internal team record: {selectedTeam.name}</p>
-                  <p className="mt-1 text-sm text-ink-500">Context: {selectedTeam.context}</p>
-                  {selectedTeam.isActiveCompetitionTeam ? <p className="mt-3 rounded-md bg-green-50 p-3 text-sm text-green-900">Active competition team. Separate roster records by age group or gender are expected.</p> : <p className="mt-3 rounded-md bg-surface-100 p-3 text-sm text-ink-700">Inactive record. It is not currently used by official games or stats, so do not merge/delete without a separate approved cleanup plan.</p>}
+                  <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Edit team</p>
+                  <h2 className="mt-1 font-display text-2xl text-navy-900">{selectedTeam.teamDisplayName}</h2>
+                  <dl className="mt-3 space-y-1 text-sm text-ink-600">
+                    <div><dt className="inline font-medium text-ink-800">Program: </dt><dd className="inline">{selectedTeam.publicSchoolName} ({selectedTeam.programAbbreviation})</dd></div>
+                    <div><dt className="inline font-medium text-ink-800">Record: </dt><dd className="inline">{selectedTeam.name}</dd></div>
+                    <div><dt className="inline font-medium text-ink-800">Context: </dt><dd className="inline">{selectedTeam.context}</dd></div>
+                  </dl>
                 </div>
-                {state.message ? <div className={`rounded-md p-3 text-sm ${state.ok ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{state.message}</div> : null}
-                <label className="grid gap-2 text-sm font-semibold text-ink-700">Team / Moniker Name<input name="name" required maxLength={120} defaultValue={selectedTeam.name} className="rounded-md border border-surface-300 px-3 py-3" /></label>
-                <label className="grid gap-2 text-sm font-semibold text-ink-700">City<input name="city" required maxLength={100} defaultValue={selectedTeam.city} className="rounded-md border border-surface-300 px-3 py-3" /><span className="text-xs font-normal text-ink-500">Required by the current Team schema. Program city can be blank after the Program model migration.</span></label>
-                <label className="grid gap-2 text-sm font-semibold text-ink-700">Region<input name="region" required maxLength={100} defaultValue={selectedTeam.region} className="rounded-md border border-surface-300 px-3 py-3" /><span className="text-xs font-normal text-ink-500">Required by the current Team schema.</span></label>
-                <p className="rounded-md bg-surface-100 p-3 text-sm text-ink-600">This form does not merge teams, delete teams, or modify games, stats, ratings, or snapshots.</p>
-                <SaveButton />
+                <AdminFormFeedback state={state} />
+                <label className="grid gap-2 text-sm font-semibold text-ink-700">
+                  Team / moniker name
+                  <input name="name" required maxLength={120} defaultValue={selectedTeam.name} className="min-h-11 rounded-md border border-surface-300 px-3 py-2" />
+                </label>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <label className="grid gap-2 text-sm font-semibold text-ink-700">
+                    City
+                    <input name="city" required maxLength={100} defaultValue={selectedTeam.city} className="min-h-11 rounded-md border border-surface-300 px-3 py-2" />
+                  </label>
+                  <label className="grid gap-2 text-sm font-semibold text-ink-700">
+                    Region
+                    <input name="region" required maxLength={100} defaultValue={selectedTeam.region} className="min-h-11 rounded-md border border-surface-300 px-3 py-2" />
+                  </label>
+                </div>
+                <label className="grid gap-2 text-sm font-semibold text-ink-700">
+                  Logo URL
+                  <input name="logoUrl" maxLength={500} defaultValue={selectedTeam.logoUrl ?? ""} className="min-h-11 rounded-md border border-surface-300 px-3 py-2" placeholder="Optional" />
+                </label>
+                <input type="hidden" name="teamId" value={selectedTeam.id} />
+                <AdminSaveButton label="Save team" className="w-fit" />
               </form>
-            ) : <p className="text-ink-500">No teams found.</p>}
+            ) : <AdminEmptyState variant="no-records" subject="teams" />}
           </div>
-        </section>
-      </div>
-    </main>
+    </div>
   );
 }

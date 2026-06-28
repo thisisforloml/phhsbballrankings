@@ -49,7 +49,7 @@ export default function SubmitPlayerInfoPage() {
           <p className="eyebrow">Player request</p>
           <h1>Submit profile info</h1>
         </div>
-        <p>Players can submit information, but only the administrator can edit verified OnCourt profiles.</p>
+        <p>Players can submit information, but only the administrator can edit verified Peach Basket Rankings PH profiles.</p>
       </div>
       <form className="login-panel request-form" onSubmit={handleSubmit}>
         <input type="hidden" name="playerName" value={playerName} />

@@ -14,10 +14,10 @@ export default function PartnerPage() {
       <section className="hero-brand pt-32 text-white">
         <div className="container-px py-14">
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">League Partnership</p>
-          <h1 className="mt-3 font-display text-stat-lg">Partner With OnCourt</h1>
+          <h1 className="mt-3 font-display text-stat-lg">Partner With Peach Basket Rankings PH</h1>
           <p className="mt-5 max-w-3xl whitespace-pre-line text-lg leading-8 text-white/75">{`We work with leagues, schools, and tournament organizers across the Philippines
 to build the most complete basketball database in the country. When your league
-partners with OnCourt Rankings Philippines, your players earn verified national rankings based on
+partners with Peach Basket Rankings PH, your players earn verified national rankings based on
 their real performance - and your competition gets recognized on a national stage.
 
 We handle the rankings. You focus on the game.`}</p>

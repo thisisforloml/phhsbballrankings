@@ -1,0 +1,8 @@
+export const TEAM_NATIONAL_RATINGS_ENABLED =
+  process.env.TEAM_NATIONAL_RATINGS_ENABLED === "true";
+
+export const TEAM_SNAPSHOT_PUBLISH_ENABLED =
+  process.env.TEAM_SNAPSHOT_PUBLISH_ENABLED === "true";
+
+export const TEAM_TPI_RECOMPUTE_ENABLED =
+  process.env.TEAM_TPI_RECOMPUTE_ENABLED === "true";

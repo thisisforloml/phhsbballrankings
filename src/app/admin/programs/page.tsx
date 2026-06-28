@@ -1,4 +1,6 @@
-﻿import { AdminSidebar } from "@/components/admin/AdminSidebar";
+﻿import { Suspense } from "react";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { ProgramListClient, type ProgramListRow } from "./ProgramListClient";
@@ -7,8 +9,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Program Management - Admin Portal",
-  description: "Manage school, club, and team program identities."
+  title: "Programs | Admin",
+  description: "Edit school and club programs."
 };
 
 function aliasesToStrings(value: unknown): string[] {
@@ -92,7 +94,9 @@ export default async function AdminProgramsPage() {
             <h1 className="mt-2 font-display text-stat-md text-navy-800">Schools, Clubs, and Team Programs</h1>
             <p className="mt-2 max-w-3xl text-ink-600">Use this as the primary structure for school, club, and team organization. Program Management shows only Teams currently used by official games or stats; inactive/internal records stay in Internal Team Records for audit review.</p>
           </div>
-          <ProgramListClient programs={rows} />
+          <Suspense fallback={null}>
+            <ProgramListClient programs={rows} />
+          </Suspense>
         </section>
       </div>
     </main>

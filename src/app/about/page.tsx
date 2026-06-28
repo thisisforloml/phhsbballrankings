@@ -1,21 +1,70 @@
-﻿export default function AboutPage() {
+﻿import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { SectionHeader } from "@/components/public/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "About Peach Basket Rankings PH",
+  description: "Mission, vision, and platform overview for Peach Basket Rankings PH."
+};
+
+const audiences = ["Players", "Parents", "Coaches", "Scouts and recruiters", "Leagues and organizers", "Media"];
+
+export default function AboutPage() {
   return (
-    <main className="bg-surface-50 pb-20">
-      <section className="hero-brand pt-32 text-white">
-        <div className="container-px py-14">
-          <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Methodology</p>
-          <h1 className="mt-3 font-display text-stat-lg">How Ratings Work</h1>
-          <p className="mt-4 max-w-3xl text-white/70">OnCourt Rankings Philippines combines verified production, competition quality, opponent strength, and team context. Boys become leaderboard eligible after 10 verified official games; girls become eligible after 5.</p>
+    <PublicPageShell className="pb-16 pt-28">
+      <section className="hero-brand text-white">
+        <div className="container-px py-10">
+          <SectionHeader
+            eyebrow="About Peach Basket Rankings PH"
+            title="Philippine youth basketball, made visible."
+            description="A public home for youth basketball rankings, team records, game logs, and player profiles."
+            dark
+            variant="content"
+          />
         </div>
       </section>
-      <section className="container-px grid gap-4 pt-10 md:grid-cols-2">
-        {["Production Score", "League Weight", "Opponent Factor", "Team Context"].map((title) => (
-          <article key={title} className="rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
-            <h2 className="font-display text-3xl">{title}</h2>
-            <p className="mt-2 text-ink-600">This factor is reviewed only from verified official game data and updated through the weekly ratings process.</p>
-          </article>
-        ))}
+
+      <section className="container-px grid gap-7 py-8">
+        <div className="grid gap-6 border-b border-line-500 pb-7 lg:grid-cols-2">
+          <StatementCard title="Mission">
+            To identify the best youth basketball talent in the Philippines through objective, data-based rankings while giving Filipino athletes greater visibility and exposure.
+          </StatementCard>
+          <StatementCard title="Vision">
+            To become the trusted national platform for Philippine youth basketball visibility, where players from every region can be discovered, recognized, and supported through credible game data.
+          </StatementCard>
+        </div>
+
+        <section>
+          <SectionHeader title="What We Do" variant="content" />
+          <p className="mt-3 max-w-5xl text-base font-semibold leading-7 text-court-700">
+            Peach Basket Rankings PH publishes player rankings, team records, player profiles, game logs, league history, and reviewed box-score data in one public basketball database.
+          </p>
+        </section>
+
+        <section>
+          <SectionHeader title="Built For" variant="content" />
+          <p className="mt-3 max-w-5xl text-base font-semibold leading-7 text-court-700">
+            Built for {audiences.join(", ")}.
+          </p>
+        </section>
+
+        <section className="border border-court-900 bg-court-900 p-5 text-white">
+          <h2 className="font-display text-2xl font-bold leading-tight md:text-3xl">Data supports judgment. It does not replace it.</h2>
+          <p className="mt-3 max-w-5xl leading-7 text-white/75">
+            Peach Basket Rankings PH does not replace coaches, scouts, organizers, or player development work. It gives them cleaner context: who played, where they played, and how they produced in official games.
+          </p>
+        </section>
       </section>
-    </main>
+    </PublicPageShell>
+  );
+}
+
+function StatementCard({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <article>
+      <h2 className="font-display text-2xl font-bold leading-tight text-court-900">{title}</h2>
+      <p className="mt-2 text-sm font-semibold leading-6 text-court-700 md:text-base">{children}</p>
+    </article>
   );
 }

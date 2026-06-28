@@ -1,6 +1,11 @@
-﻿export const boysLeaderboardMinimumGames = 10;
-export const girlsLeaderboardMinimumGames = 5;
+﻿export {
+  LAUNCH_POLICY_V1,
+  LAUNCH_POLICY_V1_ID,
+  leaderboardMinimumGamesForGender,
+  publicBoardMinimumGames
+} from "@/lib/eligibility/launch-policy";
 
-export function leaderboardMinimumGamesForGender(gender: string) {
-  return gender === "GIRLS" || gender === "Girls" ? girlsLeaderboardMinimumGames : boysLeaderboardMinimumGames;
-}
+import { LAUNCH_POLICY_V1 } from "@/lib/eligibility/launch-policy";
+
+export const boysLeaderboardMinimumGames = LAUNCH_POLICY_V1.boysLaunchThreshold;
+export const girlsLeaderboardMinimumGames = LAUNCH_POLICY_V1.girlsLaunchThreshold;

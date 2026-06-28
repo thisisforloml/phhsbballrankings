@@ -35,4 +35,5 @@ export interface PlayerSummary {
     statLine: string;
     date: string;
   }>;
+  publicBoardEligible: boolean;
 }

@@ -8,6 +8,9 @@ import { prisma } from "@/lib/prisma";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { slugify } from "@/lib/format";
 import { getClassYear } from "@/lib/ranking-eligibility";
+import { updatePlayerSchoolAssignment } from "@/lib/admin/player-school-transfer";
+import { assignPlayerRosterFromAgeBracket } from "@/lib/admin/roster-from-game-evidence";
+import { writeAuditLog } from "@/lib/admin/log-admin-action";
 
 export type UpdatePlayerBioState = {
   ok: boolean;
@@ -160,7 +163,8 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
       },
       select: {
         id: true,
-        displayName: true
+        displayName: true,
+        birthDate: true
       }
     });
 
@@ -168,11 +172,13 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
       throw new Error("Player does not exist or has been deleted.");
     }
 
+    const previousBirthDate = existingPlayer.birthDate?.toISOString().slice(0, 10) ?? null;
+
     const displayName = readRequiredString(formData, "displayName", "Display name", 120);
     const firstName = readRequiredString(formData, "firstName", "First name", 80);
     const lastName = readRequiredString(formData, "lastName", "Last name", 80);
-    const city = readRequiredString(formData, "city", "City", 100);
-    const region = readRequiredString(formData, "region", "Region", 100);
+    const hometown = readRequiredString(formData, "hometown", "Hometown", 100);
+    const region = readRequiredString(formData, "region", "Region (where they play)", 100);
     const position = readOptionalString(formData, "position", "Position", 20);
     const schoolOverride = readOptionalString(formData, "schoolOverride", "School override", 160);
     const ageGroupOverride = readOptionalAgeGroupOverride(formData);
@@ -191,7 +197,8 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
         displayName,
         firstName,
         lastName,
-        city,
+        hometown,
+        city: hometown,
         region,
         position,
         schoolOverride,
@@ -203,7 +210,13 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
       }
     });
 
+    const nextBirthDate = birthDate?.toISOString().slice(0, 10) ?? null;
+    if (birthDate && nextBirthDate !== previousBirthDate) {
+      await assignPlayerRosterFromAgeBracket(playerId);
+    }
+
     revalidatePath("/admin/players");
+    revalidatePath("/admin/programs");
     revalidatePath("/portal/players");
     revalidatePath("/rankings");
     revalidatePath(`/players/${slugify(existingPlayer.displayName)}`);
@@ -221,4 +234,88 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
       message: error instanceof Error ? error.message : "Could not update player bio."
     };
   }
+}
+
+function readTransferDate(formData: FormData) {
+  const value = String(formData.get("effectiveDate") ?? "").trim();
+  if (!value) throw new Error("Effective date is required.");
+  const date = new Date(`${value}T00:00:00.000Z`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(date.getTime())) {
+    throw new Error("Effective date must be a valid date.");
+  }
+  return date;
+}
+
+function readSchoolChangeMode(formData: FormData) {
+  const value = String(formData.get("schoolChangeMode") ?? "").trim().toUpperCase();
+  if (value !== "ASSIGN" && value !== "TRANSFER") {
+    throw new Error("Choose Assign or Transfer.");
+  }
+  return value as "ASSIGN" | "TRANSFER";
+}
+
+export async function updatePlayerSchool(_previousState: UpdatePlayerBioState, formData: FormData): Promise<UpdatePlayerBioState> {
+  try {
+    const user = await requireAdminUser();
+    const playerId = String(formData.get("playerId") ?? "").trim();
+    const nextProgramId = String(formData.get("nextProgramId") ?? "").trim();
+    const schoolChangeMode = readSchoolChangeMode(formData);
+    const note = readOptionalString(formData, "transferNote", "Note", 500);
+    const targetTeamId = String(formData.get("targetTeamId") ?? "").trim();
+    const targetSeasonId = String(formData.get("targetSeasonId") ?? "").trim();
+    const confirmAction = String(formData.get("confirmSchoolChange") ?? "") === "on";
+    const fromProgramId = String(formData.get("fromProgramId") ?? "").trim() || null;
+
+    if (!playerId) throw new Error("Player id is required.");
+    if (!nextProgramId) throw new Error("Target school is required.");
+    if (!confirmAction) {
+      throw new Error(schoolChangeMode === "TRANSFER" ? "Confirm the school transfer to continue." : "Confirm the school assignment to continue.");
+    }
+
+    const result = await updatePlayerSchoolAssignment({
+      mode: schoolChangeMode,
+      playerId,
+      nextProgramId,
+      effectiveDate: readTransferDate(formData),
+      note,
+      expectedFromProgramId: schoolChangeMode === "TRANSFER" ? fromProgramId : null,
+      manualRoster: targetTeamId && targetSeasonId ? { teamId: targetTeamId, seasonId: targetSeasonId } : null
+    });
+
+    await writeAuditLog({
+      userId: user.id,
+      entityType: "PLAYER",
+      entityId: playerId,
+      action: schoolChangeMode === "TRANSFER" ? "TRANSFER_SCHOOL" : "ASSIGN_SCHOOL",
+      reason: note ?? (schoolChangeMode === "TRANSFER" ? "Admin school transfer" : "Admin school assign"),
+      newData: { nextProgramId, rosterTarget: result.rosterTarget, mode: schoolChangeMode }
+    });
+
+    const rosterMessage = result.rosterTarget
+      ? ` Roster: ${result.rosterTarget.teamName} (${result.rosterTarget.seasonName}).`
+      : "";
+
+    return {
+      ok: true,
+      message:
+        schoolChangeMode === "TRANSFER"
+          ? `Transferred to ${result.programName}.${rosterMessage}`
+          : `Assigned to ${result.programName}.${rosterMessage}`,
+      playerId
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message: error instanceof Error ? error.message : "Could not update player school."
+    };
+  }
+}
+
+/** @deprecated Use updatePlayerSchool */
+export async function transferPlayerSchool(_previousState: UpdatePlayerBioState, formData: FormData): Promise<UpdatePlayerBioState> {
+  formData.set("schoolChangeMode", "TRANSFER");
+  if (!formData.get("confirmSchoolChange") && formData.get("confirmTransfer") === "on") {
+    formData.set("confirmSchoolChange", "on");
+  }
+  return updatePlayerSchool(_previousState, formData);
 }

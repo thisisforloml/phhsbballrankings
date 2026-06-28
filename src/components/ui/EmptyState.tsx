@@ -30,12 +30,12 @@ const icons: Record<EmptyIcon, React.ReactNode> = {
   )
 };
 
-export function EmptyState({ icon, title }: { icon: EmptyIcon; title: string }) {
+export function EmptyState({ icon, title, description }: { icon: EmptyIcon; title: string; description?: string }) {
   return (
     <div className="grid place-items-center border border-line-500 bg-white px-6 py-16 text-center">
       <div className="text-hardwood-600">{icons[icon]}</div>
       <h2 className="mt-5 font-display text-2xl font-black text-court-900">{title}</h2>
-      <p className="mt-2 max-w-sm text-court-500">Official data will appear here once the selected scope has verified submissions.</p>
+      <p className="mt-2 max-w-sm text-court-500">{description ?? "Official data will appear here once the selected scope has verified submissions."}</p>
     </div>
   );
 }

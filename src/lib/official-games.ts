@@ -1,6 +1,8 @@
 ﻿import "server-only";
 
 import { notFound } from "next/navigation";
+import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { slugify } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
 
 function inferGender(...values: Array<string | null | undefined>) {
@@ -8,8 +10,8 @@ function inferGender(...values: Array<string | null | undefined>) {
 }
 
 export async function getOfficialLeagueDetail(id: string) {
-  const league = await prisma.league.findFirst({
-    where: { id, deletedAt: null },
+  const leagues = await prisma.league.findMany({
+    where: { deletedAt: null },
     include: {
       seasons: {
         where: { deletedAt: null },
@@ -17,15 +19,37 @@ export async function getOfficialLeagueDetail(id: string) {
           games: {
             where: { deletedAt: null },
             include: { homeTeam: true, awayTeam: true },
-            orderBy: [{ gameDate: "asc" }, { gameNumber: "asc" }]
+            orderBy: [{ gameDate: "desc" }, { gameNumber: "desc" }]
           }
         },
         orderBy: { seasonYear: "desc" }
       }
-    }
+    },
+    orderBy: { name: "asc" }
   });
-  if (!league) notFound();
-  return league;
+  const requestedLeague = leagues.find((league) => league.id === id) ?? null;
+  const groupedMatch = id.match(/^competition-(.+)-(u13|u16|u19)$/i);
+  const targetDisplayName = requestedLeague ? normalizeCompetitionDisplayName(requestedLeague.name) || requestedLeague.name : null;
+  const targetAgeGroup = requestedLeague?.ageGroup ?? null;
+  const matchingLeagues = requestedLeague
+    ? leagues.filter((league) => (normalizeCompetitionDisplayName(league.name) || league.name) === targetDisplayName && league.ageGroup === targetAgeGroup)
+    : groupedMatch
+      ? leagues.filter((league) => {
+          const displayName = normalizeCompetitionDisplayName(league.name) || league.name;
+          return slugify(displayName) === groupedMatch[1] && String(league.ageGroup).toLowerCase() === groupedMatch[2].toLowerCase();
+        })
+      : [];
+
+  const primary = requestedLeague ?? matchingLeagues[0] ?? null;
+  if (!primary) notFound();
+
+  const displayName = normalizeCompetitionDisplayName(primary.name) || primary.name;
+  return {
+    ...primary,
+    id: matchingLeagues.length > 1 || displayName !== primary.name ? `competition-${slugify(displayName)}-${String(primary.ageGroup).toLowerCase()}` : primary.id,
+    name: displayName,
+    seasons: matchingLeagues.flatMap((league) => league.seasons)
+  };
 }
 
 export async function getOfficialGameDetail(id: string) {

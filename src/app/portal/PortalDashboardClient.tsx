@@ -51,7 +51,7 @@ export function PortalDashboardClient() {
             <div className="mt-6 grid gap-3 md:grid-cols-3">
               <Metric value="0" label="Assigned leagues" />
               <Metric value="0" label="Pending submissions" />
-              <Metric value="ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â" label="Compliance rate" />
+              <Metric value="-" label="Compliance rate" />
             </div>
           </div>
 
@@ -72,7 +72,7 @@ export function PortalDashboardClient() {
               <button onClick={() => setMode("upload")} className={`button ${mode === "upload" ? "primary" : "secondary"}`}>AI statsheet upload</button>
             </div>
 
-            {submitted ? <p className="mt-5 rounded-md bg-navy-50 p-4 font-semibold text-navy-800">Submitted for OnCourt review. You will be notified when this game is verified.</p> : null}
+            {submitted ? <p className="mt-5 rounded-md bg-navy-50 p-4 font-semibold text-navy-800">Submitted for Peach Basket Rankings PH review. You will be notified when this game is verified.</p> : null}
 
             {mode === "manual" ? (
               <div className="mt-6 grid gap-5">
@@ -105,7 +105,7 @@ export function PortalDashboardClient() {
                   </span>
                 </label>
                 <button className="button primary w-fit" onClick={() => { setParsing(true); window.setTimeout(() => setParsing(false), 1200); }}>Read statsheet</button>
-                {parsing ? <div className="rounded-lg bg-navy-50 p-5 font-mono text-navy-800">Reading statsheetÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ 68%</div> : <StatEntryGrid />}
+                {parsing ? <div className="rounded-lg bg-navy-50 p-5 font-mono text-navy-800">Reading statsheet... 68%</div> : <StatEntryGrid />}
                 <button onClick={() => setSubmitted(true)} className="button primary w-fit">Submit reviewed stats</button>
               </div>
             )}

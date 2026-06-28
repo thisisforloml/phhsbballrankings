@@ -1,7 +1,11 @@
 import Link from "next/link";
 import type { Submission, UserRole } from "@prisma/client";
 import type { SubmissionReview } from "@/lib/submission-review";
-import { publishSubmission, updateSubmissionDraftJson } from "../actions";
+import { AdminAlert } from "@/components/admin/AdminAlert";
+import { AdminBadge } from "@/components/admin/AdminBadge";
+import { displaySubmissionStatus, submissionStatusBadge } from "@/components/admin/submissionStatus";
+import { isSubmissionDeleted } from "@/lib/submission-lifecycle";
+import { publishSubmission, updateSubmissionDraftJson, updateSubmissionReviewStatus } from "../actions";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
 import { EditableGameStatsForm } from "./EditableGameStatsForm";
 
@@ -82,12 +86,26 @@ function readinessClass(label: string) {
   return "bg-amber-50 text-amber-800";
 }
 
-function statusClass(status: string) {
-  if (status === "IMPORTED") return "bg-navy-50 text-navy-800";
-  if (status === "APPROVED") return "bg-green-50 text-green-800";
-  if (status === "REJECTED") return "bg-red-50 text-red-800";
-  if (status === "UNDER_REVIEW") return "bg-amber-50 text-amber-800";
-  return "bg-surface-100 text-surface-700";
+function submissionStatusBadgeClass(status: string) {
+  return `rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${submissionStatusBadge(status)}`;
+}
+
+function StepHeading({
+  step,
+  title,
+  description
+}: {
+  step: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div>
+      <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-amber-700">{step}</p>
+      <h3 className="mt-1 font-display text-2xl text-navy-800">{title}</h3>
+      {description ? <p className="mt-1 max-w-3xl text-sm text-ink-600">{description}</p> : null}
+    </div>
+  );
 }
 
 function pointTotalStatus(gameNumber: string, review: SubmissionReview) {
@@ -99,7 +117,8 @@ function pointTotalStatus(gameNumber: string, review: SubmissionReview) {
 
 function publishBlockers(submission: Submission, review: SubmissionReview, preflight: any, jsonInvalid: boolean, jsonParseResult: ReturnType<typeof safeParseSubmissionJson>) {
   const blockers: string[] = [];
-  if (submission.status === "REJECTED") blockers.push("Cannot publish a rejected submission. Move it back under review first.");
+  if (isSubmissionDeleted(submission)) blockers.push("Deleted submissions cannot be reviewed or published.");
+  if (submission.status === "REJECTED") blockers.push("Cannot publish a rejected submission. Reopen review in Step 4 first.");
   if (jsonInvalid && !jsonParseResult.ok) {
     blockers.push(`Invalid JSON: ${jsonParseResult.errorMessage}${jsonParseResult.line && jsonParseResult.column ? ` at line ${jsonParseResult.line}, column ${jsonParseResult.column}` : ""}`);
   }
@@ -163,6 +182,7 @@ function plainValidationMessages(review: SubmissionReview, preflight: any) {
 }
 
 export function SimplifiedSubmissionReview({ submission, review, preflight, pipelineStatus, reviewSuccess, reviewError, editMode = false }: SimplifiedSubmissionReviewProps) {
+  const deleted = isSubmissionDeleted(submission);
   const jsonParseResult = safeParseSubmissionJson(submission);
   const jsonInvalid = !jsonParseResult.ok;
   const games = jsonInvalid ? [] : getGameRows(submission);
@@ -188,7 +208,7 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
             <p className="mt-2 max-w-3xl text-sm text-ink-600">Review the submitted games, fix draft data before import if needed, then publish through the guided workflow.</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${statusClass(submission.status)}`}>{submission.status}</span>
+            <span className={submissionStatusBadgeClass(submission.status)}>{displaySubmissionStatus(submission.status)}</span>
             <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${readinessClass(readiness)}`}>{readiness}</span>
           </div>
         </div>
@@ -253,14 +273,16 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
             <h2 className="font-display text-3xl text-navy-800">Validation Messages</h2>
             <p className="mt-1 text-sm text-ink-600">Plain-language checks for the submitted game data.</p>
           </div>
-          <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${messages.length ? "bg-amber-50 text-amber-800" : "bg-green-50 text-green-800"}`}>{messages.length ? "Needs Review" : "Passed"}</span>
+          <AdminBadge variant={messages.length ? "warning" : "success"} size="sm">{messages.length ? "Needs Review" : "Passed"}</AdminBadge>
         </div>
         {messages.length ? (
           <ul className="grid gap-2 text-sm text-ink-700">
             {messages.slice(0, 20).map((message) => <li key={message} className="rounded-md bg-amber-50 p-3 text-amber-900">{message}</li>)}
           </ul>
         ) : (
-          <p className="rounded-md bg-green-50 p-3 text-sm font-semibold text-green-800">No blocking validation messages found in the review summary.</p>
+          <AdminAlert variant="success" size="md" className="p-3">
+            No blocking validation messages found in the review summary.
+          </AdminAlert>
         )}
       </section>
 
@@ -335,6 +357,120 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
           );
         }) : (
           <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">No game/player table is shown until the submitted JSON can be parsed.</p>
+        )}
+      </section>
+
+      <section id="review-decision" className="scroll-mt-28 grid gap-3 border border-surface-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <StepHeading
+            step="Step 4"
+            title="Review Decision"
+            description="Record your review decision and admin notes before publishing."
+          />
+          <span className={`border px-2.5 py-1 font-mono text-[0.65rem] font-bold uppercase tracking-[0.1em] ${submissionStatusBadge(submission.status)}`}>{displaySubmissionStatus(submission.status)}</span>
+        </div>
+        {submission.status === "IMPORTED" ? (
+          <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Imported submissions are locked. Review decisions cannot be changed after official import.</p>
+        ) : (
+          <form action={updateSubmissionReviewStatus} className="grid gap-4">
+            <p className="text-sm text-ink-600">
+              Approve records your review decision. Official data is written only after approval — either here or automatically when you publish.
+            </p>
+            {submission.status === "SUBMITTED" ? (
+              <p className="rounded-md bg-amber-50 p-3 text-sm font-semibold text-amber-900">Approve and Reject become available after the submission is marked Under Review.</p>
+            ) : null}
+            {submission.status === "APPROVED" ? (
+              <p className="rounded-md bg-green-50 p-3 text-sm font-semibold text-green-800">Submission is approved. Proceed to Step 5 to publish official records.</p>
+            ) : null}
+            <input type="hidden" name="submissionId" value={submission.id} />
+            {submission.adminNotes ? (
+              <div className="grid gap-2">
+                <span className="text-xs font-semibold uppercase tracking-[0.08em] text-ink-500">Note history</span>
+                <div className="whitespace-pre-wrap break-words rounded-md border border-surface-200 bg-surface-50 px-3 py-2 text-sm font-normal text-ink-700">
+                  {submission.adminNotes}
+                </div>
+              </div>
+            ) : null}
+            <label className="grid gap-2 text-sm font-semibold text-navy-800">
+              Add note for this decision
+              <textarea
+                name="adminNotes"
+                rows={4}
+                className="rounded-md border border-surface-300 px-3 py-2 text-sm font-normal text-ink-700 outline-none focus:border-amber-500"
+                placeholder="Leave blank to keep existing notes."
+              />
+            </label>
+            <div className="flex flex-wrap gap-3">
+              {submission.status === "DRAFT" ? (
+                <button type="submit" name="targetStatus" value="SUBMITTED" className="button primary">Submit for Review</button>
+              ) : null}
+              {submission.status === "SUBMITTED" ? (
+                <button type="submit" name="targetStatus" value="UNDER_REVIEW" className="button primary">Mark Under Review</button>
+              ) : null}
+              {submission.status === "UNDER_REVIEW" ? (
+                <>
+                  <button type="submit" name="targetStatus" value="APPROVED" className="button primary">Approve</button>
+                  <button type="submit" name="targetStatus" value="REJECTED" className="rounded-md border border-red-200 bg-red-50 px-4 py-2 font-semibold text-red-800 hover:bg-red-100">Reject</button>
+                </>
+              ) : null}
+              {submission.status === "APPROVED" || submission.status === "REJECTED" ? (
+                <button type="submit" name="targetStatus" value="UNDER_REVIEW" className="button secondary">Reopen Review</button>
+              ) : null}
+            </div>
+          </form>
+        )}
+      </section>
+
+      <section id="publish" className="scroll-mt-28 grid gap-3 border-2 border-red-200 bg-white p-4 shadow-sm">
+        <StepHeading
+          step="Step 5"
+          title="Publish"
+          description="Import official records and run ratings/rankings. Confirm only after reviewing parsed games and approving."
+        />
+        {submission.status === "IMPORTED" ? (
+          <AdminAlert variant="readOnly" size="sm" title="Imported / read-only">
+            Official import is disabled from this review panel.
+          </AdminAlert>
+        ) : isPublished ? (
+          <AdminAlert variant="success" size="md" className="p-4" title="Published">
+            This submission has completed import, processing, and publishing checks.
+          </AdminAlert>
+        ) : canPublish ? (
+          <form action={publishSubmission} className="grid gap-3 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-950">
+            <input type="hidden" name="submissionId" value={submission.id} />
+            {submission.status === "DRAFT" || submission.status === "SUBMITTED" || submission.status === "UNDER_REVIEW" ? (
+              <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-amber-950">
+                <strong className="block">Auto-approval</strong>
+                <p className="mt-1">Publishing will automatically advance this submission through review and approval before import.</p>
+                <p className="mt-1 font-semibold">Preferred path: Submit for Review → Mark Under Review → Approve → Publish.</p>
+              </div>
+            ) : submission.status === "APPROVED" ? (
+              <p className="rounded-md border border-green-200 bg-green-50 p-3 font-semibold text-green-900">Submission is approved. Publish will import official records and run ratings and rankings.</p>
+            ) : null}
+            <div>
+              <strong className="block">Publish this submission</strong>
+              <p className="mt-1">This guided action may mark the submission under review/approved, create official League/Season/Team/Player/Game/GameStat records, compute Formula v1 scores and PlayerRatings, generate monthly rankings, run validation, and revalidate public views.</p>
+            </div>
+            <label className="flex max-w-4xl items-start gap-2 font-semibold">
+              <input type="checkbox" required className="mt-1" />
+              <span>I reviewed the parsed games, validation messages, team/player resolution, and understand this can write official records, ratings, and ranking snapshots.</span>
+            </label>
+            <button type="submit" className="w-fit rounded-md bg-red-700 px-5 py-2 font-semibold text-white hover:bg-red-800">Confirm and Publish</button>
+          </form>
+        ) : (
+          <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+            <strong className="block">Cannot publish yet</strong>
+            <ul className="mt-2 grid gap-1">
+              {blockers.length ? blockers.map((blocker) => (
+                <li key={blocker}>
+                  {blocker}
+                  {submission.status === "REJECTED" ? (
+                    <> <a href="#review-decision" className="font-semibold text-orange-800 underline">Go to Step 4</a></>
+                  ) : null}
+                </li>
+              )) : <li>Publish is not available for this submission state.</li>}
+            </ul>
+          </div>
         )}
       </section>
 

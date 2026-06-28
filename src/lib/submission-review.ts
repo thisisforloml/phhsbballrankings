@@ -1,4 +1,5 @@
 import type { Submission } from "@prisma/client";
+import { hasExplicitBoysCompetitionContext, inferCompetitionGender, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { safeParseSubmissionJson, formatSubmissionJsonParseError, type SubmissionJsonParseResult } from "@/lib/submission-json";
 
 const gameRequiredFields = [
@@ -147,6 +148,10 @@ function numberValue(value: unknown): number {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
 }
 
+function booleanValue(value: unknown): boolean {
+  return value === true;
+}
+
 function cleanPlayerName(value: unknown): string {
   return stringValue(value).replace(/^\*+/, "").trim();
 }
@@ -157,18 +162,6 @@ function normalizeTeamName(value: string): string {
 
 function displayTeamName(value: string): string {
   return schoolDisplayMap[normalizeTeamName(value)] ?? value;
-}
-
-function inferSubmissionGender(genderValue: string, contextText: string): "BOYS" | "GIRLS" {
-  const normalizedGender = genderValue.toUpperCase();
-  const normalizedContext = contextText.toUpperCase();
-  if (normalizedGender.includes("GIRL") || normalizedContext.includes("GIRL")) return "GIRLS";
-  if (normalizedGender.includes("BOY") || /\bBOYS\b|\bJUNIORS?\b|JUNIOR'S|\bJRB\b/.test(normalizedContext)) return "BOYS";
-  return "BOYS";
-}
-
-function hasExplicitBoysContext(value: string) {
-  return /\bboys\b|\bjuniors?\b|junior's|\bjrb\b/i.test(value);
 }
 
 function missingFields(record: JsonRecord, fields: readonly string[]) {
@@ -278,6 +271,7 @@ export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "
     const awayTeamKey = normalizeTeamName(awayTeamName);
     const homeScore = numberValue(game.homeScore);
     const awayScore = numberValue(game.awayScore);
+    const isTeamResultOnly = booleanValue(game.teamResultOnly) || booleanValue(game.defaultWin);
     const players = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
     totalPlayerRows += players.length;
 
@@ -324,27 +318,30 @@ export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "
       awayScore,
       summedHomePlayerPoints,
       summedAwayPlayerPoints,
-      homePass: homeScore === summedHomePlayerPoints,
-      awayPass: awayScore === summedAwayPlayerPoints
+      homePass: isTeamResultOnly && players.length === 0 ? true : homeScore === summedHomePlayerPoints,
+      awayPass: isTeamResultOnly && players.length === 0 ? true : awayScore === summedAwayPlayerPoints
     });
   }
 
-  const leagueName = stringValue(league?.name) || submission.leagueName || null;
+  const rawLeagueName = stringValue(league?.name) || submission.leagueName || null;
+  const leagueName = rawLeagueName ? normalizeCompetitionDisplayName(rawLeagueName) : null;
   const ageGroup = stringValue(league?.ageGroup) || null;
   const seasonName = stringValue(season?.name) || null;
   const seasonYear = typeof season?.seasonYear === "number" ? season.seasonYear : null;
   const genderValue = stringValue(root.gender) || stringValue(league?.gender);
   const missingGenderField = !genderValue;
-  const inferredGender = inferSubmissionGender(genderValue, `${leagueName ?? ""} ${submission.title ?? ""}`);
+  const inferredGender = inferCompetitionGender(genderValue, `${leagueName ?? ""} ${submission.title ?? ""}`);
   const leagueNameIssues: string[] = [];
   const normalizedLeague = leagueName ?? submission.title;
 
   if (/16u/i.test(normalizedLeague)) leagueNameIssues.push('Use uppercase "16U" in league naming.');
-  if (!hasExplicitBoysContext(normalizedLeague) && inferredGender === "BOYS") leagueNameIssues.push('Gender is not explicit; confirm and include "Boys" before import.');
+  if (!hasExplicitBoysCompetitionContext(normalizedLeague) && inferredGender === "BOYS") leagueNameIssues.push('Gender is not explicit; confirm and include "Boys" before import.');
 
   const recommendedLeagueName = /uaap/i.test(normalizedLeague) && /16u/i.test(normalizedLeague)
     ? "UAAP Season 88 16U Boys Basketball"
-    : null;
+    : rawLeagueName && normalizeCompetitionDisplayName(rawLeagueName) !== rawLeagueName
+      ? normalizeCompetitionDisplayName(rawLeagueName)
+      : null;
   const teamDisplayMapping = Array.from(detectedTeams)
     .sort((left, right) => left.localeCompare(right))
     .map((sourceName) => ({ sourceName, displayName: displayTeamName(sourceName) }));

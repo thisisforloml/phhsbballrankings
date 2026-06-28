@@ -2,7 +2,7 @@
 
 const items = [
   { title: "Production Score", description: "Box score output is normalized by role, pace, and minutes. Points are required, and submitted metrics such as field goal percentage, steals, blocks, turnovers, offensive rebounds, and defensive rebounds add rating confidence.", formula: "PTS · REB · AST · box score context", Icon: BarChart3 },
-  { title: "League Weight", description: "OnCourt scores leagues by governance, team count, season volume, and statistical compliance. Stronger league environments carry more signal in the national rating.", formula: "competition weight", Icon: ShieldCheck },
+  { title: "League Weight", description: "Peach Basket scores leagues by governance, team count, season volume, and statistical compliance. Stronger league environments carry more signal in the national rating.", formula: "competition weight", Icon: ShieldCheck },
   { title: "Opponent Factor", description: "Production against stronger opponents is worth more. The model rewards performance that survives better competition.", formula: "opponent strength", Icon: Scale },
   { title: "Team Context", description: "Teammate quality and role share help prevent team strength from being mistaken for individual quality.", formula: "lineup adjustment", Icon: Users }
 ];

@@ -5,7 +5,7 @@ import { philippineRegions } from "@/lib/regions";
 
 export const metadata: Metadata = {
   title: "Player Search",
-  description: "Search OnCourt player profiles by first name, last name, position, and region."
+  description: "Search Peach Basket Rankings PH player profiles by first name, last name, position, and region."
 };
 
 export default async function PlayerSearchPage({
@@ -39,7 +39,7 @@ export default async function PlayerSearchPage({
           <p className="eyebrow">Player directory</p>
           <h1>Player search</h1>
         </div>
-        <p>Search existing OnCourt profiles using any combination of name, position, and region.</p>
+        <p>Search existing Peach Basket Rankings PH profiles using any combination of name, position, and region.</p>
       </div>
       <form className="ranking-filter-form player-search-form" action="/players/search">
         <label>First name<input name="firstName" defaultValue={searchParams.firstName ?? ""} /></label>

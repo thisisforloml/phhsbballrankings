@@ -6,11 +6,13 @@ import { redirect } from "next/navigation";
 import { requireOrganizerUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { inferSubmissionType, parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
+import { initialSubmissionStatusForCreate } from "@/lib/submission-lifecycle";
 
 export async function createOrganizerSubmission(formData: FormData) {
   const user = await requireOrganizerUser();
-  const returnTo = String(formData.get("returnTo") ?? "/organizer/submissions").trim();
-  const safeReturnTo = returnTo.startsWith("/admin/tools/submissions") && user.role === UserRole.ADMIN ? "/admin/tools/submissions" : "/organizer/submissions";
+    const returnTo = String(formData.get("returnTo") ?? "/organizer/submissions").trim();
+    const safeReturnTo = returnTo.startsWith("/admin/tools/submissions") && user.role === UserRole.ADMIN ? "/admin/tools/submissions" : "/organizer/submissions";
+    const adminDraft = safeReturnTo.startsWith("/admin/tools/submissions");
 
   try {
     const type = inferSubmissionType(formData);
@@ -24,7 +26,7 @@ export async function createOrganizerSubmission(formData: FormData) {
       data: {
         submittedByUserId: user.id,
         type,
-        status: "SUBMITTED",
+        status: initialSubmissionStatusForCreate({ adminDraft }),
         title: metadata.title,
         leagueName: metadata.leagueName,
         gameDate: metadata.gameDate,

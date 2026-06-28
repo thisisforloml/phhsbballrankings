@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Careers · OnCourt Rankings PH",
-  description: "Open roles for OnCourt Rankings Philippines."
+  title: "Careers · Peach Basket Rankings PH",
+  description: "Open roles for Peach Basket Rankings PH."
 };
 
 const roles = [
@@ -15,13 +15,13 @@ const roles = [
   {
     title: "Junior Web Developer",
     meta: "Part-time or Project-based · Remote",
-    description: "Support frontend and backend development of the OnCourt platform.",
+    description: "Support frontend and backend development of the Peach Basket Rankings PH platform.",
     skills: ["React", "TypeScript", "Next.js", "PostgreSQL"]
   },
   {
     title: "Statistical Analyst",
     meta: "Part-time · Remote (Philippines)",
-    description: "Assist in validating player ratings, formula calibration, and data quality audits after each weekly update.",
+    description: "Assist in validating player ratings, formula calibration, and data quality audits after each monthly update.",
     skills: ["Statistics", "Python or R", "Basketball analytics knowledge"]
   },
   {
@@ -53,7 +53,7 @@ export default function CareersPage() {
       <section className="container-px grid gap-8 pt-10">
         <article className="rounded-lg border border-surface-200 border-l-[3px] border-l-navy-800 bg-navy-50 p-6 shadow-sm">
           <p className="max-w-4xl leading-7 text-ink-700">
-            OnCourt is a small team doing serious work. We are building infrastructure for Philippine basketball that has never existed before. If you care about sports, data, and doing things right, we want to hear from you.
+            Peach Basket Rankings PH is a small team doing serious work. We are building infrastructure for Philippine basketball that has never existed before. If you care about sports, data, and doing things right, we want to hear from you.
           </p>
         </article>
 

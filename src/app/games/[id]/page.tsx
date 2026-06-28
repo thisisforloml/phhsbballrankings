@@ -75,7 +75,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
         </div>
       </section>
 
-      <section className="container-px grid gap-8 py-10">
+      <section className="container-px grid gap-8 py-7 md:py-9">
         {teams.map((team) => {
           const rows = game.stats.filter((stat) => stat.teamId === team.id);
           const expectedScore = team.id === game.homeTeamId ? game.homeScore : game.awayScore;

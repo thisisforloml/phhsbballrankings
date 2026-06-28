@@ -124,7 +124,7 @@ export async function POST(request: Request) {
           games: group.games.map((stat) => ({
             gameNumber: stat.game.gameNumber,
             date: stat.game.gameDate.toISOString(),
-            matchup: `${stat.game.homeTeam.name} ${stat.game.homeScore} â€“ ${stat.game.awayScore} ${stat.game.awayTeam.name}`,
+            matchup: `${stat.game.homeTeam.name} ${stat.game.homeScore} - ${stat.game.awayScore} ${stat.game.awayTeam.name}`,
             points: stat.points,
             rebounds: hasDetailedBoxScore(stat) ? stat.rebounds : null,
             assists: hasDetailedBoxScore(stat) ? stat.assists : null,

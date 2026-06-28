@@ -1,12 +1,13 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { UserRole } from "@prisma/client";
 import { requireOrganizerUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { activeSubmissionWhere } from "@/lib/submission-lifecycle";
 import { createOrganizerSubmission } from "./actions";
 
 export const metadata = {
   title: "Organizer Submissions",
-  description: "Submit game data for OnCourt admin review."
+  description: "Submit game data for Peach Basket Rankings PH admin review."
 };
 
 type PageProps = {
@@ -56,7 +57,7 @@ export default async function OrganizerSubmissionsPage({ searchParams }: PagePro
   const user = await requireOrganizerUser();
   const isAdmin = user.role === UserRole.ADMIN;
   const submissions = await prisma.submission.findMany({
-    where: isAdmin ? {} : { submittedByUserId: user.id },
+    where: isAdmin ? activeSubmissionWhere : { ...activeSubmissionWhere, submittedByUserId: user.id },
     include: {
       submittedBy: {
         select: {

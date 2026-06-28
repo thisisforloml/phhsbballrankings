@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -74,7 +74,7 @@ export function OrganizerDashboardClient() {
               <button onClick={() => setMode("upload")} className={`button ${mode === "upload" ? "primary" : "secondary"}`}>AI statsheet upload</button>
             </div>
 
-            {submitted ? <p className="mt-5 rounded-md bg-navy-50 p-4 font-semibold text-navy-800">Submitted for OnCourt review. You will be notified when this game is verified.</p> : null}
+            {submitted ? <p className="mt-5 rounded-md bg-navy-50 p-4 font-semibold text-navy-800">Submitted for Peach Basket Rankings PH review. You will be notified when this game is verified.</p> : null}
 
             {mode === "manual" ? (
               <div className="mt-6 grid gap-5">

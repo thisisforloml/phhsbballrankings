@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import type { ProgramType } from "@prisma/client";
+import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
+import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
 import { updatePlayerBio, type UpdatePlayerBioState } from "../../players/actions";
 import { updatePlayerCurrentProgram, updateProgram, updateProgramTeam, type ProgramActionState } from "../actions";
 
@@ -35,6 +37,7 @@ export type ProgramSelectOption = {
   id: string;
   fullName: string;
   abbreviation: string | null;
+  type: string;
 };
 
 export type ProgramPlayerData = {
@@ -112,7 +115,7 @@ export function ProgramEditor({ program }: { program: ProgramEditorData }) {
         <p className="label">Program Details</p>
         <h2 className="mt-2 font-display text-3xl text-navy-800">Edit Program</h2>
       </div>
-      <StateMessage state={state} />
+      <AdminFormFeedback state={state} />
       <label className="grid gap-2 text-sm font-semibold text-ink-700">Full Name<input name="fullName" required maxLength={180} defaultValue={program.fullName} className="rounded-md border border-surface-300 px-3 py-3" /></label>
       <div className="grid gap-4 md:grid-cols-3">
         <label className="grid gap-2 text-sm font-semibold text-ink-700">Abbreviation<input name="abbreviation" maxLength={80} defaultValue={program.abbreviation ?? ""} className="rounded-md border border-surface-300 px-3 py-3" /></label>
@@ -121,7 +124,7 @@ export function ProgramEditor({ program }: { program: ProgramEditorData }) {
       </div>
       <label className="grid gap-2 text-sm font-semibold text-ink-700">Region<input name="region" maxLength={100} defaultValue={program.region ?? ""} placeholder="Optional" className="rounded-md border border-surface-300 px-3 py-3" /></label>
       <label className="grid gap-2 text-sm font-semibold text-ink-700">Aliases<textarea name="aliases" defaultValue={program.aliasesText} rows={5} className="rounded-md border border-surface-300 px-3 py-3" /><span className="text-xs font-normal text-ink-500">Use one alias per line or comma-separated aliases.</span></label>
-      <SaveButton label="Save program" />
+      <AdminSaveButton label="Save program" variant="ops" />
     </form>
   );
 }
@@ -291,7 +294,7 @@ function PlayerBioEditForm({ player }: { player: ProgramPlayerData }) {
           <span className="text-xs font-normal text-ink-500">Upload JPG, PNG, or WEBP. Maximum 3 MB.</span>
         </div>
       </div>
-      <SaveButton label="Save player" />
+      <AdminSaveButton label="Save player" variant="ops" />
     </form>
   );
 }
@@ -316,7 +319,7 @@ export function PlayerCurrentProgramForm({ programId, player, programs }: { prog
       </div>
       {player.recentTransfers.length ? <div className="rounded-md border border-surface-200 p-3 text-xs text-ink-600"><strong className="block text-ink-800">Recent transfer history</strong>{player.recentTransfers.map((history) => <div key={history.id}>{history.effectiveDate ?? history.createdAt}: {history.fromProgram} to {history.toProgram}{history.note ? ` - ${history.note}` : ""}</div>)}</div> : null}
       <StateMessage state={state} />
-      <SaveButton label={mode === "TRANSFER" ? "Record transfer" : "Save current program"} />
+      <AdminSaveButton label={mode === "TRANSFER" ? "Record transfer" : "Save current program"} variant="ops" />
     </form>
   );
 }

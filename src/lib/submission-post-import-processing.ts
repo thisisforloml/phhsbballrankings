@@ -1,8 +1,18 @@
 import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { getClassYear, getMonthStart, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
+import {
+  upsertCumulativePlayerRatings
+} from "@/lib/player-rating-cumulative";
+import { getActivePolicyVersionId } from "@/lib/ratings/player-rating-query";
+import {
+  buildTierNormalizedRatingTargets,
+  loadTierNormalizedGpsGames
+} from "@/lib/ratings/tier-normalized-v1";
+import { getMonthStart, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
+import { buildSnapshotBoardRows } from "@/lib/snapshot-board-rows";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
+import { computeProgramTeamRatings } from "@/lib/team-ratings/compute-program-team-ratings";
 
 const formulaVersionNumber = 1;
 function minimumVerifiedGamesForContext(ageGroup: AgeGroup, gender: PlayerGender) {
@@ -113,18 +123,6 @@ function unique<T>(values: T[]) {
 }
 function safeDivide(numerator: number, denominator: number) {
   return denominator === 0 ? null : numerator / denominator;
-}
-
-function average(values: number[]) {
-  return values.reduce((sum, value) => sum + value, 0) / values.length;
-}
-
-function starFromAdjustedRating(value: number) {
-  if (value >= 90) return 5;
-  if (value >= 80) return 4;
-  if (value >= 70) return 3;
-  if (value >= 60) return 2;
-  return 1;
 }
 
 function percentileScale(values: number[]) {
@@ -425,9 +423,15 @@ export async function computeImportedSubmissionFormulaScores(submissionId: strin
 
   for (let i = 0; i < rawScores.length; i += 1) {
     const score = rawScores[i];
-    const existing = await prisma.gamePerformanceScore.findUnique({ where: { gameStatId: score.stat.id }, select: { id: true } });
+    const gpsKey = {
+      gameStatId_formulaVersionId: {
+        gameStatId: score.stat.id,
+        formulaVersionId: formulaVersion.id
+      }
+    };
+    const existing = await prisma.gamePerformanceScore.findUnique({ where: gpsKey, select: { id: true } });
     await prisma.gamePerformanceScore.upsert({
-      where: { gameStatId: score.stat.id },
+      where: gpsKey,
       update: {
         gameId: score.stat.gameId,
         playerId: score.stat.playerId,
@@ -485,79 +489,58 @@ export async function computeImportedSubmissionFormulaScores(submissionId: strin
 export async function computeImportedSubmissionPlayerRatings(submissionId: string) {
   const context = await getImportedSubmissionContext(submissionId);
   const formulaVersion = await getExistingFormulaVersion();
-  const scores = await prisma.gamePerformanceScore.findMany({
+
+  const submissionScores = await prisma.gamePerformanceScore.findMany({
     where: {
       formulaVersionId: formulaVersion.id,
       deletedAt: null,
       game: { seasonId: context.seasonId, deletedAt: null },
       player: { gender: context.gender, deletedAt: null }
     },
-    include: { player: { select: { id: true, displayName: true } } }
+    select: { id: true, playerId: true, finalPerformanceScore: true }
   });
 
-  if (scores.length < context.expectedGameStats) {
-    throw new Error(`Expected at least ${context.expectedGameStats} ${context.ageGroup} GamePerformanceScores, found ${scores.length}.`);
+  if (submissionScores.length < context.expectedGameStats) {
+    throw new Error(
+      `Expected at least ${context.expectedGameStats} ${context.ageGroup} GamePerformanceScores for this submission, found ${submissionScores.length}.`
+    );
   }
 
-  const byPlayer = new Map<string, { playerId: string; displayName: string; values: number[] }>();
-  for (const score of scores) {
-    if (score.finalPerformanceScore === null) throw new Error(`Missing finalPerformanceScore for ${score.id}.`);
-    const item = byPlayer.get(score.playerId) ?? { playerId: score.playerId, displayName: score.player.displayName, values: [] };
-    item.values.push(Number(score.finalPerformanceScore));
-    byPlayer.set(score.playerId, item);
+  for (const score of submissionScores) {
+    if (score.finalPerformanceScore === null) {
+      throw new Error(`Missing finalPerformanceScore for ${score.id}.`);
+    }
   }
 
-  const inputs = [...byPlayer.values()].map((player) => {
-    const observedRating = average(player.values);
-    const adjustedRating = observedRating;
-    return {
-      playerId: player.playerId,
-      displayName: player.displayName,
-      observedRating,
-      adjustedRating,
-      verifiedGameCount: player.values.length,
-      starRating: starFromAdjustedRating(adjustedRating)
-    };
+  const tierGames = await loadTierNormalizedGpsGames({ ageGroup: context.ageGroup });
+  const inputs = buildTierNormalizedRatingTargets(tierGames);
+  const { created, updated } = await upsertCumulativePlayerRatings(inputs, {
+    formulaVersionId: formulaVersion.id,
+    policyVersionId: getActivePolicyVersionId()
   });
 
-  let created = 0;
-  let updated = 0;
-  for (const rating of inputs) {
-    const existing = await prisma.playerRating.findUnique({
-      where: { playerId_ageGroup: { playerId: rating.playerId, ageGroup: context.ageGroup } },
-      select: { id: true }
-    });
-    await prisma.playerRating.upsert({
-      where: { playerId_ageGroup: { playerId: rating.playerId, ageGroup: context.ageGroup } },
-      update: {
-        observedRating: rating.observedRating,
-        adjustedRating: rating.adjustedRating,
-        verifiedGameCount: rating.verifiedGameCount,
-        starRating: rating.starRating
-      },
-      create: {
-        playerId: rating.playerId,
-        ageGroup: context.ageGroup,
-        observedRating: rating.observedRating,
-        adjustedRating: rating.adjustedRating,
-        verifiedGameCount: rating.verifiedGameCount,
-        starRating: rating.starRating
-      }
-    });
-    if (existing) updated += 1;
-    else created += 1;
-  }
+  const playerNames = await prisma.player.findMany({
+    where: { id: { in: inputs.map((row) => row.playerId) }, deletedAt: null },
+    select: { id: true, displayName: true }
+  });
+  const displayNameById = new Map(playerNames.map((player) => [player.id, player.displayName]));
+  const previewInputs = inputs.map((row) => ({
+    ...row,
+    displayName: displayNameById.get(row.playerId) ?? row.playerId
+  }));
 
   return {
     formulaVersionId: formulaVersion.id,
     ageGroup: context.ageGroup,
     gender: context.gender,
-    totalEligibleGamePerformanceScores: scores.length,
+    aggregationScope: "playerId + league.ageGroup (Formula v1 tier-normalized cumulative GPS)",
+    submissionGamePerformanceScores: submissionScores.length,
+    totalEligibleGamePerformanceScores: tierGames.length,
     totalPlayersProcessed: inputs.length,
     playerRatingsCreated: created,
     playerRatingsUpdated: updated,
-    minObservedRating: Math.min(...inputs.map((row) => row.observedRating)),
-    maxObservedRating: Math.max(...inputs.map((row) => row.observedRating)),
+    minObservedRating: inputs.length ? Math.min(...inputs.map((row) => row.observedRating)) : null,
+    maxObservedRating: inputs.length ? Math.max(...inputs.map((row) => row.observedRating)) : null,
     starDistribution: inputs.reduce<Record<string, number>>((acc, row) => {
       acc[String(row.starRating)] = (acc[String(row.starRating)] ?? 0) + 1;
       return acc;
@@ -567,7 +550,23 @@ export async function computeImportedSubmissionPlayerRatings(submissionId: strin
       return acc;
     }, {}),
     minimumVerifiedGames: context.minimumVerifiedGames,
-    top10Preview: inputs.sort((a, b) => b.adjustedRating - a.adjustedRating).slice(0, 10)
+    top10Preview: previewInputs.sort((a, b) => b.adjustedRating - a.adjustedRating).slice(0, 10)
+  };
+}
+
+export async function computeImportedSubmissionTeamRatings(submissionId: string) {
+  const context = await getImportedSubmissionContext(submissionId);
+  const result = await computeProgramTeamRatings({
+    ageGroup: context.ageGroup,
+    gender: context.gender
+  });
+  return {
+    submissionId,
+    ageGroup: context.ageGroup,
+    gender: context.gender,
+    upserted: result.upserted,
+    deleted: result.deleted,
+    totalRows: result.totalRows
   };
 }
 
@@ -576,35 +575,21 @@ export async function generateImportedSubmissionMonthlyRankings(submissionId: st
   const formulaVersion = await getExistingFormulaVersion();
   const snapshotDate = getMonthStart(new Date());
 
-  const ratings = await prisma.playerRating.findMany({
-    where: {
-      ageGroup: context.ageGroup,
-      verifiedGameCount: { gte: context.minimumVerifiedGames },
-      player: { gender: context.gender, deletedAt: null }
-    },
-    include: { player: { select: { displayName: true, birthDate: true } } },
-    orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }]
+  const built = await buildSnapshotBoardRows({
+    ageGroup: context.ageGroup,
+    gender: context.gender,
+    evaluationDate: snapshotDate,
+    formulaVersionId: formulaVersion.id
   });
 
-  const eligibleByGames = ratings.map((rating) => ({
-    playerId: rating.playerId,
-    displayName: rating.player.displayName,
-    adjustedRating: Number(rating.adjustedRating),
-    verifiedGameCount: rating.verifiedGameCount,
-    starRating: rating.starRating,
-    birthDate: rating.player.birthDate,
-    classYear: getClassYear(rating.player.birthDate)
-  }));
-  const excludedByClassYear = eligibleByGames.filter((rating) => !isRankingEligibleByClassYear(rating.birthDate, snapshotDate));
-  const excludedIds = new Set(excludedByClassYear.map((rating) => rating.playerId));
-  const finalRows = eligibleByGames.filter((rating) => !excludedIds.has(rating.playerId));
-  const rows = finalRows.map((rating, index) => ({
-    playerId: rating.playerId,
-    rank: index + 1,
-    rating: rating.adjustedRating,
-    starRating: rating.starRating,
-    verifiedGameCount: rating.verifiedGameCount,
-    movement: 0
+  const rows = built.rows.map((row) => ({
+    playerId: row.playerId,
+    rank: row.rank,
+    rating: row.rating,
+    starRating: row.starRating,
+    verifiedGameCount: row.verifiedGameCount,
+    movement: row.movement,
+    ageVerificationStatus: row.ageVerificationStatus
   }));
 
   const existing = await prisma.rankingSnapshot.findMany({
@@ -655,21 +640,22 @@ export async function generateImportedSubmissionMonthlyRankings(submissionId: st
     ageGroup: context.ageGroup,
     gender: context.gender,
     snapshotDate: snapshotDate.toISOString(),
+    snapshotPolicy: "rev-2-public-rank-allowed",
     eligibilityRule: { minimumVerifiedGames: context.minimumVerifiedGames, note: eligibilityNote(context.ageGroup, context.gender) },
-    eligibleByGames: eligibleByGames.length,
-    excludedByClassYear: excludedByClassYear.length,
-    missingBirthDate: eligibleByGames.filter((row) => row.birthDate === null).length,
+    poolAtThreshold: built.poolAtThreshold,
+    excludedByVisibility: built.excludedByVisibility,
+    verifiedCount: built.verifiedCount,
+    pendingCount: built.pendingCount,
     rowsCreated: rows.length,
     snapshotId,
     action,
-    top10Preview: finalRows.slice(0, 10).map((row, index) => ({
-      rank: index + 1,
+    top10Preview: built.rows.slice(0, 10).map((row) => ({
+      rank: row.rank,
       playerId: row.playerId,
-      displayName: row.displayName,
-      adjustedRating: row.adjustedRating,
+      adjustedRating: row.rating,
       verifiedGameCount: row.verifiedGameCount,
       starRating: row.starRating,
-      classYear: row.classYear
+      ageVerificationStatus: row.ageVerificationStatus
     }))
   };
 }
@@ -701,25 +687,61 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
   const seasonScores = await prisma.gamePerformanceScore.findMany({
     where: { formulaVersionId: formulaVersion.id, deletedAt: null, game: { seasonId: context.seasonId, deletedAt: null }, player: { gender: context.gender, deletedAt: null } }
   });
-  const countsByPlayer = new Map<string, number>();
-  for (const score of seasonScores) countsByPlayer.set(score.playerId, (countsByPlayer.get(score.playerId) ?? 0) + 1);
+  const tierGames = await loadTierNormalizedGpsGames({ ageGroup: context.ageGroup });
+  const targets = buildTierNormalizedRatingTargets(tierGames);
+  const targetByPlayer = new Map(targets.map((row) => [row.playerId, row]));
 
   const missingPlayerRatings: Array<{ playerId: string; expected: number }> = [];
   const invalidRatings: string[] = [];
-  for (const [playerId, count] of countsByPlayer) {
+  const activePolicy = getActivePolicyVersionId();
+  for (const target of targets) {
     const rating = await prisma.playerRating.findUnique({
-      where: { playerId_ageGroup: { playerId, ageGroup: context.ageGroup } },
+      where: {
+        playerId_ageGroup_formulaVersionId_policyVersionId: {
+          playerId: target.playerId,
+          ageGroup: context.ageGroup,
+          formulaVersionId: formulaVersion.id,
+          policyVersionId: activePolicy
+        }
+      },
       select: { observedRating: true, adjustedRating: true, verifiedGameCount: true, starRating: true }
     });
     if (!rating) {
-      missingPlayerRatings.push({ playerId, expected: count });
+      missingPlayerRatings.push({ playerId: target.playerId, expected: target.verifiedGameCount });
       continue;
     }
     const observed = Number(rating.observedRating);
     const adjusted = Number(rating.adjustedRating);
-    if (rating.verifiedGameCount !== count) invalidRatings.push(`${playerId} verifiedGameCount expected ${count}, found ${rating.verifiedGameCount}.`);
-    if (observed < 1 || observed > 100 || adjusted < 1 || adjusted > 100) invalidRatings.push(`${playerId} rating out of range.`);
-    if (rating.starRating !== starFromAdjustedRating(adjusted)) invalidRatings.push(`${playerId} star expected ${starFromAdjustedRating(adjusted)}, found ${rating.starRating}.`);
+    if (rating.verifiedGameCount !== target.verifiedGameCount) {
+      invalidRatings.push(
+        `${target.playerId} verifiedGameCount expected ${target.verifiedGameCount} (tier-normalized GPS), found ${rating.verifiedGameCount}.`
+      );
+    }
+    if (Math.abs(observed - target.observedRating) > 0.01) {
+      invalidRatings.push(`${target.playerId} observedRating expected ${target.observedRating}, found ${observed}.`);
+    }
+    if (Math.abs(adjusted - target.adjustedRating) > 0.01) {
+      invalidRatings.push(`${target.playerId} adjustedRating expected ${target.adjustedRating}, found ${adjusted}.`);
+    }
+    if (observed < 1 || observed > 100 || adjusted < 1 || adjusted > 100) invalidRatings.push(`${target.playerId} rating out of range.`);
+    if (rating.starRating !== target.starRating) {
+      invalidRatings.push(`${target.playerId} star expected ${target.starRating}, found ${rating.starRating}.`);
+    }
+  }
+
+  const orphanRatings = await prisma.playerRating.findMany({
+    where: {
+      ageGroup: context.ageGroup,
+      formulaVersionId: formulaVersion.id,
+      policyVersionId: activePolicy,
+      player: { gender: context.gender, deletedAt: null }
+    },
+    select: { playerId: true, verifiedGameCount: true }
+  });
+  for (const rating of orphanRatings) {
+    if (!targetByPlayer.has(rating.playerId)) {
+      invalidRatings.push(`${rating.playerId} has PlayerRating without tier-normalized GPS for ${context.ageGroup}.`);
+    }
   }
 
   const snapshots = await prisma.rankingSnapshot.findMany({
@@ -789,20 +811,17 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
     expectedGameStats: context.expectedGameStats,
     gameStatsChecked: gameStats.length,
     gamePerformanceScoresChecked: scores.length,
-    seasonGamePerformanceScoresChecked: seasonScores.length,
-    playersChecked: countsByPlayer.size,
+    submissionGamePerformanceScoresChecked: seasonScores.length,
+    cumulativeGpsPlayersChecked: targets.length,
+    aggregationScope: "playerId + league.ageGroup (Formula v1 tier-normalized cumulative GPS)",
     missingPlayerRatings,
     invalidRatings,
     snapshot: latest ? { id: latest.id, weekOf: latest.weekOf.toISOString(), rowsChecked: snapshotRowsChecked, expectedRows: expectedSnapshotRows, missingBirthDate } : null,
     snapshotIssues,
-    u19Regression: {
+    u19Inventory: {
       gamePerformanceScoreCount: u19GamePerformanceScoreCount,
       playerRatingCount: u19PlayerRatingCount,
-      rankingSnapshotRows: u19SnapshotRows,
-      expectedGamePerformanceScoreCount: 1885,
-      expectedPlayerRatingCount: 181,
-      expectedRankingSnapshotRows: 138,
-      passed: u19GamePerformanceScoreCount === 1885 && u19PlayerRatingCount === 181 && u19SnapshotRows === 138
+      rankingSnapshotRows: u19SnapshotRows
     },
     issues,
     validationPassed

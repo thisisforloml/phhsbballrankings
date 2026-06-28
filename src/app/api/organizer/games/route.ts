@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { AgeGroup, SeasonStatus, SubmissionType, VerificationStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getPortalUser } from "@/lib/portal-auth";
@@ -243,7 +243,7 @@ export async function POST(request: Request) {
         entityType: "game",
         entityId: game.id,
         action: "SUBMIT_GAME_STATS",
-        reason: "Organizer submitted game and player statistics for OnCourt verification.",
+        reason: "Organizer submitted game and player statistics for Peach Basket Rankings PH verification.",
         newData: {
           leagueName: body.leagueName,
           homeTeam: body.homeTeam,

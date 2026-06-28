@@ -5,6 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthContext";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -27,11 +28,7 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen bg-surface-50 px-5 pb-16 pt-32">
       <section className="mx-auto w-full max-w-[420px] rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-        <Link href="/" className="block text-center leading-none" aria-label="OnCourt Rankings Philippines home">
-          <img src="/oncourt-logo.png" alt="" className="mx-auto h-20 w-20 rounded-md object-contain" />
-          <span className="mt-3 block font-display text-4xl font-extrabold text-navy-800">ONCOURT</span>
-          <span className="block font-mono text-[0.65rem] uppercase tracking-[0.18em] text-surface-500">Rankings PH</span>
-        </Link>
+        <BrandLogo />
         <h1 className="mt-8 font-display text-[1.75rem] font-bold text-navy-800">Member Login</h1>
         <p className="mt-2 text-surface-500">Access league details, analytics, and advanced player data.</p>
         <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
@@ -54,7 +51,7 @@ export default function LoginPage() {
         {error ? <p className="mt-4 rounded-md bg-loss-bg p-3 text-sm text-loss-text">{error}</p> : null}
         <div className="my-6 flex items-center gap-3 text-center text-sm text-surface-500">
           <span className="h-px flex-1 bg-surface-200" />
-          <span>New to OnCourt?</span>
+          <span>New to Peach Basket?</span>
           <span className="h-px flex-1 bg-surface-200" />
         </div>
         <Link href="/register" className="button secondary w-full">Get Premium Access</Link>

@@ -1,42 +1,48 @@
-﻿import Link from "next/link";
+import Link from "next/link";
+import { BRAND_ADMIN_EYEBROW } from "@/lib/brand";
 
 const primaryItems = [
-  { href: "/admin", label: "Dashboard", key: "dashboard" },
-  { href: "/admin/submissions", label: "Submissions", key: "submissions" },
+  { href: "/admin/players", label: "Players", key: "players" },
+  { href: "/admin/teams", label: "Teams", key: "teams" },
+  { href: "/admin/leagues", label: "Leagues", key: "leagues" },
   { href: "/admin/programs", label: "Programs", key: "programs" },
-  { href: "/rankings", label: "Rankings / Data Health", key: "rankings" }
+  { href: "/admin/submissions", label: "Game Stats", key: "submissions" },
+  { href: "/admin/claims", label: "Profile Claims", key: "claims" }
 ] as const;
 
-const utilityItems = [
-  { href: "/admin/players", label: "Player Search", key: "players" },
-  { href: "/admin/data-health/player-duplicates", label: "Player Duplicate Review", key: "playerDuplicates" },
-  { href: "/admin/tools/submissions", label: "Submission Tools", key: "adminTools" },
-  { href: "/admin/tools/live-stats", label: "Manual Stats Entry", key: "manualStats" }
-] as const;
+const opsItem = { href: "/admin/ops", label: "Ops", key: "ops" } as const;
 
-export type AdminNavKey = typeof primaryItems[number]["key"] | typeof utilityItems[number]["key"] | "teams";
+export type AdminNavKey =
+  | typeof primaryItems[number]["key"]
+  | typeof opsItem["key"];
 
 export function AdminSidebar({ active }: { active: AdminNavKey }) {
   return (
-    <aside className="bg-navy-800 px-5 py-8 text-white lg:min-h-[calc(100vh-5rem)]">
-      <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Admin Portal</p>
-      <nav className="mt-8 grid gap-2 font-semibold">
+    <aside className="border-r border-white/10 bg-primary-950 px-3 py-4 text-white lg:min-h-[calc(100vh-4rem)]">
+      <div className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-3">
+        <p className="text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-accent-400">{BRAND_ADMIN_EYEBROW}</p>
+      </div>
+      <nav className="mt-4 grid gap-0.5 text-sm font-medium" aria-label="Admin">
         {primaryItems.map((item) => (
-          <Link key={item.key} href={item.href} className={`rounded-md px-3 py-2 hover:bg-white/10 ${active === item.key ? "bg-white/10 text-amber-300" : ""}`}>
+          <Link
+            key={item.key}
+            href={item.href}
+            className={`rounded-md px-2.5 py-2 transition ${active === item.key ? "bg-accent-500/15 font-semibold text-accent-300 shadow-[inset_2px_0_0_theme(colors.accent.400)]" : "text-white/70 hover:bg-white/10 hover:text-white"}`}
+          >
             {item.label}
           </Link>
         ))}
-        <div className="mt-5 border-t border-white/10 pt-4">
-          <p className="px-3 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-white/45">Utilities</p>
-          <div className="mt-2 grid gap-2 text-sm font-semibold">
-            {utilityItems.map((item) => (
-              <Link key={item.key} href={item.href} className={`rounded-md px-3 py-2 hover:bg-white/10 ${active === item.key ? "bg-white/10 text-amber-300" : ""}`}>
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <Link href="/portal/logout" className="rounded-md px-3 py-2 hover:bg-white/10">Sign out</Link>
+      </nav>
+      <nav className="mt-6 border-t border-white/10 pt-4 text-sm" aria-label="Admin utilities">
+        <Link
+          href={opsItem.href}
+          className={`block rounded-md px-2.5 py-2 transition ${active === opsItem.key ? "bg-accent-500/15 font-semibold text-accent-300" : "text-white/45 hover:bg-white/10 hover:text-white/80"}`}
+        >
+          {opsItem.label}
+        </Link>
+        <Link href="/portal/logout" className="mt-0.5 block rounded-md px-2.5 py-2 text-white/45 transition hover:bg-white/10 hover:text-white/80">
+          Sign out
+        </Link>
       </nav>
     </aside>
   );

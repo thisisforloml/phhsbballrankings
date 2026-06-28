@@ -33,10 +33,11 @@ export async function updateTeamBio(_previousState: UpdateTeamState, formData: F
     const name = readRequiredString(formData, "name", "Team name", 120);
     const city = readRequiredString(formData, "city", "City", 100);
     const region = readRequiredString(formData, "region", "Region", 100);
+    const logoUrl = String(formData.get("logoUrl") ?? "").trim() || null;
 
     await prisma.team.update({
       where: { id: teamId },
-      data: { name, city, region }
+      data: { name, city, region, logoUrl }
     });
 
     revalidatePath("/admin/teams");

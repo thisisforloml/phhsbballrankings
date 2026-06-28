@@ -5,7 +5,7 @@ import { RankingsClient } from "./RankingsClient";
 
 export const metadata: Metadata = {
   title: "U19 National Rankings",
-  description: "OnCourt player rankings by gender, age group, region, and city."
+  description: "Peach Basket player rankings by gender, age group, region, and city."
 };
 
 export default async function RankingsPage() {

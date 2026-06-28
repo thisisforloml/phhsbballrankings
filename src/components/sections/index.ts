@@ -1,4 +1,6 @@
-﻿export * from "./CompetitionHistory";
+﻿export * from "./BoardLeadersCarousel";
+export * from "./CompetitionHistory";
+export * from "./CompetitionParticipationSummary";
 export * from "./HeroSection";
 export * from "./LeaderboardPreview";
 export * from "./LeagueGrid";

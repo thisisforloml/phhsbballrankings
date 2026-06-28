@@ -4,6 +4,7 @@ import { ProgramType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
 import { slugify } from "@/lib/format";
 
 export type ProgramActionState = {
@@ -137,11 +138,20 @@ export async function updatePlayerCurrentProgram(_previousState: ProgramActionSt
 
     const [player, nextProgram] = await Promise.all([
       prisma.player.findFirst({ where: { id: playerId, deletedAt: null }, select: { id: true, displayName: true, currentProgramId: true } }),
-      prisma.program.findFirst({ where: { id: nextProgramId, deletedAt: null }, select: { id: true, fullName: true } })
+      prisma.program.findFirst({
+        where: {
+          id: nextProgramId,
+          deletedAt: null,
+          ...(changeMode === "TRANSFER" ? { type: ProgramType.SCHOOL } : {})
+        },
+        select: { id: true, fullName: true, type: true }
+      })
     ]);
 
     if (!player) throw new Error("Player does not exist or has been deleted.");
-    if (!nextProgram) throw new Error("Target Program does not exist or has been deleted.");
+    if (!nextProgram) {
+      throw new Error(changeMode === "TRANSFER" ? "Target school does not exist or is not a school program." : "Target program does not exist or has been deleted.");
+    }
 
     if (changeMode === "EDIT") {
       await prisma.player.update({ where: { id: playerId }, data: { currentProgramId: nextProgramId } });

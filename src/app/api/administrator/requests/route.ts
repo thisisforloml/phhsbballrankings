@@ -135,7 +135,7 @@ export async function PUT(request: Request) {
       create: {
         name: application.applicantName,
         username: organizerUsername,
-        email: `${organizerUsername.toLowerCase()}@oncourt.local`,
+        email: `${organizerUsername.toLowerCase()}@oncourtrankings.local`,
         passwordHash: passwordHash("Organizer123"),
         role: UserRole.ORGANIZER
       }

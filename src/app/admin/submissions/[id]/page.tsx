@@ -1,5 +1,10 @@
 ﻿import Link from "next/link";
+import { AdminAlert } from "@/components/admin/AdminAlert";
+import { AdminBadge } from "@/components/admin/AdminBadge";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { PassFailBadge, HealthCheckBadge, YesNoBadge } from "@/components/admin/submissionHealthBadges";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { ReadinessBadge, SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
 import { notFound } from "next/navigation";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
@@ -8,7 +13,9 @@ import { buildSubmissionImportPreflight } from "@/lib/submission-import-prefligh
 import { getSubmissionImportPublishAudit, getSubmissionPipelineStatus } from "@/lib/submission-audit";
 import { getImportedSubmissionProcessingStatus } from "@/lib/submission-post-import-processing";
 import { submissionTypeLabel } from "@/lib/submission-utils";
+import { canDeleteDraftSubmission, isSubmissionDeleted } from "@/lib/submission-lifecycle";
 import { SimplifiedSubmissionReview } from "./SimplifiedSubmissionReview";
+import { SubmissionDeleteDraftForm } from "../SubmissionDeleteDraftForm";
 import {
   computeSubmissionFormulaScores,
   computeSubmissionPlayerRatings,
@@ -134,6 +141,9 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
 
   if (!submission) notFound();
 
+  const deleted = isSubmissionDeleted(submission);
+  const canDeleteSubmission = canDeleteDraftSubmission(submission);
+
   const review = buildSubmissionReview(submission);
   const preflight = await buildSubmissionImportPreflight(submission);
   let processingStatus: Awaited<ReturnType<typeof getImportedSubmissionProcessingStatus>> | null = null;
@@ -203,7 +213,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 <h2 className="font-display text-3xl text-navy-800">Pipeline Status</h2>
                 <p className="mt-1 text-sm text-ink-600">Workflow progress from organizer submission through published rankings.</p>
               </div>
-              <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${pipelineStatus.issues.length ? "bg-amber-50 text-amber-800" : "bg-green-50 text-green-800"}`}>{pipelineStatus.issues.length ? "Info" : "OK"}</span>
+              <AdminBadge variant={pipelineStatus.issues.length ? "warning" : "success"} size="sm">{pipelineStatus.issues.length ? "Info" : "OK"}</AdminBadge>
             </div>
             {pipelineStatus.issues.length ? (
               <div className="mt-4 grid gap-2">
@@ -270,7 +280,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                   <div key={key} className="rounded-md border border-surface-200 p-3 text-sm">
                     <div className="flex items-center justify-between gap-2">
                       <dt className="font-semibold text-surface-500">{key}</dt>
-                      {healthBadge(item.pass)}
+                      <HealthCheckBadge pass={item.pass} />
                     </div>
                     <dd className="mt-2 text-ink-700">{item.actual} / {item.expected}</dd>
                   </div>
@@ -282,7 +292,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 <div className="mt-3 overflow-x-auto">
                   <table className="min-w-[52rem] w-full text-left text-sm">
                     <thead className="font-mono text-mono-sm uppercase text-surface-600"><tr><th className="py-2 pr-4">Game</th><th className="py-2 pr-4">Teams</th><th className="py-2 pr-4">Score</th><th className="py-2 pr-4">Summed PTS</th><th className="py-2 pr-4">Status</th></tr></thead>
-                    <tbody>{importAudit.officialData.pointTotals.map((check) => <tr key={check.gameId} className="border-t border-surface-200"><td className="py-2 pr-4">{check.gameNumber}</td><td className="py-2 pr-4">{check.homeTeam} vs {check.awayTeam}</td><td className="py-2 pr-4">{check.homeScore}-{check.awayScore}</td><td className="py-2 pr-4">{check.summedHomePlayerPoints}-{check.summedAwayPlayerPoints}</td><td className="py-2 pr-4">{healthBadge(check.pass)}</td></tr>)}</tbody>
+                    <tbody>{importAudit.officialData.pointTotals.map((check) => <tr key={check.gameId} className="border-t border-surface-200"><td className="py-2 pr-4">{check.gameNumber}</td><td className="py-2 pr-4">{check.homeTeam} vs {check.awayTeam}</td><td className="py-2 pr-4">{check.homeScore}-{check.awayScore}</td><td className="py-2 pr-4">{check.summedHomePlayerPoints}-{check.summedAwayPlayerPoints}</td><td className="py-2 pr-4"><HealthCheckBadge pass={check.pass} /></td></tr>)}</tbody>
                   </table>
                 </div>
               </details>
@@ -319,7 +329,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               <div><dt className="font-semibold text-surface-500">Submitted by</dt><dd>{submission.submittedBy.name} ({submission.submittedBy.username})</dd></div>
               <div><dt className="font-semibold text-surface-500">Email</dt><dd>{submission.submittedBy.email}</dd></div>
               <div><dt className="font-semibold text-surface-500">Type</dt><dd>{submissionTypeLabel(submission.type)}</dd></div>
-              <div><dt className="font-semibold text-surface-500">Status</dt><dd><span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${statusBadgeClass(submission.status)}`}>{submission.status}</span></dd></div>
+              <div><dt className="font-semibold text-surface-500">Status</dt><dd><SubmissionStatusBadge status={submission.status} /></dd></div>
               <div><dt className="font-semibold text-surface-500">Created</dt><dd>{formatDateTime(submission.createdAt)}</dd></div>
               <div><dt className="font-semibold text-surface-500">Original filename</dt><dd>{submission.originalFilename ?? "Pasted text"}</dd></div>
               <div><dt className="font-semibold text-surface-500">MIME type</dt><dd>{submission.mimeType ?? "-"}</dd></div>
@@ -336,7 +346,11 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               </div>
               <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${statusBadgeClass(submission.status)}`}>{submission.status}</span>
             </div>
-            {submission.status === "IMPORTED" ? (
+            {deleted ? (
+              <AdminAlert variant="readOnly" size="sm">
+                Soft-deleted draft. Hidden from review queues; record preserved for audit.
+              </AdminAlert>
+            ) : submission.status === "IMPORTED" ? (
               <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Imported submissions are locked in this v1 review UI.</p>
             ) : (
               <form action={updateSubmissionReviewStatus} className="grid gap-4">
@@ -382,7 +396,9 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               <span className={`rounded-full px-4 py-2 font-mono text-mono-sm uppercase ${preflight.submissionReadiness.alreadyImported ? "bg-navy-50 text-navy-800" : preflight.overallSummary.importBlocked ? "bg-red-50 text-red-800" : "bg-green-50 text-green-800"}`}>{preflight.submissionReadiness.alreadyImported ? "Historical" : preflight.overallSummary.importBlocked ? "Blocked" : "Ready"}</span>
             </div>
             {preflight.submissionReadiness.alreadyImported ? (
-              <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-800">Already imported. Preflight is historical/read-only.</p>
+              <AdminAlert variant="readOnly" size="md" className="p-4 text-navy-800">
+                Already imported. Preflight is historical/read-only.
+              </AdminAlert>
             ) : null}
             <div className="grid gap-3 md:grid-cols-4">
               <span className={`rounded-md p-3 text-sm font-semibold ${preflight.submissionReadiness.statusApproved ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>Approved or imported: {preflight.submissionReadiness.statusApproved ? "yes" : "no"}</span>
@@ -439,7 +455,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               <div className="mt-3 max-h-[28rem] overflow-auto rounded-md border border-surface-200 bg-white">
                 <table className="min-w-[54rem] w-full text-left text-sm">
                   <thead className="sticky top-0 bg-white font-mono text-mono-sm uppercase text-surface-600"><tr><th className="px-3 py-2">Player</th><th className="px-3 py-2">Gender</th><th className="px-3 py-2">Action</th><th className="px-3 py-2">Exact matches</th><th className="px-3 py-2">Possible matches</th></tr></thead>
-                  <tbody>{preflight.players.map((player) => <tr key={player.cleanedName} className="border-t border-surface-200"><td className="px-3 py-2">{player.cleanedName}</td><td className="px-3 py-2">{player.gender}</td><td className="px-3 py-2">{player.action}</td><td className="px-3 py-2">{player.exactMatches.map((match) => match.displayName).join(", ") || "-"}</td><td className="px-3 py-2">{player.possibleCaseMatches.map((match) => match.displayName).join(", ") || "-"}</td></tr>)}</tbody>
+                  <tbody>{preflight.players.map((player) => <tr key={player.cleanedName} className="border-t border-surface-200"><td className="px-3 py-2">{player.cleanedName}</td><td className="px-3 py-2">{player.gender}</td><td className="px-3 py-2">{player.action}</td><td className="px-3 py-2">{player.matchedPlayer?.displayName ?? "-"}</td><td className="px-3 py-2">{player.blockReason ?? "-"}</td></tr>)}</tbody>
                 </table>
               </div>
             </details>
@@ -457,7 +473,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               <dl className="mt-3 grid gap-3 text-sm md:grid-cols-4">
                 <div><dt className="font-semibold text-surface-500">Submitted rows</dt><dd>{preflight.gameStats.totalSubmittedRows}</dd></div>
                 <div><dt className="font-semibold text-surface-500">Would create</dt><dd>{preflight.gameStats.wouldCreate}</dd></div>
-                <div><dt className="font-semibold text-surface-500">Would update</dt><dd>{preflight.gameStats.wouldUpdate}</dd></div>
+                <div><dt className="font-semibold text-surface-500">Would skip</dt><dd>{preflight.gameStats.wouldSkip}</dd></div>
                 <div><dt className="font-semibold text-surface-500">Manual review</dt><dd>{preflight.gameStats.manualReview}</dd></div>
               </dl>
             </details>
@@ -473,7 +489,9 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 </div>
               </form>
             ) : submission.status === "IMPORTED" ? (
-              <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-800">This submission has already been imported. Re-running import is disabled from the UI.</p>
+              <AdminAlert variant="readOnly" size="md" className="p-4 text-navy-800">
+                This submission has already been imported. Re-running import is disabled from the UI.
+              </AdminAlert>
             ) : submission.status === "APPROVED" && preflight.overallSummary.importBlocked ? (
               <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
                 <strong className="block">Import Official Data is blocked by preflight review.</strong>
@@ -482,7 +500,9 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                 </ul>
               </div>
             ) : (
-              <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Official import becomes available only when the submission is APPROVED and preflight is not blocked.</p>
+              <AdminAlert variant="info" size="md" className="bg-surface-100 p-4 text-ink-600">
+                Official import becomes available only when the submission is APPROVED and preflight is not blocked.
+              </AdminAlert>
             )}
           </section>
 
@@ -585,7 +605,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
                       <td className="px-4 py-3">{check.awayTeamName} {check.awayScore}</td>
                       <td className="px-4 py-3">{check.summedHomePlayerPoints}</td>
                       <td className="px-4 py-3">{check.summedAwayPlayerPoints}</td>
-                      <td className="px-4 py-3"><span className="flex gap-2">{passFail(check.homePass)} {passFail(check.awayPass)}</span></td>
+                      <td className="px-4 py-3"><span className="flex gap-2"><PassFailBadge pass={check.homePass} /> <PassFailBadge pass={check.awayPass} /></span></td>
                     </tr>
                   ))}
                 </tbody>
@@ -621,6 +641,20 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
           </details>
             </div>
           </details>
+
+          {canDeleteSubmission ? (
+            <section id="danger-zone" className="scroll-mt-28 border border-red-300 bg-red-50/50 p-4 shadow-sm">
+              <h2 className="font-display text-2xl text-red-950">Danger Zone</h2>
+              <p className="mt-1 text-sm text-red-900">Remove this submission from admin review queues. The submission row, raw JSON, and admin notes remain in the database for audit.</p>
+              <div className="mt-4 rounded-md border border-red-200 bg-white p-4">
+                <SubmissionDeleteDraftForm
+                  submissionId={submission.id}
+                  submissionTitle={submission.title}
+                  submissionStatus={submission.status}
+                />
+              </div>
+            </section>
+          ) : null}
         </section>
       </div>
     </main>

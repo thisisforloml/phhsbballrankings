@@ -293,3 +293,143 @@ export function adjustedRating(gamesPlayed: number, observedRating: number, ageG
   const priorGames = gender === "Girls" ? 5 : 10;
   return ((gamesPlayed * observedRating) + (priorGames * ageGroupMeanRating)) / (gamesPlayed + priorGames);
 }
+
+export type FormulaV2StatInput = {
+  points: number;
+  fieldGoalsMade: number | null;
+  fieldGoalsAttempt: number | null;
+  freeThrowsMade: number | null;
+  freeThrowsAttempt: number | null;
+  offensiveRebounds: number | null;
+  defensiveRebounds: number | null;
+  rebounds: number | null;
+  assists: number | null;
+  steals: number | null;
+  blocks: number | null;
+  turnovers: number | null;
+  fouls: number | null;
+  foulsDrawn: number | null;
+};
+
+export type FormulaV2LeagueContext = {
+  points: number;
+  fieldGoalsAttempt: number;
+  fieldGoalsMade: number;
+  freeThrowsAttempt: number;
+  freeThrowsMade: number;
+  offensiveRebounds: number;
+  defensiveRebounds: number;
+  rebounds: number;
+  turnovers: number;
+  fouls: number;
+  possessions: number;
+  leaguePPP: number;
+  leagueDRBPct: number;
+  leagueORBPct: number;
+  leagueFTCostPerFoul: number;
+};
+
+function statNumber(value: number | null | undefined) {
+  return typeof value === "number" && Number.isFinite(value) ? value : 0;
+}
+
+export function computeFormulaV2LeagueContext(stats: FormulaV2StatInput[]): FormulaV2LeagueContext {
+  const totals = stats.reduce(
+    (sum, stat) => {
+      const fga = statNumber(stat.fieldGoalsAttempt);
+      const fgm = statNumber(stat.fieldGoalsMade);
+      const fta = statNumber(stat.freeThrowsAttempt);
+      const ftm = statNumber(stat.freeThrowsMade);
+      const oreb = statNumber(stat.offensiveRebounds);
+      const dreb = statNumber(stat.defensiveRebounds);
+      const rebounds = statNumber(stat.rebounds);
+      const turnovers = statNumber(stat.turnovers);
+      const fouls = statNumber(stat.fouls);
+
+      return {
+        points: sum.points + statNumber(stat.points),
+        fieldGoalsAttempt: sum.fieldGoalsAttempt + fga,
+        fieldGoalsMade: sum.fieldGoalsMade + fgm,
+        freeThrowsAttempt: sum.freeThrowsAttempt + fta,
+        freeThrowsMade: sum.freeThrowsMade + ftm,
+        offensiveRebounds: sum.offensiveRebounds + oreb,
+        defensiveRebounds: sum.defensiveRebounds + dreb,
+        rebounds: sum.rebounds + rebounds,
+        turnovers: sum.turnovers + turnovers,
+        fouls: sum.fouls + fouls
+      };
+    },
+    {
+      points: 0,
+      fieldGoalsAttempt: 0,
+      fieldGoalsMade: 0,
+      freeThrowsAttempt: 0,
+      freeThrowsMade: 0,
+      offensiveRebounds: 0,
+      defensiveRebounds: 0,
+      rebounds: 0,
+      turnovers: 0,
+      fouls: 0
+    }
+  );
+
+  const possessions = totals.fieldGoalsAttempt - totals.offensiveRebounds + totals.turnovers + 0.44 * totals.freeThrowsAttempt;
+  const totalRebounds = totals.rebounds || totals.offensiveRebounds + totals.defensiveRebounds;
+  const leaguePPP = safeDivide(totals.points, possessions, 0)!;
+  const leagueDRBPct = safeDivide(totals.defensiveRebounds, totalRebounds, 0)!;
+  const leagueORBPct = safeDivide(totals.offensiveRebounds, totalRebounds, 0)!;
+  const leagueFTCostPerFoul = totals.fouls === 0 ? 0 : (totals.freeThrowsMade * leaguePPP) / totals.fouls;
+
+  return {
+    ...totals,
+    possessions,
+    leaguePPP,
+    leagueDRBPct,
+    leagueORBPct,
+    leagueFTCostPerFoul
+  };
+}
+
+export function computeFormulaV2RawGameValue(stat: FormulaV2StatInput, context: FormulaV2LeagueContext) {
+  const fgm = statNumber(stat.fieldGoalsMade);
+  const fga = statNumber(stat.fieldGoalsAttempt);
+  const ftm = statNumber(stat.freeThrowsMade);
+  const fta = statNumber(stat.freeThrowsAttempt);
+  const missedFG = Math.max(0, fga - fgm);
+  const missedFT = Math.max(0, fta - ftm);
+  const foulsDrawnValue = stat.foulsDrawn === null || stat.foulsDrawn === undefined ? 0 : statNumber(stat.foulsDrawn) * context.leagueFTCostPerFoul;
+
+  return (
+    statNumber(stat.points) -
+    missedFG * context.leaguePPP * context.leagueDRBPct -
+    missedFT * 0.44 * context.leaguePPP +
+    statNumber(stat.offensiveRebounds) * context.leaguePPP +
+    statNumber(stat.defensiveRebounds) * context.leaguePPP * context.leagueORBPct +
+    statNumber(stat.assists) * context.leaguePPP * 0.35 +
+    statNumber(stat.steals) * context.leaguePPP +
+    statNumber(stat.blocks) * context.leaguePPP * 0.65 -
+    statNumber(stat.turnovers) * context.leaguePPP -
+    statNumber(stat.fouls) * context.leagueFTCostPerFoul +
+    foulsDrawnValue
+  );
+}
+
+export function percentileScaleToRating(values: number[]) {
+  if (!values.length) return [];
+  const sorted = [...values].sort((a, b) => a - b);
+  const percentileByValue = new Map<number, number>();
+
+  for (let index = 0; index < sorted.length; index += 1) {
+    const value = sorted[index];
+    if (percentileByValue.has(value)) continue;
+
+    let last = index;
+    while (last + 1 < sorted.length && sorted[last + 1] === value) last += 1;
+
+    const percentile = sorted.length === 1 ? 1 : ((index + last) / 2) / (sorted.length - 1);
+    percentileByValue.set(value, percentile);
+    index = last;
+  }
+
+  return values.map((value) => 1 + (percentileByValue.get(value) ?? 0) * 99);
+}

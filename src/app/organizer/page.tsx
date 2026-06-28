@@ -2,6 +2,7 @@
 import { UserRole } from "@prisma/client";
 import { requireOrganizerUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { activeSubmissionWhere } from "@/lib/submission-lifecycle";
 
 export const metadata = {
   title: "Organizer Portal",
@@ -11,7 +12,7 @@ export const metadata = {
 const workflowCards = [
   {
     title: "Submissions",
-    description: "Submit JSON, CSV, or XLSX game data for admin review. Submissions do not change official stats until imported by an admin.",
+    description: "Submit spreadsheet files or manual game stats for admin review. JSON import is admin-managed.",
     href: "/organizer/submissions",
     action: "Open Submissions"
   },
@@ -27,9 +28,9 @@ export default async function OrganizerPage() {
   const user = await requireOrganizerUser();
   const isAdmin = user.role === UserRole.ADMIN;
   const [mySubmissionCount, recentSubmissions, statusCounts] = await Promise.all([
-    prisma.submission.count({ where: { submittedByUserId: user.id } }),
+    prisma.submission.count({ where: { ...activeSubmissionWhere, submittedByUserId: user.id } }),
     prisma.submission.findMany({
-      where: { submittedByUserId: user.id },
+      where: { ...activeSubmissionWhere, submittedByUserId: user.id },
       orderBy: { createdAt: "desc" },
       take: 5,
       select: { id: true, title: true, status: true, type: true, createdAt: true }
@@ -103,9 +104,9 @@ export default async function OrganizerPage() {
               <h2 className="font-display text-3xl text-navy-800">Help</h2>
               <ul className="mt-4 grid gap-3 text-sm leading-6 text-ink-600">
                 <li>Submit only games you are authorized to submit.</li>
-                <li>Use JSON, CSV, or XLSX uploads for structured box scores.</li>
+                <li>Use spreadsheet upload or manual entry for structured box scores.</li>
                 <li>Submissions stay separate from official rankings until admin review.</li>
-                <li>Contact OnCourt admin if a team, player, or league is missing.</li>
+                <li>Contact Peach Basket Rankings PH admin if a team, player, or league is missing.</li>
               </ul>
             </article>
           </section>
