@@ -1,20 +1,21 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { Globe, Shirt, Trophy, type LucideIcon } from "lucide-react";
 import type { PlayerProfile } from "@/lib/player-profile-types";
 import { AgeUnverifiedBadge } from "@/components/public/AgeUnverifiedBadge";
 import {
   PlayerProfileSectionNav,
   type PlayerProfileSectionId,
 } from "@/components/public/PlayerProfileSectionNav";
-import { formatHeight } from "@/lib/format";
-import { formatBoardRank, isPublicRankBand } from "@/lib/public-rank-display";
-import { getProgramAbbreviation, getProgramDisplayName } from "@/lib/uaap-school-display";
-import { ProfileQuickActions } from "@/components/public/ProfileQuickActions";
-import { ScoutRankChange } from "@/components/public/ScoutRankChange";
+import { ProfileShareButton } from "@/components/public/ProfileQuickActions";
 import { StarRating } from "@/components/ui";
+import { formatHeight } from "@/lib/format";
+import { formatPublicRank, isPublicRankBand } from "@/lib/public-rank-display";
+import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
-export const PLAYER_PROFILE_MAX_WIDTH = "max-w-[74rem]";
+export const PLAYER_PROFILE_MAX_WIDTH = "max-w-[950px]";
 
 const POSITION_LABELS: Record<string, string> = {
   C: "Center",
@@ -44,40 +45,219 @@ function ageGroupLabel(ageGroup: PlayerProfile["ageGroup"]) {
   return ageGroup.replace(/^U/, "") + "U";
 }
 
-function schoolFullName(profile: PlayerProfile) {
+function schoolName(profile: PlayerProfile) {
   if (profile.schoolOverride?.trim()) return profile.schoolOverride.trim();
   if (profile.currentTeam?.trim()) return getProgramDisplayName(profile.currentTeam);
   return null;
 }
 
-function profileStatus(profile: PlayerProfile) {
-  if (!profile.currentTeam?.trim()) return "Not listed";
-  const abbrev = getProgramAbbreviation(profile.currentTeam);
-  if (profile.nationalRank) return `Ranked · ${abbrev}`;
-  return `Listed · ${abbrev}`;
+function classDisplay(classYear: string | null) {
+  if (!classYear?.trim()) return null;
+  if (/^class of\s+/i.test(classYear)) return classYear.trim();
+  return `Class of ${classYear.trim()}`;
 }
 
-function rankRows(profile: PlayerProfile) {
-  return [
+function nationalRankHeadline(rank: number | null) {
+  if (rank == null) return null;
+  if (isPublicRankBand(rank)) return formatPublicRank(rank);
+  return `#${rank}`;
+}
+
+function ordinalRank(rank: number | null | undefined) {
+  if (!rank || rank < 1) return "—";
+  if (rank > 100) return formatPublicRank(rank);
+
+  const mod100 = rank % 100;
+  const mod10 = rank % 10;
+  let suffix = "th";
+  if (mod100 < 11 || mod100 > 13) {
+    if (mod10 === 1) suffix = "st";
+    else if (mod10 === 2) suffix = "nd";
+    else if (mod10 === 3) suffix = "rd";
+  }
+  return `${rank}${suffix}`;
+}
+
+function commitmentStatus(_profile: PlayerProfile): "Committed" | "Undeclared" {
+  return "Undeclared";
+}
+
+const META_LABEL_CLASS = "text-[0.625rem] font-bold uppercase tracking-[0.16em] text-court-500";
+
+function DossierPortrait({ profile }: { profile: PlayerProfile }) {
+  return (
+    <div className="prospect-portrait-frame relative h-full w-full">
+      {profile.photoUrl ? (
+        <img
+          src={profile.photoUrl}
+          alt=""
+          className="block h-full w-full object-cover object-top"
+        />
+      ) : (
+        <span className="absolute inset-0 grid place-items-center font-display text-5xl font-bold text-white/10">
+          {initials(profile.displayName)}
+        </span>
+      )}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-10 h-1 bg-hardwood-600" />
+    </div>
+  );
+}
+
+function MetaColumn({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
+  return (
+    <div className={`flex min-w-0 flex-col gap-1.5 ${className}`}>
+      <p className={META_LABEL_CLASS}>{label}</p>
+      <p className="text-sm font-bold leading-tight text-court-900">{children}</p>
+    </div>
+  );
+}
+
+function DossierIdentity({
+  profile,
+  school,
+  hometown,
+}: {
+  profile: PlayerProfile;
+  school: string | null;
+  hometown: string | null;
+}) {
+  const rankHeadline = nationalRankHeadline(profile.nationalRank);
+  const classYear = classDisplay(profile.classYear);
+  const position = profile.position ? positionLabel(profile.position) : null;
+  const height = profile.heightCm ? formatHeight(profile.heightCm) : null;
+  const status = commitmentStatus(profile);
+
+  return (
+    <div className="flex min-w-0 flex-col gap-6">
+      <div className={`flex min-w-0 flex-col ${rankHeadline ? "gap-4" : "gap-2"}`}>
+        {rankHeadline ? (
+          <p
+            className="font-numeric text-[clamp(2.25rem,5vw,3.25rem)] font-black leading-none text-hardwood-600"
+            aria-label={`National rank ${rankHeadline}`}
+          >
+            {rankHeadline}
+          </p>
+        ) : null}
+
+        <h1 className="min-w-0 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-black uppercase leading-[0.9] tracking-tight text-court-900">
+          {profile.displayName}
+        </h1>
+
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          {position ? (
+            <span className="rounded-sm bg-court-900 px-1.5 py-px text-[0.625rem] font-bold uppercase tracking-wide text-white">
+              {position}
+            </span>
+          ) : null}
+          {school || classYear ? (
+            <span className="inline-flex min-w-0 flex-wrap items-center gap-x-2 text-sm leading-tight">
+              {school ? <span className="font-semibold text-court-700">{school}</span> : null}
+              {school && classYear ? <span className="text-court-300" aria-hidden="true">·</span> : null}
+              {classYear ? <span className="font-display text-court-500">{classYear}</span> : null}
+            </span>
+          ) : null}
+          {profile.eligibilityVerdict ? (
+            <AgeUnverifiedBadge verdict={profile.eligibilityVerdict} className="text-xs" />
+          ) : null}
+        </div>
+      </div>
+
+      <div className="grid w-full grid-cols-3 divide-x divide-[#eeeeee]">
+        <MetaColumn label="Height" className="pr-3">
+          {height ?? "—"}
+        </MetaColumn>
+        <MetaColumn label="Hometown" className="px-3">
+          {hometown ?? "—"}
+        </MetaColumn>
+        <MetaColumn label="Status" className="pl-3">
+          {status}
+        </MetaColumn>
+      </div>
+    </div>
+  );
+}
+
+function RankRow({
+  icon: Icon,
+  label,
+  value,
+  helper,
+}: {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  helper: string;
+}) {
+  return (
+    <div className="grid grid-cols-[minmax(0,1.55fr)_4.25rem] items-center gap-x-2 py-2.5 first:pt-0 last:pb-0">
+      <div className="flex min-w-0 items-center gap-2.5 pl-3">
+        <Icon className="h-5 w-5 shrink-0 text-court-900" aria-hidden="true" />
+        <span className={META_LABEL_CLASS}>{label}</span>
+      </div>
+      <div className="flex w-full flex-col items-center gap-0.5 text-center">
+        <span className="font-display text-base font-extrabold tabular-nums leading-tight text-court-900">{value}</span>
+        {helper ? (
+          <span className="text-[0.625rem] font-medium uppercase tracking-wide text-court-500">{helper}</span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function DossierRating({ profile }: { profile: PlayerProfile }) {
+  const ranks = [
     {
-      label: "National Rank",
-      value: formatBoardRank(profile.nationalRank),
+      icon: Trophy,
+      label: "National",
+      value: ordinalRank(profile.nationalRank),
       helper: profile.nationalRank ? ageGroupLabel(profile.ageGroup) : "",
-      rawRank: profile.nationalRank,
     },
     {
-      label: "Region Rank",
-      value: formatBoardRank(profile.regionRank),
+      icon: Globe,
+      label: "Region",
+      value: ordinalRank(profile.regionRank),
       helper: profile.regionRank ? profile.region : "",
-      rawRank: profile.regionRank,
     },
     {
-      label: "Position Rank",
-      value: formatBoardRank(profile.positionRank),
+      icon: Shirt,
+      label: "Position",
+      value: ordinalRank(profile.positionRank),
       helper: profile.positionRank && profile.position ? profile.position : "",
-      rawRank: profile.positionRank,
     },
-  ].filter((row) => row.label !== "Position Rank" || Boolean(profile.positionRank && profile.position));
+  ].filter((row) => row.label !== "Position" || Boolean(profile.positionRank && profile.position));
+
+  return (
+    <div className="flex h-full w-full flex-col justify-between gap-3 pt-5 pb-2 pl-3 pr-4">
+      <div className="text-center">
+        <p
+          className="font-numeric text-[clamp(2.5rem,5vw,3.5rem)] font-black italic leading-none text-hardwood-600"
+          aria-label={`Overall rating ${profile.rating.toFixed(2)}`}
+        >
+          {profile.rating.toFixed(2)}
+        </p>
+        <div className="mt-1.5 flex justify-center">
+          <StarRating stars={profile.starRating} />
+        </div>
+      </div>
+
+      {ranks.length ? (
+        <div className="divide-y divide-[#eeeeee]">
+          {ranks.map(({ icon, label, value, helper }) => (
+            <RankRow key={label} icon={icon} label={label} value={value} helper={helper} />
+          ))}
+        </div>
+      ) : (
+        <div aria-hidden="true" />
+      )}
+
+      <Link
+        href={`/claim?player=${profile.slug}`}
+        className="mb-2 inline-flex w-full justify-center rounded-md bg-court-900 px-3 py-2 text-[0.625rem] font-bold uppercase tracking-[0.14em] text-white transition hover:bg-court-800"
+      >
+        Claim Profile
+      </Link>
+    </div>
+  );
 }
 
 type PlayerProfileHeaderProps = {
@@ -87,145 +267,54 @@ type PlayerProfileHeaderProps = {
 };
 
 export function PlayerProfileHeader({ profile, activeTab, onTabChange }: PlayerProfileHeaderProps) {
-  const ranks = rankRows(profile);
-  const school = schoolFullName(profile);
-  const classValue = profile.classYear?.replace(/^Class of\s+/i, "") ?? null;
+  const school = schoolName(profile);
   const hometown = profile.city?.trim() || null;
-  const trendDelta = profile.rankingTrend[0]?.movement ?? 0;
-
-  const statStrip = [
-    { label: "PPG", value: profile.ppg.toFixed(1) },
-    { label: "RPG", value: profile.rpg.toFixed(1) },
-    { label: "APG", value: profile.apg.toFixed(1) },
-    { label: "GP", value: String(profile.verifiedGameCount) },
-    { label: "TS%", value: profile.shooting.trueShootingPct != null ? `${profile.shooting.trueShootingPct.toFixed(1)}%` : "—" },
-  ];
 
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-scout-900 pt-24 text-scout-50 lg:pt-28">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top_left,rgba(212,114,13,0.1),transparent_60%)]"
-      />
-      <div className="container-px relative py-6 lg:py-8">
-        <div className={`mx-auto ${PLAYER_PROFILE_MAX_WIDTH}`}>
-          <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[7rem_minmax(0,1fr)_auto] lg:grid-cols-[9rem_minmax(0,1fr)_14rem] lg:gap-8">
-            <div className="prospect-portrait-frame relative mx-auto aspect-[3/4] w-28 overflow-hidden rounded-sm border border-white/10 md:mx-0 md:w-full md:max-w-[9rem]">
-              {profile.photoUrl ? (
-                <img
-                  src={profile.photoUrl}
-                  alt=""
-                  className="absolute inset-x-0 bottom-0 z-[1] h-[92%] w-full object-contain object-bottom"
+    <section className="bg-paper-500 pt-20 lg:pt-24">
+      <div className="container-px pb-3">
+        <article
+          className={`mx-auto w-full overflow-hidden rounded-[12px] border border-line-500/80 bg-white shadow-panel ${PLAYER_PROFILE_MAX_WIDTH}`}
+        >
+          <div className="flex w-full min-w-0 flex-col items-stretch p-4 max-md:h-auto md:h-[330px] md:flex-row md:items-center md:gap-6 md:p-[15px]">
+            <div className="h-[300px] w-[220px] shrink-0 overflow-hidden rounded-md max-md:aspect-[3/4] max-md:h-auto max-md:w-full">
+              <DossierPortrait profile={profile} />
+            </div>
+
+            <div className="relative z-0 flex min-h-0 min-w-0 flex-1 flex-col justify-center self-stretch md:h-full md:pr-4">
+              <ProfileShareButton
+                slug={profile.slug}
+                displayName={profile.displayName}
+                variant="plain"
+                className="absolute right-0 top-0 z-10 md:hidden"
+              />
+              <div className="relative w-full">
+                <ProfileShareButton
+                  slug={profile.slug}
+                  displayName={profile.displayName}
+                  variant="plain"
+                  className="absolute -top-1.5 right-[-1.625rem] z-20 hidden md:inline-flex"
                 />
-              ) : (
-                <span className="absolute inset-0 grid place-items-center font-display text-5xl font-bold text-white/10">
-                  {initials(profile.displayName)}
-                </span>
-              )}
+                <DossierIdentity profile={profile} school={school} hometown={hometown} />
+              </div>
             </div>
 
-            <div>
-              {profile.nationalRank ? (
-                <div className="mb-3 flex flex-wrap items-center gap-3">
-                  <span className="font-numeric text-5xl font-normal leading-none text-scout-orange-bright md:text-6xl">
-                    {formatBoardRank(profile.nationalRank)}
-                  </span>
-                  <div>
-                    <div className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-scout-500">National Rank</div>
-                    <ScoutRankChange delta={trendDelta} />
-                  </div>
-                </div>
-              ) : null}
-
-              <h1 className="font-display text-[clamp(2rem,4vw,3.25rem)] font-bold uppercase leading-[1.02] tracking-tight text-white">
-                {profile.displayName}
-              </h1>
-
-              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-scout-500">
-                {profile.position ? (
-                  <span className="rounded-sm border border-white/10 bg-scout-800 px-2 py-0.5 text-xs font-bold uppercase tracking-[0.08em] text-scout-50">
-                    {positionLabel(profile.position)}
-                  </span>
-                ) : null}
-                {school ? <span>{school}</span> : null}
-                {classValue ? (
-                  <>
-                    <span aria-hidden="true">·</span>
-                    <span>Class of {classValue}</span>
-                  </>
-                ) : null}
-              </div>
-
-              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-scout-500">
-                {profile.heightCm ? <span>HT {formatHeight(profile.heightCm)}</span> : null}
-                {hometown ? <span>{hometown}</span> : null}
-                <span>{profileStatus(profile)}</span>
-              </div>
-
-              {profile.eligibilityVerdict ? (
-                <div className="mt-3">
-                  <AgeUnverifiedBadge verdict={profile.eligibilityVerdict} className="text-xs" />
-                </div>
-              ) : null}
-            </div>
-
-            <aside className="flex flex-col gap-4 md:items-end md:text-right">
+            <div className="relative flex w-full shrink-0 flex-col max-md:border-t max-md:border-[#eeeeee] max-md:pt-4 md:h-[330px] md:w-[270px] md:justify-center md:py-[15px]">
               <div
-                className="w-full rounded-sm border border-white/10 bg-scout-800/80 px-4 py-3 text-center md:max-w-[14rem]"
-                aria-label={`Player rating ${profile.rating.toFixed(2)}, ${profile.starRating} stars`}
-              >
-                <p className="font-numeric text-[clamp(2.5rem,4vw,3.5rem)] font-normal italic leading-none text-white">
-                  {profile.rating.toFixed(2)}
-                </p>
-                <div className="mt-1.5 flex justify-center md:justify-end">
-                  <StarRating stars={profile.starRating} />
-                </div>
-              </div>
-
-              <div className="grid w-full gap-2 md:max-w-[14rem]">
-                {ranks.map(({ label, value, helper, rawRank }) => (
-                  <div
-                    key={label}
-                    className="grid grid-cols-[6.5rem_1fr] items-center gap-2 border-b border-white/[0.06] pb-2 last:border-b-0 last:pb-0"
-                  >
-                    <span className="text-[0.65rem] font-bold uppercase tracking-[0.08em] text-scout-500">{label}</span>
-                    <strong
-                      className={`flex items-baseline justify-end gap-2 font-numeric leading-none text-scout-50 ${
-                        isPublicRankBand(rawRank) ? "text-base" : "text-xl"
-                      }`}
-                    >
-                      {value}
-                      {helper ? (
-                        <small className="text-[0.65rem] font-semibold uppercase tracking-[0.06em] text-scout-500">{helper}</small>
-                      ) : null}
-                    </strong>
-                  </div>
-                ))}
-              </div>
-
-              <ProfileQuickActions slug={profile.slug} displayName={profile.displayName} />
-              <Link
-                href={`/claim?player=${profile.slug}`}
-                className="inline-flex w-full justify-center rounded-sm bg-scout-orange px-4 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-white transition hover:bg-scout-orange-bright md:max-w-[14rem]"
-              >
-                Claim Profile
-              </Link>
-            </aside>
+                aria-hidden="true"
+                className="absolute left-0 top-1/2 hidden h-[65%] w-px -translate-y-1/2 bg-[#eeeeee] md:block"
+              />
+              <DossierRating profile={profile} />
+            </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-white/[0.08] bg-white/[0.08] sm:grid-cols-5">
-            {statStrip.map(({ label, value }) => (
-              <div key={label} className="bg-scout-800 px-3 py-3 text-center sm:px-4 sm:py-4">
-                <div className="font-numeric text-xl font-normal leading-none text-scout-50 md:text-2xl">{value}</div>
-                <div className="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-scout-500">{label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 overflow-hidden rounded-sm border border-white/[0.08]">
-            <PlayerProfileSectionNav activeId={activeTab} onSelect={onTabChange} />
-          </div>
-        </div>
+          <PlayerProfileSectionNav
+            activeId={activeTab}
+            onSelect={onTabChange}
+            variant="light"
+            compact
+          />
+        </article>
       </div>
     </section>
   );

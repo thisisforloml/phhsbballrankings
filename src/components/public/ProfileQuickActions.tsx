@@ -1,18 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { Share2, GitCompare, Bookmark } from "lucide-react";
-import { useSavedPlayers } from "@/components/public/SavedPlayersProvider";
+import { Share2 } from "lucide-react";
 
-type ProfileQuickActionsProps = {
+type ProfileShareButtonProps = {
   slug: string;
   displayName: string;
+  className?: string;
+  variant?: "circle" | "plain";
 };
 
-export function ProfileQuickActions({ slug, displayName }: ProfileQuickActionsProps) {
-  const { isSaved, toggle } = useSavedPlayers();
-  const saved = isSaved(slug);
-
+export function ProfileShareButton({
+  slug,
+  displayName,
+  className = "",
+  variant = "circle",
+}: ProfileShareButtonProps) {
   async function shareProfile() {
     const url = `${window.location.origin}/players/${slug}`;
     if (navigator.share) {
@@ -22,33 +24,19 @@ export function ProfileQuickActions({ slug, displayName }: ProfileQuickActionsPr
     await navigator.clipboard.writeText(url);
   }
 
+  const variantClass =
+    variant === "plain"
+      ? "h-auto w-auto rounded-none border-0 bg-transparent p-0.5 text-court-600 hover:text-court-900"
+      : "h-9 w-9 rounded-full border border-line-500 bg-white text-court-600 hover:border-court-900 hover:text-court-900";
+
   return (
-    <div className="flex flex-wrap gap-2">
-      <button
-        type="button"
-        onClick={() => void shareProfile()}
-        className="inline-flex items-center gap-2 rounded-sm border border-line-500 bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-court-700 hover:border-court-900"
-      >
-        <Share2 className="h-4 w-4" aria-hidden="true" />
-        Share
-      </button>
-      <Link
-        href={`/players/compare?a=${encodeURIComponent(slug)}`}
-        className="inline-flex items-center gap-2 rounded-sm border border-line-500 bg-white px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-court-700 hover:border-court-900"
-      >
-        <GitCompare className="h-4 w-4" aria-hidden="true" />
-        Compare
-      </Link>
-      <button
-        type="button"
-        onClick={() => toggle({ slug, displayName })}
-        className={`inline-flex items-center gap-2 rounded-sm border px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] ${
-          saved ? "border-hardwood-600 bg-hardwood-600 text-white" : "border-line-500 bg-white text-court-700 hover:border-court-900"
-        }`}
-      >
-        <Bookmark className="h-4 w-4" aria-hidden="true" />
-        {saved ? "Saved" : "Save"}
-      </button>
-    </div>
+    <button
+      type="button"
+      onClick={() => void shareProfile()}
+      aria-label={`Share ${displayName} profile`}
+      className={`inline-flex shrink-0 items-center justify-center transition ${variantClass} ${className}`}
+    >
+      <Share2 className="h-4 w-4" aria-hidden="true" />
+    </button>
   );
 }

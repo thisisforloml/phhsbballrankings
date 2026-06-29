@@ -6,84 +6,30 @@ import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { formatClassYear, getMonthStart } from "./ranking-eligibility";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
+import { buildEligibilityInput, evaluateEligibility } from "@/lib/eligibility";
+import { buildCompetitionParticipationFromStats } from "@/lib/player-competition-context";
+import {
+  buildBestGame,
+  buildDefaultIntelligence,
+  buildGameHighs,
+  buildLeagueHistoryFromStats,
+  buildProfileAverages,
+  buildProfileShooting,
+  buildRankingTrend,
+  buildRecentForm,
+  mapFullGameStat,
+} from "@/lib/player-profile-build";
+import type { PlayerProfile } from "@/lib/player-profile-types";
 import { prisma } from "./prisma";
+
+export type { PlayerProfile, PlayerProfileGame, PlayerProfileLeague } from "./player-profile-types";
 
 const formulaVersionNumber = 1;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 type LoadedPlayer = NonNullable<Awaited<ReturnType<typeof loadPlayerById>>>;
 
-export type PlayerProfileGame = {
-  gameId: string;
-  gameDate: string;
-  leagueName: string;
-  seasonName: string;
-  teamName: string;
-  opponentName: string;
-  result: "W" | "L";
-  teamScore: number;
-  opponentScore: number;
-  points: number;
-  rebounds: number;
-  assists: number;
-  finalPerformanceScore: number | null;
-};
-
-export type PlayerProfileLeague = {
-  leagueName: string;
-  seasonName: string;
-  tier: number;
-  tierLabel: "Entry" | "Developmental" | "Competitive" | "Elite";
-  gamesPlayed: number;
-  avgPoints: number;
-  avgAssists: number;
-  avgRebounds: number;
-};
-
-export type PlayerProfile = {
-  id: string;
-  slug: string;
-  firstName: string;
-  lastName: string;
-  displayName: string;
-  city: string;
-  region: string;
-  gender: "BOYS" | "GIRLS";
-  position: string | null;
-  heightCm: number | null;
-  birthDate: string | null;
-  birthYear: number | null;
-  classYear: string | null;
-  classYearOverride: number | null;
-  schoolOverride: string | null;
-  ageGroupOverride: "U13" | "U16" | "U19" | null;
-  age: number | null;
-  photoUrl: string | null;
-  currentTeam: string;
-  ageGroup: "U13" | "U16" | "U19";
-  rating: number;
-  observedRating: number;
-  starRating: 1 | 2 | 3 | 4 | 5;
-  verifiedGameCount: number;
-  nationalRank: number | null;
-  regionRank: number | null;
-  positionRank: number | null;
-  snapshotWeekOf: string | null;
-  gamesPlayed: number;
-  ppg: number;
-  rpg: number;
-  apg: number;
-  spg: number;
-  bpg: number;
-  bestFourthStat: {
-    label: string;
-    value: number | string;
-  };
-  latestFiveGames: PlayerProfileGame[];
-  leagues: PlayerProfileLeague[];
-};
-
-function tierLabel(tier: number): PlayerProfileLeague["tierLabel"] {
+function tierLabel(tier: number): "Entry" | "Developmental" | "Competitive" | "Elite" {
   if (tier >= 4) return "Elite";
   if (tier === 3) return "Competitive";
   if (tier === 2) return "Developmental";
@@ -109,7 +55,7 @@ function playerNameParts(displayName: string, firstName: string, lastName: strin
   const parts = displayName.trim().split(/\s+/);
   return {
     firstName: firstName || parts[0] || displayName,
-    lastName: lastName || parts.slice(1).join(" ") || parts[0] || displayName
+    lastName: lastName || parts.slice(1).join(" ") || parts[0] || displayName,
   };
 }
 
@@ -117,28 +63,27 @@ async function loadPlayerById(id: string) {
   return prisma.player.findFirst({
     where: {
       id,
-      deletedAt: null
+      deletedAt: null,
     },
     include: {
       currentProgram: true,
       currentRatings: {
-        where: { policyVersionId: getActivePolicyVersionId() }
+        where: { policyVersionId: getActivePolicyVersionId() },
       },
       rankingRows: {
         where: {
           snapshot: {
             scope: RankingScope.NATIONAL,
-
             formulaVersion: {
-              versionNumber: formulaVersionNumber
+              versionNumber: formulaVersionNumber,
             },
             city: null,
-            region: null
-          }
+            region: null,
+          },
         },
         include: {
-          snapshot: true
-        }
+          snapshot: true,
+        },
       },
       gameStats: {
         where: {
@@ -146,18 +91,18 @@ async function loadPlayerById(id: string) {
           performanceScores: {
             some: {
               formulaVersion: { versionNumber: formulaVersionNumber },
-              deletedAt: null
-            }
-          }
+              deletedAt: null,
+            },
+          },
         },
         include: {
           team: { include: { program: true } },
           performanceScores: {
             where: {
               formulaVersion: { versionNumber: formulaVersionNumber },
-              deletedAt: null
+              deletedAt: null,
             },
-            take: 1
+            take: 1,
           },
           game: {
             include: {
@@ -165,19 +110,19 @@ async function loadPlayerById(id: string) {
               awayTeam: true,
               season: {
                 include: {
-                  league: true
-                }
-              }
-            }
-          }
+                  league: true,
+                },
+              },
+            },
+          },
         },
         orderBy: {
           game: {
-            gameDate: "desc"
-          }
-        }
-      }
-    }
+            gameDate: "desc",
+          },
+        },
+      },
+    },
   });
 }
 
@@ -186,11 +131,11 @@ async function resolvePlayerIdBySlug(slug: string) {
     const exactPlayer = await prisma.player.findFirst({
       where: {
         id: slug,
-        deletedAt: null
+        deletedAt: null,
       },
       select: {
-        id: true
-      }
+        id: true,
+      },
     });
 
     if (exactPlayer) return exactPlayer.id;
@@ -198,12 +143,12 @@ async function resolvePlayerIdBySlug(slug: string) {
 
   const candidates = await prisma.player.findMany({
     where: {
-      deletedAt: null
+      deletedAt: null,
     },
     select: {
       id: true,
-      displayName: true
-    }
+      displayName: true,
+    },
   });
   const matches = candidates.filter((player) => slugify(player.displayName) === slug);
 
@@ -211,7 +156,12 @@ async function resolvePlayerIdBySlug(slug: string) {
 }
 
 function latestSnapshotRow(player: LoadedPlayer, ageGroup: AgeGroup) {
-  const matchingRows = player.rankingRows.filter((row) => row.snapshot.gender === player.gender && row.snapshot.ageGroup === ageGroup && row.snapshot.weekOf.getTime() === getMonthStart(row.snapshot.weekOf).getTime());
+  const matchingRows = player.rankingRows.filter(
+    (row) =>
+      row.snapshot.gender === player.gender &&
+      row.snapshot.ageGroup === ageGroup &&
+      row.snapshot.weekOf.getTime() === getMonthStart(row.snapshot.weekOf).getTime()
+  );
   matchingRows.sort((left, right) => right.snapshot.weekOf.getTime() - left.snapshot.weekOf.getTime());
   return matchingRows[0] ?? null;
 }
@@ -241,87 +191,39 @@ async function deriveSnapshotRanks(player: LoadedPlayer, ageGroup: AgeGroup, sna
       formulaVersion: { versionNumber: formulaVersionNumber },
       city: null,
       region: null,
-      weekOf: snapshotWeekOf
+      weekOf: snapshotWeekOf,
     },
     include: {
       rows: {
         include: { player: { select: { id: true, region: true, position: true, deletedAt: true } } },
-        orderBy: { rank: "asc" }
-      }
-    }
+        orderBy: { rank: "asc" },
+      },
+    },
   });
 
   if (!snapshot) return { regionRank: null, positionRank: null };
   const region = player.region?.trim().toLowerCase();
   const position = normalizePosition(player.position);
 
-  const regionRows = region ? snapshot.rows.filter((row) => row.player.deletedAt === null && row.player.region?.trim().toLowerCase() === region) : [];
-  const positionRows = position ? snapshot.rows.filter((row) => row.player.deletedAt === null && normalizePosition(row.player.position) === position) : [];
+  const regionRows = region
+    ? snapshot.rows.filter((row) => row.player.deletedAt === null && row.player.region?.trim().toLowerCase() === region)
+    : [];
+  const positionRows = position
+    ? snapshot.rows.filter(
+        (row) => row.player.deletedAt === null && normalizePosition(row.player.position) === position
+      )
+    : [];
 
   return {
-    regionRank: regionRows.findIndex((row) => row.playerId === player.id) >= 0 ? regionRows.findIndex((row) => row.playerId === player.id) + 1 : null,
-    positionRank: positionRows.findIndex((row) => row.playerId === player.id) >= 0 ? positionRows.findIndex((row) => row.playerId === player.id) + 1 : null
+    regionRank:
+      regionRows.findIndex((row) => row.playerId === player.id) >= 0
+        ? regionRows.findIndex((row) => row.playerId === player.id) + 1
+        : null,
+    positionRank:
+      positionRows.findIndex((row) => row.playerId === player.id) >= 0
+        ? positionRows.findIndex((row) => row.playerId === player.id) + 1
+        : null,
   };
-}
-
-function mapGameStat(stat: LoadedPlayer["gameStats"][number]): PlayerProfileGame {
-  const isHome = stat.teamId === stat.game.homeTeamId;
-  const teamScore = isHome ? stat.game.homeScore : stat.game.awayScore;
-  const opponentScore = isHome ? stat.game.awayScore : stat.game.homeScore;
-  const opponentName = getUaapSchoolDisplayName(isHome ? stat.game.awayTeam.name : stat.game.homeTeam.name);
-  const scoreRow = stat.performanceScores[0];
-  const finalPerformanceScore = scoreRow?.finalPerformanceScore ?? scoreRow?.performanceScore ?? null;
-
-  return {
-    gameId: stat.gameId,
-    gameDate: stat.game.gameDate.toISOString(),
-    leagueName: stat.game.season.league.name,
-    seasonName: stat.game.season.name,
-    teamName: getUaapSchoolDisplayName(stat.team.name),
-    opponentName,
-    result: teamScore > opponentScore ? "W" : "L",
-    teamScore,
-    opponentScore,
-    points: stat.points,
-    rebounds: stat.rebounds,
-    assists: stat.assists,
-    finalPerformanceScore: finalPerformanceScore === null ? null : Number(finalPerformanceScore)
-  };
-}
-
-function buildLeagueHistory(games: PlayerProfileGame[], stats: LoadedPlayer["gameStats"]): PlayerProfileLeague[] {
-  const grouped = new Map<string, { leagueName: string; seasonName: string; tier: number; points: number; assists: number; rebounds: number; games: number }>();
-
-  for (const stat of stats) {
-    const league = stat.game.season.league;
-    const key = `${league.id}:${stat.game.seasonId}`;
-    const existing = grouped.get(key) ?? {
-      leagueName: league.name,
-      seasonName: stat.game.season.name,
-      tier: league.tier,
-      points: 0,
-      assists: 0,
-      rebounds: 0,
-      games: 0
-    };
-
-    existing.points += stat.points;
-    existing.assists += stat.assists;
-    existing.rebounds += stat.rebounds;
-    existing.games += 1;
-    grouped.set(key, existing);
-  }
-
-  return [...grouped.values()].map((item) => ({
-    leagueName: item.leagueName,
-    seasonName: item.seasonName,
-    tier: item.tier,
-    tierLabel: tierLabel(item.tier),
-    gamesPlayed: item.games,
-    avgPoints: item.games ? roundOne(item.points / item.games) : 0,
-    avgAssists: item.games ? roundOne(item.assists / item.games) : 0,
-    avgRebounds: item.games ? roundOne(item.rebounds / item.games) : 0
-  }));
 }
 
 export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfile | null> {
@@ -336,20 +238,28 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
   const displayAgeGroup = (player.ageGroupOverride || profileAgeGroup) as AgeGroup;
   const snapshotRow = latestSnapshotRow(player, profileAgeGroup);
   const derivedRanks = await deriveSnapshotRanks(player, profileAgeGroup, snapshotRow?.snapshot.weekOf ?? null);
-  const games = player.gameStats.map(mapGameStat);
+  const games = player.gameStats.map((stat) => {
+    const isHome = stat.teamId === stat.game.homeTeamId;
+    const teamScore = isHome ? stat.game.homeScore : stat.game.awayScore;
+    const opponentScore = isHome ? stat.game.awayScore : stat.game.homeScore;
+    const opponentName = getUaapSchoolDisplayName(isHome ? stat.game.awayTeam.name : stat.game.homeTeam.name);
+    const teamName = getUaapSchoolDisplayName(stat.team.name);
+
+    return mapFullGameStat(stat, opponentName, teamScore, opponentScore, teamName);
+  });
   const gamesPlayed = games.length;
   const totals = player.gameStats.reduce(
     (sum, stat) => ({
       points: sum.points + stat.points,
       rebounds: sum.rebounds + stat.rebounds,
-      assists: sum.assists + stat.assists
+      assists: sum.assists + stat.assists,
     }),
     { points: 0, rebounds: 0, assists: 0 }
   );
   const defensiveTotals = player.gameStats.reduce(
     (sum, stat) => ({
       steals: sum.steals + (stat.steals ?? 0),
-      blocks: sum.blocks + (stat.blocks ?? 0)
+      blocks: sum.blocks + (stat.blocks ?? 0),
     }),
     { steals: 0, blocks: 0 }
   );
@@ -358,6 +268,24 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
   const ratingValue = Number(rating?.adjustedRating ?? 0);
   const spg = gamesPlayed ? roundOne(defensiveTotals.steals / gamesPlayed) : 0;
   const bpg = gamesPlayed ? roundOne(defensiveTotals.blocks / gamesPlayed) : 0;
+  const averages = buildProfileAverages(games);
+  const recentFiveAverages = games.length ? buildProfileAverages(games.slice(0, 5)) : null;
+  const shooting = buildProfileShooting(games);
+  const verifiedGameCount = rating?.verifiedGameCount ?? gamesPlayed;
+  const eligibilityVerdict = evaluateEligibility(
+    buildEligibilityInput({
+      playerId: player.id,
+      gender: player.gender,
+      birthDate: player.birthDate,
+      firstRankingEligibilityAt: player.firstRankingEligibilityAt,
+      classYearOverride: player.classYearOverride,
+      ageGroupOverride: player.ageGroupOverride,
+      ratingAgeGroup: profileAgeGroup,
+      verifiedGameCount,
+      evaluatedBoard: displayAgeGroup,
+      formulaVersionId: getActivePolicyVersionId(),
+    })
+  );
 
   return {
     id: player.id,
@@ -378,16 +306,22 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     ageGroupOverride: (player.ageGroupOverride as PlayerProfile["ageGroupOverride"]) ?? null,
     age: calculateAge(player.birthDate),
     photoUrl: player.photoUrl,
-    currentTeam: player.currentProgram?.fullName || player.schoolOverride?.trim() || mostRecentStat?.team.program?.fullName || getUaapSchoolDisplayName(mostRecentStat?.team.name),
+    currentTeam:
+      player.currentProgram?.fullName ||
+      player.schoolOverride?.trim() ||
+      mostRecentStat?.team.program?.fullName ||
+      getUaapSchoolDisplayName(mostRecentStat?.team.name) ||
+      "",
     ageGroup: displayAgeGroup,
     rating: ratingValue,
     observedRating: Number(rating?.observedRating ?? rating?.adjustedRating ?? 0),
     starRating: (rating?.starRating ?? 1) as PlayerProfile["starRating"],
-    verifiedGameCount: rating?.verifiedGameCount ?? gamesPlayed,
+    verifiedGameCount,
     nationalRank: snapshotRow?.rank ?? null,
     regionRank: derivedRanks.regionRank,
     positionRank: derivedRanks.positionRank,
     snapshotWeekOf: snapshotRow?.snapshot.weekOf.toISOString() ?? null,
+    eligibilityVerdict,
     gamesPlayed,
     ppg: gamesPlayed ? roundOne(totals.points / gamesPlayed) : 0,
     rpg: gamesPlayed ? roundOne(totals.rebounds / gamesPlayed) : 0,
@@ -396,6 +330,18 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     bpg,
     bestFourthStat: bestFourthStat({ spg, bpg, rating: ratingValue }),
     latestFiveGames: games.slice(0, 5),
-    leagues: buildLeagueHistory(games, player.gameStats)
+    allGames: games,
+    leagues: buildLeagueHistoryFromStats(player.gameStats, tierLabel),
+    competitionParticipation: buildCompetitionParticipationFromStats(player.gameStats),
+    averages,
+    recentFiveAverages,
+    shooting,
+    advancedMetrics: [],
+    gameHighs: buildGameHighs(games),
+    bestGame: buildBestGame(games),
+    roleIndicators: [],
+    intelligence: buildDefaultIntelligence(gamesPlayed),
+    recentForm: buildRecentForm(games, averages),
+    rankingTrend: buildRankingTrend(player.rankingRows, profileAgeGroup, player.gender),
   };
 }

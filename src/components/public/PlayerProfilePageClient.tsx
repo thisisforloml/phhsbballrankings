@@ -17,8 +17,18 @@ import {
 } from "@/components/public/PlayerProfileCharts";
 import { PlayerProfileHeader, PLAYER_PROFILE_MAX_WIDTH } from "@/components/public/PlayerProfileHeader";
 import type { PlayerProfileSectionId } from "@/components/public/PlayerProfileSectionNav";
-import { ScoutSectionLabel } from "@/components/public/ScoutSectionLabel";
 import { PercentileBarList } from "@/components/public/charts/ProfileCharts";
+
+const PROFILE_PANEL = "overflow-hidden rounded-md border border-line-500 bg-white shadow-sm";
+
+function ProfileSectionLabel({ children }: { children: string }) {
+  return (
+    <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-hardwood-600">
+      <span aria-hidden="true" className="inline-block h-4 w-1 rounded-full bg-hardwood-600" />
+      {children}
+    </h2>
+  );
+}
 
 function PlayerOverviewIntelligence({ profile }: { profile: PlayerProfile }) {
   const { intelligence } = profile;
@@ -36,25 +46,25 @@ function PlayerOverviewIntelligence({ profile }: { profile: PlayerProfile }) {
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       {percentileItems.length ? (
-        <article className="rounded-sm border border-white/[0.08] bg-scout-800/80 p-4 md:p-5">
-          <ScoutSectionLabel>Percentile Rankings</ScoutSectionLabel>
-          <p className="mt-2 text-sm font-semibold text-scout-500">{intelligence.roleArchetype.label}</p>
-          <div className="mt-4 [&_strong]:text-scout-orange-bright [&_span]:text-scout-50 [&_.text-court-500]:text-scout-500 [&_.text-court-900]:text-scout-50 [&_.bg-line-500]:bg-scout-700">
+        <article className={`${PROFILE_PANEL} p-4 md:p-5`}>
+          <ProfileSectionLabel>Percentile Rankings</ProfileSectionLabel>
+          <p className="mt-2 text-sm font-semibold text-court-500">{intelligence.roleArchetype.label}</p>
+          <div className="mt-4">
             <PercentileBarList items={percentileItems} ariaLabel="Board percentile rankings" />
           </div>
         </article>
       ) : null}
 
       {intelligence.strengthBadges.length ? (
-        <article className="rounded-sm border border-white/[0.08] bg-scout-800/80 p-4 md:p-5">
-          <ScoutSectionLabel>Scouting Strengths</ScoutSectionLabel>
+        <article className={`${PROFILE_PANEL} p-4 md:p-5`}>
+          <ProfileSectionLabel>Scouting Strengths</ProfileSectionLabel>
           <ul className="mt-4 space-y-2.5">
             {intelligence.strengthBadges.map((badge) => (
               <li key={badge.label} className="flex items-start gap-2">
-                <span aria-hidden="true" className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-scout-orange" />
+                <span aria-hidden="true" className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-hardwood-600" />
                 <span>
-                  <strong className="block text-sm font-bold text-scout-50">{badge.label}</strong>
-                  <span className="text-xs font-medium text-scout-500">{badge.reason}</span>
+                  <strong className="block text-sm font-bold text-court-900">{badge.label}</strong>
+                  <span className="text-xs font-medium text-court-500">{badge.reason}</span>
                 </span>
               </li>
             ))}
@@ -78,7 +88,7 @@ export function PlayerProfilePageClient({ profile, recentGames }: PlayerProfileP
       <PlayerProfileHeader profile={profile} activeTab={activeTab} onTabChange={setActiveTab} />
 
       <section
-        className={`container-px mx-auto w-full ${PLAYER_PROFILE_MAX_WIDTH} py-5 pb-12 md:py-6`}
+        className={`container-px mx-auto w-full bg-paper-500 ${PLAYER_PROFILE_MAX_WIDTH} pb-10 pt-3`}
         aria-live="polite"
       >
         <div
@@ -88,15 +98,15 @@ export function PlayerProfilePageClient({ profile, recentGames }: PlayerProfileP
           className="min-h-[12rem]"
         >
           {activeTab === "recent-form" && (
-            <div className="grid gap-4 md:gap-5">
+            <div className="grid gap-3 md:gap-4">
               <PlayerOverviewIntelligence profile={profile} />
               <RecentGames games={recentGames} recentForm={profile.recentForm} />
               <HighlightsPlaceholder />
-              <details className="rounded-sm border border-white/[0.08] bg-scout-800/80 px-4 py-3 md:px-5">
-                <summary className="cursor-pointer text-xs font-bold uppercase tracking-[0.14em] text-scout-orange-bright">
+              <details className={`${PROFILE_PANEL} px-4 py-3 md:px-5`}>
+                <summary className="cursor-pointer text-xs font-bold uppercase tracking-[0.14em] text-hardwood-600">
                   How is this rating calculated?
                 </summary>
-                <p className="mt-3 max-w-4xl text-sm leading-6 text-scout-500 md:text-base md:leading-7">
+                <p className="mt-3 max-w-4xl text-sm leading-6 text-court-600 md:text-base md:leading-7">
                   Your Peach Basket rating is built from verified box scores. Each game gets a performance score measured
                   against other players in the same competition, and those scores are averaged into the rating on this
                   profile. To appear on the public rankings board, U19 boys need at least 10 verified games and U19

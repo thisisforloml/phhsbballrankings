@@ -34,7 +34,7 @@ export default async function PlayerProfilePage({ params }: { params: { slug: st
   if (!profile) notFound();
 
   return (
-    <PublicPageShell variant="scout" className="pt-0">
+    <PublicPageShell variant="paper" className="pt-0">
       <PlayerProfilePageClient profile={profile} recentGames={toRecentGames(profile)} />
     </PublicPageShell>
   );
