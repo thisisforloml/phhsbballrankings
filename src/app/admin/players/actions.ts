@@ -319,3 +319,61 @@ export async function transferPlayerSchool(_previousState: UpdatePlayerBioState,
   }
   return updatePlayerSchool(_previousState, formData);
 }
+
+function readCommitmentStatus(formData: FormData): "UNDECLARED" | "COMMITTED" {
+  const value = String(formData.get("commitmentStatus") ?? "").trim().toUpperCase();
+  if (value !== "UNDECLARED" && value !== "COMMITTED") {
+    throw new Error("Choose Undeclared or Committed.");
+  }
+  return value;
+}
+
+export async function updatePlayerRecruitment(
+  _previousState: UpdatePlayerBioState,
+  formData: FormData
+): Promise<UpdatePlayerBioState> {
+  try {
+    await requireAdminUser();
+
+    const playerId = String(formData.get("playerId") ?? "").trim();
+    if (!playerId) {
+      throw new Error("Player id is required.");
+    }
+
+    const existingPlayer = await prisma.player.findFirst({
+      where: { id: playerId, deletedAt: null },
+      select: { id: true, displayName: true },
+    });
+
+    if (!existingPlayer) {
+      throw new Error("Player does not exist or has been deleted.");
+    }
+
+    const commitmentStatus = readCommitmentStatus(formData);
+    const committedUniversity =
+      commitmentStatus === "COMMITTED"
+        ? readRequiredString(formData, "committedUniversity", "University", 160)
+        : null;
+
+    await prisma.player.update({
+      where: { id: playerId },
+      data: { commitmentStatus, committedUniversity },
+    });
+
+    revalidatePath("/admin/players");
+    revalidatePath("/admin/programs");
+    revalidatePath(`/players/${slugify(existingPlayer.displayName)}`);
+    revalidatePath(`/players/${playerId}`);
+
+    return {
+      ok: true,
+      message: "Recruitment status updated.",
+      playerId,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message: error instanceof Error ? error.message : "Could not update recruitment status.",
+    };
+  }
+}

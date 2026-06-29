@@ -78,7 +78,10 @@ function ordinalRank(rank: number | null | undefined) {
   return `${rank}${suffix}`;
 }
 
-function commitmentStatus(_profile: PlayerProfile): "Committed" | "Undeclared" {
+function commitmentStatusLabel(profile: PlayerProfile): string {
+  if (profile.commitmentStatus === "COMMITTED") {
+    return profile.committedUniversity?.trim() ? profile.committedUniversity.trim() : "Committed";
+  }
   return "Undeclared";
 }
 
@@ -103,11 +106,21 @@ function DossierPortrait({ profile }: { profile: PlayerProfile }) {
   );
 }
 
-function MetaColumn({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
+function MetaColumn({
+  label,
+  children,
+  className = "",
+  valueClassName = "",
+}: {
+  label: string;
+  children: ReactNode;
+  className?: string;
+  valueClassName?: string;
+}) {
   return (
-    <div className={`flex min-w-0 flex-col gap-1.5 ${className}`}>
+    <div className={`flex min-w-0 flex-col gap-1 ${className}`}>
       <p className={META_LABEL_CLASS}>{label}</p>
-      <p className="text-sm font-bold leading-tight text-court-900">{children}</p>
+      <p className={`text-sm font-bold leading-tight text-court-900 ${valueClassName}`}>{children}</p>
     </div>
   );
 }
@@ -125,7 +138,7 @@ function DossierIdentity({
   const classYear = classDisplay(profile.classYear);
   const position = profile.position ? positionLabel(profile.position) : null;
   const height = profile.heightCm ? formatHeight(profile.heightCm) : null;
-  const status = commitmentStatus(profile);
+  const status = commitmentStatusLabel(profile);
 
   return (
     <div className="flex min-w-0 flex-col gap-6">
@@ -150,10 +163,14 @@ function DossierIdentity({
             </span>
           ) : null}
           {school || classYear ? (
-            <span className="inline-flex min-w-0 flex-wrap items-center gap-x-2 text-sm leading-tight">
-              {school ? <span className="font-semibold text-court-700">{school}</span> : null}
-              {school && classYear ? <span className="text-court-300" aria-hidden="true">·</span> : null}
-              {classYear ? <span className="font-display text-court-500">{classYear}</span> : null}
+            <span className="inline-flex min-w-0 flex-wrap items-baseline gap-x-1.5 text-sm leading-tight">
+              {school ? (
+                <span className="font-semibold text-court-700" title={school}>
+                  {school}
+                </span>
+              ) : null}
+              {school && classYear ? <span className="text-court-300">·</span> : null}
+              {classYear ? <span className="whitespace-nowrap font-display text-court-500">{classYear}</span> : null}
             </span>
           ) : null}
           {profile.eligibilityVerdict ? (
@@ -162,14 +179,18 @@ function DossierIdentity({
         </div>
       </div>
 
-      <div className="grid w-full grid-cols-3 divide-x divide-[#eeeeee]">
-        <MetaColumn label="Height" className="pr-3">
+      <div className="flex min-w-0 items-start divide-x divide-[#eeeeee]">
+        <MetaColumn label="Height" className="shrink-0 pr-4" valueClassName="whitespace-nowrap">
           {height ?? "—"}
         </MetaColumn>
-        <MetaColumn label="Hometown" className="px-3">
+        <MetaColumn
+          label="Hometown"
+          className="min-w-0 flex-1 px-4"
+          valueClassName="leading-snug [overflow-wrap:anywhere]"
+        >
           {hometown ?? "—"}
         </MetaColumn>
-        <MetaColumn label="Status" className="pl-3">
+        <MetaColumn label="Status" className="shrink-0 pl-4" valueClassName="whitespace-nowrap">
           {status}
         </MetaColumn>
       </div>
@@ -276,7 +297,7 @@ export function PlayerProfileHeader({ profile, activeTab, onTabChange }: PlayerP
         <article
           className={`mx-auto w-full overflow-hidden rounded-[12px] border border-line-500/80 bg-white shadow-panel ${PLAYER_PROFILE_MAX_WIDTH}`}
         >
-          <div className="flex w-full min-w-0 flex-col items-stretch p-4 max-md:h-auto md:h-[330px] md:flex-row md:items-center md:gap-6 md:p-[15px]">
+          <div className="flex w-full min-w-0 flex-col items-stretch overflow-visible p-4 max-md:h-auto md:h-[330px] md:flex-row md:items-center md:gap-6 md:p-[15px]">
             <div className="h-[300px] w-[220px] shrink-0 overflow-hidden rounded-md max-md:aspect-[3/4] max-md:h-auto max-md:w-full">
               <DossierPortrait profile={profile} />
             </div>
@@ -286,23 +307,21 @@ export function PlayerProfileHeader({ profile, activeTab, onTabChange }: PlayerP
                 slug={profile.slug}
                 displayName={profile.displayName}
                 variant="plain"
-                className="absolute right-0 top-0 z-10 md:hidden"
+                className="absolute right-0 top-0 z-20 md:hidden"
               />
-              <div className="relative w-full">
-                <ProfileShareButton
-                  slug={profile.slug}
-                  displayName={profile.displayName}
-                  variant="plain"
-                  className="absolute -top-1.5 right-[-1.625rem] z-20 hidden md:inline-flex"
-                />
-                <DossierIdentity profile={profile} school={school} hometown={hometown} />
-              </div>
+              <DossierIdentity profile={profile} school={school} hometown={hometown} />
             </div>
 
             <div className="relative flex w-full shrink-0 flex-col max-md:border-t max-md:border-[#eeeeee] max-md:pt-4 md:h-[330px] md:w-[270px] md:justify-center md:py-[15px]">
               <div
                 aria-hidden="true"
                 className="absolute left-0 top-1/2 hidden h-[65%] w-px -translate-y-1/2 bg-[#eeeeee] md:block"
+              />
+              <ProfileShareButton
+                slug={profile.slug}
+                displayName={profile.displayName}
+                variant="plain"
+                className="absolute left-4 top-[14%] z-20 hidden md:inline-flex"
               />
               <DossierRating profile={profile} />
             </div>

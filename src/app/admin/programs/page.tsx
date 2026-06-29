@@ -1,6 +1,5 @@
 ﻿import { Suspense } from "react";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { ProgramListClient, type ProgramListRow } from "./ProgramListClient";
@@ -12,10 +11,6 @@ export const metadata = {
   title: "Programs | Admin",
   description: "Edit school and club programs."
 };
-
-function aliasesToStrings(value: unknown): string[] {
-  return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
-}
 
 function inferGender(...values: Array<string | null | undefined>) {
   return values.filter(Boolean).join(" ").toLowerCase().includes("girls") ? "Girls" : "Boys";
@@ -76,7 +71,6 @@ export default async function AdminProgramsPage() {
       type: program.type,
       city: program.city,
       region: program.region,
-      aliases: aliasesToStrings(program.aliases),
       teamCount: activeTeamIds.size,
       possibleDuplicateContextGroups: Array.from(contextTeams.values()).filter((teamIds) => teamIds.size > 1).length,
       derivedPlayerCount: playerIds.size,
@@ -85,20 +79,16 @@ export default async function AdminProgramsPage() {
   });
 
   return (
-    <main className="min-h-screen bg-surface-50 pt-20">
-      <div className="grid lg:grid-cols-[17rem_1fr]">
-        <AdminSidebar active="programs" />
-        <section className="container-px grid gap-6 py-8">
-          <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-            <p className="label">Program Management</p>
-            <h1 className="mt-2 font-display text-stat-md text-navy-800">Schools, Clubs, and Team Programs</h1>
-            <p className="mt-2 max-w-3xl text-ink-600">Use this as the primary structure for school, club, and team organization. Program Management shows only Teams currently used by official games or stats; inactive/internal records stay in Internal Team Records for audit review.</p>
-          </div>
-          <Suspense fallback={null}>
-            <ProgramListClient programs={rows} />
-          </Suspense>
-        </section>
-      </div>
-    </main>
+    <>
+      <AdminPageHeader
+        eyebrow="Program Management"
+        title="Schools, Clubs, and Team Programs"
+        description="Use this as the primary structure for school, club, and team organization. Program Management shows only teams currently used by official games or stats; inactive/internal records stay in Internal Team Records for audit review."
+        statusBadge={`${rows.length} records`}
+      />
+      <Suspense fallback={null}>
+        <ProgramListClient programs={rows} />
+      </Suspense>
+    </>
   );
 }

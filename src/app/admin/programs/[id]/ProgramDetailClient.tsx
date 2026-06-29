@@ -1,15 +1,23 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import Link from "next/link";
+import { slugify } from "@/lib/format";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useFormState } from "react-dom";
+import { ExternalLink } from "lucide-react";
 import type { ProgramType } from "@prisma/client";
+import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
+import { AdminPlayerEditModal } from "@/components/admin/AdminPlayerEditModal";
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
-import { updatePlayerBio, type UpdatePlayerBioState } from "../../players/actions";
-import { updatePlayerCurrentProgram, updateProgram, updateProgramTeam, type ProgramActionState } from "../actions";
+import { updateProgram, updateProgramTeam, type ProgramActionState } from "../actions";
 
 const initialState: ProgramActionState = { ok: false, message: "" };
-const initialPlayerState: UpdatePlayerBioState = { ok: false, message: "" };
+const inputClassName =
+  "min-h-10 w-full rounded-md border border-surface-300 bg-white px-3 py-2 text-sm text-ink-900 shadow-sm focus:border-navy-700 focus:outline-none focus:ring-2 focus:ring-navy-700/15";
+const labelClassName = "text-xs font-semibold uppercase tracking-wide text-ink-500";
+
+type DetailTab = "program" | "teams" | "roster" | "graduates";
 
 export type ProgramEditorData = {
   id: string;
@@ -18,7 +26,6 @@ export type ProgramEditorData = {
   type: ProgramType;
   city: string | null;
   region: string | null;
-  aliasesText: string;
 };
 
 export type TeamEditorData = {
@@ -33,301 +40,544 @@ export type TeamEditorData = {
   latestGameDate: string | null;
 };
 
-export type ProgramSelectOption = {
-  id: string;
-  fullName: string;
-  abbreviation: string | null;
-  type: string;
-};
-
-export type ProgramPlayerData = {
+export type RosterRow = {
   id: string;
   displayName: string;
-  firstName: string;
-  lastName: string;
   gender: string;
-  currentProgramId: string | null;
-  currentProgram: string;
-  derivedProgram: string;
-  schoolOverride: string | null;
   classYear: string;
-  calculatedClassYear: number | null;
-  classYearOverride: number | null;
-  computedAgeBracket: string;
-  ageGroupOverride: string | null;
   position: string | null;
   height: string;
-  heightCm: number | null;
-  city: string;
-  region: string;
-  birthDate: string;
-  photoUrl: string | null;
   profileHref: string;
   appearsInMultipleTeamSections: boolean;
-  recentTransfers: Array<{
-    id: string;
-    fromProgram: string;
-    toProgram: string;
-    effectiveDate: string | null;
-    note: string | null;
-    createdAt: string;
-  }>;
 };
 
-export type ProgramTeamPlayerSectionData = {
+export type ProgramTeamRosterSection = {
   team: TeamEditorData;
-  players: ProgramPlayerData[];
+  players: RosterRow[];
 };
 
-function SaveButton({ label }: { label: string }) {
-  const { pending } = useFormStatus();
-  return <button type="submit" disabled={pending} className="button primary w-fit disabled:opacity-60">{pending ? "Saving..." : label}</button>;
+export type CleanupItem = {
+  title: string;
+  detail: string;
+  tone: "warning" | "notice";
+};
+
+export type ProgramDetailStats = {
+  teamCount: number;
+  playerCount: number;
+  graduateCount: number;
+  officialGames: number;
+  gameStats: number;
+};
+
+function FormSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="rounded-lg border border-surface-200 bg-white p-4 shadow-sm">
+      <h3 className="text-sm font-semibold text-navy-900">{title}</h3>
+      <div className="mt-3">{children}</div>
+    </section>
+  );
 }
 
-function StateMessage({ state }: { state: ProgramActionState | UpdatePlayerBioState }) {
-  if (!state.message) return null;
-  return <div className={`rounded-md p-3 text-sm ${state.ok ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{state.message}</div>;
+function MetaChip({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "accent" | "muted" | "warning" }) {
+  const toneClass =
+    tone === "accent"
+      ? "border-orange-200 bg-orange-50 text-orange-900"
+      : tone === "warning"
+        ? "border-amber-200 bg-amber-50 text-amber-900"
+        : tone === "muted"
+          ? "border-surface-200 bg-surface-100 text-ink-500"
+          : "border-surface-200 bg-white text-ink-700";
+  return <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${toneClass}`}>{children}</span>;
+}
+
+function parseContextLine(context: string) {
+  const [ageGender, league, season] = context.split(" / ").map((part) => part.trim());
+  return { ageGender: ageGender || context, league: league || "—", season: season || "—" };
 }
 
 function formatList(values: string[]) {
-  return values.length ? values.join(", ") : "Not available";
+  return values.length ? values.join(", ") : "—";
 }
 
-function cmToFeetInches(heightCm: number | null) {
-  if (heightCm === null) return { feet: "", inches: "" };
-  const totalInches = Math.round(heightCm / 2.54);
-  return { feet: String(Math.floor(totalInches / 12)), inches: String(totalInches % 12) };
-}
-
-function feetInchesToCm(feet: string, inches: string) {
-  const feetValue = Number(feet);
-  const inchesValue = Number(inches);
-  if (!Number.isInteger(feetValue) || !Number.isInteger(inchesValue)) return "";
-  return String(Math.round((feetValue * 12 + inchesValue) * 2.54));
-}
-
-export function ProgramEditor({ program }: { program: ProgramEditorData }) {
-  const [state, formAction] = useFormState(updateProgram, initialState);
+function DetailTabButton({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
   return (
-    <form action={formAction} className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
-      <input type="hidden" name="programId" value={program.id} />
-      <div>
-        <p className="label">Program Details</p>
-        <h2 className="mt-2 font-display text-3xl text-navy-800">Edit Program</h2>
-      </div>
-      <AdminFormFeedback state={state} />
-      <label className="grid gap-2 text-sm font-semibold text-ink-700">Full Name<input name="fullName" required maxLength={180} defaultValue={program.fullName} className="rounded-md border border-surface-300 px-3 py-3" /></label>
-      <div className="grid gap-4 md:grid-cols-3">
-        <label className="grid gap-2 text-sm font-semibold text-ink-700">Abbreviation<input name="abbreviation" maxLength={80} defaultValue={program.abbreviation ?? ""} className="rounded-md border border-surface-300 px-3 py-3" /></label>
-        <label className="grid gap-2 text-sm font-semibold text-ink-700">Type<select name="type" defaultValue={program.type} className="rounded-md border border-surface-300 px-3 py-3"><option>SCHOOL</option><option>CLUB</option><option>TEAM</option><option>UNKNOWN</option></select></label>
-        <label className="grid gap-2 text-sm font-semibold text-ink-700">City<input name="city" maxLength={100} defaultValue={program.city ?? ""} placeholder="Optional" className="rounded-md border border-surface-300 px-3 py-3" /></label>
-      </div>
-      <label className="grid gap-2 text-sm font-semibold text-ink-700">Region<input name="region" maxLength={100} defaultValue={program.region ?? ""} placeholder="Optional" className="rounded-md border border-surface-300 px-3 py-3" /></label>
-      <label className="grid gap-2 text-sm font-semibold text-ink-700">Aliases<textarea name="aliases" defaultValue={program.aliasesText} rows={5} className="rounded-md border border-surface-300 px-3 py-3" /><span className="text-xs font-normal text-ink-500">Use one alias per line or comma-separated aliases.</span></label>
-      <AdminSaveButton label="Save program" variant="ops" />
-    </form>
+    <button
+      type="button"
+      role="tab"
+      aria-selected={active}
+      onClick={onClick}
+      className={`border-b-2 px-4 py-2.5 text-sm font-semibold transition ${
+        active ? "border-orange-500 text-navy-900" : "border-transparent text-ink-500 hover:border-surface-300 hover:text-ink-800"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
 
-export function TeamMonikerForm({ programId, team }: { programId: string; team: TeamEditorData }) {
-  const [state, formAction] = useFormState(updateProgramTeam, initialState);
+function TextField({
+  name,
+  label,
+  defaultValue,
+  required = false,
+  maxLength,
+  placeholder,
+}: {
+  name: string;
+  label: string;
+  defaultValue: string;
+  required?: boolean;
+  maxLength: number;
+  placeholder?: string;
+}) {
   return (
-    <form action={formAction} className="grid gap-3 rounded-md border border-surface-200 p-4">
-      <input type="hidden" name="programId" value={programId} />
-      <input type="hidden" name="teamId" value={team.id} />
-      <label className="grid gap-2 text-sm font-semibold text-ink-700">Team / Moniker Name<input name="name" required maxLength={120} defaultValue={team.name} className="rounded-md border border-surface-300 px-3 py-3" /></label>
-      <div className="grid gap-2 text-xs text-ink-500 sm:grid-cols-2">
-        <span>Age group: {formatList(team.ageGroups)}</span>
-        <span>Gender: {formatList(team.genders)}</span>
-        <span className="sm:col-span-2">League(s): {formatList(team.leagues)}</span>
-        <span>Official games: {team.officialGames}</span>
-        <span>GameStats: {team.activeGameStats}</span>
-        <span>Latest game: {team.latestGameDate ?? "No active games"}</span>
-      </div>
-      {team.contexts.length ? <p className="text-xs text-ink-500">{team.contexts.join(" | ")}</p> : null}
-      <p className="rounded-md bg-surface-100 p-3 text-xs text-ink-600">Editing the moniker changes only this internal Team record. It does not merge teams or move official stats.</p>
-      <StateMessage state={state} />
-      <SaveButton label="Save team" />
-    </form>
+    <label className="grid gap-1.5">
+      <span className={labelClassName}>{label}</span>
+      <input
+        name={name}
+        defaultValue={defaultValue}
+        required={required}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        className={inputClassName}
+      />
+    </label>
   );
 }
 
-export function TeamPlayerSection({ programId, section, programs }: { programId: string; section: ProgramTeamPlayerSectionData; programs: ProgramSelectOption[] }) {
+export function ProgramDetailShell({
+  programId,
+  program,
+  teamRows,
+  teamRosterSections,
+  unassignedRoster,
+  graduatePlayers,
+  managedPlayersById,
+  schoolPrograms,
+  cleanupItems,
+  stats,
+}: {
+  programId: string;
+  program: ProgramEditorData;
+  teamRows: TeamEditorData[];
+  teamRosterSections: ProgramTeamRosterSection[];
+  unassignedRoster: RosterRow[];
+  graduatePlayers: ManagedPlayer[];
+  managedPlayersById: Record<string, ManagedPlayer>;
+  schoolPrograms: Array<{ id: string; fullName: string }>;
+  cleanupItems: CleanupItem[];
+  stats: ProgramDetailStats;
+}) {
+  const [activeTab, setActiveTab] = useState<DetailTab>("program");
+  const [editingPlayerId, setEditingPlayerId] = useState<string | null>(null);
+  const reviewCount = cleanupItems.length;
+  const editingPlayer = editingPlayerId ? managedPlayersById[editingPlayerId] ?? null : null;
+
+  const tabs: Array<{ id: DetailTab; label: string }> = [
+    { id: "program", label: "Program" },
+    { id: "teams", label: `Teams (${stats.teamCount})` },
+    { id: "roster", label: `Roster (${stats.playerCount})` },
+    { id: "graduates", label: `Graduates (${stats.graduateCount})` },
+  ];
+
   return (
-    <article className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
-      <div className="border-b border-surface-200 p-5">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h3 className="font-display text-2xl text-navy-800">{section.team.name}</h3>
-            <p className="mt-1 text-sm text-ink-600">{formatList(section.team.ageGroups)} / {formatList(section.team.genders)} / {formatList(section.team.leagues)}</p>
-            {section.team.contexts.length ? <p className="mt-1 text-xs text-ink-500">{section.team.contexts.join(" | ")}</p> : null}
+    <>
+      <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
+        <div className="border-b border-surface-200 bg-surface-50 px-4 py-3">
+          <div className="flex flex-wrap gap-2">
+            <MetaChip tone="muted">{stats.teamCount} teams</MetaChip>
+            <MetaChip tone="muted">{stats.playerCount} active roster</MetaChip>
+            <MetaChip tone="muted">{stats.graduateCount} graduates</MetaChip>
+            <MetaChip tone="muted">{stats.officialGames} games</MetaChip>
+            <MetaChip tone="muted">{stats.gameStats} stat rows</MetaChip>
+            {reviewCount ? <MetaChip tone="warning">{reviewCount} review notice{reviewCount === 1 ? "" : "s"}</MetaChip> : null}
           </div>
-          <span className="rounded-full bg-navy-50 px-3 py-1 font-mono text-mono-sm uppercase text-navy-800">{section.players.length} players</span>
+          <div className="mt-3 flex gap-1 overflow-x-auto border-b border-surface-200" role="tablist">
+            {tabs.map((tab) => (
+              <DetailTabButton key={tab.id} active={activeTab === tab.id} label={tab.label} onClick={() => setActiveTab(tab.id)} />
+            ))}
+          </div>
+        </div>
+
+        <div className="p-4">
+          {activeTab === "program" ? <ProgramPanel program={program} cleanupItems={cleanupItems} /> : null}
+          {activeTab === "teams" ? <ProgramTeamsPanel programId={programId} teams={teamRows} /> : null}
+          {activeTab === "roster" ? (
+            <PlayerRosterPanel
+              sections={teamRosterSections}
+              unassigned={unassignedRoster}
+              onEditPlayer={setEditingPlayerId}
+            />
+          ) : null}
+          {activeTab === "graduates" ? (
+            <GraduatesPanel players={graduatePlayers} onEditPlayer={setEditingPlayerId} />
+          ) : null}
         </div>
       </div>
-      <div className="grid gap-0">
-        {section.players.map((player) => <ProgramPlayerRow key={`${section.team.id}:${player.id}`} programId={programId} player={player} programs={programs} />)}
-        {!section.players.length ? <p className="p-5 text-sm text-ink-600">No active players found for this team.</p> : null}
-      </div>
-    </article>
+
+      <AdminPlayerEditModal
+        player={editingPlayer}
+        programs={schoolPrograms}
+        open={Boolean(editingPlayer)}
+        onClose={() => setEditingPlayerId(null)}
+      />
+    </>
   );
 }
 
-export function ProgramPlayerRow({ programId, player, programs }: { programId: string; player: ProgramPlayerData; programs: ProgramSelectOption[] }) {
+function ProgramPanel({ program, cleanupItems }: { program: ProgramEditorData; cleanupItems: CleanupItem[] }) {
+  const [state, formAction] = useFormState(updateProgram, initialState);
+
+  useEffect(() => {
+    if (state.ok) window.location.reload();
+  }, [state.ok]);
+
   return (
-    <div className="grid gap-3 border-b border-surface-200 p-4 last:border-b-0">
-      <div className="grid gap-3 lg:grid-cols-[1.2fr_6rem_1fr_1fr_7rem_8rem] lg:items-start">
-        <div>
-          <strong className="block text-ink-900">{player.displayName}</strong>
-          <a className="mt-1 inline-block text-sm font-semibold text-navy-700" href={player.profileHref}>Profile</a>
-          {player.appearsInMultipleTeamSections ? <span className="mt-2 block rounded-full bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-900">Also appears in another team section</span> : null}
-        </div>
-        <span className="font-mono text-sm text-ink-600">{player.gender}</span>
-        <span className="text-sm text-ink-600"><strong className="block text-xs uppercase text-ink-400">Current</strong>{player.currentProgram}</span>
-        <span className="text-sm text-ink-600"><strong className="block text-xs uppercase text-ink-400">Derived</strong>{player.derivedProgram}</span>
-        <span className="text-sm text-ink-600">{player.classYear}</span>
-        <span className="text-sm text-ink-600">{player.position ?? "Position missing"}<span className="block text-xs text-ink-400">{player.height}</span></span>
-      </div>
-      <details className="rounded-md border border-surface-200 bg-surface-50 p-3">
-        <summary className="cursor-pointer text-sm font-semibold text-navy-800">Edit player</summary>
-        <div className="mt-4 grid gap-4 xl:grid-cols-2">
-          <PlayerBioEditForm player={player} />
-          <PlayerCurrentProgramForm programId={programId} player={player} programs={programs} />
-        </div>
-      </details>
+    <div className="grid gap-4">
+      <form action={formAction} className="grid gap-4">
+        <input type="hidden" name="programId" value={program.id} />
+        <FormSection title="Program details">
+          <AdminFormFeedback state={state} />
+          <div className="grid max-w-3xl gap-3">
+            <TextField name="fullName" label="Full name" defaultValue={program.fullName} required maxLength={180} />
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="max-w-[10rem]">
+                <TextField name="abbreviation" label="Abbreviation" defaultValue={program.abbreviation ?? ""} maxLength={80} />
+              </div>
+              <div className="max-w-[10rem]">
+                <label className="grid gap-1.5">
+                  <span className={labelClassName}>Type</span>
+                  <select name="type" defaultValue={program.type} className={inputClassName}>
+                    <option value="SCHOOL">School</option>
+                    <option value="CLUB">Club</option>
+                    <option value="TEAM">Team</option>
+                    <option value="UNKNOWN">Unknown</option>
+                  </select>
+                </label>
+              </div>
+              <div className="max-w-[14rem]">
+                <TextField name="city" label="City" defaultValue={program.city ?? ""} maxLength={100} placeholder="Optional" />
+              </div>
+              <div className="max-w-[10rem]">
+                <TextField name="region" label="Region" defaultValue={program.region ?? ""} maxLength={100} placeholder="Optional" />
+              </div>
+            </div>
+          </div>
+          <div className="mt-4">
+            <AdminSaveButton label="Save program" variant="ops" />
+          </div>
+        </FormSection>
+      </form>
+
+      {cleanupItems.length ? (
+        <FormSection title="Data review">
+          <p className="mb-3 text-sm text-ink-600">Read-only diagnostics. Possible duplicates require a separate approved cleanup plan.</p>
+          <div className="grid gap-3">
+            {cleanupItems.map((item) => (
+              <div
+                key={`${item.title}:${item.detail}`}
+                className={`rounded-md border p-4 text-sm ${
+                  item.tone === "warning" ? "border-amber-200 bg-amber-50 text-amber-900" : "border-surface-200 bg-surface-100 text-ink-700"
+                }`}
+              >
+                <strong className="block text-ink-900">{item.title}</strong>
+                <span>{item.detail}</span>
+              </div>
+            ))}
+          </div>
+        </FormSection>
+      ) : null}
     </div>
   );
 }
 
-function PlayerBioEditForm({ player }: { player: ProgramPlayerData }) {
-  const [state, formAction] = useFormState(updatePlayerBio, initialPlayerState);
-  const initialHeight = cmToFeetInches(player.heightCm);
-  const [heightCm, setHeightCm] = useState(player.heightCm === null ? "" : String(player.heightCm));
-  const [heightFeet, setHeightFeet] = useState(initialHeight.feet);
-  const [heightInches, setHeightInches] = useState(initialHeight.inches);
-  const [heightMessage, setHeightMessage] = useState("");
-  const visualClassYear = player.classYearOverride ?? player.calculatedClassYear;
+function ProgramTeamsPanel({ programId, teams }: { programId: string; teams: TeamEditorData[] }) {
+  const [selectedTeamId, setSelectedTeamId] = useState(teams[0]?.id ?? "");
+  const selectedTeam = teams.find((team) => team.id === selectedTeamId) ?? teams[0] ?? null;
 
-  function updateHeightFromCm(value: string) {
-    setHeightCm(value);
-    const parsed = Number(value);
-    if (!value) {
-      setHeightFeet("");
-      setHeightInches("");
-      setHeightMessage("");
-      return;
-    }
-    if (!Number.isInteger(parsed) || parsed < 120 || parsed > 230) {
-      setHeightMessage("Height must be 120-230 cm.");
-      return;
-    }
-    const converted = cmToFeetInches(parsed);
-    setHeightFeet(converted.feet);
-    setHeightInches(converted.inches);
-    setHeightMessage(`${converted.feet}'${converted.inches}\"`);
-  }
-
-  function updateHeightFromFeetInches(nextFeet: string, nextInches: string) {
-    setHeightFeet(nextFeet);
-    setHeightInches(nextInches);
-    if (!nextFeet && !nextInches) {
-      setHeightCm("");
-      setHeightMessage("");
-      return;
-    }
-    const feetValue = Number(nextFeet);
-    const inchesValue = Number(nextInches);
-    if (!Number.isInteger(feetValue) || feetValue < 4 || feetValue > 7 || !Number.isInteger(inchesValue) || inchesValue < 0 || inchesValue > 11) {
-      setHeightMessage("Use feet 4-7 and inches 0-11.");
-      return;
-    }
-    const cm = feetInchesToCm(nextFeet, nextInches);
-    setHeightCm(cm);
-    setHeightMessage(`${cm} cm`);
+  if (!teams.length) {
+    return <p className="rounded-md border border-dashed border-surface-300 bg-surface-50 p-6 text-sm text-ink-600">No current teams linked to this program.</p>;
   }
 
   return (
-    <form action={formAction} className="grid gap-3 rounded-md border border-surface-200 bg-white p-4" encType="multipart/form-data">
-      <input type="hidden" name="playerId" value={player.id} />
-      <div>
-        <p className="label">Profile Fields</p>
-        <p className="mt-1 text-xs text-ink-500">Ratings, games, stats, and snapshots are read-only.</p>
+    <div className="grid gap-4 xl:grid-cols-[minmax(16rem,20rem)_minmax(0,1fr)]">
+      <div className="overflow-hidden rounded-lg border border-surface-200">
+        {teams.map((team) => {
+          const selected = selectedTeam?.id === team.id;
+          const primaryContext = team.contexts[0] ? parseContextLine(team.contexts[0]).ageGender : formatList(team.ageGroups);
+          return (
+            <button
+              key={team.id}
+              type="button"
+              onClick={() => setSelectedTeamId(team.id)}
+              className={`flex w-full flex-col gap-1 border-b border-surface-100 px-3 py-2.5 text-left transition last:border-b-0 hover:bg-surface-50 ${
+                selected ? "bg-orange-50/50 ring-1 ring-inset ring-orange-200" : ""
+              }`}
+            >
+              <strong className="truncate text-sm font-semibold text-ink-900">{team.name}</strong>
+              <span className="truncate text-xs text-ink-500">{primaryContext}</span>
+              <span className="text-xs text-ink-400">
+                {team.officialGames} GP · {team.activeGameStats} stats
+              </span>
+            </button>
+          );
+        })}
       </div>
-      <StateMessage state={state} />
-      <div className="grid gap-3 md:grid-cols-2">
-        <TextField name="displayName" label="Display name" defaultValue={player.displayName} required maxLength={120} />
-        <ReadonlyField label="Gender" value={player.gender} />
-        <TextField name="firstName" label="First name" defaultValue={player.firstName} required maxLength={80} />
-        <TextField name="lastName" label="Last name" defaultValue={player.lastName} required maxLength={80} />
-        <TextField name="city" label="City" defaultValue={player.city} required maxLength={100} />
-        <TextField name="region" label="Region" defaultValue={player.region} required maxLength={100} />
-        <TextField name="position" label="Position" defaultValue={player.position ?? ""} maxLength={20} placeholder="Optional" />
-        <TextField name="schoolOverride" label="School override" defaultValue={player.schoolOverride ?? ""} maxLength={160} placeholder="Prefer Current Program when possible" />
-        <ReadonlyField label="Calculated age bracket" value={player.computedAgeBracket} />
-        <label className="grid gap-2 text-sm font-semibold text-ink-700">Age Bracket Override<select name="ageGroupOverride" defaultValue={player.ageGroupOverride ?? ""} className="min-h-10 rounded-md border border-surface-300 px-3 py-2"><option value="">Use calculated</option><option value="U13">U13</option><option value="U16">U16</option><option value="U19">U19</option></select></label>
-        <label className="grid gap-2 text-sm font-semibold text-ink-700">Birth date<input name="birthDate" type="date" defaultValue={player.birthDate} className="min-h-10 rounded-md border border-surface-300 px-3 py-2" /></label>
-        <label className="grid gap-2 text-sm font-semibold text-ink-700">Class Year<input name="classYear" type="number" min={2000} max={2100} defaultValue={visualClassYear ?? ""} className="min-h-10 rounded-md border border-surface-300 px-3 py-2" placeholder="Optional" /></label>
-        <div className="grid gap-2 rounded-md border border-surface-200 p-3 md:col-span-2">
-          <span className="text-sm font-semibold text-ink-700">Height</span>
-          <div className="grid gap-2 md:grid-cols-3">
-            <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Centimeters<input name="heightCm" type="number" min={120} max={230} value={heightCm} onChange={(event) => updateHeightFromCm(event.target.value)} className="min-h-10 rounded-md border border-surface-300 px-3 py-2 text-sm font-normal normal-case tracking-normal text-ink-900" placeholder="Optional" /></label>
-            <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Feet<input type="number" min={4} max={7} value={heightFeet} onChange={(event) => updateHeightFromFeetInches(event.target.value, heightInches)} className="min-h-10 rounded-md border border-surface-300 px-3 py-2 text-sm font-normal normal-case tracking-normal text-ink-900" placeholder="ft" /></label>
-            <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Inches<input type="number" min={0} max={11} value={heightInches} onChange={(event) => updateHeightFromFeetInches(heightFeet, event.target.value)} className="min-h-10 rounded-md border border-surface-300 px-3 py-2 text-sm font-normal normal-case tracking-normal text-ink-900" placeholder="in" /></label>
+      {selectedTeam ? <TeamMonikerPanel key={selectedTeam.id} programId={programId} team={selectedTeam} /> : null}
+    </div>
+  );
+}
+
+function TeamMonikerPanel({ programId, team }: { programId: string; team: TeamEditorData }) {
+  const [state, formAction] = useFormState(updateProgramTeam, initialState);
+
+  useEffect(() => {
+    if (state.ok) window.location.reload();
+  }, [state.ok]);
+
+  return (
+    <div className="grid gap-4">
+      <div className="rounded-lg border border-surface-200 bg-surface-50 p-4">
+        <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Team record</p>
+        <h3 className="mt-1 font-display text-xl text-navy-900">{team.name}</h3>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {team.ageGroups.map((value) => (
+            <MetaChip key={value} tone="muted">
+              {value}
+            </MetaChip>
+          ))}
+          {team.genders.map((value) => (
+            <MetaChip key={value}>{value}</MetaChip>
+          ))}
+        </div>
+      </div>
+
+      <FormSection title="Competition context">
+        {team.contexts.length ? (
+          <div className="overflow-hidden rounded-md border border-surface-200">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-surface-50 text-xs font-semibold uppercase tracking-wide text-ink-500">
+                <tr>
+                  <th className="px-3 py-2">Board</th>
+                  <th className="px-3 py-2">League</th>
+                  <th className="px-3 py-2">Season</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-surface-100 text-ink-700">
+                {team.contexts.map((context) => {
+                  const row = parseContextLine(context);
+                  return (
+                    <tr key={context}>
+                      <td className="px-3 py-2 font-medium text-ink-900">{row.ageGender}</td>
+                      <td className="px-3 py-2">{row.league}</td>
+                      <td className="px-3 py-2">{row.season}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
-          {heightMessage ? <span className="text-xs font-normal text-ink-500">{heightMessage}</span> : null}
-        </div>
-        <div className="grid gap-3 rounded-md border border-surface-200 p-3 md:col-span-2">
-          <span className="text-sm font-semibold text-ink-700">Player photo</span>
-          {player.photoUrl ? (
-            <img src={player.photoUrl} alt="" className="h-24 w-24 rounded-md border border-surface-200 object-cover" />
-          ) : (
-            <span className="grid h-24 w-24 place-items-center rounded-md border border-dashed border-surface-300 bg-surface-100 text-xs font-semibold uppercase text-ink-400">No photo</span>
-          )}
-          <input type="hidden" name="photoUrl" value={player.photoUrl ?? ""} />
-          <input name="photoFile" type="file" accept="image/jpeg,image/png,image/webp" className="rounded-md border border-surface-300 px-3 py-2 text-sm" />
-          {player.photoUrl ? (
-            <label className="flex items-center gap-2 text-sm font-semibold text-ink-700">
-              <input type="checkbox" name="clearPhoto" />
-              Clear current photo
-            </label>
-          ) : null}
-          <span className="text-xs font-normal text-ink-500">Upload JPG, PNG, or WEBP. Maximum 3 MB.</span>
-        </div>
-      </div>
-      <AdminSaveButton label="Save player" variant="ops" />
-    </form>
+        ) : (
+          <p className="text-sm text-ink-500">No active competition context.</p>
+        )}
+      </FormSection>
+
+      <FormSection title="Activity">
+        <dl className="grid gap-2 text-sm sm:grid-cols-3">
+          <div>
+            <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Official games</dt>
+            <dd className="mt-1 font-semibold text-ink-900">{team.officialGames}</dd>
+          </div>
+          <div>
+            <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Stat rows</dt>
+            <dd className="mt-1 font-semibold text-ink-900">{team.activeGameStats}</dd>
+          </div>
+          <div>
+            <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Latest game</dt>
+            <dd className="mt-1 font-semibold text-ink-900">{team.latestGameDate ?? "—"}</dd>
+          </div>
+        </dl>
+      </FormSection>
+
+      <form action={formAction} className="grid gap-3">
+        <input type="hidden" name="programId" value={programId} />
+        <input type="hidden" name="teamId" value={team.id} />
+        <FormSection title="Edit moniker">
+          <p className="mb-3 text-sm text-ink-600">Renaming updates this internal team record only. It does not merge teams or move official stats.</p>
+          <TextField name="name" label="Team / moniker name" defaultValue={team.name} required maxLength={120} />
+          <div className="mt-3">
+            <AdminFormFeedback state={state} />
+          </div>
+          <div className="mt-3">
+            <AdminSaveButton label="Save team moniker" variant="ops" />
+          </div>
+        </FormSection>
+      </form>
+    </div>
   );
 }
 
-export function PlayerCurrentProgramForm({ programId, player, programs }: { programId: string; player: ProgramPlayerData; programs: ProgramSelectOption[] }) {
-  const [state, formAction] = useFormState(updatePlayerCurrentProgram, initialState);
-  const [mode, setMode] = useState<"EDIT" | "TRANSFER">("EDIT");
+function PlayerTable({
+  players,
+  onEditPlayer,
+}: {
+  players: RosterRow[];
+  onEditPlayer: (playerId: string) => void;
+}) {
+  return (
+    <div className="overflow-hidden rounded-lg border border-surface-200">
+      <div className="hidden grid-cols-[minmax(12rem,1.4fr)_6rem_6rem_7rem_5rem] gap-3 border-b border-surface-200 bg-navy-950 px-4 py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.1em] text-white lg:grid">
+        <span>Player</span>
+        <span>Gender</span>
+        <span>Class</span>
+        <span>Position / height</span>
+        <span className="text-right">Action</span>
+      </div>
+      {players.map((player) => (
+        <div key={player.id} className="grid gap-2 border-b border-surface-100 px-4 py-3 last:border-b-0 lg:grid-cols-[minmax(12rem,1.4fr)_6rem_6rem_7rem_5rem] lg:items-center">
+          <div className="min-w-0">
+            <strong className="block truncate text-sm font-semibold text-ink-900">{player.displayName}</strong>
+            <Link href={player.profileHref} target="_blank" className="mt-0.5 inline-flex items-center gap-1 text-xs font-semibold text-orange-700 hover:text-orange-800">
+              Public profile
+              <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </Link>
+            {player.appearsInMultipleTeamSections ? (
+              <span className="mt-1 block text-xs font-semibold text-amber-800">Also on another team section</span>
+            ) : null}
+          </div>
+          <span className="text-sm text-ink-600">{player.gender === "BOYS" ? "Boys" : "Girls"}</span>
+          <span className="text-sm text-ink-600">{player.classYear}</span>
+          <span className="text-sm text-ink-600">
+            {player.position ?? "—"}
+            <span className="block text-xs text-ink-400">{player.height === "Not listed" ? "—" : player.height}</span>
+          </span>
+          <div className="text-right">
+            <button
+              type="button"
+              onClick={() => onEditPlayer(player.id)}
+              className="rounded-md border border-surface-300 px-2.5 py-1.5 text-xs font-semibold text-ink-700 transition hover:border-orange-300 hover:text-orange-800"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+      ))}
+      {!players.length ? <p className="p-6 text-sm text-ink-500">No players in this section.</p> : null}
+    </div>
+  );
+}
+
+function PlayerRosterPanel({
+  sections,
+  unassigned,
+  onEditPlayer,
+}: {
+  sections: ProgramTeamRosterSection[];
+  unassigned: RosterRow[];
+  onEditPlayer: (playerId: string) => void;
+}) {
+  const rosterSections = useMemo(() => {
+    const items = sections.map((section) => ({ key: section.team.id, label: section.team.name, players: section.players }));
+    if (unassigned.length) items.push({ key: "unassigned", label: "Unassigned", players: unassigned });
+    return items;
+  }, [sections, unassigned]);
+
+  const [activeSectionKey, setActiveSectionKey] = useState(rosterSections[0]?.key ?? "");
+  const [query, setQuery] = useState("");
+
+  const activeSection = rosterSections.find((section) => section.key === activeSectionKey) ?? rosterSections[0] ?? null;
+
+  const filteredPlayers = useMemo(() => {
+    if (!activeSection) return [];
+    const value = query.trim().toLowerCase();
+    if (!value) return activeSection.players;
+    return activeSection.players.filter((player) =>
+      [player.displayName, player.position, player.classYear, player.gender].filter(Boolean).join(" ").toLowerCase().includes(value)
+    );
+  }, [activeSection, query]);
+
+  if (!rosterSections.length) {
+    return <p className="rounded-md border border-dashed border-surface-300 bg-surface-50 p-6 text-sm text-ink-600">No active roster players found for this program.</p>;
+  }
 
   return (
-    <form action={formAction} className="grid gap-3 rounded-md border border-surface-200 bg-white p-4">
-      <input type="hidden" name="programId" value={programId} />
-      <input type="hidden" name="playerId" value={player.id} />
-      <div>
-        <p className="label">Current Program</p>
-        <p className="mt-1 text-xs text-ink-500">Changing current program does not modify historical GameStats or teams.</p>
+    <div className="grid gap-4">
+      <p className="text-sm text-ink-600">Active roster players from official game stats. Graduated players appear in the Graduates tab.</p>
+      <div className="flex flex-wrap gap-1.5">
+        {rosterSections.map((section) => (
+          <button
+            key={section.key}
+            type="button"
+            onClick={() => {
+              setActiveSectionKey(section.key);
+              setQuery("");
+            }}
+            className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+              activeSection?.key === section.key
+                ? "border-orange-300 bg-orange-50 text-orange-900"
+                : "border-surface-200 bg-white text-ink-700 hover:border-surface-300"
+            }`}
+          >
+            {section.label} ({section.players.length})
+          </button>
+        ))}
       </div>
-      <div className="grid gap-3 md:grid-cols-2">
-        <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Target Program<select name="nextProgramId" defaultValue={player.currentProgramId ?? programId} className="min-h-10 rounded-md border border-surface-300 bg-white px-3 text-sm font-normal normal-case tracking-normal text-ink-900">{programs.map((option) => <option key={option.id} value={option.id}>{option.fullName}{option.abbreviation ? ` (${option.abbreviation})` : ""}</option>)}</select></label>
-        <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Mode<select name="changeMode" value={mode} onChange={(event) => setMode(event.target.value as "EDIT" | "TRANSFER")} className="min-h-10 rounded-md border border-surface-300 bg-white px-3 text-sm font-normal normal-case tracking-normal text-ink-900"><option value="EDIT">Edit only</option><option value="TRANSFER">Transfer</option></select></label>
-        <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Effective Date<input name="effectiveDate" type="date" required={mode === "TRANSFER"} disabled={mode !== "TRANSFER"} className="min-h-10 rounded-md border border-surface-300 bg-white px-3 text-sm font-normal normal-case tracking-normal text-ink-900 disabled:bg-surface-100" /></label>
-        <label className="grid gap-1 text-xs font-semibold uppercase tracking-[0.06em] text-ink-500">Note<input name="note" maxLength={500} placeholder="Optional" className="min-h-10 rounded-md border border-surface-300 bg-white px-3 text-sm font-normal normal-case tracking-normal text-ink-900" /></label>
-      </div>
-      {player.recentTransfers.length ? <div className="rounded-md border border-surface-200 p-3 text-xs text-ink-600"><strong className="block text-ink-800">Recent transfer history</strong>{player.recentTransfers.map((history) => <div key={history.id}>{history.effectiveDate ?? history.createdAt}: {history.fromProgram} to {history.toProgram}{history.note ? ` - ${history.note}` : ""}</div>)}</div> : null}
-      <StateMessage state={state} />
-      <AdminSaveButton label={mode === "TRANSFER" ? "Record transfer" : "Save current program"} variant="ops" />
-    </form>
+      <label className="grid max-w-md gap-1.5">
+        <span className={labelClassName}>Search players</span>
+        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Name, position, class year" className={inputClassName} />
+      </label>
+      <PlayerTable players={filteredPlayers} onEditPlayer={onEditPlayer} />
+    </div>
   );
 }
 
-function TextField({ name, label, defaultValue, required = false, maxLength, placeholder }: { name: string; label: string; defaultValue: string; required?: boolean; maxLength: number; placeholder?: string }) {
-  return <label className="grid gap-2 text-sm font-semibold text-ink-700">{label}<input name={name} defaultValue={defaultValue} required={required} maxLength={maxLength} placeholder={placeholder} className="min-h-10 rounded-md border border-surface-300 px-3 py-2" /></label>;
-}
+function GraduatesPanel({
+  players,
+  onEditPlayer,
+}: {
+  players: ManagedPlayer[];
+  onEditPlayer: (playerId: string) => void;
+}) {
+  const [query, setQuery] = useState("");
 
-function ReadonlyField({ label, value }: { label: string; value: string }) {
-  return <label className="grid gap-2 text-sm font-semibold text-ink-700">{label}<input value={value} readOnly className="min-h-10 rounded-md border border-surface-200 bg-surface-100 px-3 py-2 text-ink-500" /></label>;
+  const filteredPlayers = useMemo(() => {
+    const value = query.trim().toLowerCase();
+    if (!value) return players;
+    return players.filter((player) =>
+      [player.displayName, player.position, player.displayAgeBracket, player.school].filter(Boolean).join(" ").toLowerCase().includes(value)
+    );
+  }, [players, query]);
+
+  const rows: RosterRow[] = filteredPlayers.map((player) => ({
+    id: player.id,
+    displayName: player.displayName,
+    gender: player.gender,
+    classYear: player.calculatedClassYear ? `Class of ${player.classYearOverride ?? player.calculatedClassYear}` : "Not listed",
+    position: player.position,
+    height: player.heightCm ? `${player.heightCm} cm` : "Not listed",
+    profileHref: `/players/${slugify(player.displayName)}`,
+    appearsInMultipleTeamSections: false,
+  }));
+
+  if (!players.length) {
+    return (
+      <p className="rounded-md border border-dashed border-surface-300 bg-surface-50 p-6 text-sm text-ink-600">
+        No graduated players linked to this program. Graduates are players whose class year has passed the June 1 eligibility cutoff.
+      </p>
+    );
+  }
+
+  return (
+    <div className="grid gap-4">
+      <p className="text-sm text-ink-600">
+        Players associated with this program whose class year has graduated from active U19 eligibility (June 1 cutoff). Historical stats are preserved.
+      </p>
+      <label className="grid max-w-md gap-1.5">
+        <span className={labelClassName}>Search graduates</span>
+        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Name, school, class year" className={inputClassName} />
+      </label>
+      <PlayerTable players={rows} onEditPlayer={onEditPlayer} />
+    </div>
+  );
 }

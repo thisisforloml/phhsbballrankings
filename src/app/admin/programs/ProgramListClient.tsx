@@ -16,7 +16,6 @@ export type ProgramListRow = {
   type: ProgramType;
   city: string | null;
   region: string | null;
-  aliases: string[];
   teamCount: number;
   possibleDuplicateContextGroups: number;
   derivedPlayerCount: number;
@@ -34,7 +33,7 @@ const TYPE_CHIP_ITEMS = [
 ] as const;
 
 function searchText(program: ProgramListRow) {
-  return [program.fullName, program.abbreviation, program.type, program.city, program.region, ...program.aliases].filter(Boolean).join(" ").toLowerCase();
+  return [program.fullName, program.abbreviation, program.type, program.city, program.region].filter(Boolean).join(" ").toLowerCase();
 }
 
 function statusLabel(program: ProgramListRow) {
@@ -106,7 +105,7 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
         </div>
         {filtered.map((program) => (
           <Link key={program.id} href={`/admin/programs/${program.id}`} className="grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:grid-cols-[minmax(22rem,1fr)_6rem_7rem_5rem_6rem_6rem_9rem_6rem] lg:items-center">
-            <span><strong className="block text-ink-900">{program.fullName}</strong>{program.aliases.length ? <small className="text-ink-500">Aliases: {program.aliases.slice(0, 3).join(", ")}</small> : null}<small className="block text-ink-500">{[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</small></span>
+            <span><strong className="block text-ink-900">{program.fullName}</strong><small className="block text-ink-500">{[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</small></span>
             <span className="font-mono text-sm text-ink-700">{program.abbreviation || "-"}</span>
             <span className="border border-surface-200 bg-surface-50 px-2 py-1 text-center font-mono text-[0.65rem] uppercase text-ink-700">{program.type}</span>
             <span className="text-center font-display text-xl text-navy-900">{program.teamCount}</span>

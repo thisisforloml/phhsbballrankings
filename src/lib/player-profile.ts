@@ -10,7 +10,6 @@ import { buildEligibilityInput, evaluateEligibility } from "@/lib/eligibility";
 import { buildCompetitionParticipationFromStats } from "@/lib/player-competition-context";
 import {
   buildBestGame,
-  buildDefaultIntelligence,
   buildGameHighs,
   buildLeagueHistoryFromStats,
   buildProfileAverages,
@@ -19,6 +18,7 @@ import {
   buildRecentForm,
   mapFullGameStat,
 } from "@/lib/player-profile-build";
+import { buildProfileIntelligence } from "@/lib/player-profile-intelligence";
 import type { PlayerProfile } from "@/lib/player-profile-types";
 import { prisma } from "./prisma";
 
@@ -287,6 +287,17 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     })
   );
 
+  const leagues = buildLeagueHistoryFromStats(player.gameStats, tierLabel);
+  const intelligence = await buildProfileIntelligence({
+    ageGroup: displayAgeGroup,
+    gender: player.gender,
+    games,
+    leagues,
+    averages,
+    shooting,
+    gameStats: player.gameStats,
+  });
+
   return {
     id: player.id,
     slug: slugify(player.displayName),
@@ -306,6 +317,8 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     ageGroupOverride: (player.ageGroupOverride as PlayerProfile["ageGroupOverride"]) ?? null,
     age: calculateAge(player.birthDate),
     photoUrl: player.photoUrl,
+    commitmentStatus: player.commitmentStatus,
+    committedUniversity: player.committedUniversity,
     currentTeam:
       player.currentProgram?.fullName ||
       player.schoolOverride?.trim() ||
@@ -331,7 +344,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     bestFourthStat: bestFourthStat({ spg, bpg, rating: ratingValue }),
     latestFiveGames: games.slice(0, 5),
     allGames: games,
-    leagues: buildLeagueHistoryFromStats(player.gameStats, tierLabel),
+    leagues,
     competitionParticipation: buildCompetitionParticipationFromStats(player.gameStats),
     averages,
     recentFiveAverages,
@@ -340,7 +353,7 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     gameHighs: buildGameHighs(games),
     bestGame: buildBestGame(games),
     roleIndicators: [],
-    intelligence: buildDefaultIntelligence(gamesPlayed),
+    intelligence,
     recentForm: buildRecentForm(games, averages),
     rankingTrend: buildRankingTrend(player.rankingRows, profileAgeGroup, player.gender),
   };

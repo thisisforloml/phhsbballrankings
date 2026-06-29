@@ -53,6 +53,12 @@ enum RankingScope {
   AGE_GROUP
 }
 
+enum TeamRankingSnapshotStatus {
+  DRAFT
+  PUBLISHED
+  SUPERSEDED
+}
+
 enum SubmissionType {
   LIVE_PORTAL
   POST_GAME_PORTAL
@@ -60,6 +66,7 @@ enum SubmissionType {
 }
 
 enum SubmissionStatus {
+  DRAFT
   SUBMITTED
   UNDER_REVIEW
   APPROVED
@@ -81,6 +88,18 @@ enum ProgramType {
   UNKNOWN
 }
 
+enum PlayerCommitmentStatus {
+  UNDECLARED
+  COMMITTED
+}
+
+enum ProfileClaimStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  REVOKED
+}
+
 model User {
   id           String             @id @default(uuid()) @db.Uuid
   name         String
@@ -89,9 +108,12 @@ model User {
   passwordHash String
   role         UserRole
   leagueAccess UserLeagueAccess[]
-  auditLogs    AuditLog[]
-  submissions  Submission[]
-  createdAt    DateTime           @default(now())
+  auditLogs           AuditLog[]
+  submissions         Submission[]
+  deletedSubmissions  Submission[]       @relation("SubmissionDeletedBy")
+  profileClaimsReviewed ProfileClaim[]   @relation("ProfileClaimReviewer")
+  gameEditAudits      GameEditAudit[]
+  createdAt           DateTime           @default(now())
   updatedAt    DateTime           @updatedAt
   deletedAt    DateTime?
 
@@ -110,9 +132,11 @@ model Program {
   aliases        Json?
   teams          Team[]
   currentPlayers Player[]
-  transferFrom   PlayerProgramHistory[] @relation("ProgramTransferFrom")
-  transferTo     PlayerProgramHistory[] @relation("ProgramTransferTo")
-  createdAt      DateTime               @default(now())
+  transferFrom         PlayerProgramHistory[] @relation("ProgramTransferFrom")
+  transferTo           PlayerProgramHistory[] @relation("ProgramTransferTo")
+  programTeamRatings   ProgramTeamRating[]
+  teamRankingSnapshotRows TeamRankingSnapshotRow[]
+  createdAt            DateTime               @default(now())
   updatedAt      DateTime               @updatedAt
   deletedAt      DateTime?
 
@@ -127,13 +151,17 @@ model Player {
   firstName         String
   lastName          String
   displayName       String
-  birthDate         DateTime?
+  birthDate                   DateTime?
+  firstRankingEligibilityAt   DateTime?
   gender            PlayerGender           @default(BOYS)
   photoUrl          String?
   heightCm          Int?
   classYearOverride Int?
   schoolOverride    String?
   ageGroupOverride  String?
+  commitmentStatus  PlayerCommitmentStatus @default(UNDECLARED)
+  committedUniversity String?
+  hometown          String?
   currentProgramId  String?                @db.Uuid
   city              String
   region            String
@@ -145,6 +173,10 @@ model Player {
   performanceScores GamePerformanceScore[]
   currentRatings    PlayerRating[]
   rankingRows       RankingSnapshotRow[]
+  aliases           PlayerAlias[]
+  externalAliases   PlayerExternalAlias[]
+  profileClaims     ProfileClaim[]
+  claimProfile      PlayerClaimProfile?
   createdAt         DateTime               @default(now())
   updatedAt         DateTime               @updatedAt
   deletedAt         DateTime?
@@ -156,6 +188,37 @@ model Player {
   @@index([region, city])
   @@index([deletedAt])
   @@map("players")
+}
+
+model PlayerAlias {
+  id        String       @id @default(uuid()) @db.Uuid
+  playerId  String       @db.Uuid
+  /// Exact post-pipeline import string: output of prepareImportedPlayerName() in player-import-identity.ts.
+  /// Must match the cleaned name used by official submission import and preflight — not raw spreadsheet text unless identical after normalization.
+  aliasName String
+  gender    PlayerGender
+  source    String       @default("seed")
+  note      String?
+  createdAt DateTime     @default(now())
+  player    Player       @relation(fields: [playerId], references: [id], onDelete: Restrict)
+
+  @@unique([aliasName, gender])
+  @@index([playerId])
+  @@map("player_aliases")
+}
+
+model PlayerExternalAlias {
+  id                      String   @id @default(uuid()) @db.Uuid
+  provider                String
+  externalLabel           String
+  normalizedExternalLabel String
+  playerId                String   @db.Uuid
+  createdAt               DateTime @default(now())
+  player                  Player   @relation(fields: [playerId], references: [id])
+
+  @@unique([provider, normalizedExternalLabel])
+  @@index([playerId])
+  @@map("player_external_aliases")
 }
 
 model PlayerProfileSubmission {
@@ -196,26 +259,42 @@ model OrganizerApplication {
 }
 
 model Team {
-  id            String             @id @default(uuid()) @db.Uuid
-  name          String
-  city          String
-  region        String
-  rosterSeasons PlayerTeamSeason[]
-  homeGames     Game[]             @relation("HomeTeam")
-  awayGames     Game[]             @relation("AwayTeam")
-  gameStats     GameStat[]
-  teamRatings   TeamRating[]
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
-  deletedAt     DateTime?
-  program       Program?           @relation(fields: [programId], references: [id])
-  programId     String?            @db.Uuid
+  id              String               @id @default(uuid()) @db.Uuid
+  name            String
+  city            String
+  region          String
+  logoUrl         String?
+  rosterSeasons   PlayerTeamSeason[]
+  homeGames       Game[]               @relation("HomeTeam")
+  awayGames       Game[]               @relation("AwayTeam")
+  gameStats       GameStat[]
+  teamRatings     TeamRating[]
+  externalAliases TeamExternalAlias[]
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  deletedAt       DateTime?
+  program         Program?             @relation(fields: [programId], references: [id])
+  programId       String?              @db.Uuid
 
   @@index([name])
   @@index([programId])
   @@index([region, city])
   @@index([deletedAt])
   @@map("teams")
+}
+
+model TeamExternalAlias {
+  id                      String   @id @default(uuid()) @db.Uuid
+  provider                String
+  externalLabel           String
+  normalizedExternalLabel String
+  teamId                  String   @db.Uuid
+  createdAt               DateTime @default(now())
+  team                    Team     @relation(fields: [teamId], references: [id])
+
+  @@unique([provider, normalizedExternalLabel])
+  @@index([teamId])
+  @@map("team_external_aliases")
 }
 
 model League {
@@ -234,6 +313,7 @@ model League {
   playerQualityScore Int?
   qualityScore       Int                      @default(0)
   tier               Int                      @default(1)
+  logoUrl            String?
   seasons            Season[]
   userAccess         UserLeagueAccess[]
   createdAt          DateTime                 @default(now())
@@ -426,7 +506,7 @@ model GameStat {
   game              Game                  @relation(fields: [gameId], references: [id])
   player            Player                @relation(fields: [playerId], references: [id])
   team              Team                  @relation(fields: [teamId], references: [id])
-  performanceScore  GamePerformanceScore?
+  performanceScores GamePerformanceScore[]
   createdAt         DateTime              @default(now())
   updatedAt         DateTime              @updatedAt
   deletedAt         DateTime?
@@ -447,6 +527,7 @@ model FormulaVersion {
   effectiveFrom     DateTime
   effectiveTo       DateTime?
   performanceScores GamePerformanceScore[]
+  playerRatings     PlayerRating[]
   rankingSnapshots  RankingSnapshot[]
   createdAt         DateTime               @default(now())
 
@@ -456,7 +537,7 @@ model FormulaVersion {
 model GamePerformanceScore {
   id                     String         @id @default(uuid()) @db.Uuid
   gameId                 String         @db.Uuid
-  gameStatId             String         @unique @db.Uuid
+  gameStatId             String         @db.Uuid
   playerId               String         @db.Uuid
   formulaVersionId       String         @db.Uuid
   productionScore        Decimal        @db.Decimal(8, 3)
@@ -490,6 +571,7 @@ model GamePerformanceScore {
   updatedAt              DateTime       @updatedAt
   deletedAt              DateTime?
 
+  @@unique([gameStatId, formulaVersionId])
   @@index([playerId])
   @@index([formulaVersionId])
   @@index([deletedAt])
@@ -510,19 +592,111 @@ model TeamRating {
   @@map("team_ratings")
 }
 
+model TeamFormulaVersion {
+  id                 String              @id @default(uuid()) @db.Uuid
+  slug               String              @unique
+  versionNumber      Int                 @unique
+  description        String
+  parameters         Json
+  effectiveFrom      DateTime
+  effectiveTo        DateTime?
+  isPublic           Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  programTeamRatings ProgramTeamRating[]
+  teamRankingSnapshots TeamRankingSnapshot[]
+
+  @@map("team_formula_versions")
+}
+
+model ProgramTeamRating {
+  id                       String             @id @default(uuid()) @db.Uuid
+  programId                String             @db.Uuid
+  ageGroup                 AgeGroup
+  gender                   PlayerGender
+  rating                   Decimal            @db.Decimal(5, 2)
+  observedRating           Decimal?           @db.Decimal(5, 2)
+  effectiveGameWeight      Decimal?           @db.Decimal(8, 3)
+  verifiedGameCount        Int
+  verifiedOpponentCount    Int
+  verifiedCompetitionCount Int
+  publicBoardEligible      Boolean            @default(false)
+  teamFormulaVersionId     String             @db.Uuid
+  evidencePolicyVersion    String
+  thresholdPolicyVersion   String
+  computedAt               DateTime           @default(now())
+  program                  Program            @relation(fields: [programId], references: [id])
+  teamFormulaVersion       TeamFormulaVersion @relation(fields: [teamFormulaVersionId], references: [id])
+
+  @@unique([programId, ageGroup, gender])
+  @@index([ageGroup, gender, rating])
+  @@index([publicBoardEligible, ageGroup, gender, rating])
+  @@index([computedAt])
+  @@map("program_team_ratings")
+}
+
+model TeamRankingSnapshot {
+  id                     String                    @id @default(uuid()) @db.Uuid
+  ageGroup               AgeGroup
+  gender                 PlayerGender
+  weekOf                 DateTime
+  teamFormulaVersionId   String                    @db.Uuid
+  evidencePolicyVersion  String
+  thresholdPolicyVersion String
+  status                 TeamRankingSnapshotStatus @default(DRAFT)
+  publishedAt            DateTime?
+  supersededAt           DateTime?
+  rowCount               Int                       @default(0)
+  evaluationDate         DateTime
+  teamFormulaVersion     TeamFormulaVersion        @relation(fields: [teamFormulaVersionId], references: [id])
+  rows                   TeamRankingSnapshotRow[]
+  createdAt              DateTime                  @default(now())
+
+  @@unique([ageGroup, gender, weekOf, teamFormulaVersionId, evidencePolicyVersion, thresholdPolicyVersion])
+  @@index([ageGroup, gender, weekOf])
+  @@index([status, weekOf])
+  @@index([teamFormulaVersionId])
+  @@map("team_ranking_snapshots")
+}
+
+model TeamRankingSnapshotRow {
+  id                       String              @id @default(uuid()) @db.Uuid
+  snapshotId               String              @db.Uuid
+  programId                String              @db.Uuid
+  rank                     Int
+  rating                   Decimal             @db.Decimal(5, 2)
+  verifiedGameCount        Int
+  verifiedOpponentCount    Int
+  verifiedCompetitionCount Int
+  programName              String
+  programAbbreviation      String?
+  movement                 Int                 @default(0)
+  snapshot                 TeamRankingSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+  program                  Program             @relation(fields: [programId], references: [id])
+
+  @@unique([snapshotId, programId])
+  @@index([snapshotId, rank])
+  @@index([programId])
+  @@map("team_ranking_snapshot_rows")
+}
+
 model PlayerRating {
-  id                String   @id @default(uuid()) @db.Uuid
-  playerId          String   @db.Uuid
+  id                String         @id @default(uuid()) @db.Uuid
+  playerId          String         @db.Uuid
   ageGroup          AgeGroup
-  observedRating    Decimal  @db.Decimal(5, 2)
-  adjustedRating    Decimal  @db.Decimal(5, 2)
+  formulaVersionId  String         @db.Uuid
+  policyVersionId   String         @default("formula-v1-production")
+  observedRating    Decimal        @db.Decimal(5, 2)
+  adjustedRating    Decimal        @db.Decimal(5, 2)
   verifiedGameCount Int
   starRating        Int
-  computedAt        DateTime @default(now())
-  player            Player   @relation(fields: [playerId], references: [id])
+  ratingBasis       String?
+  computedAt        DateTime       @default(now())
+  player            Player         @relation(fields: [playerId], references: [id])
+  formulaVersion    FormulaVersion @relation(fields: [formulaVersionId], references: [id])
 
-  @@unique([playerId, ageGroup])
+  @@unique([playerId, ageGroup, formulaVersionId, policyVersionId])
   @@index([ageGroup, adjustedRating])
+  @@index([formulaVersionId, policyVersionId, ageGroup, adjustedRating])
   @@map("player_ratings")
 }
 
@@ -532,6 +706,7 @@ model RankingSnapshot {
   ageGroup         AgeGroup?
   gender           PlayerGender
   formulaVersionId String               @db.Uuid
+  policyVersionId  String?
   city             String?
   region           String?
   weekOf           DateTime
@@ -546,16 +721,17 @@ model RankingSnapshot {
 }
 
 model RankingSnapshotRow {
-  id                String          @id @default(uuid()) @db.Uuid
-  snapshotId        String          @db.Uuid
-  playerId          String          @db.Uuid
-  rank              Int
-  rating            Decimal         @db.Decimal(5, 2)
-  starRating        Int
-  verifiedGameCount Int
-  movement          Int             @default(0)
-  snapshot          RankingSnapshot @relation(fields: [snapshotId], references: [id])
-  player            Player          @relation(fields: [playerId], references: [id])
+  id                      String          @id @default(uuid()) @db.Uuid
+  snapshotId              String          @db.Uuid
+  playerId                String          @db.Uuid
+  rank                    Int
+  rating                  Decimal         @db.Decimal(5, 2)
+  starRating              Int
+  verifiedGameCount       Int
+  movement                Int             @default(0)
+  ageVerificationStatus   String?
+  snapshot                RankingSnapshot @relation(fields: [snapshotId], references: [id])
+  player                  Player          @relation(fields: [playerId], references: [id])
 
   @@unique([snapshotId, playerId])
   @@index([rank])
@@ -579,12 +755,18 @@ model Submission {
   parsedPreview     Json?
   validationSummary Json?
   adminNotes        String?
+  publishedAt       DateTime?
+  importedAt        DateTime?
+  deletedAt         DateTime?
+  deletedById       String?                 @db.Uuid
+  deletedBy         User?                   @relation("SubmissionDeletedBy", fields: [deletedById], references: [id])
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt
 
   @@index([submittedByUserId, createdAt])
   @@index([status, createdAt])
   @@index([type])
+  @@index([deletedAt])
   @@map("submissions")
 }
 
@@ -603,4 +785,59 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([createdAt])
   @@map("audit_log")
+}
+
+model ProfileClaim {
+  id             String             @id @default(uuid()) @db.Uuid
+  playerId       String             @db.Uuid
+  claimantUserId String?            @db.Uuid
+  status         ProfileClaimStatus @default(PENDING)
+  claimantName   String
+  relationship   String
+  contactEmail   String?
+  contactPhone   String?
+  message        String?
+  evidenceJson   Json?
+  reviewedById   String?            @db.Uuid
+  reviewedAt     DateTime?
+  adminNotes     String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  player         Player             @relation(fields: [playerId], references: [id], onDelete: Restrict)
+  reviewedBy     User?              @relation("ProfileClaimReviewer", fields: [reviewedById], references: [id])
+  claimProfile   PlayerClaimProfile?
+
+  @@index([status, createdAt])
+  @@index([playerId])
+  @@map("profile_claims")
+}
+
+model PlayerClaimProfile {
+  playerId     String       @id @db.Uuid
+  claimId      String       @unique @db.Uuid
+  contactEmail String?
+  socialLinks  Json?
+  updatedAt    DateTime     @updatedAt
+  player       Player       @relation(fields: [playerId], references: [id], onDelete: Restrict)
+  claim        ProfileClaim @relation(fields: [claimId], references: [id], onDelete: Restrict)
+
+  @@map("player_claim_profiles")
+}
+
+model GameEditAudit {
+  id         String   @id @default(uuid()) @db.Uuid
+  entityType String
+  entityId   String   @db.Uuid
+  gameId     String   @db.Uuid
+  fieldName  String
+  oldValue   String?
+  newValue   String?
+  reason     String
+  editedById String   @db.Uuid
+  createdAt  DateTime @default(now())
+  editedBy   User     @relation(fields: [editedById], references: [id])
+
+  @@index([gameId, createdAt])
+  @@index([entityType, entityId])
+  @@map("game_edit_audits")
 }

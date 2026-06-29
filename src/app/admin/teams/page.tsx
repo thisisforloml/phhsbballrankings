@@ -2,7 +2,7 @@
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { resolveProgramIdentity } from "@/lib/uaap-school-display";
-import { TeamManagementClient, type ManagedTeam, type TeamSchoolGroup } from "./TeamManagementClient";
+import { TeamManagementClient, type ManagedTeam } from "./TeamManagementClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -142,22 +142,20 @@ export default async function AdminTeamsPage() {
   });
 
   const activeTeams = serializedTeams.filter((team) => team.isActiveCompetitionTeam);
-  const activeSchoolGroups: TeamSchoolGroup[] = Array.from(new Map(activeTeams.map((team) => [team.publicSchoolName, team.publicSchoolName])).keys())
-    .sort((left, right) => left.localeCompare(right))
-    .map((publicSchoolName) => ({
-      publicSchoolName,
-      programAbbreviation: activeTeams.find((team) => team.publicSchoolName === publicSchoolName)?.programAbbreviation ?? publicSchoolName,
-      programType: activeTeams.find((team) => team.publicSchoolName === publicSchoolName)?.programType ?? "Club / Team",
-      teams: activeTeams
-        .filter((team) => team.publicSchoolName === publicSchoolName)
-        .sort((left, right) => left.context.localeCompare(right.context) || left.name.localeCompare(right.name)),
-      hasSameContextDuplicate: activeTeams.some((team) => team.publicSchoolName === publicSchoolName && team.needsCleanup)
-    }));
+  const reviewCount = activeTeams.filter((team) => team.needsCleanup).length;
 
   return (
     <>
-      <AdminPageHeader title="Teams" statusBadge={`${serializedTeams.length} records`} />
-      <TeamManagementClient teams={serializedTeams} activeSchoolGroups={activeSchoolGroups} />
+      <AdminPageHeader
+        title="Teams"
+        description={
+          reviewCount
+            ? `${reviewCount} active record${reviewCount === 1 ? "" : "s"} need duplicate-context review.`
+            : "Edit team identity and location. Competition usage is read-only."
+        }
+        statusBadge={`${serializedTeams.length} records`}
+      />
+      <TeamManagementClient teams={serializedTeams} />
     </>
   );
 }

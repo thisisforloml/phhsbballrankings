@@ -170,6 +170,12 @@ export type PlayerProfileStrengthBadge = {
   reason: string;
 };
 
+export type PlayerProfileTrendAverages = {
+  ageGroup: Partial<Record<string, number | null>>;
+  primaryLeague: Partial<Record<string, number | null>>;
+  primaryLeagueName: string | null;
+};
+
 export type PlayerProfileIntelligence = {
   roleArchetype: PlayerProfileRoleArchetype;
   percentiles: PlayerProfilePercentile[];
@@ -178,6 +184,7 @@ export type PlayerProfileIntelligence = {
   limitedSample: boolean;
   comparisonCount: number;
   benchmarks: PlayerProfileBenchmarks;
+  trendAverages: PlayerProfileTrendAverages;
 };
 
 export type PlayerProfile = {
@@ -199,6 +206,8 @@ export type PlayerProfile = {
   ageGroupOverride: "U13" | "U16" | "U19" | null;
   age: number | null;
   photoUrl: string | null;
+  commitmentStatus: "UNDECLARED" | "COMMITTED";
+  committedUniversity: string | null;
   currentTeam: string;
   ageGroup: "U13" | "U16" | "U19";
   rating: number;

@@ -34,11 +34,6 @@ function readProgramType(formData: FormData) {
   return value as ProgramType;
 }
 
-function parseAliases(value: string | null) {
-  if (!value) return [];
-  return Array.from(new Set(value.split(/\r?\n|,/).map((alias) => alias.trim()).filter(Boolean))).sort((left, right) => left.localeCompare(right));
-}
-
 function readChangeMode(formData: FormData) {
   const value = String(formData.get("changeMode") ?? "EDIT").trim().toUpperCase();
   if (value !== "EDIT" && value !== "TRANSFER") throw new Error("Change mode must be Edit only or Transfer.");
@@ -78,11 +73,10 @@ export async function updateProgram(_previousState: ProgramActionState = initial
     const type = readProgramType(formData);
     const city = readOptionalString(formData, "city", "City", 100);
     const region = readOptionalString(formData, "region", "Region", 100);
-    const aliases = parseAliases(readOptionalString(formData, "aliases", "Aliases", 4000));
 
     await prisma.program.update({
       where: { id: programId },
-      data: { fullName, abbreviation, type, city, region, aliases }
+      data: { fullName, abbreviation, type, city, region }
     });
 
     revalidatePath("/admin/programs");

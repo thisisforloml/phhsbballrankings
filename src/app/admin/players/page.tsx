@@ -1,9 +1,10 @@
-﻿import { AgeGroup, ProgramType } from "@prisma/client";
+﻿import { ProgramType } from "@prisma/client";
 import { Suspense } from "react";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
+import { resolveAdminPlayerStats } from "@/lib/admin/resolve-admin-player-stats";
 import { resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
 import { PlayerManagementClient, type ManagedPlayer } from "./PlayerManagementClient";
 
@@ -23,16 +24,13 @@ export default async function AdminPlayersPage() {
     include: {
       currentProgram: true,
       currentRatings: {
-        where: {
-          ageGroup: AgeGroup.U19
-        },
-        take: 1
+        orderBy: { ageGroup: "desc" },
       },
       gameStats: {
         where: { deletedAt: null },
         include: {
           team: { select: { name: true, program: { select: { fullName: true, abbreviation: true, type: true } } } },
-          game: { select: { gameDate: true } }
+          game: { select: { id: true, gameDate: true } },
         },
         orderBy: { game: { gameDate: "desc" } },
         take: 40
@@ -50,8 +48,8 @@ export default async function AdminPlayersPage() {
   ]);
 
   const serializedPlayers: ManagedPlayer[] = players.map((player) => {
-    const rating = player.currentRatings[0] ?? null;
     const computedAgeBracket = getAgeBracketAsOfMarch31(player.birthDate);
+    const { rating, verifiedGameCount } = resolveAdminPlayerStats(player);
     const schoolDisplay = resolvePrimaryRankingAffiliation({
       schoolOverride: player.schoolOverride,
       currentProgram: player.currentProgram,
@@ -78,8 +76,10 @@ export default async function AdminPlayersPage() {
       calculatedClassYear: getClassYear(player.birthDate),
       classYearOverride: player.classYearOverride,
       photoUrl: player.photoUrl,
-      rating: rating ? Number(rating.adjustedRating) : null,
-      verifiedGameCount: rating?.verifiedGameCount ?? null
+      rating,
+      verifiedGameCount,
+      commitmentStatus: player.commitmentStatus ?? "UNDECLARED",
+      committedUniversity: player.committedUniversity ?? null,
     };
   });
 
