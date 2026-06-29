@@ -15,6 +15,7 @@ import {
   computeImportedSubmissionPlayerRatings,
   computeImportedSubmissionTeamRatings,
   generateImportedSubmissionMonthlyRankings,
+  refreshImportedSubmissionDerivedRatings,
   validateImportedSubmissionRankings
 } from "@/lib/submission-post-import-processing";
 import {
@@ -365,14 +366,8 @@ export async function publishSubmission(formData: FormData) {
     await computeImportedSubmissionFormulaScores(submission.id);
     completedSteps.push("scores");
 
-    await computeImportedSubmissionPlayerRatings(submission.id);
-    completedSteps.push("ratings");
-
-    await computeImportedSubmissionTeamRatings(submission.id);
-    completedSteps.push("team-ratings");
-
-    await generateImportedSubmissionMonthlyRankings(submission.id);
-    completedSteps.push("rankings");
+    await refreshImportedSubmissionDerivedRatings(submission.id);
+    completedSteps.push("ratings, team-ratings, rankings");
 
     const validation = await validateImportedSubmissionRankings(submission.id);
     completedSteps.push("validation");
@@ -533,14 +528,8 @@ export async function processAndPublishSubmissionRankings(formData: FormData) {
     await computeImportedSubmissionFormulaScores(submissionId);
     completedSteps.push("scores");
 
-    await computeImportedSubmissionPlayerRatings(submissionId);
-    completedSteps.push("ratings");
-
-    await computeImportedSubmissionTeamRatings(submissionId);
-    completedSteps.push("team-ratings");
-
-    await generateImportedSubmissionMonthlyRankings(submissionId);
-    completedSteps.push("rankings");
+    await refreshImportedSubmissionDerivedRatings(submissionId);
+    completedSteps.push("ratings, team-ratings, rankings");
 
     const validation = await validateImportedSubmissionRankings(submissionId);
     completedSteps.push("validation");

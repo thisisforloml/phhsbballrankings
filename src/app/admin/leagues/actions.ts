@@ -2,8 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { recomputeSeasonFormulaScores } from "@/lib/formula-v1/compute-game-performance-scores";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { writeAuditLog } from "@/lib/admin/log-admin-action";
+import { syncDerivedRatingsAfterEvidenceChange } from "@/lib/ratings/sync-derived-ratings";
 
 export type LeagueActionState = { ok: boolean; message: string };
 
@@ -63,11 +65,33 @@ async function writeGameEditAudit(input: {
   });
 }
 
+async function refreshDerivedRatingsAfterLeagueEvidenceChange(input: {
+  leagueId: string;
+  seasonId?: string;
+  recomputeFormulaScores?: boolean;
+}) {
+  if (input.recomputeFormulaScores && input.seasonId) {
+    await recomputeSeasonFormulaScores(input.seasonId);
+  }
+
+  await syncDerivedRatingsAfterEvidenceChange({ allSnapshots: true });
+  revalidatePath("/admin/leagues");
+  revalidatePath(`/admin/leagues/${input.leagueId}`);
+  revalidatePath("/rankings");
+  revalidatePath("/teams");
+}
+
 export async function updateLeagueMetadata(_previous: LeagueActionState, formData: FormData): Promise<LeagueActionState> {
   try {
     const user = await requireAdminUser();
     const leagueId = String(formData.get("leagueId") ?? "").trim();
     if (!leagueId) throw new Error("League id is required.");
+
+    const existing = await prisma.league.findUnique({
+      where: { id: leagueId },
+      select: { tier: true }
+    });
+    if (!existing) throw new Error("League not found.");
 
     const name = readRequiredString(formData, "name", "League name", 160);
     const tier = readInt(formData, "tier", "Tier", 1, 4);
@@ -87,9 +111,19 @@ export async function updateLeagueMetadata(_previous: LeagueActionState, formDat
       newData: { name, tier, logoUrl }
     });
 
+    if (existing.tier !== tier) {
+      await refreshDerivedRatingsAfterLeagueEvidenceChange({ leagueId });
+    }
+
     revalidatePath("/admin/leagues");
     revalidatePath(`/admin/leagues/${leagueId}`);
-    return { ok: true, message: "League updated." };
+    return {
+      ok: true,
+      message:
+        existing.tier !== tier
+          ? "League updated. Player ratings, team rankings, and national snapshots were refreshed for the new tier."
+          : "League updated."
+    };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update league." };
   }
@@ -115,7 +149,8 @@ export async function updateOfficialGame(_previous: LeagueActionState, formData:
         gameNumber: true,
         gameDate: true,
         homeScore: true,
-        awayScore: true
+        awayScore: true,
+        seasonId: true
       }
     });
     if (!game) throw new Error("Game not found.");
@@ -185,9 +220,14 @@ export async function updateOfficialGame(_previous: LeagueActionState, formData:
       newData: { fields: updates.map((u) => u.field) }
     });
 
+    await refreshDerivedRatingsAfterLeagueEvidenceChange({ leagueId });
+
     revalidatePath(`/admin/leagues/${leagueId}`);
     revalidatePath(`/admin/leagues/${leagueId}/games/${gameId}`);
-    return { ok: true, message: `Updated ${updates.length} field(s). Review edit history before recomputing ratings.` };
+    return {
+      ok: true,
+      message: `Updated ${updates.length} field(s). Player ratings, team rankings, and national snapshots were refreshed.`
+    };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update game." };
   }
@@ -211,7 +251,14 @@ export async function updateOfficialGameStat(_previous: LeagueActionState, formD
         deletedAt: null,
         game: { deletedAt: null, season: { leagueId, deletedAt: null } }
       },
-      select: { id: true, gameId: true, points: true, rebounds: true, assists: true }
+      select: {
+        id: true,
+        gameId: true,
+        points: true,
+        rebounds: true,
+        assists: true,
+        game: { select: { seasonId: true } }
+      }
     });
     if (!stat) throw new Error("Game stat not found.");
 
@@ -252,8 +299,17 @@ export async function updateOfficialGameStat(_previous: LeagueActionState, formD
       });
     }
 
+    await refreshDerivedRatingsAfterLeagueEvidenceChange({
+      leagueId,
+      seasonId: stat.game.seasonId,
+      recomputeFormulaScores: true
+    });
+
     revalidatePath(`/admin/leagues/${leagueId}/games/${stat.gameId}`);
-    return { ok: true, message: `Updated ${updates.length} stat field(s).` };
+    return {
+      ok: true,
+      message: `Updated ${updates.length} stat field(s). Formula scores, player ratings, team rankings, and national snapshots were refreshed.`
+    };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update game stat." };
   }
