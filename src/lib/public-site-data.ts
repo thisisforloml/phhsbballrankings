@@ -8,7 +8,6 @@ import { prisma } from "./prisma";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
-import { loadValidatedUaapGames } from "./validated-uaap-data";
 import type { PublicTrustMeta } from "./public-rankings-coverage";
 
 export type { PublicTrustMeta };
@@ -132,23 +131,20 @@ function inferGenderFromLeagueName(name: string): PublicGender | "Mixed" {
   return "Mixed";
 }
 
-async function getValidatedDbGames() {
-  const sourceGames = loadValidatedUaapGames();
-  const validatedGameNumbers = sourceGames.map((game) => game.gameNumber);
-  const leagueNames = Array.from(new Set(sourceGames.map((game) => game.leagueName)));
-
-  return prisma.game.findMany({
-    where: {
+function officialPublicGameWhere() {
+  return {
+    deletedAt: null,
+    verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] as VerificationStatus[] },
+    season: {
       deletedAt: null,
-      gameNumber: { in: validatedGameNumbers },
-      season: {
-        deletedAt: null,
-        league: {
-          deletedAt: null,
-          name: { in: leagueNames }
-        }
-      }
+      league: { deletedAt: null },
     },
+  };
+}
+
+async function getValidatedDbGames() {
+  return prisma.game.findMany({
+    where: officialPublicGameWhere(),
     include: {
       homeTeam: true,
       awayTeam: true,
@@ -162,24 +158,31 @@ async function getValidatedDbGames() {
               currentRatings: {
                 where: {
                   ageGroup: AgeGroup.U19,
-                  policyVersionId: getActivePolicyVersionId()
+                  policyVersionId: getActivePolicyVersionId(),
                 },
-                take: 1
-              }
-            }
-          }
-        }
-      }
-    }
+                take: 1,
+              },
+            },
+          },
+        },
+      },
+    },
   });
 }
 
 async function getHomeRecentGames(limit = 9): Promise<HomeRecentGame[]> {
-  const games = await getValidatedDbGames();
-  return games
-    .sort((left, right) => right.gameDate.getTime() - left.gameDate.getTime() || right.id.localeCompare(left.id))
-    .slice(0, limit)
-    .map((game) => ({
+  const games = await prisma.game.findMany({
+    where: officialPublicGameWhere(),
+    include: {
+      homeTeam: true,
+      awayTeam: true,
+      season: { include: { league: true } },
+    },
+    orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
+    take: limit,
+  });
+
+  return games.map((game) => ({
       id: game.id,
       gameDate: game.gameDate.toISOString().slice(0, 10),
       leagueName: game.season.league.name,
