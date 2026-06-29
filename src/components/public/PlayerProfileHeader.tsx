@@ -80,7 +80,8 @@ function ordinalRank(rank: number | null | undefined) {
 
 function commitmentStatusLabel(profile: PlayerProfile): string {
   if (profile.commitmentStatus === "COMMITTED") {
-    return profile.committedUniversity?.trim() ? profile.committedUniversity.trim() : "Committed";
+    const university = profile.committedUniversity?.trim();
+    return university ? `Committed · ${university}` : "Committed";
   }
   return "Undeclared";
 }
