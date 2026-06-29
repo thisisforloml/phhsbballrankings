@@ -1,11 +1,11 @@
 import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
+import { cache } from "react";
 import { slugify } from "./format";
 import { resolvePrimaryRankingAffiliation } from "./player-display-affiliation";
 import { buildEligibilityInput, evaluateEligibility, type EligibilityVerdict } from "./eligibility";
 import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
 import { prisma } from "./prisma";
 import { getPublicBoardRows, normalizePublicBoardPosition } from "./public-board-ranks";
-import { getActivePlayerFormulaConfig } from "./ratings/active-formula";
 import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
 import {
   loadCompetitionParticipationByPlayerIds,
@@ -93,8 +93,14 @@ function emptySnapshot(gender: PlayerGender, formulaVersionId: string | null, ag
   return { snapshotId: null, gender: toDisplayGender(gender), ageGroup, weekOf: null, formulaVersionId, totalRows: 0, rows: [] };
 }
 
-async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string | null, ageGroup: RankingAgeGroup): Promise<NationalRankingSnapshot> {
-  const ratingFilter = await resolveActivePlayerRatingFilter();
+type ActiveRatingFilter = Awaited<ReturnType<typeof resolveActivePlayerRatingFilter>>;
+
+async function getLatestSnapshot(
+  gender: PlayerGender,
+  formulaVersionId: string | null,
+  ageGroup: RankingAgeGroup,
+  ratingFilter: ActiveRatingFilter
+): Promise<NationalRankingSnapshot> {
   const activeFormulaVersionId = ratingFilter.formulaVersionId ?? formulaVersionId;
   if (!activeFormulaVersionId) return emptySnapshot(gender, null, ageGroup);
 
@@ -215,23 +221,31 @@ async function getLatestSnapshot(gender: PlayerGender, formulaVersionId: string 
   };
 }
 
-export async function getLatestNationalRankings(): Promise<LatestNationalRankings> {
-  const activeFormula = getActivePlayerFormulaConfig();
-  const formulaVersion = await prisma.formulaVersion.findUnique({
-    where: { versionNumber: activeFormula.formulaVersionNumber },
-    select: { id: true }
-  });
-  const formulaVersionId = formulaVersion?.id ?? null;
-  const entries = await Promise.all(rankingAgeGroups.map(async (ageGroup) => {
-    const [boys, girls] = await Promise.all([
-      getLatestSnapshot(PlayerGender.BOYS, formulaVersionId, ageGroup),
-      getLatestSnapshot(PlayerGender.GIRLS, formulaVersionId, ageGroup)
-    ]);
-    return [ageGroup, { boys, girls }] as const;
-  }));
-  const snapshotsByAge = Object.fromEntries(entries) as Record<RankingAgeGroup, { boys: NationalRankingSnapshot; girls: NationalRankingSnapshot }>;
-  return { formulaVersionId, snapshots: snapshotsByAge[defaultAgeGroup], snapshotsByAge };
+async function buildLatestNationalRankings(
+  ageGroups: readonly RankingAgeGroup[]
+): Promise<LatestNationalRankings> {
+  const ratingFilter = await resolveActivePlayerRatingFilter();
+  const formulaVersionId = ratingFilter.formulaVersionId;
+  const snapshotsByAge = {} as Record<RankingAgeGroup, { boys: NationalRankingSnapshot; girls: NationalRankingSnapshot }>;
+
+  for (const ageGroup of ageGroups) {
+    const boys = await getLatestSnapshot(PlayerGender.BOYS, formulaVersionId, ageGroup, ratingFilter);
+    const girls = await getLatestSnapshot(PlayerGender.GIRLS, formulaVersionId, ageGroup, ratingFilter);
+    snapshotsByAge[ageGroup] = { boys, girls };
+  }
+
+  return {
+    formulaVersionId,
+    snapshots: snapshotsByAge[defaultAgeGroup as RankingAgeGroup],
+    snapshotsByAge,
+  };
 }
+
+export const getLatestNationalRankings = cache(async () => buildLatestNationalRankings(rankingAgeGroups));
+
+export const getHomeNationalRankings = cache(async () =>
+  buildLatestNationalRankings([defaultAgeGroup as RankingAgeGroup])
+);
 
 export async function getCurrentPublicBoardRankForPlayer(playerId: string, gender: PlayerGender, ageGroup: AgeGroup): Promise<PublicBoardRankLookup> {
   const rankings = await getLatestNationalRankings();

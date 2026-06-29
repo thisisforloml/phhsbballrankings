@@ -11,7 +11,7 @@ function prismaSchemaFingerprint() {
 
 function createPrismaClient() {
   return new PrismaClient({
-    log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"]
+    log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
   });
 }
 
@@ -42,10 +42,8 @@ function getPrismaClient() {
   }
 
   const client = createPrismaClient();
-  if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.prisma = client;
-    globalForPrisma.prismaSchemaFingerprint = fingerprint;
-  }
+  globalForPrisma.prisma = client;
+  globalForPrisma.prismaSchemaFingerprint = fingerprint;
   return client;
 }
 

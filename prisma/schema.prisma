@@ -60,6 +60,7 @@ model Player {
   lastName                  String
   displayName               String
   birthDate                 DateTime?
+  gender                    PlayerGender           @default(BOYS)
   photoUrl                  String?
   heightCm                  Int?
   city                      String
@@ -68,7 +69,6 @@ model Player {
   createdAt                 DateTime               @default(now())
   updatedAt                 DateTime               @updatedAt
   deletedAt                 DateTime?
-  gender                    PlayerGender           @default(BOYS)
   classYearOverride         Int?
   ageGroupOverride          String?
   schoolOverride            String?
@@ -136,6 +136,7 @@ model PlayerProfileSubmission {
   lastName   String
   position   String?
   heightCm   Int?
+  photoUrl   String?
   city       String?
   region     String?
   contact    String
@@ -143,7 +144,6 @@ model PlayerProfileSubmission {
   status     String    @default("PENDING")
   createdAt  DateTime  @default(now())
   reviewedAt DateTime?
-  photoUrl   String?
 
   @@index([status, createdAt])
   @@map("player_profile_submissions")
@@ -348,12 +348,23 @@ model Game {
   seasonId           String                 @db.Uuid
   homeTeamId         String                 @db.Uuid
   awayTeamId         String                 @db.Uuid
+  gameNumber         String?
   gameDate           DateTime
   venueName          String?
   city               String
   region             String
+  referees           String?
+  attendance         Int?
   homeScore          Int
   awayScore          Int
+  homeQ1             Int?
+  homeQ2             Int?
+  homeQ3             Int?
+  homeQ4             Int?
+  awayQ1             Int?
+  awayQ2             Int?
+  awayQ3             Int?
+  awayQ4             Int?
   sourceName         String
   sourceUrl          String?
   submissionType     SubmissionType
@@ -361,17 +372,6 @@ model Game {
   createdAt          DateTime               @default(now())
   updatedAt          DateTime               @updatedAt
   deletedAt          DateTime?
-  attendance         Int?
-  awayQ1             Int?
-  awayQ2             Int?
-  awayQ3             Int?
-  awayQ4             Int?
-  gameNumber         String?
-  homeQ1             Int?
-  homeQ2             Int?
-  homeQ3             Int?
-  homeQ4             Int?
-  referees           String?
   performanceScores  GamePerformanceScore[]
   stats              GameStat[]
   awayTeam           Team                   @relation("AwayTeam", fields: [awayTeamId], references: [id])
@@ -389,16 +389,24 @@ model GameStat {
   gameId            String                 @db.Uuid
   playerId          String                 @db.Uuid
   teamId            String                 @db.Uuid
+  jerseyNumber      String?
+  starter           Boolean                @default(false)
   minutes           Decimal?               @db.Decimal(5, 2)
   points            Int
+  offensiveRebounds Int?
+  defensiveRebounds Int?
   rebounds          Int
   assists           Int
   steals            Int?
   blocks            Int?
   turnovers         Int?
   fouls             Int?
+  foulsDrawn        Int?
+  plusMinus         Int?
   fieldGoalsMade    Int?
   fieldGoalsAttempt Int?
+  twoMade           Int?
+  twoAttempt        Int?
   threeMade         Int?
   threeAttempt      Int?
   freeThrowsMade    Int?
@@ -406,14 +414,6 @@ model GameStat {
   createdAt         DateTime               @default(now())
   updatedAt         DateTime               @updatedAt
   deletedAt         DateTime?
-  defensiveRebounds Int?
-  foulsDrawn        Int?
-  jerseyNumber      String?
-  offensiveRebounds Int?
-  plusMinus         Int?
-  starter           Boolean                @default(false)
-  twoAttempt        Int?
-  twoMade           Int?
   performanceScores GamePerformanceScore[]
   game              Game                   @relation(fields: [gameId], references: [id])
   player            Player                 @relation(fields: [playerId], references: [id])
@@ -456,24 +456,24 @@ model GamePerformanceScore {
   createdAt              DateTime       @default(now())
   updatedAt              DateTime       @updatedAt
   deletedAt              DateTime?
-  advancedMetricBonus    Decimal?       @db.Decimal(8, 3)
-  apmBox                 Decimal?       @db.Decimal(8, 5)
-  defensiveRating        Decimal?       @db.Decimal(8, 3)
-  defensiveWinShares     Decimal?       @db.Decimal(8, 5)
-  effectiveFieldGoalPct  Decimal?       @db.Decimal(8, 5)
-  finalPerformanceScore  Decimal?       @db.Decimal(8, 3)
   formulaVersionTag      Int            @default(2)
-  offensiveRating        Decimal?       @db.Decimal(8, 3)
-  offensiveWinShares     Decimal?       @db.Decimal(8, 5)
-  pie                    Decimal?       @db.Decimal(8, 5)
-  playerEfficiencyRating Decimal?       @db.Decimal(8, 5)
-  processedAt            DateTime?
-  rpmEstimate            Decimal?       @db.Decimal(8, 5)
+  effectiveFieldGoalPct  Decimal?       @db.Decimal(8, 5)
   trueShootingPct        Decimal?       @db.Decimal(8, 5)
-  unadjustedPer          Decimal?       @db.Decimal(8, 5)
   usagePct               Decimal?       @db.Decimal(8, 5)
+  unadjustedPer          Decimal?       @db.Decimal(8, 5)
+  playerEfficiencyRating Decimal?       @db.Decimal(8, 5)
+  offensiveRating        Decimal?       @db.Decimal(8, 3)
+  defensiveRating        Decimal?       @db.Decimal(8, 3)
+  pie                    Decimal?       @db.Decimal(8, 5)
+  offensiveWinShares     Decimal?       @db.Decimal(8, 5)
+  defensiveWinShares     Decimal?       @db.Decimal(8, 5)
   winShares              Decimal?       @db.Decimal(8, 5)
   winSharesPer48         Decimal?       @db.Decimal(8, 5)
+  apmBox                 Decimal?       @db.Decimal(8, 5)
+  rpmEstimate            Decimal?       @db.Decimal(8, 5)
+  advancedMetricBonus    Decimal?       @db.Decimal(8, 3)
+  finalPerformanceScore  Decimal?       @db.Decimal(8, 3)
+  processedAt            DateTime?
   formulaVersion         FormulaVersion @relation(fields: [formulaVersionId], references: [id])
   game                   Game           @relation(fields: [gameId], references: [id])
   gameStat               GameStat       @relation(fields: [gameStatId], references: [id])

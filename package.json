@@ -63,7 +63,10 @@
     "rating:home-board:project": "tsx scripts/project-home-board-v1-ratings.ts --execute",
     "rating:home-board:project-dry-run": "tsx scripts/project-home-board-v1-ratings.ts",
     "rating:home-board:validate": "tsx scripts/validate-home-board-v1-promotion.ts",
-    "competition:strength:validate-p0": "tsx scripts/validate-competition-strength-p0.ts"
+    "competition:strength:validate-p0": "tsx scripts/validate-competition-strength-p0.ts",
+    "migrate:supabase": "tsx scripts/migrate-local-to-supabase.ts",
+    "migrate:supabase:dry": "tsx scripts/migrate-local-to-supabase.ts --dry-run",
+    "migrate:supabase:resume": "tsx scripts/migrate-local-to-supabase.ts --resume"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",

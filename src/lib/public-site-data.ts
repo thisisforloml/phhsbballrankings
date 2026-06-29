@@ -1,8 +1,9 @@
 import "server-only";
 
+import { cache } from "react";
 import { AgeGroup, PlayerGender, VerificationStatus, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
-import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
+import { getHomeNationalRankings, type NationalRankingRow } from "./rankings";
 import { prisma } from "./prisma";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
@@ -131,33 +132,6 @@ function inferGenderFromLeagueName(name: string): PublicGender | "Mixed" {
   return "Mixed";
 }
 
-function calculateAge(birthDate: Date | null) {
-  if (!birthDate) return null;
-  const today = new Date();
-  let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
-  const monthDiff = today.getUTCMonth() - birthDate.getUTCMonth();
-  if (monthDiff < 0 || (monthDiff === 0 && today.getUTCDate() < birthDate.getUTCDate())) age -= 1;
-  return age;
-}
-
-async function addAge(rows: NationalRankingRow[]): Promise<HomeLeaderboardRow[]> {
-  if (!rows.length) return [];
-  const players = await prisma.player.findMany({
-    where: { id: { in: rows.map((row) => row.playerId) } },
-    select: { id: true, birthDate: true }
-  });
-  const birthDates = new Map(players.map((player) => [player.id, player.birthDate]));
-
-  return rows.map((row) => {
-    const birthDate = birthDates.get(row.playerId) ?? null;
-    return {
-      ...row,
-      age: calculateAge(birthDate),
-      birthYear: birthDate ? birthDate.getUTCFullYear() : null
-    };
-  });
-}
-
 async function getValidatedDbGames() {
   const sourceGames = loadValidatedUaapGames();
   const validatedGameNumbers = sourceGames.map((game) => game.gameNumber);
@@ -267,15 +241,15 @@ async function getBoardMovers(limit = 6): Promise<HomeRankMover[]> {
     .slice(0, limit);
 }
 
-export async function getHomeData(): Promise<HomeData> {
-  const rankings = await getLatestNationalRankings();
-  const [boysRows, girlsRows, officialCounts, boardMovers, recentGames] = await Promise.all([
-    addAge(rankings.snapshots.boys.rows.slice(0, 10)),
-    addAge(rankings.snapshots.girls.rows.slice(0, 10)),
-    getOfficialTeamCompetitionCounts(),
-    getBoardMovers(),
-    getHomeRecentGames(),
-  ]);
+export const getHomeData = cache(getHomeDataImpl);
+
+async function getHomeDataImpl(): Promise<HomeData> {
+  const rankings = await getHomeNationalRankings();
+  const boysRows = rankings.snapshots.boys.rows.slice(0, 10) as HomeLeaderboardRow[];
+  const girlsRows = rankings.snapshots.girls.rows.slice(0, 10) as HomeLeaderboardRow[];
+  const officialCounts = await getOfficialTeamCompetitionCounts();
+  const boardMovers = await getBoardMovers();
+  const recentGames = await getHomeRecentGames();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
   const emptyBoard = { boys: [] as HomeLeaderboardRow[], girls: [] as HomeLeaderboardRow[] };
   const leaderboardsByAge: HomeData["leaderboardsByAge"] = {
@@ -467,22 +441,20 @@ export async function getPublicGamesIndex(): Promise<PublicGamesIndex> {
   };
 }
 
-export async function getPublicTrustMeta(): Promise<PublicTrustMeta> {
-  const [latestGame, latestSnapshot] = await Promise.all([
-    prisma.game.findFirst({
-      where: {
-        deletedAt: null,
-        verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] },
-        season: { deletedAt: null, league: { deletedAt: null } }
-      },
-      orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
-      select: { gameDate: true }
-    }),
-    prisma.rankingSnapshot.findFirst({
-      orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
-      select: { weekOf: true, createdAt: true }
-    })
-  ]);
+async function getPublicTrustMetaImpl(): Promise<PublicTrustMeta> {
+  const latestGame = await prisma.game.findFirst({
+    where: {
+      deletedAt: null,
+      verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] },
+      season: { deletedAt: null, league: { deletedAt: null } }
+    },
+    orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
+    select: { gameDate: true }
+  });
+  const latestSnapshot = await prisma.rankingSnapshot.findFirst({
+    orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
+    select: { weekOf: true, createdAt: true }
+  });
 
   const candidates = [
     latestGame?.gameDate,
@@ -497,4 +469,6 @@ export async function getPublicTrustMeta(): Promise<PublicTrustMeta> {
 
   return { lastUpdated: latest?.toISOString() ?? null };
 }
+
+export const getPublicTrustMeta = cache(getPublicTrustMetaImpl);
 

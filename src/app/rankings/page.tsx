@@ -4,13 +4,16 @@ import { getLatestNationalRankings } from "@/lib/rankings";
 import { getPublicTrustMeta } from "@/lib/public-site-data";
 import { RankingsClient } from "./RankingsClient";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "National Rankings",
-  description: "Peach Basket player rankings by gender, age group, region, and city."
+  description: "Peach Basket player rankings by gender, age group, region, and city.",
 };
 
 export default async function RankingsPage() {
-  const [rankings, trustMeta] = await Promise.all([getLatestNationalRankings(), getPublicTrustMeta()]);
+  const rankings = await getLatestNationalRankings();
+  const trustMeta = await getPublicTrustMeta();
 
   return (
     <Suspense fallback={null}>
