@@ -2,33 +2,39 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 import type { HomeData, HomeLeaderboardRow } from "@/lib/public-site-data";
 import { formatPublicRank } from "@/lib/public-rank-display";
 import { getPlayerProfileHref } from "@/lib/format";
 import { getProgramDisplayName } from "@/lib/uaap-school-display";
 import { StarRating } from "@/components/ui";
 
-function useCountUp(target: number) {
+function CountUpSpan({ target }: { target: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
-  const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || !ref.current) return;
+    const el = ref.current;
     let frame = 0;
     const total = 90;
+    let rafId = 0;
     const tick = () => {
       frame += 1;
       const progress = 1 - Math.pow(1 - frame / total, 3);
-      setValue(Math.round(target * Math.min(1, progress)));
-      if (frame < total) requestAnimationFrame(tick);
+      el.textContent = Math.round(target * Math.min(1, progress)).toLocaleString();
+      if (frame < total) rafId = requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [inView, target]);
 
-  return { ref, value };
+  return (
+    <span ref={ref} className="font-numeric" suppressHydrationWarning>
+      0
+    </span>
+  );
 }
 
 function featuredProspect(data: HomeData): HomeLeaderboardRow | null {
@@ -47,9 +53,6 @@ function initials(name: string) {
 export function HeroSection({ data }: { data: HomeData }) {
   const featured = featuredProspect(data);
   const { rankedPlayers, verifiedLeagues, gamesLogged } = data.counts;
-  const ranked = useCountUp(rankedPlayers);
-  const leagues = useCountUp(verifiedLeagues);
-  const games = useCountUp(gamesLogged);
 
   return (
     <section className="relative isolate overflow-hidden border-b border-white/10 bg-scout-900 pt-28 text-white md:pt-32">
@@ -59,7 +62,7 @@ export function HeroSection({ data }: { data: HomeData }) {
       />
       <div className="container-px relative py-12 md:py-16">
         <div className="mx-auto grid max-w-[74rem] grid-cols-1 items-center gap-10 md:grid-cols-2">
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="animate-hero-enter">
             <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-scout-orange-bright">
               <span aria-hidden="true" className="inline-block h-4 w-1 bg-scout-orange" />
               Philippine youth basketball
@@ -72,18 +75,8 @@ export function HeroSection({ data }: { data: HomeData }) {
               Basketball Prospects
             </h1>
             <p className="mt-5 max-w-lg text-sm font-medium leading-7 text-scout-500">
-              <span ref={ranked.ref} className="font-numeric">
-                {ranked.value.toLocaleString()}
-              </span>{" "}
-              ranked players ·{" "}
-              <span ref={leagues.ref} className="font-numeric">
-                {leagues.value.toLocaleString()}
-              </span>{" "}
-              leagues ·{" "}
-              <span ref={games.ref} className="font-numeric">
-                {games.value.toLocaleString()}
-              </span>{" "}
-              verified games
+              <CountUpSpan target={rankedPlayers} /> ranked players · <CountUpSpan target={verifiedLeagues} /> leagues ·{" "}
+              <CountUpSpan target={gamesLogged} /> verified games
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
@@ -99,10 +92,10 @@ export function HeroSection({ data }: { data: HomeData }) {
                 Search Players
               </Link>
             </div>
-          </motion.div>
+          </div>
 
           {featured ? (
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+            <div className="animate-hero-enter-delayed">
               <Link
                 href={getPlayerProfileHref(featured)}
                 className="group relative block overflow-hidden rounded-sm border border-white/[0.08] bg-scout-800 text-left transition hover:border-scout-orange/40"
@@ -128,7 +121,7 @@ export function HeroSection({ data }: { data: HomeData }) {
                     </span>
                   )}
                   <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-court-900/95 via-court-900/25 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 z-[3] p-5">
+                  <div className="absolute inset-x-0 bottom-0 z-[3] p-5">
                     <div className="mb-3 flex items-end justify-between gap-3">
                       <div>
                         <div className="mb-1 flex flex-wrap items-center gap-2">
@@ -162,10 +155,10 @@ export function HeroSection({ data }: { data: HomeData }) {
                         View profile →
                       </span>
                     </div>
-                    </div>
+                  </div>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ) : null}
         </div>
       </div>

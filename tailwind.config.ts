@@ -160,10 +160,16 @@ const config: Config = {
           "0%": { textShadow: "0 0 0 rgba(245, 135, 10, 0)" },
           "45%": { textShadow: "0 0 34px rgba(245, 135, 10, 0.45)" },
           "100%": { textShadow: "0 0 0 rgba(245, 135, 10, 0)" }
+        },
+        heroEnter: {
+          "0%": { transform: "translateY(18px)" },
+          "100%": { transform: "translateY(0)" }
         }
       },
       animation: {
-        "glow-once": "glowOnce 1.1s ease-out 1"
+        "glow-once": "glowOnce 1.1s ease-out 1",
+        "hero-enter": "heroEnter 0.5s ease-out both",
+        "hero-enter-delayed": "heroEnter 0.5s ease-out 0.08s both"
       }
     }
   },
