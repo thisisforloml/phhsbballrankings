@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Search, User, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/components/auth/AuthContext";
-import { BRAND_LOGO_ICON, BRAND_NAME } from "@/lib/brand";
+import { BRAND_LOGO_HORIZONTAL, BRAND_NAME } from "@/lib/brand";
 import { SearchOverlay } from "./SearchOverlay";
 
 const groups = ["U13", "U16", "U19"] as const;
@@ -67,6 +67,7 @@ export function Navbar() {
               <Link className="nav-underline" href="/leagues">Leagues</Link>
               {openMenu === "leagues" ? <LeaguesDropdown /> : null}
             </div>
+            <Link className="nav-underline" href="/games">Games</Link>
             <div className="relative" onMouseEnter={() => openDropdown("about")} onMouseLeave={closeDropdown}>
               <Link className="nav-underline" href="/about">About Us</Link>
               {openMenu === "about" ? <AboutDropdown /> : null}
@@ -136,13 +137,12 @@ function DesktopAccount({ portalSession, memberSession, logout, accountOpen, set
 
 function BrandMark() {
   return (
-    <Link href="/" className="flex items-center gap-3 leading-none" aria-label={`${BRAND_NAME} home`}>
-      <img src={BRAND_LOGO_ICON} alt="" className="h-12 w-12 rounded-sm object-contain" />
-      <span>
-        <span className="block font-display text-[1.65rem] font-extrabold uppercase tracking-[0.06em] text-white sm:text-3xl">
-          Peach <span className="text-gold-500">Basket</span>
-        </span>
-      </span>
+    <Link href="/" className="flex shrink-0 items-center leading-none" aria-label={`${BRAND_NAME} home`}>
+      <img
+        src={BRAND_LOGO_HORIZONTAL}
+        alt={BRAND_NAME}
+        className="h-10 w-auto max-w-[11rem] object-contain object-left sm:h-11 sm:max-w-[12.5rem]"
+      />
     </Link>
   );
 }
@@ -180,6 +180,8 @@ function AboutDropdown() {
     <div className="absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/about">About Us</Link>
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/how-we-rank">How We Rank</Link>
+      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/players/compare">Compare Players</Link>
+      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/claim">Claim Profile</Link>
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/faqs">FAQs</Link>
     </div>
   );
@@ -229,10 +231,18 @@ function MobileDrawer({ open, onClose, portalSession, memberSession }: { open: b
                 </div>
               </section>
               <section>
-                <p>About Us</p>
+                <p>Games</p>
+                <div className="mt-3 grid gap-2 text-sm">
+                  <Link onClick={onClose} href="/games">Game Results</Link>
+                </div>
+              </section>
+              <section>
+                <p>More</p>
                 <div className="mt-3 grid gap-2 text-sm">
                   <Link onClick={onClose} href="/about">About Us</Link>
                   <Link onClick={onClose} href="/how-we-rank">How We Rank</Link>
+                  <Link onClick={onClose} href="/players/compare">Compare Players</Link>
+                  <Link onClick={onClose} href="/claim">Claim Profile</Link>
                   <Link onClick={onClose} href="/faqs">FAQs</Link>
                 </div>
               </section>

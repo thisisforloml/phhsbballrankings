@@ -1,10 +1,11 @@
-﻿import "server-only";
+import "server-only";
 
-import { AgeGroup, PlayerGender, VerificationStatus } from "@prisma/client";
+import { AgeGroup, PlayerGender, VerificationStatus, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
 import { prisma } from "./prisma";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
+import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { loadValidatedUaapGames } from "./validated-uaap-data";
 import type { PublicTrustMeta } from "./public-rankings-coverage";
@@ -28,6 +29,16 @@ export type HomeRecentGame = {
   awayTeamName: string;
   homeScore: number;
   awayScore: number;
+};
+
+export type HomeRankMover = {
+  playerId: string;
+  slug: string;
+  displayName: string;
+  previousRank: number | null;
+  currentRank: number;
+  delta: number;
+  rating: number;
 };
 
 export type HomeData = {
@@ -54,6 +65,7 @@ export type HomeData = {
     pointDifferential: number;
   }>;
   recentGames: HomeRecentGame[];
+  boardMovers: HomeRankMover[];
 };
 
 export type PublicLeagueRow = {
@@ -174,7 +186,10 @@ async function getValidatedDbGames() {
           player: {
             include: {
               currentRatings: {
-                where: { ageGroup: AgeGroup.U19 },
+                where: {
+                  ageGroup: AgeGroup.U19,
+                  policyVersionId: getActivePolicyVersionId()
+                },
                 take: 1
               }
             }
@@ -185,12 +200,81 @@ async function getValidatedDbGames() {
   });
 }
 
+async function getHomeRecentGames(limit = 9): Promise<HomeRecentGame[]> {
+  const games = await getValidatedDbGames();
+  return games
+    .sort((left, right) => right.gameDate.getTime() - left.gameDate.getTime() || right.id.localeCompare(left.id))
+    .slice(0, limit)
+    .map((game) => ({
+      id: game.id,
+      gameDate: game.gameDate.toISOString().slice(0, 10),
+      leagueName: game.season.league.name,
+      seasonName: game.season.name,
+      homeTeamName: getUaapSchoolDisplayName(game.homeTeam.name),
+      awayTeamName: getUaapSchoolDisplayName(game.awayTeam.name),
+      homeScore: game.homeScore,
+      awayScore: game.awayScore,
+    }));
+}
+
+async function getBoardMovers(limit = 6): Promise<HomeRankMover[]> {
+  const snapshots = await prisma.rankingSnapshot.findMany({
+    where: { ageGroup: AgeGroup.U19, gender: PlayerGender.BOYS, scope: RankingScope.NATIONAL },
+    orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
+    take: 2,
+    select: { id: true, weekOf: true }
+  });
+
+  if (snapshots.length < 2) return [];
+
+  const rows = await prisma.rankingSnapshotRow.findMany({
+    where: { snapshotId: { in: snapshots.map((snapshot) => snapshot.id) } },
+    include: { player: { select: { id: true, displayName: true } } },
+    orderBy: { rank: "asc" }
+  });
+
+  const rowsBySnapshot = new Map<string, typeof rows>();
+  for (const row of rows) {
+    const bucket = rowsBySnapshot.get(row.snapshotId) ?? [];
+    bucket.push(row);
+    rowsBySnapshot.set(row.snapshotId, bucket);
+  }
+
+  const [currentSnapshot, previousSnapshot] = snapshots;
+  const currentRows = rowsBySnapshot.get(currentSnapshot.id) ?? [];
+  const previousRows = rowsBySnapshot.get(previousSnapshot.id) ?? [];
+  const previousRankByPlayer = new Map(previousRows.map((row) => [row.playerId, row.rank]));
+  const movers: HomeRankMover[] = [];
+
+  for (const row of currentRows) {
+    const previousRank = previousRankByPlayer.get(row.playerId) ?? null;
+    if (previousRank == null) continue;
+    const delta = previousRank - row.rank;
+    if (delta === 0) continue;
+    movers.push({
+      playerId: row.playerId,
+      slug: slugify(row.player.displayName),
+      displayName: row.player.displayName,
+      previousRank,
+      currentRank: row.rank,
+      delta,
+      rating: Number(row.rating)
+    });
+  }
+
+  return movers
+    .sort((left, right) => Math.abs(right.delta) - Math.abs(left.delta) || right.rating - left.rating)
+    .slice(0, limit);
+}
+
 export async function getHomeData(): Promise<HomeData> {
   const rankings = await getLatestNationalRankings();
-  const [boysRows, girlsRows, officialCounts] = await Promise.all([
+  const [boysRows, girlsRows, officialCounts, boardMovers, recentGames] = await Promise.all([
     addAge(rankings.snapshots.boys.rows.slice(0, 10)),
     addAge(rankings.snapshots.girls.rows.slice(0, 10)),
-    getOfficialTeamCompetitionCounts()
+    getOfficialTeamCompetitionCounts(),
+    getBoardMovers(),
+    getHomeRecentGames(),
   ]);
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
   const emptyBoard = { boys: [] as HomeLeaderboardRow[], girls: [] as HomeLeaderboardRow[] };
@@ -214,7 +298,8 @@ export async function getHomeData(): Promise<HomeData> {
     },
     leaderboardsByAge,
     teamPreview: [],
-    recentGames: []
+    recentGames,
+    boardMovers
   };
 }
 

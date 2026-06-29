@@ -1,5 +1,3 @@
-import "server-only";
-
 import { getActivePlayerFormulaConfig } from "@/lib/ratings/active-formula";
 import {
   FORMULA_TIER_NORMALIZED_V1_POLICY_ID,
@@ -12,13 +10,10 @@ export {
   FORMULA_TIER_NORMALIZED_V1_POLICY_ID,
   FORMULA_V1_POLICY_ID
 } from "@/lib/ratings/formula-constants";
-
-export function getActivePolicyVersionId(): string {
-  return getActivePlayerFormulaConfig().policyVersionId;
-}
+export { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 
 export function resolvePolicyVersionId(policyVersionId: string | null): string {
-  return policyVersionId ?? getActivePolicyVersionId();
+  return policyVersionId ?? getActivePlayerFormulaConfig().policyVersionId;
 }
 
 export async function resolveActivePlayerRatingFilter() {

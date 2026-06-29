@@ -42,6 +42,10 @@ export function getActivePlayerFormulaConfig(): ActivePlayerFormulaConfig {
   return PRODUCTION_V1;
 }
 
+export function getActivePolicyVersionId(): string {
+  return getActivePlayerFormulaConfig().policyVersionId;
+}
+
 export function isShadowVnextFormulaActive(): boolean {
   return getActivePlayerFormulaConfig().mode === "shadow-vnext";
 }

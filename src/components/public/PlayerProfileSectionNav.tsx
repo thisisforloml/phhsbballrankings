@@ -18,7 +18,7 @@ type PlayerProfileSectionNavProps = {
 
 export function PlayerProfileSectionNav({ activeId, onSelect }: PlayerProfileSectionNavProps) {
   return (
-    <nav aria-label="Profile sections" className="overflow-x-auto border-t border-neutral-200 bg-white">
+    <nav aria-label="Profile sections" className="overflow-x-auto bg-scout-800/80">
       <ul className="flex min-w-max px-2 md:px-4" role="tablist">
         {PLAYER_PROFILE_SECTIONS.map((section) => {
           const active = activeId === section.id;
@@ -33,8 +33,8 @@ export function PlayerProfileSectionNav({ activeId, onSelect }: PlayerProfileSec
                 onClick={() => onSelect(section.id)}
                 className={`block border-b-2 px-3 py-3 text-xs font-bold uppercase tracking-[0.08em] transition md:px-4 md:text-sm ${
                   active
-                    ? "border-accent-500 text-neutral-900"
-                    : "border-transparent text-neutral-500 hover:border-accent-300 hover:text-neutral-800"
+                    ? "border-scout-orange text-scout-50"
+                    : "border-transparent text-scout-500 hover:border-scout-orange/40 hover:text-scout-50"
                 }`}
               >
                 {section.label}

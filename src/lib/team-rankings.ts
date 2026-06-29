@@ -235,3 +235,36 @@ export async function getOfficialTeamCompetitionCounts() {
     teamsLogged: new Set(games.flatMap((game) => [game.homeTeamId, game.awayTeamId])).size
   };
 }
+
+export function getLeagueStandingsRows(
+  data: TeamStandingsData,
+  league: { name: string; ageGroup: TeamStandingsAgeGroup }
+): Array<TeamStandingRow & { visibleRank: number }> {
+  const gender: TeamStandingsGender = league.name.toLowerCase().includes("girls") ? "Girls" : "Boys";
+  const normalizedTarget = league.name.trim();
+
+  const candidates = data.rows.filter((row) => {
+    const normalizedRow = normalizeCompetitionDisplayName(row.leagueName) || row.leagueName;
+    return (
+      row.ageGroup === league.ageGroup &&
+      row.gender === gender &&
+      (normalizedRow === normalizedTarget || row.leagueName === normalizedTarget)
+    );
+  });
+
+  const byTeam = new Map<string, TeamStandingRow>();
+  for (const row of candidates) {
+    const existing = byTeam.get(row.teamId);
+    if (!existing || row.gamesPlayed > existing.gamesPlayed) {
+      byTeam.set(row.teamId, row);
+    }
+  }
+
+  return Array.from(byTeam.values())
+    .sort((left, right) => sortStandings(left, right))
+    .map((row, index) => ({
+      ...row,
+      rank: index + 1,
+      visibleRank: index + 1,
+    }));
+}

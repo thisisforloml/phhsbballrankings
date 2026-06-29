@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { PublicTrustMeta } from "@/lib/public-rankings-coverage";
 import { AuthProvider } from "@/components/auth/AuthContext";
+import { SavedPlayersProvider } from "@/components/public/SavedPlayersProvider";
 import { BRAND_ADMIN, BRAND_LOGO_ICON } from "@/lib/brand";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
@@ -14,9 +15,11 @@ export function AppChrome({ children, trustMeta }: { children: React.ReactNode; 
 
   return (
     <AuthProvider>
-      {isAdmin ? <AdminTopBar /> : <Navbar />}
-      {children}
-      {isAdmin ? null : <Footer trustMeta={trustMeta} />}
+      <SavedPlayersProvider>
+        {isAdmin ? <AdminTopBar /> : <Navbar />}
+        {children}
+        {isAdmin ? null : <Footer trustMeta={trustMeta} />}
+      </SavedPlayersProvider>
     </AuthProvider>
   );
 }

@@ -1,8 +1,8 @@
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { RankingAgeGroup, RankingGender } from "@/lib/rankings";
 
-export const boysMinGameStops = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-export const girlsMinGameStops = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+export const boysMinGameStops = Array.from({ length: 19 }, (_, index) => 10 + index * 5);
+export const girlsMinGameStops = Array.from({ length: 19 }, (_, index) => 10 + index * 5);
 
 export type RankingSortKey = "rank" | "athlete" | "height" | "position" | "rating";
 export type SortDirection = "asc" | "desc";

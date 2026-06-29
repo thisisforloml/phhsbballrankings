@@ -179,7 +179,7 @@ async function searchPlayers(query: string): Promise<PublicSearchResult[]> {
       type: "Player",
       id: player.id,
       title: player.displayName,
-      href: effectiveClassYear ? `/rankings?age=U19&gender=${player.gender === "GIRLS" ? "Girls" : "Boys"}&class=${effectiveClassYear}` : `/players/${slugify(player.displayName)}`,
+      href: effectiveClassYear ? `/rankings?age=U19&gender=${player.gender === "GIRLS" ? "Girls" : "Boys"}&classYear=${effectiveClassYear}` : `/players/${slugify(player.displayName)}`,
       subtitle: [player.position, school, primaryCompetitionLine].filter(Boolean).join(" | "),
       meta: `${displayGender(player.gender)} ${ageGroupLabel(ageGroup)} | ${classMeta} | ${player.city}, ${player.region}`,
       rankLabel,

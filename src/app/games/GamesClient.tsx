@@ -3,8 +3,7 @@
 import { useMemo, useState } from "react";
 import type { PublicGameRow, PublicGamesIndex } from "@/lib/public-site-data";
 import { EmptyState } from "@/components/ui";
-import { FilterToolbar, FilterToolbarControlClass, FilterToolbarField, FilterToolbarRow } from "@/components/public/FilterToolbar";
-import { GameList } from "@/components/public/GameList";
+import { GameScoreBoard } from "@/components/public/GameScoreBoard";
 
 function toGameListRow(game: PublicGameRow) {
   return {
@@ -17,14 +16,13 @@ function toGameListRow(game: PublicGameRow) {
     homeScore: game.homeScore,
     awayScore: game.awayScore,
     homeTeam: { name: game.homeTeamName },
-    awayTeam: { name: game.awayTeamName }
+    awayTeam: { name: game.awayTeamName },
   };
 }
 
 export function GamesClient({ data }: { data: PublicGamesIndex }) {
   const [leagueId, setLeagueId] = useState("All");
   const [query, setQuery] = useState("");
-  const controlClass = FilterToolbarControlClass();
 
   const filtered = useMemo(() => {
     const value = query.trim().toLowerCase();
@@ -40,52 +38,61 @@ export function GamesClient({ data }: { data: PublicGamesIndex }) {
   }, [data.games, leagueId, query]);
 
   const hasActiveFilters = leagueId !== "All" || query.trim().length > 0;
+  const controlClass =
+    "min-h-10 w-full border border-white/[0.08] bg-scout-700 px-3 py-2 text-sm font-medium text-scout-50 outline-none focus:border-scout-orange";
 
   return (
-    <section className="container-px py-6">
+    <section className="container-px py-6 md:py-8">
       <div className="mx-auto max-w-[74rem]">
-        <FilterToolbar
-          action={
-            hasActiveFilters ? (
-              <button
-                type="button"
-                onClick={() => {
-                  setLeagueId("All");
-                  setQuery("");
-                }}
-                className="text-xs font-bold text-court-500 hover:text-hardwood-600"
-              >
-                Clear filters
-              </button>
-            ) : null
-          }
-        >
-          <FilterToolbarRow>
-            <FilterToolbarField label="League" className="min-w-[12rem]">
-              <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
-                <option value="All">All leagues</option>
-                {data.leagues.map((league) => (
-                  <option key={league.id} value={league.id}>{league.name}</option>
-                ))}
-              </select>
-            </FilterToolbarField>
-            <FilterToolbarField label="Team search" className="min-w-[14rem] flex-[1.4]">
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search team name"
-                className={controlClass}
-              />
-            </FilterToolbarField>
-          </FilterToolbarRow>
-        </FilterToolbar>
+        <div className="mb-6 grid gap-3 rounded-sm border border-white/[0.08] bg-scout-800/80 p-4 md:grid-cols-[12rem_1fr_auto] md:items-end">
+          <label className="grid gap-1.5">
+            <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-scout-orange-bright">
+              <span aria-hidden="true" className="inline-block h-4 w-1 bg-scout-orange" />
+              League
+            </span>
+            <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
+              <option value="All">All leagues</option>
+              {data.leagues.map((league) => (
+                <option key={league.id} value={league.id}>
+                  {league.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-1.5">
+            <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-scout-orange-bright">
+              <span aria-hidden="true" className="inline-block h-4 w-1 bg-scout-orange" />
+              Team search
+            </span>
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search team name"
+              className={controlClass}
+            />
+          </label>
+          {hasActiveFilters ? (
+            <button
+              type="button"
+              onClick={() => {
+                setLeagueId("All");
+                setQuery("");
+              }}
+              className="justify-self-start text-sm font-semibold text-white/50 hover:text-white md:justify-self-end md:pb-2"
+            >
+              Clear filters
+            </button>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+        </div>
 
-        <p className="mb-4 mt-4 text-xs font-bold text-court-500">
+        <p className="mb-5 text-xs font-semibold text-white/45">
           {filtered.length} game{filtered.length === 1 ? "" : "s"} shown
         </p>
 
         {filtered.length ? (
-          <GameList games={filtered.map(toGameListRow)} />
+          <GameScoreBoard games={filtered.map(toGameListRow)} />
         ) : (
           <EmptyState
             icon="scores"

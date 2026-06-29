@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -21,6 +21,8 @@ export default function RegisterPage() {
   const [selectedPackage, setSelectedPackage] = useState("");
   const [selectedMethod, setSelectedMethod] = useState("");
   const [error, setError] = useState("");
+
+  const inputClass = "min-h-11 w-full rounded-sm border border-line-500 bg-paper-500 px-3 py-2 text-court-900 outline-none transition focus:border-hardwood-600 focus:bg-white";
 
   function submitAccount(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -50,38 +52,43 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="min-h-screen bg-surface-50 px-5 pb-16 pt-32">
-      <section className="mx-auto w-full max-w-4xl rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
+    <main className="min-h-screen bg-paper-500 px-5 pb-16 pt-32 text-court-900">
+      <section className="mx-auto w-full max-w-4xl rounded-sm border border-line-500 bg-white p-6 shadow-panel">
         <BrandLogo href="" />
         <div className="mx-auto mt-8 flex max-w-xl items-center justify-center gap-3 font-mono text-mono-sm uppercase">
           {["Account", "Package", "Payment"].map((label, index) => (
-            <span key={label} className={index + 1 === step ? "text-amber-500" : index + 1 < step ? "text-navy-800" : "text-surface-300"}>
+            <span key={label} className={index + 1 === step ? "text-gold-500" : index + 1 < step ? "text-court-900" : "text-court-300"}>
               {label}
             </span>
           ))}
         </div>
-        <h1 className="mt-8 text-center font-display text-stat-md text-navy-800">Get Premium Access</h1>
+        <h1 className="mt-8 text-center font-display text-stat-md text-court-900">Get Premium Access</h1>
         {step === 1 ? (
           <form onSubmit={submitAccount} className="mx-auto mt-6 grid max-w-xl gap-4">
-            <label className="grid gap-2 text-sm font-semibold text-surface-700">Full Name<input name="name" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" required /></label>
-            <label className="grid gap-2 text-sm font-semibold text-surface-700">Email Address<input name="email" type="email" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" required /></label>
-            <label className="grid gap-2 text-sm font-semibold text-surface-700">Organization Role<select name="role" className="min-h-11 rounded-md border border-surface-200 px-3 py-2"><option>Coach</option><option>Media</option><option>Scout</option><option>Analyst</option><option>Other</option></select></label>
-            <label className="grid gap-2 text-sm font-semibold text-surface-700">Country<input name="country" defaultValue="Philippines" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" required /></label>
-            <label className="grid gap-2 text-sm font-semibold text-surface-700">Password<input name="password" type="password" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" required /></label>
-            <label className="grid gap-2 text-sm font-semibold text-surface-700">Confirm Password<input name="confirmPassword" type="password" className="min-h-11 rounded-md border border-surface-200 px-3 py-2" required /></label>
-            <button className="button primary" type="submit">Continue</button>
+            <label className="grid gap-2 text-sm font-semibold text-court-700">Full Name<input name="name" className={inputClass} required /></label>
+            <label className="grid gap-2 text-sm font-semibold text-court-700">Email Address<input name="email" type="email" className={inputClass} required /></label>
+            <label className="grid gap-2 text-sm font-semibold text-court-700">Organization Role<select name="role" className={inputClass}><option>Coach</option><option>Media</option><option>Scout</option><option>Analyst</option><option>Other</option></select></label>
+            <label className="grid gap-2 text-sm font-semibold text-court-700">Country<input name="country" defaultValue="Philippines" className={inputClass} required /></label>
+            <label className="grid gap-2 text-sm font-semibold text-court-700">Password<input name="password" type="password" className={inputClass} required /></label>
+            <label className="grid gap-2 text-sm font-semibold text-court-700">Confirm Password<input name="confirmPassword" type="password" className={inputClass} required /></label>
+            <button className="rounded-sm border border-hardwood-600 bg-hardwood-600 px-4 py-3 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-hardwood-700 hover:bg-hardwood-700" type="submit">Continue</button>
           </form>
         ) : null}
         {step === 2 ? (
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {packages.map((item) => (
-              <button key={item.name} onClick={() => { setSelectedPackage(item.name); if (item.name !== "Institutional") setStep(3); }} className={`rounded-lg border p-5 text-left transition ${selectedPackage === item.name ? "border-2 border-amber-500 bg-amber-100" : "border-surface-200 bg-white hover:border-amber-500"}`}>
-                <h2 className="font-display text-3xl uppercase text-navy-800">{item.name}</h2>
-                <p className="mt-1 font-mono text-mono-sm uppercase text-surface-500">{item.price}</p>
-                <div className="mt-5 grid gap-2 text-sm text-surface-600">
+              <button key={item.name} onClick={() => { setSelectedPackage(item.name); if (item.name !== "Institutional") setStep(3); }} className={`rounded-sm border p-5 text-left transition ${selectedPackage === item.name ? "border-2 border-hardwood-600 bg-paper-500" : "border-line-500 bg-white hover:border-hardwood-600"}`}>
+                <h2 className="font-display text-3xl uppercase text-court-900">{item.name}</h2>
+                <p className="mt-1 font-mono text-mono-sm uppercase text-court-500">{item.price}</p>
+                <div className="mt-5 grid gap-2 text-sm text-court-600">
                   {item.features.map((feature) => <span key={feature}>{feature}</span>)}
                 </div>
-                <span className="mt-6 inline-flex font-semibold text-amber-600">{item.action}</span>
+                {item.name === "Institutional" ? (
+                  <p className="mt-4 text-sm leading-6 text-court-600">
+                    Institutional subscribers receive API access for roster exports, board snapshots, and custom reporting pipelines.
+                  </p>
+                ) : null}
+                <span className="mt-6 inline-flex font-semibold text-hardwood-600">{item.action}</span>
               </button>
             ))}
           </div>
@@ -90,17 +97,17 @@ export default function RegisterPage() {
           <div className="mx-auto mt-8 grid max-w-3xl gap-5">
             <div className="grid gap-3 md:grid-cols-4">
               {methods.map((method) => (
-                <button key={method} onClick={() => setSelectedMethod(method)} className={`rounded-lg border p-4 text-left font-semibold ${selectedMethod === method ? "border-2 border-amber-500 bg-amber-100" : "border-surface-200 bg-white"}`}>
-                  <span className="mb-3 block h-8 rounded bg-surface-100 text-center font-mono text-mono-sm leading-8 text-surface-500">LOGO</span>
+                <button key={method} onClick={() => setSelectedMethod(method)} className={`rounded-sm border p-4 text-left font-semibold ${selectedMethod === method ? "border-2 border-hardwood-600 bg-paper-500" : "border-line-500 bg-white"}`}>
+                  <span className="mb-3 block h-8 rounded-sm bg-paper-500 text-center font-mono text-mono-sm leading-8 text-court-500">LOGO</span>
                   {method}
                 </button>
               ))}
             </div>
-            {selectedMethod ? <p className="text-surface-600">Secure payment processed by {selectedMethod}.</p> : null}
-            <button onClick={completeRegistration} disabled={!selectedMethod} className="button primary">Continue to Payment</button>
+            {selectedMethod ? <p className="text-court-600">Secure payment processed by {selectedMethod}.</p> : null}
+            <button onClick={completeRegistration} disabled={!selectedMethod} className="rounded-sm border border-hardwood-600 bg-hardwood-600 px-4 py-3 text-sm font-bold uppercase tracking-[0.04em] text-white hover:border-hardwood-700 hover:bg-hardwood-700 disabled:opacity-50">Continue to Payment</button>
           </div>
         ) : null}
-        {error ? <p className="mx-auto mt-4 max-w-xl rounded-md bg-loss-bg p-3 text-sm text-loss-text">{error}</p> : null}
+        {error ? <p className="mx-auto mt-4 max-w-xl rounded-sm bg-loss-bg p-3 text-sm text-loss-text">{error}</p> : null}
       </section>
     </main>
   );

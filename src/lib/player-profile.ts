@@ -4,6 +4,8 @@ import { AgeGroup, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { formatClassYear, getMonthStart } from "./ranking-eligibility";
+import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
 import { prisma } from "./prisma";
 
 const formulaVersionNumber = 1;
@@ -119,7 +121,9 @@ async function loadPlayerById(id: string) {
     },
     include: {
       currentProgram: true,
-      currentRatings: true,
+      currentRatings: {
+        where: { policyVersionId: getActivePolicyVersionId() }
+      },
       rankingRows: {
         where: {
           snapshot: {
@@ -217,12 +221,7 @@ function normalizePosition(position: string | null) {
 }
 
 function selectProfileRating(player: LoadedPlayer) {
-  const latestStatAgeGroup = player.gameStats[0]?.game.season.league.ageGroup ?? null;
-  if (latestStatAgeGroup) {
-    const matching = player.currentRatings.find((rating) => rating.ageGroup === latestStatAgeGroup);
-    if (matching) return matching;
-  }
-  return player.currentRatings.slice().sort((left, right) => right.verifiedGameCount - left.verifiedGameCount || Number(right.adjustedRating) - Number(left.adjustedRating))[0] ?? null;
+  return selectPublicPlayerRating(player);
 }
 
 function bestFourthStat(values: { spg: number; bpg: number; rating: number }) {

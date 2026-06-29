@@ -1,8 +1,8 @@
-﻿import "server-only";
+import "server-only";
 
 import { notFound } from "next/navigation";
 import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
-import { slugify } from "@/lib/format";
+import { slugify } from "./format";
 import { prisma } from "@/lib/prisma";
 
 function inferGender(...values: Array<string | null | undefined>) {
@@ -68,4 +68,38 @@ export async function getOfficialGameDetail(id: string) {
   });
   if (!game) notFound();
   return { ...game, gender: inferGender(game.season.league.name, game.homeTeam.name, game.awayTeam.name) };
+}
+
+export async function getLeagueTopPerformers(leagueId: string, limit = 8) {
+  const league = await getOfficialLeagueDetail(leagueId);
+  const gameIds = league.seasons.flatMap((season) => season.games.map((game) => game.id));
+  if (!gameIds.length) return [];
+
+  const stats = await prisma.gameStat.findMany({
+    where: { deletedAt: null, gameId: { in: gameIds } },
+    select: {
+      playerId: true,
+      points: true,
+      player: { select: { displayName: true, position: true } }
+    }
+  });
+
+  const totals = new Map<string, { slug: string; displayName: string; position: string | null; points: number; games: number }>();
+  for (const stat of stats) {
+    const current = totals.get(stat.playerId) ?? {
+      slug: slugify(stat.player.displayName),
+      displayName: stat.player.displayName,
+      position: stat.player.position,
+      points: 0,
+      games: 0
+    };
+    current.points += stat.points ?? 0;
+    current.games += 1;
+    totals.set(stat.playerId, current);
+  }
+
+  return [...totals.values()]
+    .map((row) => ({ ...row, ppg: row.games ? Number((row.points / row.games).toFixed(1)) : 0 }))
+    .sort((left, right) => right.ppg - left.ppg || right.points - left.points)
+    .slice(0, limit);
 }

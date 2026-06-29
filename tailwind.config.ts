@@ -1,5 +1,45 @@
 import type { Config } from "tailwindcss";
 
+const primary = {
+  950: "#04060C",
+  900: "#080B14",
+  800: "#0D111C",
+  700: "#151B29",
+  600: "#1F2738",
+  500: "#2C3850",
+  400: "#475571",
+  300: "#74829E",
+  200: "#A8B4C9",
+  100: "#D6DCE8",
+  50: "#EEF1F7"
+};
+
+const accent = {
+  700: "#B45309",
+  600: "#D97706",
+  500: "#E98A12",
+  400: "#F5A524",
+  300: "#FBC56A",
+  200: "#FDE0AE",
+  100: "#FCEFD6",
+  50: "#FDF8EF"
+};
+
+const neutral = {
+  0: "#FFFFFF",
+  50: "#F8FAFC",
+  100: "#F1F4F8",
+  150: "#E9EDF3",
+  200: "#DCE2EB",
+  300: "#C4CCD8",
+  400: "#97A1B2",
+  500: "#697489",
+  600: "#4B5566",
+  700: "#343C4B",
+  800: "#1F2632",
+  900: "#121723"
+};
+
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
@@ -7,9 +47,24 @@ const config: Config = {
       fontFamily: {
         display: ["Geist", "Arial", "Helvetica", "sans-serif"],
         sans: ["Geist", "Arial", "Helvetica", "sans-serif"],
-        mono: ["Geist", "Arial", "Helvetica", "sans-serif"]
+        mono: ["Geist", "Arial", "Helvetica", "sans-serif"],
+        numeric: ["Helvetica", "Arial", "sans-serif"]
       },
       colors: {
+        // Scout shell (Figma Visual Language) — typography stays Geist + font-numeric Helvetica
+        scout: {
+          900: "#111318",
+          800: "#1B1D23",
+          700: "#2B2E36",
+          600: "#464A55",
+          500: "#949AA6",
+          50: "#F7F4EF",
+          orange: "#E98A12",
+          "orange-bright": "#F5A524"
+        },
+        primary,
+        accent,
+        neutral,
         court: {
           900: "#111318",
           800: "#1B1D23",
@@ -96,6 +151,8 @@ const config: Config = {
       },
       boxShadow: {
         panel: "0 1px 4px rgba(15, 32, 68, 0.06)",
+        card: "0 1px 2px rgba(15, 32, 68, 0.05)",
+        raised: "0 4px 16px rgba(15, 32, 68, 0.10)",
         navy: "0 1px 4px rgba(15, 32, 68, 0.06)"
       },
       keyframes: {

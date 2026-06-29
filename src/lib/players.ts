@@ -1,4 +1,6 @@
 ﻿import { AgeGroup } from "@prisma/client";
+import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
 import { slugify } from "./format";
 import { buildEligibilityInput, evaluateEligibility, isPublicBoardVisible } from "./eligibility";
 import { prisma } from "./prisma";
@@ -55,7 +57,9 @@ export async function getPlayerSummaries(): Promise<PlayerSummary[]> {
     const dbPlayers = await prisma.player.findMany({
       where: { deletedAt: null },
       include: {
-        currentRatings: true,
+        currentRatings: {
+          where: { policyVersionId: getActivePolicyVersionId() }
+        },
         rosterSeasons: {
           where: { deletedAt: null },
           include: {
@@ -83,7 +87,7 @@ export async function getPlayerSummaries(): Promise<PlayerSummary[]> {
     });
 
     const summaries = dbPlayers.map((player) => {
-      const rating = player.currentRatings[0];
+      const rating = selectPublicPlayerRating(player);
       const stats = player.gameStats;
       const detailedStats = stats.filter(hasDetailedBoxScore);
       const games = rating?.verifiedGameCount ?? stats.length;

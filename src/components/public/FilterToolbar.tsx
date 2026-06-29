@@ -38,7 +38,7 @@ type FilterToolbarFieldProps = {
 
 export function FilterToolbarField({ label, children, className = "" }: FilterToolbarFieldProps) {
   return (
-    <label className={`grid min-w-[10rem] flex-1 gap-1 text-xs font-bold text-court-500 ${className}`}>
+    <label className={`grid min-w-[10rem] flex-1 gap-1 text-xs text-court-500 ${className}`}>
       {label}
       {children}
     </label>
@@ -46,5 +46,5 @@ export function FilterToolbarField({ label, children, className = "" }: FilterTo
 }
 
 export function FilterToolbarControlClass() {
-  return "min-h-9 w-full rounded-sm border border-line-500 bg-paper-500 px-3 py-1.5 text-sm font-bold text-court-900 outline-none transition placeholder:text-court-400 focus:border-hardwood-600 focus:bg-white";
+  return "min-h-9 w-full rounded-sm border border-line-500 bg-white px-3 py-1.5 text-sm text-court-800 outline-none transition placeholder:text-court-400 focus:border-court-700 focus:ring-1 focus:ring-court-700/20";
 }

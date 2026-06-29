@@ -2,6 +2,7 @@
 
 import type { PlayerProfile } from "@/lib/player-profile-types";
 import { buildPositivesOnlyScoutingReport } from "@/lib/scouting-report";
+import { PremiumGate } from "@/components/ui";
 import { ProfileModule } from "@/components/public/ProfileModule";
 import { HorizontalBarChart } from "@/components/public/charts/ProfileCharts";
 import { PlayerTrendsChart } from "@/components/public/charts/PlayerTrendsChart";
@@ -27,7 +28,9 @@ export function PlayerPerformanceDashboard({ profile }: { profile: PlayerProfile
       title="Performance Analytics"
       description="Player trends with adjustable rolling averages"
     >
-      <PlayerTrendsChart profile={profile} />
+      <PremiumGate description="Unlock advanced trend overlays, benchmark comparisons, and downloadable scouting exports with Premium Access.">
+        <PlayerTrendsChart profile={profile} />
+      </PremiumGate>
     </ProfileModule>
   );
 }

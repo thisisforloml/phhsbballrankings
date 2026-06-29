@@ -11,8 +11,7 @@ import {
 import { nationalTeamBoardCoverageCopy } from "@/lib/team-ratings/national-board-coverage";
 import { EmptyState } from "@/components/ui";
 import { AgeGroupPill } from "@/components/public/AgeGroupPill";
-import { FilterToolbar, FilterToolbarControlClass, FilterToolbarField, FilterToolbarRow } from "@/components/public/FilterToolbar";
-import { PageBand } from "@/components/public/PageBand";
+import { ScoutPageHeader } from "@/components/public/ScoutPageHeader";
 import { SegmentedControl } from "@/components/public/SegmentedControl";
 import { TeamStandingTable } from "@/components/public/TeamStandingTable";
 import { NationalTeamRankingTable } from "@/components/public/NationalTeamRankingTable";
@@ -167,15 +166,17 @@ export function TeamsClient({
     ? { title: "No programs match your search", description: "Clear search or switch filters to see national rankings for this board." }
     : nationalTeamBoardCoverageCopy.emptyBoard(ageGroup, gender);
 
-  const controlClass = FilterToolbarControlClass();
+  const controlClass =
+    "min-h-10 w-full border border-white/[0.08] bg-scout-700 px-3 py-2 text-sm font-medium text-scout-50 outline-none focus:border-scout-orange";
   const isNationalView = nationalEnabled && viewMode === "national";
   const headerTitle = isNationalView ? `${ageGroup} National Team Rankings` : `${ageGroup} Competition Board`;
 
   return (
     <>
-      <PageBand
-        eyebrow="Team Rankings"
+      <ScoutPageHeader
+        eyebrow="Team rankings"
         title={headerTitle}
+        meta={isNationalView ? "National program board · TPI-v1" : "Competition standings across verified leagues"}
         action={
           <div className="flex flex-wrap items-center gap-2">
             {nationalEnabled ? (
@@ -183,7 +184,7 @@ export function TeamsClient({
                 dark
                 options={[
                   { value: "national" as const, label: "National" },
-                  { value: "competition" as const, label: "Competition" }
+                  { value: "competition" as const, label: "Competition" },
                 ]}
                 value={viewMode}
                 onChange={setViewMode}
@@ -199,52 +200,83 @@ export function TeamsClient({
         }
       />
 
-      <FilterToolbar action={<button type="button" onClick={clearFilters} className="text-xs font-bold text-court-500 hover:text-hardwood-600">Clear filters</button>}>
-        <div className="flex flex-wrap gap-2">
-          {ageGroups.map((group) => (
-            <AgeGroupPill key={group} group={group} active={ageGroup === group} onClick={() => updateScope(group)} />
-          ))}
+      <section className="container-px py-4">
+        <div className="mx-auto max-w-[74rem] rounded-sm border border-white/[0.08] bg-scout-800/80 p-4">
+          <div className="mb-4 flex flex-wrap gap-2">
+            {ageGroups.map((group) => (
+              <AgeGroupPill key={group} group={group} active={ageGroup === group} onClick={() => updateScope(group)} />
+            ))}
+          </div>
+          <div className="grid gap-3 lg:grid-cols-[1fr_9rem_9rem_12rem_auto] lg:items-end">
+            <label className="grid gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">Search</span>
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                className={controlClass}
+                placeholder={isNationalView ? "Program, city, region" : "Team, program, league"}
+              />
+            </label>
+            {!isNationalView ? (
+              <>
+                <label className="grid gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">League</span>
+                  <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
+                    <option value="All">All</option>
+                    {leagueOptions.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">Region</span>
+                  <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
+                    <option value="All">All</option>
+                    {regionOptions.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-1.5">
+                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">
+                    Min. {selectedMinimumGames} game{selectedMinimumGames === 1 ? "" : "s"}
+                  </span>
+                  <input
+                    type="range"
+                    min={1}
+                    max={maxGamesPlayed}
+                    step={1}
+                    value={selectedMinimumGames}
+                    onChange={(event) => setMinimumGames(Number(event.target.value))}
+                    className="h-2 w-full accent-hardwood-600"
+                  />
+                </label>
+              </>
+            ) : null}
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="justify-self-start text-sm font-semibold text-white/50 hover:text-white lg:justify-self-end lg:pb-2"
+            >
+              Clear filters
+            </button>
+          </div>
         </div>
-        <FilterToolbarRow>
-          <FilterToolbarField label="Search" className="min-w-[14rem] flex-[1.4]">
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className={controlClass}
-              placeholder={isNationalView ? "Program, city, region" : "Team, program, league"}
-            />
-          </FilterToolbarField>
-          {!isNationalView ? (
-            <>
-              <FilterToolbarField label="League">
-                <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
-                  <option value="All">All</option>
-                  {leagueOptions.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
-                </select>
-              </FilterToolbarField>
-              <FilterToolbarField label="Region">
-                <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
-                  <option>All</option>
-                  {regionOptions.map((item) => <option key={item}>{item}</option>)}
-                </select>
-              </FilterToolbarField>
-              <FilterToolbarField label={`Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`} className="min-w-[12rem]">
-                <input type="range" min={1} max={maxGamesPlayed} step={1} value={selectedMinimumGames} onChange={(event) => setMinimumGames(Number(event.target.value))} className="h-12 w-full accent-hardwood-600" />
-              </FilterToolbarField>
-            </>
-          ) : null}
-        </FilterToolbarRow>
-      </FilterToolbar>
+      </section>
 
-      <section id="team-profiles" className="container-px mt-6">
-        <div className="mx-auto mb-3 max-w-[74rem] border border-line-500 bg-white px-3 py-2">
-          <p className="text-xs font-bold text-court-500">
+      <section id="team-profiles" className="container-px mt-2">
+        <div className="mx-auto mb-3 max-w-[74rem] rounded-sm border border-white/[0.08] bg-scout-800/80 px-3 py-2">
+          <p className="text-xs font-bold text-white/55">
             {isNationalView
               ? `Showing ${sortedNational.length} programs | ${ageGroup} ${gender} | TPI-v1 national board`
               : `Showing ${visibleCompetitionRows.length} teams | ${ageGroup} ${gender} | Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}
           </p>
           {isNationalView && nationalData?.meta.lastComputedAt ? (
-            <p className="mt-1 text-[0.65rem] font-semibold text-court-400">
+            <p className="mt-1 text-[0.65rem] font-semibold text-white/35">
               Last computed {new Date(nationalData.meta.lastComputedAt).toLocaleString("en-PH")}
             </p>
           ) : null}

@@ -1,4 +1,6 @@
-﻿export * from "./BoardLeadersCarousel";
+export * from "./BoardLeadersCarousel";
+export * from "./FeaturedProspectsGrid";
+export * from "./NationalBoardRail";
 export * from "./CompetitionHistory";
 export * from "./CompetitionParticipationSummary";
 export * from "./HeroSection";

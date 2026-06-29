@@ -12,7 +12,7 @@ export default async function TeamsPage() {
   const nationalData = TEAM_NATIONAL_RATINGS_ENABLED ? await getNationalTeamRankings() : null;
 
   return (
-    <PublicPageShell className="pb-12 pt-24">
+    <PublicPageShell variant="scout" className="pb-12 pt-20">
       <TeamsClient
         competitionData={competitionData}
         nationalData={nationalData}

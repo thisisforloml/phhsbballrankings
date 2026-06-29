@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getPublicGamesIndex } from "@/lib/public-site-data";
 import { PublicPageShell } from "@/components/public/PublicPageShell";
-import { PageBand } from "@/components/public/PageBand";
+import { ScoutPageHeader } from "@/components/public/ScoutPageHeader";
 import { GamesClient } from "./GamesClient";
 
 export const metadata: Metadata = {
@@ -11,13 +11,19 @@ export const metadata: Metadata = {
 
 export default async function GamesPage() {
   const data = await getPublicGamesIndex();
+  const today = new Date().toLocaleDateString("en-PH", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "Asia/Manila",
+  });
 
   return (
-    <PublicPageShell className="pb-12 pt-24">
-      <PageBand
+    <PublicPageShell variant="scout" className="pb-12 pt-20">
+      <ScoutPageHeader
         eyebrow="Official results"
-        title="Games"
-        description="Verified official games with final scores and linked box scores. Results feed player rankings and team records."
+        title="Games & Scores"
+        meta={`${data.games.length} games · ${today}`}
       />
       <GamesClient data={data} />
     </PublicPageShell>
