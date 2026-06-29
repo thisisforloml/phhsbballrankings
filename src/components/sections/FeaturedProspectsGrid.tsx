@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { HomeLeaderboardRow } from "@/lib/public-site-data";
 import { formatBoardRank } from "@/lib/public-rank-display";
 import { getPlayerProfileHref } from "@/lib/format";
@@ -34,10 +35,12 @@ export function FeaturedProspectsGrid({ players, rankDeltaByPlayerId = {} }: Fea
           >
             <div className="prospect-portrait-frame relative h-40 overflow-hidden">
               {player.photoUrl ? (
-                <img
+                <Image
                   src={player.photoUrl}
                   alt=""
-                  className="absolute inset-x-0 bottom-0 z-[1] h-[92%] w-full object-contain object-bottom"
+                  fill
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                  className="absolute inset-x-0 bottom-0 z-[1] object-contain object-bottom"
                 />
               ) : (
                 <span className="absolute inset-0 z-[1] grid place-items-center font-display text-5xl font-bold text-white/10">

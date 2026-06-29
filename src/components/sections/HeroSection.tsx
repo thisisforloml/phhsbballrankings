@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { HomeData, HomeLeaderboardRow } from "@/lib/public-site-data";
@@ -113,10 +114,13 @@ export function HeroSection({ data }: { data: HomeData }) {
                 </div>
                 <div className="prospect-portrait-frame relative h-80 overflow-hidden sm:h-96 md:h-[26rem]">
                   {featured.photoUrl ? (
-                    <img
+                    <Image
                       src={featured.photoUrl}
                       alt=""
-                      className="absolute inset-x-0 bottom-0 z-[1] h-[90%] w-full object-contain object-bottom"
+                      fill
+                      priority
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="absolute inset-x-0 bottom-0 z-[1] object-contain object-bottom"
                     />
                   ) : (
                     <span className="absolute inset-0 z-[1] grid place-items-center font-display text-6xl font-bold text-white/10">

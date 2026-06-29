@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BRAND_ASSETS, BRAND_NAME } from "@/lib/brand";
 
 type LogoVariant = "horizontal" | "stacked" | "icon";
@@ -7,14 +8,12 @@ type PeachBasketLogoProps = {
   className?: string;
   imageClassName?: string;
   priority?: boolean;
-  /** Default `png` for runtime UI; pass `svg` for vector master assets when needed */
-  format?: "svg" | "png";
 };
 
-const VARIANT_DIMENSIONS: Record<LogoVariant, { width: number; height: number }> = {
-  icon: { width: 48, height: 48 },
-  horizontal: { width: 240, height: 80 },
-  stacked: { width: 96, height: 96 },
+const VARIANT_SIZES: Record<LogoVariant, { width: number; height: number; src: string; sizes: string }> = {
+  icon: { width: 48, height: 48, src: BRAND_ASSETS.icon192, sizes: "48px" },
+  horizontal: { width: 640, height: 214, src: BRAND_ASSETS.horizontalLogo, sizes: "(max-width: 640px) 160px, 240px" },
+  stacked: { width: 180, height: 180, src: BRAND_ASSETS.appleTouchIcon, sizes: "96px" },
 };
 
 const DEFAULT_IMAGE_CLASS = "max-h-12 w-auto object-contain";
@@ -24,33 +23,18 @@ export function PeachBasketLogo({
   className = "",
   imageClassName = "",
   priority,
-  format = "png",
 }: PeachBasketLogoProps) {
-  const svgSrc =
-    variant === "stacked"
-      ? BRAND_ASSETS.stackedLogo
-      : variant === "icon"
-        ? BRAND_ASSETS.icon
-        : BRAND_ASSETS.horizontalLogo;
-
-  const pngSrc =
-    variant === "stacked"
-      ? BRAND_ASSETS.stackedLogoPng
-      : variant === "icon"
-        ? BRAND_ASSETS.iconPng
-        : BRAND_ASSETS.horizontalLogoPng;
-
-  const src = format === "png" ? pngSrc : svgSrc;
-  const { width, height } = VARIANT_DIMENSIONS[variant];
+  const { width, height, src, sizes } = VARIANT_SIZES[variant];
 
   return (
     <span className={`inline-flex shrink-0 items-center ${className}`}>
-      <img
+      <Image
         src={src}
         alt={BRAND_NAME}
         width={width}
         height={height}
-        loading={priority ? "eager" : undefined}
+        priority={priority}
+        sizes={sizes}
         className={`block h-auto max-w-full ${imageClassName || DEFAULT_IMAGE_CLASS}`.trim()}
       />
     </span>

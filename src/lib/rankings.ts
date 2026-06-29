@@ -10,11 +10,42 @@ import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
 import {
   loadCompetitionParticipationByPlayerIds,
   primaryCompetitionFromSummary,
-  type PrimaryCompetition
+  type PrimaryCompetition,
 } from "./player-competition-context";
 
 const defaultAgeGroup = AgeGroup.U19;
 const rankingAgeGroups = [AgeGroup.U13, AgeGroup.U16, AgeGroup.U19] as const;
+const HOME_BOARD_DISPLAY_LIMIT = 10;
+
+const playerRatingPlayerSelect = {
+  id: true,
+  displayName: true,
+  city: true,
+  region: true,
+  position: true,
+  heightCm: true,
+  birthDate: true,
+  firstRankingEligibilityAt: true,
+  classYearOverride: true,
+  photoUrl: true,
+  gender: true,
+  schoolOverride: true,
+  ageGroupOverride: true,
+  currentProgram: { select: { fullName: true, abbreviation: true, type: true } },
+} as const;
+
+const playerRatingPlayerSelectWithGameStats = {
+  ...playerRatingPlayerSelect,
+  gameStats: {
+    where: { deletedAt: null },
+    include: {
+      team: { include: { program: { select: { fullName: true, abbreviation: true, type: true } } } },
+      game: { select: { gameDate: true } },
+    },
+    orderBy: { game: { gameDate: "desc" } },
+    take: 40,
+  },
+} as const;
 
 export type RankingGender = "Boys" | "Girls";
 export type RankingAgeGroup = "U13" | "U16" | "U19";
@@ -95,6 +126,87 @@ function emptySnapshot(gender: PlayerGender, formulaVersionId: string | null, ag
 
 type ActiveRatingFilter = Awaited<ReturnType<typeof resolveActivePlayerRatingFilter>>;
 
+type PlayerRatingWithPlayer = Awaited<
+  ReturnType<
+    typeof prisma.playerRating.findMany<{
+      include: { player: { select: typeof playerRatingPlayerSelectWithGameStats } };
+    }>
+  >
+>[number];
+
+function playerRatingBoardWhere(
+  gender: PlayerGender,
+  ageGroup: RankingAgeGroup,
+  ratingFilter: ActiveRatingFilter,
+  formulaVersionId: string
+) {
+  return {
+    ageGroup: ageGroup as AgeGroup,
+    formulaVersionId,
+    policyVersionId: ratingFilter.policyVersionId,
+    player: { gender, deletedAt: null },
+  };
+}
+
+function mapNationalRankingRow(
+  rating: PlayerRatingWithPlayer,
+  index: number,
+  ageGroup: RankingAgeGroup,
+  activeFormulaVersionId: string,
+  primaryCompetition: PrimaryCompetition | null
+): NationalRankingRow {
+  const eligibilityVerdict = evaluateEligibility(
+    buildEligibilityInput({
+      playerId: rating.playerId,
+      gender: rating.player.gender,
+      birthDate: rating.player.birthDate,
+      firstRankingEligibilityAt: rating.player.firstRankingEligibilityAt,
+      classYearOverride: rating.player.classYearOverride,
+      ageGroupOverride: rating.player.ageGroupOverride,
+      ratingAgeGroup: rating.ageGroup as RankingAgeGroup,
+      verifiedGameCount: rating.verifiedGameCount,
+      evaluatedBoard: ageGroup,
+      formulaVersionId: activeFormulaVersionId,
+    })
+  );
+
+  const effectiveClassYear = getEffectiveClassYear(rating.player.birthDate, rating.player.classYearOverride);
+
+  return {
+    rank: index + 1,
+    playerId: rating.playerId,
+    displayName: rating.player.displayName,
+    slug: slugify(rating.player.displayName),
+    city: rating.player.city,
+    region: rating.player.region,
+    position: rating.player.position,
+    heightCm: rating.player.heightCm,
+    birthYear: rating.player.birthDate ? rating.player.birthDate.getUTCFullYear() : null,
+    age: calculateAge(rating.player.birthDate),
+    currentTeam: resolvePrimaryRankingAffiliation({
+      schoolOverride: rating.player.schoolOverride,
+      currentProgram: rating.player.currentProgram,
+      gameStats: rating.player.gameStats,
+    }),
+    photoUrl: rating.player.photoUrl,
+    gender: toDisplayGender(rating.player.gender),
+    ageGroup: (rating.player.ageGroupOverride || ageGroup) as RankingAgeGroup,
+    computedAgeBracket: getCurrentRankingAgeBracket(
+      rating.player.birthDate,
+      new Date(),
+      rating.player.classYearOverride,
+      ageGroup
+    ),
+    effectiveClassYear,
+    classYearLabel: effectiveClassYear ? `Class of ${effectiveClassYear}` : null,
+    eligibilityVerdict,
+    rating: Number(rating.adjustedRating),
+    starRating: rating.starRating,
+    verifiedGameCount: rating.verifiedGameCount,
+    primaryCompetition,
+  };
+}
+
 async function getLatestSnapshot(
   gender: PlayerGender,
   formulaVersionId: string | null,
@@ -117,42 +229,13 @@ async function getLatestSnapshot(
   });
 
   const ratings = await prisma.playerRating.findMany({
-    where: {
-      ageGroup: ageGroup as AgeGroup,
-      formulaVersionId: activeFormulaVersionId,
-      policyVersionId: ratingFilter.policyVersionId,
-      player: { gender, deletedAt: null }
-    },
+    where: playerRatingBoardWhere(gender, ageGroup, ratingFilter, activeFormulaVersionId),
     include: {
       player: {
-        select: {
-          id: true,
-          displayName: true,
-          city: true,
-          region: true,
-          position: true,
-          heightCm: true,
-          birthDate: true,
-          firstRankingEligibilityAt: true,
-          classYearOverride: true,
-          photoUrl: true,
-          gender: true,
-          schoolOverride: true,
-          ageGroupOverride: true,
-          currentProgram: { select: { fullName: true, abbreviation: true, type: true } },
-          gameStats: {
-            where: { deletedAt: null },
-            include: {
-              team: { include: { program: { select: { fullName: true, abbreviation: true, type: true } } } },
-              game: { select: { gameDate: true } }
-            },
-            orderBy: { game: { gameDate: "desc" } },
-            take: 40
-          }
-        }
-      }
+        select: playerRatingPlayerSelectWithGameStats,
+      },
     },
-    orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }]
+    orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }],
   });
 
   const participationByPlayer = await loadCompetitionParticipationByPlayerIds(
@@ -166,58 +249,22 @@ async function getLatestSnapshot(
     weekOf: latestSnapshot?.weekOf.toISOString() ?? null,
     formulaVersionId: activeFormulaVersionId,
     totalRows: ratings.length,
-    rows: ratings.map((rating, index) => {
-      const eligibilityVerdict = evaluateEligibility(buildEligibilityInput({
-        playerId: rating.playerId,
-        gender: rating.player.gender,
-        birthDate: rating.player.birthDate,
-        firstRankingEligibilityAt: rating.player.firstRankingEligibilityAt,
-        classYearOverride: rating.player.classYearOverride,
-        ageGroupOverride: rating.player.ageGroupOverride,
-        ratingAgeGroup: rating.ageGroup as RankingAgeGroup,
-        verifiedGameCount: rating.verifiedGameCount,
-        evaluatedBoard: ageGroup,
-        formulaVersionId: activeFormulaVersionId
-      }));
-
-      const effectiveClassYear = getEffectiveClassYear(rating.player.birthDate, rating.player.classYearOverride);
-
-      return {
-        rank: index + 1,
-        playerId: rating.playerId,
-        displayName: rating.player.displayName,
-        slug: slugify(rating.player.displayName),
-        city: rating.player.city,
-        region: rating.player.region,
-        position: rating.player.position,
-        heightCm: rating.player.heightCm,
-        birthYear: rating.player.birthDate ? rating.player.birthDate.getUTCFullYear() : null,
-        age: calculateAge(rating.player.birthDate),
-        currentTeam: resolvePrimaryRankingAffiliation({
-          schoolOverride: rating.player.schoolOverride,
-          currentProgram: rating.player.currentProgram,
-          gameStats: rating.player.gameStats
-        }),
-        photoUrl: rating.player.photoUrl,
-        gender: toDisplayGender(rating.player.gender),
-        ageGroup: (rating.player.ageGroupOverride || ageGroup) as RankingAgeGroup,
-        computedAgeBracket: getCurrentRankingAgeBracket(rating.player.birthDate, new Date(), rating.player.classYearOverride, ageGroup),
-        effectiveClassYear,
-        classYearLabel: effectiveClassYear ? `Class of ${effectiveClassYear}` : null,
-        eligibilityVerdict,
-        rating: Number(rating.adjustedRating),
-        starRating: rating.starRating,
-        verifiedGameCount: rating.verifiedGameCount,
-        primaryCompetition: primaryCompetitionFromSummary(
+    rows: ratings.map((rating, index) =>
+      mapNationalRankingRow(
+        rating,
+        index,
+        ageGroup,
+        activeFormulaVersionId,
+        primaryCompetitionFromSummary(
           participationByPlayer.get(rating.playerId) ?? {
             primary: null,
             totalVerifiedGames: 0,
             competitionCount: 0,
-            competitions: []
+            competitions: [],
           }
         )
-      };
-    })
+      )
+    ),
   };
 }
 
@@ -246,6 +293,83 @@ export const getLatestNationalRankings = cache(async () => buildLatestNationalRa
 export const getHomeNationalRankings = cache(async () =>
   buildLatestNationalRankings([defaultAgeGroup as RankingAgeGroup])
 );
+
+export type HomeNationalBoardPreview = {
+  formulaVersionId: string | null;
+  snapshots: {
+    boys: NationalRankingSnapshot;
+    girls: NationalRankingSnapshot;
+  };
+};
+
+async function fetchHomeGenderBoard(
+  gender: PlayerGender,
+  ageGroup: RankingAgeGroup,
+  ratingFilter: ActiveRatingFilter,
+  formulaVersionId: string
+): Promise<NationalRankingSnapshot> {
+  const [totalRows, latestSnapshot, ratings] = await Promise.all([
+    prisma.playerRating.count({
+      where: playerRatingBoardWhere(gender, ageGroup, ratingFilter, formulaVersionId),
+    }),
+    prisma.rankingSnapshot.findFirst({
+      where: {
+        scope: RankingScope.NATIONAL,
+        ageGroup: ageGroup as AgeGroup,
+        gender,
+        formulaVersionId,
+        city: null,
+        region: null,
+      },
+      orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
+    }),
+    prisma.playerRating.findMany({
+      where: playerRatingBoardWhere(gender, ageGroup, ratingFilter, formulaVersionId),
+      include: {
+        player: {
+          select: playerRatingPlayerSelectWithGameStats,
+        },
+      },
+      orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }],
+      take: HOME_BOARD_DISPLAY_LIMIT,
+    }),
+  ]);
+
+  return {
+    snapshotId: latestSnapshot?.id ?? null,
+    gender: toDisplayGender(gender),
+    ageGroup,
+    weekOf: latestSnapshot?.weekOf.toISOString() ?? null,
+    formulaVersionId,
+    totalRows,
+    rows: ratings.map((rating, index) =>
+      mapNationalRankingRow(rating, index, ageGroup, formulaVersionId, null)
+    ),
+  };
+}
+
+export const getHomeNationalBoardPreview = cache(async (): Promise<HomeNationalBoardPreview> => {
+  const ratingFilter = await resolveActivePlayerRatingFilter();
+  const formulaVersionId = ratingFilter.formulaVersionId;
+  const ageGroup = defaultAgeGroup as RankingAgeGroup;
+
+  if (!formulaVersionId) {
+    return {
+      formulaVersionId: null,
+      snapshots: {
+        boys: emptySnapshot(PlayerGender.BOYS, null, ageGroup),
+        girls: emptySnapshot(PlayerGender.GIRLS, null, ageGroup),
+      },
+    };
+  }
+
+  const [boys, girls] = await Promise.all([
+    fetchHomeGenderBoard(PlayerGender.BOYS, ageGroup, ratingFilter, formulaVersionId),
+    fetchHomeGenderBoard(PlayerGender.GIRLS, ageGroup, ratingFilter, formulaVersionId),
+  ]);
+
+  return { formulaVersionId, snapshots: { boys, girls } };
+});
 
 export async function getCurrentPublicBoardRankForPlayer(playerId: string, gender: PlayerGender, ageGroup: AgeGroup): Promise<PublicBoardRankLookup> {
   const rankings = await getLatestNationalRankings();

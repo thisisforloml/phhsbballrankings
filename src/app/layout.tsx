@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { AppChrome } from "@/components/layout/AppChrome";
-import { BRAND_DESCRIPTION, BRAND_LOGO_HORIZONTAL, BRAND_LOGO_ICON, BRAND_NAME, BRAND_NAME_FULL } from "@/lib/brand";
+import { BRAND_ASSETS, BRAND_DESCRIPTION, BRAND_NAME, BRAND_NAME_FULL } from "@/lib/brand";
 import { getPublicTrustMeta } from "@/lib/public-site-data";
 import "../styles/globals.css";
 
@@ -13,22 +13,25 @@ export const metadata: Metadata = {
   description: BRAND_DESCRIPTION,
   applicationName: BRAND_NAME,
   icons: {
-    icon: BRAND_LOGO_ICON,
-    shortcut: BRAND_LOGO_ICON,
-    apple: "/peach-basket/logo-stacked.png",
+    icon: [
+      { url: BRAND_ASSETS.favicon, sizes: "32x32" },
+      { url: BRAND_ASSETS.icon192, type: "image/webp", sizes: "192x192" },
+    ],
+    shortcut: BRAND_ASSETS.favicon,
+    apple: BRAND_ASSETS.appleTouchIcon,
   },
   openGraph: {
     type: "website",
     siteName: BRAND_NAME,
     title: BRAND_NAME_FULL,
     description: BRAND_DESCRIPTION,
-    images: [{ url: BRAND_LOGO_HORIZONTAL, alt: BRAND_NAME_FULL }],
+    images: [{ url: BRAND_ASSETS.ogImage, width: 1200, height: 630, alt: BRAND_NAME_FULL }],
   },
   twitter: {
     card: "summary_large_image",
     title: BRAND_NAME_FULL,
     description: BRAND_DESCRIPTION,
-    images: [BRAND_LOGO_HORIZONTAL],
+    images: [BRAND_ASSETS.ogImage],
   },
 };
 

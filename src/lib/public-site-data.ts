@@ -3,7 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { AgeGroup, PlayerGender, VerificationStatus, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
-import { getHomeNationalRankings, type NationalRankingRow } from "./rankings";
+import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
 import { prisma } from "./prisma";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
@@ -247,7 +247,7 @@ async function getBoardMovers(limit = 6): Promise<HomeRankMover[]> {
 export const getHomeData = cache(getHomeDataImpl);
 
 async function getHomeDataImpl(): Promise<HomeData> {
-  const rankings = await getHomeNationalRankings();
+  const rankings = await getHomeNationalBoardPreview();
   const boysRows = rankings.snapshots.boys.rows.slice(0, 10) as HomeLeaderboardRow[];
   const girlsRows = rankings.snapshots.girls.rows.slice(0, 10) as HomeLeaderboardRow[];
   const officialCounts = await getOfficialTeamCompetitionCounts();

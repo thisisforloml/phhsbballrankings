@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Search, User, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/components/auth/AuthContext";
-import { BRAND_LOGO_HORIZONTAL, BRAND_NAME } from "@/lib/brand";
+import { BRAND_ASSETS, BRAND_NAME } from "@/lib/brand";
 import { SearchOverlay } from "./SearchOverlay";
 
 const groups = ["U13", "U16", "U19"] as const;
@@ -132,9 +133,13 @@ function DesktopAccount({ portalSession, memberSession, logout, accountOpen, set
 function BrandMark() {
   return (
     <Link href="/" className="flex shrink-0 items-center leading-none" aria-label={`${BRAND_NAME} home`}>
-      <img
-        src={BRAND_LOGO_HORIZONTAL}
+      <Image
+        src={BRAND_ASSETS.horizontalLogo}
         alt={BRAND_NAME}
+        width={640}
+        height={214}
+        priority
+        sizes="(max-width: 640px) 160px, 200px"
         className="h-10 w-auto max-w-[11rem] object-contain object-left sm:h-11 sm:max-w-[12.5rem]"
       />
     </Link>
