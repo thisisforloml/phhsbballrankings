@@ -1,4 +1,4 @@
-import type { TeamStandingsAgeGroup, TeamStandingsGender } from "@/lib/team-rankings";
+import type { TeamStandingsAgeGroup, TeamStandingsGender } from "@/lib/team-rankings-types";
 
 export const nationalTeamBoardCoverageCopy = {
   sparseBoard(count: number, ageGroup: TeamStandingsAgeGroup, gender: TeamStandingsGender) {

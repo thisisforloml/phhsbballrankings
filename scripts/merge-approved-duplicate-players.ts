@@ -1,6 +1,6 @@
-import { prisma } from "../src/lib/prisma";
+﻿import { prisma } from "../src/lib/prisma";
 
-const planPath = "D:\\OnCourt Rankings PH\\scripts\\reports\\approved-player-merge-plan.json";
+const planPath = "D:\\Peach Basket\\scripts\\reports\\approved-player-merge-plan.json";
 
 type ApprovedMergeGroup = {
   groupNumber: number;

@@ -1,0 +1,1252 @@
+{
+  "generatedAt": "2026-06-18T07:09:48.432Z",
+  "mode": "read-only-shadow",
+  "policyVersionId": "rating-formula-vnext-shadow-v1",
+  "boards": [
+    {
+      "label": "U19 Boys",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "evaluationDate": "2026-06-18",
+      "shadowRowCount": 89,
+      "projectedCount": 0,
+      "blendedCount": 0,
+      "top15": [
+        {
+          "shadowRank": 1,
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+          "displayName": "Jude Eriobu",
+          "shadowRating": 99.36,
+          "shadowGames": 16,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 16
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 1,
+          "currentRating": 98.33,
+          "currentGames": 16,
+          "rankDelta": 0,
+          "ratingDelta": 1.03,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 2,
+          "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+          "displayName": "Josef Calo-oy",
+          "shadowRating": 95.08,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 5,
+          "currentRating": 93.1,
+          "currentGames": 14,
+          "rankDelta": 3,
+          "ratingDelta": 1.98,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 3,
+          "playerId": "e3c2f382-6279-40df-9d0a-b0bb808a3a4f",
+          "displayName": "Jetlee Melano",
+          "shadowRating": 94.32,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 19,
+          "currentRating": 86.36,
+          "currentGames": 14,
+          "rankDelta": 16,
+          "ratingDelta": 7.96,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 4,
+          "playerId": "f0b248fe-d417-4628-9807-9c84c94c3e78",
+          "displayName": "Steven Creus",
+          "shadowRating": 91.04,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 12,
+          "currentRating": 88.41,
+          "currentGames": 14,
+          "rankDelta": 8,
+          "ratingDelta": 2.63,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 5,
+          "playerId": "a9abc688-6711-4488-a0e7-aaeb30ca70ca",
+          "displayName": "Shaun Lucido",
+          "shadowRating": 88.44,
+          "shadowGames": 18,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 18
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 37,
+          "currentRating": 80.32,
+          "currentGames": 18,
+          "rankDelta": 32,
+          "ratingDelta": 8.12,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 6,
+          "playerId": "a7f040d6-0233-411a-9201-f0f4039b8ed2",
+          "displayName": "Khean Esperanza",
+          "shadowRating": 85.4,
+          "shadowGames": 18,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 18
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 56,
+          "currentRating": 74.85,
+          "currentGames": 18,
+          "rankDelta": 50,
+          "ratingDelta": 10.55,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 7,
+          "playerId": "dd55e494-5313-4df3-8fd4-4153b1ca21ed",
+          "displayName": "Patrick Pasinos",
+          "shadowRating": 83.98,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 28,
+          "currentRating": 82.31,
+          "currentGames": 14,
+          "rankDelta": 21,
+          "ratingDelta": 1.67,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 8,
+          "playerId": "ec473ca2-ac8e-413b-9d9b-2b906c5d85f1",
+          "displayName": "Kelly Coronel",
+          "shadowRating": 83.54,
+          "shadowGames": 18,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 18
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 33,
+          "currentRating": 80.98,
+          "currentGames": 18,
+          "rankDelta": 25,
+          "ratingDelta": 2.56,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 9,
+          "playerId": "e96101af-1909-4234-b2c7-5c1c08ebe126",
+          "displayName": "Chad Cartel",
+          "shadowRating": 82.8,
+          "shadowGames": 18,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 18
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 82,
+          "currentRating": 69.53,
+          "currentGames": 18,
+          "rankDelta": 73,
+          "ratingDelta": 13.27,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 10,
+          "playerId": "9c2e7295-d53c-4b2a-8621-5b54213fbac9",
+          "displayName": "Noah Banal",
+          "shadowRating": 82.27,
+          "shadowGames": 16,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 16
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 67,
+          "currentRating": 72.29,
+          "currentGames": 16,
+          "rankDelta": 57,
+          "ratingDelta": 9.98,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 11,
+          "playerId": "b55b85a0-5988-4e20-ac6f-913327563840",
+          "displayName": "Jhustin Hallare",
+          "shadowRating": 81.72,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 84,
+          "currentRating": 69.31,
+          "currentGames": 14,
+          "rankDelta": 73,
+          "ratingDelta": 12.41,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 12,
+          "playerId": "9a28ed84-3829-4466-aceb-48562bcadaa4",
+          "displayName": "Bronwyn Tepan",
+          "shadowRating": 81.12,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 41,
+          "currentRating": 78.56,
+          "currentGames": 14,
+          "rankDelta": 29,
+          "ratingDelta": 2.56,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 13,
+          "playerId": "70ad5e86-f117-4741-9714-ce4acf676503",
+          "displayName": "Mot Matias",
+          "shadowRating": 78.96,
+          "shadowGames": 17,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 17
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 114,
+          "currentRating": 65.13,
+          "currentGames": 17,
+          "rankDelta": 101,
+          "ratingDelta": 13.83,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 14,
+          "playerId": "c0afc835-8dde-4d74-9aa3-c2aed3e51308",
+          "displayName": "Axel Mendoza",
+          "shadowRating": 78.6,
+          "shadowGames": 19,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 19
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 46,
+          "currentRating": 76.45,
+          "currentGames": 19,
+          "rankDelta": 32,
+          "ratingDelta": 2.15,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 15,
+          "playerId": "b73718ae-00c9-4f23-b652-c8e860e3eb77",
+          "displayName": "Nathan Egea",
+          "shadowRating": 78.18,
+          "shadowGames": 20,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 20
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 48,
+          "currentRating": 75.88,
+          "currentGames": 20,
+          "rankDelta": 33,
+          "ratingDelta": 2.3,
+          "isNewOnHomeBoard": false
+        }
+      ],
+      "newOnHomeBoard": [],
+      "largestRankMoves": [
+        {
+          "shadowRank": 89,
+          "playerId": "d5f6b177-8e49-4fe6-bc7b-292437a6f05e",
+          "displayName": "Jacob Hurst Fabian",
+          "shadowRating": 17.91,
+          "shadowGames": 5,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 5
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 474,
+          "currentRating": 18.55,
+          "currentGames": 5,
+          "rankDelta": 385,
+          "ratingDelta": -0.64,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 88,
+          "playerId": "87871c40-dabf-4c06-9db1-0a912d446a1a",
+          "displayName": "Alexander Cesar",
+          "shadowRating": 19.62,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 457,
+          "currentRating": 20.88,
+          "currentGames": 14,
+          "rankDelta": 369,
+          "ratingDelta": -1.26,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 87,
+          "playerId": "f8d32b6c-452e-4472-a2f6-d359a388ddb6",
+          "displayName": "Herbert Adajar",
+          "shadowRating": 22.28,
+          "shadowGames": 1,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 1
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 449,
+          "currentRating": 22.49,
+          "currentGames": 1,
+          "rankDelta": 362,
+          "ratingDelta": -0.21,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 82,
+          "playerId": "b2d4bd51-4551-45b0-ba2f-e0bde0b6fccf",
+          "displayName": "Javi Dimayuga",
+          "shadowRating": 27.43,
+          "shadowGames": 10,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 10
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 440,
+          "currentRating": 23.42,
+          "currentGames": 10,
+          "rankDelta": 358,
+          "ratingDelta": 4.01,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 84,
+          "playerId": "7ef4b7d0-f94a-461c-bc7e-bf8b78df0037",
+          "displayName": "Zyron Gonzales",
+          "shadowRating": 27.05,
+          "shadowGames": 7,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 7
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 439,
+          "currentRating": 23.54,
+          "currentGames": 7,
+          "rankDelta": 355,
+          "ratingDelta": 3.51,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 83,
+          "playerId": "e081f2c2-b6cb-4cf4-8e67-ab7977586e58",
+          "displayName": "Mikel Trillo",
+          "shadowRating": 27.1,
+          "shadowGames": 5,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 5
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 433,
+          "currentRating": 24.12,
+          "currentGames": 5,
+          "rankDelta": 350,
+          "ratingDelta": 2.98,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 86,
+          "playerId": "824e2b0f-673f-4bba-9bb8-4b45d9b06d48",
+          "displayName": "Aidan Peña",
+          "shadowRating": 23.68,
+          "shadowGames": 13,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 13
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 420,
+          "currentRating": 24.76,
+          "currentGames": 13,
+          "rankDelta": 334,
+          "ratingDelta": -1.08,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 79,
+          "playerId": "310aeaf3-1d96-40d6-ba99-539c408f8fea",
+          "displayName": "Allan Timbang",
+          "shadowRating": 30.26,
+          "shadowGames": 10,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 10
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 412,
+          "currentRating": 25.81,
+          "currentGames": 10,
+          "rankDelta": 333,
+          "ratingDelta": 4.45,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 80,
+          "playerId": "9f302fed-cd29-4af3-84df-1860c3627259",
+          "displayName": "Kiefer Panganiban",
+          "shadowRating": 29.93,
+          "shadowGames": 7,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 7
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 408,
+          "currentRating": 25.98,
+          "currentGames": 7,
+          "rankDelta": 328,
+          "ratingDelta": 3.95,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 77,
+          "playerId": "90937ead-994a-4056-a826-9b1966d9dba0",
+          "displayName": "John Dexter Santos",
+          "shadowRating": 32.61,
+          "shadowGames": 18,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 18
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 403,
+          "currentRating": 26.44,
+          "currentGames": 18,
+          "rankDelta": 326,
+          "ratingDelta": 6.17,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 78,
+          "playerId": "5222f5c8-6c45-42fc-86f3-15794d1cfbdf",
+          "displayName": "Duncan Tan",
+          "shadowRating": 31.71,
+          "shadowGames": 10,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 10
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 398,
+          "currentRating": 26.86,
+          "currentGames": 10,
+          "rankDelta": 320,
+          "ratingDelta": 4.85,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 76,
+          "playerId": "5ff0b8c4-6c08-46cf-b58c-723da301b5ff",
+          "displayName": "Nazi Babad",
+          "shadowRating": 33.27,
+          "shadowGames": 13,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 13
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 391,
+          "currentRating": 27.66,
+          "currentGames": 13,
+          "rankDelta": 315,
+          "ratingDelta": 5.61,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 74,
+          "playerId": "37d63545-172e-4826-8d38-70d83d8cc64d",
+          "displayName": "Ethan Oraa",
+          "shadowRating": 34.11,
+          "shadowGames": 12,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 12
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 386,
+          "currentRating": 28.28,
+          "currentGames": 12,
+          "rankDelta": 312,
+          "ratingDelta": 5.83,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 75,
+          "playerId": "8a2c08ac-177c-4861-a445-f0e46b044dc4",
+          "displayName": "Rob Celiz",
+          "shadowRating": 33.47,
+          "shadowGames": 10,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 10
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 385,
+          "currentRating": 28.46,
+          "currentGames": 10,
+          "rankDelta": 310,
+          "ratingDelta": 5.01,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 69,
+          "playerId": "c9d2e16b-7284-4833-88a5-508d96920fc9",
+          "displayName": "Dan Sta. Maria",
+          "shadowRating": 35.79,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 377,
+          "currentRating": 29.42,
+          "currentGames": 14,
+          "rankDelta": 308,
+          "ratingDelta": 6.37,
+          "isNewOnHomeBoard": false
+        }
+      ]
+    },
+    {
+      "label": "U19 Girls",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "evaluationDate": "2026-06-18",
+      "shadowRowCount": 0,
+      "projectedCount": 0,
+      "blendedCount": 0,
+      "top15": [],
+      "newOnHomeBoard": [],
+      "largestRankMoves": []
+    },
+    {
+      "label": "U16 Boys",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "evaluationDate": "2026-06-18",
+      "shadowRowCount": 18,
+      "projectedCount": 9,
+      "blendedCount": 4,
+      "top15": [
+        {
+          "shadowRank": 1,
+          "playerId": "bc45c007-960f-4c93-8cc7-ab57201a1347",
+          "displayName": "Goodluck Okebata",
+          "shadowRating": 98.22,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 1,
+          "currentRating": 96.58,
+          "currentGames": 14,
+          "rankDelta": 0,
+          "ratingDelta": 1.64,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 2,
+          "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+          "displayName": "Moussa Diakite",
+          "shadowRating": 94.85,
+          "shadowGames": 33,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 17,
+            "HOME": 16
+          },
+          "avgAgeFactor": 1.041,
+          "currentRank": 6,
+          "currentRating": 89.91,
+          "currentGames": 16,
+          "rankDelta": 4,
+          "ratingDelta": 4.94,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 3,
+          "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+          "displayName": "Xyriel Macahipay",
+          "shadowRating": 89.37,
+          "shadowGames": 15,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 15
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 4,
+          "playerId": "6d5b44e2-e2d7-462c-986e-79905b916ed5",
+          "displayName": "Lawrence Tombocon",
+          "shadowRating": 84.36,
+          "shadowGames": 7,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 7
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 14,
+          "currentRating": 82.46,
+          "currentGames": 7,
+          "rankDelta": 10,
+          "ratingDelta": 1.9,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 5,
+          "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+          "displayName": "Francel Flores",
+          "shadowRating": 81.97,
+          "shadowGames": 14,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 14
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 6,
+          "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+          "displayName": "Keefe Iledan",
+          "shadowRating": 79.47,
+          "shadowGames": 10,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 10
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 7,
+          "playerId": "0e8a24af-daed-43bf-a561-0aa877d74959",
+          "displayName": "Rowie Cabañero",
+          "shadowRating": 79.37,
+          "shadowGames": 15,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 15
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 25,
+          "currentRating": 77.86,
+          "currentGames": 15,
+          "rankDelta": 18,
+          "ratingDelta": 1.51,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 8,
+          "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+          "displayName": "Prince Cariño",
+          "shadowRating": 77.54,
+          "shadowGames": 34,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 17,
+            "HOME": 17
+          },
+          "avgAgeFactor": 1.04,
+          "currentRank": 4,
+          "currentRating": 92.5,
+          "currentGames": 17,
+          "rankDelta": -4,
+          "ratingDelta": -14.96,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 9,
+          "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+          "displayName": "Sky Jazul",
+          "shadowRating": 68.06,
+          "shadowGames": 18,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 8,
+            "HOME": 10
+          },
+          "avgAgeFactor": 1.036,
+          "currentRank": 16,
+          "currentRating": 81.13,
+          "currentGames": 10,
+          "rankDelta": 7,
+          "ratingDelta": -13.07,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 10,
+          "playerId": "a74746cb-362d-4faa-99c4-c3bda00262ce",
+          "displayName": "Kean Poquiz",
+          "shadowRating": 60.28,
+          "shadowGames": 28,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 14,
+            "HOME": 14
+          },
+          "avgAgeFactor": 1.04,
+          "currentRank": 77,
+          "currentRating": 58.41,
+          "currentGames": 14,
+          "rankDelta": 67,
+          "ratingDelta": 1.87,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 11,
+          "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+          "displayName": "Denden Enriquez",
+          "shadowRating": 46.03,
+          "shadowGames": 14,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 14
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 12,
+          "playerId": "1f6c8fa5-71c8-4f72-a8f3-bef5f292d94e",
+          "displayName": "Alison Jordan",
+          "shadowRating": 45.99,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 121,
+          "currentRating": 46.53,
+          "currentGames": 14,
+          "rankDelta": 109,
+          "ratingDelta": -0.54,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 13,
+          "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+          "displayName": "Nickson Cabañero",
+          "shadowRating": 43.21,
+          "shadowGames": 15,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 15
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 14,
+          "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+          "displayName": "Brian Orca Jr.",
+          "shadowRating": 38.64,
+          "shadowGames": 13,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 13
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 15,
+          "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+          "displayName": "Sam Villaruel",
+          "shadowRating": 36.38,
+          "shadowGames": 7,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 7
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        }
+      ],
+      "newOnHomeBoard": [
+        {
+          "shadowRank": 3,
+          "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+          "displayName": "Xyriel Macahipay",
+          "shadowRating": 89.37,
+          "shadowGames": 15,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 15
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 5,
+          "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+          "displayName": "Francel Flores",
+          "shadowRating": 81.97,
+          "shadowGames": 14,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 14
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 6,
+          "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+          "displayName": "Keefe Iledan",
+          "shadowRating": 79.47,
+          "shadowGames": 10,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 10
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 11,
+          "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+          "displayName": "Denden Enriquez",
+          "shadowRating": 46.03,
+          "shadowGames": 14,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 14
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 13,
+          "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+          "displayName": "Nickson Cabañero",
+          "shadowRating": 43.21,
+          "shadowGames": 15,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 15
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 14,
+          "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+          "displayName": "Brian Orca Jr.",
+          "shadowRating": 38.64,
+          "shadowGames": 13,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 13
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 15,
+          "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+          "displayName": "Sam Villaruel",
+          "shadowRating": 36.38,
+          "shadowGames": 7,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 7
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 16,
+          "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+          "displayName": "Marvic Mesina",
+          "shadowRating": 30.81,
+          "shadowGames": 13,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 13
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        },
+        {
+          "shadowRank": 17,
+          "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+          "displayName": "John Restificar",
+          "shadowRating": 28.26,
+          "shadowGames": 10,
+          "ratingBasis": "PROJECTED",
+          "evidenceRoles": {
+            "PLAYING_UP": 10
+          },
+          "avgAgeFactor": 1.08,
+          "currentRank": null,
+          "currentRating": null,
+          "currentGames": null,
+          "rankDelta": null,
+          "ratingDelta": null,
+          "isNewOnHomeBoard": true
+        }
+      ],
+      "largestRankMoves": [
+        {
+          "shadowRank": 18,
+          "playerId": "f78d9740-b8f3-4639-b258-5f38df965042",
+          "displayName": "Godfavor Okebata",
+          "shadowRating": 20.13,
+          "shadowGames": 10,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 10
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 243,
+          "currentRating": 20.53,
+          "currentGames": 10,
+          "rankDelta": 225,
+          "ratingDelta": -0.4,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 12,
+          "playerId": "1f6c8fa5-71c8-4f72-a8f3-bef5f292d94e",
+          "displayName": "Alison Jordan",
+          "shadowRating": 45.99,
+          "shadowGames": 14,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 14
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 121,
+          "currentRating": 46.53,
+          "currentGames": 14,
+          "rankDelta": 109,
+          "ratingDelta": -0.54,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 10,
+          "playerId": "a74746cb-362d-4faa-99c4-c3bda00262ce",
+          "displayName": "Kean Poquiz",
+          "shadowRating": 60.28,
+          "shadowGames": 28,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 14,
+            "HOME": 14
+          },
+          "avgAgeFactor": 1.04,
+          "currentRank": 77,
+          "currentRating": 58.41,
+          "currentGames": 14,
+          "rankDelta": 67,
+          "ratingDelta": 1.87,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 7,
+          "playerId": "0e8a24af-daed-43bf-a561-0aa877d74959",
+          "displayName": "Rowie Cabañero",
+          "shadowRating": 79.37,
+          "shadowGames": 15,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 15
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 25,
+          "currentRating": 77.86,
+          "currentGames": 15,
+          "rankDelta": 18,
+          "ratingDelta": 1.51,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 4,
+          "playerId": "6d5b44e2-e2d7-462c-986e-79905b916ed5",
+          "displayName": "Lawrence Tombocon",
+          "shadowRating": 84.36,
+          "shadowGames": 7,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 7
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 14,
+          "currentRating": 82.46,
+          "currentGames": 7,
+          "rankDelta": 10,
+          "ratingDelta": 1.9,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 9,
+          "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+          "displayName": "Sky Jazul",
+          "shadowRating": 68.06,
+          "shadowGames": 18,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 8,
+            "HOME": 10
+          },
+          "avgAgeFactor": 1.036,
+          "currentRank": 16,
+          "currentRating": 81.13,
+          "currentGames": 10,
+          "rankDelta": 7,
+          "ratingDelta": -13.07,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 2,
+          "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+          "displayName": "Moussa Diakite",
+          "shadowRating": 94.85,
+          "shadowGames": 33,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 17,
+            "HOME": 16
+          },
+          "avgAgeFactor": 1.041,
+          "currentRank": 6,
+          "currentRating": 89.91,
+          "currentGames": 16,
+          "rankDelta": 4,
+          "ratingDelta": 4.94,
+          "isNewOnHomeBoard": false
+        },
+        {
+          "shadowRank": 8,
+          "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+          "displayName": "Prince Cariño",
+          "shadowRating": 77.54,
+          "shadowGames": 34,
+          "ratingBasis": "BLENDED",
+          "evidenceRoles": {
+            "PLAYING_UP": 17,
+            "HOME": 17
+          },
+          "avgAgeFactor": 1.04,
+          "currentRank": 4,
+          "currentRating": 92.5,
+          "currentGames": 17,
+          "rankDelta": -4,
+          "ratingDelta": -14.96,
+          "isNewOnHomeBoard": false
+        }
+      ]
+    },
+    {
+      "label": "U16 Girls",
+      "ageGroup": "U16",
+      "gender": "GIRLS",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "evaluationDate": "2026-06-18",
+      "shadowRowCount": 0,
+      "projectedCount": 0,
+      "blendedCount": 0,
+      "top15": [],
+      "newOnHomeBoard": [],
+      "largestRankMoves": []
+    },
+    {
+      "label": "U13 Boys",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "evaluationDate": "2026-06-18",
+      "shadowRowCount": 1,
+      "projectedCount": 0,
+      "blendedCount": 0,
+      "top15": [
+        {
+          "shadowRank": 1,
+          "playerId": "39fcae87-0268-4c1d-b042-454ed1a50346",
+          "displayName": "Heaven Lee Cruz",
+          "shadowRating": 26.76,
+          "shadowGames": 8,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 8
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 113,
+          "currentRating": 27.4,
+          "currentGames": 8,
+          "rankDelta": 112,
+          "ratingDelta": -0.64,
+          "isNewOnHomeBoard": false
+        }
+      ],
+      "newOnHomeBoard": [],
+      "largestRankMoves": [
+        {
+          "shadowRank": 1,
+          "playerId": "39fcae87-0268-4c1d-b042-454ed1a50346",
+          "displayName": "Heaven Lee Cruz",
+          "shadowRating": 26.76,
+          "shadowGames": 8,
+          "ratingBasis": "DIRECT",
+          "evidenceRoles": {
+            "HOME": 8
+          },
+          "avgAgeFactor": 1,
+          "currentRank": 113,
+          "currentRating": 27.4,
+          "currentGames": 8,
+          "rankDelta": 112,
+          "ratingDelta": -0.64,
+          "isNewOnHomeBoard": false
+        }
+      ]
+    },
+    {
+      "label": "U13 Girls",
+      "ageGroup": "U13",
+      "gender": "GIRLS",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "evaluationDate": "2026-06-18",
+      "shadowRowCount": 0,
+      "projectedCount": 0,
+      "blendedCount": 0,
+      "top15": [],
+      "newOnHomeBoard": [],
+      "largestRankMoves": []
+    }
+  ]
+}

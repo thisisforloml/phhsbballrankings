@@ -1,0 +1,1148 @@
+{
+  "generatedAt": "2026-06-17T11:59:51.035Z",
+  "evaluationDate": "2026-06-17T12:00:00.000Z",
+  "formulaVersion": "TPI-v1",
+  "policyVersion": "TEAM-POLICY-v1-launch",
+  "pybcVerificationAudit": {
+    "pybcTotal": 74,
+    "pybcVerified": 0,
+    "byStatus": {
+      "SUBMITTED": 74
+    }
+  },
+  "uaapIdentityBlockers": [
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "programName": "Adamson University",
+      "teams": [
+        {
+          "id": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "name": "Adamson Baby Falcons 16U",
+          "games": 15
+        },
+        {
+          "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "name": "Adamson Baby Falcons",
+          "games": 14
+        }
+      ]
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "programName": "Ateneo de Manila University",
+      "teams": [
+        {
+          "id": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "name": "Ateneo Blue Eaglets",
+          "games": 16
+        },
+        {
+          "id": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "name": "Ateneo Blue Eaglets 16U",
+          "games": 14
+        },
+        {
+          "id": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "name": "Ateneo Lady Eaglets",
+          "games": 6
+        }
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "teams": [
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers",
+          "games": 6
+        },
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U",
+          "games": 14
+        },
+        {
+          "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "name": "De La Salle Zobel Junior Archers",
+          "games": 15
+        }
+      ]
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "programName": "Far Eastern University Diliman",
+      "teams": [
+        {
+          "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "name": "FEU - Diliman Baby Tamaraws",
+          "games": 19
+        },
+        {
+          "id": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "name": "FEU - Diliman Baby Tamaraws 16U",
+          "games": 18
+        }
+      ]
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "programName": "National University Nazareth School",
+      "teams": [
+        {
+          "id": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "name": "NUNS Bullpups 16U",
+          "games": 16
+        },
+        {
+          "id": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "name": "NUNS Lady Bullpups",
+          "games": 8
+        },
+        {
+          "id": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "name": "NUNS Bullpups",
+          "games": 18
+        }
+      ]
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "teams": [
+        {
+          "id": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "name": "UST Tiger Cubs 16U",
+          "games": 15
+        },
+        {
+          "id": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "name": "UST Tiger Cubs",
+          "games": 14
+        },
+        {
+          "id": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "name": "UST Tigress Cubs",
+          "games": 8
+        }
+      ]
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "teams": [
+        {
+          "id": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "name": "UP Junior Fighting Maroons 16U",
+          "games": 14
+        },
+        {
+          "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "name": "UP Junior Fighting Maroons",
+          "games": 14
+        }
+      ]
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "teams": [
+        {
+          "id": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "name": "UE Junior Warriors 16U",
+          "games": 14
+        },
+        {
+          "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+          "name": "UE Junior Warriors",
+          "games": 14
+        }
+      ]
+    }
+  ],
+  "cohorts": {
+    "pybc": {
+      "VERIFIED_STRICT": {
+        "status": "EMPTY",
+        "gameCount": 0,
+        "reason": "No games with status in [VERIFIED]"
+      },
+      "SUBMITTED_PILOT": {
+        "status": "COMPUTED",
+        "evidenceStatuses": [
+          "SUBMITTED",
+          "VERIFIED"
+        ],
+        "dedupedGameCount": 74,
+        "boards": {
+          "U16:Boys": {
+            "gameCount": 37,
+            "programCount": 8,
+            "leagueTier": 1,
+            "computationPlan": [
+              {
+                "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+                "programName": "Migueluz Trading Moderno",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 9,
+                "verifiedOpponents": 7,
+                "pass0Strength": 30,
+                "pass1ObservedFinal": 43.77,
+                "pass1FinalTpi": 47.56,
+                "publicEligible": true
+              },
+              {
+                "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+                "programName": "Lev Construction Full Potential",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 8,
+                "verifiedOpponents": 7,
+                "pass0Strength": 45,
+                "pass1ObservedFinal": 48.72,
+                "pass1FinalTpi": 49.55,
+                "publicEligible": true
+              },
+              {
+                "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+                "programName": "Prime Ascencion Medical Supplies San Anton",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 9,
+                "verifiedOpponents": 7,
+                "pass0Strength": 56.67,
+                "pass1ObservedFinal": 51.85,
+                "pass1FinalTpi": 50.72,
+                "publicEligible": true
+              },
+              {
+                "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+                "programName": "Migrafix Doc Boleros",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 10,
+                "verifiedOpponents": 7,
+                "pass0Strength": 54,
+                "pass1ObservedFinal": 51.31,
+                "pass1FinalTpi": 50.54,
+                "publicEligible": true
+              },
+              {
+                "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+                "programName": "Smile 360 Bullies",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 9,
+                "verifiedOpponents": 7,
+                "pass0Strength": 56.67,
+                "pass1ObservedFinal": 51.44,
+                "pass1FinalTpi": 50.55,
+                "publicEligible": true
+              },
+              {
+                "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+                "programName": "San Pedro Spartans",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 12,
+                "verifiedOpponents": 7,
+                "pass0Strength": 56.67,
+                "pass1ObservedFinal": 52.36,
+                "pass1FinalTpi": 51.11,
+                "publicEligible": true
+              },
+              {
+                "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+                "programName": "JMTG Medical Trading Infinite",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 8,
+                "verifiedOpponents": 7,
+                "pass0Strength": 45,
+                "pass1ObservedFinal": 48.12,
+                "pass1FinalTpi": 49.31,
+                "publicEligible": true
+              },
+              {
+                "programId": "65908829-cfda-4053-821c-47435a45e33e",
+                "programName": "JPM-TEC San Beda",
+                "ageGroup": "U16",
+                "gender": "Boys",
+                "verifiedGames": 9,
+                "verifiedOpponents": 7,
+                "pass0Strength": 52.22,
+                "pass1ObservedFinal": 50.89,
+                "pass1FinalTpi": 50.35,
+                "publicEligible": true
+              }
+            ],
+            "ranking": [
+              {
+                "rank": 1,
+                "program": "San Pedro Spartans",
+                "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+                "tpi": 51.11,
+                "games": 12,
+                "opponents": 7,
+                "wl": "8-4",
+                "wlRank": 1
+              },
+              {
+                "rank": 2,
+                "program": "Prime Ascencion Medical Supplies San Anton",
+                "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+                "tpi": 50.72,
+                "games": 9,
+                "opponents": 7,
+                "wl": "6-3",
+                "wlRank": 2
+              },
+              {
+                "rank": 3,
+                "program": "Smile 360 Bullies",
+                "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+                "tpi": 50.55,
+                "games": 9,
+                "opponents": 7,
+                "wl": "6-3",
+                "wlRank": 3
+              },
+              {
+                "rank": 4,
+                "program": "Migrafix Doc Boleros",
+                "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+                "tpi": 50.54,
+                "games": 10,
+                "opponents": 7,
+                "wl": "6-4",
+                "wlRank": 4
+              },
+              {
+                "rank": 5,
+                "program": "JPM-TEC San Beda",
+                "programId": "65908829-cfda-4053-821c-47435a45e33e",
+                "tpi": 50.35,
+                "games": 9,
+                "opponents": 7,
+                "wl": "5-4",
+                "wlRank": 5
+              },
+              {
+                "rank": 6,
+                "program": "Lev Construction Full Potential",
+                "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+                "tpi": 49.55,
+                "games": 8,
+                "opponents": 7,
+                "wl": "3-5",
+                "wlRank": 7
+              },
+              {
+                "rank": 7,
+                "program": "JMTG Medical Trading Infinite",
+                "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+                "tpi": 49.31,
+                "games": 8,
+                "opponents": 7,
+                "wl": "3-5",
+                "wlRank": 6
+              },
+              {
+                "rank": 8,
+                "program": "Migueluz Trading Moderno",
+                "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+                "tpi": 47.56,
+                "games": 9,
+                "opponents": 7,
+                "wl": "0-9",
+                "wlRank": 8
+              }
+            ],
+            "contributionAudit": {
+              "top": {
+                "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+                "programName": "San Pedro Spartans",
+                "perGameAvg": {
+                  "outcome": 1.92,
+                  "margin": 0.53,
+                  "opponent": -0.04,
+                  "recency": -65.66
+                },
+                "shrinkageEffect": -1.25,
+                "pass1Observed": 52.36,
+                "tpiAdjusted": 51.11
+              },
+              "bottom": {
+                "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+                "programName": "Migueluz Trading Moderno",
+                "perGameAvg": {
+                  "outcome": -5.02,
+                  "margin": -1.43,
+                  "opponent": 0.1,
+                  "recency": -58.2
+                },
+                "shrinkageEffect": 3.79,
+                "pass1Observed": 43.77,
+                "tpiAdjusted": 47.56
+              }
+            },
+            "validation": {
+              "V-TR-01": {
+                "pass": true,
+                "detail": "keys=8, rows=8"
+              },
+              "V-TR-02": {
+                "pass": true,
+                "detail": "contrib count matches verified games per program"
+              },
+              "V-TR-03": {
+                "pass": true,
+                "detail": "games=37, expected 37"
+              },
+              "V-TR-04": {
+                "pass": true,
+                "detail": "200d ratio=0.463"
+              },
+              "V-TR-05": {
+                "pass": true,
+                "detail": "single tier weight per contribution"
+              },
+              "V-TR-06": {
+                "pass": true,
+                "detail": "ineligible count=0"
+              },
+              "V-TR-07": {
+                "pass": true,
+                "detail": "all have programId"
+              },
+              "V-TR-08": {
+                "pass": true,
+                "detail": "unique programId per board"
+              },
+              "V-TR-09": {
+                "pass": true,
+                "detail": "competition parity deferred — pilot only"
+              },
+              "V-TR-10": {
+                "pass": true,
+                "detail": "homepage deferred — pilot only"
+              }
+            },
+            "sensitivity": {
+              "rankings": {
+                "4": [
+                  {
+                    "rank": 1,
+                    "program": "San Pedro Spartans",
+                    "tpi": 51.35
+                  },
+                  {
+                    "rank": 2,
+                    "program": "Prime Ascencion Medical Supplies San Anton",
+                    "tpi": 50.9
+                  },
+                  {
+                    "rank": 3,
+                    "program": "Smile 360 Bullies",
+                    "tpi": 50.7
+                  },
+                  {
+                    "rank": 4,
+                    "program": "Migrafix Doc Boleros",
+                    "tpi": 50.67
+                  },
+                  {
+                    "rank": 5,
+                    "program": "JPM-TEC San Beda",
+                    "tpi": 50.44
+                  },
+                  {
+                    "rank": 6,
+                    "program": "Lev Construction Full Potential",
+                    "tpi": 49.42
+                  },
+                  {
+                    "rank": 7,
+                    "program": "JMTG Medical Trading Infinite",
+                    "tpi": 49.13
+                  },
+                  {
+                    "rank": 8,
+                    "program": "Migueluz Trading Moderno",
+                    "tpi": 46.94
+                  }
+                ],
+                "6": [
+                  {
+                    "rank": 1,
+                    "program": "San Pedro Spartans",
+                    "tpi": 51.11
+                  },
+                  {
+                    "rank": 2,
+                    "program": "Prime Ascencion Medical Supplies San Anton",
+                    "tpi": 50.72
+                  },
+                  {
+                    "rank": 3,
+                    "program": "Smile 360 Bullies",
+                    "tpi": 50.55
+                  },
+                  {
+                    "rank": 4,
+                    "program": "Migrafix Doc Boleros",
+                    "tpi": 50.54
+                  },
+                  {
+                    "rank": 5,
+                    "program": "JPM-TEC San Beda",
+                    "tpi": 50.35
+                  },
+                  {
+                    "rank": 6,
+                    "program": "Lev Construction Full Potential",
+                    "tpi": 49.55
+                  },
+                  {
+                    "rank": 7,
+                    "program": "JMTG Medical Trading Infinite",
+                    "tpi": 49.31
+                  },
+                  {
+                    "rank": 8,
+                    "program": "Migueluz Trading Moderno",
+                    "tpi": 47.56
+                  }
+                ],
+                "8": [
+                  {
+                    "rank": 1,
+                    "program": "San Pedro Spartans",
+                    "tpi": 50.94
+                  },
+                  {
+                    "rank": 2,
+                    "program": "Prime Ascencion Medical Supplies San Anton",
+                    "tpi": 50.6
+                  },
+                  {
+                    "rank": 3,
+                    "program": "Smile 360 Bullies",
+                    "tpi": 50.46
+                  },
+                  {
+                    "rank": 4,
+                    "program": "Migrafix Doc Boleros",
+                    "tpi": 50.45
+                  },
+                  {
+                    "rank": 5,
+                    "program": "JPM-TEC San Beda",
+                    "tpi": 50.29
+                  },
+                  {
+                    "rank": 6,
+                    "program": "Lev Construction Full Potential",
+                    "tpi": 49.63
+                  },
+                  {
+                    "rank": 7,
+                    "program": "JMTG Medical Trading Infinite",
+                    "tpi": 49.43
+                  },
+                  {
+                    "rank": 8,
+                    "program": "Migueluz Trading Moderno",
+                    "tpi": 47.97
+                  }
+                ]
+              },
+              "stability": [
+                {
+                  "k": 4,
+                  "maxRankDelta": 0,
+                  "maxTpiDelta": 0.6200000000000045,
+                  "orderStable": true
+                },
+                {
+                  "k": 6,
+                  "maxRankDelta": 0,
+                  "maxTpiDelta": 0,
+                  "orderStable": true
+                },
+                {
+                  "k": 8,
+                  "maxRankDelta": 0,
+                  "maxTpiDelta": 0.4099999999999966,
+                  "orderStable": true
+                }
+              ]
+            },
+            "sanityFlags": []
+          },
+          "U13:Boys": {
+            "gameCount": 37,
+            "programCount": 8,
+            "leagueTier": 1,
+            "computationPlan": [
+              {
+                "programId": "4635fe38-3173-4ae9-8f12-6c73cf6249ce",
+                "programName": "Aces Solar Locked In",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 8,
+                "verifiedOpponents": 7,
+                "pass0Strength": 50,
+                "pass1ObservedFinal": 49.7,
+                "pass1FinalTpi": 49.84,
+                "publicEligible": true
+              },
+              {
+                "programId": "65908829-cfda-4053-821c-47435a45e33e",
+                "programName": "JPM-TEC San Beda",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 9,
+                "verifiedOpponents": 7,
+                "pass0Strength": 47.78,
+                "pass1ObservedFinal": 49.6,
+                "pass1FinalTpi": 49.77,
+                "publicEligible": true
+              },
+              {
+                "programId": "c20b4e4d-bf46-4e8f-bc27-eba980fc6e68",
+                "programName": "TOPS Mordeno",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 8,
+                "verifiedOpponents": 7,
+                "pass0Strength": 35,
+                "pass1ObservedFinal": 44.71,
+                "pass1FinalTpi": 47.07,
+                "publicEligible": true
+              },
+              {
+                "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+                "programName": "Smile 360 Bullies",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 9,
+                "verifiedOpponents": 7,
+                "pass0Strength": 61.11,
+                "pass1ObservedFinal": 53.04,
+                "pass1FinalTpi": 51.78,
+                "publicEligible": true
+              },
+              {
+                "programId": "b90f02a7-f01a-49ba-8ca9-6e7e6a57d9b9",
+                "programName": "Chef's Magic MLO Basketball",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 12,
+                "verifiedOpponents": 7,
+                "pass0Strength": 63.33,
+                "pass1ObservedFinal": 54.22,
+                "pass1FinalTpi": 52.81,
+                "publicEligible": true
+              },
+              {
+                "programId": "a8f71f63-c83c-4d73-a8ad-38ee5936a166",
+                "programName": "Jet's Barbershop",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 12,
+                "verifiedOpponents": 7,
+                "pass0Strength": 60,
+                "pass1ObservedFinal": 53.27,
+                "pass1FinalTpi": 52.18,
+                "publicEligible": true
+              },
+              {
+                "programId": "3c384f3b-067a-4d3d-9343-7c0a0c368a69",
+                "programName": "GTG Foundation Los Baños Gallants",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 8,
+                "verifiedOpponents": 7,
+                "pass0Strength": 40,
+                "pass1ObservedFinal": 47.49,
+                "pass1FinalTpi": 48.57,
+                "publicEligible": true
+              },
+              {
+                "programId": "74c3139d-b922-450e-aa58-af9cb1e8a72b",
+                "programName": "EMDS Rizal Knights",
+                "ageGroup": "U13",
+                "gender": "Boys",
+                "verifiedGames": 8,
+                "verifiedOpponents": 7,
+                "pass0Strength": 30,
+                "pass1ObservedFinal": 43.27,
+                "pass1FinalTpi": 46.15,
+                "publicEligible": true
+              }
+            ],
+            "ranking": [
+              {
+                "rank": 1,
+                "program": "Chef's Magic MLO Basketball",
+                "programId": "b90f02a7-f01a-49ba-8ca9-6e7e6a57d9b9",
+                "tpi": 52.81,
+                "games": 12,
+                "opponents": 7,
+                "wl": "10-2",
+                "wlRank": 1
+              },
+              {
+                "rank": 2,
+                "program": "Jet's Barbershop",
+                "programId": "a8f71f63-c83c-4d73-a8ad-38ee5936a166",
+                "tpi": 52.18,
+                "games": 12,
+                "opponents": 7,
+                "wl": "9-3",
+                "wlRank": 3
+              },
+              {
+                "rank": 3,
+                "program": "Smile 360 Bullies",
+                "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+                "tpi": 51.78,
+                "games": 9,
+                "opponents": 7,
+                "wl": "7-2",
+                "wlRank": 2
+              },
+              {
+                "rank": 4,
+                "program": "Aces Solar Locked In",
+                "programId": "4635fe38-3173-4ae9-8f12-6c73cf6249ce",
+                "tpi": 49.84,
+                "games": 8,
+                "opponents": 7,
+                "wl": "4-4",
+                "wlRank": 4
+              },
+              {
+                "rank": 5,
+                "program": "JPM-TEC San Beda",
+                "programId": "65908829-cfda-4053-821c-47435a45e33e",
+                "tpi": 49.77,
+                "games": 9,
+                "opponents": 7,
+                "wl": "4-5",
+                "wlRank": 5
+              },
+              {
+                "rank": 6,
+                "program": "GTG Foundation Los Baños Gallants",
+                "programId": "3c384f3b-067a-4d3d-9343-7c0a0c368a69",
+                "tpi": 48.57,
+                "games": 8,
+                "opponents": 7,
+                "wl": "2-6",
+                "wlRank": 6
+              },
+              {
+                "rank": 7,
+                "program": "TOPS Mordeno",
+                "programId": "c20b4e4d-bf46-4e8f-bc27-eba980fc6e68",
+                "tpi": 47.07,
+                "games": 8,
+                "opponents": 7,
+                "wl": "1-7",
+                "wlRank": 7
+              },
+              {
+                "rank": 8,
+                "program": "EMDS Rizal Knights",
+                "programId": "74c3139d-b922-450e-aa58-af9cb1e8a72b",
+                "tpi": 46.15,
+                "games": 8,
+                "opponents": 7,
+                "wl": "0-8",
+                "wlRank": 8
+              }
+            ],
+            "contributionAudit": {
+              "top": {
+                "programId": "b90f02a7-f01a-49ba-8ca9-6e7e6a57d9b9",
+                "programName": "Chef's Magic MLO Basketball",
+                "perGameAvg": {
+                  "outcome": 3.31,
+                  "margin": 1,
+                  "opponent": -0.04,
+                  "recency": 0
+                },
+                "shrinkageEffect": -1.41,
+                "pass1Observed": 54.22,
+                "tpiAdjusted": 52.81
+              },
+              "bottom": {
+                "programId": "74c3139d-b922-450e-aa58-af9cb1e8a72b",
+                "programName": "EMDS Rizal Knights",
+                "perGameAvg": {
+                  "outcome": -5.01,
+                  "margin": -1.89,
+                  "opponent": 0.08,
+                  "recency": 0
+                },
+                "shrinkageEffect": 2.89,
+                "pass1Observed": 43.27,
+                "tpiAdjusted": 46.15
+              }
+            },
+            "validation": {
+              "V-TR-01": {
+                "pass": true,
+                "detail": "keys=8, rows=8"
+              },
+              "V-TR-02": {
+                "pass": true,
+                "detail": "contrib count matches verified games per program"
+              },
+              "V-TR-03": {
+                "pass": true,
+                "detail": "games=37, expected 37"
+              },
+              "V-TR-04": {
+                "pass": true,
+                "detail": "200d ratio=0.463"
+              },
+              "V-TR-05": {
+                "pass": true,
+                "detail": "single tier weight per contribution"
+              },
+              "V-TR-06": {
+                "pass": true,
+                "detail": "ineligible count=0"
+              },
+              "V-TR-07": {
+                "pass": true,
+                "detail": "all have programId"
+              },
+              "V-TR-08": {
+                "pass": true,
+                "detail": "unique programId per board"
+              },
+              "V-TR-09": {
+                "pass": true,
+                "detail": "competition parity deferred — pilot only"
+              },
+              "V-TR-10": {
+                "pass": true,
+                "detail": "homepage deferred — pilot only"
+              }
+            },
+            "sensitivity": {
+              "rankings": {
+                "4": [
+                  {
+                    "rank": 1,
+                    "program": "Chef's Magic MLO Basketball",
+                    "tpi": 53.16
+                  },
+                  {
+                    "rank": 2,
+                    "program": "Jet's Barbershop",
+                    "tpi": 52.45
+                  },
+                  {
+                    "rank": 3,
+                    "program": "Smile 360 Bullies",
+                    "tpi": 52.07
+                  },
+                  {
+                    "rank": 4,
+                    "program": "Aces Solar Locked In",
+                    "tpi": 49.81
+                  },
+                  {
+                    "rank": 5,
+                    "program": "JPM-TEC San Beda",
+                    "tpi": 49.73
+                  },
+                  {
+                    "rank": 6,
+                    "program": "GTG Foundation Los Baños Gallants",
+                    "tpi": 48.33
+                  },
+                  {
+                    "rank": 7,
+                    "program": "TOPS Mordeno",
+                    "tpi": 46.56
+                  },
+                  {
+                    "rank": 8,
+                    "program": "EMDS Rizal Knights",
+                    "tpi": 45.51
+                  }
+                ],
+                "6": [
+                  {
+                    "rank": 1,
+                    "program": "Chef's Magic MLO Basketball",
+                    "tpi": 52.81
+                  },
+                  {
+                    "rank": 2,
+                    "program": "Jet's Barbershop",
+                    "tpi": 52.18
+                  },
+                  {
+                    "rank": 3,
+                    "program": "Smile 360 Bullies",
+                    "tpi": 51.78
+                  },
+                  {
+                    "rank": 4,
+                    "program": "Aces Solar Locked In",
+                    "tpi": 49.84
+                  },
+                  {
+                    "rank": 5,
+                    "program": "JPM-TEC San Beda",
+                    "tpi": 49.77
+                  },
+                  {
+                    "rank": 6,
+                    "program": "GTG Foundation Los Baños Gallants",
+                    "tpi": 48.57
+                  },
+                  {
+                    "rank": 7,
+                    "program": "TOPS Mordeno",
+                    "tpi": 47.07
+                  },
+                  {
+                    "rank": 8,
+                    "program": "EMDS Rizal Knights",
+                    "tpi": 46.15
+                  }
+                ],
+                "8": [
+                  {
+                    "rank": 1,
+                    "program": "Chef's Magic MLO Basketball",
+                    "tpi": 52.53
+                  },
+                  {
+                    "rank": 2,
+                    "program": "Jet's Barbershop",
+                    "tpi": 51.96
+                  },
+                  {
+                    "rank": 3,
+                    "program": "Smile 360 Bullies",
+                    "tpi": 51.56
+                  },
+                  {
+                    "rank": 4,
+                    "program": "Aces Solar Locked In",
+                    "tpi": 49.86
+                  },
+                  {
+                    "rank": 5,
+                    "program": "JPM-TEC San Beda",
+                    "tpi": 49.8
+                  },
+                  {
+                    "rank": 6,
+                    "program": "GTG Foundation Los Baños Gallants",
+                    "tpi": 48.75
+                  },
+                  {
+                    "rank": 7,
+                    "program": "TOPS Mordeno",
+                    "tpi": 47.45
+                  },
+                  {
+                    "rank": 8,
+                    "program": "EMDS Rizal Knights",
+                    "tpi": 46.63
+                  }
+                ]
+              },
+              "stability": [
+                {
+                  "k": 4,
+                  "maxRankDelta": 0,
+                  "maxTpiDelta": 0.6400000000000006,
+                  "orderStable": true
+                },
+                {
+                  "k": 6,
+                  "maxRankDelta": 0,
+                  "maxTpiDelta": 0,
+                  "orderStable": true
+                },
+                {
+                  "k": 8,
+                  "maxRankDelta": 0,
+                  "maxTpiDelta": 0.480000000000004,
+                  "orderStable": true
+                }
+              ]
+            },
+            "sanityFlags": []
+          }
+        }
+      }
+    },
+    "uaap": {
+      "status": "SKIPPED",
+      "reason": "TR-1 identity cleanup not complete",
+      "duplicatePrograms": [
+        {
+          "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "programName": "Adamson University",
+          "teams": [
+            {
+              "id": "685e9651-ad77-4824-b70c-f032365e1f80",
+              "name": "Adamson Baby Falcons 16U",
+              "games": 15
+            },
+            {
+              "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+              "name": "Adamson Baby Falcons",
+              "games": 14
+            }
+          ]
+        },
+        {
+          "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+          "programName": "Ateneo de Manila University",
+          "teams": [
+            {
+              "id": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+              "name": "Ateneo Blue Eaglets",
+              "games": 16
+            },
+            {
+              "id": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+              "name": "Ateneo Blue Eaglets 16U",
+              "games": 14
+            },
+            {
+              "id": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+              "name": "Ateneo Lady Eaglets",
+              "games": 6
+            }
+          ]
+        },
+        {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "teams": [
+            {
+              "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+              "name": "De La Salle Zobel Lady Junior Archers",
+              "games": 6
+            },
+            {
+              "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+              "name": "De La Salle Zobel Junior Archers 16U",
+              "games": 14
+            },
+            {
+              "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+              "name": "De La Salle Zobel Junior Archers",
+              "games": 15
+            }
+          ]
+        },
+        {
+          "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+          "programName": "Far Eastern University Diliman",
+          "teams": [
+            {
+              "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+              "name": "FEU - Diliman Baby Tamaraws",
+              "games": 19
+            },
+            {
+              "id": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+              "name": "FEU - Diliman Baby Tamaraws 16U",
+              "games": 18
+            }
+          ]
+        },
+        {
+          "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+          "programName": "National University Nazareth School",
+          "teams": [
+            {
+              "id": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+              "name": "NUNS Bullpups 16U",
+              "games": 16
+            },
+            {
+              "id": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+              "name": "NUNS Lady Bullpups",
+              "games": 8
+            },
+            {
+              "id": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+              "name": "NUNS Bullpups",
+              "games": 18
+            }
+          ]
+        },
+        {
+          "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+          "programName": "University of Santo Tomas",
+          "teams": [
+            {
+              "id": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+              "name": "UST Tiger Cubs 16U",
+              "games": 15
+            },
+            {
+              "id": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+              "name": "UST Tiger Cubs",
+              "games": 14
+            },
+            {
+              "id": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+              "name": "UST Tigress Cubs",
+              "games": 8
+            }
+          ]
+        },
+        {
+          "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+          "programName": "University of the Philippines Integrated School",
+          "teams": [
+            {
+              "id": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+              "name": "UP Junior Fighting Maroons 16U",
+              "games": 14
+            },
+            {
+              "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+              "name": "UP Junior Fighting Maroons",
+              "games": 14
+            }
+          ]
+        },
+        {
+          "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+          "programName": "University of the East",
+          "teams": [
+            {
+              "id": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+              "name": "UE Junior Warriors 16U",
+              "games": 14
+            },
+            {
+              "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+              "name": "UE Junior Warriors",
+              "games": 14
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,702 @@
+{
+  "generatedAt": "2026-06-17T07:43:22.337Z",
+  "mode": "read-only",
+  "results": [
+    {
+      "pair": "BistroLeCoucou vs Bistro Le Coucou",
+      "teamA": {
+        "teamId": "ff96c815-68e3-4402-804a-4d49c91313ed",
+        "teamName": "Bistrot Le Coucou U19 Boys",
+        "programId": "97062465-a28b-4097-a9fb-0a6c451c5cc4",
+        "programName": "Bistrot Le Coucou",
+        "gameCount": 4,
+        "gameStatCount": 40,
+        "uniquePlayersFromStats": 12,
+        "uniquePlayersFromRoster": 0,
+        "playerIds": {},
+        "rosterPlayerIds": {},
+        "contexts": [
+          {
+            "leagueId": "f57eb4e1-040f-45ee-9d0f-a0d8e2a10339",
+            "leagueName": "3rd Stallion Cup – Teens 17u",
+            "seasonId": "31738e81-b485-4feb-8973-cb2a276785d2",
+            "seasonName": "Season 2026",
+            "ageGroup": "U19",
+            "games": 4,
+            "gameStats": 40
+          }
+        ],
+        "games": [
+          {
+            "gameId": "cb35d82b-25c2-43f2-94ea-96da243a4616",
+            "gameNumber": "SH-40774-2631889",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "ff96c815-68e3-4402-804a-4d49c91313ed",
+            "awayTeamId": "2a12dbee-a7ac-4908-b1c4-a843d8fc42fe",
+            "homeTeamName": "Bistrot Le Coucou U19 Boys",
+            "awayTeamName": "Torch 17u U19 Boys",
+            "opponentTeamId": "2a12dbee-a7ac-4908-b1c4-a843d8fc42fe",
+            "opponentTeamName": "Torch 17u U19 Boys"
+          },
+          {
+            "gameId": "b45f77bc-83ee-40d8-aa49-09eacf408214",
+            "gameNumber": "SH-40774-2631893",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "24a2753a-ac62-419f-ad1f-390d641b2e20",
+            "awayTeamId": "ff96c815-68e3-4402-804a-4d49c91313ed",
+            "homeTeamName": "Ogalala U19 Boys",
+            "awayTeamName": "Bistrot Le Coucou U19 Boys",
+            "opponentTeamId": "24a2753a-ac62-419f-ad1f-390d641b2e20",
+            "opponentTeamName": "Ogalala U19 Boys"
+          },
+          {
+            "gameId": "d361c951-3e76-458b-b315-ace63be4184e",
+            "gameNumber": "SH-40774-2651162",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "ff96c815-68e3-4402-804a-4d49c91313ed",
+            "awayTeamId": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+            "homeTeamName": "Bistrot Le Coucou U19 Boys",
+            "awayTeamName": "Celsius U19 Boys",
+            "opponentTeamId": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+            "opponentTeamName": "Celsius U19 Boys"
+          },
+          {
+            "gameId": "e4eda278-8626-4634-871b-e8628d4eb166",
+            "gameNumber": "SH-40774-2654825",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "ff96c815-68e3-4402-804a-4d49c91313ed",
+            "awayTeamId": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+            "homeTeamName": "Bistrot Le Coucou U19 Boys",
+            "awayTeamName": "BBC 17u U19 Boys",
+            "opponentTeamId": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+            "opponentTeamName": "BBC 17u U19 Boys"
+          }
+        ],
+        "gameDates": [
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17"
+        ]
+      },
+      "teamB": {
+        "teamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+        "teamName": "BistrotLeCoucou U19 Boys",
+        "programId": "65cde8f7-e861-4c4f-b3a2-165778b5eab1",
+        "programName": "BistrotLeCoucou",
+        "gameCount": 4,
+        "gameStatCount": 40,
+        "uniquePlayersFromStats": 12,
+        "uniquePlayersFromRoster": 0,
+        "playerIds": {},
+        "rosterPlayerIds": {},
+        "contexts": [
+          {
+            "leagueId": "f57eb4e1-040f-45ee-9d0f-a0d8e2a10339",
+            "leagueName": "3rd Stallion Cup – Teens 17u",
+            "seasonId": "31738e81-b485-4feb-8973-cb2a276785d2",
+            "seasonName": "Season 2026",
+            "ageGroup": "U19",
+            "games": 4,
+            "gameStats": 40
+          }
+        ],
+        "games": [
+          {
+            "gameId": "f2d04eb8-d52e-4f70-95a2-f641d6be3787",
+            "gameNumber": "SH-40774-2631899",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "baa2a62d-5e63-47b8-9e2a-1c8076c10ebf",
+            "awayTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+            "homeTeamName": "Chatime U19 Boys",
+            "awayTeamName": "BistrotLeCoucou U19 Boys",
+            "opponentTeamId": "baa2a62d-5e63-47b8-9e2a-1c8076c10ebf",
+            "opponentTeamName": "Chatime U19 Boys"
+          },
+          {
+            "gameId": "a8e42f21-769c-466c-8445-2aa44a75cc1e",
+            "gameNumber": "SH-40774-2631887",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "68295b9f-d505-467e-bda8-39fc4e2e936c",
+            "awayTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+            "homeTeamName": "Fruteria U19 Boys",
+            "awayTeamName": "BistrotLeCoucou U19 Boys",
+            "opponentTeamId": "68295b9f-d505-467e-bda8-39fc4e2e936c",
+            "opponentTeamName": "Fruteria U19 Boys"
+          },
+          {
+            "gameId": "b661f86a-4018-4dc7-bbb5-9c1d366022e3",
+            "gameNumber": "SH-40774-2631898",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+            "awayTeamId": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+            "homeTeamName": "BistrotLeCoucou U19 Boys",
+            "awayTeamName": "Celsius U19 Boys",
+            "opponentTeamId": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+            "opponentTeamName": "Celsius U19 Boys"
+          },
+          {
+            "gameId": "64ec4bad-2610-4dc0-9abb-63c474498d7d",
+            "gameNumber": "SH-40774-2631888",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "3rd Stallion Cup – Teens 17u",
+            "season": "Season 2026",
+            "ageGroup": "U19",
+            "homeTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+            "awayTeamId": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+            "homeTeamName": "BistrotLeCoucou U19 Boys",
+            "awayTeamName": "BBC 17u U19 Boys",
+            "opponentTeamId": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+            "opponentTeamName": "BBC 17u U19 Boys"
+          }
+        ],
+        "gameDates": [
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17"
+        ]
+      },
+      "crossProgram": true,
+      "sharedCompetitions": [
+        {
+          "leagueId": "f57eb4e1-040f-45ee-9d0f-a0d8e2a10339",
+          "leagueName": "3rd Stallion Cup – Teens 17u",
+          "seasonId": "31738e81-b485-4feb-8973-cb2a276785d2",
+          "seasonName": "Season 2026",
+          "ageGroup": "U19",
+          "games": 4,
+          "gameStats": 40
+        }
+      ],
+      "sharedGames": [],
+      "sharedGameDates": [
+        "2026-06-17"
+      ],
+      "sharedOpponents": [
+        {
+          "teamId": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+          "teamName": "Celsius U19 Boys"
+        },
+        {
+          "teamId": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+          "teamName": "BBC 17u U19 Boys"
+        }
+      ],
+      "overlap": {
+        "playerOverlapPercent": 100,
+        "rosterOverlapPercent": 0,
+        "sharedOpponentCount": 2
+      },
+      "allCandidates": [
+        {
+          "teamId": "ff96c815-68e3-4402-804a-4d49c91313ed",
+          "teamName": "Bistrot Le Coucou U19 Boys",
+          "programId": "97062465-a28b-4097-a9fb-0a6c451c5cc4",
+          "programName": "Bistrot Le Coucou",
+          "games": 4,
+          "gameStats": 40,
+          "contexts": [
+            {
+              "leagueId": "f57eb4e1-040f-45ee-9d0f-a0d8e2a10339",
+              "leagueName": "3rd Stallion Cup – Teens 17u",
+              "seasonId": "31738e81-b485-4feb-8973-cb2a276785d2",
+              "seasonName": "Season 2026",
+              "ageGroup": "U19",
+              "games": 4,
+              "gameStats": 40
+            }
+          ]
+        },
+        {
+          "teamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+          "teamName": "BistrotLeCoucou U19 Boys",
+          "programId": "65cde8f7-e861-4c4f-b3a2-165778b5eab1",
+          "programName": "BistrotLeCoucou",
+          "games": 4,
+          "gameStats": 40,
+          "contexts": [
+            {
+              "leagueId": "f57eb4e1-040f-45ee-9d0f-a0d8e2a10339",
+              "leagueName": "3rd Stallion Cup – Teens 17u",
+              "seasonId": "31738e81-b485-4feb-8973-cb2a276785d2",
+              "seasonName": "Season 2026",
+              "ageGroup": "U19",
+              "games": 4,
+              "gameStats": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pair": "Smile 360 Bullies vs Smile 360 Bullies U13 Boys",
+      "teamA": {
+        "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "teamName": "Smile 360 Bullies",
+        "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+        "programName": "Smile 360 Bullies",
+        "gameCount": 17,
+        "gameStatCount": 214,
+        "uniquePlayersFromStats": 36,
+        "uniquePlayersFromRoster": 0,
+        "playerIds": {},
+        "rosterPlayerIds": {},
+        "contexts": [
+          {
+            "leagueId": "8e5d3eeb-405e-4084-bc62-61637560db19",
+            "leagueName": "PYBC U16 Boys Basketball",
+            "seasonId": "8edba76c-d122-4773-8125-8d2bef93f20e",
+            "seasonName": "2025 Season",
+            "ageGroup": "U16",
+            "games": 1,
+            "gameStats": 14
+          },
+          {
+            "leagueId": "912ffef7-6e22-48a7-9551-51f0f46a8ac8",
+            "leagueName": "Philippine Youth Basketball Championship - 15U",
+            "seasonId": "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+            "seasonName": "1",
+            "ageGroup": "U16",
+            "games": 3,
+            "gameStats": 43
+          },
+          {
+            "leagueId": "02726bac-c93c-4060-b23a-527d10da6184",
+            "leagueName": "PYBC 15U",
+            "seasonId": "a938fd85-a690-493a-8df0-b650d8059f4a",
+            "seasonName": "1",
+            "ageGroup": "U16",
+            "games": 5,
+            "gameStats": 56
+          },
+          {
+            "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+            "leagueName": "Philippine Youth Basketball Championship – 13u",
+            "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+            "seasonName": "Season 2026",
+            "ageGroup": "U13",
+            "games": 8,
+            "gameStats": 101
+          }
+        ],
+        "games": [
+          {
+            "gameId": "be1862be-882b-4244-bd88-50175b00b21f",
+            "gameNumber": "PYBC-DRAFT-4864a2c8",
+            "gameDate": "2025-09-27T00:00:00.000Z",
+            "league": "PYBC U16 Boys Basketball",
+            "season": "2025 Season",
+            "ageGroup": "U16",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "San Pedro Spartans",
+            "opponentTeamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+            "opponentTeamName": "San Pedro Spartans"
+          },
+          {
+            "gameId": "5c1a612a-6dcc-4d8d-a556-d0a482e70046",
+            "gameNumber": "G-2025-005",
+            "gameDate": "2025-09-28T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship - 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "Migueluz Trading Moderno",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+            "opponentTeamName": "Migueluz Trading Moderno"
+          },
+          {
+            "gameId": "9039598c-bf70-471e-a506-4fe06dd36510",
+            "gameNumber": "G-2025-007",
+            "gameDate": "2025-10-05T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship - 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "JPM-TEC San Beda",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+            "opponentTeamName": "JPM-TEC San Beda"
+          },
+          {
+            "gameId": "59f8e2d6-d1cc-4cbe-b0ff-2c2ef19efdd2",
+            "gameNumber": "G-2025-009",
+            "gameDate": "2025-10-11T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship - 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "Migrafix Doc Boleros",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+            "opponentTeamName": "Migrafix Doc Boleros"
+          },
+          {
+            "gameId": "492bca6b-842e-4ff9-955c-5bd6f3f0f6fd",
+            "gameNumber": "G-2025-014",
+            "gameDate": "2025-11-08T00:00:00.000Z",
+            "league": "PYBC 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "Prime Ascencion Medical Supplies San Anton",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+            "opponentTeamName": "Prime Ascencion Medical Supplies San Anton"
+          },
+          {
+            "gameId": "512401b5-f286-40fd-902e-7e093962155b",
+            "gameNumber": "G-2025-024",
+            "gameDate": "2025-11-22T00:00:00.000Z",
+            "league": "PYBC 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "JMTG Medical Trading Infinite",
+            "opponentTeamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+            "opponentTeamName": "JMTG Medical Trading Infinite"
+          },
+          {
+            "gameId": "8623f5ea-f088-4275-ad6f-61b8a7c41ebc",
+            "gameNumber": "G-2025-025",
+            "gameDate": "2025-11-23T00:00:00.000Z",
+            "league": "PYBC 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "LEV Construction Full Potential",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+            "opponentTeamName": "LEV Construction Full Potential"
+          },
+          {
+            "gameId": "551a2122-f75f-4b3e-bcec-1f15bce41630",
+            "gameNumber": "SH-47340-2785685",
+            "gameDate": "2025-11-30T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "3a70ba98-1fb3-43cc-8825-243749eadbc1",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "TOPS Mordeno 13u",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "3a70ba98-1fb3-43cc-8825-243749eadbc1",
+            "opponentTeamName": "TOPS Mordeno 13u"
+          },
+          {
+            "gameId": "e3d7787c-9acb-4ac1-9a87-b764f5a670ad",
+            "gameNumber": "G-2025-030",
+            "gameDate": "2025-11-30T00:00:00.000Z",
+            "league": "PYBC 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "Migueluz Trading Moderno",
+            "opponentTeamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+            "opponentTeamName": "Migueluz Trading Moderno"
+          },
+          {
+            "gameId": "2db0b225-3d5c-44bf-9254-001e16fa39ae",
+            "gameNumber": "G-2025-034",
+            "gameDate": "2025-12-07T00:00:00.000Z",
+            "league": "PYBC 15U",
+            "season": "1",
+            "ageGroup": "U16",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "Migrafix Doc Boleros",
+            "opponentTeamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+            "opponentTeamName": "Migrafix Doc Boleros"
+          },
+          {
+            "gameId": "5ccac90d-d849-4624-99ea-3d4aaec176b3",
+            "gameNumber": "SH-47340-2743096",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "3a70ba98-1fb3-43cc-8825-243749eadbc1",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "TOPS Mordeno 13u",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "3a70ba98-1fb3-43cc-8825-243749eadbc1",
+            "opponentTeamName": "TOPS Mordeno 13u"
+          },
+          {
+            "gameId": "8cbf95bb-6f74-4a52-8065-2b01701a5603",
+            "gameNumber": "SH-47340-2755577",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "caf07c2b-76d2-43ba-9b20-7faa31f675dd",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "Chef's Magic MLO Basketball 13u",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "caf07c2b-76d2-43ba-9b20-7faa31f675dd",
+            "opponentTeamName": "Chef's Magic MLO Basketball 13u"
+          },
+          {
+            "gameId": "fb0cdb8b-e748-4952-886f-1b296def025f",
+            "gameNumber": "SH-47340-2768644",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "f91943e7-f3c3-4783-a9fb-e96a44a13e48",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "GTG Foundation Los Baños Gallants 13u",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "f91943e7-f3c3-4783-a9fb-e96a44a13e48",
+            "opponentTeamName": "GTG Foundation Los Baños Gallants 13u"
+          },
+          {
+            "gameId": "83bff88e-cba9-4bb6-8a77-d4a6bb453c9e",
+            "gameNumber": "SH-47340-2743093",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "JPM-TEC San Beda",
+            "opponentTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+            "opponentTeamName": "JPM-TEC San Beda"
+          },
+          {
+            "gameId": "0c195e0c-fd64-44fc-a96d-f11889e94b77",
+            "gameNumber": "SH-47340-2779282",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+            "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "homeTeamName": "Jet's Barbershop 13u",
+            "awayTeamName": "Smile 360 Bullies",
+            "opponentTeamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+            "opponentTeamName": "Jet's Barbershop 13u"
+          },
+          {
+            "gameId": "6e8733d3-55fb-4950-b441-3bd8c89c48c8",
+            "gameNumber": "SH-47340-2779284",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "004bd126-017f-4279-bf2b-d57c3a5cd0e4",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "Aces Solar Locked In 13u",
+            "opponentTeamId": "004bd126-017f-4279-bf2b-d57c3a5cd0e4",
+            "opponentTeamName": "Aces Solar Locked In 13u"
+          },
+          {
+            "gameId": "4ccb7be4-1409-46a5-9b6e-09d9338cfe7e",
+            "gameNumber": "SH-47340-2776846",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+            "awayTeamId": "9120f30e-73bb-4d65-bf40-c953c143a2c2",
+            "homeTeamName": "Smile 360 Bullies",
+            "awayTeamName": "EMDS Rizal Knights 13u",
+            "opponentTeamId": "9120f30e-73bb-4d65-bf40-c953c143a2c2",
+            "opponentTeamName": "EMDS Rizal Knights 13u"
+          }
+        ],
+        "gameDates": [
+          "2025-09-27",
+          "2025-09-28",
+          "2025-10-05",
+          "2025-10-11",
+          "2025-11-08",
+          "2025-11-22",
+          "2025-11-23",
+          "2025-11-30",
+          "2025-11-30",
+          "2025-12-07",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17",
+          "2026-06-17"
+        ]
+      },
+      "teamB": {
+        "teamId": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamName": "SMILE 360 BULLIES U13 Boys",
+        "programId": "60645321-d3b4-4db9-94aa-6176232b7476",
+        "programName": "SMILE 360 BULLIES",
+        "gameCount": 1,
+        "gameStatCount": 15,
+        "uniquePlayersFromStats": 15,
+        "uniquePlayersFromRoster": 0,
+        "playerIds": {},
+        "rosterPlayerIds": {},
+        "contexts": [
+          {
+            "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+            "leagueName": "Philippine Youth Basketball Championship – 13u",
+            "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+            "seasonName": "Season 2026",
+            "ageGroup": "U13",
+            "games": 1,
+            "gameStats": 15
+          }
+        ],
+        "games": [
+          {
+            "gameId": "a1545b57-8c60-49a6-a634-a6747b146c4b",
+            "gameNumber": "SH-47340-2787987",
+            "gameDate": "2026-06-17T00:00:00.000Z",
+            "league": "Philippine Youth Basketball Championship – 13u",
+            "season": "Season 2026",
+            "ageGroup": "U13",
+            "homeTeamId": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+            "awayTeamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+            "homeTeamName": "SMILE 360 BULLIES U13 Boys",
+            "awayTeamName": "Jet's Barbershop 13u",
+            "opponentTeamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+            "opponentTeamName": "Jet's Barbershop 13u"
+          }
+        ],
+        "gameDates": [
+          "2026-06-17"
+        ]
+      },
+      "crossProgram": true,
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "seasonName": "Season 2026",
+          "ageGroup": "U13",
+          "games": 8,
+          "gameStats": 101
+        }
+      ],
+      "sharedGames": [],
+      "sharedGameDates": [
+        "2026-06-17"
+      ],
+      "sharedOpponents": [
+        {
+          "teamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+          "teamName": "Jet's Barbershop 13u"
+        }
+      ],
+      "overlap": {
+        "playerOverlapPercent": 41.7,
+        "rosterOverlapPercent": 0,
+        "sharedOpponentCount": 1
+      },
+      "allCandidates": [
+        {
+          "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "teamName": "Smile 360 Bullies",
+          "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+          "programName": "Smile 360 Bullies",
+          "games": 17,
+          "gameStats": 214,
+          "contexts": [
+            {
+              "leagueId": "8e5d3eeb-405e-4084-bc62-61637560db19",
+              "leagueName": "PYBC U16 Boys Basketball",
+              "seasonId": "8edba76c-d122-4773-8125-8d2bef93f20e",
+              "seasonName": "2025 Season",
+              "ageGroup": "U16",
+              "games": 1,
+              "gameStats": 14
+            },
+            {
+              "leagueId": "912ffef7-6e22-48a7-9551-51f0f46a8ac8",
+              "leagueName": "Philippine Youth Basketball Championship - 15U",
+              "seasonId": "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+              "seasonName": "1",
+              "ageGroup": "U16",
+              "games": 3,
+              "gameStats": 43
+            },
+            {
+              "leagueId": "02726bac-c93c-4060-b23a-527d10da6184",
+              "leagueName": "PYBC 15U",
+              "seasonId": "a938fd85-a690-493a-8df0-b650d8059f4a",
+              "seasonName": "1",
+              "ageGroup": "U16",
+              "games": 5,
+              "gameStats": 56
+            },
+            {
+              "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+              "leagueName": "Philippine Youth Basketball Championship – 13u",
+              "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+              "seasonName": "Season 2026",
+              "ageGroup": "U13",
+              "games": 8,
+              "gameStats": 101
+            }
+          ]
+        },
+        {
+          "teamId": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+          "teamName": "SMILE 360 BULLIES U13 Boys",
+          "programId": "60645321-d3b4-4db9-94aa-6176232b7476",
+          "programName": "SMILE 360 BULLIES",
+          "games": 1,
+          "gameStats": 15,
+          "contexts": [
+            {
+              "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+              "leagueName": "Philippine Youth Basketball Championship – 13u",
+              "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+              "seasonName": "Season 2026",
+              "ageGroup": "U13",
+              "games": 1,
+              "gameStats": 15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

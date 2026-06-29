@@ -1,0 +1,883 @@
+{
+  "generatedAt": "2026-06-01T13:33:48.213Z",
+  "mode": "dry-run-read-only",
+  "guardrails": [
+    "No database writes.",
+    "No deletes.",
+    "No merges.",
+    "No GameStat or Game rewrites.",
+    "Generic Teams with history should be hidden/soft-retired only after explicit approval."
+  ],
+  "nicksonDiagnostic": {
+    "found": true,
+    "player": {
+      "id": "29efab25-9417-43be-a879-9654ac889bac",
+      "displayName": "Nickson Cabañero",
+      "gender": "BOYS",
+      "birthDate": "2009-06-19",
+      "classYearOverride": null,
+      "currentProgramId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "currentProgramName": "University of Santo Tomas",
+      "rankingAgeBracketNow": "U16"
+    },
+    "ustProgram": {
+      "id": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "fullName": "University of Santo Tomas",
+      "abbreviation": "UST"
+    },
+    "playerTeamSeasonRows": [
+      {
+        "id": "541ca8f9-078e-4137-adba-2c13b7595fbe",
+        "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "teamName": "UST Tiger Cubs",
+        "teamProgramId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "teamProgramName": "University of Santo Tomas",
+        "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+        "seasonName": "Season 88",
+        "startsOn": "2026-06-01",
+        "endsOn": null,
+        "activeNow": true,
+        "teamBelongsToUst": true
+      }
+    ],
+    "sourceSetPresence": {
+      "currentProgramPlayers": true,
+      "playerTeamSeasonRosterPlayers": true,
+      "historicalGameStatPlayers": false,
+      "unassignedProgramLevelPlayers": false,
+      "graduatedPlayers": false
+    },
+    "historicalUstGameStats": [],
+    "rootCause": "DATA_PRESENT_PROGRAM_DETAIL_LOADER_SHOULD_SHOW_CURRENT_ROSTER"
+  },
+  "summary": {
+    "candidateCount": 24,
+    "safeToRetireFromActiveUi": 2,
+    "needsReviewHasHistory": 9,
+    "blockedHasCurrentRoster": 13
+  },
+  "candidates": [
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "programName": "Adamson University",
+      "genericTeamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+      "genericTeamName": "Adamson Baby Falcons",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "name": "Adamson Baby Falcons 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 14,
+      "activeGameStatsCount": 168,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-003",
+        "UAAP-S88-HSB-006",
+        "UAAP-S88-HSB-009",
+        "UAAP-S88-HSB-016",
+        "UAAP-S88-HSB-018",
+        "UAAP-S88-HSB-022",
+        "UAAP-S88-HSB-026",
+        "UAAP-S88-HSB-032",
+        "UAAP-S88-HSB-034",
+        "UAAP-S88-HSB-038",
+        "UAAP-S88-HSB-041",
+        "UAAP-S88-HSB-047",
+        "UAAP-S88-HSB-052",
+        "UAAP-S88-HSB-054"
+      ],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "programName": "Adamson University",
+      "genericTeamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+      "genericTeamName": "ADU Jrs (ADU)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "name": "Adamson Baby Falcons 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 2,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "programName": "Ateneo de Manila University",
+      "genericTeamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+      "genericTeamName": "Ateneo Blue Eaglets",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "name": "Ateneo Blue Eaglets 16U"
+        },
+        {
+          "id": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "name": "ATENEO Girls (ATENEO)"
+        },
+        {
+          "id": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "name": "Ateneo Lady Eaglets"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 15,
+      "activeGameStatsCount": 180,
+      "activeOfficialGamesCount": 16,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-001",
+        "UAAP-S88-HSB-008",
+        "UAAP-S88-HSB-011",
+        "UAAP-S88-HSB-014",
+        "UAAP-S88-HSB-020",
+        "UAAP-S88-HSB-022",
+        "UAAP-S88-HSB-025",
+        "UAAP-S88-HSB-030",
+        "UAAP-S88-HSB-033",
+        "UAAP-S88-HSB-040",
+        "UAAP-S88-HSB-041",
+        "UAAP-S88-HSB-046",
+        "UAAP-S88-HSB-050",
+        "UAAP-S88-HSB-055",
+        "UAAP-S88-HSB-057",
+        "UAAP-S88-HSB-058"
+      ],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "programName": "Ateneo de Manila University",
+      "genericTeamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+      "genericTeamName": "ATENEO JRS (ATENEO)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "name": "Ateneo Blue Eaglets 16U"
+        },
+        {
+          "id": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "name": "ATENEO Girls (ATENEO)"
+        },
+        {
+          "id": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "name": "Ateneo Lady Eaglets"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 1,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "genericTeamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+      "genericTeamName": "DE LA SALLE Jrs (DLSU)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U"
+        },
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers"
+        },
+        {
+          "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)"
+        },
+        {
+          "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "SAFE_TO_RETIRE_FROM_ACTIVE_UI"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "genericTeamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+      "genericTeamName": "De La Salle Zobel Junior Archers",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U"
+        },
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers"
+        },
+        {
+          "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)"
+        },
+        {
+          "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 180,
+      "activeOfficialGamesCount": 15,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-004",
+        "UAAP-S88-HSB-005",
+        "UAAP-S88-HSB-011",
+        "UAAP-S88-HSB-013",
+        "UAAP-S88-HSB-018",
+        "UAAP-S88-HSB-021",
+        "UAAP-S88-HSB-027",
+        "UAAP-S88-HSB-031",
+        "UAAP-S88-HSB-036",
+        "UAAP-S88-HSB-040",
+        "UAAP-S88-HSB-044",
+        "UAAP-S88-HSB-047",
+        "UAAP-S88-HSB-051",
+        "UAAP-S88-HSB-053",
+        "UAAP-S88-HSB-059"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "genericTeamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+      "genericTeamName": "De La Salle Zobel Junior Archers 16U",
+      "reason": [
+        "junior label"
+      ],
+      "specificTeams": [
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U"
+        },
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers"
+        },
+        {
+          "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)"
+        },
+        {
+          "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 176,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-16U-002",
+        "UAAP-S88-16U-008",
+        "UAAP-S88-16U-012",
+        "UAAP-S88-16U-015",
+        "UAAP-S88-16U-021",
+        "UAAP-S88-16U-023",
+        "UAAP-S88-16U-027",
+        "UAAP-S88-16U-032",
+        "UAAP-S88-16U-033",
+        "UAAP-S88-16U-037",
+        "UAAP-S88-16U-043",
+        "UAAP-S88-16U-049",
+        "UAAP-S88-16U-052",
+        "UAAP-S88-16U-053"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "genericTeamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+      "genericTeamName": "De La Salle Zobel Lady Junior Archers",
+      "reason": [
+        "junior label"
+      ],
+      "specificTeams": [
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U"
+        },
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers"
+        },
+        {
+          "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)"
+        },
+        {
+          "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 63,
+      "activeOfficialGamesCount": 6,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSG-002",
+        "UAAP-S88-HSG-004",
+        "UAAP-S88-HSG-005",
+        "UAAP-S88-HSG-007",
+        "UAAP-S88-HSG-009",
+        "UAAP-S88-HSG-011"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "genericTeamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+      "genericTeamName": "LA SALLE (DLSZ)",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U"
+        },
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers"
+        },
+        {
+          "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)"
+        },
+        {
+          "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "SAFE_TO_RETIRE_FROM_ACTIVE_UI"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "genericTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+      "genericTeamName": "LA SALLE Jrs (LA SALLE)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "De La Salle Zobel Junior Archers 16U"
+        },
+        {
+          "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "De La Salle Zobel Lady Junior Archers"
+        },
+        {
+          "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)"
+        },
+        {
+          "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 15,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "programName": "Far Eastern University Diliman",
+      "genericTeamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+      "genericTeamName": "FEU - Diliman Baby Tamaraws",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "name": "FEU - Diliman Baby Tamaraws 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 14,
+      "activeGameStatsCount": 260,
+      "activeOfficialGamesCount": 19,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-002",
+        "UAAP-S88-HSB-008",
+        "UAAP-S88-HSB-010",
+        "UAAP-S88-HSB-015",
+        "UAAP-S88-HSB-019",
+        "UAAP-S88-HSB-021",
+        "UAAP-S88-HSB-026",
+        "UAAP-S88-HSB-031",
+        "UAAP-S88-HSB-034",
+        "UAAP-S88-HSB-039",
+        "UAAP-S88-HSB-042",
+        "UAAP-S88-HSB-045",
+        "UAAP-S88-HSB-049",
+        "UAAP-S88-HSB-055",
+        "UAAP-S88-HSB-057",
+        "UAAP-S88-HSB-058",
+        "UAAP-S88-HSB-060",
+        "UAAP-S88-HSB-061",
+        "UAAP-S88-HSB-062"
+      ],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "programName": "Far Eastern University Diliman",
+      "genericTeamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+      "genericTeamName": "FEU Jrs (FEU)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "name": "FEU - Diliman Baby Tamaraws 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 3,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "65908829-cfda-4053-821c-47435a45e33e",
+      "programName": "JPM-TEC San Beda",
+      "genericTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+      "genericTeamName": "JPM-TEC San Beda",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+          "name": "SBU U16 Boys"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 128,
+      "activeOfficialGamesCount": 9,
+      "activeOfficialGameRefs": [
+        "G-2025-007",
+        "G-2025-010",
+        "G-2025-016",
+        "G-2025-019",
+        "G-2025-021",
+        "G-2025-022",
+        "G-2025-027",
+        "G-2025-029",
+        "G-2025-033"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "programName": "National University Nazareth School",
+      "genericTeamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "genericTeamName": "NU Jrs (NU)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "name": "NU Girls (NU)"
+        },
+        {
+          "id": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "name": "NUNS Bullpups 16U"
+        },
+        {
+          "id": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "name": "NUNS Lady Bullpups"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 1,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "programName": "National University Nazareth School",
+      "genericTeamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+      "genericTeamName": "NUNS Bullpups",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "name": "NU Girls (NU)"
+        },
+        {
+          "id": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "name": "NUNS Bullpups 16U"
+        },
+        {
+          "id": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "name": "NUNS Lady Bullpups"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 15,
+      "activeGameStatsCount": 219,
+      "activeOfficialGamesCount": 18,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-003",
+        "UAAP-S88-HSB-005",
+        "UAAP-S88-HSB-010",
+        "UAAP-S88-HSB-014",
+        "UAAP-S88-HSB-017",
+        "UAAP-S88-HSB-023",
+        "UAAP-S88-HSB-028",
+        "UAAP-S88-HSB-030",
+        "UAAP-S88-HSB-035",
+        "UAAP-S88-HSB-039",
+        "UAAP-S88-HSB-043",
+        "UAAP-S88-HSB-048",
+        "UAAP-S88-HSB-052",
+        "UAAP-S88-HSB-053",
+        "UAAP-S88-HSB-059",
+        "UAAP-S88-HSB-060",
+        "UAAP-S88-HSB-061",
+        "UAAP-S88-HSB-062"
+      ],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "programName": "San Sebastian College-Recoletos",
+      "genericTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+      "genericTeamName": "San Sebastian Golden Staglets",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "7543e4de-09d2-45e5-869e-341a760b59b8",
+          "name": "SSCR U19 Boys"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 188,
+      "activeOfficialGamesCount": 15,
+      "activeOfficialGameRefs": [
+        "NCAA-S101-JB-049",
+        "NCAA-S101-JB-054",
+        "NCAA-S101-JB-059",
+        "NCAA-S101-JB-062",
+        "NCAA-S101-JB-066",
+        "NCAA-S101-JB-071",
+        "NCAA-S101-JRB-003",
+        "NCAA-S101-JRB-009",
+        "NCAA-S101-JRB-013",
+        "NCAA-S101-JRB-018",
+        "NCAA-S101-JRB-021",
+        "NCAA-S101-JRB-027",
+        "NCAA-S101-JRB-031",
+        "NCAA-S101-JRB-037",
+        "NCAA-S101-JRB-041"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "genericTeamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+      "genericTeamName": "UST Jrs (UST)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "name": "UST Girls (UST)"
+        },
+        {
+          "id": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "name": "UST Tiger Cubs 16U"
+        },
+        {
+          "id": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "name": "UST Tigress Cubs"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 1,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "genericTeamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+      "genericTeamName": "UST Tiger Cubs",
+      "reason": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "name": "UST Girls (UST)"
+        },
+        {
+          "id": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "name": "UST Tiger Cubs 16U"
+        },
+        {
+          "id": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "name": "UST Tigress Cubs"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 16,
+      "activeGameStatsCount": 191,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-002",
+        "UAAP-S88-HSB-007",
+        "UAAP-S88-HSB-009",
+        "UAAP-S88-HSB-013",
+        "UAAP-S88-HSB-020",
+        "UAAP-S88-HSB-024",
+        "UAAP-S88-HSB-028",
+        "UAAP-S88-HSB-029",
+        "UAAP-S88-HSB-035",
+        "UAAP-S88-HSB-038",
+        "UAAP-S88-HSB-042",
+        "UAAP-S88-HSB-046",
+        "UAAP-S88-HSB-051",
+        "UAAP-S88-HSB-056"
+      ],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "genericTeamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+      "genericTeamName": "UE Jrs (UE)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "name": "UE Junior Warriors 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 16,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "genericTeamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+      "genericTeamName": "UE Junior Warriors",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "name": "UE Junior Warriors 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 191,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-001",
+        "UAAP-S88-HSB-007",
+        "UAAP-S88-HSB-012",
+        "UAAP-S88-HSB-016",
+        "UAAP-S88-HSB-019",
+        "UAAP-S88-HSB-023",
+        "UAAP-S88-HSB-027",
+        "UAAP-S88-HSB-029",
+        "UAAP-S88-HSB-033",
+        "UAAP-S88-HSB-037",
+        "UAAP-S88-HSB-044",
+        "UAAP-S88-HSB-048",
+        "UAAP-S88-HSB-049",
+        "UAAP-S88-HSB-054"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "genericTeamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+      "genericTeamName": "UE Junior Warriors 16U",
+      "reason": [
+        "junior label"
+      ],
+      "specificTeams": [
+        {
+          "id": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "name": "UE Junior Warriors 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 147,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-16U-004",
+        "UAAP-S88-16U-005",
+        "UAAP-S88-16U-009",
+        "UAAP-S88-16U-013",
+        "UAAP-S88-16U-019",
+        "UAAP-S88-16U-023",
+        "UAAP-S88-16U-028",
+        "UAAP-S88-16U-031",
+        "UAAP-S88-16U-033",
+        "UAAP-S88-16U-039",
+        "UAAP-S88-16U-042",
+        "UAAP-S88-16U-045",
+        "UAAP-S88-16U-048",
+        "UAAP-S88-16U-054"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "genericTeamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+      "genericTeamName": "UP Junior Fighting Maroons",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "name": "UP Junior Fighting Maroons 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 165,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-HSB-004",
+        "UAAP-S88-HSB-006",
+        "UAAP-S88-HSB-012",
+        "UAAP-S88-HSB-015",
+        "UAAP-S88-HSB-017",
+        "UAAP-S88-HSB-024",
+        "UAAP-S88-HSB-025",
+        "UAAP-S88-HSB-032",
+        "UAAP-S88-HSB-036",
+        "UAAP-S88-HSB-037",
+        "UAAP-S88-HSB-043",
+        "UAAP-S88-HSB-045",
+        "UAAP-S88-HSB-050",
+        "UAAP-S88-HSB-056"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "genericTeamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+      "genericTeamName": "UP Junior Fighting Maroons 16U",
+      "reason": [
+        "junior label"
+      ],
+      "specificTeams": [
+        {
+          "id": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "name": "UP Junior Fighting Maroons 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 0,
+      "activeGameStatsCount": 152,
+      "activeOfficialGamesCount": 14,
+      "activeOfficialGameRefs": [
+        "UAAP-S88-16U-003",
+        "UAAP-S88-16U-006",
+        "UAAP-S88-16U-009",
+        "UAAP-S88-16U-014",
+        "UAAP-S88-16U-018",
+        "UAAP-S88-16U-022",
+        "UAAP-S88-16U-027",
+        "UAAP-S88-16U-030",
+        "UAAP-S88-16U-035",
+        "UAAP-S88-16U-040",
+        "UAAP-S88-16U-042",
+        "UAAP-S88-16U-050",
+        "UAAP-S88-16U-051",
+        "UAAP-S88-16U-053"
+      ],
+      "recommendation": "NEEDS_REVIEW_HAS_HISTORY"
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "genericTeamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+      "genericTeamName": "UPIS Jrs (UP)",
+      "reason": [
+        "junior label",
+        "generic name while specific age/gender Teams exist"
+      ],
+      "specificTeams": [
+        {
+          "id": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "name": "UP Junior Fighting Maroons 16U"
+        }
+      ],
+      "activePlayerTeamSeasonCount": 14,
+      "activeGameStatsCount": 0,
+      "activeOfficialGamesCount": 0,
+      "activeOfficialGameRefs": [],
+      "recommendation": "BLOCKED_HAS_CURRENT_ROSTER"
+    }
+  ]
+}

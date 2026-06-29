@@ -50,15 +50,15 @@ export function PlayerProfileSectionNav({
                 aria-selected={active}
                 aria-controls={`panel-${section.id}`}
                 onClick={() => onSelect(section.id)}
-                className={`relative block text-[0.68rem] font-medium uppercase tracking-[0.15em] transition md:text-[0.7rem] ${
+                className={`relative block text-[0.68rem] font-bold uppercase tracking-[0.15em] transition md:text-[0.7rem] ${
                   compact ? "px-2 py-1 md:px-3.5 md:py-1.5" : "px-3 py-2 md:px-5 md:py-2.5"
                 } ${
                   active
                     ? isLight
-                      ? "font-semibold text-court-900 after:absolute after:inset-x-4 after:bottom-0 after:h-px after:bg-hardwood-600/80 md:after:inset-x-5"
-                      : "font-semibold text-scout-50 after:absolute after:inset-x-4 after:bottom-0 after:h-px after:bg-scout-orange/80 md:after:inset-x-5"
+                      ? "text-court-900 after:absolute after:inset-x-4 after:bottom-0 after:h-px after:bg-hardwood-600/80 md:after:inset-x-5"
+                      : "text-scout-50 after:absolute after:inset-x-4 after:bottom-0 after:h-px after:bg-scout-orange/80 md:after:inset-x-5"
                     : isLight
-                      ? "text-court-400/65 hover:text-court-600"
+                      ? "text-court-500 hover:text-court-800"
                       : "text-scout-500/65 hover:text-scout-50"
                 }`}
               >

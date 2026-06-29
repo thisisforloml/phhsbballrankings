@@ -10,10 +10,8 @@ const quickLinks = [
   { label: "About", href: "/about" },
   { label: "How We Rank", href: "/how-we-rank" },
   { label: "FAQs", href: "/faqs" },
-  { label: "Compare", href: "/players/compare" },
   { label: "Saved Players", href: "/saved" },
   { label: "For organizers", href: "/portal/login" },
-  { label: "Claim Profile", href: "/claim" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Use", href: "/terms" },
 ];

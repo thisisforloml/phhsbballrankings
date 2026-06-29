@@ -1,0 +1,3455 @@
+{
+  "generatedAt": "2026-06-17T10:59:06.837Z",
+  "mode": "executed",
+  "candidateCount": 344,
+  "updated": 344,
+  "policyEffectiveDate": "2026-06-17T00:00:00.000Z",
+  "byBoard": {
+    "U19 Boys": 170,
+    "U19 Girls": 45,
+    "U16 Boys": 108,
+    "U13 Boys": 21
+  },
+  "candidates": [
+    {
+      "playerId": "704291ca-5be6-48b0-b604-140a5a545c42",
+      "displayName": "Aaron Jao",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0002f9c0-f93e-4ab9-9db7-eb1073050785",
+      "displayName": "Adiam Larosa",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7ed85dd3-7f49-4761-a5f5-708015df611d",
+      "displayName": "Adin Rosano",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+      "displayName": "Adrian Dela Cruz",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "756f616e-20f9-40fa-b0d8-115e9c2798a7",
+      "displayName": "Aidan Kaw",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 31,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1ecbafd0-c8f8-4b8f-ade7-bf2ad0aafd76",
+      "displayName": "Aidan Rae Ronquillo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "318a9aed-4889-40b0-b084-05404ff55520",
+      "displayName": "Akhiro Franz Reynon",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9dd12302-7194-4165-9f0a-37cea6bfda0e",
+      "displayName": "Alarick Tan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7d7c2d9e-22cb-407e-bbb5-75da1c3f1095",
+      "displayName": "Aldrich Chong",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ff1be5ad-0a71-4d22-8c5a-febe3bb4a6a7",
+      "displayName": "Alessia Palmiey",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e3542079-17fb-48af-8126-381a5ecf7905",
+      "displayName": "Alfonso Sy",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a4037a5b-0023-4f3b-a463-54fa8af7c510",
+      "displayName": "Alfonso Villavicencio",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-28T00:00:00.000Z",
+      "assignedAt": "2025-10-28T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "483a768a-4853-4d53-80fe-fd206523d2cd",
+      "displayName": "Allen Te",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8399af7e-0f13-43b1-86f1-641eac90d3bf",
+      "displayName": "Alonzo Tsai",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f4fa4085-5d79-425f-b917-75e3c0fecdfe",
+      "displayName": "Anderson Yu",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b3ba732d-732b-4d9f-a06a-61a58c5338f8",
+      "displayName": "Andrei Chavez",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "092f8f0d-36d7-424a-a792-60a8b7c5d2a7",
+      "displayName": "Andrie Ancheta",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ec973537-10ca-4d19-950e-950730db3069",
+      "displayName": "Andwele Poa",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 28,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9c764990-6326-488b-917d-afc850bf47f1",
+      "displayName": "Angelika Agad",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 7,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "389b1415-f364-4374-bd8c-c7ad20286b40",
+      "displayName": "Apyang Dulay",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bb3c663e-ab00-48fc-8cca-25ad55607268",
+      "displayName": "Ari Hew",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+      "displayName": "Aubrey Lapasaran",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7fc64a83-707e-4259-b834-8a5235ce81d6",
+      "displayName": "Audrey Biongcog",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "fd894239-859c-4780-b3ff-1a1bed146130",
+      "displayName": "Austin Delos Santos",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "666d018d-7bec-4046-92f3-92ecb81e7fc0",
+      "displayName": "Bangelo Abo-Abo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a2b6bc31-2091-4e66-8b0a-78d106e0d54c",
+      "displayName": "Bing Padigos",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c29f4fa4-68fb-4c4a-90cf-9066b0b7ae75",
+      "displayName": "Bri Katigbak",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7f88a6a3-ab31-477e-8b58-34473d67c155",
+      "displayName": "Bruce Tubongbanua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9aaa5866-116f-44d6-b59b-a379753b110e",
+      "displayName": "Cade Martinez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "511bd2a3-26a8-4826-8aad-2c8b4ede87c8",
+      "displayName": "Caden Lim",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 19,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "01d4ea7a-3bb9-4ac0-8edb-c67d429c82af",
+      "displayName": "Caleb De Los Angeles",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c2ded770-61ea-41cf-9b2f-456ea6fe4e86",
+      "displayName": "Caleb Liwanag",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3cd7328c-c26f-433e-8b4d-65bd53c9afc2",
+      "displayName": "Calix Tiu",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 21,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a31b434a-38ca-4166-bdc5-96d9e7095128",
+      "displayName": "Carsson Vidanes",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9ca7f4b7-a6d1-4e03-a366-30e3c548a3e3",
+      "displayName": "Cedric Sy",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "14a8af2c-1fe2-44d4-baac-3baa10f756cc",
+      "displayName": "Cedrick Tan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 20,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "85291f63-576e-4354-8b95-238dcb5a2308",
+      "displayName": "Celest Trillo",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "73c06a7c-937d-4a61-a338-8c6c76e8360a",
+      "displayName": "Chan Guinto",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "404de84e-3d74-4127-8744-b6bcbce4e86d",
+      "displayName": "Charles Panaligan",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c57dd039-802b-4ce6-bb3e-fcedf616b72d",
+      "displayName": "Charles Victoria",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "62d91284-330a-432c-9c33-1d1433bdc83b",
+      "displayName": "Cheska Gozum",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "534ed135-5db6-4d2d-9d70-d56430642d1e",
+      "displayName": "Ching Ching Gales",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b7934aa1-7937-4b22-b16f-137e320c4eb4",
+      "displayName": "Chloe Mariano",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "35077e1a-4f98-4dbb-a2ca-b565c008747a",
+      "displayName": "Christian Mercado",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "daa9216f-a9f8-4e8c-bae9-bd08bab3881e",
+      "displayName": "Christian Pedarce",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bd4b8d4d-84fd-4929-a694-4fd955371c1a",
+      "displayName": "Chrys Gomez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c82156ae-10fc-4a1e-8487-99f30195c945",
+      "displayName": "CJ Satparam",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "96a6d92f-5bb3-46d1-9945-4db7a7e10349",
+      "displayName": "CJ Tabbuga",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9a85569b-9f79-4214-aa11-af4edf94073e",
+      "displayName": "Clark Khobuntin",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "44cc2209-7ba2-42e5-a02c-d0a34b89c2d7",
+      "displayName": "Cobe Ang",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7fbd24cd-252c-4052-9a54-b68c5de2dbd0",
+      "displayName": "Colin Mathay",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5511fccd-17c0-4019-9d31-53a114ca5885",
+      "displayName": "Collin Lee",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "39844d89-e9f3-478c-8cdc-9558ad724d24",
+      "displayName": "Cristito Ferrer",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-10-05T00:00:00.000Z",
+      "assignedAt": "2025-10-05T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "df475c3d-36ea-4cc2-af4b-261587fbaeba",
+      "displayName": "Crixus Quijano",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "210d2e7b-866f-447d-b3fa-4250cfb9daf0",
+      "displayName": "Daniel Cobico",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f2fdc3f4-5c3e-473d-bacc-16ee4870d257",
+      "displayName": "Danjo Desiderio",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8918f6fd-0057-4c62-a7c8-5426a8a7f044",
+      "displayName": "Dats Datu",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0737db09-2a62-440b-9d10-5c831e4c764b",
+      "displayName": "Dave Regala",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1d4f0ad8-f585-4bdd-9422-84c028c8b02f",
+      "displayName": "David Dizon",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "845d2169-0bdc-4eb5-8534-34a58d5fa083",
+      "displayName": "David Sabareza",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e03c1279-5846-4958-94e7-3da4ec12c801",
+      "displayName": "Denzel Ong",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "87fe37a4-408a-4cfd-b96e-8cc8615e7b3d",
+      "displayName": "Deron Llamas",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e0f64196-cc17-4634-8ecb-b46aa9e8feef",
+      "displayName": "Dhale Lumague",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 19,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "302194bf-9427-4e80-9026-99ce0197a1c7",
+      "displayName": "Domeng Ngo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4617e909-b890-4441-a715-04400951e026",
+      "displayName": "Dominic Labao",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "57e50989-cae3-4484-be74-8311459167fb",
+      "displayName": "Don Eduard Dela Cruz",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "992a11da-7eaf-452c-b95d-0fd7a4254306",
+      "displayName": "Doy Cruz",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c5efdaec-cf5b-47b4-9318-936bbd75b1e7",
+      "displayName": "Drew Cagadoc",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 26,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "16230ab1-d67f-4f41-8105-c24c47119c8a",
+      "displayName": "Dustin Bathan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c4f42e37-9aea-4027-9b16-119b3ef07582",
+      "displayName": "Dwayne Cañete",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "93fb6019-c39d-43ec-a869-9984a6130a3e",
+      "displayName": "Dwayne Enriquez",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f9ebf6ea-ff9d-4d28-9b97-3cb1e02d7507",
+      "displayName": "Dwayne Nonato",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "77f56cb5-a29f-4c91-9b64-05a074151743",
+      "displayName": "Dwyne Enriquez",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d0899ae8-2056-4712-8510-06c322633384",
+      "displayName": "Ean Tria",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d93435c8-839b-422f-9b09-75cdc446e75b",
+      "displayName": "Eanne Vargas",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 21,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2af2fa41-b96e-46b7-bd0c-4dbbd5c5faf2",
+      "displayName": "Earl Dahino",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 20,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d977c21d-af18-490b-bbef-0cacc762f6dc",
+      "displayName": "Earl Solis",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 28,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0e30f55c-b7f0-451d-a674-edcba76f44c8",
+      "displayName": "Edison Jordan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f4fe64f2-882d-46c6-8e77-c31d56090208",
+      "displayName": "Eiron Shan Ramos",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4abfebc5-1609-4402-82f3-1183e0acac03",
+      "displayName": "Eli Dulot",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c90f6016-684b-4c06-8174-bb5f8c33e3a3",
+      "displayName": "Elias Meloto",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cf144e2c-357f-4139-b152-fc1722c9bb01",
+      "displayName": "Enrico Feliciano",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6cc7de82-82b0-4deb-9f95-ac7a1a090edd",
+      "displayName": "Enrico Guiral",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e09d9eb4-5d63-40f4-87d5-0c8d03c5b24a",
+      "displayName": "Enzo Araneta",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6e460e27-2510-4476-9c3b-c853340561e3",
+      "displayName": "Enzo Divinagracia",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "18a7f5cf-395c-478f-949d-110e1c51f413",
+      "displayName": "Enzo Soledad",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 21,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7b785ec5-b42f-4371-8147-71442dda3045",
+      "displayName": "Enzo Sosuan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4f1cd332-49ed-44e3-a3c6-631adb7a128c",
+      "displayName": "Enzo Sy",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "49c63d5e-6fc8-41ce-b206-c9b5624bc4f6",
+      "displayName": "Ethan Aguas",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "dd2bd020-a67f-4426-91d6-1ae19b9796cc",
+      "displayName": "Ethan Carniyan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "37d63545-172e-4826-8d38-70d83d8cc64d",
+      "displayName": "Ethan Oraa",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "17043d96-f8ec-4e45-9e40-71e371c4fe39",
+      "displayName": "Ethan Suangco",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8809c1f8-7090-4fb8-94ae-0652a78ff8c7",
+      "displayName": "Evo Santiago",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9ad17e58-5380-43c0-b86f-6a8c06ee50fd",
+      "displayName": "Ezekiel Zamoras",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c3d939e9-9fd4-4953-bb02-7cae6f8c0a8f",
+      "displayName": "Fia Martinez",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cbaf5c2c-64d8-4687-b505-1a065e2b4ed2",
+      "displayName": "Ford Fresnido",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f341775e-dff0-4ea0-9f2d-1b6ac3ff028a",
+      "displayName": "Fran Flores",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "db422f10-ec34-4ed2-958c-d47233d9224a",
+      "displayName": "France David",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "03ce86bf-8620-4a05-805f-e49ba1da24d8",
+      "displayName": "Francis Castro",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c9356c13-bbd7-4fec-9878-f2b0d054f79d",
+      "displayName": "Gab Castro",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d8188ac8-4ff6-4e45-b336-a6459155f472",
+      "displayName": "Gabe Jorge",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "77822554-0e0a-4e72-a99e-ef6746389477",
+      "displayName": "Gabo Yoro",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "40f25710-28f0-47b0-bbb4-79b28116f369",
+      "displayName": "Gabriel Mercado",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b7deb704-c833-4a76-9f29-382d6c0ae842",
+      "displayName": "Gabriel Sun",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ff615827-be7b-488d-8117-ef30b3ccc2da",
+      "displayName": "Gavin Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 21,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "addf381c-0d8f-4400-befb-84493e9b02f9",
+      "displayName": "Gavin Sy",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ce6315a9-f139-4b88-b443-af2ce1aa8c3e",
+      "displayName": "Gian Castro",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7edcefdf-dd24-4c48-8d05-d044a69ff1e8",
+      "displayName": "Griffin Barlan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c2dd8c77-dbb0-411c-9439-6cd4ef9a72d6",
+      "displayName": "Hanns Villacarlos",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+      "displayName": "Hans Go",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 28,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+      "displayName": "Hanz Llupar",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4d79072c-36d3-45f2-9c55-1b018fc46ce1",
+      "displayName": "Harvey Macadangdang",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 19,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "34eb131a-9fe9-4e83-a441-353eb314e6c6",
+      "displayName": "Harvey Turno",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2386148f-33ef-47fc-8d6e-729bbc84c806",
+      "displayName": "Hasly Mallari",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2ee5360d-2c77-4179-aee4-9f3ee25ef7e2",
+      "displayName": "Hazell Winar",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "95522303-7614-49e4-be51-7b1e057ecd1c",
+      "displayName": "Hisham Mampao",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9225bf5d-a57d-43ba-9b9e-ee39fcf973cd",
+      "displayName": "Ian Manalo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5b43ebf0-140b-48ab-81b8-5a428e24b183",
+      "displayName": "Ibrahim Salem",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9d516d88-00a5-44c2-9f83-5b0db3d2747f",
+      "displayName": "Ice Gerona",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+      "displayName": "Ima Navarro",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c5df896b-04a3-4915-9f71-f3e2701fc74c",
+      "displayName": "Inday Sales",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1cb84e5f-a1a2-43b8-aa59-236c0f94dab0",
+      "displayName": "Isiah Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 20,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6431bd1b-da28-491b-8e9b-c388c4480390",
+      "displayName": "Jack Cua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "af1d1ab7-ef0a-42d1-a3f9-e2c160c6aecd",
+      "displayName": "Jacob Ang",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0d426d1e-a8e0-4ffc-ae2b-463ad67a2572",
+      "displayName": "Jacob Maycong",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-24T00:00:00.000Z",
+      "assignedAt": "2025-09-24T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "78d7ad36-070c-4bbb-904f-6050a7828f05",
+      "displayName": "Jaden Roxas",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+      "displayName": "Jaidel Daa",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3f45f7a1-f307-4f69-9977-765628e0f6d2",
+      "displayName": "Jaime Teodoro",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "db9562a3-2017-40c1-8dec-ff8a1fd24409",
+      "displayName": "Jam Vejerano",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b6ea12bb-cec4-4265-94bc-c418c084dbe9",
+      "displayName": "Jamal Diaz",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a9bf7bc9-a6f3-43e5-809f-2ae294efd077",
+      "displayName": "James Castro",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c5e26785-b849-4e43-8008-85ee3b4d369b",
+      "displayName": "James Mesa",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "af2c8814-532c-4cd2-8939-40619459084d",
+      "displayName": "James Nodalo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cd73d63f-fc87-4eda-abf3-0c95e80ac3c4",
+      "displayName": "Jan Leon Villanueva",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+      "displayName": "Janice Oczon",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bc4ef4fd-2a06-480f-984f-6687e84dc502",
+      "displayName": "Jaypee Yanga",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "04d2298b-2195-43db-956c-da5f40d0589f",
+      "displayName": "Jayson Mercado",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "253c6cf5-68f5-42c1-96b0-8deb5969673d",
+      "displayName": "JC Roales",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f0ff876c-75a0-4b4f-81e1-4214b5f0a404",
+      "displayName": "JD Juangco",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-28T00:00:00.000Z",
+      "assignedAt": "2025-09-28T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "28e776bb-3645-45fb-b6ec-7a857397e228",
+      "displayName": "Jehove Gatumbato",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c84ce3cb-71b4-4201-ae90-8cef610426ab",
+      "displayName": "Jeremy Pascual",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "84747621-0eee-4de7-aa17-2af284717707",
+      "displayName": "Jeremy Tan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "205320ec-b06d-41bb-9258-eb26054a5015",
+      "displayName": "Jerick Geron",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "54d376cb-819b-464e-9aa0-fab8acff7623",
+      "displayName": "Jermaine Sapo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2d841475-d016-4fe9-bcfe-19aba8a9cd73",
+      "displayName": "Jesus Il Yonzon",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f688f06c-cf3c-4098-b119-a8ce38c76f7c",
+      "displayName": "Jhon Gemao",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8e94c7d7-5752-4b08-aba7-cc0c9d3f5572",
+      "displayName": "Jhon Ramiso",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a7e409bd-2628-43a2-897d-a4f2768feaad",
+      "displayName": "JM Edoukou",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "002702d3-fe63-491a-881d-81733da10f80",
+      "displayName": "Joachim Uy",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "54b9ad47-69a3-4c41-b703-6b4744ae4558",
+      "displayName": "Joaquim Tiu",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "991f148c-3273-4c07-8b54-02a79be96e25",
+      "displayName": "Joaquin Escudero",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f784f33f-1a29-4031-8311-47da6f66ac60",
+      "displayName": "Joaquin Wagan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a3f4f50e-6db3-4ffd-b78d-4ed12e64ad7d",
+      "displayName": "Johari Domingo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+      "displayName": "John Addatu",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5782986a-4fba-48f3-b5cd-bf9195e13511",
+      "displayName": "John Bagro",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "21f76301-791a-4bb2-8fab-fc5c948d6ba1",
+      "displayName": "John Baluyot",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-07T00:00:00.000Z",
+      "assignedAt": "2025-10-07T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "887cc41c-2e85-4174-bd31-f181d6471a72",
+      "displayName": "John Calanasan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "833091ab-0ccf-47b0-add7-3bb02fe63b4f",
+      "displayName": "John Dela Cruz",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5a437905-5f9d-4c69-aeaa-c6b337346145",
+      "displayName": "John Mindanao",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+      "displayName": "John Restificar",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-10-05T00:00:00.000Z",
+      "assignedAt": "2025-10-05T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d056bac7-db2c-4e91-965b-e5970a20701e",
+      "displayName": "John Santiago",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "09a6ab2f-7bd7-4f9a-88ca-c78c6640e17b",
+      "displayName": "Jordan Cayabyab",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1a1abed0-b942-43c2-bdc0-2d85975b46a7",
+      "displayName": "Jordan Dela Rosa",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8d4143fb-495d-4c37-a375-70e2cbb432b1",
+      "displayName": "Jose Asis",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "376670fa-917b-4d83-af37-91f02363282d",
+      "displayName": "Jose Jomalesa",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3f59df23-68b4-49f1-a3c3-924b23e57e50",
+      "displayName": "Josh Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5f3425b2-3536-42eb-b4f0-e39226d955fc",
+      "displayName": "Josh Hayden Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+      "displayName": "Josh Lim",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 25,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+      "displayName": "Joshua Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5e8e325a-0d32-4240-9ff5-67e4a2dfd798",
+      "displayName": "Joshua Scott",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c6039351-75f5-464f-a4de-5d913475e4fe",
+      "displayName": "Jovan Chen",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "53735f16-4528-489d-ab51-e5235882ceb5",
+      "displayName": "Jowitzki Ignacio",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5e3ebe65-7d60-4696-b303-0d7df4750319",
+      "displayName": "Juan Baldovino",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "84ac3127-a447-416d-909b-e889aeec026c",
+      "displayName": "Juan Mallabo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3bc473a4-6dc4-4aff-9db6-1d200ef68599",
+      "displayName": "Juancho Bernabe",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d72d7a81-7ff8-41dd-b0e8-32089f28733a",
+      "displayName": "Jude Ylen",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0faa2fe4-16db-4346-95b4-ca21bd914576",
+      "displayName": "Jullian Pangan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b4113b97-351d-48c8-ac59-3e49efa4bd1c",
+      "displayName": "Justin Zeng",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 20,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "dddbd35b-6e44-4b89-af6a-1a3f65d1859a",
+      "displayName": "Justine Laxamana",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "43c4c452-a4be-4f38-a31d-5d7cb6d23a14",
+      "displayName": "Kaeden Pio Rapista",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f1e17f00-adf6-4cd1-aa3e-1d693c94ec5f",
+      "displayName": "Kailie Tiu",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cb2efa29-062f-451c-bd59-4d28bc3585e9",
+      "displayName": "Kairi Ebao",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d3367846-883b-48a4-be3a-f08b0c1a0978",
+      "displayName": "Kaleb Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 27,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "20c258ca-4d74-4a75-b6b2-4aadf336f294",
+      "displayName": "Kaleb Hwang",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cc3158fb-3a92-4e14-8b31-9937a975b481",
+      "displayName": "Kat Insoy",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-02-01T00:00:00.000Z",
+      "assignedAt": "2026-02-01T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ae69c7e6-20b1-493b-998a-8e70ffd7377b",
+      "displayName": "Kean Dungca",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "484ff142-89b3-4752-91b4-d03d79df742e",
+      "displayName": "Keefy Iledan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b2711433-e4ff-48e5-944c-be848d5bf51c",
+      "displayName": "Keisha Ogario",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6864605b-3989-4519-b274-01e9cbfe41ea",
+      "displayName": "Ken Bo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1a47deb4-be7f-49e8-951f-6f37f0c9b181",
+      "displayName": "Kent Auditor",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e6fb61f0-ac55-4d0b-a866-90964421f1a9",
+      "displayName": "Kent Castro",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+      "displayName": "Kenzo Centeno",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 25,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+      "displayName": "Khaizer Castillo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c8f61751-cd2a-48f7-8c75-38fd49f0d09c",
+      "displayName": "Khalyl Reyes",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "62849bb4-f6f1-47a6-afcd-6390a06ba8dd",
+      "displayName": "Khellian Taparan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f1751ac7-7385-413e-87b4-039b54a502bd",
+      "displayName": "Khian Panerio",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9af775ea-9d4d-42ee-818d-73e738a0ecfb",
+      "displayName": "Khryz Alexandr Samson",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "468eda3c-de54-4ed4-baf3-ee43a09b455d",
+      "displayName": "Kian Antonio",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "02921b1f-6154-49a1-a70b-5d48530675b7",
+      "displayName": "Kint Aurita",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b2c5b620-0841-414c-8451-339b8aa2cb4f",
+      "displayName": "Kirov Acedo",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d75c25ae-578b-4279-8b18-69507c75e09b",
+      "displayName": "KJ Badajos",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b172f0ef-71bf-4624-b669-e3cf010e60b1",
+      "displayName": "Klo Dalanon",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6633f4a5-2b87-4806-a6b6-9a4f7f87c230",
+      "displayName": "Kobe Ngo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9646d96e-db03-4e4f-9732-3493531836b2",
+      "displayName": "Kobe Urbina",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "98826725-620c-4417-9f41-349da347c811",
+      "displayName": "Koukou Talla",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+      "displayName": "Kurt Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 29,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "17116e9a-f697-4d58-99f9-2a4255b3337e",
+      "displayName": "Kurt Ong",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e3e17178-a1b3-4430-a726-6cf101234326",
+      "displayName": "Kurt Patalinghug",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c39bbd8c-1b5e-499c-8730-373dc20352a8",
+      "displayName": "Kurt Velasquez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e855e5c6-c881-4989-8479-5f9be9a2e2ae",
+      "displayName": "Kyle Abas",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "09908d7c-1ec0-462f-9ecc-11ab07177baf",
+      "displayName": "Kyle Mojica",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 17,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "377ec87a-2521-4b5d-852d-f1c739b37473",
+      "displayName": "Kyrie Batac",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+      "displayName": "Lea Pinuela",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d1d80980-aa0c-46c7-98b7-d5674c9b8a0d",
+      "displayName": "Leon Sequerra",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1915964c-a278-4db1-8e7b-c8c739ee5885",
+      "displayName": "Lexi Callueng",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3a24bd05-60de-4744-8893-ff39c274939e",
+      "displayName": "Liam Ang",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 27,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4f77e1d6-e91f-45e4-9fcc-c8f6d1c3cdee",
+      "displayName": "Liam Mooney",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a64b03d9-06f0-417e-9003-94547555a1f3",
+      "displayName": "LJ Lapastora",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0180b75e-e877-414c-a912-65c10a181865",
+      "displayName": "Loin Lalong-Isip",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9689f91b-544e-463f-893d-655ff322f83d",
+      "displayName": "Lord Dulanas",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+      "displayName": "Lorenzo Purugganan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "78275386-272c-4a51-84d0-1b280e3d096a",
+      "displayName": "Louie Bual",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "09c4dc79-fdb1-4a91-b4dc-717e099bf517",
+      "displayName": "Louise Doque",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bdde0d77-a39a-4264-bd20-f203353e5dc1",
+      "displayName": "Louise Sinda",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "96844238-d5f4-4d16-9ad0-26e071b2cfe9",
+      "displayName": "Lucas Ang",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+      "displayName": "Lucas Kaw",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "155a5df4-9cd8-4a71-b85e-5a386bf6b354",
+      "displayName": "Majiq Padrejuan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cc3bd37a-32da-457d-aa26-9208dbf69fd2",
+      "displayName": "Marcus Co Say",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2d40867e-3318-47a9-ac96-9a84848e338b",
+      "displayName": "Marcus De Lara",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8b695a69-4d6a-4b70-85fb-ed798cabd2ac",
+      "displayName": "Marcus Fernandez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 30,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "de578227-2054-439b-95c6-ac708c92938c",
+      "displayName": "Marcus Lu",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "356ff89b-6eff-46f5-84aa-222e6b604413",
+      "displayName": "Marcus Tiu",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 25,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "40c8e192-205b-4f87-af30-785eb4fa47b7",
+      "displayName": "Mark Arzola",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e16d6dc8-7ba5-4851-ac01-87729ae4ba85",
+      "displayName": "Mark Borrero",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "72d1a26e-3294-463e-9e52-b90af1ff36df",
+      "displayName": "Mark Gutierrez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7b1403dc-407b-43a2-aa51-3484d5bcb461",
+      "displayName": "Mark Isip",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "94bf23af-63ac-4b45-8daf-df6038cc404c",
+      "displayName": "Mark Jade Dulin",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "987e2ec4-393b-44cd-b316-114be432dbfc",
+      "displayName": "Mark Perdigon",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "468538ba-ad0d-4017-996b-e6587d29bedd",
+      "displayName": "Mark San Buenaventura",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9fd6aa13-b7f7-4e29-a69b-3121a04e106a",
+      "displayName": "Martin Mejia",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "43c4ffe1-bd44-4957-ab52-4a2e657e46d5",
+      "displayName": "Martin Morales",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "59a93aa1-e020-4d57-9864-7d0e3db78352",
+      "displayName": "Martin Pangilinan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+      "displayName": "Marvic Mesina",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-10-15T00:00:00.000Z",
+      "assignedAt": "2025-10-15T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "808725d1-8bf0-4be6-9258-d06c1c824282",
+      "displayName": "Mateo Baltazar",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f986c3fc-5e81-4f83-8d32-0d94a524311a",
+      "displayName": "Mateo De La Paz",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 32,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f4f9e0a4-117f-4fda-84ac-690e6e740fe0",
+      "displayName": "Matia Molina",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+      "displayName": "Matt Rosete",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0a8c19f7-a925-4b2e-9365-90296ea39431",
+      "displayName": "Mattheo Quillo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3ccc00bd-b5d8-48a2-ac2f-57a23f4dc4e3",
+      "displayName": "Matthew Acop",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d5b88334-fdc8-4a9d-b289-c3402a8a3628",
+      "displayName": "Matthew Tan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b1747ea7-ddc2-46e6-95dd-227a28954e89",
+      "displayName": "Max Romero",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ed499e9d-c337-47cc-bfdb-21ab7660d8f5",
+      "displayName": "Melvin Tailan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "95a6bf66-aaed-4911-bb08-64baacca73a4",
+      "displayName": "Michael Tan Estrevillo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "aec66a81-cf0a-4a3c-9db4-2a43050c2952",
+      "displayName": "Mico Pascual",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 20,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f9dd9a78-9a19-4c24-abb0-6bff9bade904",
+      "displayName": "Migo Marasigan",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5cbb1a1b-a4c6-46a0-b197-9eaa1b2f5514",
+      "displayName": "Migo Yoro",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7d26eeb8-c5f2-47eb-8960-65d9ea1c6eeb",
+      "displayName": "Miguel Jubilado",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e0b5822d-b1f4-411f-9f28-cb331288db44",
+      "displayName": "Miguel Lim",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 28,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bc80f789-b5cf-43bd-b773-a7f18b86ea65",
+      "displayName": "Miky Chua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+      "displayName": "MJ Rosete",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "922a5522-3987-42ab-80cd-e2a5ce8a5c52",
+      "displayName": "Nadine Labay",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ffaf0dc7-93b8-47b8-8da0-99ce6789ff39",
+      "displayName": "Nathan Maghinay",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3d645232-f6aa-4544-a105-56734a5a5b2f",
+      "displayName": "Nick Peña",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+      "displayName": "Nico Koa",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 32,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1431baef-bcc4-4111-9b23-3e633be1702b",
+      "displayName": "Nicus Calma",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e85aaf64-8dc3-486d-9ee2-f5918923b207",
+      "displayName": "Noah Tan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 21,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0cc4954a-993f-4ffe-82d1-e1f96449b986",
+      "displayName": "Orion Norwood",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7f93137a-a67d-490f-8dc8-1b834bcc48bf",
+      "displayName": "Pablo Rufino",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7be0cbf7-4f25-4045-859f-af422d17b179",
+      "displayName": "Patrick Tumbaga",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c3d0f9d8-9854-4b29-8e95-4111847535a7",
+      "displayName": "Pau Arciaga",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1874c51b-18f5-4f1c-858c-97833d8c34d9",
+      "displayName": "Persist Loque",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+      "displayName": "Pertjude Binagatan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+      "displayName": "Peter Hernandez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+      "displayName": "Pia Petalcorin",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 7,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0434149b-0d98-4378-bc4f-1761ae21bbf8",
+      "displayName": "Prince Pineda",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "459fc5a2-22ba-4740-ba76-21f0fb80fc5c",
+      "displayName": "Prince Taganas",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "da1ec6cf-1ad3-4662-9b4f-b96d6f5b4f7b",
+      "displayName": "Rafa Del Mundo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 20,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c6a19a8e-b639-49dc-b22f-6e8f9dd8a922",
+      "displayName": "Rafa Selda",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2079752d-b711-434f-a7d9-38bbc689270a",
+      "displayName": "Rafael Dela Cruz",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "b1edc459-59c2-4a5f-b70d-e02ae6a8b0cb",
+      "displayName": "Rafael Oliveros",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "411acd67-e69b-4e91-8fb9-7d89aba5a9b4",
+      "displayName": "Rain Gabryle Cajilig",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d8e721c5-d9e1-4143-9f0b-0dcae623b2cd",
+      "displayName": "Raphael Bautista",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6ad03522-6db3-4a2f-a05d-0332d12d98f4",
+      "displayName": "Rashid Retaga",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5cb0d303-041d-4663-9c3b-8423a62da07b",
+      "displayName": "Reign Driz",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "348559ad-b529-4496-8686-adb8cd5009d4",
+      "displayName": "Renzo Zanoria",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "27f91d96-9527-47ad-ac56-99ba1eb363d7",
+      "displayName": "Reuben Sigua",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-08T00:00:00.000Z",
+      "assignedAt": "2025-10-08T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8ba4904a-6567-407b-8291-e636067b22c7",
+      "displayName": "Rey Bautista",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ec49a29d-06ce-40b2-b00a-af9f47e271d3",
+      "displayName": "Rhon-J Matias",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-22T00:00:00.000Z",
+      "assignedAt": "2026-01-22T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "75ca49b2-bde9-47fe-8b19-8f9e6203bf2b",
+      "displayName": "Rhys Luzana",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 7,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "45cd3633-2d92-4478-83fc-8812b1986eae",
+      "displayName": "Rich Tong",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+      "displayName": "Riri Perez",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d85d96d1-8502-48e4-8d91-bede872f5cc4",
+      "displayName": "Rocco Aranillo",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+      "displayName": "Romnick Araneta",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0e8a24af-daed-43bf-a561-0aa877d74959",
+      "displayName": "Rowie Cabañero",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+      "displayName": "Ruiza Olmos",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0a77dde8-4623-4473-8ffb-6f901a31c566",
+      "displayName": "Ryley Floirendo",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0d6b9ff0-6d1e-4217-823f-b5cebaf45ad9",
+      "displayName": "Sabel Anacan",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4f43220a-4594-4351-854d-63080a54bf28",
+      "displayName": "Sandra Abrantes",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 7,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1edb31d2-270c-4a82-8136-4c16f3c66584",
+      "displayName": "Santiago Sy",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "fbf4b1ed-cd1f-4cab-8a13-7a06c574643e",
+      "displayName": "Sara Madamba",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "133d08e0-3a88-4dc8-85ad-61af238bd219",
+      "displayName": "Savian Go",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 30,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "914f6a5c-1358-4c09-bb65-41d543e5976a",
+      "displayName": "Sean Bohol",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2026-01-18T00:00:00.000Z",
+      "assignedAt": "2026-01-18T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1c606af4-b07a-4da5-a2ac-3b609f9fc8a0",
+      "displayName": "Sean Felizmenia",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "9c16b77a-a334-4b70-829b-644518562125",
+      "displayName": "Sean Rodriguez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 19,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4acbd55f-c814-4ba8-a989-94f19ecfff21",
+      "displayName": "Sean Tan",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "721540b3-2e6b-421a-a7da-e92560008a3d",
+      "displayName": "Sean Yu",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 24,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "eb27b8fe-4aa0-4985-9fc1-c333c181fb6c",
+      "displayName": "Seb Esma",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3363a5a7-1c72-493c-820a-c4cbd641ff42",
+      "displayName": "Seth Ong",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 16,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "99239b77-206c-4f02-9ff1-cb9780e89bb9",
+      "displayName": "Shaun Vargas",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "59a98b7e-7e8d-48e0-af15-26f078b7b077",
+      "displayName": "Shawn Vergara",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a810564c-fcb5-40bf-9c45-0c5f8915c85b",
+      "displayName": "Simon Go",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "31123fbd-b643-47e5-b95a-1b26447e274c",
+      "displayName": "Simon Mercado",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-10-02T00:00:00.000Z",
+      "assignedAt": "2025-10-02T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ff47da56-5702-4107-a1f2-0ba5a358d2be",
+      "displayName": "Sizco Roquid",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c1cea81b-8644-4668-b79d-dc85bc7a5d57",
+      "displayName": "Sky Dela Rosa",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1f2b7a27-a613-432b-8953-a98e74a02d91",
+      "displayName": "Sophia Townes",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 5,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "21bbf73d-3db9-4920-92b3-5a935bcf7569",
+      "displayName": "Sorin Sebastian",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "5fe46d31-4097-4aae-b8bd-8c15cb822dd5",
+      "displayName": "Stef Bernarte",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 13,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f688b16b-1bfa-4ffb-83c5-7beaa09ff68d",
+      "displayName": "Stef Contreras",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-14T00:00:00.000Z",
+      "assignedAt": "2026-01-14T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "88b0bc38-0e1d-4d0b-9bbf-e09892f2f2c8",
+      "displayName": "Stephen Uy",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6829099a-a04b-4eb8-90b8-cdefb2e051e6",
+      "displayName": "Syrus Demate",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "fa4a0f80-fa1d-4649-9fd3-4e36ad99f6ef",
+      "displayName": "Third Candare",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "6c57e47b-bff4-451b-a456-a0e347ebb3b6",
+      "displayName": "Tim Cruz",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "be99fc5f-5246-441f-9836-a4c899ee82e4",
+      "displayName": "Tyler Templo",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f8271467-d384-47a4-a354-fb5d85cbdd0e",
+      "displayName": "Uno Del Monte",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "ddec8296-625b-4815-876e-de03fa2125bc",
+      "displayName": "Unri Madrangca",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "c78a20e5-bcff-40ea-98e0-d0ef46061714",
+      "displayName": "Vengcs Vengco",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 15,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "4f48c0db-c2e7-4657-9595-a33758686a6d",
+      "displayName": "Warren Delos Reyes",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0fdc9f7d-839b-48d2-885c-9e1538bfae4d",
+      "displayName": "Wayne Anggot",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2bf65968-df71-492e-91d3-0fd17a59ff96",
+      "displayName": "Wayne Rivera",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-09-20T00:00:00.000Z",
+      "assignedAt": "2025-09-20T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "8cbe4d0d-930a-4da7-9b44-213440db1947",
+      "displayName": "Wayne Sy",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 18,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "2ab4677c-a760-4d20-95b2-fdff78df2af5",
+      "displayName": "Xander Dulfo",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 12,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1efb367c-063c-441d-ad59-33015f122691",
+      "displayName": "Xander Ty",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "0607af31-4b55-4107-a4cb-0df3042e681f",
+      "displayName": "Yan Tagorda",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 19,
+      "earliestQualifyingGameDate": "2025-10-04T00:00:00.000Z",
+      "assignedAt": "2025-10-04T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "eacb642f-e2f6-40cf-b9d2-36e114295953",
+      "displayName": "Yojan Manguerra",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "d5a711a5-b828-41c0-b44b-b5d53ff07380",
+      "displayName": "Yuan Pacheco",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2025-10-03T00:00:00.000Z",
+      "assignedAt": "2025-10-03T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+      "displayName": "Yuan Ramirez",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verifiedGameCount": 22,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "bda6d8e8-e0aa-41b3-8c7a-d6cac6de91c6",
+      "displayName": "Yul Gerard Nicolas",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-27T00:00:00.000Z",
+      "assignedAt": "2025-09-27T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "1317eacc-3779-4adf-a348-dcabd8441407",
+      "displayName": "Zach Agustin",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "verifiedGameCount": 11,
+      "earliestQualifyingGameDate": "2026-06-17T00:00:00.000Z",
+      "assignedAt": "2026-06-17T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "a67cd60b-c5a5-4b6d-a824-f3b98353e8b0",
+      "displayName": "Zak Pontipedra",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 10,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+      "displayName": "Zandro Lugatiman",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "f5f3ff63-ec12-4788-a3ab-680b6cac1ab9",
+      "displayName": "Zane Singson",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 8,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "e89fcccd-7ed4-433a-b257-e77cf6220492",
+      "displayName": "Zia Onate",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 7,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "cece9e53-a43a-4795-bae3-270cd0e7e52d",
+      "displayName": "Zion Aguilar",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verifiedGameCount": 14,
+      "earliestQualifyingGameDate": "2025-09-21T00:00:00.000Z",
+      "assignedAt": "2025-09-21T00:00:00.000Z",
+      "source": "earliest_game"
+    },
+    {
+      "playerId": "54b26352-93f6-427b-87f1-0149dc0561d6",
+      "displayName": "Zoe Ablang",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verifiedGameCount": 6,
+      "earliestQualifyingGameDate": "2026-01-11T00:00:00.000Z",
+      "assignedAt": "2026-01-11T00:00:00.000Z",
+      "source": "earliest_game"
+    }
+  ]
+}

@@ -1,0 +1,1081 @@
+{
+  "generatedAt": "2026-06-17T06:16:06.306Z",
+  "phase": "A-inventory",
+  "mode": "read-only",
+  "liveCounts": {
+    "player": {
+      "active": 930,
+      "total": 977
+    },
+    "game": {
+      "active": 405,
+      "total": 451
+    },
+    "gameStat": {
+      "active": 9391,
+      "total": 10011
+    },
+    "gamePerformanceScore": {
+      "active": 9391,
+      "total": 9391
+    },
+    "playerRating": {
+      "total": 940
+    },
+    "rankingSnapshot": {
+      "total": 5,
+      "rows": 826
+    },
+    "submission": {
+      "active": 46,
+      "imported": 46,
+      "byStatus": [
+        {
+          "_count": {
+            "_all": 46
+          },
+          "status": "IMPORTED"
+        }
+      ]
+    }
+  },
+  "importedSubmissionInventory": [
+    {
+      "id": "d8ab1443-d7a2-4dbf-aab1-91d168dbf0d8",
+      "title": "UAAP88 16U, 34-36",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:56:10.149Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 80
+    },
+    {
+      "id": "8b387d7e-e604-44b6-b93c-23518c96e9b4",
+      "title": "UAAP Season 88 16U Basketball",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-18T07:47:57.697Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 73
+    },
+    {
+      "id": "8c9a5ca7-e64f-4e37-826e-ab0d9a5006af",
+      "title": "UAAP Season 88 16U Basketball",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-18T15:38:00.215Z",
+      "importedAt": null,
+      "submissionGames": 6,
+      "submissionPlayerRows": 148
+    },
+    {
+      "id": "fe7bfa88-bd17-48a4-93d0-7592cc96531a",
+      "title": "UAAP Season 88 16U Basketball",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-18T16:15:51.554Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 76
+    },
+    {
+      "id": "26e9bef2-4374-4b93-83c4-b6b953c3a8e4",
+      "title": "UAAP88 16U, 16-19",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:46:29.018Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 76
+    },
+    {
+      "id": "bfc603d9-68a8-41ec-8e47-6402c1a05be1",
+      "title": "UAAP88 16U, 19-22",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:48:55.123Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 70
+    },
+    {
+      "id": "45904edf-a8f3-41e3-b298-9faa064a6488",
+      "title": "UAAP88 16U, 22-24",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:50:18.584Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 71
+    },
+    {
+      "id": "d2d68055-25a2-419c-aa9d-5b5e7f36e9f8",
+      "title": "UAAP88 16U, 25-27",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:51:30.811Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 69
+    },
+    {
+      "id": "f831751d-da09-490e-b175-939e05bfe113",
+      "title": "UAAP88 16U, 28-30",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:52:14.435Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 80
+    },
+    {
+      "id": "28e95e8b-63a8-427b-9f94-d35766418ed4",
+      "title": "UAAP88 16U, 31-33",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:53:10.929Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 72
+    },
+    {
+      "id": "a1d0b638-901f-4f89-b8b2-1f2f7281892f",
+      "title": "UAAP Season 88 16U Basketball",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-18T03:04:19.552Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 79
+    },
+    {
+      "id": "785857b0-3bba-4492-b355-78fba89b056e",
+      "title": "UAAP88 16U, 58-60",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T15:13:40.351Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 67
+    },
+    {
+      "id": "02832f71-0706-49f8-ad5b-4b183c92fca8",
+      "title": "UAAP88 16U, 37-39",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:56:40.078Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 74
+    },
+    {
+      "id": "0e1ce4bb-3076-4fb8-bc33-a08eaa9decfb",
+      "title": "UAAP88 16U, 40-42",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:57:14.778Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 69
+    },
+    {
+      "id": "d7ff4f69-8c88-4653-941c-c6c2f7a631ae",
+      "title": "UAAP88 16U, 43-45",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T14:57:44.650Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 71
+    },
+    {
+      "id": "14b0eba2-7b58-423e-b975-12bcf83417ef",
+      "title": "UAAP88 16U, 46-48",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T15:12:07.358Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 75
+    },
+    {
+      "id": "2b7170ea-2aa8-4f1d-91ef-e5f9f0cefdb1",
+      "title": "UAAP88 16U, 49-51",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T15:12:28.360Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 81
+    },
+    {
+      "id": "e7a27b25-2ce0-4b6c-93aa-a18610ac71cd",
+      "title": "UAAP88 16U, 52-54",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T15:13:10.422Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 68
+    },
+    {
+      "id": "2fce6e64-cf4e-40dc-be82-7d5b759a33a6",
+      "title": "UAAP88 16U, 55-57",
+      "league": null,
+      "season": "Season 88",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T15:13:27.182Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 65
+    },
+    {
+      "id": "1720a7ed-0c23-4aab-a1e3-25de917b2a11",
+      "title": "NCAA101 JRS, 1-5",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T16:13:50.585Z",
+      "importedAt": null,
+      "submissionGames": 5,
+      "submissionPlayerRows": 129
+    },
+    {
+      "id": "9d99ad6e-b37f-4a01-a1e6-d505e7cbf0da",
+      "title": "NCAA101 JRS, 6-10",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T16:16:46.494Z",
+      "importedAt": null,
+      "submissionGames": 5,
+      "submissionPlayerRows": 134
+    },
+    {
+      "id": "d2ca4a33-3903-474c-bf47-5531a1904de5",
+      "title": "NCAA101 JRS, 11-15",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T16:40:27.900Z",
+      "importedAt": null,
+      "submissionGames": 5,
+      "submissionPlayerRows": 126
+    },
+    {
+      "id": "ad138192-65bb-4dd3-b3c9-ce2b9eb9830c",
+      "title": "NCAA101 JRS, 16-20",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T16:40:50.782Z",
+      "importedAt": null,
+      "submissionGames": 5,
+      "submissionPlayerRows": 129
+    },
+    {
+      "id": "be475791-1e96-4acd-808a-6aef5c7ec691",
+      "title": "NCAA101 JRS, 21-25",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T16:44:08.568Z",
+      "importedAt": null,
+      "submissionGames": 5,
+      "submissionPlayerRows": 135
+    },
+    {
+      "id": "6f741a63-0650-4b3d-b21a-eab9af4b0604",
+      "title": "NCAA101 JRS, 26-30",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-19T16:44:57.109Z",
+      "importedAt": null,
+      "submissionGames": 5,
+      "submissionPlayerRows": 130
+    },
+    {
+      "id": "047a03b9-d4ff-409c-bfc8-7f133e06879c",
+      "title": "NCAA101 JRS, 41-50",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-20T05:32:53.992Z",
+      "importedAt": null,
+      "submissionGames": 10,
+      "submissionPlayerRows": 255
+    },
+    {
+      "id": "a145906b-6220-4c50-98a2-607ec704329b",
+      "title": "NCAA101 JRS, 51-60",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-20T05:42:20.334Z",
+      "importedAt": null,
+      "submissionGames": 10,
+      "submissionPlayerRows": 269
+    },
+    {
+      "id": "dec55b8c-7c4d-46f1-8a38-ab9f2e912b52",
+      "title": "NCAA101 JRS, 61-70",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-20T05:50:15.512Z",
+      "importedAt": null,
+      "submissionGames": 10,
+      "submissionPlayerRows": 243
+    },
+    {
+      "id": "83ac9f39-6638-40ec-a8f7-0054d42ff212",
+      "title": "NCAA101 JRS, 38-40",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-25T01:36:15.966Z",
+      "importedAt": null,
+      "submissionGames": 3,
+      "submissionPlayerRows": 76
+    },
+    {
+      "id": "c0f401f1-9a0d-4df1-bd8f-95377fe6ab02",
+      "title": "NCAA101 JRS, 71-81",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-20T05:52:56.215Z",
+      "importedAt": null,
+      "submissionGames": 11,
+      "submissionPlayerRows": 265
+    },
+    {
+      "id": "b06bb7b1-17e0-4179-ad1a-4785efbd8ebb",
+      "title": "PYBC 15U, 2-10",
+      "league": null,
+      "season": "1",
+      "status": "IMPORTED",
+      "importPath": "spreadsheet_xlsx",
+      "submissionType": "UPLOAD_XLSX",
+      "createdAt": "2026-05-26T13:11:55.902Z",
+      "importedAt": null,
+      "submissionGames": 9,
+      "submissionPlayerRows": 243
+    },
+    {
+      "id": "818957eb-ecb6-4470-a0bd-157bee2296d0",
+      "title": "NCAA101 JRS, 31-37",
+      "league": null,
+      "season": "Season 101",
+      "status": "IMPORTED",
+      "importPath": "paste_json",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-05-20T05:29:50.206Z",
+      "importedAt": null,
+      "submissionGames": 7,
+      "submissionPlayerRows": 170
+    },
+    {
+      "id": "4864a2c8-7515-4d5d-b701-38f20c5d9441",
+      "title": "PYBC 15U, 1",
+      "league": null,
+      "season": "2025 Season",
+      "status": "IMPORTED",
+      "importPath": "spreadsheet_xlsx",
+      "submissionType": "UPLOAD_XLSX",
+      "createdAt": "2026-05-22T10:25:19.835Z",
+      "importedAt": null,
+      "submissionGames": 1,
+      "submissionPlayerRows": 29
+    },
+    {
+      "id": "2d6b1cea-4463-4c41-9a17-7bac22d23e66",
+      "title": "PYBC 15U, 11-20",
+      "league": null,
+      "season": "1",
+      "status": "IMPORTED",
+      "importPath": "spreadsheet_xlsx",
+      "submissionType": "UPLOAD_XLSX",
+      "createdAt": "2026-05-27T01:25:08.602Z",
+      "importedAt": null,
+      "submissionGames": 10,
+      "submissionPlayerRows": 244
+    },
+    {
+      "id": "8611f583-38f9-426e-8642-6563b6457365",
+      "title": "PYBC 15U, 21-28",
+      "league": null,
+      "season": "1",
+      "status": "IMPORTED",
+      "importPath": "spreadsheet_xlsx",
+      "submissionType": "UPLOAD_XLSX",
+      "createdAt": "2026-05-27T01:25:20.659Z",
+      "importedAt": null,
+      "submissionGames": 8,
+      "submissionPlayerRows": 174
+    },
+    {
+      "id": "b814e0ac-05b6-470d-8603-55f53fef5ace",
+      "title": "PYBC 15U, 29-37",
+      "league": null,
+      "season": "1",
+      "status": "IMPORTED",
+      "importPath": "spreadsheet_xlsx",
+      "submissionType": "UPLOAD_XLSX",
+      "createdAt": "2026-05-27T03:53:01.433Z",
+      "importedAt": null,
+      "submissionGames": 9,
+      "submissionPlayerRows": 240
+    },
+    {
+      "id": "b0595abf-8cc9-437d-83d2-c3a6d2ad9591",
+      "title": "6th Stallion Cup 18U, Playoffs",
+      "league": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:50:03.930Z",
+      "importedAt": "2026-06-17T05:50:26.673Z",
+      "submissionGames": 4,
+      "submissionPlayerRows": 72
+    },
+    {
+      "id": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "title": "6th Stallion Cup 18U, Eliminations",
+      "league": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:47:59.312Z",
+      "importedAt": "2026-06-17T05:48:15.898Z",
+      "submissionGames": 21,
+      "submissionPlayerRows": 389
+    },
+    {
+      "id": "7118c61b-1040-44fa-a291-4efdd4b1a228",
+      "title": "5th Stallion Cup 17U, Playoffs",
+      "league": "5th Stallion Cup – Teens 17u",
+      "season": "Season 2025",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:44:37.535Z",
+      "importedAt": "2026-06-17T05:44:45.496Z",
+      "submissionGames": 4,
+      "submissionPlayerRows": 66
+    },
+    {
+      "id": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "title": "5th Stallion Cup 17U, Eliminations",
+      "league": "5th Stallion Cup – Teens 17u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:42:29.739Z",
+      "importedAt": "2026-06-17T05:42:46.344Z",
+      "submissionGames": 28,
+      "submissionPlayerRows": 442
+    },
+    {
+      "id": "41d868f4-e2c7-4583-9369-75d5b7580b45",
+      "title": "3rd Stallion Cup 17U, Playoffs",
+      "league": "3rd Stallion Cup – Teens 17u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:36:38.921Z",
+      "importedAt": "2026-06-17T05:36:50.980Z",
+      "submissionGames": 4,
+      "submissionPlayerRows": 72
+    },
+    {
+      "id": "b76dd13f-15ab-4e05-afab-0950881cd33a",
+      "title": "3rd Stallion Cup 17U, Eliminations",
+      "league": "3rd Stallion Cup – Teens 17u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:35:01.124Z",
+      "importedAt": "2026-06-17T05:35:21.948Z",
+      "submissionGames": 21,
+      "submissionPlayerRows": 453
+    },
+    {
+      "id": "b5f88d2e-6a81-478d-8903-85e51ad2e849",
+      "title": "4th Stallion Cup 17U, Playoffs",
+      "league": "4th Stallion Cup – Teens 17u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:29:30.081Z",
+      "importedAt": "2026-06-17T05:29:48.178Z",
+      "submissionGames": 4,
+      "submissionPlayerRows": 78
+    },
+    {
+      "id": "39d14a45-942e-4539-938a-9e17469a438e",
+      "title": "4th Stallion Cup 17U, Eliminations",
+      "league": "4th Stallion Cup – Teens 17u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:27:31.706Z",
+      "importedAt": "2026-06-17T05:28:01.665Z",
+      "submissionGames": 28,
+      "submissionPlayerRows": 579
+    },
+    {
+      "id": "19072f15-4dfe-4891-ad79-b20390baaf69",
+      "title": "PYBC 13U, Playoffs",
+      "league": "Philippine Youth Basketball Championship – 13u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T05:16:05.691Z",
+      "importedAt": "2026-06-17T05:17:08.951Z",
+      "submissionGames": 9,
+      "submissionPlayerRows": 222
+    },
+    {
+      "id": "8810075f-13fb-428d-9088-8b1a19d16564",
+      "title": "PYBC 13U, Eliminations",
+      "league": "Philippine Youth Basketball Championship – 13u",
+      "season": "Season 2026",
+      "status": "IMPORTED",
+      "importPath": "url_import_statshub",
+      "submissionType": "PASTE_JSON",
+      "createdAt": "2026-06-17T04:46:49.153Z",
+      "importedAt": "2026-06-17T04:50:45.376Z",
+      "submissionGames": 28,
+      "submissionPlayerRows": 678
+    }
+  ],
+  "importPathCounts": {
+    "paste_json": 31,
+    "spreadsheet_xlsx": 5,
+    "url_import_statshub": 10
+  },
+  "reconciliation": {
+    "operatorCampaign": {
+      "importedSubmissions": 46,
+      "submissionJsonGames": 329,
+      "submissionJsonPlayerRows": 7506,
+      "note": "Operator-reported ~3,000+ player rows — compare to submissionJsonPlayerRows and dbDistinctPlayersInImportScope"
+    },
+    "databaseImportScope": {
+      "distinctGames": 269,
+      "activeGameStats": 6042,
+      "distinctPlayersWithStats": 640,
+      "activeGamePerformanceScores": 6042,
+      "gpsGapInScope": 0
+    },
+    "perSubmission": [
+      {
+        "submissionId": "d8ab1443-d7a2-4dbf-aab1-91d168dbf0d8",
+        "title": "UAAP88 16U, 34-36",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "8b387d7e-e604-44b6-b93c-23518c96e9b4",
+        "title": "UAAP Season 88 16U Basketball",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "8c9a5ca7-e64f-4e37-826e-ab0d9a5006af",
+        "title": "UAAP Season 88 16U Basketball",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "fe7bfa88-bd17-48a4-93d0-7592cc96531a",
+        "title": "UAAP Season 88 16U Basketball",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "26e9bef2-4374-4b93-83c4-b6b953c3a8e4",
+        "title": "UAAP88 16U, 16-19",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "bfc603d9-68a8-41ec-8e47-6402c1a05be1",
+        "title": "UAAP88 16U, 19-22",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "45904edf-a8f3-41e3-b298-9faa064a6488",
+        "title": "UAAP88 16U, 22-24",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "d2d68055-25a2-419c-aa9d-5b5e7f36e9f8",
+        "title": "UAAP88 16U, 25-27",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "f831751d-da09-490e-b175-939e05bfe113",
+        "title": "UAAP88 16U, 28-30",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "28e95e8b-63a8-427b-9f94-d35766418ed4",
+        "title": "UAAP88 16U, 31-33",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "a1d0b638-901f-4f89-b8b2-1f2f7281892f",
+        "title": "UAAP Season 88 16U Basketball",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "785857b0-3bba-4492-b355-78fba89b056e",
+        "title": "UAAP88 16U, 58-60",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "02832f71-0706-49f8-ad5b-4b183c92fca8",
+        "title": "UAAP88 16U, 37-39",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "0e1ce4bb-3076-4fb8-bc33-a08eaa9decfb",
+        "title": "UAAP88 16U, 40-42",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "d7ff4f69-8c88-4653-941c-c6c2f7a631ae",
+        "title": "UAAP88 16U, 43-45",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "14b0eba2-7b58-423e-b975-12bcf83417ef",
+        "title": "UAAP88 16U, 46-48",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "2b7170ea-2aa8-4f1d-91ef-e5f9f0cefdb1",
+        "title": "UAAP88 16U, 49-51",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "e7a27b25-2ce0-4b6c-93aa-a18610ac71cd",
+        "title": "UAAP88 16U, 52-54",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "2fce6e64-cf4e-40dc-be82-7d5b759a33a6",
+        "title": "UAAP88 16U, 55-57",
+        "dbGames": 0,
+        "dbGameStats": 0,
+        "dbDistinctPlayers": 0,
+        "missingGameNumbers": [],
+        "error": "League not found: UAAP Season 88 16u Basketball U16"
+      },
+      {
+        "submissionId": "1720a7ed-0c23-4aab-a1e3-25de917b2a11",
+        "title": "NCAA101 JRS, 1-5",
+        "dbGames": 5,
+        "dbGameStats": 129,
+        "dbDistinctPlayers": 119,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "9d99ad6e-b37f-4a01-a1e6-d505e7cbf0da",
+        "title": "NCAA101 JRS, 6-10",
+        "dbGames": 5,
+        "dbGameStats": 134,
+        "dbDistinctPlayers": 123,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "d2ca4a33-3903-474c-bf47-5531a1904de5",
+        "title": "NCAA101 JRS, 11-15",
+        "dbGames": 5,
+        "dbGameStats": 126,
+        "dbDistinctPlayers": 114,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "ad138192-65bb-4dd3-b3c9-ce2b9eb9830c",
+        "title": "NCAA101 JRS, 16-20",
+        "dbGames": 5,
+        "dbGameStats": 129,
+        "dbDistinctPlayers": 116,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "be475791-1e96-4acd-808a-6aef5c7ec691",
+        "title": "NCAA101 JRS, 21-25",
+        "dbGames": 5,
+        "dbGameStats": 135,
+        "dbDistinctPlayers": 109,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "6f741a63-0650-4b3d-b21a-eab9af4b0604",
+        "title": "NCAA101 JRS, 26-30",
+        "dbGames": 5,
+        "dbGameStats": 130,
+        "dbDistinctPlayers": 108,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "047a03b9-d4ff-409c-bfc8-7f133e06879c",
+        "title": "NCAA101 JRS, 41-50",
+        "dbGames": 10,
+        "dbGameStats": 255,
+        "dbDistinctPlayers": 127,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "a145906b-6220-4c50-98a2-607ec704329b",
+        "title": "NCAA101 JRS, 51-60",
+        "dbGames": 10,
+        "dbGameStats": 269,
+        "dbDistinctPlayers": 148,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "dec55b8c-7c4d-46f1-8a38-ab9f2e912b52",
+        "title": "NCAA101 JRS, 61-70",
+        "dbGames": 10,
+        "dbGameStats": 243,
+        "dbDistinctPlayers": 132,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "83ac9f39-6638-40ec-a8f7-0054d42ff212",
+        "title": "NCAA101 JRS, 38-40",
+        "dbGames": 3,
+        "dbGameStats": 76,
+        "dbDistinctPlayers": 76,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "c0f401f1-9a0d-4df1-bd8f-95377fe6ab02",
+        "title": "NCAA101 JRS, 71-81",
+        "dbGames": 11,
+        "dbGameStats": 265,
+        "dbDistinctPlayers": 84,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "b06bb7b1-17e0-4179-ad1a-4785efbd8ebb",
+        "title": "PYBC 15U, 2-10",
+        "dbGames": 9,
+        "dbGameStats": 243,
+        "dbDistinctPlayers": 119,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "818957eb-ecb6-4470-a0bd-157bee2296d0",
+        "title": "NCAA101 JRS, 31-37",
+        "dbGames": 7,
+        "dbGameStats": 170,
+        "dbDistinctPlayers": 116,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "4864a2c8-7515-4d5d-b701-38f20c5d9441",
+        "title": "PYBC 15U, 1",
+        "dbGames": 1,
+        "dbGameStats": 29,
+        "dbDistinctPlayers": 29,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "2d6b1cea-4463-4c41-9a17-7bac22d23e66",
+        "title": "PYBC 15U, 11-20",
+        "dbGames": 10,
+        "dbGameStats": 244,
+        "dbDistinctPlayers": 117,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "8611f583-38f9-426e-8642-6563b6457365",
+        "title": "PYBC 15U, 21-28",
+        "dbGames": 8,
+        "dbGameStats": 174,
+        "dbDistinctPlayers": 98,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "b814e0ac-05b6-470d-8603-55f53fef5ace",
+        "title": "PYBC 15U, 29-37",
+        "dbGames": 9,
+        "dbGameStats": 240,
+        "dbDistinctPlayers": 116,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "b0595abf-8cc9-437d-83d2-c3a6d2ad9591",
+        "title": "6th Stallion Cup 18U, Playoffs",
+        "dbGames": 4,
+        "dbGameStats": 72,
+        "dbDistinctPlayers": 42,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+        "title": "6th Stallion Cup 18U, Eliminations",
+        "dbGames": 21,
+        "dbGameStats": 389,
+        "dbDistinctPlayers": 82,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "7118c61b-1040-44fa-a291-4efdd4b1a228",
+        "title": "5th Stallion Cup 17U, Playoffs",
+        "dbGames": 4,
+        "dbGameStats": 66,
+        "dbDistinctPlayers": 39,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+        "title": "5th Stallion Cup 17U, Eliminations",
+        "dbGames": 28,
+        "dbGameStats": 442,
+        "dbDistinctPlayers": 80,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "41d868f4-e2c7-4583-9369-75d5b7580b45",
+        "title": "3rd Stallion Cup 17U, Playoffs",
+        "dbGames": 4,
+        "dbGameStats": 72,
+        "dbDistinctPlayers": 39,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "b76dd13f-15ab-4e05-afab-0950881cd33a",
+        "title": "3rd Stallion Cup 17U, Eliminations",
+        "dbGames": 21,
+        "dbGameStats": 453,
+        "dbDistinctPlayers": 84,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "b5f88d2e-6a81-478d-8903-85e51ad2e849",
+        "title": "4th Stallion Cup 17U, Playoffs",
+        "dbGames": 4,
+        "dbGameStats": 78,
+        "dbDistinctPlayers": 43,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "39d14a45-942e-4539-938a-9e17469a438e",
+        "title": "4th Stallion Cup 17U, Eliminations",
+        "dbGames": 28,
+        "dbGameStats": 579,
+        "dbDistinctPlayers": 97,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "19072f15-4dfe-4891-ad79-b20390baaf69",
+        "title": "PYBC 13U, Playoffs",
+        "dbGames": 9,
+        "dbGameStats": 222,
+        "dbDistinctPlayers": 95,
+        "missingGameNumbers": []
+      },
+      {
+        "submissionId": "8810075f-13fb-428d-9088-8b1a19d16564",
+        "title": "PYBC 13U, Eliminations",
+        "dbGames": 28,
+        "dbGameStats": 678,
+        "dbDistinctPlayers": 137,
+        "missingGameNumbers": []
+      }
+    ],
+    "deltas": {
+      "submissionPlayerRowsVsDbStats": 1464,
+      "submissionPlayerRowsVsDistinctPlayers": 6866,
+      "submissionGamesVsDbGames": 60
+    }
+  },
+  "anomalies": [
+    "Submission UAAP88 16U, 34-36 (d8ab1443-d7a2-4dbf-aab1-91d168dbf0d8): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP Season 88 16U Basketball (8b387d7e-e604-44b6-b93c-23518c96e9b4): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP Season 88 16U Basketball (8c9a5ca7-e64f-4e37-826e-ab0d9a5006af): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP Season 88 16U Basketball (fe7bfa88-bd17-48a4-93d0-7592cc96531a): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 16-19 (26e9bef2-4374-4b93-83c4-b6b953c3a8e4): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 19-22 (bfc603d9-68a8-41ec-8e47-6402c1a05be1): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 22-24 (45904edf-a8f3-41e3-b298-9faa064a6488): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 25-27 (d2d68055-25a2-419c-aa9d-5b5e7f36e9f8): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 28-30 (f831751d-da09-490e-b175-939e05bfe113): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 31-33 (28e95e8b-63a8-427b-9f94-d35766418ed4): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP Season 88 16U Basketball (a1d0b638-901f-4f89-b8b2-1f2f7281892f): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 58-60 (785857b0-3bba-4492-b355-78fba89b056e): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 37-39 (02832f71-0706-49f8-ad5b-4b183c92fca8): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 40-42 (0e1ce4bb-3076-4fb8-bc33-a08eaa9decfb): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 43-45 (d7ff4f69-8c88-4653-941c-c6c2f7a631ae): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 46-48 (14b0eba2-7b58-423e-b975-12bcf83417ef): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 49-51 (2b7170ea-2aa8-4f1d-91ef-e5f9f0cefdb1): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 52-54 (e7a27b25-2ce0-4b6c-93aa-a18610ac71cd): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission UAAP88 16U, 55-57 (2fce6e64-cf4e-40dc-be82-7d5b759a33a6): reconciliation error — League not found: UAAP Season 88 16u Basketball U16",
+    "Submission JSON game rows (329) exceed reconciled DB games in import scope (269) — check duplicate gameNumbers across submissions or league name mismatches.",
+    "Submission JSON player rows (7506) materially exceed active GameStats in import scope (6042) — forfeit games, parse duplicates, or unreconciled submissions may explain gap."
+  ],
+  "blockers": [],
+  "recommendation": "PROCEED_WITH_CAUTION"
+}

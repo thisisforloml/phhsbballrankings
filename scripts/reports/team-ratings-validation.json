@@ -1,0 +1,210 @@
+{
+  "generatedAt": "2026-06-17T13:40:16.325Z",
+  "totalPersistedRows": 66,
+  "boardIndex": [
+    {
+      "key": "U13:BOYS",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "count": 8
+    },
+    {
+      "key": "U16:BOYS",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "count": 16
+    },
+    {
+      "key": "U19:BOYS",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "count": 38
+    },
+    {
+      "key": "U19:GIRLS",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "count": 4
+    }
+  ],
+  "boards": [
+    {
+      "key": "U13:BOYS",
+      "meta": {
+        "ageGroup": "U13",
+        "gender": "BOYS",
+        "boardSize": 8,
+        "publicEligibleCount": 8,
+        "belowThresholdCount": 0,
+        "highestRating": 52.81,
+        "lowestRating": 46.15,
+        "highestProgram": "Chef's Magic MLO Basketball",
+        "lowestProgram": "EMDS Rizal Knights",
+        "missingProgramWarnings": [],
+        "duplicateProgramNameWarnings": [],
+        "formulaVersions": [
+          "TPI-v1"
+        ],
+        "evidencePolicyVersions": [
+          "TEAM-EVIDENCE-v1-official-import"
+        ],
+        "thresholdPolicyVersions": [
+          "TEAM-POLICY-v1-launch"
+        ],
+        "latestComputedAt": "2026-06-17T12:22:09.140Z"
+      },
+      "duplicateProgramNameWarnings": []
+    },
+    {
+      "key": "U16:BOYS",
+      "meta": {
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "boardSize": 16,
+        "publicEligibleCount": 16,
+        "belowThresholdCount": 0,
+        "highestRating": 53.11,
+        "lowestRating": 47.12,
+        "highestProgram": "National University Nazareth School",
+        "lowestProgram": "De La Salle Santiago Zobel",
+        "missingProgramWarnings": [],
+        "duplicateProgramNameWarnings": [],
+        "formulaVersions": [
+          "TPI-v1"
+        ],
+        "evidencePolicyVersions": [
+          "TEAM-EVIDENCE-v1-official-import"
+        ],
+        "thresholdPolicyVersions": [
+          "TEAM-POLICY-v1-launch"
+        ],
+        "latestComputedAt": "2026-06-17T12:22:09.140Z"
+      },
+      "duplicateProgramNameWarnings": []
+    },
+    {
+      "key": "U19:BOYS",
+      "meta": {
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "boardSize": 38,
+        "publicEligibleCount": 30,
+        "belowThresholdCount": 8,
+        "highestRating": 66.68,
+        "lowestRating": 47,
+        "highestProgram": "Far Eastern University Diliman",
+        "lowestProgram": "Fair N Square",
+        "missingProgramWarnings": [],
+        "duplicateProgramNameWarnings": [],
+        "formulaVersions": [
+          "TPI-v1"
+        ],
+        "evidencePolicyVersions": [
+          "TEAM-EVIDENCE-v1-official-import"
+        ],
+        "thresholdPolicyVersions": [
+          "TEAM-POLICY-v1-launch"
+        ],
+        "latestComputedAt": "2026-06-17T12:22:09.140Z"
+      },
+      "duplicateProgramNameWarnings": []
+    },
+    {
+      "key": "U19:GIRLS",
+      "meta": {
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "boardSize": 4,
+        "publicEligibleCount": 2,
+        "belowThresholdCount": 2,
+        "highestRating": 61.44,
+        "lowestRating": 55.41,
+        "highestProgram": "University of Santo Tomas",
+        "lowestProgram": "Ateneo de Manila University",
+        "missingProgramWarnings": [],
+        "duplicateProgramNameWarnings": [],
+        "formulaVersions": [
+          "TPI-v1"
+        ],
+        "evidencePolicyVersions": [
+          "TEAM-EVIDENCE-v1-official-import"
+        ],
+        "thresholdPolicyVersions": [
+          "TEAM-POLICY-v1-launch"
+        ],
+        "latestComputedAt": "2026-06-17T12:22:09.140Z"
+      },
+      "duplicateProgramNameWarnings": []
+    }
+  ],
+  "global": {
+    "duplicateKeyCount": 0,
+    "orphanRatingCount": 0,
+    "deletedProgramReferenceCount": 0,
+    "evidencePolicyViolationCount": 0,
+    "formulaSlugViolationCount": 0,
+    "thresholdPolicyViolationCount": 0
+  },
+  "checks": [
+    {
+      "id": "V-TR-21",
+      "status": "PASS",
+      "detail": "0 duplicate (programId, ageGroup, gender) keys"
+    },
+    {
+      "id": "V-TR-22",
+      "status": "PASS",
+      "detail": "Rank order stable on all boards (rating → games → program)"
+    },
+    {
+      "id": "V-TR-23",
+      "status": "PASS",
+      "detail": "Board counts match persisted rows (66)"
+    },
+    {
+      "id": "V-TR-24",
+      "status": "PASS",
+      "detail": "0 deleted-program references"
+    },
+    {
+      "id": "V-TR-25",
+      "status": "PASS",
+      "detail": "0 orphan ratings (missing program FK target)"
+    },
+    {
+      "id": "V-TR-26",
+      "status": "PASS",
+      "detail": "All rows use TEAM-EVIDENCE-v1-official-import"
+    },
+    {
+      "id": "V-TR-27",
+      "status": "PASS",
+      "detail": "All rows use formula TPI-v1"
+    },
+    {
+      "id": "V-TR-28",
+      "status": "PASS",
+      "detail": "All rows use TEAM-POLICY-v1-launch"
+    },
+    {
+      "id": "V-TR-29",
+      "status": "PASS",
+      "detail": "PlayerRating untouched baseline (938 rows)"
+    },
+    {
+      "id": "V-TR-30",
+      "status": "PASS",
+      "detail": "Public /teams unchanged when TEAM_NATIONAL_RATINGS_ENABLED=false (flag-gated)"
+    },
+    {
+      "id": "V-TR-30b",
+      "status": "PASS",
+      "detail": "0 duplicate program-name warnings on boards"
+    }
+  ],
+  "summary": {
+    "pass": 11,
+    "fail": 0,
+    "skip": 0
+  }
+}

@@ -3,7 +3,12 @@ import path from "node:path";
 import { PlayerGender } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
-const projectRoot = "D:\\OnCourt Rankings PH";
+/**
+ * Legacy batch player import. Resolves players by exact displayName + gender only.
+ * Does NOT use PlayerAlias resolution — use official submission import for new data.
+ */
+
+const projectRoot = "D:\\Peach Basket";
 
 const batchFiles = [
   { path: "scripts/data/uaap-s88-hs-boys-batch-01.json", gender: PlayerGender.BOYS },

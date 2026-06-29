@@ -1,0 +1,342 @@
+{
+  "generatedAt": "2026-06-18T08:36:15.009Z",
+  "mode": "execute",
+  "importDayFilter": "2026-06-17",
+  "statshubGamesScanned": 151,
+  "competitionIds": [
+    "40774",
+    "41710",
+    "47340",
+    "47472",
+    "48385"
+  ],
+  "scheduleLoadReport": [
+    {
+      "competitionId": "40774",
+      "pathsLoaded": [
+        "/competition/40774/schedule",
+        "/competition/40774/schedule?phaseName=Eliminations",
+        "/competition/40774/schedule?phaseName=Playoffs"
+      ],
+      "matchCount": 25
+    },
+    {
+      "competitionId": "41710",
+      "pathsLoaded": [
+        "/competition/41710/schedule",
+        "/competition/41710/schedule?phaseName=Eliminations",
+        "/competition/41710/schedule?phaseName=Playoffs"
+      ],
+      "matchCount": 32
+    },
+    {
+      "competitionId": "47340",
+      "pathsLoaded": [
+        "/competition/47340/schedule",
+        "/competition/47340/schedule?phaseName=Eliminations",
+        "/competition/47340/schedule?phaseName=Playoffs"
+      ],
+      "matchCount": 37
+    },
+    {
+      "competitionId": "47472",
+      "pathsLoaded": [
+        "/competition/47472/schedule",
+        "/competition/47472/schedule?phaseName=Eliminations",
+        "/competition/47472/schedule?phaseName=Playoffs"
+      ],
+      "matchCount": 32
+    },
+    {
+      "competitionId": "48385",
+      "pathsLoaded": [
+        "/competition/48385/schedule",
+        "/competition/48385/schedule?phaseName=Eliminations",
+        "/competition/48385/schedule?phaseName=Playoffs"
+      ],
+      "matchCount": 25
+    }
+  ],
+  "toUpdateCount": 147,
+  "importDayWrongCount": 147,
+  "alreadyCorrectCount": 4,
+  "unresolvedCount": 0,
+  "sampleUpdates": [
+    {
+      "gameId": "e1d9b425-624a-45a4-b55b-3b8f45ab1411",
+      "gameNumber": "SH-40774-2631886",
+      "competitionId": "40774",
+      "matchId": "2631886",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-02",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Chatime U19 Boys vs Fruteria U19 Boys"
+    },
+    {
+      "gameId": "a8e42f21-769c-466c-8445-2aa44a75cc1e",
+      "gameNumber": "SH-40774-2631887",
+      "competitionId": "40774",
+      "matchId": "2631887",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-23",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Fruteria U19 Boys vs Bistrot Le Coucou U19 Boys"
+    },
+    {
+      "gameId": "64ec4bad-2610-4dc0-9abb-63c474498d7d",
+      "gameNumber": "SH-40774-2631888",
+      "competitionId": "40774",
+      "matchId": "2631888",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-13",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Bistrot Le Coucou U19 Boys vs BBC 17u U19 Boys"
+    },
+    {
+      "gameId": "cb35d82b-25c2-43f2-94ea-96da243a4616",
+      "gameNumber": "SH-40774-2631889",
+      "competitionId": "40774",
+      "matchId": "2631889",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-02",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Bistrot Le Coucou U19 Boys vs Torch 17u U19 Boys"
+    },
+    {
+      "gameId": "fdbe436f-e3b5-4415-837d-7ec9646d803d",
+      "gameNumber": "SH-40774-2631890",
+      "competitionId": "40774",
+      "matchId": "2631890",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-23",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Celsius U19 Boys vs Chatime U19 Boys"
+    },
+    {
+      "gameId": "e9a3ff13-4feb-44ef-9463-8d5d77c2382a",
+      "gameNumber": "SH-40774-2631891",
+      "competitionId": "40774",
+      "matchId": "2631891",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-02",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "BBC 17u U19 Boys vs Ogalala U19 Boys"
+    },
+    {
+      "gameId": "5b0b28e2-4376-4156-b9f6-aa44c6564795",
+      "gameNumber": "SH-40774-2631892",
+      "competitionId": "40774",
+      "matchId": "2631892",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-30",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "BBC 17u U19 Boys vs Chatime U19 Boys"
+    },
+    {
+      "gameId": "b45f77bc-83ee-40d8-aa49-09eacf408214",
+      "gameNumber": "SH-40774-2631893",
+      "competitionId": "40774",
+      "matchId": "2631893",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-09",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Ogalala U19 Boys vs Bistrot Le Coucou U19 Boys"
+    },
+    {
+      "gameId": "205cc17b-843e-47ce-ba5f-100164bd346f",
+      "gameNumber": "SH-40774-2631894",
+      "competitionId": "40774",
+      "matchId": "2631894",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-30",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Ogalala U19 Boys vs Celsius U19 Boys"
+    },
+    {
+      "gameId": "c701acc1-e9d5-4edc-becd-1843c8fdb1dc",
+      "gameNumber": "SH-40774-2631895",
+      "competitionId": "40774",
+      "matchId": "2631895",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-09",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Torch 17u U19 Boys vs Chatime U19 Boys"
+    },
+    {
+      "gameId": "50a1c457-9630-4bc5-959e-b10c1bb39c90",
+      "gameNumber": "SH-40774-2631896",
+      "competitionId": "40774",
+      "matchId": "2631896",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-30",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Torch 17u U19 Boys vs Fruteria U19 Boys"
+    },
+    {
+      "gameId": "27d3f6f3-7345-4212-8d59-eb45f6d07ffa",
+      "gameNumber": "SH-40774-2631897",
+      "competitionId": "40774",
+      "matchId": "2631897",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-09",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Fruteria U19 Boys vs Celsius U19 Boys"
+    },
+    {
+      "gameId": "b661f86a-4018-4dc7-bbb5-9c1d366022e3",
+      "gameNumber": "SH-40774-2631898",
+      "competitionId": "40774",
+      "matchId": "2631898",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-06",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Bistrot Le Coucou U19 Boys vs Celsius U19 Boys"
+    },
+    {
+      "gameId": "f2d04eb8-d52e-4f70-95a2-f641d6be3787",
+      "gameNumber": "SH-40774-2631899",
+      "competitionId": "40774",
+      "matchId": "2631899",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-16",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Chatime U19 Boys vs Bistrot Le Coucou U19 Boys"
+    },
+    {
+      "gameId": "62e5f1ab-af5c-4d57-bbd4-54f940f247eb",
+      "gameNumber": "SH-40774-2631900",
+      "competitionId": "40774",
+      "matchId": "2631900",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-06",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "BBC 17u U19 Boys vs Fruteria U19 Boys"
+    },
+    {
+      "gameId": "786a6587-a496-48c2-8e7f-e94a1f26d8bf",
+      "gameNumber": "SH-40774-2631901",
+      "competitionId": "40774",
+      "matchId": "2631901",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-16",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Celsius U19 Boys vs BBC 17u U19 Boys"
+    },
+    {
+      "gameId": "db2c08cf-cd1a-440a-a396-806b3a1f3d63",
+      "gameNumber": "SH-40774-2631902",
+      "competitionId": "40774",
+      "matchId": "2631902",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-06",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Ogalala U19 Boys vs Torch 17u U19 Boys"
+    },
+    {
+      "gameId": "2a6b95ba-bef0-4f8c-be4e-16ca95d7353a",
+      "gameNumber": "SH-40774-2631903",
+      "competitionId": "40774",
+      "matchId": "2631903",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-16",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Fruteria U19 Boys vs Ogalala U19 Boys"
+    },
+    {
+      "gameId": "1c710614-e108-4e6a-a826-39a38f1fdb4a",
+      "gameNumber": "SH-40774-2631904",
+      "competitionId": "40774",
+      "matchId": "2631904",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-13",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Celsius U19 Boys vs Torch 17u U19 Boys"
+    },
+    {
+      "gameId": "b4579f9e-091d-43f1-a57b-e2c0eb2a8012",
+      "gameNumber": "SH-40774-2631905",
+      "competitionId": "40774",
+      "matchId": "2631905",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-03-23",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Torch 17u U19 Boys vs BBC 17u U19 Boys"
+    },
+    {
+      "gameId": "46367d03-dec1-4ab8-8ca6-cf882422eae2",
+      "gameNumber": "SH-40774-2631906",
+      "competitionId": "40774",
+      "matchId": "2631906",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-13",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Chatime U19 Boys vs Ogalala U19 Boys"
+    },
+    {
+      "gameId": "d361c951-3e76-458b-b315-ace63be4184e",
+      "gameNumber": "SH-40774-2651162",
+      "competitionId": "40774",
+      "matchId": "2651162",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-27",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Bistrot Le Coucou U19 Boys vs Celsius U19 Boys"
+    },
+    {
+      "gameId": "34b42b2b-e758-4e13-99d1-553bbf4098f4",
+      "gameNumber": "SH-40774-2651175",
+      "competitionId": "40774",
+      "matchId": "2651175",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-04-27",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Chatime U19 Boys vs BBC 17u U19 Boys"
+    },
+    {
+      "gameId": "040ddbcb-2cc0-4217-b856-f3428a6d152d",
+      "gameNumber": "SH-40774-2654824",
+      "competitionId": "40774",
+      "matchId": "2654824",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-05-04",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Chatime U19 Boys vs Celsius U19 Boys"
+    },
+    {
+      "gameId": "e4eda278-8626-4634-871b-e8628d4eb166",
+      "gameNumber": "SH-40774-2654825",
+      "competitionId": "40774",
+      "matchId": "2654825",
+      "currentDate": "2026-06-17",
+      "proposedDate": "2025-05-04",
+      "league": "Stallion Cup – Teens 17U",
+      "season": "3rd Edition — Season 2026",
+      "matchup": "Bistrot Le Coucou U19 Boys vs BBC 17u U19 Boys"
+    }
+  ],
+  "unresolvedSample": []
+}

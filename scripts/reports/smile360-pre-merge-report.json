@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-06-17T08:35:54.003Z",
+  "phase": "pre-merge-backup",
+  "mode": "read-only",
+  "canonical": {
+    "program": {
+      "id": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "fullName": "Smile 360 Bullies"
+    },
+    "team": {
+      "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+      "name": "Smile 360 Bullies",
+      "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9"
+    },
+    "usage": {
+      "activeGames": 17,
+      "activeGameStats": 214,
+      "rosterSeasons": 0,
+      "externalAliases": 1,
+      "teamRatings": 0
+    },
+    "pybc13uGamesBefore": 8
+  },
+  "duplicate": {
+    "program": {
+      "id": "60645321-d3b4-4db9-94aa-6176232b7476",
+      "fullName": "SMILE 360 BULLIES"
+    },
+    "team": {
+      "id": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+      "name": "SMILE 360 BULLIES U13 Boys",
+      "programId": "60645321-d3b4-4db9-94aa-6176232b7476"
+    },
+    "usage": {
+      "activeGames": 1,
+      "activeGameStats": 15,
+      "rosterSeasons": 0,
+      "externalAliases": 0,
+      "teamRatings": 0
+    },
+    "teamsUnderProgram": [
+      {
+        "id": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "name": "SMILE 360 BULLIES U13 Boys"
+      }
+    ]
+  },
+  "affectedRecords": {
+    "game": {
+      "id": "a1545b57-8c60-49a6-a634-a6747b146c4b",
+      "gameNumber": "SH-47340-2787987",
+      "gameDate": "2026-06-17T00:00:00.000Z",
+      "homeScore": 76,
+      "awayScore": 77,
+      "league": "Philippine Youth Basketball Championship – 13u",
+      "season": "Season 2026",
+      "ageGroup": "U13",
+      "homeTeamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+      "homeTeamNameBefore": "SMILE 360 BULLIES U13 Boys",
+      "awayTeamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+      "awayTeamName": "Jet's Barbershop 13u",
+      "homeTeamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773"
+    },
+    "gameStatIds": [
+      "896d000a-b9e4-4edb-9c4e-9241b32f8de2",
+      "27e8bee4-bc84-4c6f-9b58-990c83494dbc",
+      "7297b6f0-8d43-492f-897a-09b98033a1d5",
+      "98764653-c9c2-423b-9778-76031075626b",
+      "48ea2d3a-186e-4ddc-92b2-47b3ebb2eebd",
+      "d0d62bfd-1065-47d9-9d2f-c327f2d71e2c",
+      "29418c09-9c4a-46f4-9e84-2798a78e1c72",
+      "3f91425a-d647-44ba-8d75-9826ef2bb081",
+      "2261d00d-ce38-4a10-88fc-7bbd1123eaa9",
+      "bd8d7656-00dd-4016-806a-76c3e67b0b30",
+      "caf49969-5447-4983-b12c-a779f73b8d8d",
+      "9248d366-b98a-4e09-84a2-aebff7aa68ed",
+      "3417a026-807b-4b1b-9e6e-cb4320fc2402",
+      "b0b5a621-764a-400c-a69f-3356dd28bd4b",
+      "9986a8f1-1228-436b-ba6a-601c8e387a4b"
+    ],
+    "gameStatSnapshots": [
+      {
+        "id": "896d000a-b9e4-4edb-9c4e-9241b32f8de2",
+        "playerId": "8aea1299-dcd7-4238-9a26-35a6116ba4bf",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 15,
+        "rebounds": 9,
+        "assists": 0,
+        "gpsId": "070b69bd-d146-48f3-a6ed-17fa30ba36d9",
+        "gpsScore": "92.385"
+      },
+      {
+        "id": "27e8bee4-bc84-4c6f-9b58-990c83494dbc",
+        "playerId": "54e1be34-7bad-4efc-af9c-adb3e9efb834",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 3,
+        "rebounds": 1,
+        "assists": 3,
+        "gpsId": "10104eae-eabb-4e4a-8073-9a579f1e43e7",
+        "gpsScore": "8.615"
+      },
+      {
+        "id": "7297b6f0-8d43-492f-897a-09b98033a1d5",
+        "playerId": "1baef2d0-54a6-4096-ba4d-1b543475505b",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 6,
+        "rebounds": 3,
+        "assists": 5,
+        "gpsId": "bc92ed57-0ff4-47bb-a5df-67210aed2eb2",
+        "gpsScore": "73.122"
+      },
+      {
+        "id": "98764653-c9c2-423b-9778-76031075626b",
+        "playerId": "4f0dc29e-695f-479d-b701-9158abd2bbff",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 15,
+        "rebounds": 11,
+        "assists": 7,
+        "gpsId": "783235dd-eb38-4e5e-961c-c86e62c82002",
+        "gpsScore": "88.801"
+      },
+      {
+        "id": "48ea2d3a-186e-4ddc-92b2-47b3ebb2eebd",
+        "playerId": "a10a14e2-af4d-45be-809b-acc6e7cfbd56",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 0,
+        "rebounds": 0,
+        "assists": 1,
+        "gpsId": "c05bda4f-9743-4ec9-a4f2-aa68d0cda227",
+        "gpsScore": "13.095"
+      },
+      {
+        "id": "d0d62bfd-1065-47d9-9d2f-c327f2d71e2c",
+        "playerId": "914bee89-136e-4c9d-9a19-d02b42ab0c54",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 2,
+        "rebounds": 1,
+        "assists": 3,
+        "gpsId": "df591912-6988-4767-aa0e-a8ce1fba9e17",
+        "gpsScore": "33.253"
+      },
+      {
+        "id": "29418c09-9c4a-46f4-9e84-2798a78e1c72",
+        "playerId": "5d7453e8-d8db-4cbd-ad58-68a3879e2658",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 2,
+        "rebounds": 1,
+        "assists": 0,
+        "gpsId": "191cf5cf-15e1-4263-b2e8-1b4952332fca",
+        "gpsScore": "36.165"
+      },
+      {
+        "id": "3f91425a-d647-44ba-8d75-9826ef2bb081",
+        "playerId": "4b296de8-2630-4b68-b1b5-63186a80bbee",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 2,
+        "rebounds": 2,
+        "assists": 0,
+        "gpsId": "52b43a17-6ff3-463e-894e-5cc60b3b10c0",
+        "gpsScore": "20.71"
+      },
+      {
+        "id": "2261d00d-ce38-4a10-88fc-7bbd1123eaa9",
+        "playerId": "c93cebb5-aa5f-45de-af28-1541d3905dba",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 0,
+        "rebounds": 0,
+        "assists": 0,
+        "gpsId": "39fbf1cf-86a7-472d-abfd-fc5228e27de6",
+        "gpsScore": "31.462"
+      },
+      {
+        "id": "bd8d7656-00dd-4016-806a-76c3e67b0b30",
+        "playerId": "da910eaf-1c6e-4118-b9a4-580d9c86273c",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 2,
+        "rebounds": 0,
+        "assists": 0,
+        "gpsId": "9dd7979d-8d20-4770-8c2e-dac7298fec59",
+        "gpsScore": "39.973"
+      },
+      {
+        "id": "caf49969-5447-4983-b12c-a779f73b8d8d",
+        "playerId": "5e7a4112-7f34-4b19-8eb8-5de45e08103d",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 0,
+        "rebounds": 2,
+        "assists": 0,
+        "gpsId": "1b0a7d40-a34b-4565-81c6-4c48848609d0",
+        "gpsScore": "16.231"
+      },
+      {
+        "id": "9248d366-b98a-4e09-84a2-aebff7aa68ed",
+        "playerId": "91adf9c9-4a60-4fb9-a021-d5b2f7c2ed7f",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 0,
+        "rebounds": 4,
+        "assists": 0,
+        "gpsId": "11da123a-9998-469b-8214-68651fb2c8b5",
+        "gpsScore": "5.032"
+      },
+      {
+        "id": "3417a026-807b-4b1b-9e6e-cb4320fc2402",
+        "playerId": "39fcae87-0268-4c1d-b042-454ed1a50346",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 0,
+        "rebounds": 1,
+        "assists": 0,
+        "gpsId": "3a686565-0bbf-423b-9a4b-3679024a2849",
+        "gpsScore": "15.111"
+      },
+      {
+        "id": "b0b5a621-764a-400c-a69f-3356dd28bd4b",
+        "playerId": "2f855c9e-c44b-4be8-ad31-2497d2d8c7e6",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 28,
+        "rebounds": 2,
+        "assists": 1,
+        "gpsId": "3c66769b-6bd6-4b35-866e-9c3820a7f9fe",
+        "gpsScore": "98.208"
+      },
+      {
+        "id": "9986a8f1-1228-436b-ba6a-601c8e387a4b",
+        "playerId": "8b242b0a-b198-44a9-9248-5bfd526dbe5f",
+        "teamIdBefore": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "teamIdAfter": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "points": 1,
+        "rebounds": 2,
+        "assists": 0,
+        "gpsId": "a869964b-c6bb-4266-bfe5-79a001522bee",
+        "gpsScore": "45.348"
+      }
+    ],
+    "gameStatCount": 15,
+    "playersToReassignProgram": []
+  },
+  "preservedGames": [
+    "SH-47340-2779282",
+    "SH-47340-2787987"
+  ],
+  "protectedCountsBefore": {
+    "activeGameStats": 9391,
+    "gamePerformanceScores": 9391,
+    "playerRatings": 940,
+    "rankingSnapshots": 5,
+    "rankingSnapshotRows": 826
+  },
+  "rollbackInstructions": {
+    "summary": "Restore game homeTeamId and GameStat teamId from affectedRecords; set programs/teams deletedAt=null on duplicate entities.",
+    "steps": [
+      "UPDATE games SET \"homeTeamId\"='de02c99c-0b47-49f4-8af1-693b5dbf7493' WHERE id='a1545b57-8c60-49a6-a634-a6747b146c4b'",
+      "UPDATE game_stats SET teamId to teamIdBefore for each id in gameStatIds",
+      "UPDATE programs SET \"deletedAt\"=NULL WHERE id='60645321-d3b4-4db9-94aa-6176232b7476'",
+      "UPDATE teams SET \"deletedAt\"=NULL WHERE id='de02c99c-0b47-49f4-8af1-693b5dbf7493'"
+    ],
+    "tables": [
+      "games",
+      "game_stats",
+      "players",
+      "player_team_seasons",
+      "team_external_aliases",
+      "team_ratings",
+      "teams",
+      "programs"
+    ]
+  }
+}

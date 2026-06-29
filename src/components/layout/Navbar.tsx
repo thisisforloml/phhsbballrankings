@@ -9,7 +9,7 @@ import { BRAND_LOGO_HORIZONTAL, BRAND_NAME } from "@/lib/brand";
 import { SearchOverlay } from "./SearchOverlay";
 
 const groups = ["U13", "U16", "U19"] as const;
-type MenuKey = "rankings" | "teams" | "leagues" | "about";
+type MenuKey = "rankings" | "about";
 type PortalSession = { authenticated: false } | { authenticated: true; role: "ADMIN" | "ORGANIZER"; name: string; username: string };
 
 type MemberSession = ReturnType<typeof useAuth>["session"];
@@ -59,14 +59,8 @@ export function Navbar() {
               <Link className="nav-underline" href="/rankings">Players</Link>
               {openMenu === "rankings" ? <RankingsDropdown /> : null}
             </div>
-            <div className="relative" onMouseEnter={() => openDropdown("teams")} onMouseLeave={closeDropdown}>
-              <Link className="nav-underline" href="/teams">Teams</Link>
-              {openMenu === "teams" ? <TeamsDropdown /> : null}
-            </div>
-            <div className="relative" onMouseEnter={() => openDropdown("leagues")} onMouseLeave={closeDropdown}>
-              <Link className="nav-underline" href="/leagues">Leagues</Link>
-              {openMenu === "leagues" ? <LeaguesDropdown /> : null}
-            </div>
+            <Link className="nav-underline" href="/teams">Teams</Link>
+            <Link className="nav-underline" href="/leagues">Leagues</Link>
             <Link className="nav-underline" href="/games">Games</Link>
             <div className="relative" onMouseEnter={() => openDropdown("about")} onMouseLeave={closeDropdown}>
               <Link className="nav-underline" href="/about">About Us</Link>
@@ -166,31 +160,13 @@ function RankingsDropdown() {
   );
 }
 
-function TeamsDropdown() {
-  return (
-    <div className="absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
-      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/teams">Team Standings</Link>
-      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/teams#team-profiles">Team Profiles</Link>
-    </div>
-  );
-}
 
 function AboutDropdown() {
   return (
     <div className="absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/about">About Us</Link>
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/how-we-rank">How We Rank</Link>
-      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/players/compare">Compare Players</Link>
-      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/claim">Claim Profile</Link>
       <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/faqs">FAQs</Link>
-    </div>
-  );
-}
-
-function LeaguesDropdown() {
-  return (
-    <div className="absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 rounded-lg border border-surface-200 bg-white p-3 text-ink-900 shadow-panel">
-      <Link className="block rounded-md px-3 py-2 font-semibold hover:bg-amber-50 hover:text-amber-700" href="/leagues">League Directory</Link>
     </div>
   );
 }
@@ -217,19 +193,8 @@ function MobileDrawer({ open, onClose, portalSession, memberSession }: { open: b
                   ))}
                 </div>
               </section>
-              <section>
-                <p>Teams</p>
-                <div className="mt-3 grid gap-2 text-sm">
-                  <Link onClick={onClose} href="/teams">Team Standings</Link>
-                  <Link onClick={onClose} href="/teams#team-profiles">Team Profiles</Link>
-                </div>
-              </section>
-              <section>
-                <p>Leagues</p>
-                <div className="mt-3 grid gap-2 text-sm">
-                  <Link onClick={onClose} href="/leagues">League Directory</Link>
-                </div>
-              </section>
+              <Link onClick={onClose} href="/teams">Teams</Link>
+              <Link onClick={onClose} href="/leagues">Leagues</Link>
               <section>
                 <p>Games</p>
                 <div className="mt-3 grid gap-2 text-sm">
@@ -241,8 +206,6 @@ function MobileDrawer({ open, onClose, portalSession, memberSession }: { open: b
                 <div className="mt-3 grid gap-2 text-sm">
                   <Link onClick={onClose} href="/about">About Us</Link>
                   <Link onClick={onClose} href="/how-we-rank">How We Rank</Link>
-                  <Link onClick={onClose} href="/players/compare">Compare Players</Link>
-                  <Link onClick={onClose} href="/claim">Claim Profile</Link>
                   <Link onClick={onClose} href="/faqs">FAQs</Link>
                 </div>
               </section>

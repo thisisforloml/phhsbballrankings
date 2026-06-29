@@ -33,6 +33,7 @@ type PaginationSummaryProps = {
   pageEnd: number;
   total: number;
   labelSuffix?: string;
+  unit?: string;
   className?: string;
 };
 
@@ -41,13 +42,15 @@ export function PaginationSummary({
   pageEnd,
   total,
   labelSuffix,
+  unit = "players",
   className = "",
 }: PaginationSummaryProps) {
   return (
     <p className={`text-xs font-semibold text-court-500 ${className}`}>
       Showing{" "}
       <span className="font-numeric">{pageStart}</span>–<span className="font-numeric">{pageEnd}</span> of{" "}
-      <span className="font-numeric">{total}</span> players{labelSuffix ? ` | ${labelSuffix}` : ""}
+      <span className="font-numeric">{total}</span> {unit}
+      {labelSuffix ? ` | ${labelSuffix}` : ""}
     </p>
   );
 }

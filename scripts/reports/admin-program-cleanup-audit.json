@@ -1,0 +1,3691 @@
+{
+  "generatedAt": "2026-05-24T12:03:05.926Z",
+  "scope": "read-only admin cleanup audit",
+  "adminRouteAudit": {
+    "inspectedRoutes": [
+      "/admin",
+      "/admin/submissions",
+      "/admin/programs",
+      "/admin/programs/[id]",
+      "/admin/players",
+      "/admin/teams",
+      "/rankings"
+    ],
+    "primaryRoutesRecommended": [
+      "/admin",
+      "/admin/submissions",
+      "/admin/programs",
+      "/rankings"
+    ],
+    "demoteOrHideRoutesRecommended": [
+      {
+        "route": "/admin/players",
+        "recommendation": "DEMOTE",
+        "reason": "Keep as player search/editing, but move Program/team-context player editing into Program detail."
+      },
+      {
+        "route": "/admin/teams",
+        "recommendation": "HIDE_OR_LEGACY",
+        "reason": "Program Management should be the main editor. Teams page should remain compatibility-only until removed."
+      }
+    ]
+  },
+  "playerEditFieldsToMoveIntoProgramDetail": [
+    "displayName",
+    "firstName",
+    "lastName",
+    "currentProgramId / current school-program",
+    "schoolOverride if retained as fallback",
+    "classYearOverride",
+    "position",
+    "heightCm with ft/in helper",
+    "city",
+    "region",
+    "birthDate",
+    "ageGroupOverride",
+    "photoUrl",
+    "transfer mode and transfer history"
+  ],
+  "programTeamRecords": [
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "fullName": "Adamson University",
+      "abbreviation": "ADU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "name": "ADU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 168,
+          "historicalHomeGames": 7,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 168,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-003",
+            "UAAP-S88-HSB-006",
+            "UAAP-S88-HSB-009",
+            "UAAP-S88-HSB-016",
+            "UAAP-S88-HSB-018",
+            "UAAP-S88-HSB-022",
+            "UAAP-S88-HSB-026",
+            "UAAP-S88-HSB-032",
+            "UAAP-S88-HSB-034",
+            "UAAP-S88-HSB-038",
+            "UAAP-S88-HSB-041",
+            "UAAP-S88-HSB-047",
+            "UAAP-S88-HSB-052",
+            "UAAP-S88-HSB-054"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "name": "ADU U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 15,
+          "activeGameStats": 173,
+          "historicalHomeGames": 6,
+          "historicalAwayGames": 9,
+          "historicalGameStats": 173,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-002",
+            "UAAP-S88-16U-006",
+            "UAAP-S88-16U-010",
+            "UAAP-S88-16U-016",
+            "UAAP-S88-16U-017",
+            "UAAP-S88-16U-019",
+            "UAAP-S88-16U-026",
+            "UAAP-S88-16U-031",
+            "UAAP-S88-16U-034",
+            "UAAP-S88-16U-038",
+            "UAAP-S88-16U-041",
+            "UAAP-S88-16U-050",
+            "UAAP-S88-16U-052",
+            "UAAP-S88-16U-056",
+            "UAAP-S88-16U-057"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "name": "ADU Jrs (ADU)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 6,
+          "historicalAwayGames": 5,
+          "historicalGameStats": 112,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 1,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+      "fullName": "Arellano University",
+      "abbreviation": "AU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "name": "AU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 18,
+          "activeGameStats": 240,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 10,
+          "historicalGameStats": 240,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-050",
+            "NCAA-S101-JB-054",
+            "NCAA-S101-JB-060",
+            "NCAA-S101-JB-064",
+            "NCAA-S101-JB-068",
+            "NCAA-S101-JB-073",
+            "NCAA-S101-JB-076",
+            "NCAA-S101-JB-077",
+            "NCAA-S101-JB-080",
+            "NCAA-S101-JB-081",
+            "NCAA-S101-JRB-005",
+            "NCAA-S101-JRB-009",
+            "NCAA-S101-JRB-016",
+            "NCAA-S101-JRB-019",
+            "NCAA-S101-JRB-023",
+            "NCAA-S101-JRB-028",
+            "NCAA-S101-JRB-033",
+            "NCAA-S101-JRB-045"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "fullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "name": "ADMU Girls",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 6,
+          "activeGameStats": 74,
+          "historicalHomeGames": 3,
+          "historicalAwayGames": 3,
+          "historicalGameStats": 74,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Girls / UAAP Season 88 HS Girls Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSG-001",
+            "UAAP-S88-HSG-003",
+            "UAAP-S88-HSG-005",
+            "UAAP-S88-HSG-008",
+            "UAAP-S88-HSG-010",
+            "UAAP-S88-HSG-011"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "name": "ADMU U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 197,
+          "historicalHomeGames": 7,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 197,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-001",
+            "UAAP-S88-16U-005",
+            "UAAP-S88-16U-010",
+            "UAAP-S88-16U-015",
+            "UAAP-S88-16U-018",
+            "UAAP-S88-16U-020",
+            "UAAP-S88-16U-025",
+            "UAAP-S88-16U-029",
+            "UAAP-S88-16U-036",
+            "UAAP-S88-16U-039",
+            "UAAP-S88-16U-043",
+            "UAAP-S88-16U-047",
+            "UAAP-S88-16U-051",
+            "UAAP-S88-16U-056"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "name": "ADMU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 16,
+          "activeGameStats": 180,
+          "historicalHomeGames": 9,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 180,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-001",
+            "UAAP-S88-HSB-008",
+            "UAAP-S88-HSB-011",
+            "UAAP-S88-HSB-014",
+            "UAAP-S88-HSB-020",
+            "UAAP-S88-HSB-022",
+            "UAAP-S88-HSB-025",
+            "UAAP-S88-HSB-030",
+            "UAAP-S88-HSB-033",
+            "UAAP-S88-HSB-040",
+            "UAAP-S88-HSB-041",
+            "UAAP-S88-HSB-046",
+            "UAAP-S88-HSB-050",
+            "UAAP-S88-HSB-055",
+            "UAAP-S88-HSB-057",
+            "UAAP-S88-HSB-058"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+          "name": "ATENEO",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "name": "ATENEO Girls (ATENEO)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 1,
+          "historicalAwayGames": 2,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "name": "ATENEO JRS (ATENEO)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 5,
+          "historicalGameStats": 136,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 3,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 1
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "fullName": "Colegio de San Juan de Letran",
+      "abbreviation": "CSJL",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "name": "CSJL U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 19,
+          "activeGameStats": 251,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 11,
+          "historicalGameStats": 251,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-048",
+            "NCAA-S101-JB-053",
+            "NCAA-S101-JB-056",
+            "NCAA-S101-JB-061",
+            "NCAA-S101-JB-069",
+            "NCAA-S101-JB-072",
+            "NCAA-S101-JB-074",
+            "NCAA-S101-JB-075",
+            "NCAA-S101-JB-078",
+            "NCAA-S101-JB-080",
+            "NCAA-S101-JB-081",
+            "NCAA-S101-JRB-004",
+            "NCAA-S101-JRB-008",
+            "NCAA-S101-JRB-012",
+            "NCAA-S101-JRB-015",
+            "NCAA-S101-JRB-022",
+            "NCAA-S101-JRB-026",
+            "NCAA-S101-JRB-029",
+            "NCAA-S101-JRB-041"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+      "fullName": "College of Saint Benilde",
+      "abbreviation": "CSB",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "name": "CSB U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 13,
+          "activeGameStats": 134,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 5,
+          "historicalGameStats": 134,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-047",
+            "NCAA-S101-JB-051",
+            "NCAA-S101-JB-056",
+            "NCAA-S101-JB-063",
+            "NCAA-S101-JB-068",
+            "NCAA-S101-JRB-002",
+            "NCAA-S101-JRB-006",
+            "NCAA-S101-JRB-012",
+            "NCAA-S101-JRB-017",
+            "NCAA-S101-JRB-028",
+            "NCAA-S101-JRB-031",
+            "NCAA-S101-JRB-036",
+            "NCAA-S101-JRB-043"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "fullName": "De La Salle Santiago Zobel",
+      "abbreviation": "DLSZ",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "DLSZ U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 176,
+          "historicalHomeGames": 5,
+          "historicalAwayGames": 9,
+          "historicalGameStats": 176,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-002",
+            "UAAP-S88-16U-008",
+            "UAAP-S88-16U-012",
+            "UAAP-S88-16U-015",
+            "UAAP-S88-16U-021",
+            "UAAP-S88-16U-023",
+            "UAAP-S88-16U-027",
+            "UAAP-S88-16U-032",
+            "UAAP-S88-16U-033",
+            "UAAP-S88-16U-037",
+            "UAAP-S88-16U-043",
+            "UAAP-S88-16U-049",
+            "UAAP-S88-16U-052",
+            "UAAP-S88-16U-053"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "name": "DLSZ U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 15,
+          "activeGameStats": 180,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 180,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-004",
+            "UAAP-S88-HSB-005",
+            "UAAP-S88-HSB-011",
+            "UAAP-S88-HSB-013",
+            "UAAP-S88-HSB-018",
+            "UAAP-S88-HSB-021",
+            "UAAP-S88-HSB-027",
+            "UAAP-S88-HSB-031",
+            "UAAP-S88-HSB-036",
+            "UAAP-S88-HSB-040",
+            "UAAP-S88-HSB-044",
+            "UAAP-S88-HSB-047",
+            "UAAP-S88-HSB-051",
+            "UAAP-S88-HSB-053",
+            "UAAP-S88-HSB-059"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "DLSZ U19 Girls",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 6,
+          "activeGameStats": 63,
+          "historicalHomeGames": 3,
+          "historicalAwayGames": 3,
+          "historicalGameStats": 63,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Girls / UAAP Season 88 HS Girls Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSG-002",
+            "UAAP-S88-HSG-004",
+            "UAAP-S88-HSG-005",
+            "UAAP-S88-HSG-007",
+            "UAAP-S88-HSG-009",
+            "UAAP-S88-HSG-011"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+          "name": "DE LA SALLE Jrs (DLSU)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 1,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 14,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+          "name": "De La Salle Santiago Zobel",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+          "name": "DLSU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+          "name": "DLSZ",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+          "name": "LA SALLE",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "name": "LA SALLE (DLSZ)",
+          "city": "San Juan",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 1,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "name": "LA SALLE Girls (DLSU)",
+          "city": "San Juan",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 1,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "name": "LA SALLE Girls (LA SALLE)",
+          "city": "San Juan",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 1,
+          "historicalAwayGames": 1,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "name": "LA SALLE Jrs (LA SALLE)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 7,
+          "historicalAwayGames": 4,
+          "historicalGameStats": 105,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 9,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 4
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+      "fullName": "Emilio Aguinaldo College",
+      "abbreviation": "EAC",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "name": "EAC U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 17,
+          "activeGameStats": 212,
+          "historicalHomeGames": 7,
+          "historicalAwayGames": 10,
+          "historicalGameStats": 212,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-051",
+            "NCAA-S101-JB-055",
+            "NCAA-S101-JB-061",
+            "NCAA-S101-JB-065",
+            "NCAA-S101-JB-071",
+            "NCAA-S101-JB-074",
+            "NCAA-S101-JB-075",
+            "NCAA-S101-JB-078",
+            "NCAA-S101-JB-079",
+            "NCAA-S101-JRB-006",
+            "NCAA-S101-JRB-010",
+            "NCAA-S101-JRB-015",
+            "NCAA-S101-JRB-020",
+            "NCAA-S101-JRB-023",
+            "NCAA-S101-JRB-027",
+            "NCAA-S101-JRB-032",
+            "NCAA-S101-JRB-035"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "fullName": "Far Eastern University",
+      "abbreviation": "FEU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "name": "FEU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 19,
+          "activeGameStats": 260,
+          "historicalHomeGames": 9,
+          "historicalAwayGames": 10,
+          "historicalGameStats": 260,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-002",
+            "UAAP-S88-HSB-008",
+            "UAAP-S88-HSB-010",
+            "UAAP-S88-HSB-015",
+            "UAAP-S88-HSB-019",
+            "UAAP-S88-HSB-021",
+            "UAAP-S88-HSB-026",
+            "UAAP-S88-HSB-031",
+            "UAAP-S88-HSB-034",
+            "UAAP-S88-HSB-039",
+            "UAAP-S88-HSB-042",
+            "UAAP-S88-HSB-045",
+            "UAAP-S88-HSB-049",
+            "UAAP-S88-HSB-055",
+            "UAAP-S88-HSB-057",
+            "UAAP-S88-HSB-058",
+            "UAAP-S88-HSB-060",
+            "UAAP-S88-HSB-061",
+            "UAAP-S88-HSB-062"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "name": "FEU U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 18,
+          "activeGameStats": 233,
+          "historicalHomeGames": 9,
+          "historicalAwayGames": 9,
+          "historicalGameStats": 233,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-001",
+            "UAAP-S88-16U-007",
+            "UAAP-S88-16U-012",
+            "UAAP-S88-16U-016",
+            "UAAP-S88-16U-022",
+            "UAAP-S88-16U-024",
+            "UAAP-S88-16U-028",
+            "UAAP-S88-16U-029",
+            "UAAP-S88-16U-035",
+            "UAAP-S88-16U-038",
+            "UAAP-S88-16U-044",
+            "UAAP-S88-16U-046",
+            "UAAP-S88-16U-049",
+            "UAAP-S88-16U-054",
+            "UAAP-S88-16U-057",
+            "UAAP-S88-16U-058",
+            "UAAP-S88-16U-059",
+            "UAAP-S88-16U-060"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "name": "FEU Jrs (FEU)",
+          "city": "Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 6,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 98,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 1,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+      "fullName": "Jose Rizal University",
+      "abbreviation": "JRU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "name": "JRU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 183,
+          "historicalHomeGames": 5,
+          "historicalAwayGames": 9,
+          "historicalGameStats": 183,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-048",
+            "NCAA-S101-JB-055",
+            "NCAA-S101-JB-058",
+            "NCAA-S101-JB-063",
+            "NCAA-S101-JB-067",
+            "NCAA-S101-JRB-004",
+            "NCAA-S101-JRB-010",
+            "NCAA-S101-JRB-014",
+            "NCAA-S101-JRB-017",
+            "NCAA-S101-JRB-021",
+            "NCAA-S101-JRB-025",
+            "NCAA-S101-JRB-030",
+            "NCAA-S101-JRB-034",
+            "NCAA-S101-JRB-045"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "fullName": "Lyceum of the Philippines University",
+      "abbreviation": "LPU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "name": "LPU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 13,
+          "activeGameStats": 145,
+          "historicalHomeGames": 9,
+          "historicalAwayGames": 4,
+          "historicalGameStats": 145,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-046",
+            "NCAA-S101-JB-052",
+            "NCAA-S101-JB-059",
+            "NCAA-S101-JB-064",
+            "NCAA-S101-JB-066",
+            "NCAA-S101-JRB-001",
+            "NCAA-S101-JRB-007",
+            "NCAA-S101-JRB-013",
+            "NCAA-S101-JRB-019",
+            "NCAA-S101-JRB-026",
+            "NCAA-S101-JRB-030",
+            "NCAA-S101-JRB-035",
+            "NCAA-S101-JRB-044"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+      "fullName": "Mapua University",
+      "abbreviation": "MU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "name": "MU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 17,
+          "activeGameStats": 202,
+          "historicalHomeGames": 12,
+          "historicalAwayGames": 5,
+          "historicalGameStats": 202,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-046",
+            "NCAA-S101-JB-050",
+            "NCAA-S101-JB-057",
+            "NCAA-S101-JB-062",
+            "NCAA-S101-JB-070",
+            "NCAA-S101-JB-073",
+            "NCAA-S101-JB-076",
+            "NCAA-S101-JB-077",
+            "NCAA-S101-JB-079",
+            "NCAA-S101-JRB-001",
+            "NCAA-S101-JRB-005",
+            "NCAA-S101-JRB-011",
+            "NCAA-S101-JRB-018",
+            "NCAA-S101-JRB-024",
+            "NCAA-S101-JRB-029",
+            "NCAA-S101-JRB-034",
+            "NCAA-S101-JRB-043"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "fullName": "National University Nazareth School",
+      "abbreviation": "NUNS",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "name": "NU U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 16,
+          "activeGameStats": 227,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 8,
+          "historicalGameStats": 227,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-004",
+            "UAAP-S88-16U-007",
+            "UAAP-S88-16U-011",
+            "UAAP-S88-16U-014",
+            "UAAP-S88-16U-017",
+            "UAAP-S88-16U-021",
+            "UAAP-S88-16U-025",
+            "UAAP-S88-16U-030",
+            "UAAP-S88-16U-036",
+            "UAAP-S88-16U-037",
+            "UAAP-S88-16U-041",
+            "UAAP-S88-16U-046",
+            "UAAP-S88-16U-048",
+            "UAAP-S88-16U-055",
+            "UAAP-S88-16U-059",
+            "UAAP-S88-16U-060"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "name": "NU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 18,
+          "activeGameStats": 219,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 10,
+          "historicalGameStats": 219,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-003",
+            "UAAP-S88-HSB-005",
+            "UAAP-S88-HSB-010",
+            "UAAP-S88-HSB-014",
+            "UAAP-S88-HSB-017",
+            "UAAP-S88-HSB-023",
+            "UAAP-S88-HSB-028",
+            "UAAP-S88-HSB-030",
+            "UAAP-S88-HSB-035",
+            "UAAP-S88-HSB-039",
+            "UAAP-S88-HSB-043",
+            "UAAP-S88-HSB-048",
+            "UAAP-S88-HSB-052",
+            "UAAP-S88-HSB-053",
+            "UAAP-S88-HSB-059",
+            "UAAP-S88-HSB-060",
+            "UAAP-S88-HSB-061",
+            "UAAP-S88-HSB-062"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "name": "NU U19 Girls",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 8,
+          "activeGameStats": 98,
+          "historicalHomeGames": 4,
+          "historicalAwayGames": 4,
+          "historicalGameStats": 98,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Girls / UAAP Season 88 HS Girls Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSG-001",
+            "UAAP-S88-HSG-004",
+            "UAAP-S88-HSG-006",
+            "UAAP-S88-HSG-007",
+            "UAAP-S88-HSG-010",
+            "UAAP-S88-HSG-012",
+            "UAAP-S88-HSG-013",
+            "UAAP-S88-HSG-014"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+          "name": "NU",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "name": "NU Girls (NU)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 1,
+          "historicalAwayGames": 1,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "name": "NU Jrs (NU)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 3,
+          "historicalAwayGames": 5,
+          "historicalGameStats": 38,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 3,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 1
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "fullName": "San Beda Alabang Spartans",
+      "abbreviation": "San Beda Alabang Spartans",
+      "type": "CLUB",
+      "activeTeams": [
+        {
+          "teamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+          "name": "San Beda Alabang Spartans",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 1,
+          "activeGameStats": 15,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 1,
+          "historicalGameStats": 15,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / PYBC U16 Boys Basketball / 2025 Season"
+          ],
+          "gameNumbers": [
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+      "fullName": "San Beda University",
+      "abbreviation": "SBU",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "name": "SBU U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 15,
+          "activeGameStats": 221,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 221,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-047",
+            "NCAA-S101-JB-053",
+            "NCAA-S101-JB-058",
+            "NCAA-S101-JB-065",
+            "NCAA-S101-JB-067",
+            "NCAA-S101-JB-070",
+            "NCAA-S101-JRB-002",
+            "NCAA-S101-JRB-008",
+            "NCAA-S101-JRB-014",
+            "NCAA-S101-JRB-020",
+            "NCAA-S101-JRB-024",
+            "NCAA-S101-JRB-033",
+            "NCAA-S101-JRB-037",
+            "NCAA-S101-JRB-042",
+            "NCAA-S101-JRB-044"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "fullName": "San Sebastian College-Recoletos",
+      "abbreviation": "SSCR",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "name": "SSC-R U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 15,
+          "activeGameStats": 188,
+          "historicalHomeGames": 5,
+          "historicalAwayGames": 10,
+          "historicalGameStats": 188,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-049",
+            "NCAA-S101-JB-054",
+            "NCAA-S101-JB-059",
+            "NCAA-S101-JB-062",
+            "NCAA-S101-JB-066",
+            "NCAA-S101-JB-071",
+            "NCAA-S101-JRB-003",
+            "NCAA-S101-JRB-009",
+            "NCAA-S101-JRB-013",
+            "NCAA-S101-JRB-018",
+            "NCAA-S101-JRB-021",
+            "NCAA-S101-JRB-027",
+            "NCAA-S101-JRB-031",
+            "NCAA-S101-JRB-037",
+            "NCAA-S101-JRB-041"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+          "name": "SSCR U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 1,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 1
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "fullName": "SMILE 360 BULLIES",
+      "abbreviation": "SMILE 360 BULLIES",
+      "type": "CLUB",
+      "activeTeams": [
+        {
+          "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "name": "Smile 360 Bullies",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 1,
+          "activeGameStats": 14,
+          "historicalHomeGames": 1,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 14,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / PYBC U16 Boys Basketball / 2025 Season"
+          ],
+          "gameNumbers": [
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "fullName": "University of Perpetual Help System DALTA",
+      "abbreviation": "UPHSD",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "name": "UPHSD U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 15,
+          "activeGameStats": 209,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 209,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / NCAA Season 101 Junior's Basketball / Season 101"
+          ],
+          "gameNumbers": [
+            "NCAA-S101-JB-049",
+            "NCAA-S101-JB-052",
+            "NCAA-S101-JB-057",
+            "NCAA-S101-JB-060",
+            "NCAA-S101-JB-069",
+            "NCAA-S101-JB-072",
+            "NCAA-S101-JRB-003",
+            "NCAA-S101-JRB-007",
+            "NCAA-S101-JRB-011",
+            "NCAA-S101-JRB-016",
+            "NCAA-S101-JRB-022",
+            "NCAA-S101-JRB-025",
+            "NCAA-S101-JRB-032",
+            "NCAA-S101-JRB-036",
+            "NCAA-S101-JRB-042"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": false,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 0,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "fullName": "University of Santo Tomas",
+      "abbreviation": "UST",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "name": "UST U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 15,
+          "activeGameStats": 159,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 159,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-003",
+            "UAAP-S88-16U-008",
+            "UAAP-S88-16U-011",
+            "UAAP-S88-16U-013",
+            "UAAP-S88-16U-020",
+            "UAAP-S88-16U-024",
+            "UAAP-S88-16U-026",
+            "UAAP-S88-16U-032",
+            "UAAP-S88-16U-034",
+            "UAAP-S88-16U-040",
+            "UAAP-S88-16U-044",
+            "UAAP-S88-16U-045",
+            "UAAP-S88-16U-047",
+            "UAAP-S88-16U-055",
+            "UAAP-S88-16U-058"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "name": "UST U19 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 191,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 6,
+          "historicalGameStats": 191,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-002",
+            "UAAP-S88-HSB-007",
+            "UAAP-S88-HSB-009",
+            "UAAP-S88-HSB-013",
+            "UAAP-S88-HSB-020",
+            "UAAP-S88-HSB-024",
+            "UAAP-S88-HSB-028",
+            "UAAP-S88-HSB-029",
+            "UAAP-S88-HSB-035",
+            "UAAP-S88-HSB-038",
+            "UAAP-S88-HSB-042",
+            "UAAP-S88-HSB-046",
+            "UAAP-S88-HSB-051",
+            "UAAP-S88-HSB-056"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "name": "UST U19 Girls",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 8,
+          "activeGameStats": 96,
+          "historicalHomeGames": 4,
+          "historicalAwayGames": 4,
+          "historicalGameStats": 96,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Girls / UAAP Season 88 HS Girls Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSG-002",
+            "UAAP-S88-HSG-003",
+            "UAAP-S88-HSG-006",
+            "UAAP-S88-HSG-008",
+            "UAAP-S88-HSG-009",
+            "UAAP-S88-HSG-012",
+            "UAAP-S88-HSG-013",
+            "UAAP-S88-HSG-014"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+          "name": "UST",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 0,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": false,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "DELETE_IF_TEST_ONLY"
+        },
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "name": "UST Girls (UST)",
+          "city": "San Juan",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 2,
+          "historicalAwayGames": 0,
+          "historicalGameStats": 0,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        },
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "name": "UST Jrs (UST)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 3,
+          "historicalAwayGames": 3,
+          "historicalGameStats": 41,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 3,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 1
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "fullName": "University of the East",
+      "abbreviation": "UE",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+          "name": "UE",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 191,
+          "historicalHomeGames": 7,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 191,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-001",
+            "UAAP-S88-HSB-007",
+            "UAAP-S88-HSB-012",
+            "UAAP-S88-HSB-016",
+            "UAAP-S88-HSB-019",
+            "UAAP-S88-HSB-023",
+            "UAAP-S88-HSB-027",
+            "UAAP-S88-HSB-029",
+            "UAAP-S88-HSB-033",
+            "UAAP-S88-HSB-037",
+            "UAAP-S88-HSB-044",
+            "UAAP-S88-HSB-048",
+            "UAAP-S88-HSB-049",
+            "UAAP-S88-HSB-054"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "name": "UE U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 147,
+          "historicalHomeGames": 8,
+          "historicalAwayGames": 6,
+          "historicalGameStats": 147,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-004",
+            "UAAP-S88-16U-005",
+            "UAAP-S88-16U-009",
+            "UAAP-S88-16U-013",
+            "UAAP-S88-16U-019",
+            "UAAP-S88-16U-023",
+            "UAAP-S88-16U-028",
+            "UAAP-S88-16U-031",
+            "UAAP-S88-16U-033",
+            "UAAP-S88-16U-039",
+            "UAAP-S88-16U-042",
+            "UAAP-S88-16U-045",
+            "UAAP-S88-16U-048",
+            "UAAP-S88-16U-054"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+          "name": "UE Jrs (UE)",
+          "city": "Manila",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 4,
+          "historicalAwayGames": 7,
+          "historicalGameStats": 42,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 1,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "fullName": "University of the Philippines Integrated School",
+      "abbreviation": "UPIS",
+      "type": "SCHOOL",
+      "activeTeams": [
+        {
+          "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "name": "UP",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 165,
+          "historicalHomeGames": 6,
+          "historicalAwayGames": 8,
+          "historicalGameStats": 165,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U19 Boys / UAAP Season 88 HS Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-HSB-004",
+            "UAAP-S88-HSB-006",
+            "UAAP-S88-HSB-012",
+            "UAAP-S88-HSB-015",
+            "UAAP-S88-HSB-017",
+            "UAAP-S88-HSB-024",
+            "UAAP-S88-HSB-025",
+            "UAAP-S88-HSB-032",
+            "UAAP-S88-HSB-036",
+            "UAAP-S88-HSB-037",
+            "UAAP-S88-HSB-043",
+            "UAAP-S88-HSB-045",
+            "UAAP-S88-HSB-050",
+            "UAAP-S88-HSB-056"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        },
+        {
+          "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "name": "UP U16 Boys",
+          "city": "Metro Manila",
+          "region": "NCR",
+          "activeGames": 14,
+          "activeGameStats": 152,
+          "historicalHomeGames": 9,
+          "historicalAwayGames": 5,
+          "historicalGameStats": 152,
+          "hasHistoricalUsage": true,
+          "contexts": [
+            "U16 Boys / UAAP Season 88 16U Boys Basketball / Season 88"
+          ],
+          "gameNumbers": [
+            "UAAP-S88-16U-003",
+            "UAAP-S88-16U-006",
+            "UAAP-S88-16U-009",
+            "UAAP-S88-16U-014",
+            "UAAP-S88-16U-018",
+            "UAAP-S88-16U-022",
+            "UAAP-S88-16U-027",
+            "UAAP-S88-16U-030",
+            "UAAP-S88-16U-035",
+            "UAAP-S88-16U-040",
+            "UAAP-S88-16U-042",
+            "UAAP-S88-16U-050",
+            "UAAP-S88-16U-051",
+            "UAAP-S88-16U-053"
+          ],
+          "recommendedAction": "KEEP_ACTIVE"
+        }
+      ],
+      "inactiveTeams": [
+        {
+          "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+          "name": "UPIS Jrs (UP)",
+          "city": "Quezon City",
+          "region": "NCR",
+          "activeGames": 0,
+          "activeGameStats": 0,
+          "historicalHomeGames": 3,
+          "historicalAwayGames": 4,
+          "historicalGameStats": 34,
+          "hasHistoricalUsage": true,
+          "contexts": [],
+          "gameNumbers": [],
+          "recommendedAction": "HIDE_INACTIVE"
+        }
+      ],
+      "possibleDuplicateTeams": [],
+      "inactiveRecordsHaveHistoricalUsage": true,
+      "safeToRemoveHideMerge": {
+        "hideInactiveCount": 1,
+        "mergeDuplicateCount": 0,
+        "deleteIfTestOnlyCount": 0
+      },
+      "recommendedAction": "KEEP_ACTIVE"
+    }
+  ],
+  "playerGroupingPlan": [
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "fullName": "Adamson University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "name": "ADU",
+          "playerCount": 16
+        },
+        {
+          "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "name": "ADU U16 Boys",
+          "playerCount": 16
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+      "fullName": "Arellano University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "name": "AU U19 Boys",
+          "playerCount": 17
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "fullName": "Ateneo de Manila University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "name": "ADMU Girls",
+          "playerCount": 13
+        },
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "name": "ADMU U16 Boys",
+          "playerCount": 16
+        },
+        {
+          "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "name": "ADMU U19 Boys",
+          "playerCount": 16
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "fullName": "Colegio de San Juan de Letran",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "name": "CSJL U19 Boys",
+          "playerCount": 19
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+      "fullName": "College of Saint Benilde",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "name": "CSB U19 Boys",
+          "playerCount": 16
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "fullName": "De La Salle Santiago Zobel",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "name": "DLSZ U16 Boys",
+          "playerCount": 20
+        },
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "name": "DLSZ U19 Boys",
+          "playerCount": 15
+        },
+        {
+          "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+          "name": "DLSZ U19 Girls",
+          "playerCount": 13
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+      "fullName": "Emilio Aguinaldo College",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "name": "EAC U19 Boys",
+          "playerCount": 20
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "fullName": "Far Eastern University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "name": "FEU",
+          "playerCount": 16
+        },
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "name": "FEU U16 Boys",
+          "playerCount": 17
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+      "fullName": "Jose Rizal University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "name": "JRU U19 Boys",
+          "playerCount": 18
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "fullName": "Lyceum of the Philippines University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "name": "LPU U19 Boys",
+          "playerCount": 17
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+      "fullName": "Mapua University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "name": "MU U19 Boys",
+          "playerCount": 18
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "fullName": "National University Nazareth School",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "name": "NU U16 Boys",
+          "playerCount": 16
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "name": "NU U19 Boys",
+          "playerCount": 16
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "name": "NU U19 Girls",
+          "playerCount": 14
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "fullName": "San Beda Alabang Spartans",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+          "name": "San Beda Alabang Spartans",
+          "playerCount": 15
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+      "fullName": "San Beda University",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "name": "SBU U19 Boys",
+          "playerCount": 18
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "fullName": "San Sebastian College-Recoletos",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "name": "SSC-R U19 Boys",
+          "playerCount": 19
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "fullName": "SMILE 360 BULLIES",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "name": "Smile 360 Bullies",
+          "playerCount": 14
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "fullName": "University of Perpetual Help System DALTA",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "name": "UPHSD U19 Boys",
+          "playerCount": 22
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "fullName": "University of Santo Tomas",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "name": "UST U16 Boys",
+          "playerCount": 13
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "name": "UST U19 Boys",
+          "playerCount": 16
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "name": "UST U19 Girls",
+          "playerCount": 16
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "fullName": "University of the East",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+          "name": "UE",
+          "playerCount": 16
+        },
+        {
+          "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "name": "UE U16 Boys",
+          "playerCount": 11
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "fullName": "University of the Philippines Integrated School",
+      "groupPlayersBy": "current active Team / Moniker",
+      "activeTeamPlayerCounts": [
+        {
+          "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "name": "UP",
+          "playerCount": 14
+        },
+        {
+          "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "name": "UP U16 Boys",
+          "playerCount": 15
+        }
+      ],
+      "multiTeamPlayersHandling": "Show player once under each active team they played for, with a badge when they appear on multiple teams under the same Program.",
+      "currentProgramMismatchHandling": "If Player.currentProgramId differs from the derived team Program, show a warning badge and offer Edit only / Transfer controls. Do not change GameStats."
+    }
+  ],
+  "duplicatePlayerAudit": {
+    "exactOrConservativeGroups": [],
+    "verySimilarNameSameProgramGroups": [
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+            "displayName": "Carlos Victolero",
+            "gender": "BOYS",
+            "currentProgramId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+            "currentProgram": "Mapua University",
+            "gameStatCount": 5,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          },
+          {
+            "playerId": "ffd5d986-8e58-4c82-9246-b5fc8c1b9198",
+            "displayName": "Carlos Victorlero",
+            "gender": "BOYS",
+            "currentProgramId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+            "currentProgram": "Mapua University",
+            "gameStatCount": 1,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+            "displayName": "Don Valdeavilla",
+            "gender": "BOYS",
+            "currentProgramId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+            "currentProgram": "Colegio de San Juan de Letran",
+            "gameStatCount": 16,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "b5ea2497-fd54-43eb-bef4-5cd3eef78395",
+            "displayName": "Don Valdevilla",
+            "gender": "BOYS",
+            "currentProgramId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+            "currentProgram": "Colegio de San Juan de Letran",
+            "gameStatCount": 3,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+            "displayName": "Hanz Llupar",
+            "gender": "BOYS",
+            "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+            "currentProgram": "University of Perpetual Help System DALTA",
+            "gameStatCount": 12,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "3681d46e-6d0b-41e3-b625-ccc3dca98d0a",
+            "displayName": "Hanz Lupar",
+            "gender": "BOYS",
+            "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+            "currentProgram": "University of Perpetual Help System DALTA",
+            "gameStatCount": 3,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+            "displayName": "Inigo Adrade",
+            "gender": "BOYS",
+            "currentProgramId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+            "currentProgram": "Adamson University",
+            "gameStatCount": 4,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+            "displayName": "Inigo Andrade",
+            "gender": "BOYS",
+            "currentProgramId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+            "currentProgram": "Adamson University",
+            "gameStatCount": 2,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+            "displayName": "Isaac Parugganan",
+            "gender": "BOYS",
+            "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "currentProgram": "De La Salle Santiago Zobel",
+            "gameStatCount": 1,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+            "displayName": "Isaac Purugganan",
+            "gender": "BOYS",
+            "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "currentProgram": "De La Salle Santiago Zobel",
+            "gameStatCount": 5,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+            "displayName": "Isaac Paugganan",
+            "gender": "BOYS",
+            "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "currentProgram": "De La Salle Santiago Zobel",
+            "gameStatCount": 6,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+            "displayName": "Isaac Pauugganan",
+            "gender": "BOYS",
+            "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "currentProgram": "De La Salle Santiago Zobel",
+            "gameStatCount": 2,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+            "displayName": "Khaizer Castillo",
+            "gender": "BOYS",
+            "currentProgramId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+            "currentProgram": "San Sebastian College-Recoletos",
+            "gameStatCount": 11,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "3d94da1d-139f-4f8a-9928-d4bdaa6bf157",
+            "displayName": "Khazer Castillo",
+            "gender": "BOYS",
+            "currentProgramId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+            "currentProgram": "San Sebastian College-Recoletos",
+            "gameStatCount": 3,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+            "displayName": "Lorenzo Parugganan",
+            "gender": "BOYS",
+            "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "currentProgram": "De La Salle Santiago Zobel",
+            "gameStatCount": 1,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          },
+          {
+            "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+            "displayName": "Lorenzo Purugganan",
+            "gender": "BOYS",
+            "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "currentProgram": "De La Salle Santiago Zobel",
+            "gameStatCount": 13,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "e34d525c-ab75-4fe2-beca-b31447f6ed22",
+            "displayName": "Mikuel Arsic",
+            "gender": "BOYS",
+            "currentProgramId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+            "currentProgram": "College of Saint Benilde",
+            "gameStatCount": 1,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          },
+          {
+            "playerId": "5a00d9fe-cbc6-457f-a55c-9be2870a99ae",
+            "displayName": "Mirkuel Arsic",
+            "gender": "BOYS",
+            "currentProgramId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+            "currentProgram": "College of Saint Benilde",
+            "gameStatCount": 2,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+            "displayName": "Pertijude Binagatan",
+            "gender": "BOYS",
+            "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+            "currentProgram": "University of Perpetual Help System DALTA",
+            "gameStatCount": 2,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          },
+          {
+            "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+            "displayName": "Pertjude Binagatan",
+            "gender": "BOYS",
+            "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+            "currentProgram": "University of Perpetual Help System DALTA",
+            "gameStatCount": 12,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 1
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "c62942d3-6990-40a4-a986-b4364db02164",
+            "displayName": "Rommick Araneta",
+            "gender": "BOYS",
+            "currentProgramId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+            "currentProgram": "Lyceum of the Philippines University",
+            "gameStatCount": 1,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          },
+          {
+            "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+            "displayName": "Romnick Araneta",
+            "gender": "BOYS",
+            "currentProgramId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+            "currentProgram": "Lyceum of the Philippines University",
+            "gameStatCount": 8,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "matchType": "very_similar_name_same_program",
+        "similarityScore": 1,
+        "players": [
+          {
+            "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+            "displayName": "Xyriel Macahipay",
+            "gender": "BOYS",
+            "currentProgramId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+            "currentProgram": "Emilio Aguinaldo College",
+            "gameStatCount": 9,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          },
+          {
+            "playerId": "4335d0a4-aa8e-48f7-9647-1d63ca0919af",
+            "displayName": "Xyriel Machapipay",
+            "gender": "BOYS",
+            "currentProgramId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+            "currentProgram": "Emilio Aguinaldo College",
+            "gameStatCount": 5,
+            "playerRatingCount": 1,
+            "rankingSnapshotRowCount": 0
+          }
+        ],
+        "recommendedAction": "NEEDS_REVIEW"
+      }
+    ],
+    "totalGroups": 12
+  },
+  "duplicateTeamAudit": {
+    "sameContextGroups": [],
+    "similarNameSameProgramGroups": [
+      {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "programFullName": "Adamson University",
+        "teams": [
+          {
+            "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU",
+            "activeGameStats": 168
+          },
+          {
+            "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+            "name": "ADU Jrs (ADU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "programFullName": "Adamson University",
+        "teams": [
+          {
+            "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU",
+            "activeGameStats": 168
+          },
+          {
+            "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+            "name": "ADU U16 Boys",
+            "activeGameStats": 173
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "programFullName": "Adamson University",
+        "teams": [
+          {
+            "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+            "name": "ADU Jrs (ADU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+            "name": "ADU U16 Boys",
+            "activeGameStats": 173
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "programFullName": "Ateneo de Manila University",
+        "teams": [
+          {
+            "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+            "name": "ADMU Girls",
+            "activeGameStats": 74
+          },
+          {
+            "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+            "name": "ADMU U16 Boys",
+            "activeGameStats": 197
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "programFullName": "Ateneo de Manila University",
+        "teams": [
+          {
+            "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+            "name": "ADMU Girls",
+            "activeGameStats": 74
+          },
+          {
+            "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+            "name": "ADMU U19 Boys",
+            "activeGameStats": 180
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "programFullName": "Ateneo de Manila University",
+        "teams": [
+          {
+            "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+            "name": "ADMU U16 Boys",
+            "activeGameStats": 197
+          },
+          {
+            "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+            "name": "ADMU U19 Boys",
+            "activeGameStats": 180
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "programFullName": "Ateneo de Manila University",
+        "teams": [
+          {
+            "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+            "name": "ATENEO Girls (ATENEO)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "programFullName": "Ateneo de Manila University",
+        "teams": [
+          {
+            "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+            "name": "ATENEO JRS (ATENEO)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+        "programFullName": "Ateneo de Manila University",
+        "teams": [
+          {
+            "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+            "name": "ATENEO Girls (ATENEO)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+            "name": "ATENEO JRS (ATENEO)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+            "name": "DE LA SALLE Jrs (DLSU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+            "name": "DLSU",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+            "name": "DE LA SALLE Jrs (DLSU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+            "name": "LA SALLE",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+            "name": "DE LA SALLE Jrs (DLSU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+            "name": "LA SALLE Girls (DLSU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+            "name": "De La Salle Santiago Zobel",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+            "name": "LA SALLE",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+            "name": "DLSU",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+            "name": "LA SALLE Girls (DLSU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+            "name": "DLSZ",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+            "name": "DLSZ U16 Boys",
+            "activeGameStats": 176
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+            "name": "DLSZ",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys",
+            "activeGameStats": 180
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+            "name": "DLSZ",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls",
+            "activeGameStats": 63
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+            "name": "DLSZ",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+            "name": "LA SALLE (DLSZ)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+            "name": "DLSZ U16 Boys",
+            "activeGameStats": 176
+          },
+          {
+            "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys",
+            "activeGameStats": 180
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+            "name": "DLSZ U16 Boys",
+            "activeGameStats": 176
+          },
+          {
+            "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls",
+            "activeGameStats": 63
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+            "name": "DLSZ U16 Boys",
+            "activeGameStats": 176
+          },
+          {
+            "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+            "name": "LA SALLE (DLSZ)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys",
+            "activeGameStats": 180
+          },
+          {
+            "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls",
+            "activeGameStats": 63
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys",
+            "activeGameStats": 180
+          },
+          {
+            "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+            "name": "LA SALLE (DLSZ)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls",
+            "activeGameStats": 63
+          },
+          {
+            "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+            "name": "LA SALLE (DLSZ)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+            "name": "LA SALLE",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+            "name": "LA SALLE (DLSZ)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+            "name": "LA SALLE",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+            "name": "LA SALLE Girls (DLSU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+            "name": "LA SALLE",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+            "name": "LA SALLE Girls (LA SALLE)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+            "name": "LA SALLE",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+            "name": "LA SALLE Jrs (LA SALLE)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "programFullName": "De La Salle Santiago Zobel",
+        "teams": [
+          {
+            "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+            "name": "LA SALLE Girls (LA SALLE)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+            "name": "LA SALLE Jrs (LA SALLE)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "programFullName": "Far Eastern University",
+        "teams": [
+          {
+            "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU",
+            "activeGameStats": 260
+          },
+          {
+            "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+            "name": "FEU Jrs (FEU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "programFullName": "Far Eastern University",
+        "teams": [
+          {
+            "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU",
+            "activeGameStats": 260
+          },
+          {
+            "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+            "name": "FEU U16 Boys",
+            "activeGameStats": 233
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+        "programFullName": "Far Eastern University",
+        "teams": [
+          {
+            "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+            "name": "FEU Jrs (FEU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+            "name": "FEU U16 Boys",
+            "activeGameStats": 233
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+            "name": "NU Girls (NU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+            "name": "NU Jrs (NU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+            "name": "NU U16 Boys",
+            "activeGameStats": 227
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+            "name": "NU U19 Boys",
+            "activeGameStats": 219
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+            "name": "NU U19 Girls",
+            "activeGameStats": 98
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+            "name": "NU Girls (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+            "name": "NU Jrs (NU)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+            "name": "NU Girls (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+            "name": "NU U16 Boys",
+            "activeGameStats": 227
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+            "name": "NU Girls (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+            "name": "NU U19 Boys",
+            "activeGameStats": 219
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+            "name": "NU Girls (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+            "name": "NU U19 Girls",
+            "activeGameStats": 98
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+            "name": "NU Jrs (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+            "name": "NU U16 Boys",
+            "activeGameStats": 227
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+            "name": "NU Jrs (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+            "name": "NU U19 Boys",
+            "activeGameStats": 219
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+            "name": "NU Jrs (NU)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+            "name": "NU U19 Girls",
+            "activeGameStats": 98
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+            "name": "NU U16 Boys",
+            "activeGameStats": 227
+          },
+          {
+            "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+            "name": "NU U19 Boys",
+            "activeGameStats": 219
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+            "name": "NU U16 Boys",
+            "activeGameStats": 227
+          },
+          {
+            "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+            "name": "NU U19 Girls",
+            "activeGameStats": 98
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+        "programFullName": "National University Nazareth School",
+        "teams": [
+          {
+            "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+            "name": "NU U19 Boys",
+            "activeGameStats": 219
+          },
+          {
+            "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+            "name": "NU U19 Girls",
+            "activeGameStats": 98
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+        "programFullName": "San Sebastian College-Recoletos",
+        "teams": [
+          {
+            "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+            "name": "SSC-R U19 Boys",
+            "activeGameStats": 188
+          },
+          {
+            "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+            "name": "SSCR U19 Boys",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+            "name": "UST Girls (UST)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+            "name": "UST Jrs (UST)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+            "name": "UST U16 Boys",
+            "activeGameStats": 159
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+            "name": "UST U19 Boys",
+            "activeGameStats": 191
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+            "name": "UST U19 Girls",
+            "activeGameStats": 96
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+            "name": "UST Girls (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+            "name": "UST Jrs (UST)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+            "name": "UST Girls (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+            "name": "UST U16 Boys",
+            "activeGameStats": 159
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+            "name": "UST Girls (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+            "name": "UST U19 Boys",
+            "activeGameStats": 191
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+            "name": "UST Girls (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+            "name": "UST U19 Girls",
+            "activeGameStats": 96
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+            "name": "UST Jrs (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+            "name": "UST U16 Boys",
+            "activeGameStats": 159
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+            "name": "UST Jrs (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+            "name": "UST U19 Boys",
+            "activeGameStats": 191
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+            "name": "UST Jrs (UST)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+            "name": "UST U19 Girls",
+            "activeGameStats": 96
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+            "name": "UST U16 Boys",
+            "activeGameStats": 159
+          },
+          {
+            "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+            "name": "UST U19 Boys",
+            "activeGameStats": 191
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+            "name": "UST U16 Boys",
+            "activeGameStats": 159
+          },
+          {
+            "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+            "name": "UST U19 Girls",
+            "activeGameStats": 96
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+        "programFullName": "University of Santo Tomas",
+        "teams": [
+          {
+            "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+            "name": "UST U19 Boys",
+            "activeGameStats": 191
+          },
+          {
+            "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+            "name": "UST U19 Girls",
+            "activeGameStats": 96
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "programFullName": "University of the East",
+        "teams": [
+          {
+            "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE",
+            "activeGameStats": 191
+          },
+          {
+            "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+            "name": "UE Jrs (UE)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "programFullName": "University of the East",
+        "teams": [
+          {
+            "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE",
+            "activeGameStats": 191
+          },
+          {
+            "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+            "name": "UE U16 Boys",
+            "activeGameStats": 147
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+        "programFullName": "University of the East",
+        "teams": [
+          {
+            "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+            "name": "UE Jrs (UE)",
+            "activeGameStats": 0
+          },
+          {
+            "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+            "name": "UE U16 Boys",
+            "activeGameStats": 147
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "programFullName": "University of the Philippines Integrated School",
+        "teams": [
+          {
+            "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP",
+            "activeGameStats": 165
+          },
+          {
+            "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+            "name": "UP U16 Boys",
+            "activeGameStats": 152
+          }
+        ],
+        "similarityScore": 1,
+        "recommendedAction": "NEEDS_REVIEW"
+      },
+      {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "programFullName": "University of the Philippines Integrated School",
+        "teams": [
+          {
+            "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP",
+            "activeGameStats": 165
+          },
+          {
+            "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+            "name": "UPIS Jrs (UP)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      },
+      {
+        "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+        "programFullName": "University of the Philippines Integrated School",
+        "teams": [
+          {
+            "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+            "name": "UP U16 Boys",
+            "activeGameStats": 152
+          },
+          {
+            "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+            "name": "UPIS Jrs (UP)",
+            "activeGameStats": 0
+          }
+        ],
+        "similarityScore": 0.9,
+        "recommendedAction": "HIDE_INACTIVE"
+      }
+    ],
+    "totalGroups": 69
+  },
+  "summary": {
+    "programsInspected": 20,
+    "inactiveTeamRecordsCount": 23,
+    "safeToHideInactiveRecordsCount": 23,
+    "possibleTeamDuplicateGroups": 69,
+    "possiblePlayerDuplicateGroups": 12,
+    "adminPagesToDemoteOrRemove": [
+      "/admin/players",
+      "/admin/teams"
+    ],
+    "recommendedNextImplementationSteps": [
+      "Make /admin/programs/[id] the unified editor for Program, Team/Moniker, and Player fields.",
+      "Group players under active Team / Moniker sections on Program detail pages.",
+      "Move player bio editing controls from /admin/players into Program detail player rows or drawer.",
+      "Keep /admin/players as search-only or redirect to Program detail after selection.",
+      "Hide /admin/teams from primary navigation and keep as compatibility-only until approved cleanup is complete.",
+      "Create separate approved repair scripts for any duplicate Team or Player groups before merging/deleting.",
+      "For inactive Team records with no historical usage, prepare a test-only deletion plan; for inactive records with historical usage, hide by default instead of deleting."
+    ]
+  }
+}

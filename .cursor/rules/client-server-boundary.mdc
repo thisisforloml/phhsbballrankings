@@ -1,0 +1,40 @@
+# Client / Server Module Boundary
+
+## The rule
+
+Files with `"use client"` must **never** import runtime values from server modules.
+
+Server modules are any file that uses:
+- `import "server-only"`
+- `prisma` / `@/lib/prisma`
+- `node:fs`, `fs`, database queries, or other Node-only APIs
+
+## Safe in client components
+
+```typescript
+import type { PlayerProfile } from "@/lib/player-profile-types";
+import { periodKeyForDate } from "@/lib/player-profile-analytics";
+```
+
+## Unsafe (causes `node:fs` / Webpack build errors)
+
+```typescript
+import { getPlayerProfileBySlug, periodKeyForDate } from "@/lib/player-profile";
+import type { PlayerProfile } from "@/lib/player-profile"; // still resolves server module in some bundlers
+```
+
+Even `import type` from `player-profile.ts` can pull the server graph in dev. Use **`player-profile-types.ts`** for all client type imports.
+
+## Where to put shared logic
+
+| Layer | Path pattern | Use for |
+|-------|----------------|---------|
+| Client-safe types | `src/lib/player-profile-types.ts` | All `PlayerProfile` types in `"use client"` files |
+| Client-safe helpers | `src/lib/player-profile-analytics.ts` | Pure functions for charts |
+| Server-only | `src/lib/player-profile.ts` | `getPlayerProfileBySlug()`, Prisma loaders |
+
+When a helper is needed in both server and client, extract it to a **client-safe** module with zero server imports. Server files may import from client-safe modules.
+
+## Guardrail
+
+Add `import "server-only";` at the top of every file that touches Prisma or the database. Next.js will fail fast with a clear error instead of an obscure `node:fs` Webpack error.

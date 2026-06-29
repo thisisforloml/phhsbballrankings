@@ -1,0 +1,14 @@
+  return (
+    <>
+      <AdminPageHeader
+        eyebrow="Program Management"
+        title="Schools, Clubs, and Team Programs"
+        description="Use this as the primary structure for school, club, and team organization. Program Management shows only Teams currently used by official games or stats; inactive/internal records stay in Internal Team Records for audit review."
+        statusBadge={`${rows.length} programs`}
+      />
+      <Suspense fallback={null}>
+        <ProgramListClient programs={rows} />
+      </Suspense>
+    </>
+  );
+}

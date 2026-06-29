@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-05-25T06:38:05.924Z",
+  "validationPassed": true,
+  "typeScriptPassed": true,
+  "routeSamples": {
+    "team": {
+      "id": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+      "name": "Ateneo Lady Eaglets"
+    },
+    "league": {
+      "id": "d721a82a-f182-4a54-983a-01453650ec9e",
+      "name": "UAAP Season 88 HS Boys Basketball"
+    },
+    "game": {
+      "id": "b17e089c-edc3-4667-9493-6d362fbc3aa1",
+      "gameNumber": "UAAP-S88-HSB-018"
+    },
+    "players": {
+      "cabs": true,
+      "jude": true
+    }
+  },
+  "publicRouteIssues": [],
+  "adminRouteIssues": [],
+  "uxIssues": [],
+  "dataIntegrityIssues": [],
+  "blockingIssues": [],
+  "nonBlockingIssues": [],
+  "recommendedNextFixes": [
+    "No blocking launch-readiness issues found in this read-only audit. Run a browser/mobile visual pass before launch."
+  ],
+  "details": {
+    "duplicatePlayerGroups": 0,
+    "duplicateActiveTeamGroups": 0,
+    "rankingValidation": [
+      {
+        "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "rowCount": 213,
+        "contiguous": true,
+        "deletedRefs": 0,
+        "duplicateRows": 0
+      },
+      {
+        "snapshotId": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "rowCount": 45,
+        "contiguous": true,
+        "deletedRefs": 0,
+        "duplicateRows": 0
+      },
+      {
+        "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "rowCount": 149,
+        "contiguous": true,
+        "deletedRefs": 0,
+        "duplicateRows": 0
+      }
+    ],
+    "standingsScopesChecked": [
+      "NCAA",
+      "UAAP"
+    ]
+  }
+}

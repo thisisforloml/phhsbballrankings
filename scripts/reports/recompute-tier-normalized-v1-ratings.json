@@ -1,0 +1,439 @@
+{
+  "generatedAt": "2026-06-18T15:04:59.926Z",
+  "mode": "execute",
+  "policyVersionId": "formula-v1-tier-normalized-soft-v1",
+  "productionPolicyVersionId": "formula-v1-production",
+  "warning": "Shadow policy rows written. Public board unchanged until explicit cutover.",
+  "summary": {
+    "targetCount": 938,
+    "created": 938,
+    "updated": 0,
+    "unchangedVsProductionShape": 474,
+    "top10Churn": 4
+  },
+  "reviewSet": [
+    {
+      "displayName": "Lucas Kaw",
+      "production": {
+        "rank": 3,
+        "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+        "displayName": "Lucas Kaw",
+        "rating": 93.98,
+        "verifiedGameCount": 22,
+        "stars": 5
+      },
+      "shadow": {
+        "rank": 9,
+        "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+        "displayName": "Lucas Kaw",
+        "rating": 87.4,
+        "verifiedGameCount": 22,
+        "stars": 4
+      },
+      "rankDelta": -6,
+      "ratingDelta": -6.58
+    },
+    {
+      "displayName": "Jude Eriobu",
+      "production": {
+        "rank": 1,
+        "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+        "displayName": "Jude Eriobu",
+        "rating": 98.33,
+        "verifiedGameCount": 16,
+        "stars": 5
+      },
+      "shadow": {
+        "rank": 1,
+        "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+        "displayName": "Jude Eriobu",
+        "rating": 98.33,
+        "verifiedGameCount": 16,
+        "stars": 5
+      },
+      "rankDelta": 0,
+      "ratingDelta": 0
+    },
+    {
+      "displayName": "Josef Calo-oy",
+      "production": {
+        "rank": 5,
+        "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+        "displayName": "Josef Calo-oy",
+        "rating": 93.1,
+        "verifiedGameCount": 14,
+        "stars": 5
+      },
+      "shadow": {
+        "rank": 2,
+        "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+        "displayName": "Josef Calo-oy",
+        "rating": 93.1,
+        "verifiedGameCount": 14,
+        "stars": 5
+      },
+      "rankDelta": 3,
+      "ratingDelta": 0
+    },
+    {
+      "displayName": "Xyriel Macahipay",
+      "production": null,
+      "shadow": {
+        "rank": 15,
+        "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+        "displayName": "Xyriel Macahipay",
+        "rating": 84.13,
+        "verifiedGameCount": 15,
+        "stars": 4
+      },
+      "rankDelta": null,
+      "ratingDelta": null
+    },
+    {
+      "displayName": "Prince Cariño",
+      "production": null,
+      "shadow": null,
+      "rankDelta": null,
+      "ratingDelta": null
+    }
+  ],
+  "top10": {
+    "production": [
+      {
+        "rank": 1,
+        "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+        "displayName": "Jude Eriobu",
+        "rating": 98.33,
+        "verifiedGameCount": 16,
+        "stars": 5
+      },
+      {
+        "rank": 2,
+        "playerId": "2d54855c-91cf-43b5-8a7b-9848f431c8b7",
+        "displayName": "Greggy Calma",
+        "rating": 95.09,
+        "verifiedGameCount": 5,
+        "stars": 5
+      },
+      {
+        "rank": 3,
+        "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+        "displayName": "Lucas Kaw",
+        "rating": 93.98,
+        "verifiedGameCount": 22,
+        "stars": 5
+      },
+      {
+        "rank": 4,
+        "playerId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+        "displayName": "Yuan Ramirez",
+        "rating": 93.61,
+        "verifiedGameCount": 22,
+        "stars": 5
+      },
+      {
+        "rank": 5,
+        "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+        "displayName": "Josef Calo-oy",
+        "rating": 93.1,
+        "verifiedGameCount": 14,
+        "stars": 5
+      },
+      {
+        "rank": 6,
+        "playerId": "155da59e-233b-443b-a0aa-4056d6aa7439",
+        "displayName": "Mark Esperanza",
+        "rating": 90.61,
+        "verifiedGameCount": 12,
+        "stars": 5
+      },
+      {
+        "rank": 7,
+        "playerId": "609cb013-9ba7-4c72-8230-201f839c8e05",
+        "displayName": "Jordan Yeng",
+        "rating": 89.96,
+        "verifiedGameCount": 3,
+        "stars": 4
+      },
+      {
+        "rank": 8,
+        "playerId": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+        "displayName": "Joshua Chua",
+        "rating": 89.58,
+        "verifiedGameCount": 14,
+        "stars": 4
+      },
+      {
+        "rank": 9,
+        "playerId": "483a768a-4853-4d53-80fe-fd206523d2cd",
+        "displayName": "Allen Te",
+        "rating": 89.26,
+        "verifiedGameCount": 17,
+        "stars": 4
+      },
+      {
+        "rank": 10,
+        "playerId": "19d814af-ad70-47dd-8b28-a4e7d045ebed",
+        "displayName": "Sean Franco",
+        "rating": 88.82,
+        "verifiedGameCount": 19,
+        "stars": 4
+      }
+    ],
+    "shadow": [
+      {
+        "rank": 1,
+        "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+        "displayName": "Jude Eriobu",
+        "rating": 98.33,
+        "verifiedGameCount": 16,
+        "stars": 5
+      },
+      {
+        "rank": 2,
+        "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+        "displayName": "Josef Calo-oy",
+        "rating": 93.1,
+        "verifiedGameCount": 14,
+        "stars": 5
+      },
+      {
+        "rank": 3,
+        "playerId": "155da59e-233b-443b-a0aa-4056d6aa7439",
+        "displayName": "Mark Esperanza",
+        "rating": 90.61,
+        "verifiedGameCount": 12,
+        "stars": 5
+      },
+      {
+        "rank": 4,
+        "playerId": "19d814af-ad70-47dd-8b28-a4e7d045ebed",
+        "displayName": "Sean Franco",
+        "rating": 88.82,
+        "verifiedGameCount": 19,
+        "stars": 4
+      },
+      {
+        "rank": 5,
+        "playerId": "2d54855c-91cf-43b5-8a7b-9848f431c8b7",
+        "displayName": "Greggy Calma",
+        "rating": 88.44,
+        "verifiedGameCount": 5,
+        "stars": 4
+      },
+      {
+        "rank": 6,
+        "playerId": "f0b248fe-d417-4628-9807-9c84c94c3e78",
+        "displayName": "Steven Creus",
+        "rating": 88.41,
+        "verifiedGameCount": 14,
+        "stars": 4
+      },
+      {
+        "rank": 7,
+        "playerId": "94f8db8c-d349-467b-905c-b422a4670242",
+        "displayName": "Ray Ladica",
+        "rating": 88.34,
+        "verifiedGameCount": 19,
+        "stars": 4
+      },
+      {
+        "rank": 8,
+        "playerId": "6b8b8d16-5e65-45d3-a5a6-c77549e425b9",
+        "displayName": "Cabs Cabonilas",
+        "rating": 88.19,
+        "verifiedGameCount": 19,
+        "stars": 4
+      },
+      {
+        "rank": 9,
+        "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+        "displayName": "Lucas Kaw",
+        "rating": 87.4,
+        "verifiedGameCount": 22,
+        "stars": 4
+      },
+      {
+        "rank": 10,
+        "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+        "displayName": "Moussa Diakite",
+        "rating": 87.27,
+        "verifiedGameCount": 17,
+        "stars": 4
+      }
+    ],
+    "entered": [
+      {
+        "name": "Steven Creus",
+        "rank": 6,
+        "rating": 88.41
+      },
+      {
+        "name": "Ray Ladica",
+        "rank": 7,
+        "rating": 88.34
+      },
+      {
+        "name": "Cabs Cabonilas",
+        "rank": 8,
+        "rating": 88.19
+      },
+      {
+        "name": "Moussa Diakite",
+        "rank": 10,
+        "rating": 87.27
+      }
+    ],
+    "exited": [
+      {
+        "name": "Yuan Ramirez",
+        "rank": 4,
+        "rating": 93.61
+      },
+      {
+        "name": "Jordan Yeng",
+        "rank": 7,
+        "rating": 89.96
+      },
+      {
+        "name": "Joshua Chua",
+        "rank": 8,
+        "rating": 89.58
+      },
+      {
+        "name": "Allen Te",
+        "rank": 9,
+        "rating": 89.26
+      }
+    ]
+  },
+  "samples": {
+    "largestRatingIncreases": [
+      {
+        "displayName": "Jude Eriobu",
+        "production": {
+          "rank": 1,
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+          "displayName": "Jude Eriobu",
+          "rating": 98.33,
+          "verifiedGameCount": 16,
+          "stars": 5
+        },
+        "shadow": {
+          "rank": 1,
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+          "displayName": "Jude Eriobu",
+          "rating": 98.33,
+          "verifiedGameCount": 16,
+          "stars": 5
+        },
+        "rankDelta": 0,
+        "ratingDelta": 0
+      },
+      {
+        "displayName": "Josef Calo-oy",
+        "production": {
+          "rank": 5,
+          "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+          "displayName": "Josef Calo-oy",
+          "rating": 93.1,
+          "verifiedGameCount": 14,
+          "stars": 5
+        },
+        "shadow": {
+          "rank": 2,
+          "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+          "displayName": "Josef Calo-oy",
+          "rating": 93.1,
+          "verifiedGameCount": 14,
+          "stars": 5
+        },
+        "rankDelta": 3,
+        "ratingDelta": 0
+      },
+      {
+        "displayName": "Lucas Kaw",
+        "production": {
+          "rank": 3,
+          "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+          "displayName": "Lucas Kaw",
+          "rating": 93.98,
+          "verifiedGameCount": 22,
+          "stars": 5
+        },
+        "shadow": {
+          "rank": 9,
+          "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+          "displayName": "Lucas Kaw",
+          "rating": 87.4,
+          "verifiedGameCount": 22,
+          "stars": 4
+        },
+        "rankDelta": -6,
+        "ratingDelta": -6.58
+      }
+    ],
+    "largestRankMovers": [
+      {
+        "displayName": "Yuan Ramirez",
+        "productionRank": 4,
+        "shadowRank": 12,
+        "rankDelta": -8
+      },
+      {
+        "displayName": "Sean Franco",
+        "productionRank": 10,
+        "shadowRank": 4,
+        "rankDelta": 6
+      },
+      {
+        "displayName": "Steven Creus",
+        "productionRank": 12,
+        "shadowRank": 6,
+        "rankDelta": 6
+      },
+      {
+        "displayName": "Ray Ladica",
+        "productionRank": 13,
+        "shadowRank": 7,
+        "rankDelta": 6
+      },
+      {
+        "displayName": "Cabs Cabonilas",
+        "productionRank": 14,
+        "shadowRank": 8,
+        "rankDelta": 6
+      },
+      {
+        "displayName": "Lucas Kaw",
+        "productionRank": 3,
+        "shadowRank": 9,
+        "rankDelta": -6
+      },
+      {
+        "displayName": "Josef Calo-oy",
+        "productionRank": 5,
+        "shadowRank": 2,
+        "rankDelta": 3
+      },
+      {
+        "displayName": "Mark Esperanza",
+        "productionRank": 6,
+        "shadowRank": 3,
+        "rankDelta": 3
+      },
+      {
+        "displayName": "Greggy Calma",
+        "productionRank": 2,
+        "shadowRank": 5,
+        "rankDelta": -3
+      },
+      {
+        "displayName": "Jude Eriobu",
+        "productionRank": 1,
+        "shadowRank": 1,
+        "rankDelta": 0
+      }
+    ]
+  }
+}

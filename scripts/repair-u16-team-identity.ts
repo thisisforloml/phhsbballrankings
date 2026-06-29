@@ -1,7 +1,7 @@
 ﻿import { readFileSync } from "node:fs";
 import { prisma } from "../src/lib/prisma";
 
-const planPath = "D:/OnCourt Rankings PH/scripts/reports/u16-team-identity-repair-plan.json";
+const planPath = "D:/Peach Basket/scripts/reports/u16-team-identity-repair-plan.json";
 const leagueId = "c112c09d-75ac-46ed-96e4-ce2852bfba75";
 const seasonId = "39a4a46c-6362-411f-ae85-6f631414f30b";
 

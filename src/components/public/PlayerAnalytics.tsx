@@ -40,6 +40,10 @@ function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
 
+function formatCompactGameDate(value: string) {
+  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(value));
+}
+
 function compactTeamName(value: string) {
   const abbr = getProgramAbbreviation(value).trim();
   return abbr.length && abbr.length < value.trim().length ? abbr : value;
@@ -368,7 +372,7 @@ function PerGameStatCell({ label, value }: { label: string; value: string | numb
     <div className="flex items-center gap-2.5 rounded border border-neutral-200 bg-neutral-50 px-3 py-2.5">
       <StatIconFor label={label} className="h-5 w-5 shrink-0 text-accent-600" />
       <div>
-        <p className="font-display text-xl font-bold tabular-nums leading-none text-primary-900">{value}</p>
+        <p className="font-numeric text-xl font-bold tabular-nums leading-none text-primary-900">{value}</p>
         <p className="mt-0.5 text-[0.6rem] font-bold uppercase tracking-[0.1em] text-accent-600">{label}</p>
       </div>
     </div>
@@ -379,7 +383,7 @@ function TotalsStatCell({ label, value }: { label: string; value: string | numbe
   return (
     <div className="flex flex-col items-center gap-1 rounded border border-neutral-200 bg-neutral-50 px-2 py-2.5">
       <StatIconFor label={label} className="h-4 w-4 text-accent-600" />
-      <p className="font-display text-xl font-bold tabular-nums leading-none text-primary-900">{value}</p>
+      <p className="font-numeric text-xl font-bold tabular-nums leading-none text-primary-900">{value}</p>
       <p className="text-[0.58rem] font-bold uppercase tracking-[0.1em] text-accent-600">{label}</p>
     </div>
   );
@@ -563,24 +567,19 @@ export function PlayerSeasonProduction({ profile }: { profile: PlayerProfile }) 
             <ProductionHeading>Shooting profile</ProductionHeading>
             <div className="mt-3 space-y-3">
               {activeShootingRows.map((row) => (
-                <div key={row.label} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-neutral-50 text-accent-600">
-                    <StatIconFor label={row.label} className="h-4 w-4" />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline justify-between gap-2">
-                      <div>
-                        <p className="text-sm font-bold leading-none text-primary-900">{row.label}</p>
-                        <p className="mt-0.5 text-[0.65rem] font-semibold text-neutral-400">{row.detail}</p>
-                      </div>
-                      <strong className="shrink-0 font-display text-base font-bold tabular-nums text-accent-600">{pct(row.value)}</strong>
+                <div key={row.label} className="min-w-0">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-bold leading-none text-primary-900">{row.label}</p>
+                      <p className="mt-0.5 text-[0.65rem] font-semibold text-neutral-400">{row.detail}</p>
                     </div>
-                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-neutral-200">
-                      <div
-                        className="h-full rounded-full bg-accent-600"
-                        style={{ width: `${Math.max(3, Math.min(100, row.value ?? 0))}%` }}
-                      />
-                    </div>
+                    <strong className="shrink-0 font-numeric text-base font-bold tabular-nums text-accent-600">{pct(row.value)}</strong>
+                  </div>
+                  <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-neutral-200">
+                    <div
+                      className="h-full rounded-full bg-accent-600"
+                      style={{ width: `${Math.max(3, Math.min(100, row.value ?? 0))}%` }}
+                    />
                   </div>
                 </div>
               ))}
@@ -596,7 +595,7 @@ export function PlayerSeasonProduction({ profile }: { profile: PlayerProfile }) 
                 <div key={metric.label} className="min-w-0">
                   <div className="flex items-baseline justify-between gap-3">
                     <dt className="text-sm font-bold text-primary-900">{metric.label}</dt>
-                    <dd className="font-display text-base font-bold tabular-nums text-accent-600">{metric.value}</dd>
+                    <dd className="font-numeric text-base font-bold tabular-nums text-accent-600">{metric.value}</dd>
                   </div>
                   <p className="mt-0.5 text-[0.65rem] font-semibold leading-4 text-neutral-400">{metric.description}</p>
                 </div>
@@ -643,7 +642,7 @@ export function PlayerSeasonProduction({ profile }: { profile: PlayerProfile }) 
               <div className="mt-3 flex divide-x divide-neutral-200 border-t border-neutral-200">
                 {bestGameLine.map(([label, value]) => (
                   <div key={label as string} className="flex flex-1 flex-col items-center justify-center py-3">
-                    <p className="font-display text-[1.75rem] font-bold tabular-nums leading-none text-primary-900">{value}</p>
+                    <p className="font-numeric text-[1.75rem] font-bold tabular-nums leading-none text-primary-900">{value}</p>
                     <p className="mt-1.5 text-[0.58rem] font-bold uppercase tracking-[0.1em] text-accent-600">{label}</p>
                   </div>
                 ))}
@@ -661,7 +660,7 @@ export function PlayerSeasonProduction({ profile }: { profile: PlayerProfile }) 
             <ul className="space-y-1.5">
               {profile.gameHighs.map((high) => (
                 <li key={high.label} className="flex items-center gap-3 rounded border border-neutral-200 bg-white px-3 py-2">
-                  <strong className="w-8 shrink-0 font-display text-2xl font-bold tabular-nums leading-none text-accent-600">
+                  <strong className="w-8 shrink-0 font-numeric text-2xl font-bold tabular-nums leading-none text-accent-600">
                     {high.value}
                   </strong>
                   <span className="w-16 shrink-0 text-[0.58rem] font-black uppercase tracking-[0.1em] text-neutral-400">
@@ -861,7 +860,7 @@ export function PlayerFullGameLog({ profile }: { profile: PlayerProfile }) {
   }
 
   return (
-    <ProfileModule id="game-log" title="Full Game Log" bodyClassName="p-0 md:p-0">
+    <ProfileModule id="game-log" title="Full Game Log" bodyClassName="p-0 md:p-0" className="w-full">
       {!profile.allGames.length ? <div className="p-4 md:p-5"><EmptyState icon="scores" title="No game logs available" /></div> : null}
       {profile.allGames.length > 0 && (
         <>
@@ -966,10 +965,13 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
 
 // ── Game log table ─────────────────────────────────────────────────────────────
 
+const GAME_LOG_GRID_COLS =
+  "grid-cols-[4.25rem_minmax(8rem,1.2fr)_2.35rem_repeat(13,minmax(1.85rem,1fr))]";
+
 function GameLogTable({ games, sort, direction, onSort }: { games: PlayerProfileGame[]; sort: GameLogSort; direction: SortDirection; onSort: (s: GameLogSort) => void }) {
   return (
-    <div className="max-w-full overflow-x-auto bg-white">
-      <div className="sports-table-head hidden min-w-[72rem] grid-cols-[6.5rem_minmax(11rem,1.2fr)_4.5rem_repeat(13,3.7rem)] gap-2 xl:grid">
+    <div className="w-full bg-white">
+      <div className={`sports-table-head grid ${GAME_LOG_GRID_COLS} gap-x-1.5 px-3 py-2 text-[0.62rem]`}>
         <GameLogSortHeader label="Date"     column="date"       sort={sort} direction={direction} onSort={onSort} align="left" />
         <GameLogSortHeader label="Opponent" column="opponent"   sort={sort} direction={direction} onSort={onSort} align="left" />
         <GameLogSortHeader label="Result"   column="result"     sort={sort} direction={direction} onSort={onSort} />
@@ -992,30 +994,30 @@ function GameLogTable({ games, sort, direction, onSort }: { games: PlayerProfile
           <Link
             key={game.gameId}
             href={`/games/${game.gameId}`}
-            className="group grid min-w-[72rem] gap-2 border-b border-line-500 px-3 py-2 text-sm last:border-b-0 hover:bg-paper-500 xl:grid-cols-[6.5rem_minmax(11rem,1.2fr)_4.5rem_repeat(13,3.7rem)] xl:items-center"
+            className={`group grid ${GAME_LOG_GRID_COLS} items-center gap-x-1.5 border-b border-line-500 px-3 py-2 text-xs last:border-b-0 hover:bg-paper-500`}
           >
-            <span className="sticky left-0 z-10 bg-white pr-2 font-semibold text-court-500 group-hover:bg-paper-500 xl:static xl:bg-transparent">{formatDate(game.gameDate)}</span>
-            <span className="sticky left-[6.5rem] z-10 bg-white pr-2 xl:static xl:bg-transparent">
-              <strong className="block text-court-900">vs {compactTeamName(game.opponentName)}</strong>
-              <small className="block text-xs font-semibold text-court-500">{game.leagueName}</small>
+            <span className="font-numeric font-semibold tabular-nums text-court-500">{formatCompactGameDate(game.gameDate)}</span>
+            <span className="min-w-0">
+              <strong className="block truncate font-bold text-court-900">vs {compactTeamName(game.opponentName)}</strong>
+              <small className="block truncate text-[0.62rem] font-semibold text-court-400">{game.leagueName}</small>
             </span>
-            <span><WinLossPill result={game.result} /></span>
-            <InlineStat label="MIN" value={statValue(game.minutes)} />
-            <InlineStat label="PTS" value={game.points} />
-            <InlineStat label="REB" value={game.rebounds} />
-            <InlineStat label="AST" value={game.assists} />
-            <InlineStat label="STL" value={statValue(game.steals)} />
-            <InlineStat label="BLK" value={statValue(game.blocks)} />
-            <InlineStat label="TO"  value={statValue(game.turnovers)} />
-            <InlineStat label="PF"  value={statValue(game.fouls)} />
-            <InlineStat label="FG"  value={madeAttempt(game.fieldGoalsMade, game.fieldGoalsAttempt)} />
-            <InlineStat label="2P"  value={madeAttempt(game.twoMade, game.twoAttempt)} />
-            <InlineStat label="3P"  value={madeAttempt(game.threeMade, game.threeAttempt)} />
-            <InlineStat label="FT"  value={madeAttempt(game.freeThrowsMade, game.freeThrowsAttempt)} />
-            <InlineStat label="+/-" value={statValue(game.plusMinus)} />
-          </Link>
-        ))}
-      </div>
+            <span className="flex justify-center"><WinLossPill result={game.result} /></span>
+              <InlineStat label="MIN" value={statValue(game.minutes)} />
+              <InlineStat label="PTS" value={game.points} />
+              <InlineStat label="REB" value={game.rebounds} />
+              <InlineStat label="AST" value={game.assists} />
+              <InlineStat label="STL" value={statValue(game.steals)} />
+              <InlineStat label="BLK" value={statValue(game.blocks)} />
+              <InlineStat label="TO"  value={statValue(game.turnovers)} />
+              <InlineStat label="PF"  value={statValue(game.fouls)} />
+              <InlineStat label="FG"  value={madeAttempt(game.fieldGoalsMade, game.fieldGoalsAttempt)} />
+              <InlineStat label="2P"  value={madeAttempt(game.twoMade, game.twoAttempt)} />
+              <InlineStat label="3P"  value={madeAttempt(game.threeMade, game.threeAttempt)} />
+              <InlineStat label="FT"  value={madeAttempt(game.freeThrowsMade, game.freeThrowsAttempt)} />
+              <InlineStat label="+/-" value={statValue(game.plusMinus)} />
+            </Link>
+          ))}
+        </div>
     </div>
   );
 }
@@ -1034,8 +1036,8 @@ function GameLogSortHeader({ label, column, sort, direction, onSort, align = "ce
 function InlineStat({ label, value }: { label: string; value: string | number }) {
   return (
     <span className="text-center">
-      <strong className="block font-display text-base font-bold leading-none text-court-900 md:text-lg">{value}</strong>
-      <small className="block text-[0.62rem] font-bold uppercase tracking-[0.12em] text-court-400 xl:hidden">{label}</small>
+      <strong className="block font-numeric text-[0.75rem] font-semibold tabular-nums leading-none text-court-900">{value}</strong>
+      <small className="sr-only">{label}</small>
     </span>
   );
 }

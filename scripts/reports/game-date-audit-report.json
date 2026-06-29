@@ -1,0 +1,455 @@
+{
+  "generatedAt": "2026-06-18T08:36:24.011Z",
+  "totalActiveGames": 405,
+  "statshubGames": 151,
+  "statshubTopDates": [
+    [
+      "2025-11-16",
+      7
+    ],
+    [
+      "2025-11-30",
+      7
+    ],
+    [
+      "2025-11-23",
+      6
+    ],
+    [
+      "2025-12-06",
+      6
+    ],
+    [
+      "2025-07-12",
+      4
+    ],
+    [
+      "2025-07-19",
+      4
+    ],
+    [
+      "2025-07-26",
+      4
+    ],
+    [
+      "2025-08-02",
+      4
+    ],
+    [
+      "2025-08-09",
+      4
+    ],
+    [
+      "2025-08-16",
+      4
+    ],
+    [
+      "2025-08-23",
+      4
+    ],
+    [
+      "2025-09-27",
+      4
+    ],
+    [
+      "2025-10-25",
+      4
+    ],
+    [
+      "2025-11-02",
+      4
+    ],
+    [
+      "2025-11-08",
+      4
+    ],
+    [
+      "2025-11-15",
+      4
+    ],
+    [
+      "2025-11-29",
+      4
+    ],
+    [
+      "2025-12-07",
+      4
+    ],
+    [
+      "2025-03-02",
+      3
+    ],
+    [
+      "2025-03-09",
+      3
+    ]
+  ],
+  "suspiciousImportDayCount": 0,
+  "suspiciousTodayCount": 0,
+  "sampleSuspiciousGames": [],
+  "submissionCount": 10,
+  "submissionGameDateRows": 151,
+  "submissionGameDatesSample": [
+    {
+      "submissionId": "b0595abf-8cc9-437d-83d2-c3a6d2ad9591",
+      "submissionTitle": "6th Stallion Cup 18U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2843895",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "JJ Sports U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "b0595abf-8cc9-437d-83d2-c3a6d2ad9591",
+      "submissionTitle": "6th Stallion Cup 18U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2843896",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Chatime U19 Boys",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "b0595abf-8cc9-437d-83d2-c3a6d2ad9591",
+      "submissionTitle": "6th Stallion Cup 18U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2845881",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Chatime U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "b0595abf-8cc9-437d-83d2-c3a6d2ad9591",
+      "submissionTitle": "6th Stallion Cup 18U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2845882",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "JJ Sports U19 Boys",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2819849",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "BBC 17u U19 Boys",
+      "awayTeamName": "Amsteel U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2819850",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Charm U19 Boys",
+      "awayTeamName": "JJ Sports"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2819845",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Gold Cross U19 Boys",
+      "awayTeamName": "Chatime U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826481",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "BBC 17u U19 Boys",
+      "awayTeamName": "Azarias"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826483",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Charm U19 Boys",
+      "awayTeamName": "Gold Cross U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826485",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "JJ Sports",
+      "awayTeamName": "Amsteel U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826487",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Amsteel U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826489",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Chatime U19 Boys",
+      "awayTeamName": "Azarias"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826491",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Gold Cross U19 Boys",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826493",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "JJ Sports",
+      "awayTeamName": "Gold Cross U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826495",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Chatime U19 Boys",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826497",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Azarias",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826498",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Charm U19 Boys",
+      "awayTeamName": "Chatime U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826500",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Amsteel U19 Boys",
+      "awayTeamName": "Gold Cross U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826502",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Azarias",
+      "awayTeamName": "JJ Sports"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826501",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "JJ Sports",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826504",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Gold Cross U19 Boys",
+      "awayTeamName": "Azarias"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826507",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Amsteel U19 Boys",
+      "awayTeamName": "Chatime U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826506",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Azarias",
+      "awayTeamName": "Amsteel U19 Boys"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826509",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Chatime U19 Boys",
+      "awayTeamName": "JJ Sports"
+    },
+    {
+      "submissionId": "3192d4e5-d830-4bf5-9529-9fc1dd9e3336",
+      "submissionTitle": "6th Stallion Cup 18U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-48385-2826510",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "BBC 17u U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "7118c61b-1040-44fa-a291-4efdd4b1a228",
+      "submissionTitle": "5th Stallion Cup 17U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2789103",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Amsteel U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "7118c61b-1040-44fa-a291-4efdd4b1a228",
+      "submissionTitle": "5th Stallion Cup 17U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2789110",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Gold Cross U19 Boys",
+      "awayTeamName": "Torch 17u U19 Boys"
+    },
+    {
+      "submissionId": "7118c61b-1040-44fa-a291-4efdd4b1a228",
+      "submissionTitle": "5th Stallion Cup 17U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2789905",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Torch 17u U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "7118c61b-1040-44fa-a291-4efdd4b1a228",
+      "submissionTitle": "5th Stallion Cup 17U, Playoffs",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2789904",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Amsteel U19 Boys",
+      "awayTeamName": "Gold Cross U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2769709",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Amsteel",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2767113",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Tapa Mama",
+      "awayTeamName": "Celsius U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2767114",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Gold Cross U19 Boys",
+      "awayTeamName": "Auto-Gard"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2769745",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Torch 17u U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2767115",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Torch 17u U19 Boys",
+      "awayTeamName": "Amsteel"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2767116",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Celsius U19 Boys",
+      "awayTeamName": "Auto-Gard"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2767118",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Tapa Mama",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2767119",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Gold Cross U19 Boys",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2771129",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Auto-Gard",
+      "awayTeamName": "BBC 17u U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2771133",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Celsius U19 Boys",
+      "awayTeamName": "Charm U19 Boys"
+    },
+    {
+      "submissionId": "10cd2225-24f4-41f8-9778-2eaf90820878",
+      "submissionTitle": "5th Stallion Cup 17U, Eliminations",
+      "status": "IMPORTED",
+      "gameNumber": "SH-47472-2771135",
+      "gameDate": "2026-06-17",
+      "homeTeamName": "Auto-Gard",
+      "awayTeamName": "Torch 17u U19 Boys"
+    }
+  ],
+  "submissionGameDateNullCount": 0
+}

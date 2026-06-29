@@ -1,0 +1,172 @@
+{
+  "generatedAt": "2026-06-17T08:26:50.286Z",
+  "phase": "pre-merge-backup",
+  "mode": "read-only",
+  "canonical": {
+    "program": {
+      "id": "97062465-a28b-4097-a9fb-0a6c451c5cc4",
+      "fullName": "Bistrot Le Coucou"
+    },
+    "team": {
+      "id": "ff96c815-68e3-4402-804a-4d49c91313ed",
+      "name": "Bistrot Le Coucou U19 Boys",
+      "programId": "97062465-a28b-4097-a9fb-0a6c451c5cc4"
+    },
+    "usage": {
+      "activeGames": 4,
+      "activeGameStats": 40,
+      "rosterSeasons": 0,
+      "externalAliases": 2,
+      "teamRatings": 0
+    }
+  },
+  "duplicate": {
+    "program": {
+      "id": "65cde8f7-e861-4c4f-b3a2-165778b5eab1",
+      "fullName": "BistrotLeCoucou"
+    },
+    "team": {
+      "id": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+      "name": "BistrotLeCoucou U19 Boys",
+      "programId": "65cde8f7-e861-4c4f-b3a2-165778b5eab1"
+    },
+    "usage": {
+      "activeGames": 4,
+      "activeGameStats": 40,
+      "rosterSeasons": 0,
+      "externalAliases": 0,
+      "teamRatings": 0
+    },
+    "teamsUnderProgram": [
+      {
+        "id": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+        "name": "BistrotLeCoucou U19 Boys"
+      }
+    ],
+    "playersWithCurrentProgram": []
+  },
+  "affectedRecords": {
+    "games": [
+      {
+        "id": "a8e42f21-769c-466c-8445-2aa44a75cc1e",
+        "gameNumber": "SH-40774-2631887",
+        "gameDate": "2026-06-17T00:00:00.000Z",
+        "league": "3rd Stallion Cup – Teens 17u",
+        "season": "Season 2026",
+        "ageGroup": "U19",
+        "homeTeamId": "68295b9f-d505-467e-bda8-39fc4e2e936c",
+        "awayTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+        "homeTeamName": "Fruteria U19 Boys",
+        "awayTeamName": "BistrotLeCoucou U19 Boys",
+        "gameStatCount": 12
+      },
+      {
+        "id": "64ec4bad-2610-4dc0-9abb-63c474498d7d",
+        "gameNumber": "SH-40774-2631888",
+        "gameDate": "2026-06-17T00:00:00.000Z",
+        "league": "3rd Stallion Cup – Teens 17u",
+        "season": "Season 2026",
+        "ageGroup": "U19",
+        "homeTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+        "awayTeamId": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+        "homeTeamName": "BistrotLeCoucou U19 Boys",
+        "awayTeamName": "BBC 17u U19 Boys",
+        "gameStatCount": 9
+      },
+      {
+        "id": "b661f86a-4018-4dc7-bbb5-9c1d366022e3",
+        "gameNumber": "SH-40774-2631898",
+        "gameDate": "2026-06-17T00:00:00.000Z",
+        "league": "3rd Stallion Cup – Teens 17u",
+        "season": "Season 2026",
+        "ageGroup": "U19",
+        "homeTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+        "awayTeamId": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+        "homeTeamName": "BistrotLeCoucou U19 Boys",
+        "awayTeamName": "Celsius U19 Boys",
+        "gameStatCount": 9
+      },
+      {
+        "id": "f2d04eb8-d52e-4f70-95a2-f641d6be3787",
+        "gameNumber": "SH-40774-2631899",
+        "gameDate": "2026-06-17T00:00:00.000Z",
+        "league": "3rd Stallion Cup – Teens 17u",
+        "season": "Season 2026",
+        "ageGroup": "U19",
+        "homeTeamId": "baa2a62d-5e63-47b8-9e2a-1c8076c10ebf",
+        "awayTeamId": "8f0ddc95-b993-4fbf-a903-ce53ab2bbaad",
+        "homeTeamName": "Chatime U19 Boys",
+        "awayTeamName": "BistrotLeCoucou U19 Boys",
+        "gameStatCount": 10
+      }
+    ],
+    "gameStatIds": [
+      "59d8b831-4558-4135-a39c-2f0396b0fdf2",
+      "b533ee9a-7aad-4b74-80a5-c8072c819f58",
+      "9270077e-fb12-47f4-b610-ca7b95dcc105",
+      "982a1e62-2c25-49cb-a521-017461d27782",
+      "c7cbec80-2074-40af-aa04-f2ee5e5830a6",
+      "6e7a202a-f5ea-4e30-814b-5b5ef358feb8",
+      "9b33c1ce-a54a-4b91-a73b-9a114830555b",
+      "f60f4638-653a-4e4f-8eca-67d316c24eac",
+      "d4fc6bd0-8fba-4076-a76a-7654abe01397",
+      "cdb10c64-8eab-4682-b8cd-295ce4ebb7ad",
+      "9a7154f3-1c05-47e4-be59-6b44b81f8c36",
+      "ff7aedb7-31d9-4143-97c9-a8bc224b48dc",
+      "2c37900e-11bc-4545-a552-2631aa6739af",
+      "5864c301-19ea-4e39-ac7d-f8e0aa357171",
+      "7a30a644-c7a5-42e8-8af3-ae90fd44b0de",
+      "b424eeec-cbce-47a1-ae16-a4c81382bd18",
+      "6e5cf46d-01fc-4653-8bb2-500d31506a91",
+      "c6b0341b-9e89-41c5-8aa5-f1774cac5175",
+      "dd68e48a-d162-4f9b-abd9-6acb816d2109",
+      "7a7507d7-e270-44e7-9e17-6fac6dee6232",
+      "9254bc73-3901-46e2-bc44-d0e32d0f8826",
+      "327f3296-4dae-4c6c-854b-78b32944b444",
+      "f2267e09-c38b-4a66-9df0-1aa1eb601325",
+      "c5979254-22f0-4918-99ad-e2ad16933183",
+      "091e17c2-d6d4-44af-bca1-09f170a5e53c",
+      "3d883056-d887-4146-b8fc-f51562a02a3a",
+      "8442bbc1-6988-4de8-91c5-f46a9011bd30",
+      "fc52715e-9c68-4274-a9e2-14278b123b88",
+      "2bf61d6b-1e66-4e35-a10b-21bd52a0c863",
+      "be782d99-8f16-4154-8b21-fd8b746f739c",
+      "e62e5f78-b1c4-4db9-8cd3-504fd1e0f073",
+      "225f7407-2be7-4998-a63f-99274d817296",
+      "90638309-c86d-4b68-afa3-8f94add66ede",
+      "337dee9d-f3cb-4fda-a97f-d4afb75687a7",
+      "1e259555-50a4-4ebc-82b5-9691a4b290fd",
+      "35ecefdd-ba67-4432-b377-3d355b77d4bf",
+      "04f4bafd-bf8f-4efa-b835-117d9ab9e2c6",
+      "295cdc66-1e55-4e42-a651-821588c46de7",
+      "17f6fe62-7c3b-462e-b70e-675673999574",
+      "71af4c1f-2283-460c-ae8f-a7a1c43cfda5"
+    ],
+    "gameStatCount": 40,
+    "gameCount": 4,
+    "rosterSeasons": 0,
+    "externalAliases": 0,
+    "teamRatings": 0,
+    "playersToReassignProgram": []
+  },
+  "protectedCountsBefore": {
+    "activeGameStats": 9391,
+    "gamePerformanceScores": 9391,
+    "playerRatings": 940,
+    "rankingSnapshots": 5,
+    "rankingSnapshotRows": 826
+  },
+  "rollbackInstructions": {
+    "summary": "Restore teamId/homeTeamId/awayTeamId/currentProgramId from this backup JSON; un-soft-delete duplicate entities if retired.",
+    "tables": [
+      "games",
+      "game_stats",
+      "player_team_seasons",
+      "team_external_aliases",
+      "team_ratings",
+      "players",
+      "teams",
+      "programs"
+    ]
+  }
+}

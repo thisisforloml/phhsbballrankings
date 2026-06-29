@@ -1,9 +1,9 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+﻿import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { prisma } from "../src/lib/prisma";
 import { getUaapSchoolDisplayName } from "../src/lib/uaap-school-display";
 
-const reportPath = "D:/OnCourt Rankings PH/scripts/reports/u19-la-salle-team-identity-repair-plan.json";
+const reportPath = "D:/Peach Basket/scripts/reports/u19-la-salle-team-identity-repair-plan.json";
 const targetAliases = new Set(["DLSU", "DLSZ", "LA SALLE", "DE LA SALLE SANTIAGO ZOBEL"]);
 
 function stripAgeGenderSuffix(name: string) {

@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-06-28T13:56:12.078Z",
+  "mode": "read-only-audit",
+  "authoritativeFormula": {
+    "policyVersionId": "formula-v1-tier-normalized-soft-v1",
+    "activeConfig": {
+      "mode": "production-v1",
+      "formulaVersionNumber": 1,
+      "policyVersionId": "formula-v1-tier-normalized-soft-v1"
+    },
+    "formulaModeEnv": null,
+    "notApprovedForProduction": "rating-formula-vnext-shadow-v1"
+  },
+  "inventory": {
+    "expectedTargetCount": 938,
+    "storedTierNormalizedCount": 947,
+    "storedLegacyProductionCount": 946,
+    "storedVnextShadowCount": 111,
+    "gpsGameRows": 9391,
+    "leagueTierDistribution": [
+      {
+        "tier": 1,
+        "count": 4
+      },
+      {
+        "tier": 2,
+        "count": 2
+      },
+      {
+        "tier": 3,
+        "count": 2
+      }
+    ]
+  },
+  "correctness": {
+    "matching": 938,
+    "driftCount": 0,
+    "missingStoredCount": 0,
+    "orphanStoredCount": 9,
+    "limboNeedingHomeBoard": 0,
+    "limboTotal": 0
+  },
+  "topDrift": [],
+  "reviewPlayers": [
+    {
+      "displayName": "Jude Eriobu",
+      "u19": {
+        "stored": 98.33,
+        "expected": 98.33,
+        "delta": 0
+      },
+      "u16": null
+    },
+    {
+      "displayName": "Xyriel Macahipay",
+      "u19": {
+        "stored": 84.13,
+        "expected": 84.13,
+        "delta": 0
+      },
+      "u16": {
+        "stored": 84.13,
+        "expected": null,
+        "delta": null
+      }
+    },
+    {
+      "displayName": "Lucas Kaw",
+      "u19": {
+        "stored": 91.16,
+        "expected": 91.16,
+        "delta": 0
+      },
+      "u16": null
+    }
+  ],
+  "recommendation": "PASS: stored ratings match fresh tier-normalized recompute"
+}

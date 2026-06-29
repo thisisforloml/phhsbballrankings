@@ -1,0 +1,682 @@
+{
+  "written": [
+    {
+      "path": "src/app/HomeClient.tsx",
+      "source": "main:sr-only",
+      "hadWrite": false,
+      "srApplied": 5,
+      "bytes": 2634
+    },
+    {
+      "path": "src/app/rankings/RankingsClient.tsx",
+      "source": "main:L36+sr:L37+sr:L47+sr:L47+sr:L47+sr:L47+sr:L47+sr:L49+sr:L62+sr:L62+sr:L62+sr:L62+sr:L62",
+      "hadWrite": true,
+      "srApplied": 21,
+      "bytes": 12876
+    },
+    {
+      "path": "src/components/ui/EmptyState.tsx",
+      "source": "main:sr-only+sr:L29",
+      "hadWrite": false,
+      "srApplied": 1,
+      "bytes": 2195
+    },
+    {
+      "path": "src/app/rankings/page.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 550
+    },
+    {
+      "path": "src/lib/public-site-data.ts",
+      "source": "main:sr-only+sr:L16+sr:L16",
+      "hadWrite": false,
+      "srApplied": 7,
+      "bytes": 9933
+    },
+    {
+      "path": "src/app/page.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 424
+    },
+    {
+      "path": "src/lib/public-rankings-coverage.ts",
+      "source": "main:L62",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1441
+    },
+    {
+      "path": "src/components/public/RankingsCoverageNotice.tsx",
+      "source": "main:L12",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 2735
+    },
+    {
+      "path": "src/components/public/AgeGroupPill.tsx",
+      "source": "main:L46",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1290
+    },
+    {
+      "path": "src/components/public/FilterBar.tsx",
+      "source": "main:L46",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1227
+    },
+    {
+      "path": "src/components/public/SectionHeader.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 1042
+    },
+    {
+      "path": "src/app/rankings/[gender]/[age]/page.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 701
+    },
+    {
+      "path": "src/lib/rankings-url-state.ts",
+      "source": "main:L36",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 4428
+    },
+    {
+      "path": "src/components/public/RankingTable.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 2858
+    },
+    {
+      "path": "src/components/public/RecruitingClassFilter.tsx",
+      "source": "main:L46",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2404
+    },
+    {
+      "path": "src/components/sections/RecentGames.tsx",
+      "source": "main:L300+sr:L349+sr:L373+sr:L381",
+      "hadWrite": true,
+      "srApplied": 3,
+      "bytes": 3548
+    },
+    {
+      "path": "src/components/sections/CompetitionParticipationSummary.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 2515
+    },
+    {
+      "path": "src/components/sections/CompetitionHistory.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 2036
+    },
+    {
+      "path": "src/components/sections/PlayerHero.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 2872
+    },
+    {
+      "path": "src/components/sections/HeroSection.tsx",
+      "source": "main:sr-only+sr:L618+sr:L618+sr:L620+sr:L627+sr:L627+sr:L628+sr:L654",
+      "hadWrite": false,
+      "srApplied": 20,
+      "bytes": 5632
+    },
+    {
+      "path": "src/components/public/PublicPageShell.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 310
+    },
+    {
+      "path": "src/components/sections/LeaderboardPreview.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 3357
+    },
+    {
+      "path": "src/components/ui/RatingBadge.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 290
+    },
+    {
+      "path": "src/components/admin/AdminSidebar.tsx",
+      "source": "admin:L1041",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2145
+    },
+    {
+      "path": "src/app/admin/page.tsx",
+      "source": "admin:L1041",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 312
+    },
+    {
+      "path": "src/app/admin/submissions/[id]/page.tsx",
+      "source": "admin:sr-only+sr:L163+sr:L165+sr:L199+sr:L199+sr:L200+sr:L200+sr:L200+sr:L240+sr:L240+sr:L276+sr:L277+sr:L277+sr:L277+sr:L295+sr:L295+sr:L297+sr:L302+sr:L951+sr:L951+sr:L951+sr:L951+sr:L975+sr:L975",
+      "hadWrite": false,
+      "srApplied": 38,
+      "bytes": 49457
+    },
+    {
+      "path": "src/app/admin/submissions/[id]/SimplifiedSubmissionReview.tsx",
+      "source": "admin:sr-only+sr:L19+sr:L20+sr:L167+sr:L168+sr:L201+sr:L298+sr:L298+sr:L364+sr:L947+sr:L947+sr:L950+sr:L950",
+      "hadWrite": false,
+      "srApplied": 33,
+      "bytes": 27272
+    },
+    {
+      "path": "src/app/admin/submissions/actions.ts",
+      "source": "admin:sr-only+sr:L364+sr:L364+sr:L366+sr:L939+sr:L939+sr:L939+sr:L939+sr:L940+sr:L940+sr:L940+sr:L940+sr:L940+sr:L940+sr:L940+sr:L953+sr:L975+sr:L1047+sr:L1048+sr:L1077+sr:L1077+sr:L1079",
+      "hadWrite": false,
+      "srApplied": 27,
+      "bytes": 21769
+    },
+    {
+      "path": "src/app/admin/data-health/player-duplicates/page.tsx",
+      "source": "admin:sr-only+sr:L172+sr:L225+sr:L225+sr:L241+sr:L241+sr:L241+sr:L276+sr:L279+sr:L297+sr:L297",
+      "hadWrite": false,
+      "srApplied": 10,
+      "bytes": 3250
+    },
+    {
+      "path": "src/app/admin/submissions/page.tsx",
+      "source": "admin:L35+sr:L36+sr:L161+sr:L161+sr:L161+sr:L162+sr:L162+sr:L162+sr:L162+sr:L162+sr:L163+sr:L240+sr:L240+sr:L241+sr:L276+sr:L277+sr:L293+sr:L293+sr:L293+sr:L295+sr:L945+sr:L945+sr:L945+sr:L945+sr:L945+sr:L945+sr:L945+sr:L945+sr:L945+sr:L945+sr:L975+sr:L975+sr:L1046+sr:L1046+sr:L1046+sr:L1046+sr:L1046+sr:L1046+sr:L1122",
+      "hadWrite": true,
+      "srApplied": 42,
+      "bytes": 21299
+    },
+    {
+      "path": "src/app/admin/programs/[id]/page.tsx",
+      "source": "admin:sr-only+sr:L203+sr:L1154+sr:L1154",
+      "hadWrite": false,
+      "srApplied": 15,
+      "bytes": 16720
+    },
+    {
+      "path": "src/app/admin/programs/[id]/ProgramDetailClient.tsx",
+      "source": "admin:sr-only+sr:L259+sr:L261+sr:L261+sr:L261+sr:L261+sr:L1154+sr:L1157",
+      "hadWrite": false,
+      "srApplied": 16,
+      "bytes": 20987
+    },
+    {
+      "path": "src/app/admin/tools/live-stats/page.tsx",
+      "source": "admin:L1043",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 339
+    },
+    {
+      "path": "src/app/admin/tools/submissions/page.tsx",
+      "source": "admin:L1043",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 447
+    },
+    {
+      "path": "src/app/admin/players/page.tsx",
+      "source": "admin:sr-only+sr:L185+sr:L185+sr:L223+sr:L223+sr:L224+sr:L236+sr:L236+sr:L236+sr:L1047+sr:L1047+sr:L1070+sr:L1070+sr:L1070+sr:L1149+sr:L1149+sr:L1257+sr:L1257+sr:L1259+sr:L1259",
+      "hadWrite": false,
+      "srApplied": 19,
+      "bytes": 3140
+    },
+    {
+      "path": "src/app/admin/teams/page.tsx",
+      "source": "admin:sr-only+sr:L185+sr:L185+sr:L236+sr:L236+sr:L236+sr:L1050+sr:L1050+sr:L1084",
+      "hadWrite": false,
+      "srApplied": 8,
+      "bytes": 6790
+    },
+    {
+      "path": "src/app/admin/players/PlayerManagementClient.tsx",
+      "source": "admin:L1174+sr:L1175+sr:L1175+sr:L1175+sr:L1175+sr:L1184+sr:L1270+sr:L1270+sr:L1270+sr:L1270+sr:L1270",
+      "hadWrite": true,
+      "srApplied": 10,
+      "bytes": 27196
+    },
+    {
+      "path": "src/app/admin/teams/TeamManagementClient.tsx",
+      "source": "admin:sr-only+sr:L171+sr:L171+sr:L171+sr:L171+sr:L171+sr:L171+sr:L171+sr:L171+sr:L188+sr:L188+sr:L188+sr:L203+sr:L203+sr:L203+sr:L262+sr:L262+sr:L262+sr:L262+sr:L278+sr:L279+sr:L280+sr:L1084+sr:L1084+sr:L1084+sr:L1084+sr:L1084+sr:L1158+sr:L1162+sr:L1164",
+      "hadWrite": false,
+      "srApplied": 29,
+      "bytes": 12877
+    },
+    {
+      "path": "src/app/admin/data-health/player-duplicates/PlayerDuplicateReviewClient.tsx",
+      "source": "admin:L219+sr:L223",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 10141
+    },
+    {
+      "path": "src/app/admin/programs/ProgramListClient.tsx",
+      "source": "admin:L219+sr:L220+sr:L221+sr:L344+sr:L344+sr:L355+sr:L355",
+      "hadWrite": true,
+      "srApplied": 6,
+      "bytes": 6001
+    },
+    {
+      "path": "src/app/admin/programs/page.tsx",
+      "source": "admin:sr-only+sr:L224+sr:L224+sr:L237+sr:L237+sr:L292+sr:L1050",
+      "hadWrite": false,
+      "srApplied": 9,
+      "bytes": 4496
+    },
+    {
+      "path": "src/components/admin/submissionStatus.ts",
+      "source": "admin:L160+sr:L943+sr:L943",
+      "hadWrite": true,
+      "srApplied": 2,
+      "bytes": 1497
+    },
+    {
+      "path": "src/components/admin/AdminEmptyState.tsx",
+      "source": "admin:L160",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1191
+    },
+    {
+      "path": "src/components/admin/AdminShell.tsx",
+      "source": "admin:L185+sr:L235",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 647
+    },
+    {
+      "path": "src/components/admin/AdminPageHeader.tsx",
+      "source": "admin:L185+sr:L292+sr:L1043",
+      "hadWrite": true,
+      "srApplied": 3,
+      "bytes": 1903
+    },
+    {
+      "path": "src/components/admin/AdminBadge.tsx",
+      "source": "admin:L198",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2486
+    },
+    {
+      "path": "src/components/admin/submissionHealthBadges.tsx",
+      "source": "admin:L198",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 643
+    },
+    {
+      "path": "src/components/admin/adminFilterStyles.ts",
+      "source": "admin:L216",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 441
+    },
+    {
+      "path": "src/lib/admin/buildAdminFilterHref.ts",
+      "source": "admin:L216",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 545
+    },
+    {
+      "path": "src/lib/admin/useAdminFilterParams.ts",
+      "source": "admin:L355",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 3351
+    },
+    {
+      "path": "src/components/admin/AdminFilterChipBar.tsx",
+      "source": "admin:L216",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1497
+    },
+    {
+      "path": "src/components/admin/AdminFilterRow.tsx",
+      "source": "admin:L216+sr:L220+sr:L220",
+      "hadWrite": true,
+      "srApplied": 3,
+      "bytes": 3632
+    },
+    {
+      "path": "src/lib/admin/adminNav.ts",
+      "source": "admin:L1041+sr:L1047",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 1204
+    },
+    {
+      "path": "src/components/admin/AdminLayoutClient.tsx",
+      "source": "admin:L235",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 512
+    },
+    {
+      "path": "src/app/admin/layout.tsx",
+      "source": "admin:L235",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 313
+    },
+    {
+      "path": "src/app/admin/players/actions.ts",
+      "source": "admin:sr-only+sr:L1068+sr:L1068+sr:L1068+sr:L1068+sr:L1126+sr:L1127+sr:L1128+sr:L1128+sr:L1269+sr:L1269+sr:L1273",
+      "hadWrite": false,
+      "srApplied": 11,
+      "bytes": 11163
+    },
+    {
+      "path": "src/app/admin/teams/actions.ts",
+      "source": "admin:sr-only+sr:L1081",
+      "hadWrite": false,
+      "srApplied": 1,
+      "bytes": 1797
+    },
+    {
+      "path": "src/app/admin/programs/actions.ts",
+      "source": "admin:sr-only+sr:L1072+sr:L1088+sr:L1154",
+      "hadWrite": false,
+      "srApplied": 8,
+      "bytes": 8252
+    },
+    {
+      "path": "src/components/admin/AdminSaveButton.tsx",
+      "source": "admin:L259",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 957
+    },
+    {
+      "path": "src/components/admin/AdminFormFeedback.tsx",
+      "source": "admin:L275",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 382
+    },
+    {
+      "path": "src/components/admin/AdminAlert.tsx",
+      "source": "admin:L275+sr:L276",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 1416
+    },
+    {
+      "path": "src/components/admin/submissionStatusBadges.tsx",
+      "source": "admin:L292",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1531
+    },
+    {
+      "path": "src/app/admin/tools/submissions/url-import-actions.ts",
+      "source": "admin:L497+sr:L558+sr:L558+sr:L558+sr:L558+sr:L576+sr:L578+sr:L579+sr:L579+sr:L579+sr:L579+sr:L584+sr:L585+sr:L587+sr:L590+sr:L634+sr:L634+sr:L634+sr:L634+sr:L636+sr:L656+sr:L656+sr:L656+sr:L801+sr:L801+sr:L802+sr:L802+sr:L941+sr:L954+sr:L954+sr:L992+sr:L992+sr:L992+sr:L993",
+      "hadWrite": true,
+      "srApplied": 49,
+      "bytes": 20477
+    },
+    {
+      "path": "src/app/admin/tools/submissions/UrlImportClient.tsx",
+      "source": "admin:L499+sr:L501+sr:L539+sr:L555+sr:L555+sr:L555+sr:L557+sr:L557+sr:L557+sr:L557+sr:L563+sr:L581+sr:L581+sr:L581+sr:L581+sr:L581+sr:L581+sr:L583+sr:L583+sr:L583+sr:L583+sr:L583+sr:L583+sr:L583+sr:L584+sr:L584+sr:L658+sr:L658+sr:L658+sr:L658+sr:L658+sr:L658+sr:L661+sr:L802",
+      "hadWrite": true,
+      "srApplied": 35,
+      "bytes": 33137
+    },
+    {
+      "path": "src/app/admin/tools/submissions/UrlImportTeamMatchingStep.tsx",
+      "source": "admin:L498+sr:L514+sr:L514+sr:L540+sr:L540+sr:L638",
+      "hadWrite": true,
+      "srApplied": 11,
+      "bytes": 12309
+    },
+    {
+      "path": "src/app/admin/tools/submissions/UrlImportMissingTeamsStep.tsx",
+      "source": "admin:L657",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 13595
+    },
+    {
+      "path": "src/app/admin/tools/submissions/UrlImportPlayerMatchingStep.tsx",
+      "source": "admin:L580+sr:L802+sr:L802+sr:L802",
+      "hadWrite": true,
+      "srApplied": 3,
+      "bytes": 12233
+    },
+    {
+      "path": "src/app/admin/submissions/SubmissionDeleteDraftForm.tsx",
+      "source": "admin:L974",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 3521
+    },
+    {
+      "path": "src/app/admin/submissions/SubmissionRowMenu.tsx",
+      "source": "admin:L938+sr:L974+sr:L974+sr:L974+sr:L974",
+      "hadWrite": true,
+      "srApplied": 4,
+      "bytes": 2839
+    },
+    {
+      "path": "src/app/admin/data-health/page.tsx",
+      "source": "",
+      "hadWrite": false,
+      "srApplied": 0,
+      "bytes": 4388
+    },
+    {
+      "path": "src/components/admin/SubmissionsHubTabs.tsx",
+      "source": "admin:L1041+sr:L1122+sr:L1122",
+      "hadWrite": true,
+      "srApplied": 2,
+      "bytes": 851
+    },
+    {
+      "path": "src/app/admin/submissions/SubmissionIntakePanels.tsx",
+      "source": "admin:L1043+sr:L1051+sr:L1054",
+      "hadWrite": true,
+      "srApplied": 2,
+      "bytes": 5579
+    },
+    {
+      "path": "src/app/admin/submissions/SubmissionManualTab.tsx",
+      "source": "admin:L1044",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 721
+    },
+    {
+      "path": "src/app/admin/leagues/page.tsx",
+      "source": "admin:L1044",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2793
+    },
+    {
+      "path": "src/app/admin/leagues/[id]/page.tsx",
+      "source": "admin:L1081+sr:L1091",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 2085
+    },
+    {
+      "path": "src/app/admin/claims/page.tsx",
+      "source": "admin:L1085+sr:L1086+sr:L1086",
+      "hadWrite": true,
+      "srApplied": 2,
+      "bytes": 1831
+    },
+    {
+      "path": "src/app/admin/ops/page.tsx",
+      "source": "admin:L1088",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2710
+    },
+    {
+      "path": "src/lib/admin/auto-roster-assignment.ts",
+      "source": "admin:L1066",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 3115
+    },
+    {
+      "path": "src/lib/admin/player-school-transfer.ts",
+      "source": "admin:L1269",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 6260
+    },
+    {
+      "path": "src/lib/admin/log-admin-action.ts",
+      "source": "admin:L1067",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 633
+    },
+    {
+      "path": "src/app/admin/leagues/actions.ts",
+      "source": "admin:L1079",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 9387
+    },
+    {
+      "path": "src/app/admin/leagues/LeagueGameAdminClient.tsx",
+      "source": "admin:L1080+sr:L1132",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 8677
+    },
+    {
+      "path": "src/app/admin/leagues/[id]/games/[gameId]/page.tsx",
+      "source": "admin:L1080+sr:L1081",
+      "hadWrite": true,
+      "srApplied": 1,
+      "bytes": 2435
+    },
+    {
+      "path": "src/app/admin/leagues/LeagueDetailClient.tsx",
+      "source": "admin:L1080+sr:L1089+sr:L1090",
+      "hadWrite": true,
+      "srApplied": 2,
+      "bytes": 4534
+    },
+    {
+      "path": "src/app/admin/claims/actions.ts",
+      "source": "admin:L1085",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2671
+    },
+    {
+      "path": "src/app/admin/claims/ClaimsAdminClient.tsx",
+      "source": "admin:L1085+sr:L1086+sr:L1086+sr:L1089+sr:L1089",
+      "hadWrite": true,
+      "srApplied": 4,
+      "bytes": 3655
+    },
+    {
+      "path": "src/app/admin/ops/actions.ts",
+      "source": "admin:L1088",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 1483
+    },
+    {
+      "path": "src/app/admin/ops/OpsPanels.tsx",
+      "source": "admin:L1088",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 2906
+    },
+    {
+      "path": "src/app/admin/team-ratings/page.tsx",
+      "source": "admin:L1088",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 310
+    },
+    {
+      "path": "src/lib/admin/submission-hub-tabs.ts",
+      "source": "admin:L1122",
+      "hadWrite": true,
+      "srApplied": 0,
+      "bytes": 946
+    },
+    {
+      "path": "src/lib/admin/roster-from-game-evidence.ts",
+      "source": "admin:L1122+sr:L1129+sr:L1186+sr:L1186+sr:L1255+sr:L1255+sr:L1255",
+      "hadWrite": true,
+      "srApplied": 6,
+      "bytes": 6988
+    }
+  ],
+  "bootstrapped": [
+    "src/app/HomeClient.tsx",
+    "src/components/ui/EmptyState.tsx",
+    "src/app/rankings/page.tsx",
+    "src/lib/public-site-data.ts",
+    "src/app/page.tsx",
+    "src/components/public/SectionHeader.tsx",
+    "src/app/rankings/[gender]/[age]/page.tsx",
+    "src/components/public/RankingTable.tsx",
+    "src/components/sections/CompetitionParticipationSummary.tsx",
+    "src/components/sections/CompetitionHistory.tsx",
+    "src/components/sections/PlayerHero.tsx",
+    "src/components/sections/HeroSection.tsx",
+    "src/components/public/PublicPageShell.tsx",
+    "src/components/sections/LeaderboardPreview.tsx",
+    "src/components/ui/RatingBadge.tsx",
+    "src/app/admin/submissions/[id]/page.tsx",
+    "src/app/admin/submissions/[id]/SimplifiedSubmissionReview.tsx",
+    "src/app/admin/submissions/actions.ts",
+    "src/app/admin/data-health/player-duplicates/page.tsx",
+    "src/app/admin/programs/[id]/page.tsx",
+    "src/app/admin/programs/[id]/ProgramDetailClient.tsx",
+    "src/app/admin/players/page.tsx",
+    "src/app/admin/teams/page.tsx",
+    "src/app/admin/teams/TeamManagementClient.tsx",
+    "src/app/admin/programs/page.tsx",
+    "src/app/admin/players/actions.ts",
+    "src/app/admin/teams/actions.ts",
+    "src/app/admin/programs/actions.ts",
+    "src/app/admin/data-health/page.tsx"
+  ],
+  "failed": [
+    {
+      "path": "src/app/admin/submissions/[id]/EditableGameStatsForm.tsx",
+      "reason": "no write and no bootstrap"
+    },
+    {
+      "path": "C:/OnCourt Rankings PH/src/app/admin/programs/page.tsx",
+      "reason": "no write and no bootstrap"
+    }
+  ]
+}

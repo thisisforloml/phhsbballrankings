@@ -1,0 +1,55 @@
+﻿---
+description: Peach Basket domain model — Program, Team, League, ratings, and age groups
+alwaysApply: true
+---
+
+# Domain Architecture
+
+## Identity Model
+
+| Entity | Role |
+|--------|------|
+| **Program** | School/club identity |
+| **Team** | Competition team identity; linked to Program via `Team.programId` |
+| **League** | Competition context — **not** a Program |
+
+## Player & Roster
+
+- **`Player.currentProgramId`** — profile metadata only; not a substitute for roster history
+- **`PlayerTeamSeason`** — roster assignment history (source of truth for who played where/when)
+
+## Historical Evidence
+
+- **`Game`** and **`GameStat`** — historical evidence
+- Do **not** rewrite games or stats during normal transfers, merges, or roster moves
+- Preserve historical integrity above convenience
+
+## Rankings
+
+| Source | Purpose |
+|--------|---------|
+| **`PlayerRating`** | Live public rankings |
+| **`RankingSnapshot`** | Historical and trend data |
+
+## Rating Formulas
+
+| Version | Status |
+|---------|--------|
+| **Formula v1** | Production |
+| **Formula v2** | Experimental — not approved for production; preview/dry-run only |
+
+## Age Groups
+
+Official groups: **U13**, **U16**, **U19**
+
+- U13: age 13 and below
+- U16: ages 14–16
+- U19: ages 17–19
+
+Public eligibility uses **calendar age as of the evaluation date** (birthday-based). Graduation follows the class-year rule (removed from U19 starting June 1 of class year).
+
+Carryover on age advance is **planned, not implemented** in Formula v1.
+
+## Guiding Principle
+
+When design choices conflict, **preserve historical integrity** over convenience shortcuts.

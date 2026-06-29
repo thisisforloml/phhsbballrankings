@@ -1,0 +1,57 @@
+{
+  "canonical": {
+    "id": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+    "displayName": "Keefe Iledan",
+    "gameCount": 10,
+    "gamesByAgeGroup": {
+      "U19": 10
+    },
+    "ratings": [
+      {
+        "ageGroup": "U16",
+        "verifiedGameCount": 10,
+        "adjustedRating": 68.17
+      },
+      {
+        "ageGroup": "U19",
+        "verifiedGameCount": 10,
+        "adjustedRating": 68.17
+      }
+    ]
+  },
+  "duplicate": {
+    "id": "484ff142-89b3-4752-91b4-d03d79df742e",
+    "displayName": "Keefy Iledan",
+    "gameCount": 15,
+    "gamesByAgeGroup": {
+      "U16": 15
+    },
+    "ratings": [
+      {
+        "ageGroup": "U16",
+        "verifiedGameCount": 15,
+        "adjustedRating": 82.19
+      }
+    ]
+  },
+  "sameGameCollisions": [],
+  "rosterSeasonConflicts": [],
+  "projectedRatingsAfterMerge": [
+    {
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U16",
+      "observedRating": 82.19,
+      "adjustedRating": 82.19,
+      "verifiedGameCount": 15,
+      "starRating": 4
+    },
+    {
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U19",
+      "observedRating": 68.17,
+      "adjustedRating": 68.17,
+      "verifiedGameCount": 10,
+      "starRating": 2
+    }
+  ]
+}

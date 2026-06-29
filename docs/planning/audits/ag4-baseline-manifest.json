@@ -1,0 +1,41 @@
+{
+  "capturedAt": "2026-06-18T04:57:03.167Z",
+  "g1PolicyVersion": "launch-v1",
+  "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+  "u19RatingPoolSize": 549,
+  "u19PoolDobCoverage": 0.2587,
+  "classYearOverrideCount": 12,
+  "rankedBoardSize": {
+    "boys": 232,
+    "girls": 45,
+    "total": 277
+  },
+  "rankedClassYearCoverage": 0.2274,
+  "nullClassRankedCount": 214,
+  "provisionalOffBoardCount": 418,
+  "nonRankedVerdictInPool": 486,
+  "chipProposal": {
+    "minCountThreshold": 3,
+    "boys": [
+      {
+        "year": 2027,
+        "count": 37
+      },
+      {
+        "year": 2028,
+        "count": 26
+      }
+    ],
+    "girls": [],
+    "combined": [
+      {
+        "year": 2027,
+        "count": 37
+      },
+      {
+        "year": 2028,
+        "count": 26
+      }
+    ]
+  }
+}

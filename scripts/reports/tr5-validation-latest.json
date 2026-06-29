@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-06-17T12:22:09.365Z",
+  "evaluationDate": "2026-06-17T12:00:00.000Z",
+  "teamFormulaVersion": "TPI-v1",
+  "evidencePolicyVersion": "TEAM-EVIDENCE-v1-official-import",
+  "computeSummary": {
+    "run1Upserted": 66,
+    "run2Upserted": 66,
+    "totalRows": 66,
+    "boards": [
+      {
+        "boardKey": "U16:Boys",
+        "gameCount": 97,
+        "programCount": 16
+      },
+      {
+        "boardKey": "U19:Boys",
+        "gameCount": 257,
+        "programCount": 38
+      },
+      {
+        "boardKey": "U13:Boys",
+        "gameCount": 37,
+        "programCount": 8
+      },
+      {
+        "boardKey": "U19:Girls",
+        "gameCount": 14,
+        "programCount": 4
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "V-TR-12",
+      "status": "PASS",
+      "detail": "No TR-5 module type errors (repo has pre-existing script errors)"
+    },
+    {
+      "id": "V-TR-11",
+      "status": "PASS",
+      "detail": "PlayerRating count unchanged (938); sample hash match"
+    },
+    {
+      "id": "V-TR-13",
+      "status": "SKIP",
+      "detail": "Team snapshots not in TR-5 scope"
+    },
+    {
+      "id": "V-TR-14",
+      "status": "SKIP",
+      "detail": "Team snapshots not in TR-5 scope"
+    },
+    {
+      "id": "V-TR-15",
+      "status": "SKIP",
+      "detail": "Team snapshots not in TR-5 scope"
+    },
+    {
+      "id": "V-TR-16",
+      "status": "PASS",
+      "detail": "0 duplicate (programId, ageGroup, gender) keys"
+    },
+    {
+      "id": "V-TR-17",
+      "status": "PASS",
+      "detail": "Second recompute within ±0.01 of persisted rows"
+    },
+    {
+      "id": "V-TR-18",
+      "status": "PASS",
+      "detail": "PYBC U16 Boys deduped games=37 (expected 37)"
+    },
+    {
+      "id": "V-TR-18b",
+      "status": "PASS",
+      "detail": "All 66 rows use TEAM-EVIDENCE-v1-official-import"
+    },
+    {
+      "id": "V-TR-19",
+      "status": "PASS",
+      "detail": "team_ratings count unchanged (0)"
+    },
+    {
+      "id": "V-TR-20",
+      "status": "PASS",
+      "detail": "0 ProgramTeamRating rows for deleted programs"
+    }
+  ],
+  "summary": {
+    "pass": 8,
+    "fail": 0,
+    "skip": 3
+  }
+}

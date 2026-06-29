@@ -1,0 +1,543 @@
+{
+  "generatedAt": "2026-06-17T10:32:11.367Z",
+  "mode": "executed",
+  "beforeCounts": {
+    "activePrograms": 55,
+    "activeTeams": 81,
+    "activePlayers": 930,
+    "activeGameStats": 9391,
+    "gamePerformanceScores": 9391,
+    "playerRatings": 940,
+    "rankingSnapshotRows": 720
+  },
+  "afterCounts": {
+    "activePrograms": 52,
+    "activeTeams": 64,
+    "activePlayers": 928,
+    "activeGameStats": 9391,
+    "gamePerformanceScores": 9391,
+    "playerRatings": 938,
+    "rankingSnapshotRows": 720
+  },
+  "deltas": {
+    "activePrograms": -3,
+    "activeTeams": -17,
+    "activePlayers": -2,
+    "activeGameStats": 0,
+    "gamePerformanceScores": 0,
+    "playerRatings": -2,
+    "rankingSnapshotRows": 0
+  },
+  "validation": {
+    "programs": [
+      {
+        "programId": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+        "fullName": "San Pedro Spartans",
+        "refs": {
+          "teams": 0,
+          "players": 0,
+          "transferFrom": 0,
+          "transferTo": 0,
+          "total": 0
+        },
+        "safe": true
+      },
+      {
+        "programId": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+        "fullName": "LEV Construction Full Potential",
+        "refs": {
+          "teams": 0,
+          "players": 0,
+          "transferFrom": 0,
+          "transferTo": 0,
+          "total": 0
+        },
+        "safe": true
+      },
+      {
+        "programId": "2a5f2b40-109d-49df-9df6-c34eb3b44672",
+        "fullName": "PYBC 15U",
+        "refs": {
+          "teams": 0,
+          "players": 0,
+          "transferFrom": 0,
+          "transferTo": 0,
+          "total": 0
+        },
+        "safe": true
+      }
+    ],
+    "teams": [
+      {
+        "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+        "teamName": "ADU Jrs (ADU)",
+        "programName": "Adamson University",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 2,
+          "teamRatings": 0,
+          "total": 2
+        },
+        "safe": true,
+        "rosterSeasonsNote": "2 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+        "teamName": "ATENEO Girls (ATENEO)",
+        "programName": "Ateneo de Manila University",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+        "teamName": "ATENEO JRS (ATENEO)",
+        "programName": "Ateneo de Manila University",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 1,
+          "teamRatings": 0,
+          "total": 1
+        },
+        "safe": true,
+        "rosterSeasonsNote": "1 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "teamName": "DE LA SALLE Jrs (DLSU)",
+        "programName": "De La Salle Santiago Zobel",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+        "teamName": "FEU Jrs (FEU)",
+        "programName": "Far Eastern University Diliman",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 3,
+          "teamRatings": 0,
+          "total": 3
+        },
+        "safe": true,
+        "rosterSeasonsNote": "3 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+        "teamName": "LA SALLE (DLSZ)",
+        "programName": "De La Salle Santiago Zobel",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+        "teamName": "LA SALLE Girls (DLSU)",
+        "programName": "De La Salle Santiago Zobel",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+        "teamName": "LA SALLE Girls (LA SALLE)",
+        "programName": "De La Salle Santiago Zobel",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+        "teamName": "LA SALLE Jrs (LA SALLE)",
+        "programName": "De La Salle Santiago Zobel",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 15,
+          "teamRatings": 0,
+          "total": 15
+        },
+        "safe": true,
+        "rosterSeasonsNote": "15 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "teamName": "NU Girls (NU)",
+        "programName": "National University Nazareth School",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+        "teamName": "NU Jrs (NU)",
+        "programName": "National University Nazareth School",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 1,
+          "teamRatings": 0,
+          "total": 1
+        },
+        "safe": true,
+        "rosterSeasonsNote": "1 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+        "teamName": "SBU U16 Boys",
+        "programName": "JPM-TEC San Beda",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+        "teamName": "SSCR U19 Boys",
+        "programName": "San Sebastian College-Recoletos",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+        "teamName": "UE Jrs (UE)",
+        "programName": "University of the East",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 16,
+          "teamRatings": 0,
+          "total": 16
+        },
+        "safe": true,
+        "rosterSeasonsNote": "16 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+        "teamName": "UPIS Jrs (UP)",
+        "programName": "University of the Philippines Integrated School",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 14,
+          "teamRatings": 0,
+          "total": 14
+        },
+        "safe": true,
+        "rosterSeasonsNote": "14 roster row(s) remain on soft-deleted team"
+      },
+      {
+        "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "teamName": "UST Girls (UST)",
+        "programName": "University of Santo Tomas",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 0,
+          "teamRatings": 0,
+          "total": 0
+        },
+        "safe": true,
+        "rosterSeasonsNote": null
+      },
+      {
+        "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+        "teamName": "UST Jrs (UST)",
+        "programName": "University of Santo Tomas",
+        "refs": {
+          "gameStat": 0,
+          "gameHome": 0,
+          "gameAway": 0,
+          "rosterSeasons": 1,
+          "teamRatings": 0,
+          "total": 1
+        },
+        "safe": true,
+        "rosterSeasonsNote": "1 roster row(s) remain on soft-deleted team"
+      }
+    ],
+    "eoinBraga": {
+      "currentProgramId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "targetProgramId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "targetProgramName": "University of the East",
+      "needsFix": true,
+      "evidence": {
+        "rosterProgramVotes": [
+          {
+            "id": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+            "fullName": "Colegio de San Juan de Letran",
+            "count": 1,
+            "latestTeam": "Letran Squires"
+          },
+          {
+            "id": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+            "fullName": "University of the East",
+            "count": 1,
+            "latestTeam": "UE Jrs (UE)"
+          }
+        ],
+        "rosterMismatches": [
+          {
+            "team": "UE Jrs (UE)",
+            "program": "University of the East",
+            "createdAt": "2026-05-06T14:37:26.808Z"
+          }
+        ],
+        "currentProgram": {
+          "id": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+          "fullName": "Colegio de San Juan de Letran"
+        }
+      }
+    },
+    "playerMerges": [
+      {
+        "label": "Liam Jardin / Liam Franko Jardin",
+        "canonical": {
+          "id": "c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9",
+          "displayName": "Liam Franko Jardin",
+          "gameStats": 6
+        },
+        "duplicate": {
+          "id": "2e36b608-bfe7-416c-8e77-095f26d2379d",
+          "displayName": "Liam Jardin",
+          "gameStats": 1
+        },
+        "duplicateGameStatIds": [
+          "fad7ac68-633f-471d-be1c-f2761afca6bf"
+        ]
+      },
+      {
+        "label": "Franco Macapagal / Franco Javier Macapagal",
+        "canonical": {
+          "id": "0b541b5e-09c5-454a-9ac8-4bac29260738",
+          "displayName": "Franco Javier Macapagal",
+          "gameStats": 5
+        },
+        "duplicate": {
+          "id": "61c28d47-e2cf-4f59-bc71-8629f435f95f",
+          "displayName": "Franco Macapagal",
+          "gameStats": 1
+        },
+        "duplicateGameStatIds": [
+          "957e0eca-19d8-4ef4-bed1-e3fdc8e33617"
+        ]
+      }
+    ]
+  },
+  "blocked": [],
+  "execution": {
+    "programsRetired": [
+      {
+        "id": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+        "fullName": "San Pedro Spartans"
+      },
+      {
+        "id": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+        "fullName": "LEV Construction Full Potential"
+      },
+      {
+        "id": "2a5f2b40-109d-49df-9df6-c34eb3b44672",
+        "fullName": "PYBC 15U"
+      }
+    ],
+    "teamsRetired": [
+      {
+        "id": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+        "name": "ADU Jrs (ADU)"
+      },
+      {
+        "id": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+        "name": "ATENEO Girls (ATENEO)"
+      },
+      {
+        "id": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+        "name": "ATENEO JRS (ATENEO)"
+      },
+      {
+        "id": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+        "name": "DE LA SALLE Jrs (DLSU)"
+      },
+      {
+        "id": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+        "name": "FEU Jrs (FEU)"
+      },
+      {
+        "id": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+        "name": "LA SALLE (DLSZ)"
+      },
+      {
+        "id": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+        "name": "LA SALLE Girls (DLSU)"
+      },
+      {
+        "id": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+        "name": "LA SALLE Girls (LA SALLE)"
+      },
+      {
+        "id": "8f999ac0-0823-4eac-91af-842957c026ff",
+        "name": "LA SALLE Jrs (LA SALLE)"
+      },
+      {
+        "id": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+        "name": "NU Girls (NU)"
+      },
+      {
+        "id": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+        "name": "NU Jrs (NU)"
+      },
+      {
+        "id": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+        "name": "SBU U16 Boys"
+      },
+      {
+        "id": "7543e4de-09d2-45e5-869e-341a760b59b8",
+        "name": "SSCR U19 Boys"
+      },
+      {
+        "id": "e560fa7d-c846-465b-98b4-7704cb17416b",
+        "name": "UE Jrs (UE)"
+      },
+      {
+        "id": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+        "name": "UPIS Jrs (UP)"
+      },
+      {
+        "id": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+        "name": "UST Girls (UST)"
+      },
+      {
+        "id": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+        "name": "UST Jrs (UST)"
+      }
+    ],
+    "eoinBraga": {
+      "from": "Colegio de San Juan de Letran",
+      "to": "University of the East",
+      "updated": true
+    },
+    "playerMerges": [
+      {
+        "label": "Liam Jardin / Liam Franko Jardin",
+        "canonicalId": "c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9",
+        "duplicateId": "2e36b608-bfe7-416c-8e77-095f26d2379d",
+        "gameStatsReassigned": 1,
+        "gamePerformanceScoresReassigned": 1,
+        "playerRatingsDeleted": 1,
+        "rankingSnapshotRowsDeleted": 0
+      },
+      {
+        "label": "Franco Macapagal / Franco Javier Macapagal",
+        "canonicalId": "0b541b5e-09c5-454a-9ac8-4bac29260738",
+        "duplicateId": "61c28d47-e2cf-4f59-bc71-8629f435f95f",
+        "gameStatsReassigned": 1,
+        "gamePerformanceScoresReassigned": 1,
+        "playerRatingsDeleted": 1,
+        "rankingSnapshotRowsDeleted": 0
+      }
+    ]
+  },
+  "rollbackNotes": {
+    "programs": [
+      "UPDATE programs SET \"deletedAt\" = NULL WHERE id = '1ec13bb5-3fea-420c-a3b6-3a849922a3b6';",
+      "UPDATE programs SET \"deletedAt\" = NULL WHERE id = 'b3009ae6-ac6f-43d4-af9a-fb45613fc20b';",
+      "UPDATE programs SET \"deletedAt\" = NULL WHERE id = '2a5f2b40-109d-49df-9df6-c34eb3b44672';"
+    ],
+    "teams": [
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'acb69a9e-e10c-4486-b3e1-9fe8c056c57c';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '1f44864b-91c6-4b52-a1d3-1b88eee3b487';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '4108ff02-d59f-41aa-9219-070d56cfa5bc';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'b9efc141-ef1a-4214-aebf-3a9db0f2071d';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '53650e64-ec1e-48cd-b2eb-5f575362e691';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'c010e83f-8a2d-4084-8497-0bea7119c6db';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '8b25947c-21d2-4878-a44f-32dc5160b5bd';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '8f999ac0-0823-4eac-91af-842957c026ff';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '9ebec3dc-2e89-4a32-9326-54297c71f8bc';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'd81d5179-b450-4eba-b7a2-07f558a9268c';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'f2705e3c-8cb6-4c27-84e9-8941e6c8599a';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '7543e4de-09d2-45e5-869e-341a760b59b8';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'e560fa7d-c846-465b-98b4-7704cb17416b';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = 'e8e50710-0e6a-4482-ae1d-452b3471fdde';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '8d66d8b4-c047-4257-b3b7-3d87b1a09aa3';",
+      "UPDATE teams SET \"deletedAt\" = NULL WHERE id = '7c2934ce-f07a-4f5c-af9e-d3d291b7428c';"
+    ],
+    "eoinBraga": "UPDATE players SET \"currentProgramId\" = '3a120437-f18c-4269-8abc-88a5aa39c7cd' WHERE id = 'af064d5d-eb5f-4ddd-ad46-f619a17592c2';",
+    "playerMerges": "Restore soft-deleted duplicate players (deletedAt=NULL), reassign GameStats/GPS back to duplicate playerIds, recreate PlayerRating/RankingSnapshotRow from backup if deleted."
+  },
+  "skippedByPolicy": [
+    "Kenzo Centeno / Kenzo Rui Centeno",
+    "Shaun Haw / Shaun Jordan Haw",
+    "Andres Braganza / Andres Thaddeus Braganza",
+    "Christiane Chan cluster",
+    "Roberto Sison cluster",
+    "U19/16U team merge pairs (high risk — not in approved scope)"
+  ]
+}

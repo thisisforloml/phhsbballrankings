@@ -1,0 +1,844 @@
+{
+  "generatedAt": "2026-06-17T08:31:54.760Z",
+  "phase": "smile360-duplicate-game-investigation",
+  "mode": "read-only",
+  "gameNumbers": [
+    "SH-47340-2779282",
+    "SH-47340-2787987"
+  ],
+  "comparison": {
+    "gameA": {
+      "id": "0c195e0c-fd64-44fc-a96d-f11889e94b77",
+      "gameNumber": "SH-47340-2779282",
+      "gameDate": "2026-06-17T00:00:00.000Z",
+      "homeScore": 75,
+      "awayScore": 82,
+      "league": "Philippine Youth Basketball Championship – 13u",
+      "season": "Season 2026",
+      "ageGroup": "U13",
+      "homeTeam": {
+        "id": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+        "name": "Jet's Barbershop 13u"
+      },
+      "awayTeam": {
+        "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "name": "Smile 360 Bullies"
+      },
+      "smileTeam": {
+        "side": "away",
+        "team": {
+          "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "name": "Smile 360 Bullies",
+          "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+          "program": {
+            "fullName": "Smile 360 Bullies"
+          }
+        }
+      },
+      "statCount": 23,
+      "smileStatCount": 13,
+      "gpsCount": 23
+    },
+    "gameB": {
+      "id": "a1545b57-8c60-49a6-a634-a6747b146c4b",
+      "gameNumber": "SH-47340-2787987",
+      "gameDate": "2026-06-17T00:00:00.000Z",
+      "homeScore": 76,
+      "awayScore": 77,
+      "league": "Philippine Youth Basketball Championship – 13u",
+      "season": "Season 2026",
+      "ageGroup": "U13",
+      "homeTeam": {
+        "id": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+        "name": "SMILE 360 BULLIES U13 Boys"
+      },
+      "awayTeam": {
+        "id": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+        "name": "Jet's Barbershop 13u"
+      },
+      "smileTeam": {
+        "side": "home",
+        "team": {
+          "id": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+          "name": "SMILE 360 BULLIES U13 Boys",
+          "programId": "60645321-d3b4-4db9-94aa-6176232b7476",
+          "program": {
+            "fullName": "SMILE 360 BULLIES"
+          }
+        }
+      },
+      "statCount": 29,
+      "smileStatCount": 15,
+      "gpsCount": 29
+    },
+    "sameDate": true,
+    "sameLeagueSeason": true,
+    "sameOpponent": true,
+    "sameScore": false,
+    "sharedSmilePlayerCount": 12,
+    "identicalSmileBoxScores": false,
+    "smilePointsA": 82,
+    "smilePointsB": 76,
+    "smileScoreMatchesA": true,
+    "smileScoreMatchesB": true,
+    "sharedPlayersWithDifferentStats": 12
+  },
+  "smileBoxScoreA": [
+    {
+      "playerId": "5e7a4112-7f34-4b19-8eb8-5de45e08103d",
+      "displayName": "Alexander Ezekiel Bautista",
+      "points": 9,
+      "rebounds": 2,
+      "assists": 2,
+      "fgm": 4,
+      "fga": 8,
+      "gps": {
+        "formula": 1,
+        "finalScore": "68.121"
+      }
+    },
+    {
+      "playerId": "914bee89-136e-4c9d-9a19-d02b42ab0c54",
+      "displayName": "Andrew Kian Lapides",
+      "points": 15,
+      "rebounds": 8,
+      "assists": 4,
+      "fgm": 6,
+      "fga": 16,
+      "gps": {
+        "formula": 1,
+        "finalScore": "93.419"
+      }
+    },
+    {
+      "playerId": "1baef2d0-54a6-4096-ba4d-1b543475505b",
+      "displayName": "Carl Rose Rodil",
+      "points": 4,
+      "rebounds": 4,
+      "assists": 1,
+      "fgm": 2,
+      "fga": 12,
+      "gps": {
+        "formula": 1,
+        "finalScore": "35.072"
+      }
+    },
+    {
+      "playerId": "8aea1299-dcd7-4238-9a26-35a6116ba4bf",
+      "displayName": "Coi Aver Moncal",
+      "points": 11,
+      "rebounds": 15,
+      "assists": 2,
+      "fgm": 3,
+      "fga": 18,
+      "gps": {
+        "formula": 1,
+        "finalScore": "90.495"
+      }
+    },
+    {
+      "playerId": "4f0dc29e-695f-479d-b701-9158abd2bbff",
+      "displayName": "Cristhop Calvero",
+      "points": 13,
+      "rebounds": 19,
+      "assists": 5,
+      "fgm": 6,
+      "fga": 15,
+      "gps": {
+        "formula": 1,
+        "finalScore": "95.321"
+      }
+    },
+    {
+      "playerId": "c93cebb5-aa5f-45de-af28-1541d3905dba",
+      "displayName": "Eizekhen Ancajas",
+      "points": 0,
+      "rebounds": 0,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 1,
+      "gps": {
+        "formula": 1,
+        "finalScore": "37.705"
+      }
+    },
+    {
+      "playerId": "da910eaf-1c6e-4118-b9a4-580d9c86273c",
+      "displayName": "Elijan Kyle Navarette",
+      "points": 4,
+      "rebounds": 0,
+      "assists": 1,
+      "fgm": 2,
+      "fga": 3,
+      "gps": {
+        "formula": 1,
+        "finalScore": "20.01"
+      }
+    },
+    {
+      "playerId": "5d7453e8-d8db-4cbd-ad58-68a3879e2658",
+      "displayName": "Grey Riley Navarro",
+      "points": 1,
+      "rebounds": 1,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 3,
+      "gps": {
+        "formula": 1,
+        "finalScore": "8.312"
+      }
+    },
+    {
+      "playerId": "39fcae87-0268-4c1d-b042-454ed1a50346",
+      "displayName": "Heaven Lee Cruz",
+      "points": 3,
+      "rebounds": 1,
+      "assists": 1,
+      "fgm": 1,
+      "fga": 2,
+      "gps": {
+        "formula": 1,
+        "finalScore": "51.743"
+      }
+    },
+    {
+      "playerId": "a10a14e2-af4d-45be-809b-acc6e7cfbd56",
+      "displayName": "Jhanrev Mendoza",
+      "points": 3,
+      "rebounds": 1,
+      "assists": 1,
+      "fgm": 1,
+      "fga": 5,
+      "gps": {
+        "formula": 1,
+        "finalScore": "43.115"
+      }
+    },
+    {
+      "playerId": "54e1be34-7bad-4efc-af9c-adb3e9efb834",
+      "displayName": "Nathan Kyler Abarondo",
+      "points": 2,
+      "rebounds": 6,
+      "assists": 2,
+      "fgm": 1,
+      "fga": 2,
+      "gps": {
+        "formula": 1,
+        "finalScore": "49.988"
+      }
+    },
+    {
+      "playerId": "95d76db6-f253-46ff-a8f4-14ff68369e6b",
+      "displayName": "Nathaniel Canape",
+      "points": 0,
+      "rebounds": 1,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 3,
+      "gps": {
+        "formula": 1,
+        "finalScore": "15.331"
+      }
+    },
+    {
+      "playerId": "2f855c9e-c44b-4be8-ad31-2497d2d8c7e6",
+      "displayName": "Oscar Bagion",
+      "points": 17,
+      "rebounds": 2,
+      "assists": 3,
+      "fgm": 7,
+      "fga": 10,
+      "gps": {
+        "formula": 1,
+        "finalScore": "94.589"
+      }
+    }
+  ],
+  "smileBoxScoreB": [
+    {
+      "playerId": "5e7a4112-7f34-4b19-8eb8-5de45e08103d",
+      "displayName": "Alexander Ezekiel Bautista",
+      "points": 0,
+      "rebounds": 2,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 1,
+      "gps": {
+        "formula": 1,
+        "finalScore": "16.231"
+      }
+    },
+    {
+      "playerId": "914bee89-136e-4c9d-9a19-d02b42ab0c54",
+      "displayName": "Andrew Kian Lapides",
+      "points": 2,
+      "rebounds": 1,
+      "assists": 3,
+      "fgm": 1,
+      "fga": 6,
+      "gps": {
+        "formula": 1,
+        "finalScore": "33.253"
+      }
+    },
+    {
+      "playerId": "1baef2d0-54a6-4096-ba4d-1b543475505b",
+      "displayName": "Carl Rose Rodil",
+      "points": 6,
+      "rebounds": 3,
+      "assists": 5,
+      "fgm": 2,
+      "fga": 6,
+      "gps": {
+        "formula": 1,
+        "finalScore": "73.122"
+      }
+    },
+    {
+      "playerId": "8aea1299-dcd7-4238-9a26-35a6116ba4bf",
+      "displayName": "Coi Aver Moncal",
+      "points": 15,
+      "rebounds": 9,
+      "assists": 0,
+      "fgm": 4,
+      "fga": 12,
+      "gps": {
+        "formula": 1,
+        "finalScore": "92.385"
+      }
+    },
+    {
+      "playerId": "4f0dc29e-695f-479d-b701-9158abd2bbff",
+      "displayName": "Cristhop Calvero",
+      "points": 15,
+      "rebounds": 11,
+      "assists": 7,
+      "fgm": 5,
+      "fga": 18,
+      "gps": {
+        "formula": 1,
+        "finalScore": "88.801"
+      }
+    },
+    {
+      "playerId": "c93cebb5-aa5f-45de-af28-1541d3905dba",
+      "displayName": "Eizekhen Ancajas",
+      "points": 0,
+      "rebounds": 0,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 0,
+      "gps": {
+        "formula": 1,
+        "finalScore": "31.462"
+      }
+    },
+    {
+      "playerId": "da910eaf-1c6e-4118-b9a4-580d9c86273c",
+      "displayName": "Elijan Kyle Navarette",
+      "points": 2,
+      "rebounds": 0,
+      "assists": 0,
+      "fgm": 1,
+      "fga": 2,
+      "gps": {
+        "formula": 1,
+        "finalScore": "39.973"
+      }
+    },
+    {
+      "playerId": "4b296de8-2630-4b68-b1b5-63186a80bbee",
+      "displayName": "Fabian Carlos Barcelona",
+      "points": 2,
+      "rebounds": 2,
+      "assists": 0,
+      "fgm": 1,
+      "fga": 5,
+      "gps": {
+        "formula": 1,
+        "finalScore": "20.71"
+      }
+    },
+    {
+      "playerId": "5d7453e8-d8db-4cbd-ad58-68a3879e2658",
+      "displayName": "Grey Riley Navarro",
+      "points": 2,
+      "rebounds": 1,
+      "assists": 0,
+      "fgm": 1,
+      "fga": 2,
+      "gps": {
+        "formula": 1,
+        "finalScore": "36.165"
+      }
+    },
+    {
+      "playerId": "39fcae87-0268-4c1d-b042-454ed1a50346",
+      "displayName": "Heaven Lee Cruz",
+      "points": 0,
+      "rebounds": 1,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 1,
+      "gps": {
+        "formula": 1,
+        "finalScore": "15.111"
+      }
+    },
+    {
+      "playerId": "a10a14e2-af4d-45be-809b-acc6e7cfbd56",
+      "displayName": "Jhanrev Mendoza",
+      "points": 0,
+      "rebounds": 0,
+      "assists": 1,
+      "fgm": 0,
+      "fga": 3,
+      "gps": {
+        "formula": 1,
+        "finalScore": "13.095"
+      }
+    },
+    {
+      "playerId": "8b242b0a-b198-44a9-9248-5bfd526dbe5f",
+      "displayName": "Marc Rashaan Cenon",
+      "points": 1,
+      "rebounds": 2,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 1,
+      "gps": {
+        "formula": 1,
+        "finalScore": "45.348"
+      }
+    },
+    {
+      "playerId": "54e1be34-7bad-4efc-af9c-adb3e9efb834",
+      "displayName": "Nathan Kyler Abarondo",
+      "points": 3,
+      "rebounds": 1,
+      "assists": 3,
+      "fgm": 1,
+      "fga": 4,
+      "gps": {
+        "formula": 1,
+        "finalScore": "8.615"
+      }
+    },
+    {
+      "playerId": "2f855c9e-c44b-4be8-ad31-2497d2d8c7e6",
+      "displayName": "Oscar Bagion",
+      "points": 28,
+      "rebounds": 2,
+      "assists": 1,
+      "fgm": 11,
+      "fga": 16,
+      "gps": {
+        "formula": 1,
+        "finalScore": "98.208"
+      }
+    },
+    {
+      "playerId": "91adf9c9-4a60-4fb9-a021-d5b2f7c2ed7f",
+      "displayName": "Samuel John Cook",
+      "points": 0,
+      "rebounds": 4,
+      "assists": 0,
+      "fgm": 0,
+      "fga": 4,
+      "gps": {
+        "formula": 1,
+        "finalScore": "5.032"
+      }
+    }
+  ],
+  "jetsBoxScoreA": [
+    {
+      "playerId": "aea9c8de-7590-4864-9e33-a3e53f508417",
+      "displayName": "Bennett Buenafe",
+      "points": 2,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "ce6315a9-f139-4b88-b443-af2ce1aa8c3e",
+      "displayName": "Gian Castro",
+      "points": 8,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "1584c12b-5342-402b-b25e-a62a61cad758",
+      "displayName": "Jacob Vital",
+      "points": 14,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "c8f61751-cd2a-48f7-8c75-38fd49f0d09c",
+      "displayName": "Khalyl Reyes",
+      "points": 6,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "468eda3c-de54-4ed4-baf3-ee43a09b455d",
+      "displayName": "Kian Antonio",
+      "points": 3,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "52c37ba4-9f44-4768-bfff-64a9cdf9a572",
+      "displayName": "Liam Fenomeno",
+      "points": 2,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "0cc4954a-993f-4ffe-82d1-e1f96449b986",
+      "displayName": "Orion Norwood",
+      "points": 5,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "7be0cbf7-4f25-4045-859f-af422d17b179",
+      "displayName": "Patrick Tumbaga",
+      "points": 26,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "c0b4dc13-c74d-46cb-9ef4-655697af5ce0",
+      "displayName": "Russell Villaneuva",
+      "points": 2,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "39536c47-c840-424e-bc13-bd8ac575c4d5",
+      "displayName": "Uno Zarapse",
+      "points": 7,
+      "team": "Jet's Barbershop 13u"
+    }
+  ],
+  "jetsBoxScoreB": [
+    {
+      "playerId": "aea9c8de-7590-4864-9e33-a3e53f508417",
+      "displayName": "Bennett Buenafe",
+      "points": 2,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "ce6315a9-f139-4b88-b443-af2ce1aa8c3e",
+      "displayName": "Gian Castro",
+      "points": 4,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "5b43ebf0-140b-48ab-81b8-5a428e24b183",
+      "displayName": "Ibrahim Salem",
+      "points": 0,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "4a499e70-b9a7-43f6-a240-c908f16c3993",
+      "displayName": "Julian Mateo Baliwag",
+      "points": 9,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "f1e17f00-adf6-4cd1-aa3e-1d693c94ec5f",
+      "displayName": "Kailie Tiu",
+      "points": 8,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "c8f61751-cd2a-48f7-8c75-38fd49f0d09c",
+      "displayName": "Khalyl Reyes",
+      "points": 2,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "468eda3c-de54-4ed4-baf3-ee43a09b455d",
+      "displayName": "Kian Antonio",
+      "points": 3,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "b2c5b620-0841-414c-8451-339b8aa2cb4f",
+      "displayName": "Kirov Acedo",
+      "points": 0,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "3010774d-ae60-4546-930b-40bcc40ac9eb",
+      "displayName": "Leiam Osorio",
+      "points": 17,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "98cc3f31-7d1f-473d-925b-128ab238221f",
+      "displayName": "Nathan Lachenal",
+      "points": 4,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "0cc4954a-993f-4ffe-82d1-e1f96449b986",
+      "displayName": "Orion Norwood",
+      "points": 3,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "7be0cbf7-4f25-4045-859f-af422d17b179",
+      "displayName": "Patrick Tumbaga",
+      "points": 8,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "c0b4dc13-c74d-46cb-9ef4-655697af5ce0",
+      "displayName": "Russell Villaneuva",
+      "points": 2,
+      "team": "Jet's Barbershop 13u"
+    },
+    {
+      "playerId": "74336b29-45f2-40d2-891b-bfb9f5c7de6f",
+      "displayName": "Yubert Enciso",
+      "points": 15,
+      "team": "Jet's Barbershop 13u"
+    }
+  ],
+  "gpsSummary": {
+    "gameA": {
+      "count": 23,
+      "playerIds": 23
+    },
+    "gameB": {
+      "count": 29
+    }
+  },
+  "playerRatingsU13Sample": [
+    {
+      "playerId": "95d76db6-f253-46ff-a8f4-14ff68369e6b",
+      "observedRating": "22.5",
+      "adjustedRating": "22.5",
+      "verifiedGameCount": 7,
+      "player": {
+        "displayName": "Nathaniel Canape"
+      }
+    },
+    {
+      "playerId": "ce6315a9-f139-4b88-b443-af2ce1aa8c3e",
+      "observedRating": "72.15",
+      "adjustedRating": "72.15",
+      "verifiedGameCount": 10,
+      "player": {
+        "displayName": "Gian Castro"
+      }
+    },
+    {
+      "playerId": "3010774d-ae60-4546-930b-40bcc40ac9eb",
+      "observedRating": "79.21",
+      "adjustedRating": "79.21",
+      "verifiedGameCount": 9,
+      "player": {
+        "displayName": "Leiam Osorio"
+      }
+    },
+    {
+      "playerId": "5b43ebf0-140b-48ab-81b8-5a428e24b183",
+      "observedRating": "50.16",
+      "adjustedRating": "50.16",
+      "verifiedGameCount": 11,
+      "player": {
+        "displayName": "Ibrahim Salem"
+      }
+    },
+    {
+      "playerId": "98cc3f31-7d1f-473d-925b-128ab238221f",
+      "observedRating": "50.78",
+      "adjustedRating": "50.78",
+      "verifiedGameCount": 9,
+      "player": {
+        "displayName": "Nathan Lachenal"
+      }
+    },
+    {
+      "playerId": "74336b29-45f2-40d2-891b-bfb9f5c7de6f",
+      "observedRating": "76.82",
+      "adjustedRating": "76.82",
+      "verifiedGameCount": 9,
+      "player": {
+        "displayName": "Yubert Enciso"
+      }
+    },
+    {
+      "playerId": "f1e17f00-adf6-4cd1-aa3e-1d693c94ec5f",
+      "observedRating": "49.77",
+      "adjustedRating": "49.77",
+      "verifiedGameCount": 11,
+      "player": {
+        "displayName": "Kailie Tiu"
+      }
+    },
+    {
+      "playerId": "b2c5b620-0841-414c-8451-339b8aa2cb4f",
+      "observedRating": "83.42",
+      "adjustedRating": "83.42",
+      "verifiedGameCount": 10,
+      "player": {
+        "displayName": "Kirov Acedo"
+      }
+    },
+    {
+      "playerId": "4a499e70-b9a7-43f6-a240-c908f16c3993",
+      "observedRating": "64.63",
+      "adjustedRating": "64.63",
+      "verifiedGameCount": 8,
+      "player": {
+        "displayName": "Julian Mateo Baliwag"
+      }
+    },
+    {
+      "playerId": "468eda3c-de54-4ed4-baf3-ee43a09b455d",
+      "observedRating": "58.72",
+      "adjustedRating": "58.72",
+      "verifiedGameCount": 11,
+      "player": {
+        "displayName": "Kian Antonio"
+      }
+    },
+    {
+      "playerId": "aea9c8de-7590-4864-9e33-a3e53f508417",
+      "observedRating": "46.31",
+      "adjustedRating": "46.31",
+      "verifiedGameCount": 9,
+      "player": {
+        "displayName": "Bennett Buenafe"
+      }
+    },
+    {
+      "playerId": "c8f61751-cd2a-48f7-8c75-38fd49f0d09c",
+      "observedRating": "45.49",
+      "adjustedRating": "45.49",
+      "verifiedGameCount": 10,
+      "player": {
+        "displayName": "Khalyl Reyes"
+      }
+    },
+    {
+      "playerId": "7be0cbf7-4f25-4045-859f-af422d17b179",
+      "observedRating": "86.29",
+      "adjustedRating": "86.29",
+      "verifiedGameCount": 12,
+      "player": {
+        "displayName": "Patrick Tumbaga"
+      }
+    },
+    {
+      "playerId": "0cc4954a-993f-4ffe-82d1-e1f96449b986",
+      "observedRating": "27.83",
+      "adjustedRating": "27.83",
+      "verifiedGameCount": 12,
+      "player": {
+        "displayName": "Orion Norwood"
+      }
+    },
+    {
+      "playerId": "1584c12b-5342-402b-b25e-a62a61cad758",
+      "observedRating": "59.56",
+      "adjustedRating": "59.56",
+      "verifiedGameCount": 8,
+      "player": {
+        "displayName": "Jacob Vital"
+      }
+    },
+    {
+      "playerId": "8aea1299-dcd7-4238-9a26-35a6116ba4bf",
+      "observedRating": "82.85",
+      "adjustedRating": "82.85",
+      "verifiedGameCount": 8,
+      "player": {
+        "displayName": "Coi Aver Moncal"
+      }
+    },
+    {
+      "playerId": "1baef2d0-54a6-4096-ba4d-1b543475505b",
+      "observedRating": "69.35",
+      "adjustedRating": "69.35",
+      "verifiedGameCount": 8,
+      "player": {
+        "displayName": "Carl Rose Rodil"
+      }
+    },
+    {
+      "playerId": "914bee89-136e-4c9d-9a19-d02b42ab0c54",
+      "observedRating": "53.93",
+      "adjustedRating": "53.93",
+      "verifiedGameCount": 8,
+      "player": {
+        "displayName": "Andrew Kian Lapides"
+      }
+    },
+    {
+      "playerId": "5d7453e8-d8db-4cbd-ad58-68a3879e2658",
+      "observedRating": "18.61",
+      "adjustedRating": "18.61",
+      "verifiedGameCount": 6,
+      "player": {
+        "displayName": "Grey Riley Navarro"
+      }
+    },
+    {
+      "playerId": "4b296de8-2630-4b68-b1b5-63186a80bbee",
+      "observedRating": "42.16",
+      "adjustedRating": "42.16",
+      "verifiedGameCount": 6,
+      "player": {
+        "displayName": "Fabian Carlos Barcelona"
+      }
+    }
+  ],
+  "classification": "B_separate_legitimate_games",
+  "confidence": 88,
+  "evidenceFor": [
+    "Different final scores: Game A Smile 82 vs Game B Smile 76",
+    "All 12 shared Smile players have different stat lines",
+    "Each game's box scores sum correctly to recorded team totals",
+    "Jet's Barbershop roster/stats also differ between games"
+  ],
+  "evidenceAgainst": [
+    "Same date, league, season, and opponent — team identity split across two Team records",
+    "Suffix team (SMILE 360 BULLIES U13 Boys) used only on Game B import path"
+  ],
+  "recommendation": "PROCEED with team-only canonicalization. Preserve both games; reassign Game B identity to canonical Smile 360 Bullies team.",
+  "canonicalGameRecommendation": null,
+  "duplicateImpactEstimate": null,
+  "teamFragmentationPlan": {
+    "canonicalProgram": {
+      "id": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "fullName": "Smile 360 Bullies"
+    },
+    "canonicalTeam": {
+      "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+      "name": "Smile 360 Bullies"
+    },
+    "duplicateProgram": {
+      "id": "60645321-d3b4-4db9-94aa-6176232b7476",
+      "fullName": "SMILE 360 BULLIES"
+    },
+    "duplicateTeam": {
+      "id": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+      "name": "SMILE 360 BULLIES U13 Boys"
+    },
+    "scope": "PYBC 13u Season 2026 only — do not merge U16 history on base team",
+    "pybc13uGamesOnCanonical": 8,
+    "pybc13uGamesOnDuplicate": 1,
+    "gamesToReassignIdentity": 1,
+    "gameStatsToReassign": 15,
+    "gpsUnchanged": 15,
+    "preStep": "No game dedup needed — proceed with team identity reassignment on Game B only",
+    "steps": [
+      "1. Backup (games, gameStats, teamIds) — include both game IDs",
+      "2. Do NOT delete Game B — preserve as separate legitimate fixture",
+      "3. Reassign Game B homeTeamId + 15 GameStats teamId from suffix team → canonical team (identity only)",
+      "4. Soft-delete duplicate program/team after validation (zero active usage)",
+      "5. PlayerRating recompute (separate approval) — both games should remain in GPS rollup"
+    ],
+    "gamesPreserved": [
+      "SH-47340-2779282",
+      "SH-47340-2787987"
+    ]
+  }
+}

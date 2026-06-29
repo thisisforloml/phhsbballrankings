@@ -46,7 +46,7 @@ PHRANK is the Philippine National Basketball Ranking System. It is a verified na
 - No verified stat is silently deleted.
 - Raw stats and computed performance scores are stored separately.
 - Formula versions are stored and linked to each performance score.
-- Weekly ranking snapshots are permanent.
+- Monthly ranking snapshots are permanent.
 - Audit log records changes to verified data with reason, previous value, and new value.
 - One team per player per season is enforced unless an admin override is logged.
 

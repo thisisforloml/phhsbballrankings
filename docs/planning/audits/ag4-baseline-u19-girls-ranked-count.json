@@ -1,0 +1,142 @@
+{
+  "gender": "Girls",
+  "boardSize": 45,
+  "poolSize": 56,
+  "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+  "snapshotWeekOf": "2026-05-01T00:00:00.000Z",
+  "verdictBreakdown": {
+    "PROVISIONAL": 56
+  },
+  "top10": [
+    {
+      "playerId": "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+      "displayName": "Aubrey Lapasaran",
+      "boardRank": 1,
+      "poolRank": 1,
+      "rating": 89.8,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "7ed85dd3-7f49-4761-a5f5-708015df611d",
+      "displayName": "Adin Rosano",
+      "boardRank": 2,
+      "poolRank": 2,
+      "rating": 87.7,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+      "displayName": "Riri Perez",
+      "boardRank": 3,
+      "poolRank": 3,
+      "rating": 87.44,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+      "displayName": "Janice Oczon",
+      "boardRank": 4,
+      "poolRank": 4,
+      "rating": 78.92,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+      "displayName": "Pia Petalcorin",
+      "boardRank": 5,
+      "poolRank": 5,
+      "rating": 78.31,
+      "verifiedGameCount": 7,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+      "displayName": "Lea Pinuela",
+      "boardRank": 6,
+      "poolRank": 6,
+      "rating": 77.91,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "98826725-620c-4417-9f41-349da347c811",
+      "displayName": "Koukou Talla",
+      "boardRank": 7,
+      "poolRank": 7,
+      "rating": 74.99,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "389b1415-f364-4374-bd8c-c7ad20286b40",
+      "displayName": "Apyang Dulay",
+      "boardRank": 8,
+      "poolRank": 8,
+      "rating": 74.6,
+      "verifiedGameCount": 6,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+      "displayName": "Ima Navarro",
+      "boardRank": 9,
+      "poolRank": 9,
+      "rating": 72.7,
+      "verifiedGameCount": 6,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    },
+    {
+      "playerId": "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+      "displayName": "Ruiza Olmos",
+      "boardRank": 10,
+      "poolRank": 10,
+      "rating": 71.84,
+      "verifiedGameCount": 8,
+      "effectiveClassYear": null,
+      "classYearOverride": null,
+      "hasBirthDate": false,
+      "verdict": "PROVISIONAL",
+      "precedenceRule": "P12"
+    }
+  ]
+}

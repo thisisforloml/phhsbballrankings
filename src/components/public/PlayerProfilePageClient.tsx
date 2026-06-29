@@ -17,7 +17,6 @@ import {
 } from "@/components/public/PlayerProfileCharts";
 import { PlayerProfileHeader, PLAYER_PROFILE_MAX_WIDTH } from "@/components/public/PlayerProfileHeader";
 import type { PlayerProfileSectionId } from "@/components/public/PlayerProfileSectionNav";
-import { PercentileBarList } from "@/components/public/charts/ProfileCharts";
 
 const PROFILE_PANEL = "overflow-hidden rounded-md border border-line-500 bg-white shadow-sm";
 
@@ -32,46 +31,24 @@ function ProfileSectionLabel({ children }: { children: string }) {
 
 function PlayerOverviewIntelligence({ profile }: { profile: PlayerProfile }) {
   const { intelligence } = profile;
-  const percentileItems = intelligence.percentiles
-    .filter((item) => item.key !== "sample")
-    .map((item) => ({
-      key: item.key,
-      label: item.label,
-      percentile: item.percentile,
-      detail: item.comparisonCount > 0 ? `vs ${item.comparisonCount} board peers` : "Limited sample",
-    }));
 
-  if (!percentileItems.length && !intelligence.strengthBadges.length) return null;
+  if (!intelligence.strengthBadges.length) return null;
 
   return (
-    <div className="grid gap-4 lg:grid-cols-2">
-      {percentileItems.length ? (
-        <article className={`${PROFILE_PANEL} p-4 md:p-5`}>
-          <ProfileSectionLabel>Percentile Rankings</ProfileSectionLabel>
-          <p className="mt-2 text-sm font-semibold text-court-500">{intelligence.roleArchetype.label}</p>
-          <div className="mt-4">
-            <PercentileBarList items={percentileItems} ariaLabel="Board percentile rankings" />
-          </div>
-        </article>
-      ) : null}
-
-      {intelligence.strengthBadges.length ? (
-        <article className={`${PROFILE_PANEL} p-4 md:p-5`}>
-          <ProfileSectionLabel>Scouting Strengths</ProfileSectionLabel>
-          <ul className="mt-4 space-y-2.5">
-            {intelligence.strengthBadges.map((badge) => (
-              <li key={badge.label} className="flex items-start gap-2">
-                <span aria-hidden="true" className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-hardwood-600" />
-                <span>
-                  <strong className="block text-sm font-bold text-court-900">{badge.label}</strong>
-                  <span className="text-xs font-medium text-court-500">{badge.reason}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </article>
-      ) : null}
-    </div>
+    <article className={`${PROFILE_PANEL} p-4 md:p-5`}>
+      <ProfileSectionLabel>Scouting Strengths</ProfileSectionLabel>
+      <ul className="mt-4 space-y-2.5">
+        {intelligence.strengthBadges.map((badge) => (
+          <li key={badge.label} className="flex items-start gap-2">
+            <span aria-hidden="true" className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-hardwood-600" />
+            <span>
+              <strong className="block text-sm font-bold text-court-900">{badge.label}</strong>
+              <span className="text-xs font-medium text-court-500">{badge.reason}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
@@ -87,16 +64,15 @@ export function PlayerProfilePageClient({ profile, recentGames }: PlayerProfileP
     <>
       <PlayerProfileHeader profile={profile} activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <section
-        className={`container-px mx-auto w-full bg-paper-500 ${PLAYER_PROFILE_MAX_WIDTH} pb-10 pt-3`}
-        aria-live="polite"
-      >
-        <div
-          id={`panel-${activeTab}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${activeTab}`}
-          className="min-h-[12rem]"
-        >
+      <section className="bg-paper-500 pb-10 pt-3" aria-live="polite">
+        <div className="container-px">
+          <div className={`mx-auto w-full ${PLAYER_PROFILE_MAX_WIDTH}`}>
+            <div
+              id={`panel-${activeTab}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${activeTab}`}
+              className="min-h-[12rem] w-full"
+            >
           {activeTab === "recent-form" && (
             <div className="grid gap-3 md:gap-4">
               <PlayerOverviewIntelligence profile={profile} />
@@ -126,6 +102,8 @@ export function PlayerProfilePageClient({ profile, recentGames }: PlayerProfileP
             </div>
           )}
           {activeTab === "game-log" && <PlayerFullGameLog profile={profile} />}
+            </div>
+          </div>
         </div>
       </section>
     </>

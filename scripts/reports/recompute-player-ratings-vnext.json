@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-06-18T07:32:35.574Z",
+  "mode": "execute",
+  "policyVersionId": "rating-formula-vnext-shadow-v1",
+  "formulaVersionNumber": 1,
+  "targetCount": 111,
+  "created": 111,
+  "updated": 0,
+  "projected": 9,
+  "samples": [
+    {
+      "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+      "ageGroup": "U16",
+      "observedRating": 92.86,
+      "adjustedRating": 89.37,
+      "verifiedGameCount": 15,
+      "starRating": 4,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+      "ageGroup": "U16",
+      "observedRating": 91.23,
+      "adjustedRating": 81.97,
+      "verifiedGameCount": 14,
+      "starRating": 4,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U16",
+      "observedRating": 90.76,
+      "adjustedRating": 79.47,
+      "verifiedGameCount": 10,
+      "starRating": 3,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+      "ageGroup": "U16",
+      "observedRating": 51.5,
+      "adjustedRating": 46.03,
+      "verifiedGameCount": 14,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+      "ageGroup": "U16",
+      "observedRating": 44.15,
+      "adjustedRating": 43.21,
+      "verifiedGameCount": 15,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+      "ageGroup": "U16",
+      "observedRating": 45.04,
+      "adjustedRating": 38.64,
+      "verifiedGameCount": 13,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+      "ageGroup": "U16",
+      "observedRating": 37.17,
+      "adjustedRating": 36.38,
+      "verifiedGameCount": 7,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+      "ageGroup": "U16",
+      "observedRating": 31.23,
+      "adjustedRating": 30.81,
+      "verifiedGameCount": 13,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED"
+    },
+    {
+      "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+      "ageGroup": "U16",
+      "observedRating": 28.65,
+      "adjustedRating": 28.26,
+      "verifiedGameCount": 10,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED"
+    }
+  ]
+}

@@ -184,6 +184,20 @@ function formatValue(value: number, option: TrendStatOption) {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }
 
+function sanitizeBenchmark(
+  value: number | null | undefined,
+  option: TrendStatOption,
+  seriesValues: number[]
+): number | null {
+  if (value === null || value === undefined || !Number.isFinite(value)) return null;
+  if (option.percentScale || option.id === "finalPerformanceScore") {
+    return value >= 0 && value <= 100 ? value : null;
+  }
+  const peak = Math.max(...seriesValues, 1);
+  if (value > peak * 5) return null;
+  return value;
+}
+
 function buildYAxis(values: number[], options: TrendStatOption[]) {
   const allPercent = options.length > 0 && options.every((option) => option.percentScale);
   const allRating = options.length > 0 && options.every((option) => option.id === "finalPerformanceScore");
@@ -454,11 +468,36 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
   }, [activeSeries, compareGames, compareProfile, games.length, rollingWindow]);
 
   const singleSeries = activeSeries.length === 1 ? activeSeries[0] : null;
+  const singleSeriesValues = useMemo(
+    () => (singleSeries ? singleSeries.rolling.filter((value): value is number => value !== null) : []),
+    [singleSeries]
+  );
 
   const ageGroupAverage = useMemo(() => {
-    if (!singleSeries?.option.benchmarkKey) return null;
-    return profile.intelligence.benchmarks.stats[singleSeries.option.benchmarkKey]?.ageGroupAverage ?? null;
-  }, [profile.intelligence.benchmarks.stats, singleSeries]);
+    if (!singleSeries) return null;
+    const fromTrend = profile.intelligence.trendAverages.ageGroup[singleSeries.option.id];
+    const raw =
+      fromTrend !== undefined && fromTrend !== null
+        ? fromTrend
+        : singleSeries.option.benchmarkKey
+          ? profile.intelligence.benchmarks.stats[singleSeries.option.benchmarkKey]?.ageGroupAverage ?? null
+          : null;
+    return sanitizeBenchmark(raw, singleSeries.option, singleSeriesValues);
+  }, [profile.intelligence.benchmarks.stats, profile.intelligence.trendAverages.ageGroup, singleSeries, singleSeriesValues]);
+
+  const leagueAverage = useMemo(() => {
+    if (!singleSeries) return null;
+    const fromTrend = profile.intelligence.trendAverages.primaryLeague[singleSeries.option.id];
+    const raw =
+      fromTrend !== undefined && fromTrend !== null
+        ? fromTrend
+        : singleSeries.option.benchmarkKey
+          ? profile.intelligence.benchmarks.stats[singleSeries.option.benchmarkKey]?.leagueAverage ?? null
+          : null;
+    return sanitizeBenchmark(raw, singleSeries.option, singleSeriesValues);
+  }, [profile.intelligence.benchmarks.stats, profile.intelligence.trendAverages.primaryLeague, singleSeries, singleSeriesValues]);
+
+  const primaryLeagueName = profile.intelligence.trendAverages.primaryLeagueName;
 
   const targetAxis = useMemo(() => {
     const values = [
@@ -466,9 +505,10 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
       ...compareSeries.flatMap((series) => series.rolling.filter((value): value is number => value !== null)),
     ];
     if (ageGroupAverage !== null) values.push(ageGroupAverage);
+    if (leagueAverage !== null) values.push(leagueAverage);
     if (!values.length) return { yMin: 0, yMax: 10, ticks: [0, 2, 4, 6, 8, 10] };
     return buildYAxis(values, activeSeries.map((series) => series.option));
-  }, [activeSeries, ageGroupAverage, compareSeries]);
+  }, [activeSeries, ageGroupAverage, compareSeries, leagueAverage]);
 
   const axis = targetAxis;
 
@@ -555,8 +595,8 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
 
   return (
     <div>
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <h3 className="text-xs font-black uppercase tracking-[0.12em] text-hardwood-600">Player trends</h3>
+      <div className="flex flex-nowrap items-center justify-between gap-3">
+        <h3 className="shrink-0 text-xs font-black uppercase tracking-[0.12em] text-hardwood-600">Player trends</h3>
         <button
           type="button"
           onClick={() => setCompareOpen((open) => !open)}
@@ -725,6 +765,28 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
           ))}
 
           <line x1={pad.left} y1={pad.top + iH} x2={pad.left + iW} y2={pad.top + iH} stroke="#d4cfc8" strokeWidth={1.5} />
+
+          {leagueAverage !== null && singleSeries ? (
+            <g>
+              <line
+                x1={pad.left}
+                y1={yAt(leagueAverage)}
+                x2={pad.left + iW}
+                y2={yAt(leagueAverage)}
+                stroke="#15803d"
+                strokeWidth={1.5}
+                strokeDasharray="6 4"
+              />
+              <text
+                x={pad.left + 4}
+                y={yAt(leagueAverage) - 4}
+                textAnchor="start"
+                className="fill-[#15803d] text-[9px] font-bold transition-[y] duration-300 ease-out"
+              >
+                {primaryLeagueName ? `League avg` : "League avg"} {formatValue(leagueAverage, singleSeries.option)}
+              </text>
+            </g>
+          ) : null}
 
           {ageGroupAverage !== null && singleSeries ? (
             <g>
@@ -939,9 +1001,31 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
         {ageGroupAverage !== null && singleSeries ? (
           <LegendItem color="#1d4ed8" dashed label={`${profile.ageGroup} avg`} />
         ) : null}
+        {leagueAverage !== null && singleSeries ? (
+          <LegendItem color="#15803d" dashed label={primaryLeagueName ? "Primary league avg" : "League avg"} />
+        ) : null}
         <LegendItem color="#16a34a" dot label="Win" />
         <LegendItem color="#dc2626" dot label="Loss" />
       </div>
+
+      {singleSeries && (ageGroupAverage !== null || leagueAverage !== null) ? (
+        <div className="mt-3 grid gap-2 border border-line-500 bg-paper-500/70 px-3 py-2.5 sm:grid-cols-2">
+          {ageGroupAverage !== null ? (
+            <p className="text-xs font-semibold text-court-700">
+              <span className="font-bold text-court-900">{profile.ageGroup} average:</span>{" "}
+              {formatValue(ageGroupAverage, singleSeries.option)} {singleSeries.option.short}
+            </p>
+          ) : null}
+          {leagueAverage !== null ? (
+            <p className="text-xs font-semibold text-court-700">
+              <span className="font-bold text-court-900">
+                {primaryLeagueName ? `${primaryLeagueName} average` : "Primary league average"}:
+              </span>{" "}
+              {formatValue(leagueAverage, singleSeries.option)} {singleSeries.option.short}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       <p className="mt-3 text-[0.68rem] font-semibold leading-5 text-court-500">
         <strong className="text-court-700">GPS</strong> is Peach Basket&apos;s competition-scaled game performance score (0–100) used in ratings.

@@ -2,7 +2,7 @@
 import { AgeGroup, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const scriptPath = "D:\\OnCourt Rankings PH\\scripts\\repair-approved-duplicate-players-with-ratings.ts";
+const scriptPath = "D:\\Peach Basket\\scripts\\repair-approved-duplicate-players-with-ratings.ts";
 const inputPath = "scripts/reports/approved-player-merge-with-rating-recompute-plan.json";
 const expectedAffectedSnapshots = [
   "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",

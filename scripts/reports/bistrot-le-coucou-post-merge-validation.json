@@ -1,0 +1,53 @@
+{
+  "repairResult": {
+    "playersUpdated": 0,
+    "rosterSeasonsUpdated": 0,
+    "aliasesMoved": 0,
+    "aliasesDeleted": 0,
+    "teamRatingsMoved": 0,
+    "homeGamesUpdated": 2,
+    "awayGamesUpdated": 2,
+    "gameStatsUpdated": 40,
+    "duplicateTeamRetiredAt": "2026-06-17T08:26:50.436Z",
+    "duplicateProgramRetiredAt": "2026-06-17T08:26:50.436Z"
+  },
+  "generatedAt": "2026-06-17T08:26:50.484Z",
+  "phase": "post-merge-validation",
+  "canonicalUsage": {
+    "activeGames": 8,
+    "activeGameStats": 80,
+    "rosterSeasons": 0,
+    "externalAliases": 2,
+    "teamRatings": 0
+  },
+  "duplicateUsage": {
+    "activeGames": 0,
+    "activeGameStats": 0,
+    "rosterSeasons": 0,
+    "externalAliases": 0,
+    "teamRatings": 0
+  },
+  "expectedCanonicalGames": 8,
+  "expectedCanonicalGameStats": 80,
+  "protectedCountsAfter": {
+    "activeGameStats": 9391,
+    "gamePerformanceScores": 9391,
+    "playerRatings": 940,
+    "rankingSnapshots": 5,
+    "rankingSnapshotRows": 826
+  },
+  "validation": {
+    "duplicateTeamNoActiveUsage": true,
+    "duplicateTeamSoftDeleted": true,
+    "duplicateProgramSoftDeleted": true,
+    "canonicalGamesExpected": true,
+    "canonicalGameStatsExpected": true,
+    "activeGameStatCountUnchanged": true,
+    "gamePerformanceScoreCountUnchanged": true,
+    "playerRatingCountUnchanged": true,
+    "rankingSnapshotCountUnchanged": true,
+    "rankingSnapshotRowCountUnchanged": true,
+    "noPlayersOnDuplicateProgram": true
+  },
+  "validationPassed": true
+}

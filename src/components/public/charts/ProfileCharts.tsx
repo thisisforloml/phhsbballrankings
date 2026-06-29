@@ -8,18 +8,22 @@ type RadarChartProps = {
   points: RadarPoint[];
   max?: number;
   ariaLabel: string;
+  comparePoints?: RadarPoint[];
+  compareLabel?: string;
 };
 
-export function RadarChart({ points, max = 100, ariaLabel }: RadarChartProps) {
+export function RadarChart({ points, max = 100, ariaLabel, comparePoints, compareLabel }: RadarChartProps) {
   const id = useId();
-  const size = 280;
+  const size = 380;
   const center = size / 2;
-  const radius = size * 0.34;
+  const radius = size * 0.28;
+  const labelRadius = radius * 1.15;
+  const showCompare = comparePoints !== undefined && comparePoints.length === points.length && points.length >= 3;
   const angleStep = (Math.PI * 2) / Math.max(points.length, 1);
 
-  const toXY = (index: number, value: number) => {
+  const toXY = (index: number, value: number, distance = radius) => {
     const angle = -Math.PI / 2 + index * angleStep;
-    const r = (Math.max(0, Math.min(max, value)) / max) * radius;
+    const r = (Math.max(0, Math.min(max, value)) / max) * distance;
     return { x: center + r * Math.cos(angle), y: center + r * Math.sin(angle) };
   };
 
@@ -30,17 +34,32 @@ export function RadarChart({ points, max = 100, ariaLabel }: RadarChartProps) {
     })
     .join(" ");
 
+  const comparePolygon = showCompare
+    ? comparePoints!
+        .map((point, index) => {
+          const { x, y } = toXY(index, point.value);
+          return `${x},${y}`;
+        })
+        .join(" ")
+    : null;
+
   const gridLevels = [0.25, 0.5, 0.75, 1];
 
   return (
-    <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(11rem,0.85fr)] md:items-center">
+    <div className="grid gap-6 md:grid-cols-[minmax(0,1.15fr)_minmax(11rem,0.85fr)] md:items-center">
       <figure className="min-w-0">
-        <svg viewBox={`0 0 ${size} ${size}`} role="img" aria-label={ariaLabel} className="mx-auto block h-auto w-full max-w-[280px]">
+        <svg viewBox={`0 0 ${size} ${size}`} role="img" aria-label={showCompare && compareLabel ? `${ariaLabel} compared with ${compareLabel}` : ariaLabel} className="mx-auto block h-auto w-full max-w-[380px]">
           <defs>
             <linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#d97706" stopOpacity="0.35" />
               <stop offset="100%" stopColor="#d97706" stopOpacity="0.08" />
             </linearGradient>
+            {showCompare ? (
+              <linearGradient id={`${id}-compare-fill`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#2563eb" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#2563eb" stopOpacity="0.06" />
+              </linearGradient>
+            ) : null}
           </defs>
           {gridLevels.map((level) => (
             <polygon
@@ -64,21 +83,42 @@ export function RadarChart({ points, max = 100, ariaLabel }: RadarChartProps) {
               <line key={point.label} x1={inner.x} y1={inner.y} x2={outer.x} y2={outer.y} stroke="currentColor" className="text-line-500" strokeWidth={1} />
             );
           })}
+          {showCompare && comparePolygon ? (
+            <polygon
+              points={comparePolygon}
+              fill={`url(#${id}-compare-fill)`}
+              stroke="#1d4ed8"
+              strokeWidth={2}
+              strokeDasharray="6 4"
+            />
+          ) : null}
           <polygon points={polygon} fill={`url(#${id}-fill)`} stroke="#c2410c" strokeWidth={2} />
+          {showCompare
+            ? comparePoints!.map((point, index) => {
+                const { x, y } = toXY(index, point.value);
+                return <circle key={`${id}-compare-${point.label}`} cx={x} cy={y} r={3.5} fill="#1d4ed8" opacity={0.85} />;
+              })
+            : null}
           {points.map((point, index) => {
             const { x, y } = toXY(index, point.value);
-            return <circle key={`${id}-${point.label}`} cx={x} cy={y} r={3.5} fill="#c2410c" />;
+            return <circle key={`${id}-${point.label}`} cx={x} cy={y} r={4} fill="#c2410c" />;
           })}
           {points.map((point, index) => {
-            const label = toXY(index, max * 1.14);
+            const angle = -Math.PI / 2 + index * angleStep;
+            const label = {
+              x: center + labelRadius * Math.cos(angle),
+              y: center + labelRadius * Math.sin(angle),
+            };
+            const anchor =
+              Math.abs(Math.cos(angle)) < 0.2 ? "middle" : Math.cos(angle) > 0 ? "start" : "end";
             return (
               <text
                 key={`${id}-label-${point.label}`}
                 x={label.x}
                 y={label.y}
-                textAnchor="middle"
+                textAnchor={anchor}
                 dominantBaseline="middle"
-                className="fill-court-700 text-[10px] font-bold"
+                className="fill-court-700 text-[11px] font-bold"
               >
                 {point.label}
               </text>

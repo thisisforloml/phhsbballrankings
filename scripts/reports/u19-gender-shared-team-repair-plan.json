@@ -1,0 +1,1832 @@
+{
+  "generatedAt": "2026-05-19T10:42:35.760Z",
+  "readOnly": true,
+  "diagnostic": "u19-gender-shared-team-identity-repair-plan",
+  "problem": "Ateneo, NU, and UST U19 Boys/Girls appear to share internal Team records. Boys and girls rosters must have separate Team records even when they share public school display names.",
+  "targetSchools": [
+    "Ateneo de Manila University",
+    "National University Nazareth School",
+    "University of Santo Tomas"
+  ],
+  "sharedTeamRecords": [
+    {
+      "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+      "teamName": "ATENEO",
+      "publicSchoolDisplayName": "Ateneo de Manila University",
+      "boysGamesCount": 16,
+      "boysGameStatsCount": 180,
+      "girlsGamesCount": 6,
+      "girlsGameStatsCount": 74,
+      "boysGameNumbers": [
+        "UAAP-S88-HSB-001",
+        "UAAP-S88-HSB-008",
+        "UAAP-S88-HSB-011",
+        "UAAP-S88-HSB-014",
+        "UAAP-S88-HSB-020",
+        "UAAP-S88-HSB-022",
+        "UAAP-S88-HSB-025",
+        "UAAP-S88-HSB-030",
+        "UAAP-S88-HSB-033",
+        "UAAP-S88-HSB-040",
+        "UAAP-S88-HSB-041",
+        "UAAP-S88-HSB-046",
+        "UAAP-S88-HSB-050",
+        "UAAP-S88-HSB-055",
+        "UAAP-S88-HSB-057",
+        "UAAP-S88-HSB-058"
+      ],
+      "girlsGameNumbers": [
+        "UAAP-S88-HSG-001",
+        "UAAP-S88-HSG-003",
+        "UAAP-S88-HSG-005",
+        "UAAP-S88-HSG-008",
+        "UAAP-S88-HSG-010",
+        "UAAP-S88-HSG-011"
+      ],
+      "boysAffectedGames": [
+        {
+          "gameId": "1ecbf63c-59fb-4fcb-a476-da8f6c36b42c",
+          "gameNumber": "UAAP-S88-HSB-001",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 84,
+            "awayScore": 91
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "ea12d169-c2b8-4663-a836-a1d8ab4e14b1",
+          "gameNumber": "UAAP-S88-HSB-008",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 71,
+            "awayScore": 90
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "531a8570-f821-4eda-be94-4cfad30bd88a",
+          "gameNumber": "UAAP-S88-HSB-011",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "scores": {
+            "homeScore": 80,
+            "awayScore": 65
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "090f56a1-8ea2-4bc3-b47a-24cf6e73d941",
+          "gameNumber": "UAAP-S88-HSB-014",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 86,
+            "awayScore": 63
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "cde8eefd-da88-4814-81df-4ac3b0209dad",
+          "gameNumber": "UAAP-S88-HSB-020",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 100,
+            "awayScore": 88
+          },
+          "gameStatsCountForTeam": 9
+        },
+        {
+          "gameId": "22695853-368f-4037-9297-4e6d954e011c",
+          "gameNumber": "UAAP-S88-HSB-022",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 77,
+            "awayScore": 73
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "b4829023-421c-44b6-9162-f35efa9c6870",
+          "gameNumber": "UAAP-S88-HSB-025",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP"
+          },
+          "scores": {
+            "homeScore": 96,
+            "awayScore": 70
+          },
+          "gameStatsCountForTeam": 15
+        },
+        {
+          "gameId": "98b27530-167c-4801-9694-1cc5581901cc",
+          "gameNumber": "UAAP-S88-HSB-030",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 81,
+            "awayScore": 78
+          },
+          "gameStatsCountForTeam": 9
+        },
+        {
+          "gameId": "7c3e994d-766f-4982-be7c-e6c194364706",
+          "gameNumber": "UAAP-S88-HSB-033",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE"
+          },
+          "scores": {
+            "homeScore": 67,
+            "awayScore": 58
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "6dfb19af-a43f-42cf-94c2-83d350c5e3d2",
+          "gameNumber": "UAAP-S88-HSB-040",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 80,
+            "awayScore": 72
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "ba114216-fb0d-42d0-b55b-7eb8871ae27f",
+          "gameNumber": "UAAP-S88-HSB-041",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU"
+          },
+          "scores": {
+            "homeScore": 88,
+            "awayScore": 65
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "00b52713-7538-414b-bb23-eb3825e8ab81",
+          "gameNumber": "UAAP-S88-HSB-046",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 83,
+            "awayScore": 90
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "497ffe11-9262-40f3-83b7-f386bd3c9735",
+          "gameNumber": "UAAP-S88-HSB-050",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP"
+          },
+          "scores": {
+            "homeScore": 103,
+            "awayScore": 57
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "d0773f89-2359-4b0e-b174-09f35ab05e1a",
+          "gameNumber": "UAAP-S88-HSB-055",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "scores": {
+            "homeScore": 86,
+            "awayScore": 82
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "eabfd70c-1ab2-44d8-a33e-e0e5dc472dbb",
+          "gameNumber": "UAAP-S88-HSB-057",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 111,
+            "awayScore": 73
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "17262fef-697c-4ec3-a9fc-47bcdc02987a",
+          "gameNumber": "UAAP-S88-HSB-058",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "scores": {
+            "homeScore": 89,
+            "awayScore": 90
+          },
+          "gameStatsCountForTeam": 9
+        }
+      ],
+      "girlsAffectedGames": [
+        {
+          "gameId": "eaf86a43-72dd-4461-ba2d-0512a41a92f4",
+          "gameNumber": "UAAP-S88-HSG-001",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 29,
+            "awayScore": 155
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "9db4b8e3-c5ed-4424-861f-7689ced232a1",
+          "gameNumber": "UAAP-S88-HSG-003",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 136,
+            "awayScore": 32
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "e00213f0-98f2-44a6-a702-3146bcc22463",
+          "gameNumber": "UAAP-S88-HSG-005",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 101,
+            "awayScore": 21
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "1c5bae3b-23bc-4d37-9eb9-9d3cb4306786",
+          "gameNumber": "UAAP-S88-HSG-008",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 36,
+            "awayScore": 146
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "22e03491-1486-4892-bcf3-735404ad7458",
+          "gameNumber": "UAAP-S88-HSG-010",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 107,
+            "awayScore": 49
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "6d33400a-5b2b-4dfd-b531-af27a65a77d9",
+          "gameNumber": "UAAP-S88-HSG-011",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls"
+          },
+          "scores": {
+            "homeScore": 47,
+            "awayScore": 100
+          },
+          "gameStatsCountForTeam": 13
+        }
+      ]
+    },
+    {
+      "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+      "teamName": "NU",
+      "publicSchoolDisplayName": "National University Nazareth School",
+      "boysGamesCount": 18,
+      "boysGameStatsCount": 219,
+      "girlsGamesCount": 8,
+      "girlsGameStatsCount": 98,
+      "boysGameNumbers": [
+        "UAAP-S88-HSB-003",
+        "UAAP-S88-HSB-005",
+        "UAAP-S88-HSB-010",
+        "UAAP-S88-HSB-014",
+        "UAAP-S88-HSB-017",
+        "UAAP-S88-HSB-023",
+        "UAAP-S88-HSB-028",
+        "UAAP-S88-HSB-030",
+        "UAAP-S88-HSB-035",
+        "UAAP-S88-HSB-039",
+        "UAAP-S88-HSB-043",
+        "UAAP-S88-HSB-048",
+        "UAAP-S88-HSB-052",
+        "UAAP-S88-HSB-053",
+        "UAAP-S88-HSB-059",
+        "UAAP-S88-HSB-060",
+        "UAAP-S88-HSB-061",
+        "UAAP-S88-HSB-062"
+      ],
+      "girlsGameNumbers": [
+        "UAAP-S88-HSG-001",
+        "UAAP-S88-HSG-004",
+        "UAAP-S88-HSG-006",
+        "UAAP-S88-HSG-007",
+        "UAAP-S88-HSG-010",
+        "UAAP-S88-HSG-012",
+        "UAAP-S88-HSG-013",
+        "UAAP-S88-HSG-014"
+      ],
+      "boysAffectedGames": [
+        {
+          "gameId": "0cdd7545-c56e-45fe-9b29-dded2c3c796c",
+          "gameNumber": "UAAP-S88-HSB-003",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU"
+          },
+          "scores": {
+            "homeScore": 76,
+            "awayScore": 74
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "724a65c3-2bde-491e-af77-74fa280c6aac",
+          "gameNumber": "UAAP-S88-HSB-005",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "scores": {
+            "homeScore": 60,
+            "awayScore": 50
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "fc635009-b3c5-4f83-b88c-115d55db1e43",
+          "gameNumber": "UAAP-S88-HSB-010",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 79,
+            "awayScore": 78
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "090f56a1-8ea2-4bc3-b47a-24cf6e73d941",
+          "gameNumber": "UAAP-S88-HSB-014",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 86,
+            "awayScore": 63
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "3f90305d-de32-4433-8e3c-63600d5fccea",
+          "gameNumber": "UAAP-S88-HSB-017",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 41,
+            "awayScore": 124
+          },
+          "gameStatsCountForTeam": 16
+        },
+        {
+          "gameId": "0ba8cc94-04c9-412c-af2e-021277cc66e5",
+          "gameNumber": "UAAP-S88-HSB-023",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE"
+          },
+          "scores": {
+            "homeScore": 84,
+            "awayScore": 78
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "3f1fa0f9-f4e6-4a99-9661-76cd0c8c37c1",
+          "gameNumber": "UAAP-S88-HSB-028",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 74,
+            "awayScore": 78
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "98b27530-167c-4801-9694-1cc5581901cc",
+          "gameNumber": "UAAP-S88-HSB-030",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 81,
+            "awayScore": 78
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "2a2c3d11-c5a4-40d1-9540-bb6a83122637",
+          "gameNumber": "UAAP-S88-HSB-035",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 92,
+            "awayScore": 72
+          },
+          "gameStatsCountForTeam": 16
+        },
+        {
+          "gameId": "ab7fdf8a-a5e2-4866-b8f6-4d68f14464de",
+          "gameNumber": "UAAP-S88-HSB-039",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "scores": {
+            "homeScore": 80,
+            "awayScore": 72
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "fa2dbcc8-1a8d-4e4c-8bfe-5b95bc985363",
+          "gameNumber": "UAAP-S88-HSB-043",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP"
+          },
+          "scores": {
+            "homeScore": 92,
+            "awayScore": 60
+          },
+          "gameStatsCountForTeam": 15
+        },
+        {
+          "gameId": "03661010-f1d6-4f89-ac01-d7d1946f5a1d",
+          "gameNumber": "UAAP-S88-HSB-048",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 73,
+            "awayScore": 80
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "2c8a57cb-5942-493a-af36-508c9c444044",
+          "gameNumber": "UAAP-S88-HSB-052",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 68,
+            "awayScore": 86
+          },
+          "gameStatsCountForTeam": 15
+        },
+        {
+          "gameId": "53d14a77-7165-4e8d-acf2-7dfc7790df01",
+          "gameNumber": "UAAP-S88-HSB-053",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 66,
+            "awayScore": 83
+          },
+          "gameStatsCountForTeam": 15
+        },
+        {
+          "gameId": "fad8f7d7-30ec-43f9-b4cd-bc0a0b74c8ee",
+          "gameNumber": "UAAP-S88-HSB-059",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 70,
+            "awayScore": 75
+          },
+          "gameStatsCountForTeam": 10
+        },
+        {
+          "gameId": "977b6853-7d44-4b47-ad4e-553cc7a5ef79",
+          "gameNumber": "UAAP-S88-HSB-060",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 77,
+            "awayScore": 73
+          },
+          "gameStatsCountForTeam": 9
+        },
+        {
+          "gameId": "1e20789d-ec6f-4862-860f-6633e591f087",
+          "gameNumber": "UAAP-S88-HSB-061",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "scores": {
+            "homeScore": 80,
+            "awayScore": 59
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "064e3f18-b65f-4f59-a3c9-f4af0dedbc47",
+          "gameNumber": "UAAP-S88-HSB-062",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 106,
+            "awayScore": 102
+          },
+          "gameStatsCountForTeam": 10
+        }
+      ],
+      "girlsAffectedGames": [
+        {
+          "gameId": "eaf86a43-72dd-4461-ba2d-0512a41a92f4",
+          "gameNumber": "UAAP-S88-HSG-001",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 29,
+            "awayScore": 155
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "fbb40366-abb4-4afc-9783-9ac149186f68",
+          "gameNumber": "UAAP-S88-HSG-004",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls"
+          },
+          "scores": {
+            "homeScore": 95,
+            "awayScore": 45
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "b0d32e5b-908c-461d-a063-7b6b4ad73cf3",
+          "gameNumber": "UAAP-S88-HSG-006",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 62,
+            "awayScore": 74
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "213d3f4e-ab18-4caf-9574-7f77c6222453",
+          "gameNumber": "UAAP-S88-HSG-007",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 62,
+            "awayScore": 82
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "22e03491-1486-4892-bcf3-735404ad7458",
+          "gameNumber": "UAAP-S88-HSG-010",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 107,
+            "awayScore": 49
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "657cef2d-811f-4c81-a7ef-76c866383d91",
+          "gameNumber": "UAAP-S88-HSG-012",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 71,
+            "awayScore": 73
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "499ac1c5-feb9-4015-8f7d-04e422694471",
+          "gameNumber": "UAAP-S88-HSG-013",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 87,
+            "awayScore": 96
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "11fca1ab-5153-4101-9053-c4884c520a09",
+          "gameNumber": "UAAP-S88-HSG-014",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 76,
+            "awayScore": 74
+          },
+          "gameStatsCountForTeam": 10
+        }
+      ]
+    },
+    {
+      "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+      "teamName": "UST",
+      "publicSchoolDisplayName": "University of Santo Tomas",
+      "boysGamesCount": 14,
+      "boysGameStatsCount": 191,
+      "girlsGamesCount": 8,
+      "girlsGameStatsCount": 96,
+      "boysGameNumbers": [
+        "UAAP-S88-HSB-002",
+        "UAAP-S88-HSB-007",
+        "UAAP-S88-HSB-009",
+        "UAAP-S88-HSB-013",
+        "UAAP-S88-HSB-020",
+        "UAAP-S88-HSB-024",
+        "UAAP-S88-HSB-028",
+        "UAAP-S88-HSB-029",
+        "UAAP-S88-HSB-035",
+        "UAAP-S88-HSB-038",
+        "UAAP-S88-HSB-042",
+        "UAAP-S88-HSB-046",
+        "UAAP-S88-HSB-051",
+        "UAAP-S88-HSB-056"
+      ],
+      "girlsGameNumbers": [
+        "UAAP-S88-HSG-002",
+        "UAAP-S88-HSG-003",
+        "UAAP-S88-HSG-006",
+        "UAAP-S88-HSG-008",
+        "UAAP-S88-HSG-009",
+        "UAAP-S88-HSG-012",
+        "UAAP-S88-HSG-013",
+        "UAAP-S88-HSG-014"
+      ],
+      "boysAffectedGames": [
+        {
+          "gameId": "5f6019b7-4b65-4d28-bd16-96bf8ed55c63",
+          "gameNumber": "UAAP-S88-HSB-002",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "scores": {
+            "homeScore": 78,
+            "awayScore": 82
+          },
+          "gameStatsCountForTeam": 15
+        },
+        {
+          "gameId": "db3aac94-6f38-448e-9418-3879b1dbd696",
+          "gameNumber": "UAAP-S88-HSB-007",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE"
+          },
+          "scores": {
+            "homeScore": 102,
+            "awayScore": 107
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "b02a3a05-0d6b-49a3-a1b1-1d964efca1c1",
+          "gameNumber": "UAAP-S88-HSB-009",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 70,
+            "awayScore": 79
+          },
+          "gameStatsCountForTeam": 16
+        },
+        {
+          "gameId": "05df0b92-c7aa-4611-9fcc-b62e7d81162c",
+          "gameNumber": "UAAP-S88-HSB-013",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 72,
+            "awayScore": 67
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "cde8eefd-da88-4814-81df-4ac3b0209dad",
+          "gameNumber": "UAAP-S88-HSB-020",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 100,
+            "awayScore": 88
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "43719d2a-9cc1-4c4f-be43-e18aa265c2ab",
+          "gameNumber": "UAAP-S88-HSB-024",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP"
+          },
+          "scores": {
+            "homeScore": 112,
+            "awayScore": 57
+          },
+          "gameStatsCountForTeam": 16
+        },
+        {
+          "gameId": "3f1fa0f9-f4e6-4a99-9661-76cd0c8c37c1",
+          "gameNumber": "UAAP-S88-HSB-028",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 74,
+            "awayScore": 78
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "565e8078-e667-4c1a-8a97-b1e935cce02f",
+          "gameNumber": "UAAP-S88-HSB-029",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "name": "UE"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 57,
+            "awayScore": 60
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "2a2c3d11-c5a4-40d1-9540-bb6a83122637",
+          "gameNumber": "UAAP-S88-HSB-035",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 92,
+            "awayScore": 72
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "d1615d2d-9b19-4986-9267-0f733fe2245c",
+          "gameNumber": "UAAP-S88-HSB-038",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "name": "ADU"
+          },
+          "scores": {
+            "homeScore": 75,
+            "awayScore": 73
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "af85a731-8403-40bc-9237-cde006648ada",
+          "gameNumber": "UAAP-S88-HSB-042",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "name": "FEU"
+          },
+          "scores": {
+            "homeScore": 81,
+            "awayScore": 84
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "00b52713-7538-414b-bb23-eb3825e8ab81",
+          "gameNumber": "UAAP-S88-HSB-046",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 83,
+            "awayScore": 90
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "d3d940b8-77a6-4ca3-9cd2-080f2e57ff23",
+          "gameNumber": "UAAP-S88-HSB-051",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "name": "DLSZ U19 Boys"
+          },
+          "scores": {
+            "homeScore": 80,
+            "awayScore": 84
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "a3d71431-b2d9-40d2-9cd9-1ce553bb06c9",
+          "gameNumber": "UAAP-S88-HSB-056",
+          "league": "UAAP Season 88 HS Boys Basketball",
+          "season": "Season 88",
+          "gender": "BOYS",
+          "side": "away",
+          "homeTeam": {
+            "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "name": "UP"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 24,
+            "awayScore": 83
+          },
+          "gameStatsCountForTeam": 15
+        }
+      ],
+      "girlsAffectedGames": [
+        {
+          "gameId": "9dc8a366-7cbe-4e0f-90e7-77594c3a89e6",
+          "gameNumber": "UAAP-S88-HSG-002",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls"
+          },
+          "scores": {
+            "homeScore": 90,
+            "awayScore": 59
+          },
+          "gameStatsCountForTeam": 14
+        },
+        {
+          "gameId": "9db4b8e3-c5ed-4424-861f-7689ced232a1",
+          "gameNumber": "UAAP-S88-HSG-003",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "scores": {
+            "homeScore": 136,
+            "awayScore": 32
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "b0d32e5b-908c-461d-a063-7b6b4ad73cf3",
+          "gameNumber": "UAAP-S88-HSG-006",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 62,
+            "awayScore": 74
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "1c5bae3b-23bc-4d37-9eb9-9d3cb4306786",
+          "gameNumber": "UAAP-S88-HSG-008",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+            "name": "ATENEO"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 36,
+            "awayScore": 146
+          },
+          "gameStatsCountForTeam": 12
+        },
+        {
+          "gameId": "a2e0fbad-4c5d-44aa-9291-64303e7b0cc3",
+          "gameNumber": "UAAP-S88-HSG-009",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+            "name": "DLSZ U19 Girls"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 56,
+            "awayScore": 81
+          },
+          "gameStatsCountForTeam": 13
+        },
+        {
+          "gameId": "657cef2d-811f-4c81-a7ef-76c866383d91",
+          "gameNumber": "UAAP-S88-HSG-012",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 71,
+            "awayScore": 73
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "499ac1c5-feb9-4015-8f7d-04e422694471",
+          "gameNumber": "UAAP-S88-HSG-013",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "away",
+          "homeTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "awayTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "scores": {
+            "homeScore": 87,
+            "awayScore": 96
+          },
+          "gameStatsCountForTeam": 11
+        },
+        {
+          "gameId": "11fca1ab-5153-4101-9053-c4884c520a09",
+          "gameNumber": "UAAP-S88-HSG-014",
+          "league": "UAAP Season 88 HS Girls Basketball",
+          "season": "Season 88",
+          "gender": "GIRLS",
+          "side": "home",
+          "homeTeam": {
+            "id": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+            "name": "UST"
+          },
+          "awayTeam": {
+            "id": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+            "name": "NU"
+          },
+          "scores": {
+            "homeScore": 76,
+            "awayScore": 74
+          },
+          "gameStatsCountForTeam": 11
+        }
+      ]
+    }
+  ],
+  "targetTeamRecords": [
+    {
+      "targetTeamName": "ATENEO U19 Boys",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    },
+    {
+      "targetTeamName": "ATENEO U19 Girls",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    },
+    {
+      "targetTeamName": "NU U19 Boys",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    },
+    {
+      "targetTeamName": "NU U19 Girls",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    },
+    {
+      "targetTeamName": "UST U19 Boys",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    },
+    {
+      "targetTeamName": "UST U19 Girls",
+      "activeMatchingRecordsAlreadyExist": false,
+      "matchingRecords": [],
+      "action": "create"
+    }
+  ],
+  "proposedRepairPlan": {
+    "summary": "Create or reuse gender-specific U19 Team records, then reassign only U19 Boys usage to the Boys team and U19 Girls usage to the Girls team for each affected school.",
+    "byCurrentTeamAndGender": [
+      {
+        "publicSchoolDisplayName": "Ateneo de Manila University",
+        "currentTeamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "currentTeamName": "ATENEO",
+        "currentGenderUsage": "BOYS",
+        "proposedTeamName": "ATENEO U19 Boys",
+        "gamesAffected": 16,
+        "gameNumbers": [
+          "UAAP-S88-HSB-001",
+          "UAAP-S88-HSB-008",
+          "UAAP-S88-HSB-011",
+          "UAAP-S88-HSB-014",
+          "UAAP-S88-HSB-020",
+          "UAAP-S88-HSB-022",
+          "UAAP-S88-HSB-025",
+          "UAAP-S88-HSB-030",
+          "UAAP-S88-HSB-033",
+          "UAAP-S88-HSB-040",
+          "UAAP-S88-HSB-041",
+          "UAAP-S88-HSB-046",
+          "UAAP-S88-HSB-050",
+          "UAAP-S88-HSB-055",
+          "UAAP-S88-HSB-057",
+          "UAAP-S88-HSB-058"
+        ],
+        "gameStatsAffected": 180,
+        "action": "reassign U19 Boys games/GameStats to U19 Boys team"
+      },
+      {
+        "publicSchoolDisplayName": "Ateneo de Manila University",
+        "currentTeamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+        "currentTeamName": "ATENEO",
+        "currentGenderUsage": "GIRLS",
+        "proposedTeamName": "ATENEO U19 Girls",
+        "gamesAffected": 6,
+        "gameNumbers": [
+          "UAAP-S88-HSG-001",
+          "UAAP-S88-HSG-003",
+          "UAAP-S88-HSG-005",
+          "UAAP-S88-HSG-008",
+          "UAAP-S88-HSG-010",
+          "UAAP-S88-HSG-011"
+        ],
+        "gameStatsAffected": 74,
+        "action": "reassign U19 Girls games/GameStats to U19 Girls team"
+      },
+      {
+        "publicSchoolDisplayName": "National University Nazareth School",
+        "currentTeamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "currentTeamName": "NU",
+        "currentGenderUsage": "BOYS",
+        "proposedTeamName": "NU U19 Boys",
+        "gamesAffected": 18,
+        "gameNumbers": [
+          "UAAP-S88-HSB-003",
+          "UAAP-S88-HSB-005",
+          "UAAP-S88-HSB-010",
+          "UAAP-S88-HSB-014",
+          "UAAP-S88-HSB-017",
+          "UAAP-S88-HSB-023",
+          "UAAP-S88-HSB-028",
+          "UAAP-S88-HSB-030",
+          "UAAP-S88-HSB-035",
+          "UAAP-S88-HSB-039",
+          "UAAP-S88-HSB-043",
+          "UAAP-S88-HSB-048",
+          "UAAP-S88-HSB-052",
+          "UAAP-S88-HSB-053",
+          "UAAP-S88-HSB-059",
+          "UAAP-S88-HSB-060",
+          "UAAP-S88-HSB-061",
+          "UAAP-S88-HSB-062"
+        ],
+        "gameStatsAffected": 219,
+        "action": "reassign U19 Boys games/GameStats to U19 Boys team"
+      },
+      {
+        "publicSchoolDisplayName": "National University Nazareth School",
+        "currentTeamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+        "currentTeamName": "NU",
+        "currentGenderUsage": "GIRLS",
+        "proposedTeamName": "NU U19 Girls",
+        "gamesAffected": 8,
+        "gameNumbers": [
+          "UAAP-S88-HSG-001",
+          "UAAP-S88-HSG-004",
+          "UAAP-S88-HSG-006",
+          "UAAP-S88-HSG-007",
+          "UAAP-S88-HSG-010",
+          "UAAP-S88-HSG-012",
+          "UAAP-S88-HSG-013",
+          "UAAP-S88-HSG-014"
+        ],
+        "gameStatsAffected": 98,
+        "action": "reassign U19 Girls games/GameStats to U19 Girls team"
+      },
+      {
+        "publicSchoolDisplayName": "University of Santo Tomas",
+        "currentTeamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "currentTeamName": "UST",
+        "currentGenderUsage": "BOYS",
+        "proposedTeamName": "UST U19 Boys",
+        "gamesAffected": 14,
+        "gameNumbers": [
+          "UAAP-S88-HSB-002",
+          "UAAP-S88-HSB-007",
+          "UAAP-S88-HSB-009",
+          "UAAP-S88-HSB-013",
+          "UAAP-S88-HSB-020",
+          "UAAP-S88-HSB-024",
+          "UAAP-S88-HSB-028",
+          "UAAP-S88-HSB-029",
+          "UAAP-S88-HSB-035",
+          "UAAP-S88-HSB-038",
+          "UAAP-S88-HSB-042",
+          "UAAP-S88-HSB-046",
+          "UAAP-S88-HSB-051",
+          "UAAP-S88-HSB-056"
+        ],
+        "gameStatsAffected": 191,
+        "action": "reassign U19 Boys games/GameStats to U19 Boys team"
+      },
+      {
+        "publicSchoolDisplayName": "University of Santo Tomas",
+        "currentTeamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+        "currentTeamName": "UST",
+        "currentGenderUsage": "GIRLS",
+        "proposedTeamName": "UST U19 Girls",
+        "gamesAffected": 8,
+        "gameNumbers": [
+          "UAAP-S88-HSG-002",
+          "UAAP-S88-HSG-003",
+          "UAAP-S88-HSG-006",
+          "UAAP-S88-HSG-008",
+          "UAAP-S88-HSG-009",
+          "UAAP-S88-HSG-012",
+          "UAAP-S88-HSG-013",
+          "UAAP-S88-HSG-014"
+        ],
+        "gameStatsAffected": 96,
+        "action": "reassign U19 Girls games/GameStats to U19 Girls team"
+      }
+    ],
+    "recommendedSteps": [
+      "Get explicit approval before data repair.",
+      "Create missing active Team records for ATENEO/NU/UST U19 Boys and Girls, or reuse existing matching records.",
+      "In one transaction per repair script, update only affected U19 Games and GameStats for the shared Team records listed in this report.",
+      "Do not touch U16 teams or unrelated U19 teams.",
+      "Preserve game scores, GameStat IDs, player IDs, and stat values.",
+      "Run post-repair count, point-total, and dynamic /teams validation."
+    ]
+  },
+  "safetyChecks": {
+    "noU16TeamsTouchedInPlan": true,
+    "noUnrelatedTeamsTouchedInPlan": true,
+    "u19BoysActiveGameCountRemains": {
+      "expected": 62,
+      "actual": 62,
+      "pass": true
+    },
+    "u19GirlsActiveGameCountRemains": {
+      "expected": 14,
+      "actual": 14,
+      "pass": true
+    },
+    "u19BoysGameStatsRemain": {
+      "expected": 1554,
+      "actual": 1554,
+      "pass": true
+    },
+    "u19GirlsGameStatsRemain": {
+      "expected": 331,
+      "actual": 331,
+      "pass": true
+    },
+    "pointTotalsRemainPassing": {
+      "pass": true,
+      "failures": []
+    }
+  },
+  "ratingsImpact": {
+    "ratingsRecomputationNeeded": false,
+    "gamePerformanceScoreDependsOnTeamId": false,
+    "playerRatingDependsOnTeamId": false,
+    "rankingSnapshotDependsOnTeamId": false,
+    "explanation": "GamePerformanceScore stores gameId, gameStatId, playerId, formulaVersionId, and score fields; PlayerRating stores playerId and ageGroup; RankingSnapshotRow stores playerId. If only Game.homeTeamId/awayTeamId and GameStat.teamId are reassigned while GameStat IDs, player IDs, and stat values remain unchanged, ratings recomputation is not needed."
+  }
+}

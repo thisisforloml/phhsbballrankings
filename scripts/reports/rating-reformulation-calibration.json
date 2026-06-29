@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-18T07:09:57.926Z",
+  "mode": "read-only-calibration",
+  "sampleCount": 8463,
+  "evidenceRows": 9391,
+  "holdout": {
+    "v1BaselineMae": 22.866,
+    "vnextCalibratedMae": 26.198,
+    "improvement": -3.332
+  },
+  "calibratedParams": {
+    "opponentSlope": 0.00125,
+    "playingUpPerYear": 0.08
+  },
+  "defaults": {
+    "opponentSlope": 0.0025,
+    "playingUpPerYear": 0.08
+  },
+  "rankStability": {
+    "maturePlayerCount": 421,
+    "spearmanRho": 0.964,
+    "passesGate": true
+  },
+  "validationGates": {
+    "holdoutNotWorse": false,
+    "rankStability": true,
+    "recommendation": "Calibrated params need review — do not promote to production"
+  }
+}

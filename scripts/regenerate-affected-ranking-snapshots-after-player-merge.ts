@@ -2,7 +2,7 @@
 import { getClassYear, isRankingEligibleByClassYear } from "../src/lib/ranking-eligibility";
 
 const prisma = new PrismaClient();
-const scriptPath = "D:\\OnCourt Rankings PH\\scripts\\regenerate-affected-ranking-snapshots-after-player-merge.ts";
+const scriptPath = "D:\\Peach Basket\\scripts\\regenerate-affected-ranking-snapshots-after-player-merge.ts";
 const affectedSnapshotIds = [
   "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
   "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc"

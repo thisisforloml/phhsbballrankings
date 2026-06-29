@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-06-18T13:33:26.690Z",
+  "auditType": "pybc-stallion-competition-quality-read-only",
+  "methodology": {
+    "gpsField": "finalPerformanceScore",
+    "formulaVersion": 1,
+    "playerAverage": "arithmetic mean per competition family",
+    "percentile": "player average vs all player averages in same family",
+    "deltaSign": "PYBC avg - Stallion avg (negative => higher in Stallion)",
+    "ageGroupCaveat": "PYBC active leagues are U13/U16; Stallion active leagues are U19"
+  },
+  "competitionSummary": {
+    "PYBC": {
+      "leagueCount": 2,
+      "gameCount": 74,
+      "gpsCount": 1830,
+      "playerCount": 269,
+      "meanPlayerAvgGps": 48.84,
+      "leagues": [
+        {
+          "leagueId": "636a2e94-13d9-4c6b-8d6a-becfb8db764b",
+          "leagueName": "Philippine Youth Basketball Championship – 15U",
+          "ageGroup": "U16",
+          "gpsCount": 930,
+          "playerCount": 133
+        },
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "leagueName": "Philippine Youth Basketball Championship – 13U",
+          "ageGroup": "U13",
+          "gpsCount": 900,
+          "playerCount": 136
+        }
+      ]
+    },
+    "Stallion": {
+      "leagueCount": 2,
+      "gameCount": 114,
+      "gpsCount": 2151,
+      "playerCount": 193,
+      "meanPlayerAvgGps": 47.34,
+      "leagues": [
+        {
+          "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+          "leagueName": "6th Stallion Cup - 18U",
+          "ageGroup": "U19",
+          "gpsCount": 461,
+          "playerCount": 82
+        },
+        {
+          "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+          "leagueName": "Stallion Cup – 17U",
+          "ageGroup": "U19",
+          "gpsCount": 1690,
+          "playerCount": 160
+        }
+      ]
+    }
+  },
+  "summary": {
+    "overlapPlayerCount": 0,
+    "overlapWithMinGamesEach": 0,
+    "sameAgeOverlapCount": 0,
+    "programOverlapCount": 0,
+    "teamNameOverlapCount": 0,
+    "allPybcMeanPlayerAvgGps": 48.84,
+    "allStallionMeanPlayerAvgGps": 47.34,
+    "competitionLevelGpsGap": 1.5
+  },
+  "overlapPlayers": [],
+  "aggregates": {
+    "meanPybcAvgGps": 0,
+    "meanStallionAvgGps": 0,
+    "meanGpsDelta": 0,
+    "medianGpsDelta": 0,
+    "stdDevGpsDelta": 0,
+    "pybcHigherCount": 0,
+    "stallionHigherCount": 0,
+    "tiedCount": 0,
+    "deltaHistogram": [],
+    "topPositiveOutliers": [],
+    "topNegativeOutliers": []
+  },
+  "populationStats": {
+    "PYBC": {
+      "gameLevel": {
+        "count": 1830,
+        "mean": 50.5,
+        "median": 50.5,
+        "p25": 25.55,
+        "p75": 75.34,
+        "min": 1,
+        "max": 100,
+        "stdDev": 28.69
+      },
+      "playerAvgLevel": {
+        "count": 269,
+        "mean": 48.84,
+        "median": 45.42,
+        "p25": 32.8,
+        "p75": 64.51,
+        "min": 2.46,
+        "max": 96.49,
+        "stdDev": 20.93
+      }
+    },
+    "Stallion": {
+      "gameLevel": {
+        "count": 2151,
+        "mean": 50.5,
+        "median": 50.5,
+        "p25": 26.1,
+        "p75": 75.32,
+        "min": 1,
+        "max": 100,
+        "stdDev": 28.69
+      },
+      "playerAvgLevel": {
+        "count": 193,
+        "mean": 47.34,
+        "median": 44.26,
+        "p25": 28.08,
+        "p75": 65.36,
+        "min": 6.87,
+        "max": 95.09,
+        "stdDev": 21.83
+      }
+    }
+  },
+  "linkageStats": {
+    "totalGpsRows": 3981,
+    "gpsWithProgramId": 3981,
+    "gpsWithProgramPct": 100,
+    "uniqueTeamsPybc": 14,
+    "uniqueTeamsStallion": 19,
+    "teamsWithProgramIdPybc": 14,
+    "teamsWithProgramIdStallion": 19
+  },
+  "programOverlap": [],
+  "teamNameOverlap": [],
+  "recommendation": {
+    "pybcTierRecommendation": 2,
+    "tierEvidence": "Inconclusive",
+    "confidence": "LOW",
+    "rationale": "Zero same-player overlap. PYBC covers U13/U16; Stallion covers U19 — populations are not age-aligned. Population mean GPS gap (PYBC 48.84 vs Stallion 47.34, Δ +1.5) is **not** valid evidence for tier ordering because GPS is within-game percentile-scaled and age groups differ. Governance rubric (COMPETITION_TIER_GOVERNANCE_FRAMEWORK.md) independently places PYBC and Stallion both at Tier 2 (Elite National Circuit); this audit cannot confirm or refute that via cross-player GPS.",
+    "additionalEvidenceRequired": true,
+    "additionalEvidenceNotes": [
+      "Import age-aligned cohorts (e.g. PYBC 17U/19U or Stallion U16) to enable same-player comparison.",
+      "No Program appears in both PYBC and Stallion — clubs use separate team records per competition despite Program linkage on GPS rows.",
+      "Target ≥15 players with ≥3 games in each competition before GPS-based tier inference.",
+      "Use team-name overlap analysis (see report) as supplementary program signal until Program linkage is complete.",
+      "Complete League Quality Score computation for PYBC seasons."
+    ]
+  },
+  "governanceImpact": "Provisional Tier 2 assignment stands from governance rubric only — not GPS-validated. Do not activate tier weights or finalize PYBC tier until age-aligned cross-competition evidence exists. Current DB Tier 3 for PYBC should not be changed on GPS grounds alone."
+}

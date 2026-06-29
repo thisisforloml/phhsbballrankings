@@ -1,0 +1,235 @@
+{
+  "generatedAt": "2026-06-15T16:52:34.664Z",
+  "mode": "execute",
+  "groups": 31,
+  "plannedInserts": 32,
+  "skipped": [],
+  "errors": [],
+  "rows": [
+    {
+      "rawAlias": "A. Timbang",
+      "aliasName": "A. Timbang",
+      "canonicalDisplayName": "Allan Timbang",
+      "playerId": "310aeaf3-1d96-40d6-ba99-539c408f8fea",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "B. Garcia",
+      "aliasName": "B. Garcia",
+      "canonicalDisplayName": "Bill Garcia",
+      "playerId": "6fbee9a1-660e-48ec-8b0e-9debde4f3ee3",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "C. Cabantog",
+      "aliasName": "C. Cabantog",
+      "canonicalDisplayName": "Corian Cabantog",
+      "playerId": "79402bb9-9af6-41cc-9339-833e82b88209",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "C. Cartel",
+      "aliasName": "C. Cartel",
+      "canonicalDisplayName": "Chad Cartel",
+      "playerId": "e96101af-1909-4234-b2c7-5c1c08ebe126",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "C. Fongtong",
+      "aliasName": "C. Fongtong",
+      "canonicalDisplayName": "Craig Fongtong",
+      "playerId": "899d166b-8fe6-4c81-a4b5-7ea6f18ce998",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "Craig Fogntong",
+      "aliasName": "Craig Fogntong",
+      "canonicalDisplayName": "Craig Fongtong",
+      "playerId": "899d166b-8fe6-4c81-a4b5-7ea6f18ce998",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "C. Gomez",
+      "aliasName": "C. Gomez",
+      "canonicalDisplayName": "Chrys Gomez",
+      "playerId": "bd4b8d4d-84fd-4929-a694-4fd955371c1a",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "C. Tulabut",
+      "aliasName": "C. Tulabut",
+      "canonicalDisplayName": "Chester Tulabut",
+      "playerId": "a9b55d02-9add-4e50-948c-f550cf9c5ce4",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "D. Sison",
+      "aliasName": "D. Sison",
+      "canonicalDisplayName": "Denver Sison",
+      "playerId": "a619b173-cd49-4b22-9df9-a5cf67df31d1",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "F. Flores",
+      "aliasName": "F. Flores",
+      "canonicalDisplayName": "Francel Flores",
+      "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "J. Artango",
+      "aliasName": "J. Artango",
+      "canonicalDisplayName": "Jarl Artango",
+      "playerId": "72c46aa1-67b7-4391-8ed4-a75aa915063d",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "J. Eiman",
+      "aliasName": "J. Eiman",
+      "canonicalDisplayName": "JP Eiman",
+      "playerId": "fc00e70b-8cfa-42b4-9fb3-ede60799cb6c",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "K. Figueroa",
+      "aliasName": "K. Figueroa",
+      "canonicalDisplayName": "Kurl Figueroa",
+      "playerId": "aab873cc-a6c0-48df-a659-b6ea7433b444",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "K. Frogoso",
+      "aliasName": "K. Frogoso",
+      "canonicalDisplayName": "Kevin Frogoso",
+      "playerId": "6a1963c7-140d-4e2b-8dee-ee256c0fad04",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "L. Manding",
+      "aliasName": "L. Manding",
+      "canonicalDisplayName": "Lebron Manding",
+      "playerId": "9149a0f5-fcee-4883-833d-4bd5e4b19e64",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "M. Alcartado",
+      "aliasName": "M. Alcartado",
+      "canonicalDisplayName": "Marco Alcartado",
+      "playerId": "26b3b8be-5507-4b09-b5f6-8090bac52417",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "M. Diakite",
+      "aliasName": "M. Diakite",
+      "canonicalDisplayName": "Moussa Diakite",
+      "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "M. Jenodia",
+      "aliasName": "M. Jenodia",
+      "canonicalDisplayName": "Mac Jenodia",
+      "playerId": "a993a6d8-848d-425e-a511-471bb8ecb265",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "M. Matias",
+      "aliasName": "M. Matias",
+      "canonicalDisplayName": "Mot Matias",
+      "playerId": "70ad5e86-f117-4741-9714-ce4acf676503",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "M. Matillano",
+      "aliasName": "M. Matillano",
+      "canonicalDisplayName": "Makoy Matillano",
+      "playerId": "4af7b9af-924a-442b-adff-419b609bf889",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "M. Natinga",
+      "aliasName": "M. Natinga",
+      "canonicalDisplayName": "Miekho Natinga",
+      "playerId": "57ce1836-3408-4893-8549-50d4c893b424",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "Mark jade Dulin",
+      "aliasName": "Mark jade Dulin",
+      "canonicalDisplayName": "Mark Jade Dulin",
+      "playerId": "94bf23af-63ac-4b45-8daf-df6038cc404c",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "N. Babad",
+      "aliasName": "N. Babad",
+      "canonicalDisplayName": "Nazi Babad",
+      "playerId": "5ff0b8c4-6c08-46cf-b58c-723da301b5ff",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "N. Bautista",
+      "aliasName": "N. Bautista",
+      "canonicalDisplayName": "Noah Bautista",
+      "playerId": "69991056-3c22-4e92-b073-abb3629a3116",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "R. Celiz",
+      "aliasName": "R. Celiz",
+      "canonicalDisplayName": "Rob Celiz",
+      "playerId": "8a2c08ac-177c-4861-a445-f0e46b044dc4",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "R. Juan",
+      "aliasName": "R. Juan",
+      "canonicalDisplayName": "Ronnie Juan",
+      "playerId": "67f96ed2-fbb7-421b-88ff-3accb7bb9ee0",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "S. Bouzina",
+      "aliasName": "S. Bouzina",
+      "canonicalDisplayName": "Sofiane Bouzina",
+      "playerId": "607eca37-c9c1-4944-8762-b37436b34aa7",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "S. Lucido",
+      "aliasName": "S. Lucido",
+      "canonicalDisplayName": "Shaun Lucido",
+      "playerId": "a9abc688-6711-4488-a0e7-aaeb30ca70ca",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "S. Mann",
+      "aliasName": "S. Mann",
+      "canonicalDisplayName": "Sal Mann",
+      "playerId": "e7d38eea-8408-4c54-afe0-75ef833bda17",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "Q. Molina",
+      "aliasName": "Q. Molina",
+      "canonicalDisplayName": "Q Molina",
+      "playerId": "ffff5c0a-b708-464d-91f3-8e5192485776",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "Z. Gonzales",
+      "aliasName": "Z. Gonzales",
+      "canonicalDisplayName": "Zyron Gonzales",
+      "playerId": "7ef4b7d0-f94a-461c-bc7e-bf8b78df0037",
+      "gender": "BOYS"
+    },
+    {
+      "rawAlias": "JD JUANGCO",
+      "aliasName": "JD JUANGCO",
+      "canonicalDisplayName": "JD Juangco",
+      "playerId": "f0ff876c-75a0-4b4f-81e1-4214b5f0a404",
+      "gender": "BOYS"
+    }
+  ],
+  "executedInserts": 32
+}

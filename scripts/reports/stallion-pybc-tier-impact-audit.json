@@ -1,0 +1,534 @@
+{
+  "generatedAt": "2026-06-18T15:20:31.225Z",
+  "stallion": {
+    "playersWithVerifiedGps": 193,
+    "ratingRows": 193,
+    "ratingsUnchanged": 0,
+    "ratingsChanged": 193,
+    "publicRankComparable": 80,
+    "publicRankMoved": 74,
+    "publicRankUnchanged": 6,
+    "missingNewPolicyRow": 0
+  },
+  "pybc": {
+    "playersWithVerifiedGps": 269,
+    "ratingRows": 269,
+    "ratingsUnchanged": 0,
+    "ratingsChanged": 269,
+    "publicRankComparable": 38,
+    "publicRankMoved": 17,
+    "publicRankUnchanged": 21,
+    "missingNewPolicyRow": 0
+  },
+  "notAllPlayersChanged": "Only players with GPS in tier-discounted leagues (tier > 1 or mixed tiers) change. Tier-1 flagship-only players with identical weighted average stay unchanged.",
+  "tierWeights": {
+    "1": 1,
+    "2": 0.97,
+    "3": 0.93,
+    "4": 0.9
+  },
+  "topStallionMoves": [
+    {
+      "displayName": "Greggy Calma",
+      "ageGroup": "U19",
+      "oldRating": 95.09,
+      "newRating": 88.44,
+      "ratingDelta": -6.65,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Lucas Kaw",
+      "ageGroup": "U19",
+      "oldRating": 93.98,
+      "newRating": 87.4,
+      "ratingDelta": -6.58,
+      "oldPublicRank": 2,
+      "newPublicRank": 4,
+      "rankDelta": 2
+    },
+    {
+      "displayName": "Yuan Ramirez",
+      "ageGroup": "U19",
+      "oldRating": 93.61,
+      "newRating": 87.06,
+      "ratingDelta": -6.55,
+      "oldPublicRank": 3,
+      "newPublicRank": 5,
+      "rankDelta": 2
+    },
+    {
+      "displayName": "Jordan Yeng",
+      "ageGroup": "U19",
+      "oldRating": 89.96,
+      "newRating": 83.67,
+      "ratingDelta": -6.29,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Joshua Chua",
+      "ageGroup": "U19",
+      "oldRating": 89.58,
+      "newRating": 83.31,
+      "ratingDelta": -6.27,
+      "oldPublicRank": 5,
+      "newPublicRank": 7,
+      "rankDelta": 2
+    },
+    {
+      "displayName": "Allen Te",
+      "ageGroup": "U19",
+      "oldRating": 89.26,
+      "newRating": 83.02,
+      "ratingDelta": -6.24,
+      "oldPublicRank": 6,
+      "newPublicRank": 8,
+      "rankDelta": 2
+    },
+    {
+      "displayName": "Rione Sy",
+      "ageGroup": "U19",
+      "oldRating": 88.82,
+      "newRating": 82.61,
+      "ratingDelta": -6.21,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Joshua Hayden Chua",
+      "ageGroup": "U19",
+      "oldRating": 87.84,
+      "newRating": 81.69,
+      "ratingDelta": -6.15,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Joaquin Escudero",
+      "ageGroup": "U19",
+      "oldRating": 86.85,
+      "newRating": 80.77,
+      "ratingDelta": -6.08,
+      "oldPublicRank": 10,
+      "newPublicRank": 11,
+      "rankDelta": 1
+    },
+    {
+      "displayName": "Christian Pedarce",
+      "ageGroup": "U19",
+      "oldRating": 84.75,
+      "newRating": 78.82,
+      "ratingDelta": -5.93,
+      "oldPublicRank": 13,
+      "newPublicRank": 13,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Ethan Sy",
+      "ageGroup": "U19",
+      "oldRating": 84.38,
+      "newRating": 78.47,
+      "ratingDelta": -5.91,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Huey Vergara",
+      "ageGroup": "U19",
+      "oldRating": 84.23,
+      "newRating": 78.33,
+      "ratingDelta": -5.9,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Hans Go",
+      "ageGroup": "U19",
+      "oldRating": 84.08,
+      "newRating": 78.19,
+      "ratingDelta": -5.89,
+      "oldPublicRank": 15,
+      "newPublicRank": 15,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Miky Chua",
+      "ageGroup": "U19",
+      "oldRating": 83.49,
+      "newRating": 77.64,
+      "ratingDelta": -5.85,
+      "oldPublicRank": 16,
+      "newPublicRank": 16,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Rambert Lagar",
+      "ageGroup": "U19",
+      "oldRating": 82.38,
+      "newRating": 76.61,
+      "ratingDelta": -5.77,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Joshua Miguel Chua",
+      "ageGroup": "U19",
+      "oldRating": 82.14,
+      "newRating": 76.39,
+      "ratingDelta": -5.75,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Henry Bebing",
+      "ageGroup": "U19",
+      "oldRating": 81.33,
+      "newRating": 75.64,
+      "ratingDelta": -5.69,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Gabe Jorge",
+      "ageGroup": "U19",
+      "oldRating": 80.95,
+      "newRating": 75.28,
+      "ratingDelta": -5.67,
+      "oldPublicRank": 19,
+      "newPublicRank": 19,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Kyle De Luna",
+      "ageGroup": "U19",
+      "oldRating": 80.69,
+      "newRating": 75.05,
+      "ratingDelta": -5.64,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Seth Ong",
+      "ageGroup": "U19",
+      "oldRating": 79.55,
+      "newRating": 73.98,
+      "ratingDelta": -5.57,
+      "oldPublicRank": 21,
+      "newPublicRank": 24,
+      "rankDelta": 3
+    },
+    {
+      "displayName": "Aldrich Chong",
+      "ageGroup": "U19",
+      "oldRating": 78.44,
+      "newRating": 72.95,
+      "ratingDelta": -5.49,
+      "oldPublicRank": 24,
+      "newPublicRank": 25,
+      "rankDelta": 1
+    },
+    {
+      "displayName": "Ryian Wright Fernandez",
+      "ageGroup": "U19",
+      "oldRating": 77.77,
+      "newRating": 72.33,
+      "ratingDelta": -5.44,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Ish Dy",
+      "ageGroup": "U19",
+      "oldRating": 75.76,
+      "newRating": 70.46,
+      "ratingDelta": -5.3,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Quino Escudero",
+      "ageGroup": "U19",
+      "oldRating": 75.31,
+      "newRating": 70.04,
+      "ratingDelta": -5.27,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Enzo Sy",
+      "ageGroup": "U19",
+      "oldRating": 74.93,
+      "newRating": 69.68,
+      "ratingDelta": -5.25,
+      "oldPublicRank": 28,
+      "newPublicRank": 30,
+      "rankDelta": 2
+    }
+  ],
+  "topPybcMoves": [
+    {
+      "displayName": "Liam Santo",
+      "ageGroup": "U13",
+      "oldRating": 96.49,
+      "newRating": 89.74,
+      "ratingDelta": -6.75,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Andre Kitong",
+      "ageGroup": "U13",
+      "oldRating": 96.13,
+      "newRating": 89.4,
+      "ratingDelta": -6.73,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Aiden Kitong",
+      "ageGroup": "U13",
+      "oldRating": 95.83,
+      "newRating": 89.12,
+      "ratingDelta": -6.71,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Jesse Arellano",
+      "ageGroup": "U16",
+      "oldRating": 94.05,
+      "newRating": 87.47,
+      "ratingDelta": -6.58,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Rye Teodor Villaruz",
+      "ageGroup": "U16",
+      "oldRating": 93.78,
+      "newRating": 87.22,
+      "ratingDelta": -6.56,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Cristhop Calvero",
+      "ageGroup": "U13",
+      "oldRating": 92.85,
+      "newRating": 86.35,
+      "ratingDelta": -6.5,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Akhiro Franz Reynon",
+      "ageGroup": "U16",
+      "oldRating": 90.09,
+      "newRating": 83.78,
+      "ratingDelta": -6.31,
+      "oldPublicRank": 3,
+      "newPublicRank": 6,
+      "rankDelta": 3
+    },
+    {
+      "displayName": "Thadeus Angeles",
+      "ageGroup": "U16",
+      "oldRating": 89.57,
+      "newRating": 83.3,
+      "ratingDelta": -6.27,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Liam Santos",
+      "ageGroup": "U13",
+      "oldRating": 88.74,
+      "newRating": 82.53,
+      "ratingDelta": -6.21,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Riley Yuan Dela Cruz",
+      "ageGroup": "U16",
+      "oldRating": 88.42,
+      "newRating": 82.23,
+      "ratingDelta": -6.19,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Xander Dulfo",
+      "ageGroup": "U13",
+      "oldRating": 88.15,
+      "newRating": 81.98,
+      "ratingDelta": -6.17,
+      "oldPublicRank": 1,
+      "newPublicRank": 1,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Kurt Devron Benitez",
+      "ageGroup": "U16",
+      "oldRating": 87.75,
+      "newRating": 81.61,
+      "ratingDelta": -6.14,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Syrus Demate",
+      "ageGroup": "U13",
+      "oldRating": 86.78,
+      "newRating": 80.71,
+      "ratingDelta": -6.07,
+      "oldPublicRank": 2,
+      "newPublicRank": 2,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Patrick Tumbaga",
+      "ageGroup": "U13",
+      "oldRating": 86.29,
+      "newRating": 80.25,
+      "ratingDelta": -6.04,
+      "oldPublicRank": 3,
+      "newPublicRank": 3,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Philip Jr. Punzalan",
+      "ageGroup": "U13",
+      "oldRating": 84.46,
+      "newRating": 78.54,
+      "ratingDelta": -5.92,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Kirov Acedo",
+      "ageGroup": "U13",
+      "oldRating": 83.42,
+      "newRating": 77.58,
+      "ratingDelta": -5.84,
+      "oldPublicRank": 4,
+      "newPublicRank": 4,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Allain Escober",
+      "ageGroup": "U16",
+      "oldRating": 83.5,
+      "newRating": 77.66,
+      "ratingDelta": -5.84,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Coi Aver Moncal",
+      "ageGroup": "U13",
+      "oldRating": 82.85,
+      "newRating": 77.05,
+      "ratingDelta": -5.8,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Derict Reyes",
+      "ageGroup": "U16",
+      "oldRating": 82.57,
+      "newRating": 76.79,
+      "ratingDelta": -5.78,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Lawrence Tombocon",
+      "ageGroup": "U16",
+      "oldRating": 82.46,
+      "newRating": 76.68,
+      "ratingDelta": -5.78,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Ethan Suangco",
+      "ageGroup": "U13",
+      "oldRating": 80.71,
+      "newRating": 75.06,
+      "ratingDelta": -5.65,
+      "oldPublicRank": 5,
+      "newPublicRank": 5,
+      "rankDelta": 0
+    },
+    {
+      "displayName": "Oscar Bagion",
+      "ageGroup": "U13",
+      "oldRating": 80.36,
+      "newRating": 74.74,
+      "ratingDelta": -5.62,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Matthew Paraiso",
+      "ageGroup": "U13",
+      "oldRating": 80.01,
+      "newRating": 74.41,
+      "ratingDelta": -5.6,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Xian Latay",
+      "ageGroup": "U13",
+      "oldRating": 79.95,
+      "newRating": 74.36,
+      "ratingDelta": -5.59,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    },
+    {
+      "displayName": "Roan Lee Ancheta",
+      "ageGroup": "U16",
+      "oldRating": 79.77,
+      "newRating": 74.19,
+      "ratingDelta": -5.58,
+      "oldPublicRank": null,
+      "newPublicRank": null,
+      "rankDelta": null
+    }
+  ]
+}

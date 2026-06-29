@@ -3,7 +3,7 @@ import path from "node:path";
 import { PlayerGender } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
-const projectRoot = "D:\\OnCourt Rankings PH";
+const projectRoot = "D:\\Peach Basket";
 const expectedGameStatRows = 1885;
 
 const batchFiles = [

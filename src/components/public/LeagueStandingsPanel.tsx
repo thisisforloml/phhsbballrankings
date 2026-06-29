@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { TeamStandingRow } from "@/lib/team-rankings";
+import type { TeamStandingRow } from "@/lib/team-rankings-types";
 import { ScoutSectionLabel } from "@/components/public/ScoutSectionLabel";
 import { getProgramAbbreviation } from "@/lib/uaap-school-display";
 

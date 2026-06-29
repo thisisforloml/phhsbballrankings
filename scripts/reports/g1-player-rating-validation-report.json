@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-17T08:41:24.575Z",
+  "phase": "G1-player-rating-validation",
+  "phaseEChecks": {
+    "verifiedGameMismatches": 0,
+    "ratingMismatches": 0,
+    "starMismatches": 0,
+    "ratingsWithoutGps": 0,
+    "missingRatingsForGps": 0,
+    "orphanRatings": 0,
+    "recommendation": "PROCEED",
+    "validationPassed": true
+  },
+  "postRecomputeRowCount": 940,
+  "snapshotRegeneration": "not performed (out of scope)",
+  "rollbackInstructions": {
+    "summary": "Restore each PlayerRating row from rows[] via upsert by (playerId, ageGroup). Re-create deleted rows from backup.",
+    "tables": [
+      "player_ratings"
+    ],
+    "note": "Does not restore RankingSnapshot rows — G1 scope excludes snapshots."
+  }
+}

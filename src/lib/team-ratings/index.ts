@@ -4,4 +4,4 @@ export type {
   TeamStandingsFilters,
   TeamStandingsGender,
   TeamStandingRow
-} from "@/lib/team-rankings";
+} from "@/lib/team-rankings-types";

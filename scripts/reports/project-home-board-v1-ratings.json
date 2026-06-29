@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-06-18T08:00:45.386Z",
+  "mode": "execute",
+  "policyVersionId": "formula-v1-production",
+  "limboBefore": 9,
+  "limboAfter": 0,
+  "created": 9,
+  "skippedExisting": 0,
+  "targets": [
+    {
+      "displayName": "Xyriel Macahipay",
+      "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+      "ageGroup": "U16",
+      "adjustedRating": 84.13,
+      "verifiedGameCount": 15,
+      "starRating": 4,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Francel Flores",
+      "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+      "ageGroup": "U16",
+      "adjustedRating": 69,
+      "verifiedGameCount": 14,
+      "starRating": 2,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Keefe Iledan",
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U16",
+      "adjustedRating": 68.17,
+      "verifiedGameCount": 10,
+      "starRating": 2,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Nickson Cabañero",
+      "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+      "ageGroup": "U16",
+      "adjustedRating": 41.8,
+      "verifiedGameCount": 15,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Denden Enriquez",
+      "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+      "ageGroup": "U16",
+      "adjustedRating": 38.38,
+      "verifiedGameCount": 14,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Sam Villaruel",
+      "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+      "ageGroup": "U16",
+      "adjustedRating": 35.83,
+      "verifiedGameCount": 7,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Brian Orca Jr.",
+      "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+      "ageGroup": "U16",
+      "adjustedRating": 30.32,
+      "verifiedGameCount": 13,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Marvic Mesina",
+      "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+      "ageGroup": "U16",
+      "adjustedRating": 30.26,
+      "verifiedGameCount": 13,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "John Restificar",
+      "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+      "ageGroup": "U16",
+      "adjustedRating": 27.86,
+      "verifiedGameCount": 10,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    }
+  ]
+}

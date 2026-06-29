@@ -1,0 +1,494 @@
+﻿{
+  "generatedAt": "2026-06-17T08:41:09.786Z",
+  "phase": "G1-preview",
+  "mode": "read-only",
+  "backupPath": "D:\\Peach Basket\\scripts\\reports\\g1-player-rating-backup-2026-06-17T08-41-09-230Z.json",
+  "changeCounts": {
+    "creates": 0,
+    "updates": 215,
+    "deletes": 0,
+    "unchanged": 725,
+    "totalTargets": 940,
+    "totalStoredBefore": 940
+  },
+  "largestMovers": [
+    {
+      "playerId": "dc3b4729-ad29-467a-99af-65eeafca91dc",
+      "displayName": "Maddox Lim",
+      "board": "U19 Boys",
+      "ratingDelta": 31.74,
+      "verifiedGameCountDelta": 6,
+      "beforeRating": 40.6,
+      "afterRating": 72.34,
+      "beforeGames": 1,
+      "afterGames": 7
+    },
+    {
+      "playerId": "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+      "displayName": "Josh Lim",
+      "board": "U19 Boys",
+      "ratingDelta": 30.86,
+      "verifiedGameCountDelta": 19,
+      "beforeRating": 36.86,
+      "afterRating": 67.72,
+      "beforeGames": 6,
+      "afterGames": 25
+    },
+    {
+      "playerId": "704291ca-5be6-48b0-b604-140a5a545c42",
+      "displayName": "Aaron Jao",
+      "board": "U19 Boys",
+      "ratingDelta": 25.85,
+      "verifiedGameCountDelta": 13,
+      "beforeRating": 14.71,
+      "afterRating": 40.56,
+      "beforeGames": 1,
+      "afterGames": 14
+    },
+    {
+      "playerId": "66d1f60a-2094-4f82-ba0a-2e8e1c238699",
+      "displayName": "Kian Pachoco",
+      "board": "U16 Boys",
+      "ratingDelta": -24.78,
+      "verifiedGameCountDelta": 4,
+      "beforeRating": 46.21,
+      "afterRating": 21.43,
+      "beforeGames": 1,
+      "afterGames": 5
+    },
+    {
+      "playerId": "6b6a7194-5f94-41fb-9166-913576a506c1",
+      "displayName": "Mustapha Hasim",
+      "board": "U16 Boys",
+      "ratingDelta": -24.71,
+      "verifiedGameCountDelta": 4,
+      "beforeRating": 62.44,
+      "afterRating": 37.73,
+      "beforeGames": 3,
+      "afterGames": 7
+    },
+    {
+      "playerId": "108648e9-92d8-4de3-852a-c91930d5f96d",
+      "displayName": "Zyril Li",
+      "board": "U19 Boys",
+      "ratingDelta": 24.7,
+      "verifiedGameCountDelta": 7,
+      "beforeRating": 4.81,
+      "afterRating": 29.51,
+      "beforeGames": 2,
+      "afterGames": 9
+    },
+    {
+      "playerId": "1acf5e95-a6bd-493a-ac7d-21ccda00821a",
+      "displayName": "Ethan Kaw",
+      "board": "U19 Boys",
+      "ratingDelta": -24.04,
+      "verifiedGameCountDelta": 22,
+      "beforeRating": 85.46,
+      "afterRating": 61.42,
+      "beforeGames": 5,
+      "afterGames": 27
+    },
+    {
+      "playerId": "4acbd55f-c814-4ba8-a989-94f19ecfff21",
+      "displayName": "Sean Tan",
+      "board": "U19 Boys",
+      "ratingDelta": 23.25,
+      "verifiedGameCountDelta": 11,
+      "beforeRating": 34.94,
+      "afterRating": 58.19,
+      "beforeGames": 5,
+      "afterGames": 16
+    },
+    {
+      "playerId": "7fbd24cd-252c-4052-9a54-b68c5de2dbd0",
+      "displayName": "Colin Mathay",
+      "board": "U19 Boys",
+      "ratingDelta": 22.57,
+      "verifiedGameCountDelta": 8,
+      "beforeRating": 24.12,
+      "afterRating": 46.69,
+      "beforeGames": 4,
+      "afterGames": 12
+    },
+    {
+      "playerId": "90d1b6d2-ae9c-4525-975f-5039e42007e7",
+      "displayName": "Nhian Seff Sy",
+      "board": "U19 Boys",
+      "ratingDelta": 21.53,
+      "verifiedGameCountDelta": 5,
+      "beforeRating": 13.19,
+      "afterRating": 34.72,
+      "beforeGames": 1,
+      "afterGames": 6
+    },
+    {
+      "playerId": "44cc2209-7ba2-42e5-a02c-d0a34b89c2d7",
+      "displayName": "Cobe Ang",
+      "board": "U19 Boys",
+      "ratingDelta": 20.94,
+      "verifiedGameCountDelta": 9,
+      "beforeRating": 25.79,
+      "afterRating": 46.73,
+      "beforeGames": 6,
+      "afterGames": 15
+    },
+    {
+      "playerId": "00024733-633d-4793-a484-3511de66186a",
+      "displayName": "Kobe James Buban",
+      "board": "U16 Boys",
+      "ratingDelta": -20.81,
+      "verifiedGameCountDelta": 2,
+      "beforeRating": 72.3,
+      "afterRating": 51.49,
+      "beforeGames": 1,
+      "afterGames": 3
+    },
+    {
+      "playerId": "fff6779a-8aa2-4b44-90f1-8846736d1fc6",
+      "displayName": "Emmanuel Ynigo Lencioco",
+      "board": "U16 Boys",
+      "ratingDelta": 20.03,
+      "verifiedGameCountDelta": 2,
+      "beforeRating": 18.66,
+      "afterRating": 38.69,
+      "beforeGames": 2,
+      "afterGames": 4
+    },
+    {
+      "playerId": "da1ec6cf-1ad3-4662-9b4f-b96d6f5b4f7b",
+      "displayName": "Rafa Del Mundo",
+      "board": "U19 Boys",
+      "ratingDelta": 19.49,
+      "verifiedGameCountDelta": 19,
+      "beforeRating": 26.89,
+      "afterRating": 46.38,
+      "beforeGames": 1,
+      "afterGames": 20
+    },
+    {
+      "playerId": "002702d3-fe63-491a-881d-81733da10f80",
+      "displayName": "Joachim Uy",
+      "board": "U19 Boys",
+      "ratingDelta": -19.47,
+      "verifiedGameCountDelta": 13,
+      "beforeRating": 86.29,
+      "afterRating": 66.82,
+      "beforeGames": 2,
+      "afterGames": 15
+    },
+    {
+      "playerId": "e0f73bc1-045c-4de4-954e-dd3dc21b5a17",
+      "displayName": "Tristan Teoc",
+      "board": "U16 Boys",
+      "ratingDelta": -18.94,
+      "verifiedGameCountDelta": 2,
+      "beforeRating": 91.85,
+      "afterRating": 72.91,
+      "beforeGames": 2,
+      "afterGames": 4
+    },
+    {
+      "playerId": "457497e3-a7b5-4dda-856a-cc5280d2ad96",
+      "displayName": "Dwayne Cads",
+      "board": "U16 Boys",
+      "ratingDelta": 17.97,
+      "verifiedGameCountDelta": 3,
+      "beforeRating": 14.83,
+      "afterRating": 32.8,
+      "beforeGames": 3,
+      "afterGames": 6
+    },
+    {
+      "playerId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+      "displayName": "Kenzo Centeno",
+      "board": "U19 Boys",
+      "ratingDelta": -17.96,
+      "verifiedGameCountDelta": 23,
+      "beforeRating": 71.06,
+      "afterRating": 53.1,
+      "beforeGames": 2,
+      "afterGames": 25
+    },
+    {
+      "playerId": "9dd12302-7194-4165-9f0a-37cea6bfda0e",
+      "displayName": "Alarick Tan",
+      "board": "U19 Boys",
+      "ratingDelta": 17.33,
+      "verifiedGameCountDelta": 12,
+      "beforeRating": 53.55,
+      "afterRating": 70.88,
+      "beforeGames": 2,
+      "afterGames": 14
+    },
+    {
+      "playerId": "77cd7252-0571-4ff6-9015-f4ea81f12a84",
+      "displayName": "Jim Andrie Braza",
+      "board": "U16 Boys",
+      "ratingDelta": -17.18,
+      "verifiedGameCountDelta": 4,
+      "beforeRating": 90.59,
+      "afterRating": 73.41,
+      "beforeGames": 3,
+      "afterGames": 7
+    },
+    {
+      "playerId": "96844238-d5f4-4d16-9ad0-26e071b2cfe9",
+      "displayName": "Lucas Ang",
+      "board": "U19 Boys",
+      "ratingDelta": 16.92,
+      "verifiedGameCountDelta": 7,
+      "beforeRating": 24.05,
+      "afterRating": 40.97,
+      "beforeGames": 6,
+      "afterGames": 13
+    },
+    {
+      "playerId": "563e4831-1047-48c5-a238-04319d787fde",
+      "displayName": "Andrei Francisco",
+      "board": "U16 Boys",
+      "ratingDelta": -16.06,
+      "verifiedGameCountDelta": 2,
+      "beforeRating": 62.11,
+      "afterRating": 46.05,
+      "beforeGames": 1,
+      "afterGames": 3
+    },
+    {
+      "playerId": "7f93137a-a67d-490f-8dc8-1b834bcc48bf",
+      "displayName": "Pablo Rufino",
+      "board": "U19 Boys",
+      "ratingDelta": 15.99,
+      "verifiedGameCountDelta": 7,
+      "beforeRating": 25.16,
+      "afterRating": 41.15,
+      "beforeGames": 5,
+      "afterGames": 12
+    },
+    {
+      "playerId": "a5090c03-e1d5-4df3-92b3-44aea672c373",
+      "displayName": "Jaleel Balagapo",
+      "board": "U16 Boys",
+      "ratingDelta": 15.15,
+      "verifiedGameCountDelta": 4,
+      "beforeRating": 40.68,
+      "afterRating": 55.83,
+      "beforeGames": 4,
+      "afterGames": 8
+    },
+    {
+      "playerId": "adf913ef-63e8-4fd6-84c0-7c878cd78906",
+      "displayName": "Acee Abar",
+      "board": "U16 Boys",
+      "ratingDelta": 14.88,
+      "verifiedGameCountDelta": 4,
+      "beforeRating": 57.86,
+      "afterRating": 72.74,
+      "beforeGames": 4,
+      "afterGames": 8
+    }
+  ],
+  "eligibilityChanges": [
+    {
+      "playerId": "002702d3-fe63-491a-881d-81733da10f80",
+      "displayName": "Joachim Uy",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+      "displayName": "Joshua Chua",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "133d08e0-3a88-4dc8-85ad-61af238bd219",
+      "displayName": "Savian Go",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "14a8af2c-1fe2-44d4-baac-3baa10f756cc",
+      "displayName": "Cedrick Tan",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "17116e9a-f697-4d58-99f9-2a4255b3337e",
+      "displayName": "Kurt Ong",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "18a7f5cf-395c-478f-949d-110e1c51f413",
+      "displayName": "Enzo Soledad",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "1acf5e95-a6bd-493a-ac7d-21ccda00821a",
+      "displayName": "Ethan Kaw",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "1ecbafd0-c8f8-4b8f-ade7-bf2ad0aafd76",
+      "displayName": "Aidan Rae Ronquillo",
+      "board": "U16 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "1efb367c-063c-441d-ad59-33015f122691",
+      "displayName": "Xander Ty",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "2079752d-b711-434f-a7d9-38bbc689270a",
+      "displayName": "Rafael Dela Cruz",
+      "board": "U16 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+      "displayName": "Kurt Chua",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "2d40867e-3318-47a9-ac96-9a84848e338b",
+      "displayName": "Marcus De Lara",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "318a9aed-4889-40b0-b084-05404ff55520",
+      "displayName": "Akhiro Franz Reynon",
+      "board": "U16 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3363a5a7-1c72-493c-820a-c4cbd641ff42",
+      "displayName": "Seth Ong",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "356ff89b-6eff-46f5-84aa-222e6b604413",
+      "displayName": "Marcus Tiu",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+      "displayName": "Nico Koa",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+      "displayName": "Adrian Dela Cruz",
+      "board": "U16 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+      "displayName": "Yuan Ramirez",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3a24bd05-60de-4744-8893-ff39c274939e",
+      "displayName": "Liam Ang",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3bc473a4-6dc4-4aff-9db6-1d200ef68599",
+      "displayName": "Juancho Bernabe",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3ccc00bd-b5d8-48a2-ac2f-57a23f4dc4e3",
+      "displayName": "Matthew Acop",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3cd7328c-c26f-433e-8b4d-65bd53c9afc2",
+      "displayName": "Calix Tiu",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "3f59df23-68b4-49f1-a3c3-924b23e57e50",
+      "displayName": "Josh Chua",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "411acd67-e69b-4e91-8fb9-7d89aba5a9b4",
+      "displayName": "Rain Gabryle Cajilig",
+      "board": "U16 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    },
+    {
+      "playerId": "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+      "displayName": "Hans Go",
+      "board": "U19 Boys",
+      "wasPublic": false,
+      "willBePublic": true,
+      "reason": "gains_public_eligibility"
+    }
+  ],
+  "nextStep": "npx tsx scripts/g1-player-rating-remediation.ts --execute"
+}

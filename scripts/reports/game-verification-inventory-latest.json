@@ -1,0 +1,164 @@
+{
+  "generatedAt": "2026-06-17T12:04:47.814Z",
+  "totalActiveGames": 405,
+  "byStatus": {
+    "SUBMITTED": 405
+  },
+  "byStatusSource": {
+    "SUBMITTED": {
+      "STAFF_MANUAL_ENTRY": 405
+    }
+  },
+  "bySubmissionType": {
+    "STAFF_MANUAL_ENTRY": 405
+  },
+  "byLeagueBucket": {
+    "UAAP": {
+      "SUBMITTED": 136
+    },
+    "NCAA": {
+      "SUBMITTED": 81
+    },
+    "PYBC": {
+      "SUBMITTED": 74
+    },
+    "Stallion": {
+      "SUBMITTED": 114
+    }
+  },
+  "byLeagueBucketUniqueGameNumbers": {
+    "UAAP": {
+      "SUBMITTED": 136
+    },
+    "NCAA": {
+      "SUBMITTED": 81
+    },
+    "PYBC": {
+      "SUBMITTED": 74
+    },
+    "Stallion": {
+      "SUBMITTED": 114
+    }
+  },
+  "leagueVerification": [
+    {
+      "id": "d721a82a-f182-4a54-983a-01453650ec9e",
+      "name": "UAAP Season 88 HS Boys Basketball",
+      "ageGroup": "U19",
+      "tier": 4,
+      "verificationStatus": "VERIFIED",
+      "bucket": "UAAP"
+    },
+    {
+      "id": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef",
+      "name": "UAAP Season 88 HS Girls Basketball",
+      "ageGroup": "U19",
+      "tier": 4,
+      "verificationStatus": "VERIFIED",
+      "bucket": "UAAP"
+    },
+    {
+      "id": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+      "name": "UAAP Season 88 16U Boys Basketball",
+      "ageGroup": "U16",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "UAAP"
+    },
+    {
+      "id": "f14b052d-6786-4173-85b2-979b3b6f0781",
+      "name": "NCAA Season 101 Junior's Basketball",
+      "ageGroup": "U19",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "NCAA"
+    },
+    {
+      "id": "8e5d3eeb-405e-4084-bc62-61637560db19",
+      "name": "PYBC U16 Boys Basketball",
+      "ageGroup": "U16",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "PYBC"
+    },
+    {
+      "id": "912ffef7-6e22-48a7-9551-51f0f46a8ac8",
+      "name": "Philippine Youth Basketball Championship - 15U",
+      "ageGroup": "U16",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "PYBC"
+    },
+    {
+      "id": "02726bac-c93c-4060-b23a-527d10da6184",
+      "name": "PYBC 15U",
+      "ageGroup": "U16",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "PYBC"
+    },
+    {
+      "id": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+      "name": "Philippine Youth Basketball Championship – 13u",
+      "ageGroup": "U13",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "PYBC"
+    },
+    {
+      "id": "52502f71-9734-477d-8ea7-bc8f6276676d",
+      "name": "4th Stallion Cup – Teens 17u",
+      "ageGroup": "U19",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "Stallion"
+    },
+    {
+      "id": "f57eb4e1-040f-45ee-9d0f-a0d8e2a10339",
+      "name": "3rd Stallion Cup – Teens 17u",
+      "ageGroup": "U19",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "Stallion"
+    },
+    {
+      "id": "f4597d51-3dd8-4913-9e08-3a7dd33132d1",
+      "name": "5th Stallion Cup – Teens 17u",
+      "ageGroup": "U19",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "Stallion"
+    },
+    {
+      "id": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+      "name": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u",
+      "ageGroup": "U19",
+      "tier": 1,
+      "verificationStatus": "PROVISIONAL",
+      "bucket": "Stallion"
+    }
+  ],
+  "gpsTotal": 9391,
+  "gpsByGameVerificationStatus": [
+    {
+      "status": "SUBMITTED",
+      "count": 9391
+    }
+  ],
+  "submissions": {
+    "total": 46,
+    "byStatus": {
+      "IMPORTED": 46
+    }
+  },
+  "policyScenarios": {
+    "verifiedOnly": {
+      "gameRows": 0,
+      "uniquePybc": 0
+    },
+    "submittedPlusVerified": {
+      "gameRows": 405,
+      "uniquePybc": 74
+    }
+  }
+}

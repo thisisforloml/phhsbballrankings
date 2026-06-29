@@ -1,0 +1,736 @@
+{
+  "generatedAt": "2026-06-17T10:05:42.274Z",
+  "phase": "D-competition-coverage-audit",
+  "mode": "read-only",
+  "metrics": {
+    "leaguesWithGames": 12,
+    "seasonsWithGames": 13,
+    "totalDbGames": 405,
+    "totalDbGameStats": 9391,
+    "importedSubmissions": 46,
+    "submissionGamesTotal": 329,
+    "submissionPlayerRowsTotal": 7506,
+    "globalConfidenceScore": 87,
+    "familyCount": 8
+  },
+  "familyAggregates": [
+    {
+      "family": "ncaa_jrs",
+      "db": {
+        "leagues": 1,
+        "seasons": 1,
+        "games": 81,
+        "gameStats": 2061,
+        "teams": 10,
+        "players": 177
+      },
+      "submissions": 12,
+      "submissionGames": 81,
+      "submissionPlayerRows": 2061,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "batch"
+      ],
+      "missingStages": [],
+      "coverageStatus": "complete",
+      "confidenceScore": 85,
+      "seasonCount": 1
+    },
+    {
+      "family": "pybc_13u",
+      "db": {
+        "leagues": 1,
+        "seasons": 1,
+        "games": 37,
+        "gameStats": 900,
+        "teams": 8,
+        "players": 138
+      },
+      "submissions": 2,
+      "submissionGames": 37,
+      "submissionPlayerRows": 900,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations",
+        "playoffs"
+      ],
+      "missingStages": [],
+      "coverageStatus": "complete",
+      "confidenceScore": 100,
+      "seasonCount": 1
+    },
+    {
+      "family": "pybc_15u",
+      "db": {
+        "leagues": 1,
+        "seasons": 1,
+        "games": 27,
+        "gameStats": 658,
+        "teams": 8,
+        "players": 128
+      },
+      "submissions": 5,
+      "submissionGames": 37,
+      "submissionPlayerRows": 930,
+      "submissionDbGameDelta": 10,
+      "stagesInSubmissions": [
+        "batch",
+        "unknown"
+      ],
+      "missingStages": [],
+      "coverageStatus": "partial",
+      "confidenceScore": 70,
+      "seasonCount": 1
+    },
+    {
+      "family": "pybc_other",
+      "db": {
+        "leagues": 2,
+        "seasons": 2,
+        "games": 10,
+        "gameStats": 272,
+        "teams": 10,
+        "players": 148
+      },
+      "submissions": 0,
+      "submissionGames": 0,
+      "submissionPlayerRows": 0,
+      "submissionDbGameDelta": -10,
+      "stagesInSubmissions": [],
+      "missingStages": [],
+      "coverageStatus": "uncertain",
+      "confidenceScore": 45,
+      "seasonCount": 2
+    },
+    {
+      "family": "stallion_cup",
+      "db": {
+        "leagues": 5,
+        "seasons": 5,
+        "games": 114,
+        "gameStats": 2151,
+        "teams": 35,
+        "players": 382
+      },
+      "submissions": 8,
+      "submissionGames": 114,
+      "submissionPlayerRows": 2151,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations",
+        "playoffs"
+      ],
+      "missingStages": [],
+      "coverageStatus": "complete",
+      "confidenceScore": 90,
+      "seasonCount": 5
+    },
+    {
+      "family": "uaap_s88_16u",
+      "db": {
+        "leagues": 1,
+        "seasons": 1,
+        "games": 60,
+        "gameStats": 1464,
+        "teams": 8,
+        "players": 120
+      },
+      "submissions": 19,
+      "submissionGames": 60,
+      "submissionPlayerRows": 1464,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "batch",
+        "unknown"
+      ],
+      "missingStages": [],
+      "coverageStatus": "complete",
+      "confidenceScore": 100,
+      "seasonCount": 1
+    },
+    {
+      "family": "uaap_s88_hs_boys",
+      "db": {
+        "leagues": 1,
+        "seasons": 1,
+        "games": 62,
+        "gameStats": 1554,
+        "teams": 8,
+        "players": 125
+      },
+      "submissions": 0,
+      "submissionGames": 0,
+      "submissionPlayerRows": 0,
+      "submissionDbGameDelta": -62,
+      "stagesInSubmissions": [],
+      "missingStages": [],
+      "coverageStatus": "uncertain",
+      "confidenceScore": 55,
+      "seasonCount": 1
+    },
+    {
+      "family": "uaap_s88_hs_girls",
+      "db": {
+        "leagues": 1,
+        "seasons": 1,
+        "games": 14,
+        "gameStats": 331,
+        "teams": 4,
+        "players": 56
+      },
+      "submissions": 0,
+      "submissionGames": 0,
+      "submissionPlayerRows": 0,
+      "submissionDbGameDelta": -14,
+      "stagesInSubmissions": [],
+      "missingStages": [],
+      "coverageStatus": "uncertain",
+      "confidenceScore": 55,
+      "seasonCount": 1
+    }
+  ],
+  "coverageMatrix": [
+    {
+      "competitionKey": "3rd Stallion Cup – Teens 17u :: Season 2026",
+      "family": "stallion_cup",
+      "leagueName": "3rd Stallion Cup – Teens 17u",
+      "seasonName": "Season 2026",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 25,
+      "dbGameStats": 525,
+      "dbTeams": 7,
+      "dbPlayers": 84,
+      "submissionSubmissions": 2,
+      "submissionGames": 25,
+      "submissionPlayerRows": 525,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations",
+        "playoffs"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "statshub_url_import": 25
+      },
+      "minGamesPerTeam": 6,
+      "maxGamesPerTeam": 8,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 100
+    },
+    {
+      "competitionKey": "4th Stallion Cup – Teens 17u :: Season 2026",
+      "family": "stallion_cup",
+      "leagueName": "4th Stallion Cup – Teens 17u",
+      "seasonName": "Season 2026",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 32,
+      "dbGameStats": 657,
+      "dbTeams": 8,
+      "dbPlayers": 97,
+      "submissionSubmissions": 2,
+      "submissionGames": 32,
+      "submissionPlayerRows": 657,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations",
+        "playoffs"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "statshub_url_import": 32
+      },
+      "minGamesPerTeam": 7,
+      "maxGamesPerTeam": 9,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 100
+    },
+    {
+      "competitionKey": "5th Stallion Cup – Teens 17u :: Season 2026",
+      "family": "stallion_cup",
+      "leagueName": "5th Stallion Cup – Teens 17u",
+      "seasonName": "Season 2026",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 28,
+      "dbGameStats": 442,
+      "dbTeams": 9,
+      "dbPlayers": 80,
+      "submissionSubmissions": 1,
+      "submissionGames": 28,
+      "submissionPlayerRows": 442,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations"
+      ],
+      "missingStages": [
+        "playoffs"
+      ],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "statshub_url_import": 28
+      },
+      "minGamesPerTeam": 2,
+      "maxGamesPerTeam": 7,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "partial",
+      "confidenceScore": 78
+    },
+    {
+      "competitionKey": "5th Stallion Cup – Teens 17u :: Season 2025",
+      "family": "stallion_cup",
+      "leagueName": "5th Stallion Cup – Teens 17u",
+      "seasonName": "Season 2025",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 4,
+      "dbGameStats": 66,
+      "dbTeams": 4,
+      "dbPlayers": 39,
+      "submissionSubmissions": 1,
+      "submissionGames": 4,
+      "submissionPlayerRows": 66,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "playoffs"
+      ],
+      "missingStages": [
+        "eliminations"
+      ],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "statshub_url_import": 4
+      },
+      "minGamesPerTeam": 2,
+      "maxGamesPerTeam": 2,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "partial",
+      "confidenceScore": 88
+    },
+    {
+      "competitionKey": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u :: Season 2026",
+      "family": "stallion_cup",
+      "leagueName": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u",
+      "seasonName": "Season 2026",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 25,
+      "dbGameStats": 461,
+      "dbTeams": 7,
+      "dbPlayers": 82,
+      "submissionSubmissions": 2,
+      "submissionGames": 25,
+      "submissionPlayerRows": 461,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations",
+        "playoffs"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "statshub_url_import": 25
+      },
+      "minGamesPerTeam": 6,
+      "maxGamesPerTeam": 8,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 100
+    },
+    {
+      "competitionKey": "NCAA Season 101 Junior's Basketball :: Season 101",
+      "family": "ncaa_jrs",
+      "leagueName": "NCAA Season 101 Junior's Basketball",
+      "seasonName": "Season 101",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 81,
+      "dbGameStats": 2061,
+      "dbTeams": 10,
+      "dbPlayers": 177,
+      "submissionSubmissions": 12,
+      "submissionGames": 81,
+      "submissionPlayerRows": 2061,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "batch"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "ncaa_batch": 81
+      },
+      "minGamesPerTeam": 14,
+      "maxGamesPerTeam": 20,
+      "teamFragmentationFlag": true,
+      "coverageStatus": "complete",
+      "confidenceScore": 85
+    },
+    {
+      "competitionKey": "Philippine Youth Basketball Championship - 15U :: 1",
+      "family": "pybc_other",
+      "leagueName": "Philippine Youth Basketball Championship - 15U",
+      "seasonName": "1",
+      "ageGroup": "U16",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 9,
+      "dbGameStats": 243,
+      "dbTeams": 8,
+      "dbPlayers": 119,
+      "submissionSubmissions": 1,
+      "submissionGames": 9,
+      "submissionPlayerRows": 243,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "batch"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "spreadsheet_upload": 9
+      },
+      "minGamesPerTeam": 1,
+      "maxGamesPerTeam": 4,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 90
+    },
+    {
+      "competitionKey": "Philippine Youth Basketball Championship – 13u :: Season 2026",
+      "family": "pybc_13u",
+      "leagueName": "Philippine Youth Basketball Championship – 13u",
+      "seasonName": "Season 2026",
+      "ageGroup": "U13",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 37,
+      "dbGameStats": 900,
+      "dbTeams": 8,
+      "dbPlayers": 138,
+      "submissionSubmissions": 2,
+      "submissionGames": 37,
+      "submissionPlayerRows": 900,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "eliminations",
+        "playoffs"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "statshub_url_import": 37
+      },
+      "minGamesPerTeam": 8,
+      "maxGamesPerTeam": 12,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 100
+    },
+    {
+      "competitionKey": "PYBC 15U :: 1",
+      "family": "pybc_15u",
+      "leagueName": "PYBC 15U",
+      "seasonName": "1",
+      "ageGroup": "U16",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 27,
+      "dbGameStats": 658,
+      "dbTeams": 8,
+      "dbPlayers": 128,
+      "submissionSubmissions": 3,
+      "submissionGames": 27,
+      "submissionPlayerRows": 658,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "batch"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "spreadsheet_upload": 27
+      },
+      "minGamesPerTeam": 4,
+      "maxGamesPerTeam": 10,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 100
+    },
+    {
+      "competitionKey": "PYBC U16 Boys Basketball :: 2025 Season",
+      "family": "pybc_other",
+      "leagueName": "PYBC U16 Boys Basketball",
+      "seasonName": "2025 Season",
+      "ageGroup": "U16",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 1,
+      "dbGameStats": 29,
+      "dbTeams": 2,
+      "dbPlayers": 29,
+      "submissionSubmissions": 1,
+      "submissionGames": 1,
+      "submissionPlayerRows": 29,
+      "submissionDbGameDelta": 0,
+      "stagesInSubmissions": [
+        "unknown"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "spreadsheet_upload": 1
+      },
+      "minGamesPerTeam": 1,
+      "maxGamesPerTeam": 1,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "complete",
+      "confidenceScore": 100
+    },
+    {
+      "competitionKey": "UAAP Season 88 16U Boys Basketball :: Season 88",
+      "family": "uaap_s88_16u",
+      "leagueName": "UAAP Season 88 16U Boys Basketball",
+      "seasonName": "Season 88",
+      "ageGroup": "U16",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 60,
+      "dbGameStats": 1464,
+      "dbTeams": 8,
+      "dbPlayers": 120,
+      "submissionSubmissions": 0,
+      "submissionGames": 0,
+      "submissionPlayerRows": 0,
+      "submissionDbGameDelta": null,
+      "stagesInSubmissions": [
+        "batch",
+        "unknown"
+      ],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "uaap_batch": 60
+      },
+      "minGamesPerTeam": 14,
+      "maxGamesPerTeam": 18,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "uncertain",
+      "confidenceScore": 75
+    },
+    {
+      "competitionKey": "UAAP Season 88 HS Boys Basketball :: Season 88",
+      "family": "uaap_s88_hs_boys",
+      "leagueName": "UAAP Season 88 HS Boys Basketball",
+      "seasonName": "Season 88",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 62,
+      "dbGameStats": 1554,
+      "dbTeams": 8,
+      "dbPlayers": 125,
+      "submissionSubmissions": 0,
+      "submissionGames": 0,
+      "submissionPlayerRows": 0,
+      "submissionDbGameDelta": null,
+      "stagesInSubmissions": [],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "uaap_batch": 62
+      },
+      "minGamesPerTeam": 14,
+      "maxGamesPerTeam": 19,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "uncertain",
+      "confidenceScore": 55
+    },
+    {
+      "competitionKey": "UAAP Season 88 HS Girls Basketball :: Season 88",
+      "family": "uaap_s88_hs_girls",
+      "leagueName": "UAAP Season 88 HS Girls Basketball",
+      "seasonName": "Season 88",
+      "ageGroup": "U19",
+      "seasonStatus": "ACTIVE",
+      "dbGames": 14,
+      "dbGameStats": 331,
+      "dbTeams": 4,
+      "dbPlayers": 56,
+      "submissionSubmissions": 0,
+      "submissionGames": 0,
+      "submissionPlayerRows": 0,
+      "submissionDbGameDelta": null,
+      "stagesInSubmissions": [],
+      "missingStages": [],
+      "gameNumberGaps": [],
+      "gameNumberRange": null,
+      "sourceBuckets": {
+        "uaap_batch": 14
+      },
+      "minGamesPerTeam": 6,
+      "maxGamesPerTeam": 8,
+      "teamFragmentationFlag": false,
+      "coverageStatus": "uncertain",
+      "confidenceScore": 55
+    }
+  ],
+  "submissionRollupsByFamily": {
+    "uaap_s88_16u": {
+      "submissions": 19,
+      "submissionGames": 60,
+      "submissionPlayerRows": 1464,
+      "stages": [
+        "batch",
+        "unknown"
+      ],
+      "titles": [
+        "UAAP Season 88 16U Basketball",
+        "UAAP Season 88 16U Basketball",
+        "UAAP Season 88 16U Basketball",
+        "UAAP Season 88 16U Basketball",
+        "UAAP88 16U, 16-19",
+        "UAAP88 16U, 19-22",
+        "UAAP88 16U, 22-24",
+        "UAAP88 16U, 25-27",
+        "UAAP88 16U, 28-30",
+        "UAAP88 16U, 31-33",
+        "UAAP88 16U, 34-36",
+        "UAAP88 16U, 37-39",
+        "UAAP88 16U, 40-42",
+        "UAAP88 16U, 43-45",
+        "UAAP88 16U, 46-48",
+        "UAAP88 16U, 49-51",
+        "UAAP88 16U, 52-54",
+        "UAAP88 16U, 55-57",
+        "UAAP88 16U, 58-60"
+      ]
+    },
+    "ncaa_jrs": {
+      "submissions": 12,
+      "submissionGames": 81,
+      "submissionPlayerRows": 2061,
+      "stages": [
+        "batch"
+      ],
+      "titles": [
+        "NCAA101 JRS, 1-5",
+        "NCAA101 JRS, 6-10",
+        "NCAA101 JRS, 11-15",
+        "NCAA101 JRS, 16-20",
+        "NCAA101 JRS, 21-25",
+        "NCAA101 JRS, 26-30",
+        "NCAA101 JRS, 31-37",
+        "NCAA101 JRS, 41-50",
+        "NCAA101 JRS, 51-60",
+        "NCAA101 JRS, 61-70",
+        "NCAA101 JRS, 71-81",
+        "NCAA101 JRS, 38-40"
+      ]
+    },
+    "pybc_15u": {
+      "submissions": 5,
+      "submissionGames": 37,
+      "submissionPlayerRows": 930,
+      "stages": [
+        "batch",
+        "unknown"
+      ],
+      "titles": [
+        "PYBC 15U, 1",
+        "PYBC 15U, 2-10",
+        "PYBC 15U, 11-20",
+        "PYBC 15U, 21-28",
+        "PYBC 15U, 29-37"
+      ]
+    },
+    "pybc_13u": {
+      "submissions": 2,
+      "submissionGames": 37,
+      "submissionPlayerRows": 900,
+      "stages": [
+        "eliminations",
+        "playoffs"
+      ],
+      "titles": [
+        "PYBC 13U, Eliminations",
+        "PYBC 13U, Playoffs"
+      ]
+    },
+    "stallion_cup": {
+      "submissions": 8,
+      "submissionGames": 114,
+      "submissionPlayerRows": 2151,
+      "stages": [
+        "eliminations",
+        "playoffs"
+      ],
+      "titles": [
+        "4th Stallion Cup 17U, Eliminations",
+        "4th Stallion Cup 17U, Playoffs",
+        "3rd Stallion Cup 17U, Eliminations",
+        "3rd Stallion Cup 17U, Playoffs",
+        "5th Stallion Cup 17U, Eliminations",
+        "5th Stallion Cup 17U, Playoffs",
+        "6th Stallion Cup 18U, Eliminations",
+        "6th Stallion Cup 18U, Playoffs"
+      ]
+    }
+  },
+  "findings": [
+    {
+      "id": "missing-submission-stage",
+      "severity": "high",
+      "summary": "Missing submission stage(s): playoffs",
+      "competition": "5th Stallion Cup – Teens 17u :: Season 2026"
+    },
+    {
+      "id": "missing-submission-stage",
+      "severity": "high",
+      "summary": "Missing submission stage(s): eliminations",
+      "competition": "5th Stallion Cup – Teens 17u :: Season 2025"
+    },
+    {
+      "id": "team-fragmentation-blocker",
+      "severity": "high",
+      "summary": "Phase C team fragmentation affects this competition",
+      "competition": "NCAA Season 101 Junior's Basketball :: Season 101"
+    },
+    {
+      "id": "no-submission-lineage",
+      "severity": "medium",
+      "summary": "60 DB game(s) with no IMPORTED submission lineage",
+      "competition": "UAAP Season 88 16U Boys Basketball :: Season 88"
+    },
+    {
+      "id": "no-submission-lineage",
+      "severity": "medium",
+      "summary": "62 DB game(s) with no IMPORTED submission lineage",
+      "competition": "UAAP Season 88 HS Boys Basketball :: Season 88"
+    },
+    {
+      "id": "no-submission-lineage",
+      "severity": "medium",
+      "summary": "14 DB game(s) with no IMPORTED submission lineage",
+      "competition": "UAAP Season 88 HS Girls Basketball :: Season 88"
+    }
+  ],
+  "blockers": [
+    "Team identity fragmentation in NCAA Season 101 Junior's Basketball :: Season 101 (Phase C).",
+    "NCAA JRS: Phase C duplicate team pairs split GameStats — standings coverage not canonical.",
+    "uaap_s88_hs_boys: 62 games imported without submission inventory — coverage lineage uncertain.",
+    "uaap_s88_hs_girls: 14 games imported without submission inventory — coverage lineage uncertain."
+  ],
+  "recommendation": "STOP"
+}

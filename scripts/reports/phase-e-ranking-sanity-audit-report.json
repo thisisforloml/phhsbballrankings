@@ -1,0 +1,1143 @@
+{
+  "generatedAt": "2026-06-17T09:47:34.835Z",
+  "phase": "E-ranking-sanity-audit",
+  "mode": "read-only",
+  "metrics": {
+    "formulaVersion": 1,
+    "playerRatings": 940,
+    "formulaV1Gps": 9391,
+    "activePlayersWithRatings": 930,
+    "rankingSnapshots": 5,
+    "rankingSnapshotRows": 720,
+    "auditRows": 940,
+    "verifiedGameMismatches": 0,
+    "ratingMismatches": 0,
+    "lowSampleHighRating": 44,
+    "lowSampleOnPublicBoard": 0,
+    "wrongBoardAssignments": 16,
+    "playersRatedWithoutGps": 0,
+    "publicBoardMinimumGames": {
+      "boys": 10,
+      "girls": 5
+    }
+  },
+  "ratingDistributions": [
+    {
+      "ageGroup": "U13",
+      "boys": {
+        "count": 138,
+        "min": 2.46,
+        "max": 96.49,
+        "mean": 48.346376811594176,
+        "median": 45.42,
+        "p25": 31.03,
+        "p75": 64.06
+      },
+      "girls": {
+        "count": 0,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "median": null,
+        "p25": null,
+        "p75": null
+      },
+      "starDistribution": {
+        "1": 97,
+        "2": 12,
+        "3": 15,
+        "4": 10,
+        "5": 4
+      }
+    },
+    {
+      "ageGroup": "U16",
+      "boys": {
+        "count": 253,
+        "min": 6.64,
+        "max": 96.58,
+        "mean": 48.178577075098815,
+        "median": 45,
+        "p25": 31.02,
+        "p75": 63.63
+      },
+      "girls": {
+        "count": 0,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "median": null,
+        "p25": null,
+        "p75": null
+      },
+      "starDistribution": {
+        "1": 181,
+        "2": 25,
+        "3": 29,
+        "4": 13,
+        "5": 5
+      }
+    },
+    {
+      "ageGroup": "U19",
+      "boys": {
+        "count": 493,
+        "min": 4.51,
+        "max": 98.33,
+        "mean": 46.52383367139959,
+        "median": 42.6,
+        "p25": 30.05,
+        "p75": 63.06
+      },
+      "girls": {
+        "count": 56,
+        "min": 13.6,
+        "max": 89.8,
+        "mean": 46.812499999999986,
+        "median": 46.75,
+        "p25": 28.23,
+        "p75": 66.35
+      },
+      "starDistribution": {
+        "1": 397,
+        "2": 62,
+        "3": 50,
+        "4": 34,
+        "5": 6
+      }
+    }
+  ],
+  "topByBoard": [
+    {
+      "board": "U13 Boys",
+      "minimumGames": 10,
+      "totalRatedPlayers": 138,
+      "publicEligibleCount": 21,
+      "top10": [
+        {
+          "rank": 1,
+          "displayName": "Xander Dulfo",
+          "adjustedRating": 88.15,
+          "verifiedGameCount": 12,
+          "gpsCount": 12,
+          "stars": 4,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 2,
+          "displayName": "Syrus Demate",
+          "adjustedRating": 86.78,
+          "verifiedGameCount": 12,
+          "gpsCount": 12,
+          "stars": 4,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 3,
+          "displayName": "Patrick Tumbaga",
+          "adjustedRating": 86.29,
+          "verifiedGameCount": 12,
+          "gpsCount": 12,
+          "stars": 4,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 4,
+          "displayName": "Kirov Acedo",
+          "adjustedRating": 83.42,
+          "verifiedGameCount": 10,
+          "gpsCount": 10,
+          "stars": 4,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 5,
+          "displayName": "Ethan Suangco",
+          "adjustedRating": 80.71,
+          "verifiedGameCount": 12,
+          "gpsCount": 12,
+          "stars": 4,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 6,
+          "displayName": "Reign Driz",
+          "adjustedRating": 76.17,
+          "verifiedGameCount": 11,
+          "gpsCount": 11,
+          "stars": 3,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 7,
+          "displayName": "Zach Agustin",
+          "adjustedRating": 72.49,
+          "verifiedGameCount": 11,
+          "gpsCount": 11,
+          "stars": 3,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 8,
+          "displayName": "Gian Castro",
+          "adjustedRating": 72.15,
+          "verifiedGameCount": 10,
+          "gpsCount": 10,
+          "stars": 3,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 9,
+          "displayName": "Jordan Dela Rosa",
+          "adjustedRating": 60.13,
+          "verifiedGameCount": 12,
+          "gpsCount": 12,
+          "stars": 2,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        },
+        {
+          "rank": 10,
+          "displayName": "Kian Antonio",
+          "adjustedRating": 58.72,
+          "verifiedGameCount": 11,
+          "gpsCount": 11,
+          "stars": 1,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship – 13u"
+          ]
+        }
+      ],
+      "top10BelowMinGames": [
+        {
+          "displayName": "Liam Santo",
+          "adjustedRating": 96.49,
+          "verifiedGameCount": 4
+        },
+        {
+          "displayName": "Andre Kitong",
+          "adjustedRating": 96.13,
+          "verifiedGameCount": 6
+        },
+        {
+          "displayName": "Aiden Kitong",
+          "adjustedRating": 95.83,
+          "verifiedGameCount": 2
+        },
+        {
+          "displayName": "Cristhop Calvero",
+          "adjustedRating": 92.85,
+          "verifiedGameCount": 5
+        },
+        {
+          "displayName": "Liam Santos",
+          "adjustedRating": 88.74,
+          "verifiedGameCount": 2
+        }
+      ]
+    },
+    {
+      "board": "U13 Girls",
+      "minimumGames": 5,
+      "totalRatedPlayers": 0,
+      "publicEligibleCount": 0,
+      "top10": [],
+      "top10BelowMinGames": []
+    },
+    {
+      "board": "U16 Boys",
+      "minimumGames": 10,
+      "totalRatedPlayers": 253,
+      "publicEligibleCount": 115,
+      "top10": [
+        {
+          "rank": 1,
+          "displayName": "Goodluck Okebata",
+          "adjustedRating": 96.58,
+          "verifiedGameCount": 14,
+          "gpsCount": 14,
+          "stars": 5,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 2,
+          "displayName": "Prince Cariño",
+          "adjustedRating": 92.5,
+          "verifiedGameCount": 17,
+          "gpsCount": 17,
+          "stars": 5,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 3,
+          "displayName": "Akhiro Franz Reynon",
+          "adjustedRating": 90.09,
+          "verifiedGameCount": 11,
+          "gpsCount": 11,
+          "stars": 5,
+          "dominantLeagues": [
+            "Philippine Youth Basketball Championship - 15U",
+            "PYBC 15U",
+            "PYBC U16 Boys Basketball"
+          ]
+        },
+        {
+          "rank": 4,
+          "displayName": "Moussa Diakite",
+          "adjustedRating": 89.91,
+          "verifiedGameCount": 16,
+          "gpsCount": 16,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 5,
+          "displayName": "Fran Flores",
+          "adjustedRating": 88.11,
+          "verifiedGameCount": 14,
+          "gpsCount": 14,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 6,
+          "displayName": "Dwyne Enriquez",
+          "adjustedRating": 83.14,
+          "verifiedGameCount": 18,
+          "gpsCount": 18,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 7,
+          "displayName": "Keefy Iledan",
+          "adjustedRating": 82.19,
+          "verifiedGameCount": 15,
+          "gpsCount": 15,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 8,
+          "displayName": "Sky Jazul",
+          "adjustedRating": 81.13,
+          "verifiedGameCount": 10,
+          "gpsCount": 10,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 9,
+          "displayName": "CJ Tabbuga",
+          "adjustedRating": 80.41,
+          "verifiedGameCount": 15,
+          "gpsCount": 15,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        },
+        {
+          "rank": 10,
+          "displayName": "JD Juangco",
+          "adjustedRating": 80.39,
+          "verifiedGameCount": 11,
+          "gpsCount": 11,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 16U Boys Basketball"
+          ]
+        }
+      ],
+      "top10BelowMinGames": [
+        {
+          "displayName": "Jesse Arellano",
+          "adjustedRating": 94.05,
+          "verifiedGameCount": 9
+        },
+        {
+          "displayName": "Rye Teodor Villaruz",
+          "adjustedRating": 93.78,
+          "verifiedGameCount": 8
+        },
+        {
+          "displayName": "Thadeus Angeles",
+          "adjustedRating": 89.57,
+          "verifiedGameCount": 6
+        },
+        {
+          "displayName": "Riley Yuan Dela Cruz",
+          "adjustedRating": 88.42,
+          "verifiedGameCount": 8
+        },
+        {
+          "displayName": "Kurt Devron Benitez",
+          "adjustedRating": 87.75,
+          "verifiedGameCount": 7
+        }
+      ]
+    },
+    {
+      "board": "U16 Girls",
+      "minimumGames": 5,
+      "totalRatedPlayers": 0,
+      "publicEligibleCount": 0,
+      "top10": [],
+      "top10BelowMinGames": []
+    },
+    {
+      "board": "U19 Boys",
+      "minimumGames": 10,
+      "totalRatedPlayers": 493,
+      "publicEligibleCount": 293,
+      "top10": [
+        {
+          "rank": 1,
+          "displayName": "Jude Eriobu",
+          "adjustedRating": 98.33,
+          "verifiedGameCount": 16,
+          "gpsCount": 16,
+          "stars": 5,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Boys Basketball"
+          ]
+        },
+        {
+          "rank": 2,
+          "displayName": "Lucas Kaw",
+          "adjustedRating": 93.98,
+          "verifiedGameCount": 22,
+          "gpsCount": 22,
+          "stars": 5,
+          "dominantLeagues": [
+            "3rd Stallion Cup – Teens 17u",
+            "4th Stallion Cup – Teens 17u",
+            "6th Stallion Cup Teens – Jumbo Plastic Conference 18u"
+          ]
+        },
+        {
+          "rank": 3,
+          "displayName": "Yuan Ramirez",
+          "adjustedRating": 93.61,
+          "verifiedGameCount": 22,
+          "gpsCount": 22,
+          "stars": 5,
+          "dominantLeagues": [
+            "4th Stallion Cup – Teens 17u",
+            "5th Stallion Cup – Teens 17u",
+            "6th Stallion Cup Teens – Jumbo Plastic Conference 18u"
+          ]
+        },
+        {
+          "rank": 4,
+          "displayName": "Josef Calo-oy",
+          "adjustedRating": 93.1,
+          "verifiedGameCount": 14,
+          "gpsCount": 14,
+          "stars": 5,
+          "dominantLeagues": [
+            "NCAA Season 101 Junior's Basketball"
+          ]
+        },
+        {
+          "rank": 5,
+          "displayName": "Mark Esperanza",
+          "adjustedRating": 90.61,
+          "verifiedGameCount": 12,
+          "gpsCount": 12,
+          "stars": 5,
+          "dominantLeagues": [
+            "NCAA Season 101 Junior's Basketball"
+          ]
+        },
+        {
+          "rank": 6,
+          "displayName": "Joshua Chua",
+          "adjustedRating": 89.58,
+          "verifiedGameCount": 14,
+          "gpsCount": 14,
+          "stars": 4,
+          "dominantLeagues": [
+            "3rd Stallion Cup – Teens 17u",
+            "5th Stallion Cup – Teens 17u"
+          ]
+        },
+        {
+          "rank": 7,
+          "displayName": "Allen Te",
+          "adjustedRating": 89.26,
+          "verifiedGameCount": 17,
+          "gpsCount": 17,
+          "stars": 4,
+          "dominantLeagues": [
+            "3rd Stallion Cup – Teens 17u",
+            "4th Stallion Cup – Teens 17u"
+          ]
+        },
+        {
+          "rank": 8,
+          "displayName": "Sean Franco",
+          "adjustedRating": 88.82,
+          "verifiedGameCount": 19,
+          "gpsCount": 19,
+          "stars": 4,
+          "dominantLeagues": [
+            "NCAA Season 101 Junior's Basketball"
+          ]
+        },
+        {
+          "rank": 9,
+          "displayName": "Steven Creus",
+          "adjustedRating": 88.41,
+          "verifiedGameCount": 14,
+          "gpsCount": 14,
+          "stars": 4,
+          "dominantLeagues": [
+            "NCAA Season 101 Junior's Basketball"
+          ]
+        },
+        {
+          "rank": 10,
+          "displayName": "Ray Ladica",
+          "adjustedRating": 88.34,
+          "verifiedGameCount": 19,
+          "gpsCount": 19,
+          "stars": 4,
+          "dominantLeagues": [
+            "NCAA Season 101 Junior's Basketball"
+          ]
+        }
+      ],
+      "top10BelowMinGames": [
+        {
+          "displayName": "Greggy Calma",
+          "adjustedRating": 95.09,
+          "verifiedGameCount": 5
+        },
+        {
+          "displayName": "Jordan Yeng",
+          "adjustedRating": 89.96,
+          "verifiedGameCount": 3
+        },
+        {
+          "displayName": "Rione Sy",
+          "adjustedRating": 88.82,
+          "verifiedGameCount": 5
+        },
+        {
+          "displayName": "Joshua Hayden Chua",
+          "adjustedRating": 87.84,
+          "verifiedGameCount": 1
+        },
+        {
+          "displayName": "Ethan Sy",
+          "adjustedRating": 84.38,
+          "verifiedGameCount": 5
+        }
+      ]
+    },
+    {
+      "board": "U19 Girls",
+      "minimumGames": 5,
+      "totalRatedPlayers": 56,
+      "publicEligibleCount": 45,
+      "top10": [
+        {
+          "rank": 1,
+          "displayName": "Aubrey Lapasaran",
+          "adjustedRating": 89.8,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 2,
+          "displayName": "Adin Rosano",
+          "adjustedRating": 87.7,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 3,
+          "displayName": "Riri Perez",
+          "adjustedRating": 87.44,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 4,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 4,
+          "displayName": "Janice Oczon",
+          "adjustedRating": 78.92,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 5,
+          "displayName": "Pia Petalcorin",
+          "adjustedRating": 78.31,
+          "verifiedGameCount": 7,
+          "gpsCount": 7,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 6,
+          "displayName": "Lea Pinuela",
+          "adjustedRating": 77.91,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 7,
+          "displayName": "Koukou Talla",
+          "adjustedRating": 74.99,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 8,
+          "displayName": "Apyang Dulay",
+          "adjustedRating": 74.6,
+          "verifiedGameCount": 6,
+          "gpsCount": 6,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 9,
+          "displayName": "Ima Navarro",
+          "adjustedRating": 72.7,
+          "verifiedGameCount": 6,
+          "gpsCount": 6,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        },
+        {
+          "rank": 10,
+          "displayName": "Ruiza Olmos",
+          "adjustedRating": 71.84,
+          "verifiedGameCount": 8,
+          "gpsCount": 8,
+          "stars": 3,
+          "dominantLeagues": [
+            "UAAP Season 88 HS Girls Basketball"
+          ]
+        }
+      ],
+      "top10BelowMinGames": [
+        {
+          "displayName": "Yuyi Capinpin",
+          "adjustedRating": 45.33,
+          "verifiedGameCount": 4
+        },
+        {
+          "displayName": "Queennie Cordero",
+          "adjustedRating": 43.98,
+          "verifiedGameCount": 4
+        },
+        {
+          "displayName": "Trishma Arciaga",
+          "adjustedRating": 39.06,
+          "verifiedGameCount": 4
+        },
+        {
+          "displayName": "Laela Mateo",
+          "adjustedRating": 35.42,
+          "verifiedGameCount": 4
+        },
+        {
+          "displayName": "Fritz Cuaresma",
+          "adjustedRating": 32.8,
+          "verifiedGameCount": 2
+        }
+      ]
+    }
+  ],
+  "ncaaTopPerformers": [
+    {
+      "displayName": "Josef Calo-oy",
+      "rating": 93.1,
+      "games": 14,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Mark Esperanza",
+      "rating": 90.61,
+      "games": 12,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Sean Franco",
+      "rating": 88.82,
+      "games": 19,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Steven Creus",
+      "rating": 88.41,
+      "games": 14,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Ray Ladica",
+      "rating": 88.34,
+      "games": 19,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Andrei Ugaddan",
+      "rating": 85.47,
+      "games": 14,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Xyriel Macahipay",
+      "rating": 84.13,
+      "games": 15,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Patrick Pasinos",
+      "rating": 82.31,
+      "games": 14,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Jhillian Palis",
+      "rating": 81.02,
+      "games": 17,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    },
+    {
+      "displayName": "Kelly Coronel",
+      "rating": 80.98,
+      "games": 18,
+      "leagues": [
+        "NCAA Season 101 Junior's Basketball"
+      ]
+    }
+  ],
+  "snapshotVsLiveRating": [
+    {
+      "snapshotId": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "weekOf": "2026-06-01",
+      "rowCount": 248,
+      "ratingMismatches": 0,
+      "gameCountMismatches": 0,
+      "sampleMismatches": []
+    },
+    {
+      "snapshotId": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "weekOf": "2026-06-01",
+      "rowCount": 21,
+      "ratingMismatches": 0,
+      "gameCountMismatches": 0,
+      "sampleMismatches": []
+    },
+    {
+      "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "weekOf": "2026-05-01",
+      "rowCount": 115,
+      "ratingMismatches": 0,
+      "gameCountMismatches": 0,
+      "sampleMismatches": []
+    },
+    {
+      "snapshotId": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "weekOf": "2026-05-01",
+      "rowCount": 45,
+      "ratingMismatches": 0,
+      "gameCountMismatches": 0,
+      "sampleMismatches": []
+    },
+    {
+      "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "weekOf": "2026-05-01",
+      "rowCount": 291,
+      "ratingMismatches": 0,
+      "gameCountMismatches": 0,
+      "sampleMismatches": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "low-sample-high-rating-stored",
+      "severity": "medium",
+      "category": "low_sample_inflation",
+      "summary": "44 rated player(s) have rating >=75 but verified games below public-board minimum (filtered from public UI).",
+      "count": 44,
+      "sample": [
+        {
+          "displayName": "Liam Santo",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 96.49,
+          "verifiedGames": 4,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Andre Kitong",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 96.13,
+          "verifiedGames": 6,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Aiden Kitong",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 95.83,
+          "verifiedGames": 2,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Cristhop Calvero",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 92.85,
+          "verifiedGames": 5,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Liam Santos",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 88.74,
+          "verifiedGames": 2,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Philip Jr. Punzalan",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 84.46,
+          "verifiedGames": 6,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Coi Aver Moncal",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 82.85,
+          "verifiedGames": 8,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Oscar Bagion",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 80.36,
+          "verifiedGames": 8,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Matthew Paraiso",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 80.01,
+          "verifiedGames": 8,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Xian Latay",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 79.95,
+          "verifiedGames": 7,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Leiam Osorio",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 79.21,
+          "verifiedGames": 9,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Cristoff Layco",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 77.46,
+          "verifiedGames": 7,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Mark Denver Corcuera",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 76.87,
+          "verifiedGames": 7,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Yubert Enciso",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 76.82,
+          "verifiedGames": 9,
+          "minRequired": 10
+        },
+        {
+          "displayName": "Bryce Shaw",
+          "ageGroup": "U13",
+          "gender": "Boys",
+          "rating": 76.23,
+          "verifiedGames": 7,
+          "minRequired": 10
+        }
+      ]
+    },
+    {
+      "id": "age-bracket-board-mismatch",
+      "severity": "medium",
+      "category": "age_group_assignment",
+      "summary": "16 PlayerRating row(s) are on a board that does not match computed age bracket.",
+      "count": 16,
+      "sample": [
+        {
+          "displayName": "Moussa Diakite",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Xyriel Macahipay",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Jhustin Hallare",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Francel Flores",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Keefe Iledan",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "JC Canapi",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Travis Pascual",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Kean Poquiz",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Prince Cariño",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Gab Delos Reyes",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Nickson Cabañero",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Denden Enriquez",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Sky Jazul",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Duke Santos",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        },
+        {
+          "displayName": "Brian Orca Jr.",
+          "board": "U19",
+          "computedAgeBracket": "U16"
+        }
+      ]
+    },
+    {
+      "id": "statistical-rating-outliers",
+      "severity": "low",
+      "category": "outliers",
+      "summary": "201 player(s) rated >20 points above board gender mean (review for legitimacy).",
+      "count": 201,
+      "sample": [
+        {
+          "displayName": "Liam Santo",
+          "board": "U13 Boys",
+          "rating": 96.49,
+          "games": 4
+        },
+        {
+          "displayName": "Andre Kitong",
+          "board": "U13 Boys",
+          "rating": 96.13,
+          "games": 6
+        },
+        {
+          "displayName": "Aiden Kitong",
+          "board": "U13 Boys",
+          "rating": 95.83,
+          "games": 2
+        },
+        {
+          "displayName": "Cristhop Calvero",
+          "board": "U13 Boys",
+          "rating": 92.85,
+          "games": 5
+        },
+        {
+          "displayName": "Liam Santos",
+          "board": "U13 Boys",
+          "rating": 88.74,
+          "games": 2
+        },
+        {
+          "displayName": "Xander Dulfo",
+          "board": "U13 Boys",
+          "rating": 88.15,
+          "games": 12
+        },
+        {
+          "displayName": "Syrus Demate",
+          "board": "U13 Boys",
+          "rating": 86.78,
+          "games": 12
+        },
+        {
+          "displayName": "Patrick Tumbaga",
+          "board": "U13 Boys",
+          "rating": 86.29,
+          "games": 12
+        },
+        {
+          "displayName": "Philip Jr. Punzalan",
+          "board": "U13 Boys",
+          "rating": 84.46,
+          "games": 6
+        },
+        {
+          "displayName": "Kirov Acedo",
+          "board": "U13 Boys",
+          "rating": 83.42,
+          "games": 10
+        }
+      ]
+    }
+  ],
+  "severityCounts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 2,
+    "low": 1,
+    "info": 0
+  },
+  "blockers": [],
+  "recommendation": "PROCEED_WITH_CAUTION"
+}

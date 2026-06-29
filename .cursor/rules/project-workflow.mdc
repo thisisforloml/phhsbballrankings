@@ -1,0 +1,28 @@
+---
+description: Read PROJECT_STATUS, preserve architecture, and follow pre/post implementation workflow
+alwaysApply: true
+---
+
+# Project Workflow
+
+## Before Recommendations or Code Changes
+
+1. **Read** `docs/PROJECT_STATUS.md` first — it contains guardrails, stable counts, and current project state.
+2. **Preserve existing architecture** unless there is a compelling reason to change it.
+3. **Prefer small, focused changes** over broad refactors.
+4. **Keep changes scoped** to the requested task only.
+5. **Do not remove functionality** unless explicitly requested.
+
+## Before Implementing
+
+- Inspect relevant files — do not edit blindly.
+- Understand existing behavior — read surrounding code and follow project conventions.
+- Avoid assumptions — verify behavior in code or docs before changing it.
+
+## After Implementing
+
+1. Run type check: `npx.cmd tsc --noEmit`
+2. Report **files inspected**
+3. Report **files changed**
+4. **Summarize what changed** and why
+5. Provide a **manual QA checklist** for the user to verify

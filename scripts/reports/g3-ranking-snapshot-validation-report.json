@@ -1,0 +1,108 @@
+﻿{
+  "generatedAt": "2026-06-17T09:31:37.565Z",
+  "phase": "G3-ranking-snapshot-validation",
+  "backupPath": "D:\\Peach Basket\\scripts\\reports\\g3-ranking-snapshot-backup-2026-06-17T09-31-37-192Z.json",
+  "validation": {
+    "snapshotSummaries": [
+      {
+        "snapshotId": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "rows": 248,
+        "expectedRows": 248,
+        "eligibleByThreshold": 293,
+        "excludedByEligibility": 45
+      },
+      {
+        "snapshotId": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "scope": "NATIONAL",
+        "ageGroup": "U13",
+        "gender": "BOYS",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "rows": 21,
+        "expectedRows": 21,
+        "eligibleByThreshold": 21,
+        "excludedByEligibility": 0
+      },
+      {
+        "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "scope": "NATIONAL",
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "rows": 115,
+        "expectedRows": 115,
+        "eligibleByThreshold": 115,
+        "excludedByEligibility": 0
+      },
+      {
+        "snapshotId": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "rows": 45,
+        "expectedRows": 45,
+        "eligibleByThreshold": 45,
+        "excludedByEligibility": 0
+      },
+      {
+        "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "rows": 291,
+        "expectedRows": 291,
+        "eligibleByThreshold": 293,
+        "excludedByEligibility": 2
+      }
+    ],
+    "issueCount": 0,
+    "issues": [],
+    "orphanSnapshotRows": 0,
+    "missingBoards": [],
+    "validationPassed": true
+  },
+  "beforeCounts": {
+    "snapshotCount": 5,
+    "snapshotRowCount": 826
+  },
+  "afterCounts": {
+    "snapshotCount": 5,
+    "snapshotRowCount": 720
+  },
+  "rollbackInstructions": {
+    "summary": "Delete snapshots created by G3, delete all current rows for backed-up snapshot IDs, then restore ranking_snapshots and ranking_snapshot_rows from snapshots[].",
+    "tables": [
+      "ranking_snapshots",
+      "ranking_snapshot_rows"
+    ],
+    "protectedTables": [
+      "players",
+      "teams",
+      "games",
+      "game_stats",
+      "game_performance_scores",
+      "player_ratings"
+    ],
+    "notes": [
+      "For each snapshots[] item, upsert ranking_snapshots by id with the saved metadata.",
+      "For each backed-up snapshot id, delete current ranking_snapshot_rows before inserting saved rows[] by id.",
+      "Delete any RankingSnapshot ids listed in the regeneration report under createdSnapshots before restoring backup rows."
+    ],
+    "createdSnapshots": []
+  }
+}

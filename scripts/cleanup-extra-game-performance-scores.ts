@@ -1,7 +1,7 @@
-import { readFileSync } from "node:fs";
+﻿import { readFileSync } from "node:fs";
 import { prisma } from "../src/lib/prisma";
 
-const reportPath = "D:\\OnCourt Rankings PH\\scripts\\reports\\extra-game-performance-scores-report.json";
+const reportPath = "D:\\Peach Basket\\scripts\\reports\\extra-game-performance-scores-report.json";
 
 type ExtraGamePerformanceScoreReport = {
   extraGamePerformanceScores?: Array<{

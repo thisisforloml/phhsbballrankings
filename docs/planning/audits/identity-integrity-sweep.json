@@ -1,0 +1,396 @@
+{
+  "generatedAt": "2026-06-17T10:32:23.382Z",
+  "mode": "read-only",
+  "assumptions": [
+    "PYBC games imported",
+    "Submission imports processed",
+    "Competition coverage not primary bottleneck"
+  ],
+  "liveCounts": {
+    "programs": 52,
+    "teams": 64,
+    "displayNameDuplicateGroups": 0,
+    "fuzzyPlayerClusters": 5,
+    "importKeySplitGroups": 0,
+    "orphanTeams": 0,
+    "teamsWithoutProgram": 0,
+    "highImpactContextFragmentation": 0
+  },
+  "auditSections": {
+    "duplicatePrograms": {
+      "candidates": [],
+      "risk": "low",
+      "impact": "0 duplicate group(s); 0 empty orphan program(s)",
+      "executionOrder": [
+        1
+      ]
+    },
+    "teamFragmentation": {
+      "candidates": [],
+      "risk": "medium",
+      "impact": "8 programs with multiple teams; 0 high-impact competition-context splits",
+      "executionOrder": []
+    },
+    "duplicatePlayers": {
+      "candidates": [
+        {
+          "priority": 1,
+          "action": "Review fuzzy duplicate: Kenzo Centeno / Kenzo Rui Centeno",
+          "entityIds": [
+            "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+            "b49e07d6-b3e4-4a64-800b-006792ab6c82"
+          ],
+          "candidates": [
+            "Kenzo Centeno",
+            "Kenzo Rui Centeno"
+          ],
+          "risk": "low",
+          "expectedImpact": "No shared games; confirm manually",
+          "mergeReadiness": "review",
+          "effort": "medium"
+        },
+        {
+          "priority": 2,
+          "action": "Review fuzzy duplicate: Shaun Haw / Shaun Jordan Haw",
+          "entityIds": [
+            "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+            "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc"
+          ],
+          "candidates": [
+            "Shaun Haw",
+            "Shaun Jordan Haw"
+          ],
+          "risk": "low",
+          "expectedImpact": "No shared games; confirm manually",
+          "mergeReadiness": "review",
+          "effort": "medium"
+        },
+        {
+          "priority": 3,
+          "action": "Review fuzzy duplicate: Andres Braganza / Andres Thaddeus Braganza",
+          "entityIds": [
+            "b92a898f-76bb-481d-943c-db663521ec30",
+            "72a234a5-4dc6-4110-9fdc-4add0aa37bda"
+          ],
+          "candidates": [
+            "Andres Braganza",
+            "Andres Thaddeus Braganza"
+          ],
+          "risk": "low",
+          "expectedImpact": "No shared games; confirm manually",
+          "mergeReadiness": "review",
+          "effort": "medium"
+        },
+        {
+          "priority": 4,
+          "action": "Review fuzzy duplicate: Christiane Chan / Christiane Dion Chan / Vance Chan",
+          "entityIds": [
+            "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87",
+            "655760d2-044f-47e3-93de-80c072489e00",
+            "d9c8a66e-3218-4c38-bef8-800cda1db8bb"
+          ],
+          "candidates": [
+            "Christiane Chan",
+            "Christiane Dion Chan",
+            "Vance Chan"
+          ],
+          "risk": "low",
+          "expectedImpact": "No shared games; confirm manually",
+          "mergeReadiness": "review",
+          "effort": "medium"
+        },
+        {
+          "priority": 5,
+          "action": "Review fuzzy duplicate: Roberto Sison / Roberto Sancho Sison / Denver Sison",
+          "entityIds": [
+            "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe",
+            "f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+            "a619b173-cd49-4b22-9df9-a5cf67df31d1"
+          ],
+          "candidates": [
+            "Roberto Sison",
+            "Roberto Sancho Sison",
+            "Denver Sison"
+          ],
+          "risk": "low",
+          "expectedImpact": "No shared games; confirm manually",
+          "mergeReadiness": "review",
+          "effort": "medium"
+        }
+      ],
+      "risk": "medium",
+      "impact": "0 exact-name groups; 5 fuzzy clusters",
+      "executionOrder": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "orphanTeams": {
+      "candidates": [],
+      "risk": "low",
+      "impact": "0 zero-activity teams; 0 teams without programId",
+      "executionOrder": []
+    },
+    "programTeamInconsistencies": {
+      "candidates": [
+        {
+          "priority": 1,
+          "action": "Reconcile player currentProgramId mismatch: University of the East vs Colegio de San Juan de Letran",
+          "entityIds": [
+            "af064d5d-eb5f-4ddd-ad46-f619a17592c2"
+          ],
+          "candidates": [
+            "Eoin Braga"
+          ],
+          "risk": "medium",
+          "expectedImpact": "1 player(s) roster program ≠ currentProgramId",
+          "effort": "medium"
+        }
+      ],
+      "risk": "medium",
+      "impact": "1 player program mismatches; 0 unlinked teams",
+      "executionOrder": []
+    },
+    "playerIdentityFragmentation": {
+      "candidates": [],
+      "risk": "low",
+      "impact": "0 import-key split group(s)",
+      "executionOrder": []
+    },
+    "mergeReadiness": {
+      "ready": 0,
+      "review": 5,
+      "blocked": 0,
+      "candidates": [],
+      "risk": "medium",
+      "impact": "0 merge-ready; 0 blocked",
+      "executionOrder": []
+    }
+  },
+  "programCleanupQueue": [
+    {
+      "priority": 1,
+      "action": "Reconcile player currentProgramId mismatch: University of the East vs Colegio de San Juan de Letran",
+      "entityIds": [
+        "af064d5d-eb5f-4ddd-ad46-f619a17592c2"
+      ],
+      "candidates": [
+        "Eoin Braga"
+      ],
+      "risk": "medium",
+      "expectedImpact": "1 player(s) roster program ≠ currentProgramId",
+      "effort": "medium"
+    }
+  ],
+  "teamCleanupQueue": [
+    {
+      "priority": 1,
+      "action": "Merge same-program team duplicates: Adamson University",
+      "entityIds": [
+        "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "685e9651-ad77-4824-b70c-f032365e1f80"
+      ],
+      "candidates": [
+        "Adamson Baby Falcons (168 stats)",
+        "Adamson Baby Falcons 16U (173 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 341 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 2,
+      "action": "Merge same-program team duplicates: Ateneo de Manila University",
+      "entityIds": [
+        "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+        "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661"
+      ],
+      "candidates": [
+        "Ateneo Blue Eaglets (180 stats)",
+        "Ateneo Blue Eaglets 16U (197 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 377 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 3,
+      "action": "Merge same-program team duplicates: De La Salle Santiago Zobel",
+      "entityIds": [
+        "f5480f4e-456e-427c-b2f2-6802f94b7470",
+        "3739a9f4-21ef-4938-83ff-811433a47656"
+      ],
+      "candidates": [
+        "De La Salle Zobel Junior Archers (180 stats)",
+        "De La Salle Zobel Junior Archers 16U (176 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 356 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 4,
+      "action": "Merge same-program team duplicates: Far Eastern University Diliman",
+      "entityIds": [
+        "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "604b7ecd-2cfe-4130-882e-28f7213a6240"
+      ],
+      "candidates": [
+        "FEU - Diliman Baby Tamaraws (260 stats)",
+        "FEU - Diliman Baby Tamaraws 16U (233 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 493 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 5,
+      "action": "Merge same-program team duplicates: National University Nazareth School",
+      "entityIds": [
+        "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7"
+      ],
+      "candidates": [
+        "NUNS Bullpups (219 stats)",
+        "NUNS Bullpups 16U (227 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 446 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 6,
+      "action": "Merge same-program team duplicates: University of the East",
+      "entityIds": [
+        "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+        "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3"
+      ],
+      "candidates": [
+        "UE Junior Warriors (191 stats)",
+        "UE Junior Warriors 16U (147 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 338 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 7,
+      "action": "Merge same-program team duplicates: University of the Philippines Integrated School",
+      "entityIds": [
+        "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+        "7f96dc7f-8690-4fa4-b87b-5497ba3d857b"
+      ],
+      "candidates": [
+        "UP Junior Fighting Maroons (165 stats)",
+        "UP Junior Fighting Maroons 16U (152 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 317 GameStats",
+      "effort": "high"
+    },
+    {
+      "priority": 8,
+      "action": "Merge same-program team duplicates: University of Santo Tomas",
+      "entityIds": [
+        "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "da58e619-1ed2-423f-8dac-b7e6c267a9f6"
+      ],
+      "candidates": [
+        "UST Tiger Cubs (191 stats)",
+        "UST Tiger Cubs 16U (159 stats)"
+      ],
+      "risk": "high",
+      "expectedImpact": "Consolidates 350 GameStats",
+      "effort": "high"
+    }
+  ],
+  "playerMergeQueue": [
+    {
+      "priority": 1,
+      "action": "Review fuzzy duplicate: Kenzo Centeno / Kenzo Rui Centeno",
+      "entityIds": [
+        "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+        "b49e07d6-b3e4-4a64-800b-006792ab6c82"
+      ],
+      "candidates": [
+        "Kenzo Centeno",
+        "Kenzo Rui Centeno"
+      ],
+      "risk": "low",
+      "expectedImpact": "No shared games; confirm manually",
+      "mergeReadiness": "review",
+      "effort": "medium"
+    },
+    {
+      "priority": 2,
+      "action": "Review fuzzy duplicate: Shaun Haw / Shaun Jordan Haw",
+      "entityIds": [
+        "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+        "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc"
+      ],
+      "candidates": [
+        "Shaun Haw",
+        "Shaun Jordan Haw"
+      ],
+      "risk": "low",
+      "expectedImpact": "No shared games; confirm manually",
+      "mergeReadiness": "review",
+      "effort": "medium"
+    },
+    {
+      "priority": 3,
+      "action": "Review fuzzy duplicate: Andres Braganza / Andres Thaddeus Braganza",
+      "entityIds": [
+        "b92a898f-76bb-481d-943c-db663521ec30",
+        "72a234a5-4dc6-4110-9fdc-4add0aa37bda"
+      ],
+      "candidates": [
+        "Andres Braganza",
+        "Andres Thaddeus Braganza"
+      ],
+      "risk": "low",
+      "expectedImpact": "No shared games; confirm manually",
+      "mergeReadiness": "review",
+      "effort": "medium"
+    },
+    {
+      "priority": 4,
+      "action": "Review fuzzy duplicate: Christiane Chan / Christiane Dion Chan / Vance Chan",
+      "entityIds": [
+        "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87",
+        "655760d2-044f-47e3-93de-80c072489e00",
+        "d9c8a66e-3218-4c38-bef8-800cda1db8bb"
+      ],
+      "candidates": [
+        "Christiane Chan",
+        "Christiane Dion Chan",
+        "Vance Chan"
+      ],
+      "risk": "low",
+      "expectedImpact": "No shared games; confirm manually",
+      "mergeReadiness": "review",
+      "effort": "medium"
+    },
+    {
+      "priority": 5,
+      "action": "Review fuzzy duplicate: Roberto Sison / Roberto Sancho Sison / Denver Sison",
+      "entityIds": [
+        "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe",
+        "f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+        "a619b173-cd49-4b22-9df9-a5cf67df31d1"
+      ],
+      "candidates": [
+        "Roberto Sison",
+        "Roberto Sancho Sison",
+        "Denver Sison"
+      ],
+      "risk": "low",
+      "expectedImpact": "No shared games; confirm manually",
+      "mergeReadiness": "review",
+      "effort": "medium"
+    }
+  ]
+}

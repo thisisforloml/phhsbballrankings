@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { TeamStandingsAgeGroup, TeamStandingsData, TeamStandingsGender } from "@/lib/team-ratings";
 import type { NationalTeamRankingsData } from "@/lib/team-ratings/get-national-team-rankings";
 import {
@@ -9,15 +10,15 @@ import {
   type NationalSortKey
 } from "@/lib/team-ratings/national-board-display";
 import { nationalTeamBoardCoverageCopy } from "@/lib/team-ratings/national-board-coverage";
+import { buildTeamsSearchParams, parseTeamsUrlState } from "@/lib/teams-url-state";
+import { mergeCompetitionBoardRows } from "@/lib/team-rankings-types";
+import { PaginationSummary } from "@/components/public/PaginationBar";
 import { EmptyState } from "@/components/ui";
-import { AgeGroupPill } from "@/components/public/AgeGroupPill";
-import { ScoutPageHeader } from "@/components/public/ScoutPageHeader";
-import { SegmentedControl } from "@/components/public/SegmentedControl";
+import { TeamsToolbar } from "@/components/public/TeamsToolbar";
 import { TeamStandingTable } from "@/components/public/TeamStandingTable";
 import { NationalTeamRankingTable } from "@/components/public/NationalTeamRankingTable";
+import type { PublicCoverageAgeGroup } from "@/lib/public-rankings-coverage";
 
-const ageGroups: TeamStandingsAgeGroup[] = ["U13", "U16", "U19"];
-const genders: TeamStandingsGender[] = ["Boys", "Girls"];
 type TeamSortKey = "rank" | "team" | "record" | "winPercentage" | "pointsFor" | "pointsAgainst" | "pointDifferential" | "league";
 type SortDirection = "asc" | "desc";
 type ViewMode = "national" | "competition";
@@ -45,15 +46,21 @@ export function TeamsClient({
   nationalData?: NationalTeamRankingsData | null;
   nationalEnabled?: boolean;
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const urlState = useMemo(() => parseTeamsUrlState(searchParams), [searchParams]);
+
   const defaultNational = nationalData?.filters.default;
   const [viewMode, setViewMode] = useState<ViewMode>(nationalEnabled ? "national" : "competition");
   const [ageGroup, setAgeGroup] = useState<TeamStandingsAgeGroup>(
-    defaultNational?.ageGroup ?? competitionData.filters.default?.ageGroup ?? "U16"
+    urlState.ageGroup ?? defaultNational?.ageGroup ?? competitionData.filters.default?.ageGroup ?? "U16"
   );
   const [gender, setGender] = useState<TeamStandingsGender>(
-    defaultNational
-      ? (defaultNational.gender === "GIRLS" ? "Girls" : "Boys")
-      : competitionData.filters.default?.gender ?? "Boys"
+    (urlState.gender as TeamStandingsGender) ??
+      (defaultNational
+        ? (defaultNational.gender === "GIRLS" ? "Girls" : "Boys")
+        : competitionData.filters.default?.gender ?? "Boys")
   );
   const [leagueId, setLeagueId] = useState("All");
   const [region, setRegion] = useState("All");
@@ -63,6 +70,23 @@ export function TeamsClient({
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
   const [nationalSortKey, setNationalSortKey] = useState<NationalSortKey>("rank");
   const [nationalSortDirection, setNationalSortDirection] = useState<SortDirection>("asc");
+
+  useEffect(() => {
+    setAgeGroup(urlState.ageGroup);
+    setGender(urlState.gender as TeamStandingsGender);
+  }, [urlState.ageGroup, urlState.gender]);
+
+  const navigateTeams = useCallback(
+    (next: { gender?: TeamStandingsGender; ageGroup?: TeamStandingsAgeGroup }) => {
+      const params = buildTeamsSearchParams({
+        gender: next.gender ?? gender,
+        ageGroup: next.ageGroup ?? ageGroup,
+      });
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [ageGroup, gender, pathname, router]
+  );
 
   const playerGender = gender === "Girls" ? "GIRLS" : "BOYS";
 
@@ -91,11 +115,12 @@ export function TeamsClient({
 
   const filteredCompetition = useMemo(() => {
     const value = query.trim().toLowerCase();
-    return scopeRows
+    const scoped = scopeRows
       .filter((team) => leagueId === "All" || team.leagueId === leagueId)
       .filter((team) => region === "All" || team.region === region)
       .filter((team) => !value || searchText(team).includes(value))
       .filter((team) => team.gamesPlayed >= selectedMinimumGames);
+    return mergeCompetitionBoardRows(scoped);
   }, [leagueId, query, region, scopeRows, selectedMinimumGames]);
 
   const sortedCompetition = useMemo(() => {
@@ -133,20 +158,27 @@ export function TeamsClient({
 
   const visibleCompetitionRows = useMemo(() => sortedCompetition.map((team) => ({ ...team, visibleRank: team.baseRank })), [sortedCompetition]);
 
-  function updateScope(nextAgeGroup: TeamStandingsAgeGroup, nextGender = gender) {
-    setAgeGroup(nextAgeGroup);
-    setGender(nextGender);
+  function resetLocalFilters() {
     setLeagueId("All");
     setRegion("All");
     setQuery("");
     setMinimumGames(1);
   }
 
+  function switchAgeGroup(group: PublicCoverageAgeGroup) {
+    setAgeGroup(group);
+    resetLocalFilters();
+    navigateTeams({ ageGroup: group });
+  }
+
+  function switchGender(nextGender: TeamStandingsGender) {
+    setGender(nextGender);
+    resetLocalFilters();
+    navigateTeams({ gender: nextGender });
+  }
+
   function clearFilters() {
-    setLeagueId("All");
-    setRegion("All");
-    setQuery("");
-    setMinimumGames(1);
+    resetLocalFilters();
   }
 
   function updateSort(nextKey: TeamSortKey) {
@@ -166,140 +198,84 @@ export function TeamsClient({
     ? { title: "No programs match your search", description: "Clear search or switch filters to see national rankings for this board." }
     : nationalTeamBoardCoverageCopy.emptyBoard(ageGroup, gender);
 
-  const controlClass =
-    "min-h-10 w-full border border-white/[0.08] bg-scout-700 px-3 py-2 text-sm font-medium text-scout-50 outline-none focus:border-scout-orange";
   const isNationalView = nationalEnabled && viewMode === "national";
-  const headerTitle = isNationalView ? `${ageGroup} National Team Rankings` : `${ageGroup} Competition Board`;
+  const filtersActive = Boolean(query.trim() || leagueId !== "All" || region !== "All" || selectedMinimumGames > 1);
+  const lastUpdated = isNationalView
+    ? nationalData?.meta.lastComputedAt ?? competitionData.lastUpdated
+    : competitionData.lastUpdated;
 
   return (
     <>
-      <ScoutPageHeader
-        eyebrow="Team rankings"
-        title={headerTitle}
-        meta={isNationalView ? "National program board · TPI-v1" : "Competition standings across verified leagues"}
-        action={
-          <div className="flex flex-wrap items-center gap-2">
-            {nationalEnabled ? (
-              <SegmentedControl
-                dark
-                options={[
-                  { value: "national" as const, label: "National" },
-                  { value: "competition" as const, label: "Competition" },
-                ]}
-                value={viewMode}
-                onChange={setViewMode}
-              />
-            ) : null}
-            <SegmentedControl
-              dark
-              options={genders.map((item) => ({ value: item, label: item }))}
-              value={gender}
-              onChange={(item) => updateScope(ageGroup, item)}
-            />
-          </div>
-        }
+      <TeamsToolbar
+        ageGroup={ageGroup}
+        gender={gender}
+        query={query}
+        viewMode={viewMode}
+        nationalEnabled={nationalEnabled}
+        leagueId={leagueId}
+        region={region}
+        leagueOptions={leagueOptions}
+        regionOptions={regionOptions}
+        minimumGames={selectedMinimumGames}
+        maxGamesPlayed={maxGamesPlayed}
+        showCompetitionFilters={!isNationalView}
+        filtersActive={filtersActive}
+        onAgeGroupChange={switchAgeGroup}
+        onGenderChange={switchGender}
+        onQueryChange={setQuery}
+        onViewModeChange={setViewMode}
+        onLeagueChange={setLeagueId}
+        onRegionChange={setRegion}
+        onMinimumGamesChange={setMinimumGames}
+        onClear={clearFilters}
+        lastUpdated={lastUpdated}
       />
 
-      <section className="container-px py-4">
-        <div className="mx-auto max-w-[74rem] rounded-sm border border-white/[0.08] bg-scout-800/80 p-4">
-          <div className="mb-4 flex flex-wrap gap-2">
-            {ageGroups.map((group) => (
-              <AgeGroupPill key={group} group={group} active={ageGroup === group} onClick={() => updateScope(group)} />
-            ))}
-          </div>
-          <div className="grid gap-3 lg:grid-cols-[1fr_9rem_9rem_12rem_auto] lg:items-end">
-            <label className="grid gap-1.5">
-              <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">Search</span>
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                className={controlClass}
-                placeholder={isNationalView ? "Program, city, region" : "Team, program, league"}
+      <section className="container-px mt-2 pb-4">
+        <div className="mx-auto max-w-[74rem]">
+          {isNationalView ? (
+            sortedNational.length > 0 ? (
+              <PaginationSummary
+                className="mb-3"
+                pageStart={1}
+                pageEnd={sortedNational.length}
+                total={sortedNational.length}
+                unit="programs"
+                labelSuffix={`${ageGroup} ${gender} | TPI-v1 national board`}
               />
-            </label>
-            {!isNationalView ? (
-              <>
-                <label className="grid gap-1.5">
-                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">League</span>
-                  <select value={leagueId} onChange={(event) => setLeagueId(event.target.value)} className={controlClass}>
-                    <option value="All">All</option>
-                    {leagueOptions.map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {item.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="grid gap-1.5">
-                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">Region</span>
-                  <select value={region} onChange={(event) => setRegion(event.target.value)} className={controlClass}>
-                    <option value="All">All</option>
-                    {regionOptions.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="grid gap-1.5">
-                  <span className="text-xs font-bold uppercase tracking-[0.08em] text-scout-orange-bright">
-                    Min. {selectedMinimumGames} game{selectedMinimumGames === 1 ? "" : "s"}
-                  </span>
-                  <input
-                    type="range"
-                    min={1}
-                    max={maxGamesPlayed}
-                    step={1}
-                    value={selectedMinimumGames}
-                    onChange={(event) => setMinimumGames(Number(event.target.value))}
-                    className="h-2 w-full accent-hardwood-600"
-                  />
-                </label>
-              </>
-            ) : null}
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="justify-self-start text-sm font-semibold text-white/50 hover:text-white lg:justify-self-end lg:pb-2"
-            >
-              Clear filters
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="team-profiles" className="container-px mt-2">
-        <div className="mx-auto mb-3 max-w-[74rem] rounded-sm border border-white/[0.08] bg-scout-800/80 px-3 py-2">
-          <p className="text-xs font-bold text-white/55">
-            {isNationalView
-              ? `Showing ${sortedNational.length} programs | ${ageGroup} ${gender} | TPI-v1 national board`
-              : `Showing ${visibleCompetitionRows.length} teams | ${ageGroup} ${gender} | Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}
-          </p>
-          {isNationalView && nationalData?.meta.lastComputedAt ? (
-            <p className="mt-1 text-[0.65rem] font-semibold text-white/35">
-              Last computed {new Date(nationalData.meta.lastComputedAt).toLocaleString("en-PH")}
-            </p>
+            ) : null
+          ) : visibleCompetitionRows.length > 0 ? (
+            <PaginationSummary
+              className="mb-3"
+              pageStart={1}
+              pageEnd={visibleCompetitionRows.length}
+              total={visibleCompetitionRows.length}
+              unit="teams"
+              labelSuffix={`${ageGroup} ${gender} | Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}
+            />
           ) : null}
-        </div>
 
-        {isNationalView ? (
-          sortedNational.length ? (
-            <>
-              {nationalBoardIsSparse ? (
-                <p className="mb-3 border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-900">
-                  {nationalTeamBoardCoverageCopy.sparseBoard(sortedNational.length, ageGroup, gender)}
-                </p>
-              ) : null}
-              <NationalTeamRankingTable rows={sortedNational} sortKey={nationalSortKey} sortDirection={nationalSortDirection} onSort={updateNationalSort} />
-            </>
+          <div className="overflow-hidden rounded-sm border border-line-500 bg-white shadow-panel">
+          {isNationalView ? (
+            sortedNational.length ? (
+              <>
+                {nationalBoardIsSparse ? (
+                  <p className="mb-3 border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-900">
+                    {nationalTeamBoardCoverageCopy.sparseBoard(sortedNational.length, ageGroup, gender)}
+                  </p>
+                ) : null}
+                <NationalTeamRankingTable rows={sortedNational} sortKey={nationalSortKey} sortDirection={nationalSortDirection} onSort={updateNationalSort} />
+              </>
+            ) : (
+              <EmptyState icon="teams" title={nationalEmptyCopy.title} description={nationalEmptyCopy.description} />
+            )
+          ) : visibleCompetitionRows.length ? (
+            <TeamStandingTable rows={visibleCompetitionRows} sortKey={sortKey} sortDirection={sortDirection} onSort={updateSort} />
           ) : (
-            <EmptyState icon="teams" title={nationalEmptyCopy.title} description={nationalEmptyCopy.description} />
-          )
-        ) : visibleCompetitionRows.length ? (
-          <TeamStandingTable rows={visibleCompetitionRows} sortKey={sortKey} sortDirection={sortDirection} onSort={updateSort} />
-        ) : (
-          <EmptyState icon="teams" title="No official team rankings yet" />
-        )}
+            <EmptyState icon="teams" title="No official team rankings yet" />
+          )}
+        </div>
+        </div>
       </section>
     </>
   );

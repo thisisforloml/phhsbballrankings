@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-06-17T13:38:46.485Z",
+  "sampledGames": 405,
+  "mismatches": [],
+  "residualRisks": [
+    "League model has no explicit gender field; inference remains text-heuristic.",
+    "Mixed-gender scrimmages would default to Boys when 'girls' is absent from names.",
+    "Future leagues should encode gender in league name or add explicit league gender metadata."
+  ],
+  "checks": [
+    {
+      "id": "V-TR-GEN-01",
+      "status": "PASS",
+      "detail": "0/405 sampled games disagree with player-stat gender majority"
+    },
+    {
+      "id": "V-TR-GEN-02",
+      "status": "PASS",
+      "detail": "Inference uses league + home + away team names (aligned with competition standings path)"
+    },
+    {
+      "id": "V-TR-GEN-03",
+      "status": "PASS",
+      "detail": "Away-team name inclusion does not change inference on sampled mismatches"
+    }
+  ],
+  "summary": {
+    "pass": 3,
+    "warn": 0,
+    "fail": 0
+  }
+}

@@ -1,0 +1,209 @@
+﻿{
+  "generatedAt": "2026-06-17T09:31:37.565Z",
+  "phase": "G3-ranking-snapshot-regeneration",
+  "mode": "executed",
+  "backupPath": "D:\\Peach Basket\\scripts\\reports\\g3-ranking-snapshot-backup-2026-06-17T09-31-37-192Z.json",
+  "backupLatestPath": null,
+  "scope": "RankingSnapshot + RankingSnapshotRow only",
+  "source": "current live cumulative PlayerRating data",
+  "preserved": [
+    "snapshot id and metadata for existing snapshots",
+    "board definitions: scope + ageGroup + gender + formulaVersion + city + region + weekOf",
+    "eligibility via public board minimums and class-year cutoff",
+    "ranking order: adjustedRating desc, verifiedGameCount desc, displayName asc"
+  ],
+  "protectedTables": [
+    "players",
+    "teams",
+    "games",
+    "game_stats",
+    "game_performance_scores",
+    "player_ratings"
+  ],
+  "beforeCounts": {
+    "snapshotCount": 5,
+    "snapshotRowCount": 826,
+    "snapshots": [
+      {
+        "id": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T05:28:03.058Z",
+        "rowCount": 177
+      },
+      {
+        "id": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "scope": "NATIONAL",
+        "ageGroup": "U13",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T04:50:47.128Z",
+        "rowCount": 138
+      },
+      {
+        "id": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "scope": "NATIONAL",
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T06:50:37.696Z",
+        "rowCount": 253
+      },
+      {
+        "id": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T02:57:24.071Z",
+        "rowCount": 45
+      },
+      {
+        "id": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T02:57:23.961Z",
+        "rowCount": 213
+      }
+    ]
+  },
+  "afterCounts": {
+    "snapshotCount": 5,
+    "snapshotRowCount": 720,
+    "snapshots": [
+      {
+        "id": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T05:28:03.058Z",
+        "rowCount": 248
+      },
+      {
+        "id": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "scope": "NATIONAL",
+        "ageGroup": "U13",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T04:50:47.128Z",
+        "rowCount": 21
+      },
+      {
+        "id": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "scope": "NATIONAL",
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T06:50:37.696Z",
+        "rowCount": 115
+      },
+      {
+        "id": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T02:57:24.071Z",
+        "rowCount": 45
+      },
+      {
+        "id": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T02:57:23.961Z",
+        "rowCount": 291
+      }
+    ]
+  },
+  "result": {
+    "updatedSnapshots": [
+      {
+        "snapshotId": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "beforeRows": 177,
+        "afterRows": 248
+      },
+      {
+        "snapshotId": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "beforeRows": 138,
+        "afterRows": 21
+      },
+      {
+        "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "beforeRows": 253,
+        "afterRows": 115
+      },
+      {
+        "snapshotId": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "beforeRows": 45,
+        "afterRows": 45
+      },
+      {
+        "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "beforeRows": 213,
+        "afterRows": 291
+      }
+    ],
+    "skippedSnapshots": [],
+    "createdSnapshots": [],
+    "rowsDeleted": 826,
+    "rowsCreated": 720
+  },
+  "rollbackInstructions": {
+    "summary": "Delete snapshots created by G3, delete all current rows for backed-up snapshot IDs, then restore ranking_snapshots and ranking_snapshot_rows from snapshots[].",
+    "tables": [
+      "ranking_snapshots",
+      "ranking_snapshot_rows"
+    ],
+    "protectedTables": [
+      "players",
+      "teams",
+      "games",
+      "game_stats",
+      "game_performance_scores",
+      "player_ratings"
+    ],
+    "notes": [
+      "For each snapshots[] item, upsert ranking_snapshots by id with the saved metadata.",
+      "For each backed-up snapshot id, delete current ranking_snapshot_rows before inserting saved rows[] by id.",
+      "Delete any RankingSnapshot ids listed in the regeneration report under createdSnapshots before restoring backup rows."
+    ],
+    "createdSnapshots": []
+  }
+}

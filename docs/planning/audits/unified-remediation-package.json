@@ -1,0 +1,4138 @@
+﻿{
+  "generatedAt": "2026-06-17T10:14:34.944Z",
+  "mode": "read-only",
+  "sources": {
+    "dashboard": "D:\\Peach Basket\\docs\\planning\\audits\\rankings-operations-dashboard.json",
+    "importQueue": "D:\\Peach Basket\\docs\\planning\\audits\\competition-import-execution-queue.json",
+    "dashboardGeneratedAt": "2026-06-17T09:57:33.203Z",
+    "importQueueGeneratedAt": "2026-06-17T10:09:10.872Z"
+  },
+  "formula": {
+    "rankingImpact": "Expected RANKED gain + (Expected P7 reduction × 0.1)",
+    "roi": "Ranking Impact ÷ Effort Score",
+    "effortScores": {
+      "low": 1,
+      "medium": 2,
+      "high": 3
+    },
+    "p7Weight": 0.1
+  },
+  "liveCounts": {
+    "players": 930,
+    "activeGames": 405,
+    "gameStats": 9391,
+    "playerRatings": 940,
+    "programs": 55,
+    "teams": 81
+  },
+  "executiveSummary": {
+    "importItemCount": 14,
+    "dobBatchItemCount": 21,
+    "duplicatePlayerClusters": 7,
+    "duplicateProgramGroups": 2,
+    "totalQueueItems": 44,
+    "totalProjectedRanked": 306,
+    "totalProjectedP7": 304,
+    "totalProjectedP12": 498,
+    "projectedBreakdown": {
+      "dobUnlockAtThreshold": 296,
+      "importDirectRanked": 1,
+      "duplicatePlayerRanked": 9,
+      "importP7Reduction": 295
+    },
+    "liveDobP12": 328,
+    "liveNearThreshold": 292,
+    "dobReadyAtThreshold": {
+      "u19Girls": 13,
+      "u19Boys": 175,
+      "u16": 108,
+      "total": 296
+    },
+    "importQueueProjected": {
+      "importNowRanked": 1,
+      "importNowP7": 128,
+      "importNextRanked": 0,
+      "importNextP7": 167,
+      "importLaterRanked": 0,
+      "importLaterP7": 0,
+      "totalRanked": 1,
+      "totalP7": 295,
+      "byBoard": {
+        "u19Boys": 6,
+        "u19Girls": 0,
+        "u16Boys": 0,
+        "u16Girls": 0,
+        "u13Boys": 0
+      }
+    },
+    "boardHealthSnapshot": [
+      {
+        "board": "U19 Boys",
+        "ranked": 59,
+        "pool": 493,
+        "yieldPct": 12
+      },
+      {
+        "board": "U19 Girls",
+        "ranked": 0,
+        "pool": 56,
+        "yieldPct": 0
+      },
+      {
+        "board": "U16 Boys",
+        "ranked": 7,
+        "pool": 253,
+        "yieldPct": 2.8
+      },
+      {
+        "board": "U16 Girls",
+        "ranked": 0,
+        "pool": 0,
+        "yieldPct": 0
+      },
+      {
+        "board": "U13 Boys",
+        "ranked": 0,
+        "pool": 138,
+        "yieldPct": 0
+      },
+      {
+        "board": "U13 Girls",
+        "ranked": 0,
+        "pool": 0,
+        "yieldPct": 0
+      }
+    ],
+    "dobConstraint": "328 players are P12 (UNKNOWN_DOB). DOB alone unlocks RANKED only when verified games ≥ threshold (8 boys / 6 girls). 13 U19 Girls and 175 U19 Boys already meet game threshold but remain blocked; U19 Girls board is empty (0 RANKED). Imports without DOB shift players P7→P12 rather than clearing blockers — coordinate DOB batches (NU/UST Girls first) with high-ROI imports (PYBC 15U)."
+  },
+  "masterQueue": [
+    {
+      "priority": 1,
+      "queue": "DOB",
+      "action": "Enter DOB: Unassigned U19 Boys batch",
+      "detail": "78 P12 players (78 at ≥8 games, avg 18.6 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 78,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 78,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 78,
+      "roiScore": 26,
+      "entityCount": 78,
+      "metadata": {
+        "program": "Unassigned",
+        "playerIds": [
+          "756f616e-20f9-40fa-b0d8-115e9c2798a7",
+          "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+          "f986c3fc-5e81-4f83-8d32-0d94a524311a",
+          "8b695a69-4d6a-4b70-85fb-ed798cabd2ac",
+          "d977c21d-af18-490b-bbef-0cacc762f6dc",
+          "133d08e0-3a88-4dc8-85ad-61af238bd219",
+          "e0b5822d-b1f4-411f-9f28-cb331288db44",
+          "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+          "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+          "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+          "ec973537-10ca-4d19-950e-950730db3069",
+          "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+          "3a24bd05-60de-4744-8893-ff39c274939e",
+          "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+          "7b785ec5-b42f-4371-8147-71442dda3045",
+          "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+          "d3367846-883b-48a4-be3a-f08b0c1a0978",
+          "991f148c-3273-4c07-8b54-02a79be96e25",
+          "18a7f5cf-395c-478f-949d-110e1c51f413",
+          "d93435c8-839b-422f-9b09-75cdc446e75b"
+        ],
+        "topPlayers": [
+          {
+            "name": "Aidan Kaw",
+            "games": 31,
+            "rating": 74.69
+          },
+          {
+            "name": "Hans Go",
+            "games": 28,
+            "rating": 84.08
+          },
+          {
+            "name": "Mateo De La Paz",
+            "games": 32,
+            "rating": 63.85
+          },
+          {
+            "name": "Marcus Fernandez",
+            "games": 30,
+            "rating": 66.63
+          },
+          {
+            "name": "Earl Solis",
+            "games": 28,
+            "rating": 70.01
+          }
+        ]
+      }
+    },
+    {
+      "priority": 2,
+      "queue": "DOB",
+      "action": "Enter DOB: U19 Boys remaining programs (11 programs)",
+      "detail": "38 P12 players across Colegio de, Malayan High, Emilio Aguinaldo College, University of, UST, La Salle, DLSZ, Ateneo, Adamson University, NU, Far Eastern",
+      "board": "U19 Boys",
+      "expectedRankedGain": 38,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 38,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 38,
+      "roiScore": 12.67,
+      "entityCount": 38,
+      "metadata": {
+        "programs": [
+          {
+            "program": "Colegio de San Juan de Letran",
+            "count": 6
+          },
+          {
+            "program": "Malayan High School of Science",
+            "count": 6
+          },
+          {
+            "program": "Emilio Aguinaldo College",
+            "count": 6
+          },
+          {
+            "program": "University of the East",
+            "count": 6
+          },
+          {
+            "program": "University of Santo Tomas",
+            "count": 5
+          },
+          {
+            "program": "La Salle Green Hills",
+            "count": 3
+          },
+          {
+            "program": "De La Salle Santiago Zobel",
+            "count": 2
+          },
+          {
+            "program": "Ateneo de Manila University",
+            "count": 1
+          },
+          {
+            "program": "Adamson University",
+            "count": 1
+          },
+          {
+            "program": "National University Nazareth School",
+            "count": 1
+          },
+          {
+            "program": "Far Eastern University Diliman",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "priority": 3,
+      "queue": "IMPORT",
+      "action": "Import: PYBC 15U (Family rollup)",
+      "detail": "10 game(s) in submission inventory not in DB",
+      "board": "U16 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 85,
+      "expectedP12Reduction": 85,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 8.5,
+      "roiScore": 8.5,
+      "entityCount": 85,
+      "metadata": {
+        "tier": "IMPORT_NOW",
+        "missingGames": 10,
+        "ageGroup": "U16",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 4,
+      "queue": "DOB",
+      "action": "Enter DOB: NU/UST U19 Girls batch",
+      "detail": "24 P12 players (13 at ≥8 games, avg 7.1 games)",
+      "board": "U19 Girls",
+      "expectedRankedGain": 13,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 24,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 13,
+      "roiScore": 6.5,
+      "entityCount": 24,
+      "metadata": {
+        "program": "NU/UST U19 Girls batch",
+        "playerIds": [
+          "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+          "7ed85dd3-7f49-4761-a5f5-708015df611d",
+          "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+          "f5f3ff63-ec12-4788-a3ab-680b6cac1ab9",
+          "c5df896b-04a3-4915-9f71-f3e2701fc74c",
+          "2386148f-33ef-47fc-8d6e-729bbc84c806",
+          "c29f4fa4-68fb-4c4a-90cf-9066b0b7ae75",
+          "d75c25ae-578b-4279-8b18-69507c75e09b",
+          "e89fcccd-7ed4-433a-b257-e77cf6220492",
+          "9c764990-6326-488b-917d-afc850bf47f1",
+          "75ca49b2-bde9-47fe-8b19-8f9e6203bf2b",
+          "7fc64a83-707e-4259-b834-8a5235ce81d6",
+          "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+          "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+          "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+          "98826725-620c-4417-9f41-349da347c811",
+          "0d6b9ff0-6d1e-4217-823f-b5cebaf45ad9",
+          "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+          "4f43220a-4594-4351-854d-63080a54bf28",
+          "922a5522-3987-42ab-80cd-e2a5ce8a5c52"
+        ],
+        "topPlayers": [
+          {
+            "name": "Aubrey Lapasaran",
+            "games": 8,
+            "rating": 89.8
+          },
+          {
+            "name": "Adin Rosano",
+            "games": 8,
+            "rating": 87.7
+          },
+          {
+            "name": "Riri Perez",
+            "games": 8,
+            "rating": 87.44
+          },
+          {
+            "name": "Janice Oczon",
+            "games": 8,
+            "rating": 78.92
+          },
+          {
+            "name": "Lea Pinuela",
+            "games": 8,
+            "rating": 77.91
+          }
+        ]
+      }
+    },
+    {
+      "priority": 5,
+      "queue": "DOB",
+      "action": "Enter DOB: Far Eastern U16 batch",
+      "detail": "13 P12 players (13 at ≥8 games, avg 15.5 games)",
+      "board": "U16",
+      "expectedRankedGain": 13,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 13,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 13,
+      "roiScore": 6.5,
+      "entityCount": 13,
+      "metadata": {
+        "program": "Far Eastern University Diliman",
+        "playerIds": [
+          "77f56cb5-a29f-4c91-9b64-05a074151743",
+          "0434149b-0d98-4378-bc4f-1761ae21bbf8",
+          "b3ba732d-732b-4d9f-a06a-61a58c5338f8",
+          "c4f42e37-9aea-4027-9b16-119b3ef07582",
+          "09908d7c-1ec0-462f-9ecc-11ab07177baf",
+          "f2fdc3f4-5c3e-473d-bacc-16ee4870d257",
+          "95522303-7614-49e4-be51-7b1e057ecd1c",
+          "7edcefdf-dd24-4c48-8d05-d044a69ff1e8",
+          "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+          "992a11da-7eaf-452c-b95d-0fd7a4254306",
+          "1431baef-bcc4-4111-9b23-3e633be1702b",
+          "7b1403dc-407b-43a2-aa51-3484d5bcb461",
+          "ffaf0dc7-93b8-47b8-8da0-99ce6789ff39"
+        ],
+        "topPlayers": [
+          {
+            "name": "Dwyne Enriquez",
+            "games": 18,
+            "rating": 83.14
+          },
+          {
+            "name": "Prince Pineda",
+            "games": 18,
+            "rating": 73.8
+          },
+          {
+            "name": "Andrei Chavez",
+            "games": 18,
+            "rating": 52.42
+          },
+          {
+            "name": "Dwayne Cañete",
+            "games": 18,
+            "rating": 48.91
+          },
+          {
+            "name": "Kyle Mojica",
+            "games": 17,
+            "rating": 53.64
+          }
+        ]
+      }
+    },
+    {
+      "priority": 6,
+      "queue": "DOB",
+      "action": "Enter DOB: Ateneo U16 batch",
+      "detail": "13 P12 players (13 at ≥8 games, avg 13.0 games)",
+      "board": "U16",
+      "expectedRankedGain": 13,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 13,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 13,
+      "roiScore": 6.5,
+      "entityCount": 13,
+      "metadata": {
+        "program": "Ateneo de Manila University",
+        "playerIds": [
+          "302194bf-9427-4e80-9026-99ce0197a1c7",
+          "5fe46d31-4097-4aae-b8bd-8c15cb822dd5",
+          "c1cea81b-8644-4668-b79d-dc85bc7a5d57",
+          "6e460e27-2510-4476-9c3b-c853340561e3",
+          "03ce86bf-8620-4a05-805f-e49ba1da24d8",
+          "d72d7a81-7ff8-41dd-b0e8-32089f28733a",
+          "f0ff876c-75a0-4b4f-81e1-4214b5f0a404",
+          "db422f10-ec34-4ed2-958c-d47233d9224a",
+          "77822554-0e0a-4e72-a99e-ef6746389477",
+          "20c258ca-4d74-4a75-b6b2-4aadf336f294",
+          "09a6ab2f-7bd7-4f9a-88ca-c78c6640e17b",
+          "5cbb1a1b-a4c6-46a0-b197-9eaa1b2f5514",
+          "cbaf5c2c-64d8-4687-b505-1a065e2b4ed2"
+        ],
+        "topPlayers": [
+          {
+            "name": "Domeng Ngo",
+            "games": 14,
+            "rating": 63.75
+          },
+          {
+            "name": "Stef Bernarte",
+            "games": 13,
+            "rating": 69.15
+          },
+          {
+            "name": "Sky Dela Rosa",
+            "games": 14,
+            "rating": 57.51
+          },
+          {
+            "name": "Enzo Divinagracia",
+            "games": 14,
+            "rating": 55.52
+          },
+          {
+            "name": "Francis Castro",
+            "games": 14,
+            "rating": 55.04
+          }
+        ]
+      }
+    },
+    {
+      "priority": 7,
+      "queue": "DOB",
+      "action": "Enter DOB: DLSZ U16 batch",
+      "detail": "11 P12 players (11 at ≥8 games, avg 12.6 games)",
+      "board": "U16",
+      "expectedRankedGain": 11,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 11,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 11,
+      "roiScore": 5.5,
+      "entityCount": 11,
+      "metadata": {
+        "program": "De La Salle Santiago Zobel",
+        "playerIds": [
+          "b9a9903a-422c-464b-b387-ff2cb1e38111",
+          "0faa2fe4-16db-4346-95b4-ca21bd914576",
+          "5a437905-5f9d-4c69-aeaa-c6b337346145",
+          "1d4f0ad8-f585-4bdd-9422-84c028c8b02f",
+          "2bf65968-df71-492e-91d3-0fd17a59ff96",
+          "8d4143fb-495d-4c37-a375-70e2cbb432b1",
+          "0a8c19f7-a925-4b2e-9365-90296ea39431",
+          "35077e1a-4f98-4dbb-a2ca-b565c008747a",
+          "c90f6016-684b-4c06-8174-bb5f8c33e3a3",
+          "4f48c0db-c2e7-4657-9595-a33758686a6d",
+          "1edb31d2-270c-4a82-8136-4c16f3c66584"
+        ],
+        "topPlayers": [
+          {
+            "name": "Lorenzo Purugganan",
+            "games": 14,
+            "rating": 76.66
+          },
+          {
+            "name": "Jullian Pangan",
+            "games": 14,
+            "rating": 67.85
+          },
+          {
+            "name": "John Mindanao",
+            "games": 14,
+            "rating": 57.63
+          },
+          {
+            "name": "David Dizon",
+            "games": 14,
+            "rating": 45.99
+          },
+          {
+            "name": "Wayne Rivera",
+            "games": 11,
+            "rating": 63.63
+          }
+        ]
+      }
+    },
+    {
+      "priority": 8,
+      "queue": "DOB",
+      "action": "Enter DOB: U16 remaining programs (2 programs)",
+      "detail": "16 P12 players across University of, Unassigned",
+      "board": "U16",
+      "expectedRankedGain": 16,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 16,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 16,
+      "roiScore": 5.33,
+      "entityCount": 16,
+      "metadata": {
+        "programs": [
+          {
+            "program": "University of the Philippines Integrated School",
+            "count": 9
+          },
+          {
+            "program": "Unassigned",
+            "count": 7
+          }
+        ]
+      }
+    },
+    {
+      "priority": 9,
+      "queue": "DOB",
+      "action": "Enter DOB: NU U16 batch",
+      "detail": "15 P12 players (15 at ≥8 games, avg 14.1 games)",
+      "board": "U16",
+      "expectedRankedGain": 15,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 15,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 15,
+      "roiScore": 5,
+      "entityCount": 15,
+      "metadata": {
+        "program": "National University Nazareth School",
+        "playerIds": [
+          "40c8e192-205b-4f87-af30-785eb4fa47b7",
+          "845d2169-0bdc-4eb5-8534-34a58d5fa083",
+          "9a85569b-9f79-4214-aa11-af4edf94073e",
+          "d0899ae8-2056-4712-8510-06c322633384",
+          "bc4ef4fd-2a06-480f-984f-6687e84dc502",
+          "28e776bb-3645-45fb-b6ec-7a857397e228",
+          "3d645232-f6aa-4544-a105-56734a5a5b2f",
+          "9225bf5d-a57d-43ba-9b9e-ee39fcf973cd",
+          "c2ded770-61ea-41cf-9b2f-456ea6fe4e86",
+          "0180b75e-e877-414c-a912-65c10a181865",
+          "b1747ea7-ddc2-46e6-95dd-227a28954e89",
+          "205320ec-b06d-41bb-9258-eb26054a5015",
+          "93fb6019-c39d-43ec-a869-9984a6130a3e",
+          "bdde0d77-a39a-4264-bd20-f203353e5dc1",
+          "d056bac7-db2c-4e91-965b-e5970a20701e"
+        ],
+        "topPlayers": [
+          {
+            "name": "Mark Arzola",
+            "games": 16,
+            "rating": 74.16
+          },
+          {
+            "name": "David Sabareza",
+            "games": 16,
+            "rating": 72.23
+          },
+          {
+            "name": "Clark Khobuntin",
+            "games": 16,
+            "rating": 70.58
+          },
+          {
+            "name": "Ean Tria",
+            "games": 15,
+            "rating": 72.46
+          },
+          {
+            "name": "Jaypee Yanga",
+            "games": 15,
+            "rating": 59.08
+          }
+        ]
+      }
+    },
+    {
+      "priority": 10,
+      "queue": "DOB",
+      "action": "Enter DOB: University of U19 Boys batch",
+      "detail": "10 P12 players (10 at ≥8 games, avg 13.3 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 10,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 10,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 10,
+      "roiScore": 5,
+      "entityCount": 10,
+      "metadata": {
+        "program": "University of Perpetual Help System DALTA",
+        "playerIds": [
+          "9ad17e58-5380-43c0-b86f-6a8c06ee50fd",
+          "c39bbd8c-1b5e-499c-8730-373dc20352a8",
+          "95e64c29-81df-4b99-b7b5-74448e115866",
+          "348559ad-b529-4496-8686-adb8cd5009d4",
+          "e3e17178-a1b3-4430-a726-6cf101234326",
+          "9689f91b-544e-463f-893d-655ff322f83d",
+          "12108bea-dd29-4372-abb0-64d94b6d2980",
+          "39844d89-e9f3-478c-8cdc-9558ad724d24",
+          "53735f16-4528-489d-ab51-e5235882ceb5",
+          "2248b156-2adc-4045-aca5-9be73d1cafd4"
+        ],
+        "topPlayers": [
+          {
+            "name": "Ezekiel Zamoras",
+            "games": 15,
+            "rating": 60.17
+          },
+          {
+            "name": "Kurt Velasquez",
+            "games": 15,
+            "rating": 53.46
+          },
+          {
+            "name": "Hanz Llupar",
+            "games": 15,
+            "rating": 49.07
+          },
+          {
+            "name": "Renzo Zanoria",
+            "games": 14,
+            "rating": 43.81
+          },
+          {
+            "name": "Kurt Patalinghug",
+            "games": 15,
+            "rating": 37.27
+          }
+        ]
+      }
+    },
+    {
+      "priority": 11,
+      "queue": "DOB",
+      "action": "Enter DOB: Adamson University U16 batch",
+      "detail": "10 P12 players (10 at ≥8 games, avg 14.0 games)",
+      "board": "U16",
+      "expectedRankedGain": 10,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 10,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 10,
+      "roiScore": 5,
+      "entityCount": 10,
+      "metadata": {
+        "program": "Adamson University",
+        "playerIds": [
+          "484ff142-89b3-4752-91b4-d03d79df742e",
+          "f341775e-dff0-4ea0-9f2d-1b6ac3ff028a",
+          "0e30f55c-b7f0-451d-a674-edcba76f44c8",
+          "c78a20e5-bcff-40ea-98e0-d0ef46061714",
+          "e855e5c6-c881-4989-8479-5f9be9a2e2ae",
+          "f8271467-d384-47a4-a354-fb5d85cbdd0e",
+          "155a5df4-9cd8-4a71-b85e-5a386bf6b354",
+          "eb27b8fe-4aa0-4985-9fc1-c333c181fb6c",
+          "99239b77-206c-4f02-9ff1-cb9780e89bb9",
+          "0d426d1e-a8e0-4ffc-ae2b-463ad67a2572"
+        ],
+        "topPlayers": [
+          {
+            "name": "Keefy Iledan",
+            "games": 15,
+            "rating": 82.19
+          },
+          {
+            "name": "Fran Flores",
+            "games": 14,
+            "rating": 88.11
+          },
+          {
+            "name": "Edison Jordan",
+            "games": 15,
+            "rating": 75.05
+          },
+          {
+            "name": "Vengcs Vengco",
+            "games": 15,
+            "rating": 63.9
+          },
+          {
+            "name": "Kyle Abas",
+            "games": 15,
+            "rating": 61.4
+          }
+        ]
+      }
+    },
+    {
+      "priority": 12,
+      "queue": "DOB",
+      "action": "Enter DOB: UST U16 batch",
+      "detail": "10 P12 players (10 at ≥8 games, avg 14.0 games)",
+      "board": "U16",
+      "expectedRankedGain": 10,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 10,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 10,
+      "roiScore": 5,
+      "entityCount": 10,
+      "metadata": {
+        "program": "University of Santo Tomas",
+        "playerIds": [
+          "96a6d92f-5bb3-46d1-9945-4db7a7e10349",
+          "0e8a24af-daed-43bf-a561-0aa877d74959",
+          "c9356c13-bbd7-4fec-9878-f2b0d054f79d",
+          "7d26eeb8-c5f2-47eb-8960-65d9ea1c6eeb",
+          "0737db09-2a62-440b-9d10-5c831e4c764b",
+          "8918f6fd-0057-4c62-a7c8-5426a8a7f044",
+          "0fdc9f7d-839b-48d2-885c-9e1538bfae4d",
+          "c2dd8c77-dbb0-411c-9439-6cd4ef9a72d6",
+          "6ad03522-6db3-4a2f-a05d-0332d12d98f4",
+          "73c06a7c-937d-4a61-a338-8c6c76e8360a"
+        ],
+        "topPlayers": [
+          {
+            "name": "CJ Tabbuga",
+            "games": 15,
+            "rating": 80.41
+          },
+          {
+            "name": "Rowie Cabañero",
+            "games": 15,
+            "rating": 77.86
+          },
+          {
+            "name": "Gab Castro",
+            "games": 15,
+            "rating": 77.16
+          },
+          {
+            "name": "Miguel Jubilado",
+            "games": 15,
+            "rating": 76.56
+          },
+          {
+            "name": "Dave Regala",
+            "games": 15,
+            "rating": 74.01
+          }
+        ]
+      }
+    },
+    {
+      "priority": 13,
+      "queue": "DOB",
+      "action": "Enter DOB: University of U16 batch",
+      "detail": "10 P12 players (10 at ≥8 games, avg 13.3 games)",
+      "board": "U16",
+      "expectedRankedGain": 10,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 10,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 10,
+      "roiScore": 5,
+      "entityCount": 10,
+      "metadata": {
+        "program": "University of the East",
+        "playerIds": [
+          "987e2ec4-393b-44cd-b316-114be432dbfc",
+          "84ac3127-a447-416d-909b-e889aeec026c",
+          "c5e26785-b849-4e43-8008-85ee3b4d369b",
+          "cece9e53-a43a-4795-bae3-270cd0e7e52d",
+          "fd894239-859c-4780-b3ff-1a1bed146130",
+          "1c606af4-b07a-4da5-a2ac-3b609f9fc8a0",
+          "04d2298b-2195-43db-956c-da5f40d0589f",
+          "092f8f0d-36d7-424a-a792-60a8b7c5d2a7",
+          "78d7ad36-070c-4bbb-904f-6050a7828f05",
+          "a67cd60b-c5a5-4b6d-a824-f3b98353e8b0"
+        ],
+        "topPlayers": [
+          {
+            "name": "Mark Perdigon",
+            "games": 14,
+            "rating": 79.28
+          },
+          {
+            "name": "Juan Mallabo",
+            "games": 14,
+            "rating": 72.03
+          },
+          {
+            "name": "James Mesa",
+            "games": 14,
+            "rating": 65.28
+          },
+          {
+            "name": "Zion Aguilar",
+            "games": 14,
+            "rating": 57.08
+          },
+          {
+            "name": "Austin Delos Santos",
+            "games": 14,
+            "rating": 54.57
+          }
+        ]
+      }
+    },
+    {
+      "priority": 14,
+      "queue": "DOB",
+      "action": "Enter DOB: San Pedro Spartans U16 batch",
+      "detail": "10 P12 players (10 at ≥8 games, avg 11.3 games)",
+      "board": "U16",
+      "expectedRankedGain": 10,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 10,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 10,
+      "roiScore": 5,
+      "entityCount": 10,
+      "metadata": {
+        "program": "San Pedro Spartans",
+        "playerIds": [
+          "318a9aed-4889-40b0-b084-05404ff55520",
+          "4abfebc5-1609-4402-82f3-1183e0acac03",
+          "b1edc459-59c2-4a5f-b70d-e02ae6a8b0cb",
+          "666d018d-7bec-4046-92f3-92ecb81e7fc0",
+          "f9dd9a78-9a19-4c24-abb0-6bff9bade904",
+          "88b0bc38-0e1d-4d0b-9bbf-e09892f2f2c8",
+          "43c4ffe1-bd44-4957-ab52-4a2e657e46d5",
+          "d1d80980-aa0c-46c7-98b7-d5674c9b8a0d",
+          "bda6d8e8-e0aa-41b3-8c7a-d6cac6de91c6",
+          "2079752d-b711-434f-a7d9-38bbc689270a"
+        ],
+        "topPlayers": [
+          {
+            "name": "Akhiro Franz Reynon",
+            "games": 11,
+            "rating": 90.09
+          },
+          {
+            "name": "Eli Dulot",
+            "games": 12,
+            "rating": 70.27
+          },
+          {
+            "name": "Rafael Oliveros",
+            "games": 12,
+            "rating": 66.56
+          },
+          {
+            "name": "Bangelo Abo-Abo",
+            "games": 12,
+            "rating": 49.89
+          },
+          {
+            "name": "Migo Marasigan",
+            "games": 12,
+            "rating": 44.03
+          }
+        ]
+      }
+    },
+    {
+      "priority": 15,
+      "queue": "DOB",
+      "action": "Enter DOB: San Beda U19 Boys batch",
+      "detail": "9 P12 players (9 at ≥8 games, avg 14.2 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 9,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 9,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 9,
+      "roiScore": 4.5,
+      "entityCount": 9,
+      "metadata": {
+        "program": "San Beda University - Rizal",
+        "playerIds": [
+          "0002f9c0-f93e-4ab9-9db7-eb1073050785",
+          "9fd6aa13-b7f7-4e29-a69b-3121a04e106a",
+          "cd73d63f-fc87-4eda-abf3-0c95e80ac3c4",
+          "468538ba-ad0d-4017-996b-e6587d29bedd",
+          "376670fa-917b-4d83-af37-91f02363282d",
+          "f9ebf6ea-ff9d-4d28-9b97-3cb1e02d7507",
+          "f784f33f-1a29-4031-8311-47da6f66ac60",
+          "cf144e2c-357f-4139-b152-fc1722c9bb01",
+          "d8e721c5-d9e1-4143-9f0b-0dcae623b2cd"
+        ],
+        "topPlayers": [
+          {
+            "name": "Adiam Larosa",
+            "games": 15,
+            "rating": 64.58
+          },
+          {
+            "name": "Martin Mejia",
+            "games": 15,
+            "rating": 60.14
+          },
+          {
+            "name": "Jan Leon Villanueva",
+            "games": 14,
+            "rating": 50.23
+          },
+          {
+            "name": "Mark San Buenaventura",
+            "games": 14,
+            "rating": 38.39
+          },
+          {
+            "name": "Jose Jomalesa",
+            "games": 15,
+            "rating": 31.29
+          }
+        ]
+      }
+    },
+    {
+      "priority": 16,
+      "queue": "DOB",
+      "action": "Enter DOB: University of U19 Boys batch",
+      "detail": "9 P12 players (9 at ≥8 games, avg 13.0 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 9,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 9,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 9,
+      "roiScore": 4.5,
+      "entityCount": 9,
+      "metadata": {
+        "program": "University of the Philippines Integrated School",
+        "playerIds": [
+          "7f88a6a3-ab31-477e-8b58-34473d67c155",
+          "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+          "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+          "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+          "4617e909-b890-4441-a715-04400951e026",
+          "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+          "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+          "eacb642f-e2f6-40cf-b9d2-36e114295953",
+          "210d2e7b-866f-447d-b3fa-4250cfb9daf0"
+        ],
+        "topPlayers": [
+          {
+            "name": "Bruce Tubongbanua",
+            "games": 14,
+            "rating": 68.1
+          },
+          {
+            "name": "Zandro Lugatiman",
+            "games": 14,
+            "rating": 45.12
+          },
+          {
+            "name": "Matt Rosete",
+            "games": 14,
+            "rating": 37.38
+          },
+          {
+            "name": "John Addatu",
+            "games": 14,
+            "rating": 31.3
+          },
+          {
+            "name": "Dominic Labao",
+            "games": 14,
+            "rating": 25.46
+          }
+        ]
+      }
+    },
+    {
+      "priority": 17,
+      "queue": "IMPORT",
+      "action": "Import: Philippine Youth Basketball Championship - 15U (1)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U16 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 42,
+      "expectedP12Reduction": 11,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 4.2,
+      "roiScore": 4.2,
+      "entityCount": 78,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U16",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 18,
+      "queue": "IMPORT",
+      "action": "Import: PYBC 15U (1)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U16 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 42,
+      "expectedP12Reduction": 11,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 4.2,
+      "roiScore": 4.2,
+      "entityCount": 85,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U16",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 19,
+      "queue": "DOB",
+      "action": "Enter DOB: San Sebastian College-Recoletos U19 Boys batch",
+      "detail": "8 P12 players (8 at ≥8 games, avg 13.4 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 8,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 8,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 8,
+      "roiScore": 4,
+      "entityCount": 8,
+      "metadata": {
+        "program": "San Sebastian College-Recoletos",
+        "playerIds": [
+          "8e94c7d7-5752-4b08-aba7-cc0c9d3f5572",
+          "5e8e325a-0d32-4240-9ff5-67e4a2dfd798",
+          "5aa234c4-8245-4add-b475-e21db3b7c39e",
+          "72d1a26e-3294-463e-9e52-b90af1ff36df",
+          "c57dd039-802b-4ce6-bb3e-fcedf616b72d",
+          "9646d96e-db03-4e4f-9732-3493531836b2",
+          "57e50989-cae3-4484-be74-8311459167fb",
+          "d5a711a5-b828-41c0-b44b-b5d53ff07380"
+        ],
+        "topPlayers": [
+          {
+            "name": "Jhon Ramiso",
+            "games": 15,
+            "rating": 58.26
+          },
+          {
+            "name": "Joshua Scott",
+            "games": 14,
+            "rating": 60.8
+          },
+          {
+            "name": "Khaizer Castillo",
+            "games": 14,
+            "rating": 57.49
+          },
+          {
+            "name": "Mark Gutierrez",
+            "games": 13,
+            "rating": 32.73
+          },
+          {
+            "name": "Charles Victoria",
+            "games": 13,
+            "rating": 30.32
+          }
+        ]
+      }
+    },
+    {
+      "priority": 20,
+      "queue": "DOB",
+      "action": "Enter DOB: Arellano University U19 Boys batch",
+      "detail": "8 P12 players (8 at ≥8 games, avg 15.5 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 8,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 8,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 8,
+      "roiScore": 4,
+      "entityCount": 8,
+      "metadata": {
+        "program": "Arellano University",
+        "playerIds": [
+          "54d376cb-819b-464e-9aa0-fab8acff7623",
+          "0607af31-4b55-4107-a4cb-0df3042e681f",
+          "59a98b7e-7e8d-48e0-af15-26f078b7b077",
+          "02921b1f-6154-49a1-a70b-5d48530675b7",
+          "21f76301-791a-4bb2-8fab-fc5c948d6ba1",
+          "6cc7de82-82b0-4deb-9f95-ac7a1a090edd",
+          "59a93aa1-e020-4d57-9864-7d0e3db78352",
+          "c84ce3cb-71b4-4201-ae90-8cef610426ab"
+        ],
+        "topPlayers": [
+          {
+            "name": "Jermaine Sapo",
+            "games": 18,
+            "rating": 39.03
+          },
+          {
+            "name": "Yan Tagorda",
+            "games": 19,
+            "rating": 34.17
+          },
+          {
+            "name": "Shawn Vergara",
+            "games": 18,
+            "rating": 32.77
+          },
+          {
+            "name": "Kint Aurita",
+            "games": 17,
+            "rating": 30.38
+          },
+          {
+            "name": "John Baluyot",
+            "games": 14,
+            "rating": 43.98
+          }
+        ]
+      }
+    },
+    {
+      "priority": 21,
+      "queue": "DOB",
+      "action": "Enter DOB: Jose Rizal University U19 Boys batch",
+      "detail": "8 P12 players (8 at ≥8 games, avg 13.3 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 8,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 8,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 8,
+      "roiScore": 4,
+      "entityCount": 8,
+      "metadata": {
+        "program": "Jose Rizal University",
+        "playerIds": [
+          "c82156ae-10fc-4a1e-8487-99f30195c945",
+          "1915964c-a278-4db1-8e7b-c8c739ee5885",
+          "1874c51b-18f5-4f1c-858c-97833d8c34d9",
+          "62849bb4-f6f1-47a6-afcd-6390a06ba8dd",
+          "e03c1279-5846-4958-94e7-3da4ec12c801",
+          "ed499e9d-c337-47cc-bfdb-21ab7660d8f5",
+          "253c6cf5-68f5-42c1-96b0-8deb5969673d",
+          "dddbd35b-6e44-4b89-af6a-1a3f65d1859a"
+        ],
+        "topPlayers": [
+          {
+            "name": "CJ Satparam",
+            "games": 14,
+            "rating": 63.06
+          },
+          {
+            "name": "Lexi Callueng",
+            "games": 14,
+            "rating": 48.65
+          },
+          {
+            "name": "Persist Loque",
+            "games": 14,
+            "rating": 45.96
+          },
+          {
+            "name": "Khellian Taparan",
+            "games": 14,
+            "rating": 40.9
+          },
+          {
+            "name": "Denzel Ong",
+            "games": 12,
+            "rating": 55.32
+          }
+        ]
+      }
+    },
+    {
+      "priority": 22,
+      "queue": "DOB",
+      "action": "Enter DOB: Lyceum of U19 Boys batch",
+      "detail": "7 P12 players (7 at ≥8 games, avg 12.1 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 7,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 7,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 7,
+      "roiScore": 3.5,
+      "entityCount": 7,
+      "metadata": {
+        "program": "Lyceum of the Philippines University Cavite",
+        "playerIds": [
+          "6864605b-3989-4519-b274-01e9cbfe41ea",
+          "31123fbd-b643-47e5-b95a-1b26447e274c",
+          "f1751ac7-7385-413e-87b4-039b54a502bd",
+          "2d841475-d016-4fe9-bcfe-19aba8a9cd73",
+          "34eb131a-9fe9-4e83-a441-353eb314e6c6",
+          "af2c8814-532c-4cd2-8939-40619459084d",
+          "6c8aa80f-1c6c-4b10-956d-6409a04dcccf"
+        ],
+        "topPlayers": [
+          {
+            "name": "Ken Bo",
+            "games": 14,
+            "rating": 62.61
+          },
+          {
+            "name": "Simon Mercado",
+            "games": 14,
+            "rating": 41.37
+          },
+          {
+            "name": "Khian Panerio",
+            "games": 10,
+            "rating": 63.78
+          },
+          {
+            "name": "Jesus Il Yonzon",
+            "games": 11,
+            "rating": 49.92
+          },
+          {
+            "name": "Harvey Turno",
+            "games": 13,
+            "rating": 35.36
+          }
+        ]
+      }
+    },
+    {
+      "priority": 23,
+      "queue": "IMPORT",
+      "action": "Import: Philippine Youth Basketball Championship – 13u (Season 2026)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U13 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 23,
+      "expectedP12Reduction": 5,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 2.3,
+      "roiScore": 2.3,
+      "entityCount": 75,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U13",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 24,
+      "queue": "DUPLICATE_PROGRAM",
+      "action": "Consolidate program: San Pedro Spartans / San Pedro Spartans",
+      "detail": "Retire 1 empty shell(s); reassign teams to canonical program",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 0,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 2,
+      "roiScore": 2,
+      "entityCount": 2,
+      "metadata": {
+        "normalizedName": "SANPEDROSPARTANS",
+        "matchType": "exact",
+        "programs": [
+          {
+            "id": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+            "fullName": "San Pedro Spartans",
+            "teams": 1,
+            "players": 15,
+            "gameStats": 153,
+            "isEmptyShell": false,
+            "isActiveShell": false
+          },
+          {
+            "id": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+            "fullName": "San Pedro Spartans",
+            "teams": 0,
+            "players": 0,
+            "gameStats": 0,
+            "isEmptyShell": true,
+            "isActiveShell": false
+          }
+        ],
+        "emptyShellCount": 1
+      }
+    },
+    {
+      "priority": 25,
+      "queue": "DUPLICATE_PROGRAM",
+      "action": "Consolidate program: LEV Construction Full Potential / Lev Construction Full Potential",
+      "detail": "Retire 1 empty shell(s); reassign teams to canonical program",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 0,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 2,
+      "roiScore": 2,
+      "entityCount": 2,
+      "metadata": {
+        "normalizedName": "LEVCONSTRUCTIONFULLPOTENTIAL",
+        "matchType": "normalization",
+        "programs": [
+          {
+            "id": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+            "fullName": "LEV Construction Full Potential",
+            "teams": 0,
+            "players": 0,
+            "gameStats": 0,
+            "isEmptyShell": true,
+            "isActiveShell": false
+          },
+          {
+            "id": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+            "fullName": "Lev Construction Full Potential",
+            "teams": 1,
+            "players": 0,
+            "gameStats": 85,
+            "isEmptyShell": false,
+            "isActiveShell": false
+          }
+        ],
+        "emptyShellCount": 1
+      }
+    },
+    {
+      "priority": 26,
+      "queue": "IMPORT",
+      "action": "Import: UAAP Season 88 HS Boys Basketball (Season 88)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 1,
+      "expectedP7Reduction": 9,
+      "expectedP12Reduction": 3,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 1.9,
+      "roiScore": 1.9,
+      "entityCount": 17,
+      "metadata": {
+        "tier": "IMPORT_NOW",
+        "missingGames": 1,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 27,
+      "queue": "IMPORT",
+      "action": "Import: 5th Stallion Cup – Teens 17u (Season 2026)",
+      "detail": "missing playoffs; imported stages: eliminations; exact missing: 5th Stallion Cup 17U, Playoffs; remaining schedule / next round",
+      "board": "U19 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 17,
+      "expectedP12Reduction": 17,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 1.7,
+      "roiScore": 1.7,
+      "entityCount": 17,
+      "metadata": {
+        "tier": "IMPORT_NOW",
+        "missingGames": 4,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 28,
+      "queue": "IMPORT",
+      "action": "Import: 5th Stallion Cup – Teens 17u (Season 2025)",
+      "detail": "missing eliminations; imported stages: playoffs; exact missing: 5th Stallion Cup 17U, Eliminations",
+      "board": "U19 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 17,
+      "expectedP12Reduction": 17,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 1.7,
+      "roiScore": 1.7,
+      "entityCount": 17,
+      "metadata": {
+        "tier": "IMPORT_NOW",
+        "missingGames": 4,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 29,
+      "queue": "IMPORT",
+      "action": "Import: PYBC U16 Boys Basketball (2025 Season)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U16 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 12,
+      "expectedP12Reduction": 4,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 1.2,
+      "roiScore": 1.2,
+      "entityCount": 16,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U16",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 30,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Christiane Chan / Christiane Dion Chan / Vance Chan",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 2,
+      "expectedP7Reduction": 2,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 2.2,
+      "roiScore": 1.1,
+      "entityCount": 3,
+      "metadata": {
+        "clusterId": "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87|655760d2-044f-47e3-93de-80c072489e00|d9c8a66e-3218-4c38-bef8-800cda1db8bb",
+        "matchType": "fuzzy",
+        "confidence": "low",
+        "overlappingStats": 0,
+        "playerIds": [
+          "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87",
+          "655760d2-044f-47e3-93de-80c072489e00",
+          "d9c8a66e-3218-4c38-bef8-800cda1db8bb"
+        ]
+      }
+    },
+    {
+      "priority": 31,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Roberto Sison / Roberto Sancho Sison / Denver Sison",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 2,
+      "expectedP7Reduction": 2,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 2.2,
+      "roiScore": 1.1,
+      "entityCount": 3,
+      "metadata": {
+        "clusterId": "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe|a619b173-cd49-4b22-9df9-a5cf67df31d1|f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+        "matchType": "fuzzy",
+        "confidence": "low",
+        "overlappingStats": 0,
+        "playerIds": [
+          "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe",
+          "f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+          "a619b173-cd49-4b22-9df9-a5cf67df31d1"
+        ]
+      }
+    },
+    {
+      "priority": 32,
+      "queue": "IMPORT",
+      "action": "Import: 6th Stallion Cup Teens – Jumbo Plastic Conference 18u (Season 2026)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 10,
+      "expectedP12Reduction": 0,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 1,
+      "roiScore": 1,
+      "entityCount": 20,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 33,
+      "queue": "IMPORT",
+      "action": "Import: UAAP Season 88 HS Girls Basketball (Season 88)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U19 Girls",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 9,
+      "expectedP12Reduction": 7,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 0.9,
+      "roiScore": 0.9,
+      "entityCount": 11,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U19",
+        "gender": "Girls"
+      }
+    },
+    {
+      "priority": 34,
+      "queue": "IMPORT",
+      "action": "Import: 4th Stallion Cup – Teens 17u (Season 2026)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 9,
+      "expectedP12Reduction": 3,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 0.9,
+      "roiScore": 0.9,
+      "entityCount": 20,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 35,
+      "queue": "IMPORT",
+      "action": "Import: NCAA Season 101 Junior's Basketball (Season 101)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 9,
+      "expectedP12Reduction": 3,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 0.9,
+      "roiScore": 0.9,
+      "entityCount": 20,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 36,
+      "queue": "IMPORT",
+      "action": "Import: 3rd Stallion Cup – Teens 17u (Season 2026)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 6,
+      "expectedP12Reduction": 1,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 0.6,
+      "roiScore": 0.6,
+      "entityCount": 21,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U19",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 37,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Kenzo Centeno / Kenzo Rui Centeno",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 1,
+      "expectedP7Reduction": 1,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 1.1,
+      "roiScore": 0.55,
+      "entityCount": 2,
+      "metadata": {
+        "clusterId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2|b49e07d6-b3e4-4a64-800b-006792ab6c82",
+        "matchType": "fuzzy",
+        "confidence": "medium",
+        "overlappingStats": 0,
+        "playerIds": [
+          "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+          "b49e07d6-b3e4-4a64-800b-006792ab6c82"
+        ]
+      }
+    },
+    {
+      "priority": 38,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Shaun Haw / Shaun Jordan Haw",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 1,
+      "expectedP7Reduction": 1,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 1.1,
+      "roiScore": 0.55,
+      "entityCount": 2,
+      "metadata": {
+        "clusterId": "10583f1f-46b0-4f3e-b74d-82b624a05c23|a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc",
+        "matchType": "fuzzy",
+        "confidence": "low",
+        "overlappingStats": 0,
+        "playerIds": [
+          "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+          "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc"
+        ]
+      }
+    },
+    {
+      "priority": 39,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Andres Braganza / Andres Thaddeus Braganza",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 1,
+      "expectedP7Reduction": 1,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 1.1,
+      "roiScore": 0.55,
+      "entityCount": 2,
+      "metadata": {
+        "clusterId": "72a234a5-4dc6-4110-9fdc-4add0aa37bda|b92a898f-76bb-481d-943c-db663521ec30",
+        "matchType": "fuzzy",
+        "confidence": "low",
+        "overlappingStats": 0,
+        "playerIds": [
+          "b92a898f-76bb-481d-943c-db663521ec30",
+          "72a234a5-4dc6-4110-9fdc-4add0aa37bda"
+        ]
+      }
+    },
+    {
+      "priority": 40,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Liam Jardin / Liam Franko Jardin",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 1,
+      "expectedP7Reduction": 1,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 1.1,
+      "roiScore": 0.55,
+      "entityCount": 2,
+      "metadata": {
+        "clusterId": "2e36b608-bfe7-416c-8e77-095f26d2379d|c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9",
+        "matchType": "fuzzy",
+        "confidence": "low",
+        "overlappingStats": 0,
+        "playerIds": [
+          "2e36b608-bfe7-416c-8e77-095f26d2379d",
+          "c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9"
+        ]
+      }
+    },
+    {
+      "priority": 41,
+      "queue": "DUPLICATE_PLAYER",
+      "action": "Review player merge: Franco Macapagal / Franco Javier Macapagal",
+      "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+      "expectedRankedGain": 1,
+      "expectedP7Reduction": 1,
+      "expectedP12Reduction": 0,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 1.1,
+      "roiScore": 0.55,
+      "entityCount": 2,
+      "metadata": {
+        "clusterId": "0b541b5e-09c5-454a-9ac8-4bac29260738|61c28d47-e2cf-4f59-bc71-8629f435f95f",
+        "matchType": "fuzzy",
+        "confidence": "low",
+        "overlappingStats": 0,
+        "playerIds": [
+          "61c28d47-e2cf-4f59-bc71-8629f435f95f",
+          "0b541b5e-09c5-454a-9ac8-4bac29260738"
+        ]
+      }
+    },
+    {
+      "priority": 42,
+      "queue": "IMPORT",
+      "action": "Import: UAAP Season 88 16U Boys Basketball (Season 88)",
+      "detail": "remaining schedule / next round (no missing-stage flag)",
+      "board": "U16 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 5,
+      "expectedP12Reduction": 3,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 0.5,
+      "roiScore": 0.5,
+      "entityCount": 12,
+      "metadata": {
+        "tier": "IMPORT_NEXT",
+        "missingGames": 1,
+        "ageGroup": "U16",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 43,
+      "queue": "DOB",
+      "action": "Enter DOB: Ateneo U19 Girls batch",
+      "detail": "12 P12 players (0 at ≥8 games, avg 5.8 games)",
+      "board": "U19 Girls",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 12,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 0,
+      "roiScore": 0,
+      "entityCount": 12,
+      "metadata": {
+        "program": "Ateneo de Manila University",
+        "playerIds": [
+          "cb2efa29-062f-451c-bd59-4d28bc3585e9",
+          "62d91284-330a-432c-9c33-1d1433bdc83b",
+          "be99fc5f-5246-441f-9836-a4c899ee82e4",
+          "b7934aa1-7937-4b22-b16f-137e320c4eb4",
+          "54b26352-93f6-427b-87f1-0149dc0561d6",
+          "b172f0ef-71bf-4624-b669-e3cf010e60b1",
+          "ff1be5ad-0a71-4d22-8c5a-febe3bb4a6a7",
+          "09c4dc79-fdb1-4a91-b4dc-717e099bf517",
+          "f4f9e0a4-117f-4fda-84ac-690e6e740fe0",
+          "fbf4b1ed-cd1f-4cab-8a13-7a06c574643e",
+          "85291f63-576e-4354-8b95-238dcb5a2308",
+          "db9562a3-2017-40c1-8dec-ff8a1fd24409"
+        ],
+        "topPlayers": [
+          {
+            "name": "Kairi Ebao",
+            "games": 6,
+            "rating": 34.65
+          },
+          {
+            "name": "Cheska Gozum",
+            "games": 5,
+            "rating": 49.54
+          },
+          {
+            "name": "Tyler Templo",
+            "games": 6,
+            "rating": 28.4
+          },
+          {
+            "name": "Chloe Mariano",
+            "games": 6,
+            "rating": 28.23
+          },
+          {
+            "name": "Zoe Ablang",
+            "games": 6,
+            "rating": 26.95
+          }
+        ]
+      }
+    },
+    {
+      "priority": 44,
+      "queue": "DOB",
+      "action": "Enter DOB: DLSZ U19 Girls batch",
+      "detail": "9 P12 players (0 at ≥8 games, avg 5.9 games)",
+      "board": "U19 Girls",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 9,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 0,
+      "roiScore": 0,
+      "entityCount": 9,
+      "metadata": {
+        "program": "De La Salle Santiago Zobel",
+        "playerIds": [
+          "389b1415-f364-4374-bd8c-c7ad20286b40",
+          "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+          "534ed135-5db6-4d2d-9d70-d56430642d1e",
+          "a2b6bc31-2091-4e66-8b0a-78d106e0d54c",
+          "f688b16b-1bfa-4ffb-83c5-7beaa09ff68d",
+          "b2711433-e4ff-48e5-944c-be848d5bf51c",
+          "c3d939e9-9fd4-4953-bb02-7cae6f8c0a8f",
+          "2ee5360d-2c77-4179-aee4-9f3ee25ef7e2",
+          "9d516d88-00a5-44c2-9f83-5b0db3d2747f"
+        ],
+        "topPlayers": [
+          {
+            "name": "Apyang Dulay",
+            "games": 6,
+            "rating": 74.6
+          },
+          {
+            "name": "Ima Navarro",
+            "games": 6,
+            "rating": 72.7
+          },
+          {
+            "name": "Ching Ching Gales",
+            "games": 6,
+            "rating": 70.7
+          },
+          {
+            "name": "Bing Padigos",
+            "games": 6,
+            "rating": 66.35
+          },
+          {
+            "name": "Stef Contreras",
+            "games": 6,
+            "rating": 56.35
+          }
+        ]
+      }
+    }
+  ],
+  "top10Actions": [
+    {
+      "priority": 1,
+      "queue": "DOB",
+      "action": "Enter DOB: Unassigned U19 Boys batch",
+      "detail": "78 P12 players (78 at ≥8 games, avg 18.6 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 78,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 78,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 78,
+      "roiScore": 26,
+      "entityCount": 78,
+      "metadata": {
+        "program": "Unassigned",
+        "playerIds": [
+          "756f616e-20f9-40fa-b0d8-115e9c2798a7",
+          "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+          "f986c3fc-5e81-4f83-8d32-0d94a524311a",
+          "8b695a69-4d6a-4b70-85fb-ed798cabd2ac",
+          "d977c21d-af18-490b-bbef-0cacc762f6dc",
+          "133d08e0-3a88-4dc8-85ad-61af238bd219",
+          "e0b5822d-b1f4-411f-9f28-cb331288db44",
+          "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+          "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+          "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+          "ec973537-10ca-4d19-950e-950730db3069",
+          "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+          "3a24bd05-60de-4744-8893-ff39c274939e",
+          "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+          "7b785ec5-b42f-4371-8147-71442dda3045",
+          "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+          "d3367846-883b-48a4-be3a-f08b0c1a0978",
+          "991f148c-3273-4c07-8b54-02a79be96e25",
+          "18a7f5cf-395c-478f-949d-110e1c51f413",
+          "d93435c8-839b-422f-9b09-75cdc446e75b"
+        ],
+        "topPlayers": [
+          {
+            "name": "Aidan Kaw",
+            "games": 31,
+            "rating": 74.69
+          },
+          {
+            "name": "Hans Go",
+            "games": 28,
+            "rating": 84.08
+          },
+          {
+            "name": "Mateo De La Paz",
+            "games": 32,
+            "rating": 63.85
+          },
+          {
+            "name": "Marcus Fernandez",
+            "games": 30,
+            "rating": 66.63
+          },
+          {
+            "name": "Earl Solis",
+            "games": 28,
+            "rating": 70.01
+          }
+        ]
+      }
+    },
+    {
+      "priority": 2,
+      "queue": "DOB",
+      "action": "Enter DOB: U19 Boys remaining programs (11 programs)",
+      "detail": "38 P12 players across Colegio de, Malayan High, Emilio Aguinaldo College, University of, UST, La Salle, DLSZ, Ateneo, Adamson University, NU, Far Eastern",
+      "board": "U19 Boys",
+      "expectedRankedGain": 38,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 38,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 38,
+      "roiScore": 12.67,
+      "entityCount": 38,
+      "metadata": {
+        "programs": [
+          {
+            "program": "Colegio de San Juan de Letran",
+            "count": 6
+          },
+          {
+            "program": "Malayan High School of Science",
+            "count": 6
+          },
+          {
+            "program": "Emilio Aguinaldo College",
+            "count": 6
+          },
+          {
+            "program": "University of the East",
+            "count": 6
+          },
+          {
+            "program": "University of Santo Tomas",
+            "count": 5
+          },
+          {
+            "program": "La Salle Green Hills",
+            "count": 3
+          },
+          {
+            "program": "De La Salle Santiago Zobel",
+            "count": 2
+          },
+          {
+            "program": "Ateneo de Manila University",
+            "count": 1
+          },
+          {
+            "program": "Adamson University",
+            "count": 1
+          },
+          {
+            "program": "National University Nazareth School",
+            "count": 1
+          },
+          {
+            "program": "Far Eastern University Diliman",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "priority": 3,
+      "queue": "IMPORT",
+      "action": "Import: PYBC 15U (Family rollup)",
+      "detail": "10 game(s) in submission inventory not in DB",
+      "board": "U16 Boys",
+      "expectedRankedGain": 0,
+      "expectedP7Reduction": 85,
+      "expectedP12Reduction": 85,
+      "effort": "low",
+      "effortScore": 1,
+      "rankingImpact": 8.5,
+      "roiScore": 8.5,
+      "entityCount": 85,
+      "metadata": {
+        "tier": "IMPORT_NOW",
+        "missingGames": 10,
+        "ageGroup": "U16",
+        "gender": "Boys"
+      }
+    },
+    {
+      "priority": 4,
+      "queue": "DOB",
+      "action": "Enter DOB: NU/UST U19 Girls batch",
+      "detail": "24 P12 players (13 at ≥8 games, avg 7.1 games)",
+      "board": "U19 Girls",
+      "expectedRankedGain": 13,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 24,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 13,
+      "roiScore": 6.5,
+      "entityCount": 24,
+      "metadata": {
+        "program": "NU/UST U19 Girls batch",
+        "playerIds": [
+          "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+          "7ed85dd3-7f49-4761-a5f5-708015df611d",
+          "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+          "f5f3ff63-ec12-4788-a3ab-680b6cac1ab9",
+          "c5df896b-04a3-4915-9f71-f3e2701fc74c",
+          "2386148f-33ef-47fc-8d6e-729bbc84c806",
+          "c29f4fa4-68fb-4c4a-90cf-9066b0b7ae75",
+          "d75c25ae-578b-4279-8b18-69507c75e09b",
+          "e89fcccd-7ed4-433a-b257-e77cf6220492",
+          "9c764990-6326-488b-917d-afc850bf47f1",
+          "75ca49b2-bde9-47fe-8b19-8f9e6203bf2b",
+          "7fc64a83-707e-4259-b834-8a5235ce81d6",
+          "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+          "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+          "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+          "98826725-620c-4417-9f41-349da347c811",
+          "0d6b9ff0-6d1e-4217-823f-b5cebaf45ad9",
+          "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+          "4f43220a-4594-4351-854d-63080a54bf28",
+          "922a5522-3987-42ab-80cd-e2a5ce8a5c52"
+        ],
+        "topPlayers": [
+          {
+            "name": "Aubrey Lapasaran",
+            "games": 8,
+            "rating": 89.8
+          },
+          {
+            "name": "Adin Rosano",
+            "games": 8,
+            "rating": 87.7
+          },
+          {
+            "name": "Riri Perez",
+            "games": 8,
+            "rating": 87.44
+          },
+          {
+            "name": "Janice Oczon",
+            "games": 8,
+            "rating": 78.92
+          },
+          {
+            "name": "Lea Pinuela",
+            "games": 8,
+            "rating": 77.91
+          }
+        ]
+      }
+    },
+    {
+      "priority": 5,
+      "queue": "DOB",
+      "action": "Enter DOB: Far Eastern U16 batch",
+      "detail": "13 P12 players (13 at ≥8 games, avg 15.5 games)",
+      "board": "U16",
+      "expectedRankedGain": 13,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 13,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 13,
+      "roiScore": 6.5,
+      "entityCount": 13,
+      "metadata": {
+        "program": "Far Eastern University Diliman",
+        "playerIds": [
+          "77f56cb5-a29f-4c91-9b64-05a074151743",
+          "0434149b-0d98-4378-bc4f-1761ae21bbf8",
+          "b3ba732d-732b-4d9f-a06a-61a58c5338f8",
+          "c4f42e37-9aea-4027-9b16-119b3ef07582",
+          "09908d7c-1ec0-462f-9ecc-11ab07177baf",
+          "f2fdc3f4-5c3e-473d-bacc-16ee4870d257",
+          "95522303-7614-49e4-be51-7b1e057ecd1c",
+          "7edcefdf-dd24-4c48-8d05-d044a69ff1e8",
+          "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+          "992a11da-7eaf-452c-b95d-0fd7a4254306",
+          "1431baef-bcc4-4111-9b23-3e633be1702b",
+          "7b1403dc-407b-43a2-aa51-3484d5bcb461",
+          "ffaf0dc7-93b8-47b8-8da0-99ce6789ff39"
+        ],
+        "topPlayers": [
+          {
+            "name": "Dwyne Enriquez",
+            "games": 18,
+            "rating": 83.14
+          },
+          {
+            "name": "Prince Pineda",
+            "games": 18,
+            "rating": 73.8
+          },
+          {
+            "name": "Andrei Chavez",
+            "games": 18,
+            "rating": 52.42
+          },
+          {
+            "name": "Dwayne Cañete",
+            "games": 18,
+            "rating": 48.91
+          },
+          {
+            "name": "Kyle Mojica",
+            "games": 17,
+            "rating": 53.64
+          }
+        ]
+      }
+    },
+    {
+      "priority": 6,
+      "queue": "DOB",
+      "action": "Enter DOB: Ateneo U16 batch",
+      "detail": "13 P12 players (13 at ≥8 games, avg 13.0 games)",
+      "board": "U16",
+      "expectedRankedGain": 13,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 13,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 13,
+      "roiScore": 6.5,
+      "entityCount": 13,
+      "metadata": {
+        "program": "Ateneo de Manila University",
+        "playerIds": [
+          "302194bf-9427-4e80-9026-99ce0197a1c7",
+          "5fe46d31-4097-4aae-b8bd-8c15cb822dd5",
+          "c1cea81b-8644-4668-b79d-dc85bc7a5d57",
+          "6e460e27-2510-4476-9c3b-c853340561e3",
+          "03ce86bf-8620-4a05-805f-e49ba1da24d8",
+          "d72d7a81-7ff8-41dd-b0e8-32089f28733a",
+          "f0ff876c-75a0-4b4f-81e1-4214b5f0a404",
+          "db422f10-ec34-4ed2-958c-d47233d9224a",
+          "77822554-0e0a-4e72-a99e-ef6746389477",
+          "20c258ca-4d74-4a75-b6b2-4aadf336f294",
+          "09a6ab2f-7bd7-4f9a-88ca-c78c6640e17b",
+          "5cbb1a1b-a4c6-46a0-b197-9eaa1b2f5514",
+          "cbaf5c2c-64d8-4687-b505-1a065e2b4ed2"
+        ],
+        "topPlayers": [
+          {
+            "name": "Domeng Ngo",
+            "games": 14,
+            "rating": 63.75
+          },
+          {
+            "name": "Stef Bernarte",
+            "games": 13,
+            "rating": 69.15
+          },
+          {
+            "name": "Sky Dela Rosa",
+            "games": 14,
+            "rating": 57.51
+          },
+          {
+            "name": "Enzo Divinagracia",
+            "games": 14,
+            "rating": 55.52
+          },
+          {
+            "name": "Francis Castro",
+            "games": 14,
+            "rating": 55.04
+          }
+        ]
+      }
+    },
+    {
+      "priority": 7,
+      "queue": "DOB",
+      "action": "Enter DOB: DLSZ U16 batch",
+      "detail": "11 P12 players (11 at ≥8 games, avg 12.6 games)",
+      "board": "U16",
+      "expectedRankedGain": 11,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 11,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 11,
+      "roiScore": 5.5,
+      "entityCount": 11,
+      "metadata": {
+        "program": "De La Salle Santiago Zobel",
+        "playerIds": [
+          "b9a9903a-422c-464b-b387-ff2cb1e38111",
+          "0faa2fe4-16db-4346-95b4-ca21bd914576",
+          "5a437905-5f9d-4c69-aeaa-c6b337346145",
+          "1d4f0ad8-f585-4bdd-9422-84c028c8b02f",
+          "2bf65968-df71-492e-91d3-0fd17a59ff96",
+          "8d4143fb-495d-4c37-a375-70e2cbb432b1",
+          "0a8c19f7-a925-4b2e-9365-90296ea39431",
+          "35077e1a-4f98-4dbb-a2ca-b565c008747a",
+          "c90f6016-684b-4c06-8174-bb5f8c33e3a3",
+          "4f48c0db-c2e7-4657-9595-a33758686a6d",
+          "1edb31d2-270c-4a82-8136-4c16f3c66584"
+        ],
+        "topPlayers": [
+          {
+            "name": "Lorenzo Purugganan",
+            "games": 14,
+            "rating": 76.66
+          },
+          {
+            "name": "Jullian Pangan",
+            "games": 14,
+            "rating": 67.85
+          },
+          {
+            "name": "John Mindanao",
+            "games": 14,
+            "rating": 57.63
+          },
+          {
+            "name": "David Dizon",
+            "games": 14,
+            "rating": 45.99
+          },
+          {
+            "name": "Wayne Rivera",
+            "games": 11,
+            "rating": 63.63
+          }
+        ]
+      }
+    },
+    {
+      "priority": 8,
+      "queue": "DOB",
+      "action": "Enter DOB: U16 remaining programs (2 programs)",
+      "detail": "16 P12 players across University of, Unassigned",
+      "board": "U16",
+      "expectedRankedGain": 16,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 16,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 16,
+      "roiScore": 5.33,
+      "entityCount": 16,
+      "metadata": {
+        "programs": [
+          {
+            "program": "University of the Philippines Integrated School",
+            "count": 9
+          },
+          {
+            "program": "Unassigned",
+            "count": 7
+          }
+        ]
+      }
+    },
+    {
+      "priority": 9,
+      "queue": "DOB",
+      "action": "Enter DOB: NU U16 batch",
+      "detail": "15 P12 players (15 at ≥8 games, avg 14.1 games)",
+      "board": "U16",
+      "expectedRankedGain": 15,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 15,
+      "effort": "high",
+      "effortScore": 3,
+      "rankingImpact": 15,
+      "roiScore": 5,
+      "entityCount": 15,
+      "metadata": {
+        "program": "National University Nazareth School",
+        "playerIds": [
+          "40c8e192-205b-4f87-af30-785eb4fa47b7",
+          "845d2169-0bdc-4eb5-8534-34a58d5fa083",
+          "9a85569b-9f79-4214-aa11-af4edf94073e",
+          "d0899ae8-2056-4712-8510-06c322633384",
+          "bc4ef4fd-2a06-480f-984f-6687e84dc502",
+          "28e776bb-3645-45fb-b6ec-7a857397e228",
+          "3d645232-f6aa-4544-a105-56734a5a5b2f",
+          "9225bf5d-a57d-43ba-9b9e-ee39fcf973cd",
+          "c2ded770-61ea-41cf-9b2f-456ea6fe4e86",
+          "0180b75e-e877-414c-a912-65c10a181865",
+          "b1747ea7-ddc2-46e6-95dd-227a28954e89",
+          "205320ec-b06d-41bb-9258-eb26054a5015",
+          "93fb6019-c39d-43ec-a869-9984a6130a3e",
+          "bdde0d77-a39a-4264-bd20-f203353e5dc1",
+          "d056bac7-db2c-4e91-965b-e5970a20701e"
+        ],
+        "topPlayers": [
+          {
+            "name": "Mark Arzola",
+            "games": 16,
+            "rating": 74.16
+          },
+          {
+            "name": "David Sabareza",
+            "games": 16,
+            "rating": 72.23
+          },
+          {
+            "name": "Clark Khobuntin",
+            "games": 16,
+            "rating": 70.58
+          },
+          {
+            "name": "Ean Tria",
+            "games": 15,
+            "rating": 72.46
+          },
+          {
+            "name": "Jaypee Yanga",
+            "games": 15,
+            "rating": 59.08
+          }
+        ]
+      }
+    },
+    {
+      "priority": 10,
+      "queue": "DOB",
+      "action": "Enter DOB: University of U19 Boys batch",
+      "detail": "10 P12 players (10 at ≥8 games, avg 13.3 games)",
+      "board": "U19 Boys",
+      "expectedRankedGain": 10,
+      "expectedP7Reduction": 0,
+      "expectedP12Reduction": 10,
+      "effort": "medium",
+      "effortScore": 2,
+      "rankingImpact": 10,
+      "roiScore": 5,
+      "entityCount": 10,
+      "metadata": {
+        "program": "University of Perpetual Help System DALTA",
+        "playerIds": [
+          "9ad17e58-5380-43c0-b86f-6a8c06ee50fd",
+          "c39bbd8c-1b5e-499c-8730-373dc20352a8",
+          "95e64c29-81df-4b99-b7b5-74448e115866",
+          "348559ad-b529-4496-8686-adb8cd5009d4",
+          "e3e17178-a1b3-4430-a726-6cf101234326",
+          "9689f91b-544e-463f-893d-655ff322f83d",
+          "12108bea-dd29-4372-abb0-64d94b6d2980",
+          "39844d89-e9f3-478c-8cdc-9558ad724d24",
+          "53735f16-4528-489d-ab51-e5235882ceb5",
+          "2248b156-2adc-4045-aca5-9be73d1cafd4"
+        ],
+        "topPlayers": [
+          {
+            "name": "Ezekiel Zamoras",
+            "games": 15,
+            "rating": 60.17
+          },
+          {
+            "name": "Kurt Velasquez",
+            "games": 15,
+            "rating": 53.46
+          },
+          {
+            "name": "Hanz Llupar",
+            "games": 15,
+            "rating": 49.07
+          },
+          {
+            "name": "Renzo Zanoria",
+            "games": 14,
+            "rating": 43.81
+          },
+          {
+            "name": "Kurt Patalinghug",
+            "games": 15,
+            "rating": 37.27
+          }
+        ]
+      }
+    }
+  ],
+  "queues": {
+    "import": [
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: PYBC 15U (Family rollup)",
+        "detail": "10 game(s) in submission inventory not in DB",
+        "board": "U16 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 85,
+        "expectedP12Reduction": 85,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 8.5,
+        "roiScore": 8.5,
+        "entityCount": 85,
+        "metadata": {
+          "tier": "IMPORT_NOW",
+          "missingGames": 10,
+          "ageGroup": "U16",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: 5th Stallion Cup – Teens 17u (Season 2026)",
+        "detail": "missing playoffs; imported stages: eliminations; exact missing: 5th Stallion Cup 17U, Playoffs; remaining schedule / next round",
+        "board": "U19 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 17,
+        "expectedP12Reduction": 17,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 1.7,
+        "roiScore": 1.7,
+        "entityCount": 17,
+        "metadata": {
+          "tier": "IMPORT_NOW",
+          "missingGames": 4,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: 5th Stallion Cup – Teens 17u (Season 2025)",
+        "detail": "missing eliminations; imported stages: playoffs; exact missing: 5th Stallion Cup 17U, Eliminations",
+        "board": "U19 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 17,
+        "expectedP12Reduction": 17,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 1.7,
+        "roiScore": 1.7,
+        "entityCount": 17,
+        "metadata": {
+          "tier": "IMPORT_NOW",
+          "missingGames": 4,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: Philippine Youth Basketball Championship - 15U (1)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U16 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 42,
+        "expectedP12Reduction": 11,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 4.2,
+        "roiScore": 4.2,
+        "entityCount": 78,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U16",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: PYBC 15U (1)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U16 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 42,
+        "expectedP12Reduction": 11,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 4.2,
+        "roiScore": 4.2,
+        "entityCount": 85,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U16",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: UAAP Season 88 HS Boys Basketball (Season 88)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 1,
+        "expectedP7Reduction": 9,
+        "expectedP12Reduction": 3,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 1.9,
+        "roiScore": 1.9,
+        "entityCount": 17,
+        "metadata": {
+          "tier": "IMPORT_NOW",
+          "missingGames": 1,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: UAAP Season 88 HS Girls Basketball (Season 88)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U19 Girls",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 9,
+        "expectedP12Reduction": 7,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 0.9,
+        "roiScore": 0.9,
+        "entityCount": 11,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U19",
+          "gender": "Girls"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: Philippine Youth Basketball Championship – 13u (Season 2026)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U13 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 23,
+        "expectedP12Reduction": 5,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 2.3,
+        "roiScore": 2.3,
+        "entityCount": 75,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U13",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: PYBC U16 Boys Basketball (2025 Season)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U16 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 12,
+        "expectedP12Reduction": 4,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 1.2,
+        "roiScore": 1.2,
+        "entityCount": 16,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U16",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: 4th Stallion Cup – Teens 17u (Season 2026)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 9,
+        "expectedP12Reduction": 3,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 0.9,
+        "roiScore": 0.9,
+        "entityCount": 20,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: NCAA Season 101 Junior's Basketball (Season 101)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 9,
+        "expectedP12Reduction": 3,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 0.9,
+        "roiScore": 0.9,
+        "entityCount": 20,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: UAAP Season 88 16U Boys Basketball (Season 88)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U16 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 5,
+        "expectedP12Reduction": 3,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 0.5,
+        "roiScore": 0.5,
+        "entityCount": 12,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U16",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: 3rd Stallion Cup – Teens 17u (Season 2026)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 6,
+        "expectedP12Reduction": 1,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 0.6,
+        "roiScore": 0.6,
+        "entityCount": 21,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "IMPORT",
+        "action": "Import: 6th Stallion Cup Teens – Jumbo Plastic Conference 18u (Season 2026)",
+        "detail": "remaining schedule / next round (no missing-stage flag)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 10,
+        "expectedP12Reduction": 0,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 1,
+        "roiScore": 1,
+        "entityCount": 20,
+        "metadata": {
+          "tier": "IMPORT_NEXT",
+          "missingGames": 1,
+          "ageGroup": "U19",
+          "gender": "Boys"
+        }
+      }
+    ],
+    "dob": [
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: NU/UST U19 Girls batch",
+        "detail": "24 P12 players (13 at ≥8 games, avg 7.1 games)",
+        "board": "U19 Girls",
+        "expectedRankedGain": 13,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 24,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 13,
+        "roiScore": 6.5,
+        "entityCount": 24,
+        "metadata": {
+          "program": "NU/UST U19 Girls batch",
+          "playerIds": [
+            "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+            "7ed85dd3-7f49-4761-a5f5-708015df611d",
+            "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+            "f5f3ff63-ec12-4788-a3ab-680b6cac1ab9",
+            "c5df896b-04a3-4915-9f71-f3e2701fc74c",
+            "2386148f-33ef-47fc-8d6e-729bbc84c806",
+            "c29f4fa4-68fb-4c4a-90cf-9066b0b7ae75",
+            "d75c25ae-578b-4279-8b18-69507c75e09b",
+            "e89fcccd-7ed4-433a-b257-e77cf6220492",
+            "9c764990-6326-488b-917d-afc850bf47f1",
+            "75ca49b2-bde9-47fe-8b19-8f9e6203bf2b",
+            "7fc64a83-707e-4259-b834-8a5235ce81d6",
+            "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+            "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+            "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+            "98826725-620c-4417-9f41-349da347c811",
+            "0d6b9ff0-6d1e-4217-823f-b5cebaf45ad9",
+            "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+            "4f43220a-4594-4351-854d-63080a54bf28",
+            "922a5522-3987-42ab-80cd-e2a5ce8a5c52"
+          ],
+          "topPlayers": [
+            {
+              "name": "Aubrey Lapasaran",
+              "games": 8,
+              "rating": 89.8
+            },
+            {
+              "name": "Adin Rosano",
+              "games": 8,
+              "rating": 87.7
+            },
+            {
+              "name": "Riri Perez",
+              "games": 8,
+              "rating": 87.44
+            },
+            {
+              "name": "Janice Oczon",
+              "games": 8,
+              "rating": 78.92
+            },
+            {
+              "name": "Lea Pinuela",
+              "games": 8,
+              "rating": 77.91
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Ateneo U19 Girls batch",
+        "detail": "12 P12 players (0 at ≥8 games, avg 5.8 games)",
+        "board": "U19 Girls",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 12,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 0,
+        "roiScore": 0,
+        "entityCount": 12,
+        "metadata": {
+          "program": "Ateneo de Manila University",
+          "playerIds": [
+            "cb2efa29-062f-451c-bd59-4d28bc3585e9",
+            "62d91284-330a-432c-9c33-1d1433bdc83b",
+            "be99fc5f-5246-441f-9836-a4c899ee82e4",
+            "b7934aa1-7937-4b22-b16f-137e320c4eb4",
+            "54b26352-93f6-427b-87f1-0149dc0561d6",
+            "b172f0ef-71bf-4624-b669-e3cf010e60b1",
+            "ff1be5ad-0a71-4d22-8c5a-febe3bb4a6a7",
+            "09c4dc79-fdb1-4a91-b4dc-717e099bf517",
+            "f4f9e0a4-117f-4fda-84ac-690e6e740fe0",
+            "fbf4b1ed-cd1f-4cab-8a13-7a06c574643e",
+            "85291f63-576e-4354-8b95-238dcb5a2308",
+            "db9562a3-2017-40c1-8dec-ff8a1fd24409"
+          ],
+          "topPlayers": [
+            {
+              "name": "Kairi Ebao",
+              "games": 6,
+              "rating": 34.65
+            },
+            {
+              "name": "Cheska Gozum",
+              "games": 5,
+              "rating": 49.54
+            },
+            {
+              "name": "Tyler Templo",
+              "games": 6,
+              "rating": 28.4
+            },
+            {
+              "name": "Chloe Mariano",
+              "games": 6,
+              "rating": 28.23
+            },
+            {
+              "name": "Zoe Ablang",
+              "games": 6,
+              "rating": 26.95
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: DLSZ U19 Girls batch",
+        "detail": "9 P12 players (0 at ≥8 games, avg 5.9 games)",
+        "board": "U19 Girls",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 9,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 0,
+        "roiScore": 0,
+        "entityCount": 9,
+        "metadata": {
+          "program": "De La Salle Santiago Zobel",
+          "playerIds": [
+            "389b1415-f364-4374-bd8c-c7ad20286b40",
+            "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+            "534ed135-5db6-4d2d-9d70-d56430642d1e",
+            "a2b6bc31-2091-4e66-8b0a-78d106e0d54c",
+            "f688b16b-1bfa-4ffb-83c5-7beaa09ff68d",
+            "b2711433-e4ff-48e5-944c-be848d5bf51c",
+            "c3d939e9-9fd4-4953-bb02-7cae6f8c0a8f",
+            "2ee5360d-2c77-4179-aee4-9f3ee25ef7e2",
+            "9d516d88-00a5-44c2-9f83-5b0db3d2747f"
+          ],
+          "topPlayers": [
+            {
+              "name": "Apyang Dulay",
+              "games": 6,
+              "rating": 74.6
+            },
+            {
+              "name": "Ima Navarro",
+              "games": 6,
+              "rating": 72.7
+            },
+            {
+              "name": "Ching Ching Gales",
+              "games": 6,
+              "rating": 70.7
+            },
+            {
+              "name": "Bing Padigos",
+              "games": 6,
+              "rating": 66.35
+            },
+            {
+              "name": "Stef Contreras",
+              "games": 6,
+              "rating": 56.35
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Unassigned U19 Boys batch",
+        "detail": "78 P12 players (78 at ≥8 games, avg 18.6 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 78,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 78,
+        "effort": "high",
+        "effortScore": 3,
+        "rankingImpact": 78,
+        "roiScore": 26,
+        "entityCount": 78,
+        "metadata": {
+          "program": "Unassigned",
+          "playerIds": [
+            "756f616e-20f9-40fa-b0d8-115e9c2798a7",
+            "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+            "f986c3fc-5e81-4f83-8d32-0d94a524311a",
+            "8b695a69-4d6a-4b70-85fb-ed798cabd2ac",
+            "d977c21d-af18-490b-bbef-0cacc762f6dc",
+            "133d08e0-3a88-4dc8-85ad-61af238bd219",
+            "e0b5822d-b1f4-411f-9f28-cb331288db44",
+            "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+            "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+            "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+            "ec973537-10ca-4d19-950e-950730db3069",
+            "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+            "3a24bd05-60de-4744-8893-ff39c274939e",
+            "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+            "7b785ec5-b42f-4371-8147-71442dda3045",
+            "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+            "d3367846-883b-48a4-be3a-f08b0c1a0978",
+            "991f148c-3273-4c07-8b54-02a79be96e25",
+            "18a7f5cf-395c-478f-949d-110e1c51f413",
+            "d93435c8-839b-422f-9b09-75cdc446e75b"
+          ],
+          "topPlayers": [
+            {
+              "name": "Aidan Kaw",
+              "games": 31,
+              "rating": 74.69
+            },
+            {
+              "name": "Hans Go",
+              "games": 28,
+              "rating": 84.08
+            },
+            {
+              "name": "Mateo De La Paz",
+              "games": 32,
+              "rating": 63.85
+            },
+            {
+              "name": "Marcus Fernandez",
+              "games": 30,
+              "rating": 66.63
+            },
+            {
+              "name": "Earl Solis",
+              "games": 28,
+              "rating": 70.01
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: University of U19 Boys batch",
+        "detail": "10 P12 players (10 at ≥8 games, avg 13.3 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 10,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 10,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 10,
+        "roiScore": 5,
+        "entityCount": 10,
+        "metadata": {
+          "program": "University of Perpetual Help System DALTA",
+          "playerIds": [
+            "9ad17e58-5380-43c0-b86f-6a8c06ee50fd",
+            "c39bbd8c-1b5e-499c-8730-373dc20352a8",
+            "95e64c29-81df-4b99-b7b5-74448e115866",
+            "348559ad-b529-4496-8686-adb8cd5009d4",
+            "e3e17178-a1b3-4430-a726-6cf101234326",
+            "9689f91b-544e-463f-893d-655ff322f83d",
+            "12108bea-dd29-4372-abb0-64d94b6d2980",
+            "39844d89-e9f3-478c-8cdc-9558ad724d24",
+            "53735f16-4528-489d-ab51-e5235882ceb5",
+            "2248b156-2adc-4045-aca5-9be73d1cafd4"
+          ],
+          "topPlayers": [
+            {
+              "name": "Ezekiel Zamoras",
+              "games": 15,
+              "rating": 60.17
+            },
+            {
+              "name": "Kurt Velasquez",
+              "games": 15,
+              "rating": 53.46
+            },
+            {
+              "name": "Hanz Llupar",
+              "games": 15,
+              "rating": 49.07
+            },
+            {
+              "name": "Renzo Zanoria",
+              "games": 14,
+              "rating": 43.81
+            },
+            {
+              "name": "Kurt Patalinghug",
+              "games": 15,
+              "rating": 37.27
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: San Beda U19 Boys batch",
+        "detail": "9 P12 players (9 at ≥8 games, avg 14.2 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 9,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 9,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 9,
+        "roiScore": 4.5,
+        "entityCount": 9,
+        "metadata": {
+          "program": "San Beda University - Rizal",
+          "playerIds": [
+            "0002f9c0-f93e-4ab9-9db7-eb1073050785",
+            "9fd6aa13-b7f7-4e29-a69b-3121a04e106a",
+            "cd73d63f-fc87-4eda-abf3-0c95e80ac3c4",
+            "468538ba-ad0d-4017-996b-e6587d29bedd",
+            "376670fa-917b-4d83-af37-91f02363282d",
+            "f9ebf6ea-ff9d-4d28-9b97-3cb1e02d7507",
+            "f784f33f-1a29-4031-8311-47da6f66ac60",
+            "cf144e2c-357f-4139-b152-fc1722c9bb01",
+            "d8e721c5-d9e1-4143-9f0b-0dcae623b2cd"
+          ],
+          "topPlayers": [
+            {
+              "name": "Adiam Larosa",
+              "games": 15,
+              "rating": 64.58
+            },
+            {
+              "name": "Martin Mejia",
+              "games": 15,
+              "rating": 60.14
+            },
+            {
+              "name": "Jan Leon Villanueva",
+              "games": 14,
+              "rating": 50.23
+            },
+            {
+              "name": "Mark San Buenaventura",
+              "games": 14,
+              "rating": 38.39
+            },
+            {
+              "name": "Jose Jomalesa",
+              "games": 15,
+              "rating": 31.29
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: University of U19 Boys batch",
+        "detail": "9 P12 players (9 at ≥8 games, avg 13.0 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 9,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 9,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 9,
+        "roiScore": 4.5,
+        "entityCount": 9,
+        "metadata": {
+          "program": "University of the Philippines Integrated School",
+          "playerIds": [
+            "7f88a6a3-ab31-477e-8b58-34473d67c155",
+            "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+            "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+            "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+            "4617e909-b890-4441-a715-04400951e026",
+            "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+            "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+            "eacb642f-e2f6-40cf-b9d2-36e114295953",
+            "210d2e7b-866f-447d-b3fa-4250cfb9daf0"
+          ],
+          "topPlayers": [
+            {
+              "name": "Bruce Tubongbanua",
+              "games": 14,
+              "rating": 68.1
+            },
+            {
+              "name": "Zandro Lugatiman",
+              "games": 14,
+              "rating": 45.12
+            },
+            {
+              "name": "Matt Rosete",
+              "games": 14,
+              "rating": 37.38
+            },
+            {
+              "name": "John Addatu",
+              "games": 14,
+              "rating": 31.3
+            },
+            {
+              "name": "Dominic Labao",
+              "games": 14,
+              "rating": 25.46
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: San Sebastian College-Recoletos U19 Boys batch",
+        "detail": "8 P12 players (8 at ≥8 games, avg 13.4 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 8,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 8,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 8,
+        "roiScore": 4,
+        "entityCount": 8,
+        "metadata": {
+          "program": "San Sebastian College-Recoletos",
+          "playerIds": [
+            "8e94c7d7-5752-4b08-aba7-cc0c9d3f5572",
+            "5e8e325a-0d32-4240-9ff5-67e4a2dfd798",
+            "5aa234c4-8245-4add-b475-e21db3b7c39e",
+            "72d1a26e-3294-463e-9e52-b90af1ff36df",
+            "c57dd039-802b-4ce6-bb3e-fcedf616b72d",
+            "9646d96e-db03-4e4f-9732-3493531836b2",
+            "57e50989-cae3-4484-be74-8311459167fb",
+            "d5a711a5-b828-41c0-b44b-b5d53ff07380"
+          ],
+          "topPlayers": [
+            {
+              "name": "Jhon Ramiso",
+              "games": 15,
+              "rating": 58.26
+            },
+            {
+              "name": "Joshua Scott",
+              "games": 14,
+              "rating": 60.8
+            },
+            {
+              "name": "Khaizer Castillo",
+              "games": 14,
+              "rating": 57.49
+            },
+            {
+              "name": "Mark Gutierrez",
+              "games": 13,
+              "rating": 32.73
+            },
+            {
+              "name": "Charles Victoria",
+              "games": 13,
+              "rating": 30.32
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Arellano University U19 Boys batch",
+        "detail": "8 P12 players (8 at ≥8 games, avg 15.5 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 8,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 8,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 8,
+        "roiScore": 4,
+        "entityCount": 8,
+        "metadata": {
+          "program": "Arellano University",
+          "playerIds": [
+            "54d376cb-819b-464e-9aa0-fab8acff7623",
+            "0607af31-4b55-4107-a4cb-0df3042e681f",
+            "59a98b7e-7e8d-48e0-af15-26f078b7b077",
+            "02921b1f-6154-49a1-a70b-5d48530675b7",
+            "21f76301-791a-4bb2-8fab-fc5c948d6ba1",
+            "6cc7de82-82b0-4deb-9f95-ac7a1a090edd",
+            "59a93aa1-e020-4d57-9864-7d0e3db78352",
+            "c84ce3cb-71b4-4201-ae90-8cef610426ab"
+          ],
+          "topPlayers": [
+            {
+              "name": "Jermaine Sapo",
+              "games": 18,
+              "rating": 39.03
+            },
+            {
+              "name": "Yan Tagorda",
+              "games": 19,
+              "rating": 34.17
+            },
+            {
+              "name": "Shawn Vergara",
+              "games": 18,
+              "rating": 32.77
+            },
+            {
+              "name": "Kint Aurita",
+              "games": 17,
+              "rating": 30.38
+            },
+            {
+              "name": "John Baluyot",
+              "games": 14,
+              "rating": 43.98
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Jose Rizal University U19 Boys batch",
+        "detail": "8 P12 players (8 at ≥8 games, avg 13.3 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 8,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 8,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 8,
+        "roiScore": 4,
+        "entityCount": 8,
+        "metadata": {
+          "program": "Jose Rizal University",
+          "playerIds": [
+            "c82156ae-10fc-4a1e-8487-99f30195c945",
+            "1915964c-a278-4db1-8e7b-c8c739ee5885",
+            "1874c51b-18f5-4f1c-858c-97833d8c34d9",
+            "62849bb4-f6f1-47a6-afcd-6390a06ba8dd",
+            "e03c1279-5846-4958-94e7-3da4ec12c801",
+            "ed499e9d-c337-47cc-bfdb-21ab7660d8f5",
+            "253c6cf5-68f5-42c1-96b0-8deb5969673d",
+            "dddbd35b-6e44-4b89-af6a-1a3f65d1859a"
+          ],
+          "topPlayers": [
+            {
+              "name": "CJ Satparam",
+              "games": 14,
+              "rating": 63.06
+            },
+            {
+              "name": "Lexi Callueng",
+              "games": 14,
+              "rating": 48.65
+            },
+            {
+              "name": "Persist Loque",
+              "games": 14,
+              "rating": 45.96
+            },
+            {
+              "name": "Khellian Taparan",
+              "games": 14,
+              "rating": 40.9
+            },
+            {
+              "name": "Denzel Ong",
+              "games": 12,
+              "rating": 55.32
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Lyceum of U19 Boys batch",
+        "detail": "7 P12 players (7 at ≥8 games, avg 12.1 games)",
+        "board": "U19 Boys",
+        "expectedRankedGain": 7,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 7,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 7,
+        "roiScore": 3.5,
+        "entityCount": 7,
+        "metadata": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "playerIds": [
+            "6864605b-3989-4519-b274-01e9cbfe41ea",
+            "31123fbd-b643-47e5-b95a-1b26447e274c",
+            "f1751ac7-7385-413e-87b4-039b54a502bd",
+            "2d841475-d016-4fe9-bcfe-19aba8a9cd73",
+            "34eb131a-9fe9-4e83-a441-353eb314e6c6",
+            "af2c8814-532c-4cd2-8939-40619459084d",
+            "6c8aa80f-1c6c-4b10-956d-6409a04dcccf"
+          ],
+          "topPlayers": [
+            {
+              "name": "Ken Bo",
+              "games": 14,
+              "rating": 62.61
+            },
+            {
+              "name": "Simon Mercado",
+              "games": 14,
+              "rating": 41.37
+            },
+            {
+              "name": "Khian Panerio",
+              "games": 10,
+              "rating": 63.78
+            },
+            {
+              "name": "Jesus Il Yonzon",
+              "games": 11,
+              "rating": 49.92
+            },
+            {
+              "name": "Harvey Turno",
+              "games": 13,
+              "rating": 35.36
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: U19 Boys remaining programs (11 programs)",
+        "detail": "38 P12 players across Colegio de, Malayan High, Emilio Aguinaldo College, University of, UST, La Salle, DLSZ, Ateneo, Adamson University, NU, Far Eastern",
+        "board": "U19 Boys",
+        "expectedRankedGain": 38,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 38,
+        "effort": "high",
+        "effortScore": 3,
+        "rankingImpact": 38,
+        "roiScore": 12.67,
+        "entityCount": 38,
+        "metadata": {
+          "programs": [
+            {
+              "program": "Colegio de San Juan de Letran",
+              "count": 6
+            },
+            {
+              "program": "Malayan High School of Science",
+              "count": 6
+            },
+            {
+              "program": "Emilio Aguinaldo College",
+              "count": 6
+            },
+            {
+              "program": "University of the East",
+              "count": 6
+            },
+            {
+              "program": "University of Santo Tomas",
+              "count": 5
+            },
+            {
+              "program": "La Salle Green Hills",
+              "count": 3
+            },
+            {
+              "program": "De La Salle Santiago Zobel",
+              "count": 2
+            },
+            {
+              "program": "Ateneo de Manila University",
+              "count": 1
+            },
+            {
+              "program": "Adamson University",
+              "count": 1
+            },
+            {
+              "program": "National University Nazareth School",
+              "count": 1
+            },
+            {
+              "program": "Far Eastern University Diliman",
+              "count": 1
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: NU U16 batch",
+        "detail": "15 P12 players (15 at ≥8 games, avg 14.1 games)",
+        "board": "U16",
+        "expectedRankedGain": 15,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 15,
+        "effort": "high",
+        "effortScore": 3,
+        "rankingImpact": 15,
+        "roiScore": 5,
+        "entityCount": 15,
+        "metadata": {
+          "program": "National University Nazareth School",
+          "playerIds": [
+            "40c8e192-205b-4f87-af30-785eb4fa47b7",
+            "845d2169-0bdc-4eb5-8534-34a58d5fa083",
+            "9a85569b-9f79-4214-aa11-af4edf94073e",
+            "d0899ae8-2056-4712-8510-06c322633384",
+            "bc4ef4fd-2a06-480f-984f-6687e84dc502",
+            "28e776bb-3645-45fb-b6ec-7a857397e228",
+            "3d645232-f6aa-4544-a105-56734a5a5b2f",
+            "9225bf5d-a57d-43ba-9b9e-ee39fcf973cd",
+            "c2ded770-61ea-41cf-9b2f-456ea6fe4e86",
+            "0180b75e-e877-414c-a912-65c10a181865",
+            "b1747ea7-ddc2-46e6-95dd-227a28954e89",
+            "205320ec-b06d-41bb-9258-eb26054a5015",
+            "93fb6019-c39d-43ec-a869-9984a6130a3e",
+            "bdde0d77-a39a-4264-bd20-f203353e5dc1",
+            "d056bac7-db2c-4e91-965b-e5970a20701e"
+          ],
+          "topPlayers": [
+            {
+              "name": "Mark Arzola",
+              "games": 16,
+              "rating": 74.16
+            },
+            {
+              "name": "David Sabareza",
+              "games": 16,
+              "rating": 72.23
+            },
+            {
+              "name": "Clark Khobuntin",
+              "games": 16,
+              "rating": 70.58
+            },
+            {
+              "name": "Ean Tria",
+              "games": 15,
+              "rating": 72.46
+            },
+            {
+              "name": "Jaypee Yanga",
+              "games": 15,
+              "rating": 59.08
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Far Eastern U16 batch",
+        "detail": "13 P12 players (13 at ≥8 games, avg 15.5 games)",
+        "board": "U16",
+        "expectedRankedGain": 13,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 13,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 13,
+        "roiScore": 6.5,
+        "entityCount": 13,
+        "metadata": {
+          "program": "Far Eastern University Diliman",
+          "playerIds": [
+            "77f56cb5-a29f-4c91-9b64-05a074151743",
+            "0434149b-0d98-4378-bc4f-1761ae21bbf8",
+            "b3ba732d-732b-4d9f-a06a-61a58c5338f8",
+            "c4f42e37-9aea-4027-9b16-119b3ef07582",
+            "09908d7c-1ec0-462f-9ecc-11ab07177baf",
+            "f2fdc3f4-5c3e-473d-bacc-16ee4870d257",
+            "95522303-7614-49e4-be51-7b1e057ecd1c",
+            "7edcefdf-dd24-4c48-8d05-d044a69ff1e8",
+            "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+            "992a11da-7eaf-452c-b95d-0fd7a4254306",
+            "1431baef-bcc4-4111-9b23-3e633be1702b",
+            "7b1403dc-407b-43a2-aa51-3484d5bcb461",
+            "ffaf0dc7-93b8-47b8-8da0-99ce6789ff39"
+          ],
+          "topPlayers": [
+            {
+              "name": "Dwyne Enriquez",
+              "games": 18,
+              "rating": 83.14
+            },
+            {
+              "name": "Prince Pineda",
+              "games": 18,
+              "rating": 73.8
+            },
+            {
+              "name": "Andrei Chavez",
+              "games": 18,
+              "rating": 52.42
+            },
+            {
+              "name": "Dwayne Cañete",
+              "games": 18,
+              "rating": 48.91
+            },
+            {
+              "name": "Kyle Mojica",
+              "games": 17,
+              "rating": 53.64
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Ateneo U16 batch",
+        "detail": "13 P12 players (13 at ≥8 games, avg 13.0 games)",
+        "board": "U16",
+        "expectedRankedGain": 13,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 13,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 13,
+        "roiScore": 6.5,
+        "entityCount": 13,
+        "metadata": {
+          "program": "Ateneo de Manila University",
+          "playerIds": [
+            "302194bf-9427-4e80-9026-99ce0197a1c7",
+            "5fe46d31-4097-4aae-b8bd-8c15cb822dd5",
+            "c1cea81b-8644-4668-b79d-dc85bc7a5d57",
+            "6e460e27-2510-4476-9c3b-c853340561e3",
+            "03ce86bf-8620-4a05-805f-e49ba1da24d8",
+            "d72d7a81-7ff8-41dd-b0e8-32089f28733a",
+            "f0ff876c-75a0-4b4f-81e1-4214b5f0a404",
+            "db422f10-ec34-4ed2-958c-d47233d9224a",
+            "77822554-0e0a-4e72-a99e-ef6746389477",
+            "20c258ca-4d74-4a75-b6b2-4aadf336f294",
+            "09a6ab2f-7bd7-4f9a-88ca-c78c6640e17b",
+            "5cbb1a1b-a4c6-46a0-b197-9eaa1b2f5514",
+            "cbaf5c2c-64d8-4687-b505-1a065e2b4ed2"
+          ],
+          "topPlayers": [
+            {
+              "name": "Domeng Ngo",
+              "games": 14,
+              "rating": 63.75
+            },
+            {
+              "name": "Stef Bernarte",
+              "games": 13,
+              "rating": 69.15
+            },
+            {
+              "name": "Sky Dela Rosa",
+              "games": 14,
+              "rating": 57.51
+            },
+            {
+              "name": "Enzo Divinagracia",
+              "games": 14,
+              "rating": 55.52
+            },
+            {
+              "name": "Francis Castro",
+              "games": 14,
+              "rating": 55.04
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: DLSZ U16 batch",
+        "detail": "11 P12 players (11 at ≥8 games, avg 12.6 games)",
+        "board": "U16",
+        "expectedRankedGain": 11,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 11,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 11,
+        "roiScore": 5.5,
+        "entityCount": 11,
+        "metadata": {
+          "program": "De La Salle Santiago Zobel",
+          "playerIds": [
+            "b9a9903a-422c-464b-b387-ff2cb1e38111",
+            "0faa2fe4-16db-4346-95b4-ca21bd914576",
+            "5a437905-5f9d-4c69-aeaa-c6b337346145",
+            "1d4f0ad8-f585-4bdd-9422-84c028c8b02f",
+            "2bf65968-df71-492e-91d3-0fd17a59ff96",
+            "8d4143fb-495d-4c37-a375-70e2cbb432b1",
+            "0a8c19f7-a925-4b2e-9365-90296ea39431",
+            "35077e1a-4f98-4dbb-a2ca-b565c008747a",
+            "c90f6016-684b-4c06-8174-bb5f8c33e3a3",
+            "4f48c0db-c2e7-4657-9595-a33758686a6d",
+            "1edb31d2-270c-4a82-8136-4c16f3c66584"
+          ],
+          "topPlayers": [
+            {
+              "name": "Lorenzo Purugganan",
+              "games": 14,
+              "rating": 76.66
+            },
+            {
+              "name": "Jullian Pangan",
+              "games": 14,
+              "rating": 67.85
+            },
+            {
+              "name": "John Mindanao",
+              "games": 14,
+              "rating": 57.63
+            },
+            {
+              "name": "David Dizon",
+              "games": 14,
+              "rating": 45.99
+            },
+            {
+              "name": "Wayne Rivera",
+              "games": 11,
+              "rating": 63.63
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: Adamson University U16 batch",
+        "detail": "10 P12 players (10 at ≥8 games, avg 14.0 games)",
+        "board": "U16",
+        "expectedRankedGain": 10,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 10,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 10,
+        "roiScore": 5,
+        "entityCount": 10,
+        "metadata": {
+          "program": "Adamson University",
+          "playerIds": [
+            "484ff142-89b3-4752-91b4-d03d79df742e",
+            "f341775e-dff0-4ea0-9f2d-1b6ac3ff028a",
+            "0e30f55c-b7f0-451d-a674-edcba76f44c8",
+            "c78a20e5-bcff-40ea-98e0-d0ef46061714",
+            "e855e5c6-c881-4989-8479-5f9be9a2e2ae",
+            "f8271467-d384-47a4-a354-fb5d85cbdd0e",
+            "155a5df4-9cd8-4a71-b85e-5a386bf6b354",
+            "eb27b8fe-4aa0-4985-9fc1-c333c181fb6c",
+            "99239b77-206c-4f02-9ff1-cb9780e89bb9",
+            "0d426d1e-a8e0-4ffc-ae2b-463ad67a2572"
+          ],
+          "topPlayers": [
+            {
+              "name": "Keefy Iledan",
+              "games": 15,
+              "rating": 82.19
+            },
+            {
+              "name": "Fran Flores",
+              "games": 14,
+              "rating": 88.11
+            },
+            {
+              "name": "Edison Jordan",
+              "games": 15,
+              "rating": 75.05
+            },
+            {
+              "name": "Vengcs Vengco",
+              "games": 15,
+              "rating": 63.9
+            },
+            {
+              "name": "Kyle Abas",
+              "games": 15,
+              "rating": 61.4
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: UST U16 batch",
+        "detail": "10 P12 players (10 at ≥8 games, avg 14.0 games)",
+        "board": "U16",
+        "expectedRankedGain": 10,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 10,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 10,
+        "roiScore": 5,
+        "entityCount": 10,
+        "metadata": {
+          "program": "University of Santo Tomas",
+          "playerIds": [
+            "96a6d92f-5bb3-46d1-9945-4db7a7e10349",
+            "0e8a24af-daed-43bf-a561-0aa877d74959",
+            "c9356c13-bbd7-4fec-9878-f2b0d054f79d",
+            "7d26eeb8-c5f2-47eb-8960-65d9ea1c6eeb",
+            "0737db09-2a62-440b-9d10-5c831e4c764b",
+            "8918f6fd-0057-4c62-a7c8-5426a8a7f044",
+            "0fdc9f7d-839b-48d2-885c-9e1538bfae4d",
+            "c2dd8c77-dbb0-411c-9439-6cd4ef9a72d6",
+            "6ad03522-6db3-4a2f-a05d-0332d12d98f4",
+            "73c06a7c-937d-4a61-a338-8c6c76e8360a"
+          ],
+          "topPlayers": [
+            {
+              "name": "CJ Tabbuga",
+              "games": 15,
+              "rating": 80.41
+            },
+            {
+              "name": "Rowie Cabañero",
+              "games": 15,
+              "rating": 77.86
+            },
+            {
+              "name": "Gab Castro",
+              "games": 15,
+              "rating": 77.16
+            },
+            {
+              "name": "Miguel Jubilado",
+              "games": 15,
+              "rating": 76.56
+            },
+            {
+              "name": "Dave Regala",
+              "games": 15,
+              "rating": 74.01
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: University of U16 batch",
+        "detail": "10 P12 players (10 at ≥8 games, avg 13.3 games)",
+        "board": "U16",
+        "expectedRankedGain": 10,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 10,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 10,
+        "roiScore": 5,
+        "entityCount": 10,
+        "metadata": {
+          "program": "University of the East",
+          "playerIds": [
+            "987e2ec4-393b-44cd-b316-114be432dbfc",
+            "84ac3127-a447-416d-909b-e889aeec026c",
+            "c5e26785-b849-4e43-8008-85ee3b4d369b",
+            "cece9e53-a43a-4795-bae3-270cd0e7e52d",
+            "fd894239-859c-4780-b3ff-1a1bed146130",
+            "1c606af4-b07a-4da5-a2ac-3b609f9fc8a0",
+            "04d2298b-2195-43db-956c-da5f40d0589f",
+            "092f8f0d-36d7-424a-a792-60a8b7c5d2a7",
+            "78d7ad36-070c-4bbb-904f-6050a7828f05",
+            "a67cd60b-c5a5-4b6d-a824-f3b98353e8b0"
+          ],
+          "topPlayers": [
+            {
+              "name": "Mark Perdigon",
+              "games": 14,
+              "rating": 79.28
+            },
+            {
+              "name": "Juan Mallabo",
+              "games": 14,
+              "rating": 72.03
+            },
+            {
+              "name": "James Mesa",
+              "games": 14,
+              "rating": 65.28
+            },
+            {
+              "name": "Zion Aguilar",
+              "games": 14,
+              "rating": 57.08
+            },
+            {
+              "name": "Austin Delos Santos",
+              "games": 14,
+              "rating": 54.57
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: San Pedro Spartans U16 batch",
+        "detail": "10 P12 players (10 at ≥8 games, avg 11.3 games)",
+        "board": "U16",
+        "expectedRankedGain": 10,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 10,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 10,
+        "roiScore": 5,
+        "entityCount": 10,
+        "metadata": {
+          "program": "San Pedro Spartans",
+          "playerIds": [
+            "318a9aed-4889-40b0-b084-05404ff55520",
+            "4abfebc5-1609-4402-82f3-1183e0acac03",
+            "b1edc459-59c2-4a5f-b70d-e02ae6a8b0cb",
+            "666d018d-7bec-4046-92f3-92ecb81e7fc0",
+            "f9dd9a78-9a19-4c24-abb0-6bff9bade904",
+            "88b0bc38-0e1d-4d0b-9bbf-e09892f2f2c8",
+            "43c4ffe1-bd44-4957-ab52-4a2e657e46d5",
+            "d1d80980-aa0c-46c7-98b7-d5674c9b8a0d",
+            "bda6d8e8-e0aa-41b3-8c7a-d6cac6de91c6",
+            "2079752d-b711-434f-a7d9-38bbc689270a"
+          ],
+          "topPlayers": [
+            {
+              "name": "Akhiro Franz Reynon",
+              "games": 11,
+              "rating": 90.09
+            },
+            {
+              "name": "Eli Dulot",
+              "games": 12,
+              "rating": 70.27
+            },
+            {
+              "name": "Rafael Oliveros",
+              "games": 12,
+              "rating": 66.56
+            },
+            {
+              "name": "Bangelo Abo-Abo",
+              "games": 12,
+              "rating": 49.89
+            },
+            {
+              "name": "Migo Marasigan",
+              "games": 12,
+              "rating": 44.03
+            }
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DOB",
+        "action": "Enter DOB: U16 remaining programs (2 programs)",
+        "detail": "16 P12 players across University of, Unassigned",
+        "board": "U16",
+        "expectedRankedGain": 16,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 16,
+        "effort": "high",
+        "effortScore": 3,
+        "rankingImpact": 16,
+        "roiScore": 5.33,
+        "entityCount": 16,
+        "metadata": {
+          "programs": [
+            {
+              "program": "University of the Philippines Integrated School",
+              "count": 9
+            },
+            {
+              "program": "Unassigned",
+              "count": 7
+            }
+          ]
+        }
+      }
+    ],
+    "duplicatePlayer": [
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Kenzo Centeno / Kenzo Rui Centeno",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 1,
+        "expectedP7Reduction": 1,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 1.1,
+        "roiScore": 0.55,
+        "entityCount": 2,
+        "metadata": {
+          "clusterId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2|b49e07d6-b3e4-4a64-800b-006792ab6c82",
+          "matchType": "fuzzy",
+          "confidence": "medium",
+          "overlappingStats": 0,
+          "playerIds": [
+            "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+            "b49e07d6-b3e4-4a64-800b-006792ab6c82"
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Shaun Haw / Shaun Jordan Haw",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 1,
+        "expectedP7Reduction": 1,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 1.1,
+        "roiScore": 0.55,
+        "entityCount": 2,
+        "metadata": {
+          "clusterId": "10583f1f-46b0-4f3e-b74d-82b624a05c23|a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc",
+          "matchType": "fuzzy",
+          "confidence": "low",
+          "overlappingStats": 0,
+          "playerIds": [
+            "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+            "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc"
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Andres Braganza / Andres Thaddeus Braganza",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 1,
+        "expectedP7Reduction": 1,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 1.1,
+        "roiScore": 0.55,
+        "entityCount": 2,
+        "metadata": {
+          "clusterId": "72a234a5-4dc6-4110-9fdc-4add0aa37bda|b92a898f-76bb-481d-943c-db663521ec30",
+          "matchType": "fuzzy",
+          "confidence": "low",
+          "overlappingStats": 0,
+          "playerIds": [
+            "b92a898f-76bb-481d-943c-db663521ec30",
+            "72a234a5-4dc6-4110-9fdc-4add0aa37bda"
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Christiane Chan / Christiane Dion Chan / Vance Chan",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 2,
+        "expectedP7Reduction": 2,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 2.2,
+        "roiScore": 1.1,
+        "entityCount": 3,
+        "metadata": {
+          "clusterId": "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87|655760d2-044f-47e3-93de-80c072489e00|d9c8a66e-3218-4c38-bef8-800cda1db8bb",
+          "matchType": "fuzzy",
+          "confidence": "low",
+          "overlappingStats": 0,
+          "playerIds": [
+            "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87",
+            "655760d2-044f-47e3-93de-80c072489e00",
+            "d9c8a66e-3218-4c38-bef8-800cda1db8bb"
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Liam Jardin / Liam Franko Jardin",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 1,
+        "expectedP7Reduction": 1,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 1.1,
+        "roiScore": 0.55,
+        "entityCount": 2,
+        "metadata": {
+          "clusterId": "2e36b608-bfe7-416c-8e77-095f26d2379d|c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9",
+          "matchType": "fuzzy",
+          "confidence": "low",
+          "overlappingStats": 0,
+          "playerIds": [
+            "2e36b608-bfe7-416c-8e77-095f26d2379d",
+            "c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9"
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Roberto Sison / Roberto Sancho Sison / Denver Sison",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 2,
+        "expectedP7Reduction": 2,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 2.2,
+        "roiScore": 1.1,
+        "entityCount": 3,
+        "metadata": {
+          "clusterId": "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe|a619b173-cd49-4b22-9df9-a5cf67df31d1|f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+          "matchType": "fuzzy",
+          "confidence": "low",
+          "overlappingStats": 0,
+          "playerIds": [
+            "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe",
+            "f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+            "a619b173-cd49-4b22-9df9-a5cf67df31d1"
+          ]
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PLAYER",
+        "action": "Review player merge: Franco Macapagal / Franco Javier Macapagal",
+        "detail": "Review for merge — fuzzy name cluster; confirm identity before merge",
+        "expectedRankedGain": 1,
+        "expectedP7Reduction": 1,
+        "expectedP12Reduction": 0,
+        "effort": "medium",
+        "effortScore": 2,
+        "rankingImpact": 1.1,
+        "roiScore": 0.55,
+        "entityCount": 2,
+        "metadata": {
+          "clusterId": "0b541b5e-09c5-454a-9ac8-4bac29260738|61c28d47-e2cf-4f59-bc71-8629f435f95f",
+          "matchType": "fuzzy",
+          "confidence": "low",
+          "overlappingStats": 0,
+          "playerIds": [
+            "61c28d47-e2cf-4f59-bc71-8629f435f95f",
+            "0b541b5e-09c5-454a-9ac8-4bac29260738"
+          ]
+        }
+      }
+    ],
+    "duplicateProgram": [
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PROGRAM",
+        "action": "Consolidate program: San Pedro Spartans / San Pedro Spartans",
+        "detail": "Retire 1 empty shell(s); reassign teams to canonical program",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 0,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 2,
+        "roiScore": 2,
+        "entityCount": 2,
+        "metadata": {
+          "normalizedName": "SANPEDROSPARTANS",
+          "matchType": "exact",
+          "programs": [
+            {
+              "id": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+              "fullName": "San Pedro Spartans",
+              "teams": 1,
+              "players": 15,
+              "gameStats": 153,
+              "isEmptyShell": false,
+              "isActiveShell": false
+            },
+            {
+              "id": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+              "fullName": "San Pedro Spartans",
+              "teams": 0,
+              "players": 0,
+              "gameStats": 0,
+              "isEmptyShell": true,
+              "isActiveShell": false
+            }
+          ],
+          "emptyShellCount": 1
+        }
+      },
+      {
+        "priority": 0,
+        "queue": "DUPLICATE_PROGRAM",
+        "action": "Consolidate program: LEV Construction Full Potential / Lev Construction Full Potential",
+        "detail": "Retire 1 empty shell(s); reassign teams to canonical program",
+        "expectedRankedGain": 0,
+        "expectedP7Reduction": 0,
+        "expectedP12Reduction": 0,
+        "effort": "low",
+        "effortScore": 1,
+        "rankingImpact": 2,
+        "roiScore": 2,
+        "entityCount": 2,
+        "metadata": {
+          "normalizedName": "LEVCONSTRUCTIONFULLPOTENTIAL",
+          "matchType": "normalization",
+          "programs": [
+            {
+              "id": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+              "fullName": "LEV Construction Full Potential",
+              "teams": 0,
+              "players": 0,
+              "gameStats": 0,
+              "isEmptyShell": true,
+              "isActiveShell": false
+            },
+            {
+              "id": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+              "fullName": "Lev Construction Full Potential",
+              "teams": 1,
+              "players": 0,
+              "gameStats": 85,
+              "isEmptyShell": false,
+              "isActiveShell": false
+            }
+          ],
+          "emptyShellCount": 1
+        }
+      }
+    ]
+  }
+}

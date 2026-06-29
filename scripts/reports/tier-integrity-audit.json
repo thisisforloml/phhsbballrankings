@@ -1,0 +1,629 @@
+{
+  "generatedAt": "2026-06-18T13:00:10.461Z",
+  "auditType": "tier-integrity-read-only",
+  "conventions": {
+    "user": {
+      "1": "Highest",
+      "2": "Strong developmental",
+      "3": "Competitive regional",
+      "4": "Lowest"
+    },
+    "codeLabels": {
+      "1": "Entry",
+      "2": "Developmental",
+      "3": "Competitive",
+      "4": "Elite"
+    },
+    "formulaV1Weights": {
+      "1": 1,
+      "2": 1.1,
+      "3": 1.25,
+      "4": 1.4
+    },
+    "requirementsDoc": {
+      "source": "docs/PHRANK_requirements.md",
+      "tier1": "Entry (lowest)",
+      "tier4": "Elite (highest)",
+      "alignedWithFormulaV1Weights": true
+    }
+  },
+  "internalConsistency": {
+    "requirementsDocConvention": {
+      "source": "docs/PHRANK_requirements.md",
+      "tier1": "Entry (lowest)",
+      "tier4": "Elite (highest)",
+      "alignedWithFormulaV1Weights": true
+    },
+    "userConvention": {
+      "tier1": "Highest",
+      "tier4": "Lowest",
+      "alignedWithFormulaV1Weights": false,
+      "alignedWithCodeTierLabels": false
+    },
+    "implementation": {
+      "formulaV1Weights": {
+        "1": 1,
+        "2": 1.1,
+        "3": 1.25,
+        "4": 1.4
+      },
+      "codeTierLabels": {
+        "1": "Entry",
+        "2": "Developmental",
+        "3": "Competitive",
+        "4": "Elite"
+      },
+      "adminUi": "Numeric tier 1–4 only; no label legend in LeagueMetadataForm",
+      "storedGpsLeagueWeights": [
+        {
+          "league_tier": 1,
+          "league_weight": "1.000",
+          "gps_count": 5410
+        },
+        {
+          "league_tier": 3,
+          "league_weight": "1.000",
+          "gps_count": 3981
+        }
+      ]
+    },
+    "dbVsFormulaV1": {
+      "consistent": false,
+      "rows": [
+        {
+          "league_tier": 1,
+          "league_weight": "1.000",
+          "gps_count": 5410
+        },
+        {
+          "league_tier": 3,
+          "league_weight": "1.000",
+          "gps_count": 3981
+        }
+      ],
+      "note": "All stored GPS rows use leagueWeight=1.000 regardless of League.tier. Import path hardcodes leagueWeight:1 in submission-post-import-processing.ts, so tier multipliers are not applied in production ratings today."
+    },
+    "dbTierAssignmentPattern": {
+      "observation": "Leagues appear assigned with stakeholder 1=highest intent (UAAP/NCAA=1, Stallion/PYBC=3) while code labels invert tier 1 as Entry.",
+      "tiersInUse": [
+        1,
+        3
+      ],
+      "tiersUnused": [
+        2,
+        4
+      ]
+    }
+  },
+  "inventory": [
+    {
+      "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+      "leagueName": "NCAA Season 101 Junior's Basketball",
+      "tier": 1,
+      "codeTierLabel": "Entry",
+      "userTierLabelIfInverted": "Highest",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 81,
+      "playerCount": 177,
+      "gpsCount": 2061,
+      "competitionFamily": "NCAA",
+      "formulaV1Weight": 1,
+      "userConventionAlignedWeight": 1.4,
+      "expectedTierUnderUserConvention": 1,
+      "dbTierMatchesUserExpectation": true,
+      "numberingConflict": false
+    },
+    {
+      "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+      "leagueName": "UAAP Season 88 16U Boys Basketball",
+      "tier": 1,
+      "codeTierLabel": "Entry",
+      "userTierLabelIfInverted": "Highest",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 60,
+      "playerCount": 120,
+      "gpsCount": 1464,
+      "competitionFamily": "UAAP",
+      "formulaV1Weight": 1,
+      "userConventionAlignedWeight": 1.4,
+      "expectedTierUnderUserConvention": 1,
+      "dbTierMatchesUserExpectation": true,
+      "numberingConflict": false
+    },
+    {
+      "leagueId": "d721a82a-f182-4a54-983a-01453650ec9e",
+      "leagueName": "UAAP Season 88 HS Boys Basketball",
+      "tier": 1,
+      "codeTierLabel": "Entry",
+      "userTierLabelIfInverted": "Highest",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verificationStatus": "VERIFIED",
+      "qualityScore": 85,
+      "gameCount": 62,
+      "playerCount": 125,
+      "gpsCount": 1554,
+      "competitionFamily": "UAAP",
+      "formulaV1Weight": 1,
+      "userConventionAlignedWeight": 1.4,
+      "expectedTierUnderUserConvention": 1,
+      "dbTierMatchesUserExpectation": true,
+      "numberingConflict": false
+    },
+    {
+      "leagueId": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef",
+      "leagueName": "UAAP Season 88 HS Girls Basketball",
+      "tier": 1,
+      "codeTierLabel": "Entry",
+      "userTierLabelIfInverted": "Highest",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verificationStatus": "VERIFIED",
+      "qualityScore": 85,
+      "gameCount": 14,
+      "playerCount": 56,
+      "gpsCount": 331,
+      "competitionFamily": "UAAP",
+      "formulaV1Weight": 1,
+      "userConventionAlignedWeight": 1.4,
+      "expectedTierUnderUserConvention": 1,
+      "dbTierMatchesUserExpectation": true,
+      "numberingConflict": false
+    },
+    {
+      "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+      "leagueName": "6th Stallion Cup - 18U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 25,
+      "playerCount": 82,
+      "gpsCount": 461,
+      "competitionFamily": "Stallion",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    },
+    {
+      "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+      "leagueName": "Philippine Youth Basketball Championship – 13U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U13",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 37,
+      "playerCount": 136,
+      "gpsCount": 900,
+      "competitionFamily": "PYBC",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    },
+    {
+      "leagueId": "636a2e94-13d9-4c6b-8d6a-becfb8db764b",
+      "leagueName": "Philippine Youth Basketball Championship – 15U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U16",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 37,
+      "playerCount": 133,
+      "gpsCount": 930,
+      "competitionFamily": "PYBC",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    },
+    {
+      "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+      "leagueName": "Stallion Cup – 17U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 89,
+      "playerCount": 160,
+      "gpsCount": 1690,
+      "competitionFamily": "Stallion",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    }
+  ],
+  "groupedByTier": [
+    {
+      "tier": 1,
+      "codeLabel": "Entry",
+      "userLabelIfTier1IsHighest": "Highest",
+      "formulaV1Weight": 1,
+      "userConventionAlignedWeight": 1.4,
+      "leagueCount": 4,
+      "gameCount": 217,
+      "playerCount": 478,
+      "gpsCount": 5410,
+      "leagues": [
+        {
+          "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+          "leagueName": "NCAA Season 101 Junior's Basketball",
+          "ageGroup": "U19",
+          "competitionFamily": "NCAA",
+          "gameCount": 81,
+          "gpsCount": 2061
+        },
+        {
+          "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+          "leagueName": "UAAP Season 88 16U Boys Basketball",
+          "ageGroup": "U16",
+          "competitionFamily": "UAAP",
+          "gameCount": 60,
+          "gpsCount": 1464
+        },
+        {
+          "leagueId": "d721a82a-f182-4a54-983a-01453650ec9e",
+          "leagueName": "UAAP Season 88 HS Boys Basketball",
+          "ageGroup": "U19",
+          "competitionFamily": "UAAP",
+          "gameCount": 62,
+          "gpsCount": 1554
+        },
+        {
+          "leagueId": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef",
+          "leagueName": "UAAP Season 88 HS Girls Basketball",
+          "ageGroup": "U19",
+          "competitionFamily": "UAAP",
+          "gameCount": 14,
+          "gpsCount": 331
+        }
+      ]
+    },
+    {
+      "tier": 2,
+      "codeLabel": "Developmental",
+      "userLabelIfTier1IsHighest": "Strong developmental",
+      "formulaV1Weight": 1.1,
+      "userConventionAlignedWeight": 1.25,
+      "leagueCount": 0,
+      "gameCount": 0,
+      "playerCount": 0,
+      "gpsCount": 0,
+      "leagues": []
+    },
+    {
+      "tier": 3,
+      "codeLabel": "Competitive",
+      "userLabelIfTier1IsHighest": "Competitive regional",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "leagueCount": 4,
+      "gameCount": 188,
+      "playerCount": 511,
+      "gpsCount": 3981,
+      "leagues": [
+        {
+          "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+          "leagueName": "6th Stallion Cup - 18U",
+          "ageGroup": "U19",
+          "competitionFamily": "Stallion",
+          "gameCount": 25,
+          "gpsCount": 461
+        },
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "leagueName": "Philippine Youth Basketball Championship – 13U",
+          "ageGroup": "U13",
+          "competitionFamily": "PYBC",
+          "gameCount": 37,
+          "gpsCount": 900
+        },
+        {
+          "leagueId": "636a2e94-13d9-4c6b-8d6a-becfb8db764b",
+          "leagueName": "Philippine Youth Basketball Championship – 15U",
+          "ageGroup": "U16",
+          "competitionFamily": "PYBC",
+          "gameCount": 37,
+          "gpsCount": 930
+        },
+        {
+          "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+          "leagueName": "Stallion Cup – 17U",
+          "ageGroup": "U19",
+          "competitionFamily": "Stallion",
+          "gameCount": 89,
+          "gpsCount": 1690
+        }
+      ]
+    },
+    {
+      "tier": 4,
+      "codeLabel": "Elite",
+      "userLabelIfTier1IsHighest": "Lowest",
+      "formulaV1Weight": 1.4,
+      "userConventionAlignedWeight": 1,
+      "leagueCount": 0,
+      "gameCount": 0,
+      "playerCount": 0,
+      "gpsCount": 0,
+      "leagues": []
+    }
+  ],
+  "keyCompetitionFamilies": [
+    {
+      "family": "UAAP",
+      "leagueCount": 3,
+      "tiers": [
+        1
+      ],
+      "gameCount": 136,
+      "gpsCount": 3349,
+      "leagues": [
+        {
+          "leagueName": "UAAP Season 88 16U Boys Basketball",
+          "tier": 1,
+          "codeTierLabel": "Entry",
+          "ageGroup": "U16",
+          "gameCount": 60,
+          "expectedTierUnderUserConvention": 1
+        },
+        {
+          "leagueName": "UAAP Season 88 HS Boys Basketball",
+          "tier": 1,
+          "codeTierLabel": "Entry",
+          "ageGroup": "U19",
+          "gameCount": 62,
+          "expectedTierUnderUserConvention": 1
+        },
+        {
+          "leagueName": "UAAP Season 88 HS Girls Basketball",
+          "tier": 1,
+          "codeTierLabel": "Entry",
+          "ageGroup": "U19",
+          "gameCount": 14,
+          "expectedTierUnderUserConvention": 1
+        }
+      ]
+    },
+    {
+      "family": "NCAA",
+      "leagueCount": 1,
+      "tiers": [
+        1
+      ],
+      "gameCount": 81,
+      "gpsCount": 2061,
+      "leagues": [
+        {
+          "leagueName": "NCAA Season 101 Junior's Basketball",
+          "tier": 1,
+          "codeTierLabel": "Entry",
+          "ageGroup": "U19",
+          "gameCount": 81,
+          "expectedTierUnderUserConvention": 1
+        }
+      ]
+    },
+    {
+      "family": "NBTC",
+      "leagueCount": 0,
+      "tiers": [],
+      "gameCount": 0,
+      "gpsCount": 0,
+      "leagues": []
+    },
+    {
+      "family": "Stallion",
+      "leagueCount": 2,
+      "tiers": [
+        3
+      ],
+      "gameCount": 114,
+      "gpsCount": 2151,
+      "leagues": [
+        {
+          "leagueName": "6th Stallion Cup - 18U",
+          "tier": 3,
+          "codeTierLabel": "Competitive",
+          "ageGroup": "U19",
+          "gameCount": 25,
+          "expectedTierUnderUserConvention": 2
+        },
+        {
+          "leagueName": "Stallion Cup – 17U",
+          "tier": 3,
+          "codeTierLabel": "Competitive",
+          "ageGroup": "U19",
+          "gameCount": 89,
+          "expectedTierUnderUserConvention": 2
+        }
+      ]
+    },
+    {
+      "family": "PYBC",
+      "leagueCount": 2,
+      "tiers": [
+        3
+      ],
+      "gameCount": 74,
+      "gpsCount": 1830,
+      "leagues": [
+        {
+          "leagueName": "Philippine Youth Basketball Championship – 13U",
+          "tier": 3,
+          "codeTierLabel": "Competitive",
+          "ageGroup": "U13",
+          "gameCount": 37,
+          "expectedTierUnderUserConvention": 2
+        },
+        {
+          "leagueName": "Philippine Youth Basketball Championship – 15U",
+          "tier": 3,
+          "codeTierLabel": "Competitive",
+          "ageGroup": "U16",
+          "gameCount": 37,
+          "expectedTierUnderUserConvention": 2
+        }
+      ]
+    },
+    {
+      "family": "JCIMBL",
+      "leagueCount": 0,
+      "tiers": [],
+      "gameCount": 0,
+      "gpsCount": 0,
+      "leagues": []
+    }
+  ],
+  "mismatchedUnderUserConventionHeuristic": [
+    {
+      "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+      "leagueName": "6th Stallion Cup - 18U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 25,
+      "playerCount": 82,
+      "gpsCount": 461,
+      "competitionFamily": "Stallion",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    },
+    {
+      "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+      "leagueName": "Philippine Youth Basketball Championship – 13U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U13",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 37,
+      "playerCount": 136,
+      "gpsCount": 900,
+      "competitionFamily": "PYBC",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    },
+    {
+      "leagueId": "636a2e94-13d9-4c6b-8d6a-becfb8db764b",
+      "leagueName": "Philippine Youth Basketball Championship – 15U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U16",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 37,
+      "playerCount": 133,
+      "gpsCount": 930,
+      "competitionFamily": "PYBC",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    },
+    {
+      "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+      "leagueName": "Stallion Cup – 17U",
+      "tier": 3,
+      "codeTierLabel": "Competitive",
+      "userTierLabelIfInverted": "Competitive regional",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 89,
+      "playerCount": 160,
+      "gpsCount": 1690,
+      "competitionFamily": "Stallion",
+      "formulaV1Weight": 1.25,
+      "userConventionAlignedWeight": 1.1,
+      "expectedTierUnderUserConvention": 2,
+      "dbTierMatchesUserExpectation": false,
+      "numberingConflict": true
+    }
+  ],
+  "exposureAnalysis": {
+    "activeLeagues": 8,
+    "totalGames": 405,
+    "totalGps": 9391,
+    "playerRatingRows": 1057,
+    "programTeamRatingRows": 66,
+    "leaguesMismatchedVsUserConventionHeuristic": 4,
+    "gamesInMismatchedLeagues": 188,
+    "gpsInMismatchedLeagues": 3981,
+    "percentGpsInMismatchedLeagues": 42.39
+  },
+  "historicalImpact": {
+    "ifOnlyRelabelDocsAdmin": {
+      "recompute": "none",
+      "note": "Changing labels/help text only."
+    },
+    "ifReassignLeagueTierNumbersToUserConventionWithoutGpsRecompute": {
+      "recompute": "PlayerRating + snapshots (+ ProgramTeamRating if live)",
+      "note": "Existing GPS rows retain old leagueWeight baked in at compute time."
+    },
+    "ifReassignLeagueTiersAndRecomputeGps": {
+      "recompute": "GPS → PlayerRating → RankingSnapshot (+ ProgramTeamRating)",
+      "note": "Full remediation path for rating fairness under user convention."
+    },
+    "ifInvertFormulaWeightsOnlyFutureGps": {
+      "recompute": "GPS (future imports only) — partial; historical ratings remain mixed",
+      "note": "Future-only policy correction (option C variant)."
+    },
+    "currentExposure": {
+      "activeLeagues": 8,
+      "totalGames": 405,
+      "totalGps": 9391,
+      "playerRatingRows": 1057,
+      "programTeamRatingRows": 66,
+      "leaguesMismatchedVsUserConventionHeuristic": 4,
+      "gamesInMismatchedLeagues": 188,
+      "gpsInMismatchedLeagues": 3981,
+      "percentGpsInMismatchedLeagues": 42.39
+    }
+  },
+  "recommendation": {
+    "choice": "D",
+    "text": "Rating-impacting semantic defect: codebase and PHRANK requirements treat tier 4 as elite (highest weight), while stakeholder convention treats tier 1 as highest. Stored league tiers may be assigned with mixed mental models, and Formula v1 weights amplify higher numeric tiers.",
+    "confidence": "HIGH"
+  }
+}

@@ -1,0 +1,3025 @@
+{
+  "generatedAt": "2026-06-17T07:34:50.001Z",
+  "phase": "merge-candidate-report",
+  "mode": "read-only",
+  "sourceReports": [
+    "scripts/reports/phase-b-identity-audit-report.json",
+    "scripts/reports/phase-c-team-resolution-audit-report.json"
+  ],
+  "metrics": {
+    "playersScanned": 930,
+    "teamsScanned": 83,
+    "gamesScanned": 405,
+    "gameStatsScanned": 9391,
+    "playerCandidatePairs": 34,
+    "teamCandidateGroups": 10,
+    "players": {
+      "A_safe": 0,
+      "B_manual_review": 18,
+      "C_never_merge": 16
+    },
+    "teams": {
+      "A_safe": 0,
+      "B_manual_review": 2,
+      "C_never_merge": 8
+    }
+  },
+  "alreadyMergedActiveDeletedOverlaps": [
+    {
+      "displayName": "John Addatu",
+      "gender": "BOYS",
+      "activeIds": [
+        "fac2ebfd-4e85-4003-a2c7-cdba900f6371"
+      ],
+      "deletedIds": [
+        "be4ee3e4-8303-4bb2-bbf9-e29d26380089"
+      ],
+      "note": "Expected: prior approved merge (canonical active + soft-deleted duplicate). No action."
+    },
+    {
+      "displayName": "Mark Jade Dulin",
+      "gender": "BOYS",
+      "activeIds": [
+        "94bf23af-63ac-4b45-8daf-df6038cc404c"
+      ],
+      "deletedIds": [
+        "a11d4a79-39cf-42e2-b7d5-4b8538e6af68"
+      ],
+      "note": "Expected: prior approved merge (canonical active + soft-deleted duplicate). No action."
+    },
+    {
+      "displayName": "Sam Hall",
+      "gender": "BOYS",
+      "activeIds": [
+        "c39b215b-fcf5-4760-a392-e4fc415bda42"
+      ],
+      "deletedIds": [
+        "eda39169-352a-4411-8d41-e521bd99cd29"
+      ],
+      "note": "Expected: prior approved merge (canonical active + soft-deleted duplicate). No action."
+    }
+  ],
+  "players": [
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 72,
+      "confidenceMethod": "name_similarity jac=1.00 lev=0.54(+35); token_subset(+5); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "54df48b5-eccd-4317-a58e-31dad15efaf7",
+          "displayName": "Aljoe Jaro Ii",
+          "normalizedKey": "ALJOE JARO II",
+          "createdAt": "2026-06-17T04:50:44.063Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "5e0480f1-c34e-4a7a-b0b4-b86fc4c947a8",
+          "displayName": "Aljoe Ii Jaro",
+          "normalizedKey": "ALJOE II JARO",
+          "createdAt": "2026-06-17T04:50:44.182Z",
+          "gameStats": 5,
+          "games": 5,
+          "gps": 5,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=1.00, lev=0.54.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 6,
+        "gpsAffected": 6,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 65,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.95(+33); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "85b34b4a-bc46-4090-91fb-d048b4958753",
+          "displayName": "Michael Rae Coranes",
+          "normalizedKey": "MICHAEL RAE CORANES",
+          "createdAt": "2026-06-17T04:50:44.069Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "be908d71-cf76-473a-909c-3634002c7345",
+          "displayName": "Michael Rae Corañes",
+          "normalizedKey": "MICHAEL RAE CORAÑES",
+          "createdAt": "2026-06-17T04:50:44.179Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.95.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 8,
+        "gpsAffected": 8,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 64,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.91(+32); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "7615ea63-1485-4eb3-b9cd-b1a0430c6dce",
+          "displayName": "Dean Paras",
+          "normalizedKey": "DEAN PARAS",
+          "createdAt": "2026-05-25T01:36:38.651Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "9dceedfd-7117-42f8-9bef-47a1b79ab8c9",
+          "displayName": "Dean Parasa",
+          "normalizedKey": "DEAN PARASA",
+          "createdAt": "2026-05-20T05:48:37.579Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.91.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+          "seasonId": "c4884785-34a9-4b1b-8841-06a390cfc74a",
+          "leagueName": "NCAA Season 101 Junior's Basketball",
+          "seasonName": "Season 101"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "teamName": "LSGH Greenies"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 2,
+        "gpsAffected": 2,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 64,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.91(+32); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "2c67cfd7-7e5c-4b09-95a7-a6bd151165fe",
+          "displayName": "Liam Santo",
+          "normalizedKey": "LIAM SANTO",
+          "createdAt": "2026-06-17T04:50:44.094Z",
+          "gameStats": 4,
+          "games": 4,
+          "gps": 4,
+          "playerRatings": 1
+        },
+        {
+          "id": "17ce5d35-55d8-456c-adeb-af95f7973829",
+          "displayName": "Liam Santos",
+          "normalizedKey": "LIAM SANTOS",
+          "createdAt": "2026-06-17T04:50:44.192Z",
+          "gameStats": 2,
+          "games": 2,
+          "gps": 2,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.91.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "004bd126-017f-4279-bf2b-d57c3a5cd0e4",
+          "teamName": "Aces Solar Locked In 13u"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 6,
+        "gpsAffected": 6,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 64,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.92(+32); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "2130fdc0-6f57-4c04-accc-e8f658bfc1fe",
+          "displayName": "Elijah Ariola",
+          "normalizedKey": "ELIJAH ARIOLA",
+          "createdAt": "2026-06-17T04:50:44.079Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "4455701f-2906-4ff9-b373-ab70326341c2",
+          "displayName": "Elija Ariola",
+          "normalizedKey": "ELIJA ARIOLA",
+          "createdAt": "2026-06-17T04:50:44.173Z",
+          "gameStats": 6,
+          "games": 6,
+          "gps": 6,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.92.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 7,
+        "gpsAffected": 7,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 64,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.92(+32); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "1b5067c7-3884-45ee-a974-f278a1696ed4",
+          "displayName": "Evo Castillo",
+          "normalizedKey": "EVO CASTILLO",
+          "createdAt": "2026-05-19T16:26:50.762Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "c8b1921c-eda8-43d7-a6d2-27302a74f6e4",
+          "displayName": "Eyo Castillo",
+          "normalizedKey": "EYO CASTILLO",
+          "createdAt": "2026-05-19T16:41:07.369Z",
+          "gameStats": 8,
+          "games": 8,
+          "gps": 8,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.92.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+          "seasonId": "c4884785-34a9-4b1b-8841-06a390cfc74a",
+          "leagueName": "NCAA Season 101 Junior's Basketball",
+          "seasonName": "Season 101"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "teamName": "EAC Brigadiers"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 9,
+        "gpsAffected": 9,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 64,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.92(+32); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "ef11ffb0-9519-409a-ae9a-0b7327fa278f",
+          "displayName": "Chazmyr OIaes",
+          "normalizedKey": "CHAZMYR OIAES",
+          "createdAt": "2026-05-19T16:45:11.031Z",
+          "gameStats": 2,
+          "games": 2,
+          "gps": 2,
+          "playerRatings": 1
+        },
+        {
+          "id": "2c982f5f-59f6-417d-b93e-07498a22ef32",
+          "displayName": "Chazmyr Olaes",
+          "normalizedKey": "CHAZMYR OLAES",
+          "createdAt": "2026-05-20T05:48:37.599Z",
+          "gameStats": 2,
+          "games": 2,
+          "gps": 2,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.92.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+          "seasonId": "c4884785-34a9-4b1b-8841-06a390cfc74a",
+          "leagueName": "NCAA Season 101 Junior's Basketball",
+          "seasonName": "Season 101"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "teamName": "LPU Junior Pirates"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 4,
+        "gpsAffected": 4,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 64,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.90(+32); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "2f6c29fc-42c8-4c57-86fa-508cafbab325",
+          "displayName": "JaideI Daa",
+          "normalizedKey": "JAIDEI DAA",
+          "createdAt": "2026-05-18T15:50:13.027Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+          "displayName": "Jaidel Daa",
+          "normalizedKey": "JAIDEL DAA",
+          "createdAt": "2026-05-18T06:27:55.678Z",
+          "gameStats": 16,
+          "games": 16,
+          "gps": 16,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.90.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+          "seasonId": "39a4a46c-6362-411f-ae85-6f631414f30b",
+          "leagueName": "UAAP Season 88 16U Boys Basketball",
+          "seasonName": "Season 88"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "teamName": "FEU - Diliman Baby Tamaraws 16U"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 17,
+        "gpsAffected": 17,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 63,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.89(+31); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "eafa0f85-54a5-4fa1-864a-b1362f7a6c0f",
+          "displayName": "Joshua Hayden Chua",
+          "normalizedKey": "JOSHUA HAYDEN CHUA",
+          "createdAt": "2026-06-17T05:28:00.594Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "5f3425b2-3536-42eb-b4f0-e39226d955fc",
+          "displayName": "Josh Hayden Chua",
+          "normalizedKey": "JOSH HAYDEN CHUA",
+          "createdAt": "2026-06-17T05:28:00.673Z",
+          "gameStats": 12,
+          "games": 12,
+          "gps": 12,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.89.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "52502f71-9734-477d-8ea7-bc8f6276676d",
+          "seasonId": "6b7c948c-756f-427a-a13e-74df9513e88e",
+          "leagueName": "4th Stallion Cup – Teens 17u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "36357a40-bf3a-458e-9bb2-0f58b03cf252",
+          "teamName": "Fair N Square U19 Boys"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 13,
+        "gpsAffected": 13,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 63,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.75(+26); token_subset(+5); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87",
+          "displayName": "Christiane Chan",
+          "normalizedKey": "CHRISTIANE CHAN",
+          "createdAt": "2026-06-17T04:50:44.057Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "655760d2-044f-47e3-93de-80c072489e00",
+          "displayName": "Christiane Dion Chan",
+          "normalizedKey": "CHRISTIANE DION CHAN",
+          "createdAt": "2026-06-17T04:50:44.174Z",
+          "gameStats": 5,
+          "games": 5,
+          "gps": 5,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.75.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 6,
+        "gpsAffected": 6,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 63,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.89(+31); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "d071b0f8-3084-4574-9808-d85ff1c8616d",
+          "displayName": "Russell Villanueva",
+          "normalizedKey": "RUSSELL VILLANUEVA",
+          "createdAt": "2026-06-17T04:50:44.202Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "c0b4dc13-c74d-46cb-9ef4-655697af5ce0",
+          "displayName": "Russell Villaneuva",
+          "normalizedKey": "RUSSELL VILLANEUVA",
+          "createdAt": "2026-06-17T04:50:44.203Z",
+          "gameStats": 4,
+          "games": 4,
+          "gps": 4,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.89.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+          "teamName": "Jet's Barbershop 13u"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 5,
+        "gpsAffected": 5,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 63,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.88(+31); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+          "displayName": "Isaac Paugganan",
+          "normalizedKey": "ISAAC PAUGGANAN",
+          "createdAt": "2026-05-19T14:49:18.404Z",
+          "gameStats": 8,
+          "games": 8,
+          "gps": 8,
+          "playerRatings": 1
+        },
+        {
+          "id": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+          "displayName": "Isaac Purugganan",
+          "normalizedKey": "ISAAC PURUGGANAN",
+          "createdAt": "2026-05-18T15:50:13.059Z",
+          "gameStats": 6,
+          "games": 6,
+          "gps": 6,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.88.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+          "seasonId": "39a4a46c-6362-411f-ae85-6f631414f30b",
+          "leagueName": "UAAP Season 88 16U Boys Basketball",
+          "seasonName": "Season 88"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "De La Salle Zobel Junior Archers 16U"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 14,
+        "gpsAffected": 14,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 63,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.89(+31); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "a3d8bde2-9792-477a-bf17-65ea5ee2f625",
+          "displayName": "Pertiyude Binagatan",
+          "normalizedKey": "PERTIYUDE BINAGATAN",
+          "createdAt": "2026-05-20T05:44:12.430Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "12108bea-dd29-4372-abb0-64d94b6d2980",
+          "displayName": "Pertjude Binagatan",
+          "normalizedKey": "PERTJUDE BINAGATAN",
+          "createdAt": "2026-05-19T16:26:42.804Z",
+          "gameStats": 14,
+          "games": 14,
+          "gps": 14,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.89.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+          "seasonId": "c4884785-34a9-4b1b-8841-06a390cfc74a",
+          "leagueName": "NCAA Season 101 Junior's Basketball",
+          "seasonName": "Season 101"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "teamName": "Perpetual Junior Daltas"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 15,
+        "gpsAffected": 15,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 61,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.70(+24); token_subset(+5); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "61c28d47-e2cf-4f59-bc71-8629f435f95f",
+          "displayName": "Franco Macapagal",
+          "normalizedKey": "FRANCO MACAPAGAL",
+          "createdAt": "2026-06-17T04:50:44.074Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "0b541b5e-09c5-454a-9ac8-4bac29260738",
+          "displayName": "Franco Javier Macapagal",
+          "normalizedKey": "FRANCO JAVIER MACAPAGAL",
+          "createdAt": "2026-06-17T04:50:44.176Z",
+          "gameStats": 5,
+          "games": 5,
+          "gps": 5,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.70.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 6,
+        "gpsAffected": 6,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 60,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.61(+23); token_subset(+5); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "2e36b608-bfe7-416c-8e77-095f26d2379d",
+          "displayName": "Liam Jardin",
+          "normalizedKey": "LIAM JARDIN",
+          "createdAt": "2026-06-17T04:50:44.065Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9",
+          "displayName": "Liam Franko Jardin",
+          "normalizedKey": "LIAM FRANKO JARDIN",
+          "createdAt": "2026-06-17T04:50:44.181Z",
+          "gameStats": 6,
+          "games": 6,
+          "gps": 6,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.61.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 7,
+        "gpsAffected": 7,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 60,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.65(+23); token_subset(+5); shared_team(+20); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe",
+          "displayName": "Roberto Sison",
+          "normalizedKey": "ROBERTO SISON",
+          "createdAt": "2026-06-17T04:50:44.067Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+          "displayName": "Roberto Sancho Sison",
+          "normalizedKey": "ROBERTO SANCHO SISON",
+          "createdAt": "2026-06-17T04:50:44.184Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.65.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "teamName": "JPM-TEC San Beda"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 8,
+        "gpsAffected": 8,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 40,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.56(+23); token_subset(+5); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "5f3425b2-3536-42eb-b4f0-e39226d955fc",
+          "displayName": "Josh Hayden Chua",
+          "normalizedKey": "JOSH HAYDEN CHUA",
+          "createdAt": "2026-06-17T05:28:00.673Z",
+          "gameStats": 12,
+          "games": 12,
+          "gps": 12,
+          "playerRatings": 1
+        },
+        {
+          "id": "3f59df23-68b4-49f1-a3c3-924b23e57e50",
+          "displayName": "Josh Chua",
+          "normalizedKey": "JOSH CHUA",
+          "createdAt": "2026-06-17T05:42:45.549Z",
+          "gameStats": 10,
+          "games": 10,
+          "gps": 10,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.56.",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared team."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+          "seasonId": "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a",
+          "leagueName": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 22,
+        "gpsAffected": 22,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "B_manual_review",
+      "confidence": 37,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.72(+25); shared_competition(+12)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "eafa0f85-54a5-4fa1-864a-b1362f7a6c0f",
+          "displayName": "Joshua Hayden Chua",
+          "normalizedKey": "JOSHUA HAYDEN CHUA",
+          "createdAt": "2026-06-17T05:28:00.594Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "0bb42b18-09d0-4287-bb58-22a79fcc8b38",
+          "displayName": "Joshua Miguel Chua",
+          "normalizedKey": "JOSHUA MIGUEL CHUA",
+          "createdAt": "2026-06-17T05:28:00.638Z",
+          "gameStats": 9,
+          "games": 9,
+          "gps": 9,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.72.",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared team."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "52502f71-9734-477d-8ea7-bc8f6276676d",
+          "seasonId": "6b7c948c-756f-427a-a13e-74df9513e88e",
+          "leagueName": "4th Stallion Cup – Teens 17u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 10,
+        "gpsAffected": 10,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 32,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.76(+27); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+          "displayName": "Kenzo Centeno",
+          "normalizedKey": "KENZO CENTENO",
+          "createdAt": "2026-06-17T05:28:00.597Z",
+          "gameStats": 25,
+          "games": 25,
+          "gps": 25,
+          "playerRatings": 1
+        },
+        {
+          "id": "b49e07d6-b3e4-4a64-800b-006792ab6c82",
+          "displayName": "Kenzo Rui Centeno",
+          "normalizedKey": "KENZO RUI CENTENO",
+          "createdAt": "2026-06-17T05:48:15.090Z",
+          "gameStats": 8,
+          "games": 8,
+          "gps": 8,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.76."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 33,
+        "gpsAffected": 33,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 32,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.92(+32)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+          "displayName": "Keefe Iledan",
+          "normalizedKey": "KEEFE ILEDAN",
+          "createdAt": "2026-05-06T14:37:27.142Z",
+          "gameStats": 10,
+          "games": 10,
+          "gps": 10,
+          "playerRatings": 1
+        },
+        {
+          "id": "484ff142-89b3-4752-91b4-d03d79df742e",
+          "displayName": "Keefy Iledan",
+          "normalizedKey": "KEEFY ILEDAN",
+          "createdAt": "2026-05-18T06:27:55.706Z",
+          "gameStats": 15,
+          "games": 15,
+          "gps": 15,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.92."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 25,
+        "gpsAffected": 25,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 28,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.63(+23); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "b92a898f-76bb-481d-943c-db663521ec30",
+          "displayName": "Andres Braganza",
+          "normalizedKey": "ANDRES BRAGANZA",
+          "createdAt": "2026-06-17T05:28:00.627Z",
+          "gameStats": 8,
+          "games": 8,
+          "gps": 8,
+          "playerRatings": 1
+        },
+        {
+          "id": "72a234a5-4dc6-4110-9fdc-4add0aa37bda",
+          "displayName": "Andres Thaddeus Braganza",
+          "normalizedKey": "ANDRES THADDEUS BRAGANZA",
+          "createdAt": "2026-06-17T05:35:21.079Z",
+          "gameStats": 6,
+          "games": 6,
+          "gps": 6,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.63."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 14,
+        "gpsAffected": 14,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 28,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.62(+23); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "90d1b6d2-ae9c-4525-975f-5039e42007e7",
+          "displayName": "Nhian Seff Sy",
+          "normalizedKey": "NHIAN SEFF SY",
+          "createdAt": "2026-06-17T05:42:45.566Z",
+          "gameStats": 6,
+          "games": 6,
+          "gps": 6,
+          "playerRatings": 1
+        },
+        {
+          "id": "32a55a86-e67f-470d-925e-06b8a1edc405",
+          "displayName": "Nhian Sy",
+          "normalizedKey": "NHIAN SY",
+          "createdAt": "2026-06-17T05:28:00.555Z",
+          "gameStats": 5,
+          "games": 5,
+          "gps": 5,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.62."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 11,
+        "gpsAffected": 11,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 28,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.61(+23); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "eafa0f85-54a5-4fa1-864a-b1362f7a6c0f",
+          "displayName": "Joshua Hayden Chua",
+          "normalizedKey": "JOSHUA HAYDEN CHUA",
+          "createdAt": "2026-06-17T05:28:00.594Z",
+          "gameStats": 1,
+          "games": 1,
+          "gps": 1,
+          "playerRatings": 1
+        },
+        {
+          "id": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+          "displayName": "Joshua Chua",
+          "normalizedKey": "JOSHUA CHUA",
+          "createdAt": "2026-06-17T05:35:21.075Z",
+          "gameStats": 14,
+          "games": 14,
+          "gps": 14,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.61."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 15,
+        "gpsAffected": 15,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 28,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.61(+23); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "0bb42b18-09d0-4287-bb58-22a79fcc8b38",
+          "displayName": "Joshua Miguel Chua",
+          "normalizedKey": "JOSHUA MIGUEL CHUA",
+          "createdAt": "2026-06-17T05:28:00.638Z",
+          "gameStats": 9,
+          "games": 9,
+          "gps": 9,
+          "playerRatings": 1
+        },
+        {
+          "id": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+          "displayName": "Joshua Chua",
+          "normalizedKey": "JOSHUA CHUA",
+          "createdAt": "2026-06-17T05:35:21.075Z",
+          "gameStats": 14,
+          "games": 14,
+          "gps": 14,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.61."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 23,
+        "gpsAffected": 23,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 28,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.56(+23); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+          "displayName": "Shaun Haw",
+          "normalizedKey": "SHAUN HAW",
+          "createdAt": "2026-06-17T05:28:00.613Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        },
+        {
+          "id": "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc",
+          "displayName": "Shaun Jordan Haw",
+          "normalizedKey": "SHAUN JORDAN HAW",
+          "createdAt": "2026-06-17T05:48:15.067Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.56."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 14,
+        "gpsAffected": 14,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 28,
+      "confidenceMethod": "name_similarity jac=0.67 lev=0.60(+23); token_subset(+5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "851d08ef-81b7-44d7-88c0-1fd8ab714491",
+          "displayName": "Alvin Ngo",
+          "normalizedKey": "ALVIN NGO",
+          "createdAt": "2026-06-17T05:42:45.545Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        },
+        {
+          "id": "6d6f2eb2-9ed7-4a81-9c3f-7fbda414206d",
+          "displayName": "Alvin Grant Ngo",
+          "normalizedKey": "ALVIN GRANT NGO",
+          "createdAt": "2026-06-17T05:48:15.074Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.67, lev=0.60."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 14,
+        "gpsAffected": 14,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 25,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.72(+25)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "bdd07be3-e604-4858-9883-6a9d623306ca",
+          "displayName": "Gab Delos Reyes",
+          "normalizedKey": "GAB DELOS REYES",
+          "createdAt": "2026-05-06T14:37:26.792Z",
+          "gameStats": 13,
+          "games": 13,
+          "gps": 13,
+          "playerRatings": 1
+        },
+        {
+          "id": "4f48c0db-c2e7-4657-9595-a33758686a6d",
+          "displayName": "Warren Delos Reyes",
+          "normalizedKey": "WARREN DELOS REYES",
+          "createdAt": "2026-05-18T06:27:55.724Z",
+          "gameStats": 12,
+          "games": 12,
+          "gps": 12,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.72."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 25,
+        "gpsAffected": 25,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 24,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.69(+24)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+          "displayName": "Adrian Dela Cruz",
+          "normalizedKey": "ADRIAN DELA CRUZ",
+          "createdAt": "2026-05-26T13:13:01.180Z",
+          "gameStats": 10,
+          "games": 10,
+          "gps": 10,
+          "playerRatings": 1
+        },
+        {
+          "id": "833091ab-0ccf-47b0-add7-3bb02fe63b4f",
+          "displayName": "John Dela Cruz",
+          "normalizedKey": "JOHN DELA CRUZ",
+          "createdAt": "2026-05-19T16:26:50.668Z",
+          "gameStats": 17,
+          "games": 17,
+          "gps": 17,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.69."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 27,
+        "gpsAffected": 27,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 22,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.63(+22)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "833091ab-0ccf-47b0-add7-3bb02fe63b4f",
+          "displayName": "John Dela Cruz",
+          "normalizedKey": "JOHN DELA CRUZ",
+          "createdAt": "2026-05-19T16:26:50.668Z",
+          "gameStats": 17,
+          "games": 17,
+          "gps": 17,
+          "playerRatings": 1
+        },
+        {
+          "id": "2079752d-b711-434f-a7d9-38bbc689270a",
+          "displayName": "Rafael Dela Cruz",
+          "normalizedKey": "RAFAEL DELA CRUZ",
+          "createdAt": "2026-05-24T06:40:22.512Z",
+          "gameStats": 11,
+          "games": 11,
+          "gps": 11,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.63."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 28,
+        "gpsAffected": 28,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 22,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.64(+22)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "c51904bd-a9f5-4234-8b7c-98e1be5bf102",
+          "displayName": "Luis De Lara",
+          "normalizedKey": "LUIS DE LARA",
+          "createdAt": "2026-05-18T15:50:13.119Z",
+          "gameStats": 6,
+          "games": 6,
+          "gps": 6,
+          "playerRatings": 1
+        },
+        {
+          "id": "2d40867e-3318-47a9-ac96-9a84848e338b",
+          "displayName": "Marcus De Lara",
+          "normalizedKey": "MARCUS DE LARA",
+          "createdAt": "2026-06-17T05:28:00.527Z",
+          "gameStats": 18,
+          "games": 18,
+          "gps": 18,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.64."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 24,
+        "gpsAffected": 24,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 22,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.63(+22)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "1a1abed0-b942-43c2-bdc0-2d85975b46a7",
+          "displayName": "Jordan Dela Rosa",
+          "normalizedKey": "JORDAN DELA ROSA",
+          "createdAt": "2026-06-17T04:50:43.979Z",
+          "gameStats": 12,
+          "games": 12,
+          "gps": 12,
+          "playerRatings": 1
+        },
+        {
+          "id": "c1cea81b-8644-4668-b79d-dc85bc7a5d57",
+          "displayName": "Sky Dela Rosa",
+          "normalizedKey": "SKY DELA ROSA",
+          "createdAt": "2026-05-18T06:27:55.692Z",
+          "gameStats": 14,
+          "games": 14,
+          "gps": 14,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.63."
+      ],
+      "evidenceAgainst": [
+        "Different normalized name spellings (may be different people).",
+        "No shared league/season competition context.",
+        "No shared team."
+      ],
+      "sharedCompetitions": [],
+      "sharedTeams": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "medium",
+        "gameStatsAffected": 26,
+        "gpsAffected": 26,
+        "playerRatingsAffected": 2,
+        "note": "Merge would reassign loser's GameStat/GPS/PlayerRating to canonical; reversible only with full backup."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 5,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.63(+22); shared_competition(+12); SAME_GAME_CONFLICT(hard_cap_5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+          "displayName": "Adrian Dela Cruz",
+          "normalizedKey": "ADRIAN DELA CRUZ",
+          "createdAt": "2026-05-26T13:13:01.180Z",
+          "gameStats": 10,
+          "games": 10,
+          "gps": 10,
+          "playerRatings": 1
+        },
+        {
+          "id": "2079752d-b711-434f-a7d9-38bbc689270a",
+          "displayName": "Rafael Dela Cruz",
+          "normalizedKey": "RAFAEL DELA CRUZ",
+          "createdAt": "2026-05-24T06:40:22.512Z",
+          "gameStats": 11,
+          "games": 11,
+          "gps": 11,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.63.",
+        "2 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "HARD: co-appear in 3 same game(s) — distinct on-court identities.",
+        "Different normalized name spellings (may be different people).",
+        "No shared team."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "912ffef7-6e22-48a7-9551-51f0f46a8ac8",
+          "seasonId": "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "leagueName": "Philippine Youth Basketball Championship - 15U",
+          "seasonName": "1"
+        },
+        {
+          "leagueId": "02726bac-c93c-4060-b23a-527d10da6184",
+          "seasonId": "a938fd85-a690-493a-8df0-b650d8059f4a",
+          "leagueName": "PYBC 15U",
+          "seasonName": "1"
+        }
+      ],
+      "sharedTeams": [],
+      "sharedGames": [
+        {
+          "gameId": "faeca1aa-2f8d-43c2-971a-b14c8ea998af",
+          "gameNumber": "G-2025-023",
+          "gameDate": "2025-11-22T00:00:00.000Z"
+        },
+        {
+          "gameId": "a50c10f5-c52f-4a83-941a-2775f600009a",
+          "gameNumber": "G-2025-036",
+          "gameDate": "2025-12-08T00:00:00.000Z"
+        },
+        {
+          "gameId": "76677307-71a4-4595-a93a-9fd6f6edabfe",
+          "gameNumber": "G-2025-037",
+          "gameDate": "2025-12-13T00:00:00.000Z"
+        }
+      ],
+      "sameGameConflicts": {
+        "count": 3,
+        "gameIds": [
+          "faeca1aa-2f8d-43c2-971a-b14c8ea998af",
+          "a50c10f5-c52f-4a83-941a-2775f600009a",
+          "76677307-71a4-4595-a93a-9fd6f6edabfe"
+        ]
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "critical",
+        "gameStatsAffected": 21,
+        "gpsAffected": 21,
+        "playerRatingsAffected": 2,
+        "note": "Merging would collapse two distinct players who shared a court — corrupts historical box scores."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 5,
+      "confidenceMethod": "name_similarity jac=0.50 lev=0.56(+19); shared_team(+20); shared_competition(+12); SAME_GAME_CONFLICT(hard_cap_5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "b62c78b0-1958-4a57-982f-ad7209a2b99e",
+          "displayName": "Danielle James Oca",
+          "normalizedKey": "DANIELLE JAMES OCA",
+          "createdAt": "2026-06-17T04:50:44.128Z",
+          "gameStats": 5,
+          "games": 5,
+          "gps": 5,
+          "playerRatings": 1
+        },
+        {
+          "id": "6cb8ae5d-7685-4241-9f58-d62c1189f83c",
+          "displayName": "Bryan James Oca",
+          "normalizedKey": "BRYAN JAMES OCA",
+          "createdAt": "2026-06-17T04:50:44.130Z",
+          "gameStats": 7,
+          "games": 7,
+          "gps": 7,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.50, lev=0.56.",
+        "1 shared game-stat team(s).",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "HARD: co-appear in 5 same game(s) — distinct on-court identities.",
+        "Different normalized name spellings (may be different people)."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedTeams": [
+        {
+          "teamId": "f91943e7-f3c3-4783-a9fb-e96a44a13e48",
+          "teamName": "GTG Foundation Los Baños Gallants 13u"
+        }
+      ],
+      "sharedGames": [
+        {
+          "gameId": "3cf18b98-c67b-4921-851e-e0157a2141b1",
+          "gameNumber": "SH-47340-2743094",
+          "gameDate": "2026-06-17T00:00:00.000Z"
+        },
+        {
+          "gameId": "6814fa84-d4b3-47d9-8f74-ec01ce6d4e96",
+          "gameNumber": "SH-47340-2743097",
+          "gameDate": "2026-06-17T00:00:00.000Z"
+        },
+        {
+          "gameId": "fb0cdb8b-e748-4952-886f-1b296def025f",
+          "gameNumber": "SH-47340-2768644",
+          "gameDate": "2026-06-17T00:00:00.000Z"
+        },
+        {
+          "gameId": "a83bfcb3-233e-44bb-846a-972b528affde",
+          "gameNumber": "SH-47340-2776848",
+          "gameDate": "2026-06-17T00:00:00.000Z"
+        },
+        {
+          "gameId": "81673bcb-a547-42e6-81c1-2178a0e6950f",
+          "gameNumber": "SH-47340-2785674",
+          "gameDate": "2026-06-17T00:00:00.000Z"
+        }
+      ],
+      "sameGameConflicts": {
+        "count": 5,
+        "gameIds": [
+          "3cf18b98-c67b-4921-851e-e0157a2141b1",
+          "6814fa84-d4b3-47d9-8f74-ec01ce6d4e96",
+          "fb0cdb8b-e748-4952-886f-1b296def025f",
+          "a83bfcb3-233e-44bb-846a-972b528affde",
+          "81673bcb-a547-42e6-81c1-2178a0e6950f"
+        ]
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "critical",
+        "gameStatsAffected": 12,
+        "gpsAffected": 12,
+        "playerRatingsAffected": 2,
+        "note": "Merging would collapse two distinct players who shared a court — corrupts historical box scores."
+      }
+    },
+    {
+      "type": "player_pair",
+      "classification": "C_never_merge",
+      "confidence": 5,
+      "confidenceMethod": "name_similarity jac=0.33 lev=0.93(+33); shared_competition(+12); SAME_GAME_CONFLICT(hard_cap_5)",
+      "gender": "BOYS",
+      "players": [
+        {
+          "id": "93fb6019-c39d-43ec-a869-9984a6130a3e",
+          "displayName": "Dwayne Enriquez",
+          "normalizedKey": "DWAYNE ENRIQUEZ",
+          "createdAt": "2026-05-18T07:49:10.903Z",
+          "gameStats": 11,
+          "games": 11,
+          "gps": 11,
+          "playerRatings": 1
+        },
+        {
+          "id": "77f56cb5-a29f-4c91-9b64-05a074151743",
+          "displayName": "Dwyne Enriquez",
+          "normalizedKey": "DWYNE ENRIQUEZ",
+          "createdAt": "2026-05-18T06:27:55.659Z",
+          "gameStats": 18,
+          "games": 18,
+          "gps": 18,
+          "playerRatings": 1
+        }
+      ],
+      "evidenceFor": [
+        "Name similarity jaccard=0.33, lev=0.93.",
+        "1 shared competition context(s)."
+      ],
+      "evidenceAgainst": [
+        "HARD: co-appear in 2 same game(s) — distinct on-court identities.",
+        "Different normalized name spellings (may be different people).",
+        "No shared team."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+          "seasonId": "39a4a46c-6362-411f-ae85-6f631414f30b",
+          "leagueName": "UAAP Season 88 16U Boys Basketball",
+          "seasonName": "Season 88"
+        }
+      ],
+      "sharedTeams": [],
+      "sharedGames": [
+        {
+          "gameId": "503b9864-ef2c-4cac-b109-f50e99b0838d",
+          "gameNumber": "UAAP-S88-16U-007",
+          "gameDate": "2025-09-27T00:00:00.000Z"
+        },
+        {
+          "gameId": "0d465a05-464c-4076-99fc-8906000ebc18",
+          "gameNumber": "UAAP-S88-16U-059",
+          "gameDate": "2025-12-06T00:00:00.000Z"
+        }
+      ],
+      "sameGameConflicts": {
+        "count": 2,
+        "gameIds": [
+          "503b9864-ef2c-4cac-b109-f50e99b0838d",
+          "0d465a05-464c-4076-99fc-8906000ebc18"
+        ]
+      },
+      "aliasEvidence": {
+        "aliasLinks": [],
+        "aliasesOnA": [],
+        "aliasesOnB": [],
+        "sharedExternalAliases": []
+      },
+      "historicalRisk": {
+        "level": "critical",
+        "gameStatsAffected": 29,
+        "gpsAffected": 29,
+        "playerRatingsAffected": 2,
+        "note": "Merging would collapse two distinct players who shared a court — corrupts historical box scores."
+      }
+    }
+  ],
+  "teams": [
+    {
+      "type": "team_group",
+      "classification": "B_manual_review",
+      "confidence": 65,
+      "confidenceMethod": "duplicate_same_context(+30); shared_competition_context(+35)",
+      "detectionSource": "duplicate_same_context",
+      "meta": {
+        "publicName": "SMILE 360 BULLIES",
+        "ageGroup": "U13",
+        "gender": "Boys",
+        "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+        "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7"
+      },
+      "teams": [
+        {
+          "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "teamName": "Smile 360 Bullies",
+          "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+          "programName": "Smile 360 Bullies",
+          "gameStats": 214,
+          "games": 17,
+          "ageGroups": [
+            "U16",
+            "U13"
+          ],
+          "contexts": [
+            "8e5d3eeb-405e-4084-bc62-61637560db19|8edba76c-d122-4773-8125-8d2bef93f20e",
+            "912ffef7-6e22-48a7-9551-51f0f46a8ac8|1f04dc70-96b9-459a-8c42-bd83022c0f21",
+            "02726bac-c93c-4060-b23a-527d10da6184|a938fd85-a690-493a-8df0-b650d8059f4a",
+            "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad|757fb031-d320-46a5-b9b6-e05fa321c0e7"
+          ]
+        },
+        {
+          "teamId": "de02c99c-0b47-49f4-8af1-693b5dbf7493",
+          "teamName": "SMILE 360 BULLIES U13 Boys",
+          "programId": "60645321-d3b4-4db9-94aa-6176232b7476",
+          "programName": "SMILE 360 BULLIES",
+          "gameStats": 15,
+          "games": 1,
+          "ageGroups": [
+            "U13"
+          ],
+          "contexts": [
+            "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad|757fb031-d320-46a5-b9b6-e05fa321c0e7"
+          ]
+        }
+      ],
+      "crossProgram": true,
+      "sharedPrograms": [],
+      "evidenceFor": [
+        "Detected via duplicate_same_context.",
+        "1 shared league/season context(s) — same competition."
+      ],
+      "evidenceAgainst": [
+        "Teams belong to different Program records — merge also requires program reconciliation."
+      ],
+      "sharedCompetitions": [
+        {
+          "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+          "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+          "leagueName": "Philippine Youth Basketball Championship – 13u",
+          "seasonName": "Season 2026"
+        }
+      ],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 229,
+        "gamesAffected": 18,
+        "note": "Merge rewrites GameStat.teamId and Game home/away team references — touches sensitive evidence; requires approval."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "B_manual_review",
+      "confidence": 40,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "games": 0,
+          "ageGroups": [],
+          "contexts": []
+        },
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "games": 0,
+          "ageGroups": [],
+          "contexts": []
+        },
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "teamName": "LA SALLE Girls (LA SALLE)",
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "games": 0,
+          "ageGroups": [],
+          "contexts": []
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program.",
+        "All teams have 0 games and 0 GameStats (no historical evidence at risk)."
+      ],
+      "evidenceAgainst": [
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "low",
+        "gameStatsAffected": 0,
+        "gamesAffected": 0,
+        "note": "Merge rewrites GameStat.teamId and Game home/away team references — touches sensitive evidence; requires approval."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "teamName": "Adamson Baby Falcons 16U",
+          "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "programName": "Adamson University",
+          "gameStats": 173,
+          "games": 15,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        },
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "teamName": "Adamson Baby Falcons",
+          "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "programName": "Adamson University",
+          "gameStats": 168,
+          "games": 14,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "programName": "Adamson University"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U16, U19) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 341,
+        "gamesAffected": 29,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "teamName": "Ateneo Blue Eaglets",
+          "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+          "programName": "Ateneo de Manila University",
+          "gameStats": 180,
+          "games": 16,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        },
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "teamName": "Ateneo Blue Eaglets 16U",
+          "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+          "programName": "Ateneo de Manila University",
+          "gameStats": 197,
+          "games": 14,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+          "programName": "Ateneo de Manila University"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U19, U16) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 377,
+        "gamesAffected": 30,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+          "teamName": "De La Salle Zobel Junior Archers 16U",
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "gameStats": 176,
+          "games": 14,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        },
+        {
+          "teamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+          "teamName": "De La Salle Zobel Junior Archers",
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "gameStats": 180,
+          "games": 15,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U16, U19) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 356,
+        "gamesAffected": 29,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "teamName": "FEU - Diliman Baby Tamaraws",
+          "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+          "programName": "Far Eastern University Diliman",
+          "gameStats": 260,
+          "games": 19,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        },
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "teamName": "FEU - Diliman Baby Tamaraws 16U",
+          "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+          "programName": "Far Eastern University Diliman",
+          "gameStats": 233,
+          "games": 18,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+          "programName": "Far Eastern University Diliman"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U19, U16) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 493,
+        "gamesAffected": 37,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NUNS Bullpups 16U",
+          "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+          "programName": "National University Nazareth School",
+          "gameStats": 227,
+          "games": 16,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NUNS Bullpups",
+          "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+          "programName": "National University Nazareth School",
+          "gameStats": 219,
+          "games": 18,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+          "programName": "National University Nazareth School"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U16, U19) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 446,
+        "gamesAffected": 34,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST Tiger Cubs 16U",
+          "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+          "programName": "University of Santo Tomas",
+          "gameStats": 159,
+          "games": 15,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        },
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST Tiger Cubs",
+          "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+          "programName": "University of Santo Tomas",
+          "gameStats": 191,
+          "games": 14,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+          "programName": "University of Santo Tomas"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U16, U19) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 350,
+        "gamesAffected": 29,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+          "teamName": "UP Junior Fighting Maroons 16U",
+          "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+          "programName": "University of the Philippines Integrated School",
+          "gameStats": 152,
+          "games": 14,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        },
+        {
+          "teamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+          "teamName": "UP Junior Fighting Maroons",
+          "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+          "programName": "University of the Philippines Integrated School",
+          "gameStats": 165,
+          "games": 14,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+          "programName": "University of the Philippines Integrated School"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U16, U19) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 317,
+        "gamesAffected": 28,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    },
+    {
+      "type": "team_group",
+      "classification": "C_never_merge",
+      "confidence": 0,
+      "confidenceMethod": "same_program_display_key(+30); same_program(+10); disjoint_age_groups(-40)",
+      "detectionSource": "same_program_display_key",
+      "meta": null,
+      "teams": [
+        {
+          "teamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+          "teamName": "UE Junior Warriors 16U",
+          "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+          "programName": "University of the East",
+          "gameStats": 147,
+          "games": 14,
+          "ageGroups": [
+            "U16"
+          ],
+          "contexts": [
+            "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b"
+          ]
+        },
+        {
+          "teamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+          "teamName": "UE Junior Warriors",
+          "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+          "programName": "University of the East",
+          "gameStats": 191,
+          "games": 14,
+          "ageGroups": [
+            "U19"
+          ],
+          "contexts": [
+            "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      ],
+      "crossProgram": false,
+      "sharedPrograms": [
+        {
+          "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+          "programName": "University of the East"
+        }
+      ],
+      "evidenceFor": [
+        "Detected via same_program_display_key.",
+        "All teams under the same Program."
+      ],
+      "evidenceAgainst": [
+        "Disjoint age-group contexts (U16, U19) — likely distinct age divisions; merge would conflate age-group history.",
+        "No shared league/season context between the teams."
+      ],
+      "sharedCompetitions": [],
+      "sharedGames": [],
+      "sameGameConflicts": {
+        "count": 0,
+        "gameIds": []
+      },
+      "aliasEvidence": {
+        "note": "TeamExternalAlias splits = 0 per Phase C; display-key collision used as identity evidence."
+      },
+      "historicalRisk": {
+        "level": "high",
+        "gameStatsAffected": 338,
+        "gamesAffected": 28,
+        "note": "Merging U16 and U19 divisions would collapse separate age-group standings and ratings."
+      }
+    }
+  ],
+  "summary": {
+    "players": {
+      "A_safe": 0,
+      "B_manual_review": 18,
+      "C_never_merge": 16
+    },
+    "teams": {
+      "A_safe": 0,
+      "B_manual_review": 2,
+      "C_never_merge": 8
+    },
+    "classA_total": 0,
+    "classB_total": 20,
+    "classC_total": 24
+  },
+  "recommendedMergePlan": {
+    "status": "REQUIRES EXPLICIT APPROVAL — not executed",
+    "mode": "read-only",
+    "players": [],
+    "teams": []
+  }
+}

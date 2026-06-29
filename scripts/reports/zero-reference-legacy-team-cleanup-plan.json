@@ -1,0 +1,324 @@
+{
+  "generatedAt": "2026-06-01T13:33:22.309Z",
+  "mode": "executed",
+  "action": "ARCHIVE_ZERO_REFERENCE",
+  "candidateCount": 15,
+  "candidates": [
+    {
+      "teamId": "a1d6a2b9-f100-4677-bbd4-853254e9de91",
+      "teamName": "ATENEO",
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "programName": "Ateneo de Manila University",
+      "reasons": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "5bad0e3c-bdf8-46b4-9d62-32be7ca9b1ee",
+      "teamName": "De La Salle Santiago Zobel",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "reasons": [
+        "exact generic Program-name Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "ae091b25-12cd-453f-af06-b629247174c9",
+      "teamName": "DLSU",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "reasons": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "ffd348d4-fd53-47c8-92b5-06beecd3a6de",
+      "teamName": "DLSZ",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "reasons": [
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "99d138ba-9679-4f6b-adfa-ace87d9125b4",
+      "teamName": "LA SALLE",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "reasons": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "c17caa40-d059-4348-ad63-3b31f5b35b80",
+      "teamName": "JMTG Medical Trading Infinite U16 Boys",
+      "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+      "programName": "JMTG Medical Trading Infinite",
+      "reasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "fba904cf-34c0-46af-9a23-dd701a32a2e2",
+      "teamName": "Lev Construction Full Potential U16 Boys",
+      "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+      "programName": "Lev Construction Full Potential",
+      "reasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "c66313bf-145d-4486-a5a0-a207b1c4aa94",
+      "teamName": "Migrafix Doc Boleros U16 Boys",
+      "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+      "programName": "Migrafix Doc Boleros",
+      "reasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "efcab0cf-4a7e-4c2c-a010-98a13e0beecb",
+      "teamName": "Migueluz Trading Moderno U16 Boys",
+      "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+      "programName": "Migueluz Trading Moderno",
+      "reasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "205e8c56-cac7-4823-b948-8aba9e8571f4",
+      "teamName": "NU",
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "programName": "National University Nazareth School",
+      "reasons": [
+        "generic name while specific age/gender Teams exist"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "cfcaa1ea-9166-458b-9140-fd8df2d7507e",
+      "teamName": "Prime Ascencion Medical Supplies San Anton U16 Boys",
+      "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+      "programName": "Prime Ascencion Medical Supplies San Anton",
+      "reasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "8b564cd2-c365-47d6-b0e6-9c461c1454c3",
+      "teamName": "San Pedro Spartans U16 Boys",
+      "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "programName": "San Pedro Spartans",
+      "reasons": [
+        "exact generic Program-name Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "667a8587-b134-4fb6-8ec9-9a8487e02f02",
+      "teamName": "SPARTANS U16 Boys",
+      "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "programName": "San Pedro Spartans",
+      "reasons": [
+        "exact generic Program-name Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "b961adec-77e3-4b3b-ab2e-d1868644a633",
+      "teamName": "SMILE 360 BULLIES U16 Boys",
+      "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "programName": "Smile 360 Bullies",
+      "reasons": [
+        "exact generic Program-name Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    },
+    {
+      "teamId": "16b51323-3fa8-4f62-8a5f-700fc418f7c5",
+      "teamName": "UST",
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "reasons": [
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHome": 0,
+        "gameAway": 0,
+        "gameHomeAway": 0,
+        "teamRating": 0,
+        "submissionImportDraft": 0,
+        "total": 0
+      }
+    }
+  ],
+  "executedAt": "2026-06-01T13:33:22.386Z",
+  "archivedCount": 15,
+  "protectedCountsBefore": {
+    "games": 300,
+    "gameStats": 6960,
+    "gamePerformanceScores": 6340,
+    "playerRatings": 611,
+    "rankingSnapshots": 3,
+    "rankingSnapshotRows": 511,
+    "players": 648,
+    "programs": 29,
+    "teams": 70,
+    "activeTeams": 70
+  },
+  "protectedCountsAfter": {
+    "games": 300,
+    "gameStats": 6960,
+    "gamePerformanceScores": 6340,
+    "playerRatings": 611,
+    "rankingSnapshots": 3,
+    "rankingSnapshotRows": 511,
+    "players": 648,
+    "programs": 29,
+    "teams": 70,
+    "activeTeams": 55
+  }
+}

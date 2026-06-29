@@ -1,0 +1,3806 @@
+{
+  "generatedAt": "2026-05-25T01:19:56.939Z",
+  "scope": {
+    "leagueName": "NCAA Season 101 Junior's Basketball",
+    "ageGroup": "U19",
+    "inferredGender": "Boys",
+    "seasonName": "Season 101"
+  },
+  "totalGamesInScope": 78,
+  "games": [
+    {
+      "gameId": "818a8bd9-d2a5-428e-8fd4-e0c2e0478ce4",
+      "gameNumber": "NCAA-S101-JB-046",
+      "date": "2025-11-07",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "homeScore": 73,
+      "awayScore": 80,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 22
+    },
+    {
+      "gameId": "124a0a84-a48f-4d87-a362-b0e794c4d630",
+      "gameNumber": "NCAA-S101-JB-047",
+      "date": "2025-11-07",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 59,
+      "awayScore": 76,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "4f34abad-4f45-41d8-b47b-ce7c70b17b3c",
+      "gameNumber": "NCAA-S101-JB-048",
+      "date": "2025-11-08",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 74,
+      "awayScore": 57,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "33551dcd-93ae-4751-9476-9668d3424cc2",
+      "gameNumber": "NCAA-S101-JB-049",
+      "date": "2025-11-08",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 64,
+      "awayScore": 67,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "a0680b6a-0c70-4449-afcc-be711b073616",
+      "gameNumber": "NCAA-S101-JB-050",
+      "date": "2025-11-21",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "homeScore": 83,
+      "awayScore": 85,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "3926c63e-eb34-46b8-9f8e-9edc7787e8ab",
+      "gameNumber": "NCAA-S101-JB-051",
+      "date": "2025-11-21",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "homeScore": 98,
+      "awayScore": 97,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "e29ee737-6252-44c9-8dfa-725a93ece701",
+      "gameNumber": "NCAA-S101-JB-052",
+      "date": "2025-11-23",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 73,
+      "awayScore": 66,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "05d16da9-5df3-4830-9796-4d3da692c564",
+      "gameNumber": "NCAA-S101-JB-053",
+      "date": "2025-11-23",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 81,
+      "awayScore": 77,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "d94e4943-6639-45ea-8e60-1162aa711836",
+      "gameNumber": "NCAA-S101-JB-054",
+      "date": "2025-11-12",
+      "homeTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 83,
+      "awayScore": 81,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "588dce09-a70d-46b7-a2b1-c5aed612f6e2",
+      "gameNumber": "NCAA-S101-JB-055",
+      "date": "2025-11-12",
+      "homeTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 56,
+      "awayScore": 47,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "e53cfec1-f701-4e36-bfe5-7a92131097da",
+      "gameNumber": "NCAA-S101-JB-056",
+      "date": "2025-11-14",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 70,
+      "awayScore": 88,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 30
+    },
+    {
+      "gameId": "234fc419-ed83-4228-90c9-4d781d43eba1",
+      "gameNumber": "NCAA-S101-JB-057",
+      "date": "2025-11-14",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 89,
+      "awayScore": 69,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 30
+    },
+    {
+      "gameId": "e6ba55c7-3035-4397-abf7-504e16d2c513",
+      "gameNumber": "NCAA-S101-JB-058",
+      "date": "2025-11-15",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 63,
+      "awayScore": 60,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 30
+    },
+    {
+      "gameId": "474991f9-de82-43d5-8f0e-d91874affb87",
+      "gameNumber": "NCAA-S101-JB-059",
+      "date": "2025-11-15",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 69,
+      "awayScore": 79,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "72360585-f966-41b7-a72c-b337ce319aac",
+      "gameNumber": "NCAA-S101-JB-060",
+      "date": "2025-11-16",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 75,
+      "awayScore": 85,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "da3eebb6-b5ae-4c44-abd6-77e53e623378",
+      "gameNumber": "NCAA-S101-JB-061",
+      "date": "2025-11-16",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 75,
+      "awayScore": 78,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 21
+    },
+    {
+      "gameId": "e774379d-900b-48af-84fa-8f6556682d38",
+      "gameNumber": "NCAA-S101-JB-062",
+      "date": "2025-11-18",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 75,
+      "awayScore": 69,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "638d1b02-8e17-477c-b5ad-83385b69ad9c",
+      "gameNumber": "NCAA-S101-JB-063",
+      "date": "2025-11-18",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 93,
+      "awayScore": 88,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "e8c4c869-64e4-420c-9c12-1bd434e59e13",
+      "gameNumber": "NCAA-S101-JB-064",
+      "date": "2025-11-19",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 80,
+      "awayScore": 88,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "e5cb3060-586f-463b-85b9-b090fca58c9b",
+      "gameNumber": "NCAA-S101-JB-065",
+      "date": "2025-11-19",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 69,
+      "awayScore": 71,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "f23234b4-b20f-4b75-a97c-834c61fad255",
+      "gameNumber": "NCAA-S101-JB-066",
+      "date": "2025-11-25",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 80,
+      "awayScore": 85,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 22
+    },
+    {
+      "gameId": "4ac8cfd3-957c-486f-a915-faf841760222",
+      "gameNumber": "NCAA-S101-JB-067",
+      "date": "2025-11-25",
+      "homeTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 69,
+      "awayScore": 75,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "c2e32302-3eb9-482f-93da-68b3b3556d70",
+      "gameNumber": "NCAA-S101-JB-068",
+      "date": "2025-11-26",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "homeScore": 86,
+      "awayScore": 79,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 21
+    },
+    {
+      "gameId": "712cfad0-264c-482d-a7b0-969b72bccb61",
+      "gameNumber": "NCAA-S101-JB-069",
+      "date": "2025-11-26",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 74,
+      "awayScore": 69,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "f77ce7b5-e1f0-4d6b-a738-9fbcbf501fbe",
+      "gameNumber": "NCAA-S101-JB-070",
+      "date": "2025-11-28",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 69,
+      "awayScore": 59,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 29
+    },
+    {
+      "gameId": "fb4321e4-9e13-4779-9c48-63545d1e3f8b",
+      "gameNumber": "NCAA-S101-JB-071",
+      "date": "2025-11-28",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 71,
+      "awayScore": 70,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 20
+    },
+    {
+      "gameId": "f4e829f6-bdf8-464c-8620-ff3f8bbde40d",
+      "gameNumber": "NCAA-S101-JB-072",
+      "date": "2025-11-30",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 70,
+      "awayScore": 65,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "847c6522-6677-42a3-a763-97ccf8045b20",
+      "gameNumber": "NCAA-S101-JB-073",
+      "date": "2025-12-02",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 90,
+      "awayScore": 99,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "95eb73ca-d6f8-451b-9f4f-1fb84b8a0cf6",
+      "gameNumber": "NCAA-S101-JB-074",
+      "date": "2025-12-02",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 76,
+      "awayScore": 77,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "af555a97-1c49-4c14-a5d6-50b049e22b86",
+      "gameNumber": "NCAA-S101-JB-075",
+      "date": "2025-12-04",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 70,
+      "awayScore": 75,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "fa0f8d5f-1cd2-40b1-ae2c-a592839c2727",
+      "gameNumber": "NCAA-S101-JB-076",
+      "date": "2025-12-04",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "homeScore": 82,
+      "awayScore": 86,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "f73ade41-2547-4d70-b72f-60e2cf133ece",
+      "gameNumber": "NCAA-S101-JB-077",
+      "date": "2025-12-07",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 107,
+      "awayScore": 109,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "1e07f79a-33c3-42b6-8148-35525024d068",
+      "gameNumber": "NCAA-S101-JB-078",
+      "date": "2025-12-07",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 68,
+      "awayScore": 77,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "8da606ff-086c-42cc-b042-f1985da239e2",
+      "gameNumber": "NCAA-S101-JB-079",
+      "date": "2025-12-10",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 84,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "cd36aa9f-3495-4b5c-974f-51c149e04491",
+      "gameNumber": "NCAA-S101-JB-080",
+      "date": "2025-12-10",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 79,
+      "awayScore": 85,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "07c12f72-c605-4067-ade0-53743b4af074",
+      "gameNumber": "NCAA-S101-JB-081",
+      "date": "2025-12-13",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 91,
+      "awayScore": 88,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 22
+    },
+    {
+      "gameId": "bf0d25a5-c2de-43ff-a68b-caa86df93a45",
+      "gameNumber": "NCAA-S101-JRB-001",
+      "date": "2025-10-02",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "homeScore": 66,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "61522a9c-4103-481d-b49f-3683b81775dc",
+      "gameNumber": "NCAA-S101-JRB-002",
+      "date": "2025-10-02",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 67,
+      "awayScore": 59,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "a0769138-55ef-4746-a5d3-7be86b27826a",
+      "gameNumber": "NCAA-S101-JRB-003",
+      "date": "2025-10-03",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 78,
+      "awayScore": 61,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "acf9fd7d-1b89-4fa9-aac9-d6bcefb0072f",
+      "gameNumber": "NCAA-S101-JRB-004",
+      "date": "2025-10-03",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 62,
+      "awayScore": 52,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "583b8bd2-1adf-463c-824a-df304384eada",
+      "gameNumber": "NCAA-S101-JRB-005",
+      "date": "2025-10-04",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "homeScore": 80,
+      "awayScore": 83,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "88453f74-070d-4efc-98c2-821b3069d243",
+      "gameNumber": "NCAA-S101-JRB-006",
+      "date": "2025-10-04",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "homeScore": 89,
+      "awayScore": 91,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "c4cb0615-72e0-4c02-a449-993e534af03e",
+      "gameNumber": "NCAA-S101-JRB-007",
+      "date": "2025-10-05",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 62,
+      "awayScore": 70,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "2cc525f5-dbf0-4cf9-a0ad-799821f7f791",
+      "gameNumber": "NCAA-S101-JRB-008",
+      "date": "2025-10-05",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 61,
+      "awayScore": 63,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 29
+    },
+    {
+      "gameId": "77b6641e-6909-41ac-96d8-8a4fb6a56570",
+      "gameNumber": "NCAA-S101-JRB-009",
+      "date": "2025-10-07",
+      "homeTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 61,
+      "awayScore": 92,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "f3ff9a72-5a82-43ff-9bb0-16b6f7d6a342",
+      "gameNumber": "NCAA-S101-JRB-010",
+      "date": "2025-10-07",
+      "homeTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 51,
+      "awayScore": 60,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "c77cc9ae-4878-42ef-8fe0-f7933028317f",
+      "gameNumber": "NCAA-S101-JRB-011",
+      "date": "2025-10-08",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 65,
+      "awayScore": 57,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "7705d71d-0b79-4553-87ff-9cbd8d4a4e6a",
+      "gameNumber": "NCAA-S101-JRB-012",
+      "date": "2025-10-08",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 69,
+      "awayScore": 70,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "1fae297e-7564-4cb2-9863-ab7ab8c5bb9c",
+      "gameNumber": "NCAA-S101-JRB-013",
+      "date": "2025-10-10",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 74,
+      "awayScore": 67,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "18413ae7-a758-467a-9af4-418e1a0002dc",
+      "gameNumber": "NCAA-S101-JRB-014",
+      "date": "2025-10-10",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 64,
+      "awayScore": 52,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "f9100e23-601b-436d-bd98-3a84ba029b6b",
+      "gameNumber": "NCAA-S101-JRB-015",
+      "date": "2025-10-11",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 81,
+      "awayScore": 83,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "0c2aa814-90bc-4df7-9749-54230593b332",
+      "gameNumber": "NCAA-S101-JRB-016",
+      "date": "2025-10-11",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 95,
+      "awayScore": 97,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 29
+    },
+    {
+      "gameId": "29f903c9-3248-48cb-b6ce-b2a1a769c506",
+      "gameNumber": "NCAA-S101-JRB-017",
+      "date": "2025-10-12",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 64,
+      "awayScore": 66,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "ac830aca-9534-4a17-8602-f942df7f4ca4",
+      "gameNumber": "NCAA-S101-JRB-018",
+      "date": "2025-10-12",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 71,
+      "awayScore": 72,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "2bbcf07e-44e1-4d5d-b5eb-96d45c793022",
+      "gameNumber": "NCAA-S101-JRB-019",
+      "date": "2025-10-14",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 71,
+      "awayScore": 77,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "3bfa6df2-390c-4371-98e9-86ba1055b024",
+      "gameNumber": "NCAA-S101-JRB-020",
+      "date": "2025-10-14",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 69,
+      "awayScore": 72,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "01781780-0101-427c-a84c-85f467bace20",
+      "gameNumber": "NCAA-S101-JRB-021",
+      "date": "2025-10-15",
+      "homeTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 73,
+      "awayScore": 77,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "7a5f3969-72ea-4b51-baa4-0ddc18e44563",
+      "gameNumber": "NCAA-S101-JRB-022",
+      "date": "2025-10-15",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 70,
+      "awayScore": 68,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "e030833c-e07a-4faa-a9f1-19d878206256",
+      "gameNumber": "NCAA-S101-JRB-023",
+      "date": "2025-10-17",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 87,
+      "awayScore": 94,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "755faf56-6534-462a-a345-0ac8154e9031",
+      "gameNumber": "NCAA-S101-JRB-024",
+      "date": "2025-10-17",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "homeScore": 57,
+      "awayScore": 85,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 30
+    },
+    {
+      "gameId": "85928454-c512-4372-816a-a7d0c165c865",
+      "gameNumber": "NCAA-S101-JRB-025",
+      "date": "2025-10-18",
+      "homeTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 73,
+      "awayScore": 91,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 28
+    },
+    {
+      "gameId": "90db4ef5-acd7-4bd7-b933-bd1f9448ec31",
+      "gameNumber": "NCAA-S101-JRB-026",
+      "date": "2025-10-18",
+      "homeTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "awayTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "homeScore": 80,
+      "awayScore": 72,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 27
+    },
+    {
+      "gameId": "33fbd2d6-185f-4201-a403-20c36efb7616",
+      "gameNumber": "NCAA-S101-JRB-027",
+      "date": "2025-10-19",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 83,
+      "awayScore": 82,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 30
+    },
+    {
+      "gameId": "c4e22dae-9cc5-4681-87fb-6e994c0b2703",
+      "gameNumber": "NCAA-S101-JRB-028",
+      "date": "2025-10-19",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "homeScore": 110,
+      "awayScore": 103,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "dc333bf3-0901-4aca-8328-af5ef32a10d5",
+      "gameNumber": "NCAA-S101-JRB-029",
+      "date": "2025-10-21",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 69,
+      "awayScore": 64,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "66711958-b7ff-42f2-8e3f-69c26ff2b37e",
+      "gameNumber": "NCAA-S101-JRB-030",
+      "date": "2025-10-21",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 70,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "0af2e710-0b3a-42a5-9198-6841acf25c5f",
+      "gameNumber": "NCAA-S101-JRB-031",
+      "date": "2025-10-22",
+      "homeTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "awayTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "homeScore": 84,
+      "awayScore": 86,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 21
+    },
+    {
+      "gameId": "919eff92-870c-48a9-9818-48793ddaf9dc",
+      "gameNumber": "NCAA-S101-JRB-032",
+      "date": "2025-10-22",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "homeScore": 78,
+      "awayScore": 81,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 25
+    },
+    {
+      "gameId": "b437f926-9a4b-41d5-9601-8fc9e917c719",
+      "gameNumber": "NCAA-S101-JRB-033",
+      "date": "2025-10-24",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 79,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 29
+    },
+    {
+      "gameId": "6f26ab13-08ed-4371-b07f-97d5073420ea",
+      "gameNumber": "NCAA-S101-JRB-034",
+      "date": "2025-10-24",
+      "homeTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "awayTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "homeScore": 71,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "062d3a09-26bb-43e4-ab8e-758f8a4d7559",
+      "gameNumber": "NCAA-S101-JRB-035",
+      "date": "2025-10-25",
+      "homeTeam": {
+        "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC U19 Boys",
+        "program": "Emilio Aguinaldo College"
+      },
+      "awayTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "homeScore": 64,
+      "awayScore": 57,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 23
+    },
+    {
+      "gameId": "54c0fbc3-d17b-4d5b-9f64-153b8ed9aa47",
+      "gameNumber": "NCAA-S101-JRB-036",
+      "date": "2025-10-25",
+      "homeTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "awayTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "homeScore": 79,
+      "awayScore": 91,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 22
+    },
+    {
+      "gameId": "52c56650-1dce-4267-9b80-bd709c814c2d",
+      "gameNumber": "NCAA-S101-JRB-037",
+      "date": "2025-10-26",
+      "homeTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "awayTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "homeScore": 75,
+      "awayScore": 66,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    },
+    {
+      "gameId": "df499052-395e-414e-a419-284f69a4c3d6",
+      "gameNumber": "NCAA-S101-JRB-041",
+      "date": "2025-10-29",
+      "homeTeam": {
+        "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "name": "SSC-R U19 Boys",
+        "program": "San Sebastian College-Recoletos"
+      },
+      "awayTeam": {
+        "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "CSJL U19 Boys",
+        "program": "Colegio de San Juan de Letran"
+      },
+      "homeScore": 63,
+      "awayScore": 78,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 30
+    },
+    {
+      "gameId": "496f056e-6047-4edf-ba6b-ded520e6c194",
+      "gameNumber": "NCAA-S101-JRB-042",
+      "date": "2025-10-29",
+      "homeTeam": {
+        "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "UPHSD U19 Boys",
+        "program": "University of Perpetual Help System DALTA"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 75,
+      "awayScore": 66,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 29
+    },
+    {
+      "gameId": "0657fe8a-186b-43fd-b1ee-dfc80f254ea1",
+      "gameNumber": "NCAA-S101-JRB-043",
+      "date": "2025-11-04",
+      "homeTeam": {
+        "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "MU U19 Boys",
+        "program": "Mapua University"
+      },
+      "awayTeam": {
+        "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+        "name": "CSB U19 Boys",
+        "program": "College of Saint Benilde"
+      },
+      "homeScore": 91,
+      "awayScore": 100,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 21
+    },
+    {
+      "gameId": "935928df-b63e-472a-923a-c204233b3bf0",
+      "gameNumber": "NCAA-S101-JRB-044",
+      "date": "2025-11-04",
+      "homeTeam": {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "name": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University"
+      },
+      "awayTeam": {
+        "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "SBU U19 Boys",
+        "program": "San Beda University"
+      },
+      "homeScore": 63,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 24
+    },
+    {
+      "gameId": "59906bd0-79a9-4b30-bfb2-c4fb7ba3aa38",
+      "gameNumber": "NCAA-S101-JRB-045",
+      "date": "2025-11-05",
+      "homeTeam": {
+        "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "AU U19 Boys",
+        "program": "Arellano University"
+      },
+      "awayTeam": {
+        "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "name": "JRU U19 Boys",
+        "program": "Jose Rizal University"
+      },
+      "homeScore": 91,
+      "awayScore": 74,
+      "deletedAt": null,
+      "verificationStatus": "SUBMITTED",
+      "statRows": 26
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+      "teamName": "CSJL U19 Boys",
+      "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "programFullName": "Colegio de San Juan de Letran",
+      "programAbbreviation": "CSJL",
+      "gamesPlayed": 19,
+      "wins": 12,
+      "losses": 7,
+      "pointsFor": 1419,
+      "pointsAgainst": 1350,
+      "gameNumbers": [
+        "NCAA-S101-JB-048",
+        "NCAA-S101-JB-053",
+        "NCAA-S101-JB-056",
+        "NCAA-S101-JB-061",
+        "NCAA-S101-JB-069",
+        "NCAA-S101-JB-072",
+        "NCAA-S101-JB-074",
+        "NCAA-S101-JB-075",
+        "NCAA-S101-JB-078",
+        "NCAA-S101-JB-080",
+        "NCAA-S101-JB-081",
+        "NCAA-S101-JRB-004",
+        "NCAA-S101-JRB-008",
+        "NCAA-S101-JRB-012",
+        "NCAA-S101-JRB-015",
+        "NCAA-S101-JRB-022",
+        "NCAA-S101-JRB-026",
+        "NCAA-S101-JRB-029",
+        "NCAA-S101-JRB-041"
+      ],
+      "opponents": [
+        {
+          "gameId": "4f34abad-4f45-41d8-b47b-ce7c70b17b3c",
+          "gameNumber": "NCAA-S101-JB-048",
+          "date": "2025-11-08",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "74-57",
+          "result": "W"
+        },
+        {
+          "gameId": "05d16da9-5df3-4830-9796-4d3da692c564",
+          "gameNumber": "NCAA-S101-JB-053",
+          "date": "2025-11-23",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "77-81",
+          "result": "L"
+        },
+        {
+          "gameId": "e53cfec1-f701-4e36-bfe5-7a92131097da",
+          "gameNumber": "NCAA-S101-JB-056",
+          "date": "2025-11-14",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "88-70",
+          "result": "W"
+        },
+        {
+          "gameId": "da3eebb6-b5ae-4c44-abd6-77e53e623378",
+          "gameNumber": "NCAA-S101-JB-061",
+          "date": "2025-11-16",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "75-78",
+          "result": "L"
+        },
+        {
+          "gameId": "712cfad0-264c-482d-a7b0-969b72bccb61",
+          "gameNumber": "NCAA-S101-JB-069",
+          "date": "2025-11-26",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "69-74",
+          "result": "L"
+        },
+        {
+          "gameId": "f4e829f6-bdf8-464c-8620-ff3f8bbde40d",
+          "gameNumber": "NCAA-S101-JB-072",
+          "date": "2025-11-30",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "70-65",
+          "result": "W"
+        },
+        {
+          "gameId": "95eb73ca-d6f8-451b-9f4f-1fb84b8a0cf6",
+          "gameNumber": "NCAA-S101-JB-074",
+          "date": "2025-12-02",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "77-76",
+          "result": "W"
+        },
+        {
+          "gameId": "af555a97-1c49-4c14-a5d6-50b049e22b86",
+          "gameNumber": "NCAA-S101-JB-075",
+          "date": "2025-12-04",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "70-75",
+          "result": "L"
+        },
+        {
+          "gameId": "1e07f79a-33c3-42b6-8148-35525024d068",
+          "gameNumber": "NCAA-S101-JB-078",
+          "date": "2025-12-07",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "77-68",
+          "result": "W"
+        },
+        {
+          "gameId": "cd36aa9f-3495-4b5c-974f-51c149e04491",
+          "gameNumber": "NCAA-S101-JB-080",
+          "date": "2025-12-10",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "85-79",
+          "result": "W"
+        },
+        {
+          "gameId": "07c12f72-c605-4067-ade0-53743b4af074",
+          "gameNumber": "NCAA-S101-JB-081",
+          "date": "2025-12-13",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "91-88",
+          "result": "W"
+        },
+        {
+          "gameId": "acf9fd7d-1b89-4fa9-aac9-d6bcefb0072f",
+          "gameNumber": "NCAA-S101-JRB-004",
+          "date": "2025-10-03",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "62-52",
+          "result": "W"
+        },
+        {
+          "gameId": "2cc525f5-dbf0-4cf9-a0ad-799821f7f791",
+          "gameNumber": "NCAA-S101-JRB-008",
+          "date": "2025-10-05",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "63-61",
+          "result": "W"
+        },
+        {
+          "gameId": "7705d71d-0b79-4553-87ff-9cbd8d4a4e6a",
+          "gameNumber": "NCAA-S101-JRB-012",
+          "date": "2025-10-08",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "70-69",
+          "result": "W"
+        },
+        {
+          "gameId": "f9100e23-601b-436d-bd98-3a84ba029b6b",
+          "gameNumber": "NCAA-S101-JRB-015",
+          "date": "2025-10-11",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "81-83",
+          "result": "L"
+        },
+        {
+          "gameId": "7a5f3969-72ea-4b51-baa4-0ddc18e44563",
+          "gameNumber": "NCAA-S101-JRB-022",
+          "date": "2025-10-15",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "68-70",
+          "result": "L"
+        },
+        {
+          "gameId": "90db4ef5-acd7-4bd7-b933-bd1f9448ec31",
+          "gameNumber": "NCAA-S101-JRB-026",
+          "date": "2025-10-18",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "80-72",
+          "result": "W"
+        },
+        {
+          "gameId": "dc333bf3-0901-4aca-8328-af5ef32a10d5",
+          "gameNumber": "NCAA-S101-JRB-029",
+          "date": "2025-10-21",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "64-69",
+          "result": "L"
+        },
+        {
+          "gameId": "df499052-395e-414e-a419-284f69a4c3d6",
+          "gameNumber": "NCAA-S101-JRB-041",
+          "date": "2025-10-29",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "78-63",
+          "result": "W"
+        }
+      ],
+      "pointDifferential": 69,
+      "winPercentage": 0.632
+    },
+    {
+      "rank": 2,
+      "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+      "teamName": "EAC U19 Boys",
+      "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+      "programFullName": "Emilio Aguinaldo College",
+      "programAbbreviation": "EAC",
+      "gamesPlayed": 17,
+      "wins": 12,
+      "losses": 5,
+      "pointsFor": 1284,
+      "pointsAgainst": 1271,
+      "gameNumbers": [
+        "NCAA-S101-JB-051",
+        "NCAA-S101-JB-055",
+        "NCAA-S101-JB-061",
+        "NCAA-S101-JB-065",
+        "NCAA-S101-JB-071",
+        "NCAA-S101-JB-074",
+        "NCAA-S101-JB-075",
+        "NCAA-S101-JB-078",
+        "NCAA-S101-JB-079",
+        "NCAA-S101-JRB-006",
+        "NCAA-S101-JRB-010",
+        "NCAA-S101-JRB-015",
+        "NCAA-S101-JRB-020",
+        "NCAA-S101-JRB-023",
+        "NCAA-S101-JRB-027",
+        "NCAA-S101-JRB-032",
+        "NCAA-S101-JRB-035"
+      ],
+      "opponents": [
+        {
+          "gameId": "3926c63e-eb34-46b8-9f8e-9edc7787e8ab",
+          "gameNumber": "NCAA-S101-JB-051",
+          "date": "2025-11-21",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "98-97",
+          "result": "W"
+        },
+        {
+          "gameId": "588dce09-a70d-46b7-a2b1-c5aed612f6e2",
+          "gameNumber": "NCAA-S101-JB-055",
+          "date": "2025-11-12",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "47-56",
+          "result": "L"
+        },
+        {
+          "gameId": "da3eebb6-b5ae-4c44-abd6-77e53e623378",
+          "gameNumber": "NCAA-S101-JB-061",
+          "date": "2025-11-16",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "78-75",
+          "result": "W"
+        },
+        {
+          "gameId": "e5cb3060-586f-463b-85b9-b090fca58c9b",
+          "gameNumber": "NCAA-S101-JB-065",
+          "date": "2025-11-19",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "71-69",
+          "result": "W"
+        },
+        {
+          "gameId": "fb4321e4-9e13-4779-9c48-63545d1e3f8b",
+          "gameNumber": "NCAA-S101-JB-071",
+          "date": "2025-11-28",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "71-70",
+          "result": "W"
+        },
+        {
+          "gameId": "95eb73ca-d6f8-451b-9f4f-1fb84b8a0cf6",
+          "gameNumber": "NCAA-S101-JB-074",
+          "date": "2025-12-02",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "76-77",
+          "result": "L"
+        },
+        {
+          "gameId": "af555a97-1c49-4c14-a5d6-50b049e22b86",
+          "gameNumber": "NCAA-S101-JB-075",
+          "date": "2025-12-04",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "75-70",
+          "result": "W"
+        },
+        {
+          "gameId": "1e07f79a-33c3-42b6-8148-35525024d068",
+          "gameNumber": "NCAA-S101-JB-078",
+          "date": "2025-12-07",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "68-77",
+          "result": "L"
+        },
+        {
+          "gameId": "8da606ff-086c-42cc-b042-f1985da239e2",
+          "gameNumber": "NCAA-S101-JB-079",
+          "date": "2025-12-10",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "74-84",
+          "result": "L"
+        },
+        {
+          "gameId": "88453f74-070d-4efc-98c2-821b3069d243",
+          "gameNumber": "NCAA-S101-JRB-006",
+          "date": "2025-10-04",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "89-91",
+          "result": "L"
+        },
+        {
+          "gameId": "f3ff9a72-5a82-43ff-9bb0-16b6f7d6a342",
+          "gameNumber": "NCAA-S101-JRB-010",
+          "date": "2025-10-07",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "60-51",
+          "result": "W"
+        },
+        {
+          "gameId": "f9100e23-601b-436d-bd98-3a84ba029b6b",
+          "gameNumber": "NCAA-S101-JRB-015",
+          "date": "2025-10-11",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "83-81",
+          "result": "W"
+        },
+        {
+          "gameId": "3bfa6df2-390c-4371-98e9-86ba1055b024",
+          "gameNumber": "NCAA-S101-JRB-020",
+          "date": "2025-10-14",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "72-69",
+          "result": "W"
+        },
+        {
+          "gameId": "e030833c-e07a-4faa-a9f1-19d878206256",
+          "gameNumber": "NCAA-S101-JRB-023",
+          "date": "2025-10-17",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "94-87",
+          "result": "W"
+        },
+        {
+          "gameId": "33fbd2d6-185f-4201-a403-20c36efb7616",
+          "gameNumber": "NCAA-S101-JRB-027",
+          "date": "2025-10-19",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "83-82",
+          "result": "W"
+        },
+        {
+          "gameId": "919eff92-870c-48a9-9818-48793ddaf9dc",
+          "gameNumber": "NCAA-S101-JRB-032",
+          "date": "2025-10-22",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "81-78",
+          "result": "W"
+        },
+        {
+          "gameId": "062d3a09-26bb-43e4-ab8e-758f8a4d7559",
+          "gameNumber": "NCAA-S101-JRB-035",
+          "date": "2025-10-25",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "64-57",
+          "result": "W"
+        }
+      ],
+      "pointDifferential": 13,
+      "winPercentage": 0.706
+    },
+    {
+      "rank": 3,
+      "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+      "teamName": "MU U19 Boys",
+      "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+      "programFullName": "Mapua University",
+      "programAbbreviation": "MU",
+      "gamesPlayed": 17,
+      "wins": 11,
+      "losses": 6,
+      "pointsFor": 1362,
+      "pointsAgainst": 1299,
+      "gameNumbers": [
+        "NCAA-S101-JB-046",
+        "NCAA-S101-JB-050",
+        "NCAA-S101-JB-057",
+        "NCAA-S101-JB-062",
+        "NCAA-S101-JB-070",
+        "NCAA-S101-JB-073",
+        "NCAA-S101-JB-076",
+        "NCAA-S101-JB-077",
+        "NCAA-S101-JB-079",
+        "NCAA-S101-JRB-001",
+        "NCAA-S101-JRB-005",
+        "NCAA-S101-JRB-011",
+        "NCAA-S101-JRB-018",
+        "NCAA-S101-JRB-024",
+        "NCAA-S101-JRB-029",
+        "NCAA-S101-JRB-034",
+        "NCAA-S101-JRB-043"
+      ],
+      "opponents": [
+        {
+          "gameId": "818a8bd9-d2a5-428e-8fd4-e0c2e0478ce4",
+          "gameNumber": "NCAA-S101-JB-046",
+          "date": "2025-11-07",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "73-80",
+          "result": "L"
+        },
+        {
+          "gameId": "a0680b6a-0c70-4449-afcc-be711b073616",
+          "gameNumber": "NCAA-S101-JB-050",
+          "date": "2025-11-21",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "85-83",
+          "result": "W"
+        },
+        {
+          "gameId": "234fc419-ed83-4228-90c9-4d781d43eba1",
+          "gameNumber": "NCAA-S101-JB-057",
+          "date": "2025-11-14",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "89-69",
+          "result": "W"
+        },
+        {
+          "gameId": "e774379d-900b-48af-84fa-8f6556682d38",
+          "gameNumber": "NCAA-S101-JB-062",
+          "date": "2025-11-18",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "75-69",
+          "result": "W"
+        },
+        {
+          "gameId": "f77ce7b5-e1f0-4d6b-a738-9fbcbf501fbe",
+          "gameNumber": "NCAA-S101-JB-070",
+          "date": "2025-11-28",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "69-59",
+          "result": "W"
+        },
+        {
+          "gameId": "847c6522-6677-42a3-a763-97ccf8045b20",
+          "gameNumber": "NCAA-S101-JB-073",
+          "date": "2025-12-02",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "90-99",
+          "result": "L"
+        },
+        {
+          "gameId": "fa0f8d5f-1cd2-40b1-ae2c-a592839c2727",
+          "gameNumber": "NCAA-S101-JB-076",
+          "date": "2025-12-04",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "86-82",
+          "result": "W"
+        },
+        {
+          "gameId": "f73ade41-2547-4d70-b72f-60e2cf133ece",
+          "gameNumber": "NCAA-S101-JB-077",
+          "date": "2025-12-07",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "107-109",
+          "result": "L"
+        },
+        {
+          "gameId": "8da606ff-086c-42cc-b042-f1985da239e2",
+          "gameNumber": "NCAA-S101-JB-079",
+          "date": "2025-12-10",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "84-74",
+          "result": "W"
+        },
+        {
+          "gameId": "bf0d25a5-c2de-43ff-a68b-caa86df93a45",
+          "gameNumber": "NCAA-S101-JRB-001",
+          "date": "2025-10-02",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "66-74",
+          "result": "L"
+        },
+        {
+          "gameId": "583b8bd2-1adf-463c-824a-df304384eada",
+          "gameNumber": "NCAA-S101-JRB-005",
+          "date": "2025-10-04",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "83-80",
+          "result": "W"
+        },
+        {
+          "gameId": "c77cc9ae-4878-42ef-8fe0-f7933028317f",
+          "gameNumber": "NCAA-S101-JRB-011",
+          "date": "2025-10-08",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "65-57",
+          "result": "W"
+        },
+        {
+          "gameId": "ac830aca-9534-4a17-8602-f942df7f4ca4",
+          "gameNumber": "NCAA-S101-JRB-018",
+          "date": "2025-10-12",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "71-72",
+          "result": "L"
+        },
+        {
+          "gameId": "755faf56-6534-462a-a345-0ac8154e9031",
+          "gameNumber": "NCAA-S101-JRB-024",
+          "date": "2025-10-17",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "85-57",
+          "result": "W"
+        },
+        {
+          "gameId": "dc333bf3-0901-4aca-8328-af5ef32a10d5",
+          "gameNumber": "NCAA-S101-JRB-029",
+          "date": "2025-10-21",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "69-64",
+          "result": "W"
+        },
+        {
+          "gameId": "6f26ab13-08ed-4371-b07f-97d5073420ea",
+          "gameNumber": "NCAA-S101-JRB-034",
+          "date": "2025-10-24",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "74-71",
+          "result": "W"
+        },
+        {
+          "gameId": "0657fe8a-186b-43fd-b1ee-dfc80f254ea1",
+          "gameNumber": "NCAA-S101-JRB-043",
+          "date": "2025-11-04",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "91-100",
+          "result": "L"
+        }
+      ],
+      "pointDifferential": 63,
+      "winPercentage": 0.647
+    },
+    {
+      "rank": 4,
+      "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+      "teamName": "AU U19 Boys",
+      "programId": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+      "programFullName": "Arellano University",
+      "programAbbreviation": "AU",
+      "gamesPlayed": 18,
+      "wins": 10,
+      "losses": 8,
+      "pointsFor": 1586,
+      "pointsAgainst": 1523,
+      "gameNumbers": [
+        "NCAA-S101-JB-050",
+        "NCAA-S101-JB-054",
+        "NCAA-S101-JB-060",
+        "NCAA-S101-JB-064",
+        "NCAA-S101-JB-068",
+        "NCAA-S101-JB-073",
+        "NCAA-S101-JB-076",
+        "NCAA-S101-JB-077",
+        "NCAA-S101-JB-080",
+        "NCAA-S101-JB-081",
+        "NCAA-S101-JRB-005",
+        "NCAA-S101-JRB-009",
+        "NCAA-S101-JRB-016",
+        "NCAA-S101-JRB-019",
+        "NCAA-S101-JRB-023",
+        "NCAA-S101-JRB-028",
+        "NCAA-S101-JRB-033",
+        "NCAA-S101-JRB-045"
+      ],
+      "opponents": [
+        {
+          "gameId": "a0680b6a-0c70-4449-afcc-be711b073616",
+          "gameNumber": "NCAA-S101-JB-050",
+          "date": "2025-11-21",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "83-85",
+          "result": "L"
+        },
+        {
+          "gameId": "d94e4943-6639-45ea-8e60-1162aa711836",
+          "gameNumber": "NCAA-S101-JB-054",
+          "date": "2025-11-12",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "81-83",
+          "result": "L"
+        },
+        {
+          "gameId": "72360585-f966-41b7-a72c-b337ce319aac",
+          "gameNumber": "NCAA-S101-JB-060",
+          "date": "2025-11-16",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "85-75",
+          "result": "W"
+        },
+        {
+          "gameId": "e8c4c869-64e4-420c-9c12-1bd434e59e13",
+          "gameNumber": "NCAA-S101-JB-064",
+          "date": "2025-11-19",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "88-80",
+          "result": "W"
+        },
+        {
+          "gameId": "c2e32302-3eb9-482f-93da-68b3b3556d70",
+          "gameNumber": "NCAA-S101-JB-068",
+          "date": "2025-11-26",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "86-79",
+          "result": "W"
+        },
+        {
+          "gameId": "847c6522-6677-42a3-a763-97ccf8045b20",
+          "gameNumber": "NCAA-S101-JB-073",
+          "date": "2025-12-02",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "99-90",
+          "result": "W"
+        },
+        {
+          "gameId": "fa0f8d5f-1cd2-40b1-ae2c-a592839c2727",
+          "gameNumber": "NCAA-S101-JB-076",
+          "date": "2025-12-04",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "82-86",
+          "result": "L"
+        },
+        {
+          "gameId": "f73ade41-2547-4d70-b72f-60e2cf133ece",
+          "gameNumber": "NCAA-S101-JB-077",
+          "date": "2025-12-07",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "109-107",
+          "result": "W"
+        },
+        {
+          "gameId": "cd36aa9f-3495-4b5c-974f-51c149e04491",
+          "gameNumber": "NCAA-S101-JB-080",
+          "date": "2025-12-10",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "79-85",
+          "result": "L"
+        },
+        {
+          "gameId": "07c12f72-c605-4067-ade0-53743b4af074",
+          "gameNumber": "NCAA-S101-JB-081",
+          "date": "2025-12-13",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "88-91",
+          "result": "L"
+        },
+        {
+          "gameId": "583b8bd2-1adf-463c-824a-df304384eada",
+          "gameNumber": "NCAA-S101-JRB-005",
+          "date": "2025-10-04",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "80-83",
+          "result": "L"
+        },
+        {
+          "gameId": "77b6641e-6909-41ac-96d8-8a4fb6a56570",
+          "gameNumber": "NCAA-S101-JRB-009",
+          "date": "2025-10-07",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "92-61",
+          "result": "W"
+        },
+        {
+          "gameId": "0c2aa814-90bc-4df7-9749-54230593b332",
+          "gameNumber": "NCAA-S101-JRB-016",
+          "date": "2025-10-11",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "97-95",
+          "result": "W"
+        },
+        {
+          "gameId": "2bbcf07e-44e1-4d5d-b5eb-96d45c793022",
+          "gameNumber": "NCAA-S101-JRB-019",
+          "date": "2025-10-14",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "77-71",
+          "result": "W"
+        },
+        {
+          "gameId": "e030833c-e07a-4faa-a9f1-19d878206256",
+          "gameNumber": "NCAA-S101-JRB-023",
+          "date": "2025-10-17",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "87-94",
+          "result": "L"
+        },
+        {
+          "gameId": "c4e22dae-9cc5-4681-87fb-6e994c0b2703",
+          "gameNumber": "NCAA-S101-JRB-028",
+          "date": "2025-10-19",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "103-110",
+          "result": "L"
+        },
+        {
+          "gameId": "b437f926-9a4b-41d5-9601-8fc9e917c719",
+          "gameNumber": "NCAA-S101-JRB-033",
+          "date": "2025-10-24",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "79-74",
+          "result": "W"
+        },
+        {
+          "gameId": "59906bd0-79a9-4b30-bfb2-c4fb7ba3aa38",
+          "gameNumber": "NCAA-S101-JRB-045",
+          "date": "2025-11-05",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "91-74",
+          "result": "W"
+        }
+      ],
+      "pointDifferential": 63,
+      "winPercentage": 0.556
+    },
+    {
+      "rank": 5,
+      "teamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+      "teamName": "UPHSD U19 Boys",
+      "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "programFullName": "University of Perpetual Help System DALTA",
+      "programAbbreviation": "UPHSD",
+      "gamesPlayed": 15,
+      "wins": 7,
+      "losses": 8,
+      "pointsFor": 1118,
+      "pointsAgainst": 1105,
+      "gameNumbers": [
+        "NCAA-S101-JB-049",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-057",
+        "NCAA-S101-JB-060",
+        "NCAA-S101-JB-069",
+        "NCAA-S101-JB-072",
+        "NCAA-S101-JRB-003",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-011",
+        "NCAA-S101-JRB-016",
+        "NCAA-S101-JRB-022",
+        "NCAA-S101-JRB-025",
+        "NCAA-S101-JRB-032",
+        "NCAA-S101-JRB-036",
+        "NCAA-S101-JRB-042"
+      ],
+      "opponents": [
+        {
+          "gameId": "33551dcd-93ae-4751-9476-9668d3424cc2",
+          "gameNumber": "NCAA-S101-JB-049",
+          "date": "2025-11-08",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "64-67",
+          "result": "L"
+        },
+        {
+          "gameId": "e29ee737-6252-44c9-8dfa-725a93ece701",
+          "gameNumber": "NCAA-S101-JB-052",
+          "date": "2025-11-23",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "66-73",
+          "result": "L"
+        },
+        {
+          "gameId": "234fc419-ed83-4228-90c9-4d781d43eba1",
+          "gameNumber": "NCAA-S101-JB-057",
+          "date": "2025-11-14",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "69-89",
+          "result": "L"
+        },
+        {
+          "gameId": "72360585-f966-41b7-a72c-b337ce319aac",
+          "gameNumber": "NCAA-S101-JB-060",
+          "date": "2025-11-16",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "75-85",
+          "result": "L"
+        },
+        {
+          "gameId": "712cfad0-264c-482d-a7b0-969b72bccb61",
+          "gameNumber": "NCAA-S101-JB-069",
+          "date": "2025-11-26",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "74-69",
+          "result": "W"
+        },
+        {
+          "gameId": "f4e829f6-bdf8-464c-8620-ff3f8bbde40d",
+          "gameNumber": "NCAA-S101-JB-072",
+          "date": "2025-11-30",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "65-70",
+          "result": "L"
+        },
+        {
+          "gameId": "a0769138-55ef-4746-a5d3-7be86b27826a",
+          "gameNumber": "NCAA-S101-JRB-003",
+          "date": "2025-10-03",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "78-61",
+          "result": "W"
+        },
+        {
+          "gameId": "c4cb0615-72e0-4c02-a449-993e534af03e",
+          "gameNumber": "NCAA-S101-JRB-007",
+          "date": "2025-10-05",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "70-62",
+          "result": "W"
+        },
+        {
+          "gameId": "c77cc9ae-4878-42ef-8fe0-f7933028317f",
+          "gameNumber": "NCAA-S101-JRB-011",
+          "date": "2025-10-08",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "57-65",
+          "result": "L"
+        },
+        {
+          "gameId": "0c2aa814-90bc-4df7-9749-54230593b332",
+          "gameNumber": "NCAA-S101-JRB-016",
+          "date": "2025-10-11",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "95-97",
+          "result": "L"
+        },
+        {
+          "gameId": "7a5f3969-72ea-4b51-baa4-0ddc18e44563",
+          "gameNumber": "NCAA-S101-JRB-022",
+          "date": "2025-10-15",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "70-68",
+          "result": "W"
+        },
+        {
+          "gameId": "85928454-c512-4372-816a-a7d0c165c865",
+          "gameNumber": "NCAA-S101-JRB-025",
+          "date": "2025-10-18",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "91-73",
+          "result": "W"
+        },
+        {
+          "gameId": "919eff92-870c-48a9-9818-48793ddaf9dc",
+          "gameNumber": "NCAA-S101-JRB-032",
+          "date": "2025-10-22",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "78-81",
+          "result": "L"
+        },
+        {
+          "gameId": "54c0fbc3-d17b-4d5b-9f64-153b8ed9aa47",
+          "gameNumber": "NCAA-S101-JRB-036",
+          "date": "2025-10-25",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "91-79",
+          "result": "W"
+        },
+        {
+          "gameId": "496f056e-6047-4edf-ba6b-ded520e6c194",
+          "gameNumber": "NCAA-S101-JRB-042",
+          "date": "2025-10-29",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "75-66",
+          "result": "W"
+        }
+      ],
+      "pointDifferential": 13,
+      "winPercentage": 0.467
+    },
+    {
+      "rank": 6,
+      "teamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+      "teamName": "SBU U19 Boys",
+      "programId": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+      "programFullName": "San Beda University",
+      "programAbbreviation": "SBU",
+      "gamesPlayed": 15,
+      "wins": 7,
+      "losses": 8,
+      "pointsFor": 1022,
+      "pointsAgainst": 1027,
+      "gameNumbers": [
+        "NCAA-S101-JB-047",
+        "NCAA-S101-JB-053",
+        "NCAA-S101-JB-058",
+        "NCAA-S101-JB-065",
+        "NCAA-S101-JB-067",
+        "NCAA-S101-JB-070",
+        "NCAA-S101-JRB-002",
+        "NCAA-S101-JRB-008",
+        "NCAA-S101-JRB-014",
+        "NCAA-S101-JRB-020",
+        "NCAA-S101-JRB-024",
+        "NCAA-S101-JRB-033",
+        "NCAA-S101-JRB-037",
+        "NCAA-S101-JRB-042",
+        "NCAA-S101-JRB-044"
+      ],
+      "opponents": [
+        {
+          "gameId": "124a0a84-a48f-4d87-a362-b0e794c4d630",
+          "gameNumber": "NCAA-S101-JB-047",
+          "date": "2025-11-07",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "76-59",
+          "result": "W"
+        },
+        {
+          "gameId": "05d16da9-5df3-4830-9796-4d3da692c564",
+          "gameNumber": "NCAA-S101-JB-053",
+          "date": "2025-11-23",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "81-77",
+          "result": "W"
+        },
+        {
+          "gameId": "e6ba55c7-3035-4397-abf7-504e16d2c513",
+          "gameNumber": "NCAA-S101-JB-058",
+          "date": "2025-11-15",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "63-60",
+          "result": "W"
+        },
+        {
+          "gameId": "e5cb3060-586f-463b-85b9-b090fca58c9b",
+          "gameNumber": "NCAA-S101-JB-065",
+          "date": "2025-11-19",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "69-71",
+          "result": "L"
+        },
+        {
+          "gameId": "4ac8cfd3-957c-486f-a915-faf841760222",
+          "gameNumber": "NCAA-S101-JB-067",
+          "date": "2025-11-25",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "75-69",
+          "result": "W"
+        },
+        {
+          "gameId": "f77ce7b5-e1f0-4d6b-a738-9fbcbf501fbe",
+          "gameNumber": "NCAA-S101-JB-070",
+          "date": "2025-11-28",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "59-69",
+          "result": "L"
+        },
+        {
+          "gameId": "61522a9c-4103-481d-b49f-3683b81775dc",
+          "gameNumber": "NCAA-S101-JRB-002",
+          "date": "2025-10-02",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "59-67",
+          "result": "L"
+        },
+        {
+          "gameId": "2cc525f5-dbf0-4cf9-a0ad-799821f7f791",
+          "gameNumber": "NCAA-S101-JRB-008",
+          "date": "2025-10-05",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "61-63",
+          "result": "L"
+        },
+        {
+          "gameId": "18413ae7-a758-467a-9af4-418e1a0002dc",
+          "gameNumber": "NCAA-S101-JRB-014",
+          "date": "2025-10-10",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "64-52",
+          "result": "W"
+        },
+        {
+          "gameId": "3bfa6df2-390c-4371-98e9-86ba1055b024",
+          "gameNumber": "NCAA-S101-JRB-020",
+          "date": "2025-10-14",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "69-72",
+          "result": "L"
+        },
+        {
+          "gameId": "755faf56-6534-462a-a345-0ac8154e9031",
+          "gameNumber": "NCAA-S101-JRB-024",
+          "date": "2025-10-17",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "57-85",
+          "result": "L"
+        },
+        {
+          "gameId": "b437f926-9a4b-41d5-9601-8fc9e917c719",
+          "gameNumber": "NCAA-S101-JRB-033",
+          "date": "2025-10-24",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "74-79",
+          "result": "L"
+        },
+        {
+          "gameId": "52c56650-1dce-4267-9b80-bd709c814c2d",
+          "gameNumber": "NCAA-S101-JRB-037",
+          "date": "2025-10-26",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "75-66",
+          "result": "W"
+        },
+        {
+          "gameId": "496f056e-6047-4edf-ba6b-ded520e6c194",
+          "gameNumber": "NCAA-S101-JRB-042",
+          "date": "2025-10-29",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "66-75",
+          "result": "L"
+        },
+        {
+          "gameId": "935928df-b63e-472a-923a-c204233b3bf0",
+          "gameNumber": "NCAA-S101-JRB-044",
+          "date": "2025-11-04",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "74-63",
+          "result": "W"
+        }
+      ],
+      "pointDifferential": -5,
+      "winPercentage": 0.467
+    },
+    {
+      "rank": 7,
+      "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+      "teamName": "CSB U19 Boys",
+      "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+      "programFullName": "College of Saint Benilde",
+      "programAbbreviation": "CSB",
+      "gamesPlayed": 13,
+      "wins": 6,
+      "losses": 7,
+      "pointsFor": 1064,
+      "pointsAgainst": 1089,
+      "gameNumbers": [
+        "NCAA-S101-JB-047",
+        "NCAA-S101-JB-051",
+        "NCAA-S101-JB-056",
+        "NCAA-S101-JB-063",
+        "NCAA-S101-JB-068",
+        "NCAA-S101-JRB-002",
+        "NCAA-S101-JRB-006",
+        "NCAA-S101-JRB-012",
+        "NCAA-S101-JRB-017",
+        "NCAA-S101-JRB-028",
+        "NCAA-S101-JRB-031",
+        "NCAA-S101-JRB-036",
+        "NCAA-S101-JRB-043"
+      ],
+      "opponents": [
+        {
+          "gameId": "124a0a84-a48f-4d87-a362-b0e794c4d630",
+          "gameNumber": "NCAA-S101-JB-047",
+          "date": "2025-11-07",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "59-76",
+          "result": "L"
+        },
+        {
+          "gameId": "3926c63e-eb34-46b8-9f8e-9edc7787e8ab",
+          "gameNumber": "NCAA-S101-JB-051",
+          "date": "2025-11-21",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "97-98",
+          "result": "L"
+        },
+        {
+          "gameId": "e53cfec1-f701-4e36-bfe5-7a92131097da",
+          "gameNumber": "NCAA-S101-JB-056",
+          "date": "2025-11-14",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "70-88",
+          "result": "L"
+        },
+        {
+          "gameId": "638d1b02-8e17-477c-b5ad-83385b69ad9c",
+          "gameNumber": "NCAA-S101-JB-063",
+          "date": "2025-11-18",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "93-88",
+          "result": "W"
+        },
+        {
+          "gameId": "c2e32302-3eb9-482f-93da-68b3b3556d70",
+          "gameNumber": "NCAA-S101-JB-068",
+          "date": "2025-11-26",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "79-86",
+          "result": "L"
+        },
+        {
+          "gameId": "61522a9c-4103-481d-b49f-3683b81775dc",
+          "gameNumber": "NCAA-S101-JRB-002",
+          "date": "2025-10-02",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "67-59",
+          "result": "W"
+        },
+        {
+          "gameId": "88453f74-070d-4efc-98c2-821b3069d243",
+          "gameNumber": "NCAA-S101-JRB-006",
+          "date": "2025-10-04",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "91-89",
+          "result": "W"
+        },
+        {
+          "gameId": "7705d71d-0b79-4553-87ff-9cbd8d4a4e6a",
+          "gameNumber": "NCAA-S101-JRB-012",
+          "date": "2025-10-08",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "69-70",
+          "result": "L"
+        },
+        {
+          "gameId": "29f903c9-3248-48cb-b6ce-b2a1a769c506",
+          "gameNumber": "NCAA-S101-JRB-017",
+          "date": "2025-10-12",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "64-66",
+          "result": "L"
+        },
+        {
+          "gameId": "c4e22dae-9cc5-4681-87fb-6e994c0b2703",
+          "gameNumber": "NCAA-S101-JRB-028",
+          "date": "2025-10-19",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "110-103",
+          "result": "W"
+        },
+        {
+          "gameId": "0af2e710-0b3a-42a5-9198-6841acf25c5f",
+          "gameNumber": "NCAA-S101-JRB-031",
+          "date": "2025-10-22",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "86-84",
+          "result": "W"
+        },
+        {
+          "gameId": "54c0fbc3-d17b-4d5b-9f64-153b8ed9aa47",
+          "gameNumber": "NCAA-S101-JRB-036",
+          "date": "2025-10-25",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "79-91",
+          "result": "L"
+        },
+        {
+          "gameId": "0657fe8a-186b-43fd-b1ee-dfc80f254ea1",
+          "gameNumber": "NCAA-S101-JRB-043",
+          "date": "2025-11-04",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "100-91",
+          "result": "W"
+        }
+      ],
+      "pointDifferential": -25,
+      "winPercentage": 0.462
+    },
+    {
+      "rank": 8,
+      "teamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+      "teamName": "SSC-R U19 Boys",
+      "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "programFullName": "San Sebastian College-Recoletos",
+      "programAbbreviation": "SSCR",
+      "gamesPlayed": 15,
+      "wins": 5,
+      "losses": 10,
+      "pointsFor": 1082,
+      "pointsAgainst": 1154,
+      "gameNumbers": [
+        "NCAA-S101-JB-049",
+        "NCAA-S101-JB-054",
+        "NCAA-S101-JB-059",
+        "NCAA-S101-JB-062",
+        "NCAA-S101-JB-066",
+        "NCAA-S101-JB-071",
+        "NCAA-S101-JRB-003",
+        "NCAA-S101-JRB-009",
+        "NCAA-S101-JRB-013",
+        "NCAA-S101-JRB-018",
+        "NCAA-S101-JRB-021",
+        "NCAA-S101-JRB-027",
+        "NCAA-S101-JRB-031",
+        "NCAA-S101-JRB-037",
+        "NCAA-S101-JRB-041"
+      ],
+      "opponents": [
+        {
+          "gameId": "33551dcd-93ae-4751-9476-9668d3424cc2",
+          "gameNumber": "NCAA-S101-JB-049",
+          "date": "2025-11-08",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "67-64",
+          "result": "W"
+        },
+        {
+          "gameId": "d94e4943-6639-45ea-8e60-1162aa711836",
+          "gameNumber": "NCAA-S101-JB-054",
+          "date": "2025-11-12",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "83-81",
+          "result": "W"
+        },
+        {
+          "gameId": "474991f9-de82-43d5-8f0e-d91874affb87",
+          "gameNumber": "NCAA-S101-JB-059",
+          "date": "2025-11-15",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "79-69",
+          "result": "W"
+        },
+        {
+          "gameId": "e774379d-900b-48af-84fa-8f6556682d38",
+          "gameNumber": "NCAA-S101-JB-062",
+          "date": "2025-11-18",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "69-75",
+          "result": "L"
+        },
+        {
+          "gameId": "f23234b4-b20f-4b75-a97c-834c61fad255",
+          "gameNumber": "NCAA-S101-JB-066",
+          "date": "2025-11-25",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "85-80",
+          "result": "W"
+        },
+        {
+          "gameId": "fb4321e4-9e13-4779-9c48-63545d1e3f8b",
+          "gameNumber": "NCAA-S101-JB-071",
+          "date": "2025-11-28",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "70-71",
+          "result": "L"
+        },
+        {
+          "gameId": "a0769138-55ef-4746-a5d3-7be86b27826a",
+          "gameNumber": "NCAA-S101-JRB-003",
+          "date": "2025-10-03",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "61-78",
+          "result": "L"
+        },
+        {
+          "gameId": "77b6641e-6909-41ac-96d8-8a4fb6a56570",
+          "gameNumber": "NCAA-S101-JRB-009",
+          "date": "2025-10-07",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "61-92",
+          "result": "L"
+        },
+        {
+          "gameId": "1fae297e-7564-4cb2-9863-ab7ab8c5bb9c",
+          "gameNumber": "NCAA-S101-JRB-013",
+          "date": "2025-10-10",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "67-74",
+          "result": "L"
+        },
+        {
+          "gameId": "ac830aca-9534-4a17-8602-f942df7f4ca4",
+          "gameNumber": "NCAA-S101-JRB-018",
+          "date": "2025-10-12",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "72-71",
+          "result": "W"
+        },
+        {
+          "gameId": "01781780-0101-427c-a84c-85f467bace20",
+          "gameNumber": "NCAA-S101-JRB-021",
+          "date": "2025-10-15",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "73-77",
+          "result": "L"
+        },
+        {
+          "gameId": "33fbd2d6-185f-4201-a403-20c36efb7616",
+          "gameNumber": "NCAA-S101-JRB-027",
+          "date": "2025-10-19",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "82-83",
+          "result": "L"
+        },
+        {
+          "gameId": "0af2e710-0b3a-42a5-9198-6841acf25c5f",
+          "gameNumber": "NCAA-S101-JRB-031",
+          "date": "2025-10-22",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "84-86",
+          "result": "L"
+        },
+        {
+          "gameId": "52c56650-1dce-4267-9b80-bd709c814c2d",
+          "gameNumber": "NCAA-S101-JRB-037",
+          "date": "2025-10-26",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "66-75",
+          "result": "L"
+        },
+        {
+          "gameId": "df499052-395e-414e-a419-284f69a4c3d6",
+          "gameNumber": "NCAA-S101-JRB-041",
+          "date": "2025-10-29",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "63-78",
+          "result": "L"
+        }
+      ],
+      "pointDifferential": -72,
+      "winPercentage": 0.333
+    },
+    {
+      "rank": 9,
+      "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+      "teamName": "JRU U19 Boys",
+      "programId": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+      "programFullName": "Jose Rizal University",
+      "programAbbreviation": "JRU",
+      "gamesPlayed": 14,
+      "wins": 4,
+      "losses": 10,
+      "pointsFor": 920,
+      "pointsAgainst": 1001,
+      "gameNumbers": [
+        "NCAA-S101-JB-048",
+        "NCAA-S101-JB-055",
+        "NCAA-S101-JB-058",
+        "NCAA-S101-JB-063",
+        "NCAA-S101-JB-067",
+        "NCAA-S101-JRB-004",
+        "NCAA-S101-JRB-010",
+        "NCAA-S101-JRB-014",
+        "NCAA-S101-JRB-017",
+        "NCAA-S101-JRB-021",
+        "NCAA-S101-JRB-025",
+        "NCAA-S101-JRB-030",
+        "NCAA-S101-JRB-034",
+        "NCAA-S101-JRB-045"
+      ],
+      "opponents": [
+        {
+          "gameId": "4f34abad-4f45-41d8-b47b-ce7c70b17b3c",
+          "gameNumber": "NCAA-S101-JB-048",
+          "date": "2025-11-08",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "57-74",
+          "result": "L"
+        },
+        {
+          "gameId": "588dce09-a70d-46b7-a2b1-c5aed612f6e2",
+          "gameNumber": "NCAA-S101-JB-055",
+          "date": "2025-11-12",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "56-47",
+          "result": "W"
+        },
+        {
+          "gameId": "e6ba55c7-3035-4397-abf7-504e16d2c513",
+          "gameNumber": "NCAA-S101-JB-058",
+          "date": "2025-11-15",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "60-63",
+          "result": "L"
+        },
+        {
+          "gameId": "638d1b02-8e17-477c-b5ad-83385b69ad9c",
+          "gameNumber": "NCAA-S101-JB-063",
+          "date": "2025-11-18",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "88-93",
+          "result": "L"
+        },
+        {
+          "gameId": "4ac8cfd3-957c-486f-a915-faf841760222",
+          "gameNumber": "NCAA-S101-JB-067",
+          "date": "2025-11-25",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "69-75",
+          "result": "L"
+        },
+        {
+          "gameId": "acf9fd7d-1b89-4fa9-aac9-d6bcefb0072f",
+          "gameNumber": "NCAA-S101-JRB-004",
+          "date": "2025-10-03",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "52-62",
+          "result": "L"
+        },
+        {
+          "gameId": "f3ff9a72-5a82-43ff-9bb0-16b6f7d6a342",
+          "gameNumber": "NCAA-S101-JRB-010",
+          "date": "2025-10-07",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "51-60",
+          "result": "L"
+        },
+        {
+          "gameId": "18413ae7-a758-467a-9af4-418e1a0002dc",
+          "gameNumber": "NCAA-S101-JRB-014",
+          "date": "2025-10-10",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "52-64",
+          "result": "L"
+        },
+        {
+          "gameId": "29f903c9-3248-48cb-b6ce-b2a1a769c506",
+          "gameNumber": "NCAA-S101-JRB-017",
+          "date": "2025-10-12",
+          "opponentTeamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+          "opponentTeamName": "CSB U19 Boys",
+          "score": "66-64",
+          "result": "W"
+        },
+        {
+          "gameId": "01781780-0101-427c-a84c-85f467bace20",
+          "gameNumber": "NCAA-S101-JRB-021",
+          "date": "2025-10-15",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "77-73",
+          "result": "W"
+        },
+        {
+          "gameId": "85928454-c512-4372-816a-a7d0c165c865",
+          "gameNumber": "NCAA-S101-JRB-025",
+          "date": "2025-10-18",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "73-91",
+          "result": "L"
+        },
+        {
+          "gameId": "66711958-b7ff-42f2-8e3f-69c26ff2b37e",
+          "gameNumber": "NCAA-S101-JRB-030",
+          "date": "2025-10-21",
+          "opponentTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+          "opponentTeamName": "LPU U19 Boys",
+          "score": "74-70",
+          "result": "W"
+        },
+        {
+          "gameId": "6f26ab13-08ed-4371-b07f-97d5073420ea",
+          "gameNumber": "NCAA-S101-JRB-034",
+          "date": "2025-10-24",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "71-74",
+          "result": "L"
+        },
+        {
+          "gameId": "59906bd0-79a9-4b30-bfb2-c4fb7ba3aa38",
+          "gameNumber": "NCAA-S101-JRB-045",
+          "date": "2025-11-05",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "74-91",
+          "result": "L"
+        }
+      ],
+      "pointDifferential": -81,
+      "winPercentage": 0.286
+    },
+    {
+      "rank": 10,
+      "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+      "teamName": "LPU U19 Boys",
+      "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "programFullName": "Lyceum of the Philippines University",
+      "programAbbreviation": "LPU",
+      "gamesPlayed": 13,
+      "wins": 4,
+      "losses": 9,
+      "pointsFor": 925,
+      "pointsAgainst": 963,
+      "gameNumbers": [
+        "NCAA-S101-JB-046",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-059",
+        "NCAA-S101-JB-064",
+        "NCAA-S101-JB-066",
+        "NCAA-S101-JRB-001",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-013",
+        "NCAA-S101-JRB-019",
+        "NCAA-S101-JRB-026",
+        "NCAA-S101-JRB-030",
+        "NCAA-S101-JRB-035",
+        "NCAA-S101-JRB-044"
+      ],
+      "opponents": [
+        {
+          "gameId": "818a8bd9-d2a5-428e-8fd4-e0c2e0478ce4",
+          "gameNumber": "NCAA-S101-JB-046",
+          "date": "2025-11-07",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "80-73",
+          "result": "W"
+        },
+        {
+          "gameId": "e29ee737-6252-44c9-8dfa-725a93ece701",
+          "gameNumber": "NCAA-S101-JB-052",
+          "date": "2025-11-23",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "73-66",
+          "result": "W"
+        },
+        {
+          "gameId": "474991f9-de82-43d5-8f0e-d91874affb87",
+          "gameNumber": "NCAA-S101-JB-059",
+          "date": "2025-11-15",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "69-79",
+          "result": "L"
+        },
+        {
+          "gameId": "e8c4c869-64e4-420c-9c12-1bd434e59e13",
+          "gameNumber": "NCAA-S101-JB-064",
+          "date": "2025-11-19",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "80-88",
+          "result": "L"
+        },
+        {
+          "gameId": "f23234b4-b20f-4b75-a97c-834c61fad255",
+          "gameNumber": "NCAA-S101-JB-066",
+          "date": "2025-11-25",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "80-85",
+          "result": "L"
+        },
+        {
+          "gameId": "bf0d25a5-c2de-43ff-a68b-caa86df93a45",
+          "gameNumber": "NCAA-S101-JRB-001",
+          "date": "2025-10-02",
+          "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+          "opponentTeamName": "MU U19 Boys",
+          "score": "74-66",
+          "result": "W"
+        },
+        {
+          "gameId": "c4cb0615-72e0-4c02-a449-993e534af03e",
+          "gameNumber": "NCAA-S101-JRB-007",
+          "date": "2025-10-05",
+          "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+          "opponentTeamName": "UPHSD U19 Boys",
+          "score": "62-70",
+          "result": "L"
+        },
+        {
+          "gameId": "1fae297e-7564-4cb2-9863-ab7ab8c5bb9c",
+          "gameNumber": "NCAA-S101-JRB-013",
+          "date": "2025-10-10",
+          "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+          "opponentTeamName": "SSC-R U19 Boys",
+          "score": "74-67",
+          "result": "W"
+        },
+        {
+          "gameId": "2bbcf07e-44e1-4d5d-b5eb-96d45c793022",
+          "gameNumber": "NCAA-S101-JRB-019",
+          "date": "2025-10-14",
+          "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+          "opponentTeamName": "AU U19 Boys",
+          "score": "71-77",
+          "result": "L"
+        },
+        {
+          "gameId": "90db4ef5-acd7-4bd7-b933-bd1f9448ec31",
+          "gameNumber": "NCAA-S101-JRB-026",
+          "date": "2025-10-18",
+          "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+          "opponentTeamName": "CSJL U19 Boys",
+          "score": "72-80",
+          "result": "L"
+        },
+        {
+          "gameId": "66711958-b7ff-42f2-8e3f-69c26ff2b37e",
+          "gameNumber": "NCAA-S101-JRB-030",
+          "date": "2025-10-21",
+          "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+          "opponentTeamName": "JRU U19 Boys",
+          "score": "70-74",
+          "result": "L"
+        },
+        {
+          "gameId": "062d3a09-26bb-43e4-ab8e-758f8a4d7559",
+          "gameNumber": "NCAA-S101-JRB-035",
+          "date": "2025-10-25",
+          "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+          "opponentTeamName": "EAC U19 Boys",
+          "score": "57-64",
+          "result": "L"
+        },
+        {
+          "gameId": "935928df-b63e-472a-923a-c204233b3bf0",
+          "gameNumber": "NCAA-S101-JRB-044",
+          "date": "2025-11-04",
+          "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+          "opponentTeamName": "SBU U19 Boys",
+          "score": "63-74",
+          "result": "L"
+        }
+      ],
+      "pointDifferential": -38,
+      "winPercentage": 0.308
+    }
+  ],
+  "expectedGamesByScheduleSymmetry": {
+    "gamesPlayed": 15,
+    "teamCount": 3,
+    "distribution": {
+      "13": 2,
+      "14": 1,
+      "15": 3,
+      "17": 2,
+      "18": 1,
+      "19": 1
+    }
+  },
+  "teamsInspected": 10,
+  "lpuDiagnosis": {
+    "expectedGames": 14,
+    "actualGames": 13,
+    "missingFromExpected": 1,
+    "scopeStandingRows": [
+      {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "teamName": "LPU U19 Boys",
+        "program": "Lyceum of the Philippines University",
+        "gamesPlayed": 13,
+        "wins": 4,
+        "losses": 9,
+        "pointsFor": 925,
+        "pointsAgainst": 963,
+        "gameNumbers": [
+          "NCAA-S101-JB-046",
+          "NCAA-S101-JB-052",
+          "NCAA-S101-JB-059",
+          "NCAA-S101-JB-064",
+          "NCAA-S101-JB-066",
+          "NCAA-S101-JRB-001",
+          "NCAA-S101-JRB-007",
+          "NCAA-S101-JRB-013",
+          "NCAA-S101-JRB-019",
+          "NCAA-S101-JRB-026",
+          "NCAA-S101-JRB-030",
+          "NCAA-S101-JRB-035",
+          "NCAA-S101-JRB-044"
+        ]
+      }
+    ],
+    "lpuRelatedTeamRecords": [
+      {
+        "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "teamName": "LPU U19 Boys",
+        "deletedAt": null,
+        "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+        "programFullName": "Lyceum of the Philippines University",
+        "programAbbreviation": "LPU",
+        "activeScopeGames": 13,
+        "allLinkedGames": 13,
+        "gameStats": 145
+      }
+    ],
+    "gamesInScope": [
+      {
+        "gameId": "818a8bd9-d2a5-428e-8fd4-e0c2e0478ce4",
+        "gameNumber": "NCAA-S101-JB-046",
+        "date": "2025-11-07",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "away",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "opponentTeamName": "MU U19 Boys",
+        "score": "80-73",
+        "inScope": true
+      },
+      {
+        "gameId": "e29ee737-6252-44c9-8dfa-725a93ece701",
+        "gameNumber": "NCAA-S101-JB-052",
+        "date": "2025-11-23",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "opponentTeamName": "UPHSD U19 Boys",
+        "score": "73-66",
+        "inScope": true
+      },
+      {
+        "gameId": "474991f9-de82-43d5-8f0e-d91874affb87",
+        "gameNumber": "NCAA-S101-JB-059",
+        "date": "2025-11-15",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "opponentTeamName": "SSC-R U19 Boys",
+        "score": "69-79",
+        "inScope": true
+      },
+      {
+        "gameId": "e8c4c869-64e4-420c-9c12-1bd434e59e13",
+        "gameNumber": "NCAA-S101-JB-064",
+        "date": "2025-11-19",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "opponentTeamName": "AU U19 Boys",
+        "score": "80-88",
+        "inScope": true
+      },
+      {
+        "gameId": "f23234b4-b20f-4b75-a97c-834c61fad255",
+        "gameNumber": "NCAA-S101-JB-066",
+        "date": "2025-11-25",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "opponentTeamName": "SSC-R U19 Boys",
+        "score": "80-85",
+        "inScope": true
+      },
+      {
+        "gameId": "bf0d25a5-c2de-43ff-a68b-caa86df93a45",
+        "gameNumber": "NCAA-S101-JRB-001",
+        "date": "2025-10-02",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "away",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "opponentTeamName": "MU U19 Boys",
+        "score": "74-66",
+        "inScope": true
+      },
+      {
+        "gameId": "c4cb0615-72e0-4c02-a449-993e534af03e",
+        "gameNumber": "NCAA-S101-JRB-007",
+        "date": "2025-10-05",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "opponentTeamName": "UPHSD U19 Boys",
+        "score": "62-70",
+        "inScope": true
+      },
+      {
+        "gameId": "1fae297e-7564-4cb2-9863-ab7ab8c5bb9c",
+        "gameNumber": "NCAA-S101-JRB-013",
+        "date": "2025-10-10",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+        "opponentTeamName": "SSC-R U19 Boys",
+        "score": "74-67",
+        "inScope": true
+      },
+      {
+        "gameId": "2bbcf07e-44e1-4d5d-b5eb-96d45c793022",
+        "gameNumber": "NCAA-S101-JRB-019",
+        "date": "2025-10-14",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "opponentTeamName": "AU U19 Boys",
+        "score": "71-77",
+        "inScope": true
+      },
+      {
+        "gameId": "90db4ef5-acd7-4bd7-b933-bd1f9448ec31",
+        "gameNumber": "NCAA-S101-JRB-026",
+        "date": "2025-10-18",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "away",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "opponentTeamName": "CSJL U19 Boys",
+        "score": "72-80",
+        "inScope": true
+      },
+      {
+        "gameId": "66711958-b7ff-42f2-8e3f-69c26ff2b37e",
+        "gameNumber": "NCAA-S101-JRB-030",
+        "date": "2025-10-21",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+        "opponentTeamName": "JRU U19 Boys",
+        "score": "70-74",
+        "inScope": true
+      },
+      {
+        "gameId": "062d3a09-26bb-43e4-ab8e-758f8a4d7559",
+        "gameNumber": "NCAA-S101-JRB-035",
+        "date": "2025-10-25",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "away",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "opponentTeamName": "EAC U19 Boys",
+        "score": "57-64",
+        "inScope": true
+      },
+      {
+        "gameId": "935928df-b63e-472a-923a-c204233b3bf0",
+        "gameNumber": "NCAA-S101-JRB-044",
+        "date": "2025-11-04",
+        "deletedAt": null,
+        "verificationStatus": "SUBMITTED",
+        "leagueName": "NCAA Season 101 Junior's Basketball",
+        "ageGroup": "U19",
+        "seasonName": "Season 101",
+        "side": "home",
+        "lpuTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+        "lpuTeamName": "LPU U19 Boys",
+        "opponentTeamId": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "opponentTeamName": "SBU U19 Boys",
+        "score": "63-74",
+        "inScope": true
+      }
+    ],
+    "gamesOutsideScopeOrDeleted": [],
+    "duplicateOrWrongTeamRecordDetected": false,
+    "deletedOrExcludedGameDetected": false,
+    "outsideNCAAU19ScopeDetected": false,
+    "missingFromDatabaseLikely": true,
+    "conclusion": "No extra LPU game exists in the database under another active LPU-related Team record or adjacent scope; the missing expected game is likely absent from the database or the expected count is based on an external schedule not fully imported."
+  },
+  "teamsWithUnexpectedGameCounts": [
+    {
+      "teamId": "2114099c-3717-4894-8ab6-8c0738b1950b",
+      "teamName": "CSJL U19 Boys",
+      "program": "Colegio de San Juan de Letran",
+      "expectedByMode": 15,
+      "actualGames": 19,
+      "delta": 4,
+      "gameNumbers": [
+        "NCAA-S101-JB-048",
+        "NCAA-S101-JB-053",
+        "NCAA-S101-JB-056",
+        "NCAA-S101-JB-061",
+        "NCAA-S101-JB-069",
+        "NCAA-S101-JB-072",
+        "NCAA-S101-JB-074",
+        "NCAA-S101-JB-075",
+        "NCAA-S101-JB-078",
+        "NCAA-S101-JB-080",
+        "NCAA-S101-JB-081",
+        "NCAA-S101-JRB-004",
+        "NCAA-S101-JRB-008",
+        "NCAA-S101-JRB-012",
+        "NCAA-S101-JRB-015",
+        "NCAA-S101-JRB-022",
+        "NCAA-S101-JRB-026",
+        "NCAA-S101-JRB-029",
+        "NCAA-S101-JRB-041"
+      ]
+    },
+    {
+      "teamId": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+      "teamName": "EAC U19 Boys",
+      "program": "Emilio Aguinaldo College",
+      "expectedByMode": 15,
+      "actualGames": 17,
+      "delta": 2,
+      "gameNumbers": [
+        "NCAA-S101-JB-051",
+        "NCAA-S101-JB-055",
+        "NCAA-S101-JB-061",
+        "NCAA-S101-JB-065",
+        "NCAA-S101-JB-071",
+        "NCAA-S101-JB-074",
+        "NCAA-S101-JB-075",
+        "NCAA-S101-JB-078",
+        "NCAA-S101-JB-079",
+        "NCAA-S101-JRB-006",
+        "NCAA-S101-JRB-010",
+        "NCAA-S101-JRB-015",
+        "NCAA-S101-JRB-020",
+        "NCAA-S101-JRB-023",
+        "NCAA-S101-JRB-027",
+        "NCAA-S101-JRB-032",
+        "NCAA-S101-JRB-035"
+      ]
+    },
+    {
+      "teamId": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+      "teamName": "MU U19 Boys",
+      "program": "Mapua University",
+      "expectedByMode": 15,
+      "actualGames": 17,
+      "delta": 2,
+      "gameNumbers": [
+        "NCAA-S101-JB-046",
+        "NCAA-S101-JB-050",
+        "NCAA-S101-JB-057",
+        "NCAA-S101-JB-062",
+        "NCAA-S101-JB-070",
+        "NCAA-S101-JB-073",
+        "NCAA-S101-JB-076",
+        "NCAA-S101-JB-077",
+        "NCAA-S101-JB-079",
+        "NCAA-S101-JRB-001",
+        "NCAA-S101-JRB-005",
+        "NCAA-S101-JRB-011",
+        "NCAA-S101-JRB-018",
+        "NCAA-S101-JRB-024",
+        "NCAA-S101-JRB-029",
+        "NCAA-S101-JRB-034",
+        "NCAA-S101-JRB-043"
+      ]
+    },
+    {
+      "teamId": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+      "teamName": "AU U19 Boys",
+      "program": "Arellano University",
+      "expectedByMode": 15,
+      "actualGames": 18,
+      "delta": 3,
+      "gameNumbers": [
+        "NCAA-S101-JB-050",
+        "NCAA-S101-JB-054",
+        "NCAA-S101-JB-060",
+        "NCAA-S101-JB-064",
+        "NCAA-S101-JB-068",
+        "NCAA-S101-JB-073",
+        "NCAA-S101-JB-076",
+        "NCAA-S101-JB-077",
+        "NCAA-S101-JB-080",
+        "NCAA-S101-JB-081",
+        "NCAA-S101-JRB-005",
+        "NCAA-S101-JRB-009",
+        "NCAA-S101-JRB-016",
+        "NCAA-S101-JRB-019",
+        "NCAA-S101-JRB-023",
+        "NCAA-S101-JRB-028",
+        "NCAA-S101-JRB-033",
+        "NCAA-S101-JRB-045"
+      ]
+    },
+    {
+      "teamId": "ae00ef56-203b-405f-b0ba-1a95637834db",
+      "teamName": "CSB U19 Boys",
+      "program": "College of Saint Benilde",
+      "expectedByMode": 15,
+      "actualGames": 13,
+      "delta": -2,
+      "gameNumbers": [
+        "NCAA-S101-JB-047",
+        "NCAA-S101-JB-051",
+        "NCAA-S101-JB-056",
+        "NCAA-S101-JB-063",
+        "NCAA-S101-JB-068",
+        "NCAA-S101-JRB-002",
+        "NCAA-S101-JRB-006",
+        "NCAA-S101-JRB-012",
+        "NCAA-S101-JRB-017",
+        "NCAA-S101-JRB-028",
+        "NCAA-S101-JRB-031",
+        "NCAA-S101-JRB-036",
+        "NCAA-S101-JRB-043"
+      ]
+    },
+    {
+      "teamId": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+      "teamName": "JRU U19 Boys",
+      "program": "Jose Rizal University",
+      "expectedByMode": 15,
+      "actualGames": 14,
+      "delta": -1,
+      "gameNumbers": [
+        "NCAA-S101-JB-048",
+        "NCAA-S101-JB-055",
+        "NCAA-S101-JB-058",
+        "NCAA-S101-JB-063",
+        "NCAA-S101-JB-067",
+        "NCAA-S101-JRB-004",
+        "NCAA-S101-JRB-010",
+        "NCAA-S101-JRB-014",
+        "NCAA-S101-JRB-017",
+        "NCAA-S101-JRB-021",
+        "NCAA-S101-JRB-025",
+        "NCAA-S101-JRB-030",
+        "NCAA-S101-JRB-034",
+        "NCAA-S101-JRB-045"
+      ]
+    },
+    {
+      "teamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+      "teamName": "LPU U19 Boys",
+      "program": "Lyceum of the Philippines University",
+      "expectedByMode": 15,
+      "actualGames": 13,
+      "delta": -2,
+      "gameNumbers": [
+        "NCAA-S101-JB-046",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-059",
+        "NCAA-S101-JB-064",
+        "NCAA-S101-JB-066",
+        "NCAA-S101-JRB-001",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-013",
+        "NCAA-S101-JRB-019",
+        "NCAA-S101-JRB-026",
+        "NCAA-S101-JRB-030",
+        "NCAA-S101-JRB-035",
+        "NCAA-S101-JRB-044"
+      ]
+    }
+  ],
+  "duplicateTeamIdentityFindings": [],
+  "rawDataIssueOrDisplayIssue": "RAW_DATA_OR_EXPECTATION_ISSUE",
+  "recommendedFix": "Do not change standings code. Verify the external NCAA schedule/source for LPU's missing 14th game, then import or correct the missing official game through the approved submission/import workflow if it is truly absent.",
+  "publicHelperComparison": {
+    "helperFiles": [
+      "src/lib/team-rankings.ts",
+      "src/app/teams/TeamsClient.tsx"
+    ],
+    "helperGrouping": "Public helper groups by leagueId + seasonId + inferred gender + actual Team ID, then visible UI re-ranks the filtered table.",
+    "rawCalculationMatchesPublicHelper": true,
+    "note": "For this scope, the observed LPU count comes directly from raw active Game rows for the LPU Team ID."
+  }
+}

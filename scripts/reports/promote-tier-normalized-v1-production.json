@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-06-18T15:12:54.632Z",
+  "mode": "production-promotion",
+  "activePolicyVersionId": "formula-v1-tier-normalized-soft-v1",
+  "recompute": {
+    "targets": 938,
+    "created": 0,
+    "updated": 938
+  },
+  "projectedHomeBoard": {
+    "limboCount": 0,
+    "created": 0,
+    "updated": 0,
+    "skippedExisting": 0,
+    "targets": []
+  },
+  "shadowRowCount": 938,
+  "publicBoard": {
+    "u19BoysTop5": [
+      {
+        "rank": 1,
+        "displayName": "Jude Eriobu",
+        "rating": 98.33,
+        "primary": "UAAP S88 HS Boys"
+      },
+      {
+        "rank": 2,
+        "displayName": "Josef Calo-oy",
+        "rating": 93.1,
+        "primary": "NCAA S101 Junior's"
+      },
+      {
+        "rank": 3,
+        "displayName": "Steven Creus",
+        "rating": 88.41,
+        "primary": "NCAA S101 Junior's"
+      },
+      {
+        "rank": 4,
+        "displayName": "Lucas Kaw",
+        "rating": 87.4,
+        "primary": "Stallion Cup – 17U"
+      },
+      {
+        "rank": 5,
+        "displayName": "Yuan Ramirez",
+        "rating": 87.06,
+        "primary": "6th Stallion Cup - 18U"
+      }
+    ],
+    "u16BoysTop5": [
+      {
+        "rank": 1,
+        "displayName": "Goodluck Okebata",
+        "rating": 96.58
+      },
+      {
+        "rank": 2,
+        "displayName": "Prince Cariño",
+        "rating": 92.5
+      },
+      {
+        "rank": 3,
+        "displayName": "Moussa Diakite",
+        "rating": 89.91
+      },
+      {
+        "rank": 4,
+        "displayName": "Fran Flores",
+        "rating": 88.11
+      },
+      {
+        "rank": 5,
+        "displayName": "Akhiro Franz Reynon",
+        "rating": 83.78
+      }
+    ],
+    "lucas": {
+      "rank": 4,
+      "rating": 87.4,
+      "primary": "Stallion Cup – 17U"
+    },
+    "jude": {
+      "rank": 1,
+      "rating": 98.33
+    },
+    "xyriel": null
+  }
+}

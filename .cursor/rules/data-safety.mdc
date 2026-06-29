@@ -1,0 +1,51 @@
+---
+description: Require explicit approval before database writes, migrations, and other sensitive data operations
+alwaysApply: true
+---
+
+# Data Safety
+
+## Requires Explicit Approval
+
+Do **not** perform any of the following without explicit user approval:
+
+- Database writes
+- Schema changes or migrations
+- Data imports
+- Publish actions
+- Rating recomputes
+- Ranking snapshot generation
+- Player merges or deletions
+- Team deletions
+- Bulk cleanup operations
+- Formula v2 writes
+- Historical data rewrites
+
+## Sensitive Records
+
+Treat these as sensitive — read and analyze freely, but do not mutate without approval:
+
+- `Game`, `GameStat`
+- `PlayerRating`
+- `RankingSnapshot`
+- All historical records
+
+## Preferred Approach
+
+When investigating or planning work that touches production data:
+
+1. **Read-only investigation** — queries, audits, reports
+2. **Dry-run analysis** — preview impact without writing
+3. **Implementation plans** — document steps and risks before execution
+
+## When to Stop
+
+If a requested task could trigger data changes (including via scripts in `scripts/`), **stop and ask for confirmation** before running or implementing write paths.
+
+Example — stop and ask:
+
+```
+"Run the player merge plan" → confirm before executing merge script
+"Apply Formula v2" → confirm before any write to PlayerRating
+"Clean up duplicate teams" → confirm before bulk delete/update
+```

@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-06-17T13:40:54.508Z",
+  "nationalEnabled": true,
+  "boardCount": 3,
+  "rowCount": 56,
+  "checks": [
+    {
+      "id": "QA-NAT-00",
+      "area": "flag",
+      "status": "PASS",
+      "detail": "TEAM_NATIONAL_RATINGS_ENABLED=true"
+    },
+    {
+      "id": "QA-NAT-01",
+      "area": "data",
+      "status": "PASS",
+      "detail": "56 public-eligible national rows loaded"
+    },
+    {
+      "id": "QA-NAT-02",
+      "area": "meta",
+      "status": "PASS",
+      "detail": "Last computed 2026-06-17T12:22:09.140Z"
+    },
+    {
+      "id": "QA-NAT-03",
+      "area": "rank numbering",
+      "status": "PASS",
+      "detail": "U16 BOYS: visibleRank matches canonical board rank"
+    },
+    {
+      "id": "QA-NAT-04",
+      "area": "search",
+      "status": "PASS",
+      "detail": "U16 BOYS: filtered rows keep canonical ranks"
+    },
+    {
+      "id": "QA-NAT-03",
+      "area": "rank numbering",
+      "status": "PASS",
+      "detail": "U19 GIRLS: visibleRank matches canonical board rank"
+    },
+    {
+      "id": "QA-NAT-05",
+      "area": "sorting",
+      "status": "PASS",
+      "detail": "U16 Boys rating sort descending works"
+    },
+    {
+      "id": "QA-NAT-06",
+      "area": "program links",
+      "status": "PASS",
+      "detail": "56/56 rows have team profile links"
+    },
+    {
+      "id": "QA-NAT-07",
+      "area": "empty states",
+      "status": "PASS",
+      "detail": "U13/U16 Girls boards empty as expected — UI copy handles this"
+    },
+    {
+      "id": "QA-NAT-08",
+      "area": "age switching",
+      "status": "PASS",
+      "detail": "Default board U16 BOYS"
+    }
+  ],
+  "summary": {
+    "pass": 10,
+    "fail": 0,
+    "skip": 0
+  },
+  "manualBrowserFollowUp": [
+    "Open /teams with TEAM_NATIONAL_RATINGS_ENABLED=true",
+    "Verify National/Competition toggle on desktop and mobile widths",
+    "Confirm sparse-board banner on U19 Girls",
+    "Confirm empty-state copy on U13 Girls and U16 Girls"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-06-18T15:14:58.139Z",
+  "mode": "read-only-validation",
+  "policyVersionId": "formula-v1-tier-normalized-soft-v1",
+  "checks": {
+    "shadowRowCount": 946,
+    "productionRowCount": 946,
+    "activePolicyVersionId": "formula-v1-tier-normalized-soft-v1",
+    "publicBoardReflectsTierNormalized": true,
+    "lucasLeavesTopTwoInShadow": true,
+    "judeStaysFirst": true,
+    "lucasShadowRating": 87.4,
+    "lucasProductionRating": 93.98,
+    "judeShadowRating": 98.33,
+    "publicLucasRank": 4,
+    "publicJudeRank": 1,
+    "top10Churn": 4,
+    "gpsUnchanged": true
+  },
+  "top10Shadow": [
+    {
+      "rank": 1,
+      "displayName": "Jude Eriobu",
+      "rating": 98.33,
+      "productionRank": 1
+    },
+    {
+      "rank": 2,
+      "displayName": "Josef Calo-oy",
+      "rating": 93.1,
+      "productionRank": 5
+    },
+    {
+      "rank": 3,
+      "displayName": "Mark Esperanza",
+      "rating": 90.61,
+      "productionRank": 6
+    },
+    {
+      "rank": 4,
+      "displayName": "Sean Franco",
+      "rating": 88.82,
+      "productionRank": 10
+    },
+    {
+      "rank": 5,
+      "displayName": "Greggy Calma",
+      "rating": 88.44,
+      "productionRank": 2
+    },
+    {
+      "rank": 6,
+      "displayName": "Steven Creus",
+      "rating": 88.41,
+      "productionRank": 12
+    },
+    {
+      "rank": 7,
+      "displayName": "Ray Ladica",
+      "rating": 88.34,
+      "productionRank": 13
+    },
+    {
+      "rank": 8,
+      "displayName": "Cabs Cabonilas",
+      "rating": 88.19,
+      "productionRank": 14
+    },
+    {
+      "rank": 9,
+      "displayName": "Lucas Kaw",
+      "rating": 87.4,
+      "productionRank": 3
+    },
+    {
+      "rank": 10,
+      "displayName": "Moussa Diakite",
+      "rating": 87.27,
+      "productionRank": 16
+    }
+  ],
+  "recommendation": {
+    "code": "A",
+    "label": "Production cutover complete — tier-normalized v1 is live"
+  }
+}

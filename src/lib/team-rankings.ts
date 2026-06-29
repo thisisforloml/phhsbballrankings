@@ -4,51 +4,21 @@ import { AgeGroup } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { getTeamDisplayName } from "@/lib/uaap-school-display";
+import type {
+  TeamStandingsAgeGroup,
+  TeamStandingsData,
+  TeamStandingsFilters,
+  TeamStandingsGender,
+  TeamStandingRow,
+} from "@/lib/team-rankings-types";
 
-export type TeamStandingsGender = "Boys" | "Girls";
-export type TeamStandingsAgeGroup = "U13" | "U16" | "U19";
-
-export type TeamStandingRow = {
-  id: string;
-  teamId: string;
-  internalTeamName: string;
-  displayName: string;
-  city: string;
-  region: string;
-  ageGroup: TeamStandingsAgeGroup;
-  gender: TeamStandingsGender;
-  leagueId: string;
-  leagueName: string;
-  seasonId: string;
-  seasonName: string;
-  seasonYear: number | null;
-  gamesPlayed: number;
-  wins: number;
-  losses: number;
-  pointsFor: number;
-  pointsAgainst: number;
-  pointDifferential: number;
-  winPercentage: number;
-  rank: number;
-};
-
-export type TeamStandingsFilters = {
-  ageGroups: TeamStandingsAgeGroup[];
-  genders: TeamStandingsGender[];
-  leagues: Array<{ id: string; name: string }>;
-  seasons: Array<{ id: string; name: string; leagueId: string; leagueName: string; seasonYear: number | null }>;
-  default: {
-    ageGroup: TeamStandingsAgeGroup;
-    gender: TeamStandingsGender;
-    leagueId: string;
-    seasonId: string;
-  } | null;
-};
-
-export type TeamStandingsData = {
-  rows: TeamStandingRow[];
-  filters: TeamStandingsFilters;
-};
+export type {
+  TeamStandingsAgeGroup,
+  TeamStandingsData,
+  TeamStandingsFilters,
+  TeamStandingsGender,
+  TeamStandingRow,
+} from "@/lib/team-rankings-types";
 
 type TeamBucket = Omit<TeamStandingRow, "pointDifferential" | "winPercentage" | "rank">;
 
@@ -138,9 +108,7 @@ export async function getDynamicTeamStandings(): Promise<TeamStandingsData> {
     const ageGroup = toPublicAgeGroup(game.season.league.ageGroup);
     const scope = competitionScope(game);
     const normalizedLeagueName = normalizeCompetitionDisplayName(game.season.league.name);
-    const identityKey = isPybcCompetitionName(normalizedLeagueName)
-      ? sourceTeam.programId ?? sourceTeam.id
-      : sourceTeam.id;
+    const identityKey = sourceTeam.programId ?? sourceTeam.id;
     const key = `${scope.leagueId}:${scope.seasonId}:${gender}:${identityKey}`;
     const existing = buckets.get(key);
     if (existing) return existing;
@@ -148,6 +116,7 @@ export async function getDynamicTeamStandings(): Promise<TeamStandingsData> {
     const next: TeamBucket = {
       id: key,
       teamId: sourceTeam.id,
+      programId: sourceTeam.programId,
       internalTeamName: sourceTeam.name,
       displayName: publicTeamDisplayName(sourceTeam.name),
       city: sourceTeam.city ?? "Not listed",
@@ -206,8 +175,13 @@ export async function getDynamicTeamStandings(): Promise<TeamStandingsData> {
     ?? rows[0]
     ?? null;
 
+  const lastUpdated = games.length
+    ? new Date(Math.max(...games.map((game) => new Date(game.gameDate).getTime()))).toISOString()
+    : null;
+
   return {
     rows,
+    lastUpdated,
     filters: {
       ageGroups: Array.from(new Set(rows.map((row) => row.ageGroup))).sort() as TeamStandingsAgeGroup[],
       genders: Array.from(new Set(rows.map((row) => row.gender))).sort() as TeamStandingsGender[],
@@ -254,9 +228,10 @@ export function getLeagueStandingsRows(
 
   const byTeam = new Map<string, TeamStandingRow>();
   for (const row of candidates) {
-    const existing = byTeam.get(row.teamId);
+    const key = row.programId ?? row.teamId;
+    const existing = byTeam.get(key);
     if (!existing || row.gamesPlayed > existing.gamesPlayed) {
-      byTeam.set(row.teamId, row);
+      byTeam.set(key, row);
     }
   }
 

@@ -1,0 +1,422 @@
+{
+  "generatedAt": "2026-06-18T08:00:46.988Z",
+  "mode": "read-only-validation",
+  "mandatory": {
+    "allLimboResolved": true,
+    "limboRemaining": 0,
+    "projectedCount": 9,
+    "xyrielOnU16": true,
+    "xyrielU16Rating": 84.13,
+    "xyrielU16InV1Range": true,
+    "xyrielNotOnU19Public": true,
+    "xyrielU19Hidden": true,
+    "xyrielU16PublicAllowed": true,
+    "u19BoysPopulation": 493,
+    "unknownDobU19BoysRatings": 347,
+    "vnextNotProductionVisible": true,
+    "gpsRowsUnchanged": true
+  },
+  "limboInventory": [],
+  "projectedRows": [
+    {
+      "displayName": "Xyriel Macahipay",
+      "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+      "ageGroup": "U16",
+      "adjustedRating": 84.13,
+      "starRating": 4,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Francel Flores",
+      "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+      "ageGroup": "U16",
+      "adjustedRating": 69,
+      "starRating": 2,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Keefe Iledan",
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U16",
+      "adjustedRating": 68.17,
+      "starRating": 2,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Nickson Cabañero",
+      "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+      "ageGroup": "U16",
+      "adjustedRating": 41.8,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Denden Enriquez",
+      "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+      "ageGroup": "U16",
+      "adjustedRating": 38.38,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Sam Villaruel",
+      "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+      "ageGroup": "U16",
+      "adjustedRating": 35.83,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Brian Orca Jr.",
+      "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+      "ageGroup": "U16",
+      "adjustedRating": 30.32,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "Marvic Mesina",
+      "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+      "ageGroup": "U16",
+      "adjustedRating": 30.26,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "displayName": "John Restificar",
+      "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+      "ageGroup": "U16",
+      "adjustedRating": 27.86,
+      "starRating": 1,
+      "ratingBasis": "PROJECTED_V1"
+    }
+  ],
+  "boardCounts": {
+    "u19BoysV1Production": 493,
+    "u16BoysV1Production": 262,
+    "u16BoysPublicVisible": 123,
+    "u19BoysPublicVisible": 237
+  },
+  "top10U16": [
+    {
+      "rank": 1,
+      "playerId": "bc45c007-960f-4c93-8cc7-ab57201a1347",
+      "displayName": "Goodluck Okebata",
+      "rating": 96.58,
+      "stars": 5,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 4,
+      "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+      "displayName": "Prince Cariño",
+      "rating": 92.5,
+      "stars": 5,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 5,
+      "playerId": "318a9aed-4889-40b0-b084-05404ff55520",
+      "displayName": "Akhiro Franz Reynon",
+      "rating": 90.09,
+      "stars": 5,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 6,
+      "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+      "displayName": "Moussa Diakite",
+      "rating": 89.91,
+      "stars": 4,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 9,
+      "playerId": "f341775e-dff0-4ea0-9f2d-1b6ac3ff028a",
+      "displayName": "Fran Flores",
+      "rating": 88.11,
+      "stars": 4,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 11,
+      "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+      "displayName": "Xyriel Macahipay",
+      "rating": 84.13,
+      "stars": 4,
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "rank": 13,
+      "playerId": "77f56cb5-a29f-4c91-9b64-05a074151743",
+      "displayName": "Dwyne Enriquez",
+      "rating": 83.14,
+      "stars": 4,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 16,
+      "playerId": "484ff142-89b3-4752-91b4-d03d79df742e",
+      "displayName": "Keefy Iledan",
+      "rating": 82.19,
+      "stars": 4,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 17,
+      "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+      "displayName": "Sky Jazul",
+      "rating": 81.13,
+      "stars": 4,
+      "ratingBasis": "DIRECT"
+    },
+    {
+      "rank": 18,
+      "playerId": "96a6d92f-5bb3-46d1-9945-4db7a7e10349",
+      "displayName": "CJ Tabbuga",
+      "rating": 80.41,
+      "stars": 4,
+      "ratingBasis": "DIRECT"
+    }
+  ],
+  "top10U19": [
+    {
+      "rank": 1,
+      "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+      "displayName": "Jude Eriobu",
+      "rating": 98.33,
+      "stars": 5
+    },
+    {
+      "rank": 3,
+      "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+      "displayName": "Lucas Kaw",
+      "rating": 93.98,
+      "stars": 5
+    },
+    {
+      "rank": 4,
+      "playerId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+      "displayName": "Yuan Ramirez",
+      "rating": 93.61,
+      "stars": 5
+    },
+    {
+      "rank": 5,
+      "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+      "displayName": "Josef Calo-oy",
+      "rating": 93.1,
+      "stars": 5
+    },
+    {
+      "rank": 8,
+      "playerId": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+      "displayName": "Joshua Chua",
+      "rating": 89.58,
+      "stars": 4
+    },
+    {
+      "rank": 9,
+      "playerId": "483a768a-4853-4d53-80fe-fd206523d2cd",
+      "displayName": "Allen Te",
+      "rating": 89.26,
+      "stars": 4
+    },
+    {
+      "rank": 12,
+      "playerId": "f0b248fe-d417-4628-9807-9c84c94c3e78",
+      "displayName": "Steven Creus",
+      "rating": 88.41,
+      "stars": 4
+    },
+    {
+      "rank": 18,
+      "playerId": "991f148c-3273-4c07-8b54-02a79be96e25",
+      "displayName": "Joaquin Escudero",
+      "rating": 86.85,
+      "stars": 4
+    },
+    {
+      "rank": 19,
+      "playerId": "e3c2f382-6279-40df-9d0a-b0bb808a3a4f",
+      "displayName": "Jetlee Melano",
+      "rating": 86.36,
+      "stars": 4
+    },
+    {
+      "rank": 21,
+      "playerId": "daa9216f-a9f8-4e8c-bae9-bd08bab3881e",
+      "displayName": "Christian Pedarce",
+      "rating": 84.75,
+      "stars": 4
+    }
+  ],
+  "starBandProjected": [
+    {
+      "displayName": "Xyriel Macahipay",
+      "rating": 84.13,
+      "stars": 4,
+      "impliedBand": 4
+    },
+    {
+      "displayName": "Francel Flores",
+      "rating": 69,
+      "stars": 2,
+      "impliedBand": 2
+    },
+    {
+      "displayName": "Keefe Iledan",
+      "rating": 68.17,
+      "stars": 2,
+      "impliedBand": 2
+    },
+    {
+      "displayName": "Nickson Cabañero",
+      "rating": 41.8,
+      "stars": 1,
+      "impliedBand": 1
+    },
+    {
+      "displayName": "Denden Enriquez",
+      "rating": 38.38,
+      "stars": 1,
+      "impliedBand": 1
+    },
+    {
+      "displayName": "Sam Villaruel",
+      "rating": 35.83,
+      "stars": 1,
+      "impliedBand": 1
+    },
+    {
+      "displayName": "Brian Orca Jr.",
+      "rating": 30.32,
+      "stars": 1,
+      "impliedBand": 1
+    },
+    {
+      "displayName": "Marvic Mesina",
+      "rating": 30.26,
+      "stars": 1,
+      "impliedBand": 1
+    },
+    {
+      "displayName": "John Restificar",
+      "rating": 27.86,
+      "stars": 1,
+      "impliedBand": 1
+    }
+  ],
+  "limboChecks": [
+    {
+      "displayName": "Xyriel Macahipay",
+      "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+      "homeBoard": "U16",
+      "adjustedRating": 84.13,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 11
+    },
+    {
+      "displayName": "Francel Flores",
+      "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+      "homeBoard": "U16",
+      "adjustedRating": 69,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 52
+    },
+    {
+      "displayName": "Keefe Iledan",
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "homeBoard": "U16",
+      "adjustedRating": 68.17,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 55
+    },
+    {
+      "displayName": "Nickson Cabañero",
+      "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+      "homeBoard": "U16",
+      "adjustedRating": 41.8,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 142
+    },
+    {
+      "displayName": "Denden Enriquez",
+      "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+      "homeBoard": "U16",
+      "adjustedRating": 38.38,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 164
+    },
+    {
+      "displayName": "Sam Villaruel",
+      "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+      "homeBoard": "U16",
+      "adjustedRating": 35.83,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": false,
+      "publicRank": null
+    },
+    {
+      "displayName": "Brian Orca Jr.",
+      "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+      "homeBoard": "U16",
+      "adjustedRating": 30.32,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 203
+    },
+    {
+      "displayName": "Marvic Mesina",
+      "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+      "homeBoard": "U16",
+      "adjustedRating": 30.26,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 204
+    },
+    {
+      "displayName": "John Restificar",
+      "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+      "homeBoard": "U16",
+      "adjustedRating": 27.86,
+      "ratingBasis": "PROJECTED_V1",
+      "visibleOnHomeBoard": true,
+      "publicRank": 219
+    }
+  ],
+  "xyrielRatings": [
+    {
+      "ageGroup": "U16",
+      "adjustedRating": "84.13",
+      "policyVersionId": "formula-v1-production",
+      "ratingBasis": "PROJECTED_V1"
+    },
+    {
+      "ageGroup": "U16",
+      "adjustedRating": "89.37",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "ratingBasis": null
+    },
+    {
+      "ageGroup": "U19",
+      "adjustedRating": "84.13",
+      "policyVersionId": "formula-v1-production",
+      "ratingBasis": null
+    }
+  ],
+  "regression": {
+    "gpsRowCount": 9391,
+    "vnextRowCount": 111,
+    "note": "vNext rows may exist in DB but must not be production-visible via PLAYER_RATING_FORMULA_MODE=production-v1"
+  },
+  "recommendation": {
+    "code": "A",
+    "label": "Ready for production deployment"
+  }
+}

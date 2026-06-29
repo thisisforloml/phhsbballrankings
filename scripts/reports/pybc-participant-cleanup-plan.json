@@ -1,0 +1,946 @@
+{
+  "generatedAt": "2026-05-27T03:09:03.097Z",
+  "mode": "dry-run",
+  "reportPath": "C:\\Users\\CodexSandboxOffline\\.codex\\.sandbox\\cwd\\dadfa68896c167cf\\scripts\\reports\\pybc-participant-cleanup-plan.json",
+  "guardrails": [
+    "Read-only cleanup plan; no database writes were performed.",
+    "Starts from active official PYBC 15U game evidence plus expected PYBC participant Program records.",
+    "PYBC 15U is league/competition context, not a Program.",
+    "SBU and JPM-TEC San Beda are kept separate unless explicitly approved.",
+    "No execute mode is implemented by this script.",
+    "No deletes, merges, rating recomputes, snapshot changes, imports, or publish actions are performed."
+  ],
+  "summary": {
+    "pybcGamesInspected": 28,
+    "participantsInspected": 8,
+    "readyForApproval": 5,
+    "needsReview": 3,
+    "participantsWithDuplicatePrograms": 2,
+    "participantsWithDuplicateTeams": 8,
+    "proposedProgramReassignments": 2,
+    "proposedTeamReferenceReassignments": 9
+  },
+  "participants": [
+    {
+      "participantDisplayName": "JMTG Medical Trading Infinite",
+      "normalizedIdentity": "JMTG MEDICAL TRADING INFINITE",
+      "classification": "READY_FOR_APPROVAL",
+      "reviewReasons": [],
+      "programRecords": [
+        {
+          "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+          "fullName": "JMTG Medical Trading Infinite",
+          "abbreviation": "JMTG Medical Trading Infinite",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-008",
+            "G-2025-013",
+            "G-2025-015",
+            "G-2025-019",
+            "G-2025-020",
+            "G-2025-024",
+            "G-2025-026"
+          ],
+          "gameStatCount": 92,
+          "linkedTeams": [
+            {
+              "teamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+              "rawTeamName": "JMTG Medical Trading Infinite",
+              "cleanedTeamDisplayName": "JMTG Medical Trading Infinite",
+              "gameRefs": [
+                "G-2025-008",
+                "G-2025-013",
+                "G-2025-015",
+                "G-2025-019",
+                "G-2025-020",
+                "G-2025-024",
+                "G-2025-026"
+              ],
+              "gameStatCount": 92
+            },
+            {
+              "teamId": "c17caa40-d059-4348-ad63-3b31f5b35b80",
+              "rawTeamName": "JMTG Medical Trading Infinite U16 Boys",
+              "cleanedTeamDisplayName": "JMTG Medical Trading Infinite",
+              "gameRefs": [],
+              "gameStatCount": 0
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+          "rawTeamName": "JMTG Medical Trading Infinite",
+          "cleanedTeamDisplayName": "JMTG Medical Trading Infinite",
+          "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+          "programName": "JMTG Medical Trading Infinite",
+          "gameRefs": [
+            "G-2025-008",
+            "G-2025-013",
+            "G-2025-015",
+            "G-2025-019",
+            "G-2025-020",
+            "G-2025-024",
+            "G-2025-026"
+          ],
+          "gameStatCount": 92
+        },
+        {
+          "teamId": "c17caa40-d059-4348-ad63-3b31f5b35b80",
+          "rawTeamName": "JMTG Medical Trading Infinite U16 Boys",
+          "cleanedTeamDisplayName": "JMTG Medical Trading Infinite",
+          "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+          "programName": "JMTG Medical Trading Infinite",
+          "gameRefs": [],
+          "gameStatCount": 0
+        }
+      ],
+      "hasDuplicatePrograms": false,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+        "fullName": "JMTG Medical Trading Infinite"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+        "rawTeamName": "JMTG Medical Trading Infinite",
+        "cleanedTeamDisplayName": "JMTG Medical Trading Infinite",
+        "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+        "programName": "JMTG Medical Trading Infinite"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "c17caa40-d059-4348-ad63-3b31f5b35b80",
+          "fromTeamName": "JMTG Medical Trading Infinite U16 Boys",
+          "toTeamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+          "toTeamName": "JMTG Medical Trading Infinite",
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "LEV Construction Full Potential",
+      "normalizedIdentity": "LEV CONSTRUCTION FULL POTENTIAL",
+      "classification": "NEEDS_REVIEW",
+      "reviewReasons": [
+        "Participant has both duplicate Programs and duplicate Teams; repair order needs manual confirmation."
+      ],
+      "programRecords": [
+        {
+          "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+          "fullName": "Lev Construction Full Potential",
+          "abbreviation": "Lev Construction Full Potential",
+          "type": "CLUB",
+          "aliases": [
+            "Lev Construction Full Potential",
+            "LEV CONSTRUCTION FULL POTENTIAL"
+          ],
+          "gameRefs": [
+            "G-2025-002",
+            "G-2025-004",
+            "G-2025-006",
+            "G-2025-010",
+            "G-2025-017",
+            "G-2025-020",
+            "G-2025-025"
+          ],
+          "gameStatCount": 73,
+          "linkedTeams": [
+            {
+              "teamId": "fba904cf-34c0-46af-9a23-dd701a32a2e2",
+              "rawTeamName": "Lev Construction Full Potential U16 Boys",
+              "cleanedTeamDisplayName": "Lev Construction Full Potential",
+              "gameRefs": [],
+              "gameStatCount": 0
+            },
+            {
+              "teamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+              "rawTeamName": "LEV Construction Full Potential",
+              "cleanedTeamDisplayName": "LEV Construction Full Potential",
+              "gameRefs": [
+                "G-2025-002",
+                "G-2025-004",
+                "G-2025-006",
+                "G-2025-010",
+                "G-2025-017",
+                "G-2025-020",
+                "G-2025-025"
+              ],
+              "gameStatCount": 73
+            }
+          ]
+        },
+        {
+          "programId": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+          "fullName": "LEV Construction Full Potential",
+          "abbreviation": "LEV Construction Full Potential",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [],
+          "gameStatCount": 0,
+          "linkedTeams": []
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "fba904cf-34c0-46af-9a23-dd701a32a2e2",
+          "rawTeamName": "Lev Construction Full Potential U16 Boys",
+          "cleanedTeamDisplayName": "Lev Construction Full Potential",
+          "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+          "programName": "Lev Construction Full Potential",
+          "gameRefs": [],
+          "gameStatCount": 0
+        },
+        {
+          "teamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+          "rawTeamName": "LEV Construction Full Potential",
+          "cleanedTeamDisplayName": "LEV Construction Full Potential",
+          "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+          "programName": "Lev Construction Full Potential",
+          "gameRefs": [
+            "G-2025-002",
+            "G-2025-004",
+            "G-2025-006",
+            "G-2025-010",
+            "G-2025-017",
+            "G-2025-020",
+            "G-2025-025"
+          ],
+          "gameStatCount": 73
+        }
+      ],
+      "hasDuplicatePrograms": true,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+        "fullName": "Lev Construction Full Potential"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+        "rawTeamName": "LEV Construction Full Potential",
+        "cleanedTeamDisplayName": "LEV Construction Full Potential",
+        "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+        "programName": "Lev Construction Full Potential"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_PROGRAM",
+          "fromProgramId": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+          "fromProgramName": "LEV Construction Full Potential",
+          "toProgramId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+          "toProgramName": "Lev Construction Full Potential",
+          "affectedTeamIds": [],
+          "affectedTeamNames": [],
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        },
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "fba904cf-34c0-46af-9a23-dd701a32a2e2",
+          "fromTeamName": "Lev Construction Full Potential U16 Boys",
+          "toTeamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+          "toTeamName": "LEV Construction Full Potential",
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "Migrafix Doc Boleros",
+      "normalizedIdentity": "MIGRAFIX DOC BOLEROS",
+      "classification": "READY_FOR_APPROVAL",
+      "reviewReasons": [],
+      "programRecords": [
+        {
+          "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+          "fullName": "Migrafix Doc Boleros",
+          "abbreviation": "Migrafix Doc Boleros",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-003",
+            "G-2025-006",
+            "G-2025-009",
+            "G-2025-013",
+            "G-2025-016",
+            "G-2025-018",
+            "G-2025-023"
+          ],
+          "gameStatCount": 88,
+          "linkedTeams": [
+            {
+              "teamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+              "rawTeamName": "Migrafix Doc Boleros",
+              "cleanedTeamDisplayName": "Migrafix Doc Boleros",
+              "gameRefs": [
+                "G-2025-003",
+                "G-2025-006",
+                "G-2025-009",
+                "G-2025-013",
+                "G-2025-016",
+                "G-2025-018",
+                "G-2025-023"
+              ],
+              "gameStatCount": 88
+            },
+            {
+              "teamId": "c66313bf-145d-4486-a5a0-a207b1c4aa94",
+              "rawTeamName": "Migrafix Doc Boleros U16 Boys",
+              "cleanedTeamDisplayName": "Migrafix Doc Boleros",
+              "gameRefs": [],
+              "gameStatCount": 0
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+          "rawTeamName": "Migrafix Doc Boleros",
+          "cleanedTeamDisplayName": "Migrafix Doc Boleros",
+          "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+          "programName": "Migrafix Doc Boleros",
+          "gameRefs": [
+            "G-2025-003",
+            "G-2025-006",
+            "G-2025-009",
+            "G-2025-013",
+            "G-2025-016",
+            "G-2025-018",
+            "G-2025-023"
+          ],
+          "gameStatCount": 88
+        },
+        {
+          "teamId": "c66313bf-145d-4486-a5a0-a207b1c4aa94",
+          "rawTeamName": "Migrafix Doc Boleros U16 Boys",
+          "cleanedTeamDisplayName": "Migrafix Doc Boleros",
+          "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+          "programName": "Migrafix Doc Boleros",
+          "gameRefs": [],
+          "gameStatCount": 0
+        }
+      ],
+      "hasDuplicatePrograms": false,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+        "fullName": "Migrafix Doc Boleros"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+        "rawTeamName": "Migrafix Doc Boleros",
+        "cleanedTeamDisplayName": "Migrafix Doc Boleros",
+        "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+        "programName": "Migrafix Doc Boleros"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "c66313bf-145d-4486-a5a0-a207b1c4aa94",
+          "fromTeamName": "Migrafix Doc Boleros U16 Boys",
+          "toTeamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+          "toTeamName": "Migrafix Doc Boleros",
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "Migueluz Trading Moderno",
+      "normalizedIdentity": "MIGUELUZ TRADING MODERNO",
+      "classification": "READY_FOR_APPROVAL",
+      "reviewReasons": [],
+      "programRecords": [
+        {
+          "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+          "fullName": "Migueluz Trading Moderno",
+          "abbreviation": "Migueluz Trading Moderno",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-002",
+            "G-2025-005",
+            "G-2025-012",
+            "G-2025-015",
+            "G-2025-018",
+            "G-2025-022",
+            "G-2025-028"
+          ],
+          "gameStatCount": 83,
+          "linkedTeams": [
+            {
+              "teamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+              "rawTeamName": "Migueluz Trading Moderno",
+              "cleanedTeamDisplayName": "Migueluz Trading Moderno",
+              "gameRefs": [
+                "G-2025-002",
+                "G-2025-005",
+                "G-2025-012",
+                "G-2025-015",
+                "G-2025-018",
+                "G-2025-022",
+                "G-2025-028"
+              ],
+              "gameStatCount": 83
+            },
+            {
+              "teamId": "efcab0cf-4a7e-4c2c-a010-98a13e0beecb",
+              "rawTeamName": "Migueluz Trading Moderno U16 Boys",
+              "cleanedTeamDisplayName": "Migueluz Trading Moderno",
+              "gameRefs": [],
+              "gameStatCount": 0
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+          "rawTeamName": "Migueluz Trading Moderno",
+          "cleanedTeamDisplayName": "Migueluz Trading Moderno",
+          "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+          "programName": "Migueluz Trading Moderno",
+          "gameRefs": [
+            "G-2025-002",
+            "G-2025-005",
+            "G-2025-012",
+            "G-2025-015",
+            "G-2025-018",
+            "G-2025-022",
+            "G-2025-028"
+          ],
+          "gameStatCount": 83
+        },
+        {
+          "teamId": "efcab0cf-4a7e-4c2c-a010-98a13e0beecb",
+          "rawTeamName": "Migueluz Trading Moderno U16 Boys",
+          "cleanedTeamDisplayName": "Migueluz Trading Moderno",
+          "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+          "programName": "Migueluz Trading Moderno",
+          "gameRefs": [],
+          "gameStatCount": 0
+        }
+      ],
+      "hasDuplicatePrograms": false,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+        "fullName": "Migueluz Trading Moderno"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+        "rawTeamName": "Migueluz Trading Moderno",
+        "cleanedTeamDisplayName": "Migueluz Trading Moderno",
+        "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+        "programName": "Migueluz Trading Moderno"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "efcab0cf-4a7e-4c2c-a010-98a13e0beecb",
+          "fromTeamName": "Migueluz Trading Moderno U16 Boys",
+          "toTeamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+          "toTeamName": "Migueluz Trading Moderno",
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "Prime Ascencion Medical Supplies San Anton",
+      "normalizedIdentity": "PRIME ASCENCION MEDICAL SUPPLIES SAN ANTON",
+      "classification": "READY_FOR_APPROVAL",
+      "reviewReasons": [],
+      "programRecords": [
+        {
+          "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+          "fullName": "Prime Ascencion Medical Supplies San Anton",
+          "abbreviation": "Prime Ascencion Medical Supplies San Anton",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-003",
+            "G-2025-004",
+            "G-2025-011",
+            "G-2025-012",
+            "G-2025-014",
+            "G-2025-026",
+            "G-2025-027"
+          ],
+          "gameStatCount": 83,
+          "linkedTeams": [
+            {
+              "teamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+              "rawTeamName": "Prime Ascencion Medical Supplies San Anton",
+              "cleanedTeamDisplayName": "Prime Ascencion Medical Supplies San Anton",
+              "gameRefs": [
+                "G-2025-003",
+                "G-2025-004",
+                "G-2025-011",
+                "G-2025-012",
+                "G-2025-014",
+                "G-2025-026",
+                "G-2025-027"
+              ],
+              "gameStatCount": 83
+            },
+            {
+              "teamId": "cfcaa1ea-9166-458b-9140-fd8df2d7507e",
+              "rawTeamName": "Prime Ascencion Medical Supplies San Anton U16 Boys",
+              "cleanedTeamDisplayName": "Prime Ascencion Medical Supplies San Anton",
+              "gameRefs": [],
+              "gameStatCount": 0
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+          "rawTeamName": "Prime Ascencion Medical Supplies San Anton",
+          "cleanedTeamDisplayName": "Prime Ascencion Medical Supplies San Anton",
+          "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+          "programName": "Prime Ascencion Medical Supplies San Anton",
+          "gameRefs": [
+            "G-2025-003",
+            "G-2025-004",
+            "G-2025-011",
+            "G-2025-012",
+            "G-2025-014",
+            "G-2025-026",
+            "G-2025-027"
+          ],
+          "gameStatCount": 83
+        },
+        {
+          "teamId": "cfcaa1ea-9166-458b-9140-fd8df2d7507e",
+          "rawTeamName": "Prime Ascencion Medical Supplies San Anton U16 Boys",
+          "cleanedTeamDisplayName": "Prime Ascencion Medical Supplies San Anton",
+          "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+          "programName": "Prime Ascencion Medical Supplies San Anton",
+          "gameRefs": [],
+          "gameStatCount": 0
+        }
+      ],
+      "hasDuplicatePrograms": false,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+        "fullName": "Prime Ascencion Medical Supplies San Anton"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+        "rawTeamName": "Prime Ascencion Medical Supplies San Anton",
+        "cleanedTeamDisplayName": "Prime Ascencion Medical Supplies San Anton",
+        "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+        "programName": "Prime Ascencion Medical Supplies San Anton"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "cfcaa1ea-9166-458b-9140-fd8df2d7507e",
+          "fromTeamName": "Prime Ascencion Medical Supplies San Anton U16 Boys",
+          "toTeamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+          "toTeamName": "Prime Ascencion Medical Supplies San Anton",
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "JPM-TEC San Beda",
+      "normalizedIdentity": "JPM-TEC SAN BEDA",
+      "classification": "NEEDS_REVIEW",
+      "reviewReasons": [
+        "A Team named SBU is linked under JPM-TEC San Beda; confirm the admin-edited identity before repairing Team references."
+      ],
+      "programRecords": [
+        {
+          "programId": "65908829-cfda-4053-821c-47435a45e33e",
+          "fullName": "JPM-TEC San Beda",
+          "abbreviation": "JPM-TEC San Beda",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-007",
+            "G-2025-010",
+            "G-2025-016",
+            "G-2025-019",
+            "G-2025-021",
+            "G-2025-022",
+            "G-2025-027"
+          ],
+          "gameStatCount": 98,
+          "linkedTeams": [
+            {
+              "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+              "rawTeamName": "JPM-TEC San Beda",
+              "cleanedTeamDisplayName": "JPM-TEC San Beda",
+              "gameRefs": [
+                "G-2025-007",
+                "G-2025-010"
+              ],
+              "gameStatCount": 29
+            },
+            {
+              "teamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+              "rawTeamName": "SBU U16 Boys",
+              "cleanedTeamDisplayName": "SBU",
+              "gameRefs": [
+                "G-2025-016",
+                "G-2025-019",
+                "G-2025-021",
+                "G-2025-022",
+                "G-2025-027"
+              ],
+              "gameStatCount": 69
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "rawTeamName": "JPM-TEC San Beda",
+          "cleanedTeamDisplayName": "JPM-TEC San Beda",
+          "programId": "65908829-cfda-4053-821c-47435a45e33e",
+          "programName": "JPM-TEC San Beda",
+          "gameRefs": [
+            "G-2025-007",
+            "G-2025-010"
+          ],
+          "gameStatCount": 29
+        },
+        {
+          "teamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+          "rawTeamName": "SBU U16 Boys",
+          "cleanedTeamDisplayName": "SBU",
+          "programId": "65908829-cfda-4053-821c-47435a45e33e",
+          "programName": "JPM-TEC San Beda",
+          "gameRefs": [
+            "G-2025-016",
+            "G-2025-019",
+            "G-2025-021",
+            "G-2025-022",
+            "G-2025-027"
+          ],
+          "gameStatCount": 69
+        }
+      ],
+      "hasDuplicatePrograms": false,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "65908829-cfda-4053-821c-47435a45e33e",
+        "fullName": "JPM-TEC San Beda"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+        "rawTeamName": "JPM-TEC San Beda",
+        "cleanedTeamDisplayName": "JPM-TEC San Beda",
+        "programId": "65908829-cfda-4053-821c-47435a45e33e",
+        "programName": "JPM-TEC San Beda"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+          "fromTeamName": "SBU U16 Boys",
+          "toTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+          "toTeamName": "JPM-TEC San Beda",
+          "gameRefs": [
+            "G-2025-016",
+            "G-2025-019",
+            "G-2025-021",
+            "G-2025-022",
+            "G-2025-027"
+          ],
+          "gameStatsCovered": 69
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "Smile 360 Bullies",
+      "normalizedIdentity": "SMILE 360 BULLIES",
+      "classification": "READY_FOR_APPROVAL",
+      "reviewReasons": [],
+      "programRecords": [
+        {
+          "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+          "fullName": "Smile 360 Bullies",
+          "abbreviation": null,
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-005",
+            "G-2025-007",
+            "G-2025-009",
+            "G-2025-014",
+            "G-2025-024",
+            "G-2025-025",
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "gameStatCount": 87,
+          "linkedTeams": [
+            {
+              "teamId": "b961adec-77e3-4b3b-ab2e-d1868644a633",
+              "rawTeamName": "SMILE 360 BULLIES U16 Boys",
+              "cleanedTeamDisplayName": "Smile 360 Bullies",
+              "gameRefs": [],
+              "gameStatCount": 0
+            },
+            {
+              "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+              "rawTeamName": "Smile 360 Bullies",
+              "cleanedTeamDisplayName": "Smile 360 Bullies",
+              "gameRefs": [
+                "G-2025-005",
+                "G-2025-007",
+                "G-2025-009",
+                "G-2025-014",
+                "G-2025-024",
+                "G-2025-025",
+                "PYBC-DRAFT-4864a2c8"
+              ],
+              "gameStatCount": 87
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "b961adec-77e3-4b3b-ab2e-d1868644a633",
+          "rawTeamName": "SMILE 360 BULLIES U16 Boys",
+          "cleanedTeamDisplayName": "Smile 360 Bullies",
+          "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+          "programName": "Smile 360 Bullies",
+          "gameRefs": [],
+          "gameStatCount": 0
+        },
+        {
+          "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "rawTeamName": "Smile 360 Bullies",
+          "cleanedTeamDisplayName": "Smile 360 Bullies",
+          "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+          "programName": "Smile 360 Bullies",
+          "gameRefs": [
+            "G-2025-005",
+            "G-2025-007",
+            "G-2025-009",
+            "G-2025-014",
+            "G-2025-024",
+            "G-2025-025",
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "gameStatCount": 87
+        }
+      ],
+      "hasDuplicatePrograms": false,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+        "fullName": "Smile 360 Bullies"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "rawTeamName": "Smile 360 Bullies",
+        "cleanedTeamDisplayName": "Smile 360 Bullies",
+        "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+        "programName": "Smile 360 Bullies"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "b961adec-77e3-4b3b-ab2e-d1868644a633",
+          "fromTeamName": "SMILE 360 BULLIES U16 Boys",
+          "toTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "toTeamName": "Smile 360 Bullies",
+          "gameRefs": [],
+          "gameStatsCovered": 0
+        }
+      ]
+    },
+    {
+      "participantDisplayName": "San Pedro Spartans",
+      "normalizedIdentity": "SAN PEDRO SPARTANS",
+      "classification": "NEEDS_REVIEW",
+      "reviewReasons": [
+        "Participant has both duplicate Programs and duplicate Teams; repair order needs manual confirmation."
+      ],
+      "programRecords": [
+        {
+          "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+          "fullName": "San Pedro Spartans",
+          "abbreviation": null,
+          "type": "CLUB",
+          "aliases": [
+            "San Beda College Alabang Spartans"
+          ],
+          "gameRefs": [
+            "G-2025-011",
+            "G-2025-017",
+            "G-2025-021",
+            "G-2025-023",
+            "G-2025-028",
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "gameStatCount": 71,
+          "linkedTeams": [
+            {
+              "teamId": "8b564cd2-c365-47d6-b0e6-9c461c1454c3",
+              "rawTeamName": "San Pedro Spartans U16 Boys",
+              "cleanedTeamDisplayName": "San Pedro Spartans",
+              "gameRefs": [
+                "G-2025-011",
+                "G-2025-017",
+                "G-2025-021",
+                "G-2025-023",
+                "G-2025-028"
+              ],
+              "gameStatCount": 56
+            },
+            {
+              "teamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+              "rawTeamName": "San Pedro Spartans",
+              "cleanedTeamDisplayName": "San Pedro Spartans",
+              "gameRefs": [
+                "PYBC-DRAFT-4864a2c8"
+              ],
+              "gameStatCount": 15
+            }
+          ]
+        },
+        {
+          "programId": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+          "fullName": "San Pedro Spartans",
+          "abbreviation": "San Pedro Spartans",
+          "type": "CLUB",
+          "aliases": [],
+          "gameRefs": [
+            "G-2025-008"
+          ],
+          "gameStatCount": 15,
+          "linkedTeams": [
+            {
+              "teamId": "667a8587-b134-4fb6-8ec9-9a8487e02f02",
+              "rawTeamName": "SPARTANS U16 Boys",
+              "cleanedTeamDisplayName": "San Pedro Spartans",
+              "gameRefs": [
+                "G-2025-008"
+              ],
+              "gameStatCount": 15
+            }
+          ]
+        }
+      ],
+      "teamRecords": [
+        {
+          "teamId": "8b564cd2-c365-47d6-b0e6-9c461c1454c3",
+          "rawTeamName": "San Pedro Spartans U16 Boys",
+          "cleanedTeamDisplayName": "San Pedro Spartans",
+          "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+          "programName": "San Pedro Spartans",
+          "gameRefs": [
+            "G-2025-011",
+            "G-2025-017",
+            "G-2025-021",
+            "G-2025-023",
+            "G-2025-028"
+          ],
+          "gameStatCount": 56
+        },
+        {
+          "teamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+          "rawTeamName": "San Pedro Spartans",
+          "cleanedTeamDisplayName": "San Pedro Spartans",
+          "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+          "programName": "San Pedro Spartans",
+          "gameRefs": [
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "gameStatCount": 15
+        },
+        {
+          "teamId": "667a8587-b134-4fb6-8ec9-9a8487e02f02",
+          "rawTeamName": "SPARTANS U16 Boys",
+          "cleanedTeamDisplayName": "San Pedro Spartans",
+          "programId": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+          "programName": "San Pedro Spartans",
+          "gameRefs": [
+            "G-2025-008"
+          ],
+          "gameStatCount": 15
+        }
+      ],
+      "hasDuplicatePrograms": true,
+      "hasDuplicateTeams": true,
+      "suggestedCanonicalProgram": {
+        "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+        "fullName": "San Pedro Spartans"
+      },
+      "suggestedCanonicalTeam": {
+        "teamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+        "rawTeamName": "San Pedro Spartans",
+        "cleanedTeamDisplayName": "San Pedro Spartans",
+        "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+        "programName": "San Pedro Spartans"
+      },
+      "proposedRepairSteps": [
+        {
+          "type": "REASSIGN_TEAM_PROGRAM",
+          "fromProgramId": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+          "fromProgramName": "San Pedro Spartans",
+          "toProgramId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+          "toProgramName": "San Pedro Spartans",
+          "affectedTeamIds": [
+            "667a8587-b134-4fb6-8ec9-9a8487e02f02"
+          ],
+          "affectedTeamNames": [
+            "SPARTANS U16 Boys"
+          ],
+          "gameRefs": [
+            "G-2025-008"
+          ],
+          "gameStatsCovered": 15
+        },
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "8b564cd2-c365-47d6-b0e6-9c461c1454c3",
+          "fromTeamName": "San Pedro Spartans U16 Boys",
+          "toTeamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+          "toTeamName": "San Pedro Spartans",
+          "gameRefs": [
+            "G-2025-011",
+            "G-2025-017",
+            "G-2025-021",
+            "G-2025-023",
+            "G-2025-028"
+          ],
+          "gameStatsCovered": 56
+        },
+        {
+          "type": "REASSIGN_TEAM_REFERENCES",
+          "fromTeamId": "667a8587-b134-4fb6-8ec9-9a8487e02f02",
+          "fromTeamName": "SPARTANS U16 Boys",
+          "toTeamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+          "toTeamName": "San Pedro Spartans",
+          "gameRefs": [
+            "G-2025-008"
+          ],
+          "gameStatsCovered": 15
+        }
+      ]
+    }
+  ],
+  "recommendedRepairOrder": [
+    "Approve and run suffix duplicate Team reference repairs for READY_FOR_APPROVAL participants with only duplicate Teams.",
+    "Approve the Lev/LEV Program reassignment before any Team reference cleanup involving LEV.",
+    "Review San Pedro Spartans manually because it has both duplicate Program rows and duplicate Team rows.",
+    "Keep JPM-TEC San Beda separate from SBU unless a future admin mapping explicitly says otherwise.",
+    "After approved repairs, rerun this cleanup plan and refresh Admin Program Management."
+  ]
+}

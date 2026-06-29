@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-06-17T13:40:15.046Z",
+  "mode": "read-only-dry-run",
+  "boardResults": [
+    {
+      "board": "U13:BOYS",
+      "liveEligibleCount": 8,
+      "builtRowCount": 8,
+      "parityOk": true,
+      "ratingDrift": 0,
+      "duplicatePrograms": 0
+    },
+    {
+      "board": "U16:BOYS",
+      "liveEligibleCount": 16,
+      "builtRowCount": 16,
+      "parityOk": true,
+      "ratingDrift": 0,
+      "duplicatePrograms": 0
+    },
+    {
+      "board": "U19:BOYS",
+      "liveEligibleCount": 30,
+      "builtRowCount": 30,
+      "parityOk": true,
+      "ratingDrift": 0,
+      "duplicatePrograms": 0
+    },
+    {
+      "board": "U19:GIRLS",
+      "liveEligibleCount": 2,
+      "builtRowCount": 2,
+      "parityOk": true,
+      "ratingDrift": 0,
+      "duplicatePrograms": 0
+    }
+  ],
+  "checks": [
+    {
+      "id": "V-TR-SN-02",
+      "status": "PASS",
+      "detail": "U13 BOYS: builder row count 8 matches live public board"
+    },
+    {
+      "id": "V-TR-SN-03",
+      "status": "PASS",
+      "detail": "U13 BOYS: ratings/ranks within parity tolerance"
+    },
+    {
+      "id": "V-TR-SN-04",
+      "status": "PASS",
+      "detail": "U13 BOYS: unique program rows"
+    },
+    {
+      "id": "V-TR-SN-02",
+      "status": "PASS",
+      "detail": "U16 BOYS: builder row count 16 matches live public board"
+    },
+    {
+      "id": "V-TR-SN-03",
+      "status": "PASS",
+      "detail": "U16 BOYS: ratings/ranks within parity tolerance"
+    },
+    {
+      "id": "V-TR-SN-04",
+      "status": "PASS",
+      "detail": "U16 BOYS: unique program rows"
+    },
+    {
+      "id": "V-TR-SN-02",
+      "status": "PASS",
+      "detail": "U19 BOYS: builder row count 30 matches live public board"
+    },
+    {
+      "id": "V-TR-SN-03",
+      "status": "PASS",
+      "detail": "U19 BOYS: ratings/ranks within parity tolerance"
+    },
+    {
+      "id": "V-TR-SN-04",
+      "status": "PASS",
+      "detail": "U19 BOYS: unique program rows"
+    },
+    {
+      "id": "V-TR-SN-02",
+      "status": "PASS",
+      "detail": "U19 GIRLS: builder row count 2 matches live public board"
+    },
+    {
+      "id": "V-TR-SN-03",
+      "status": "PASS",
+      "detail": "U19 GIRLS: ratings/ranks within parity tolerance"
+    },
+    {
+      "id": "V-TR-SN-04",
+      "status": "PASS",
+      "detail": "U19 GIRLS: unique program rows"
+    },
+    {
+      "id": "V-TR-SN-05",
+      "status": "PASS",
+      "detail": "Immutability guard: DRAFT rewrite allowed, PUBLISHED blocked"
+    },
+    {
+      "id": "V-TR-SN-06",
+      "status": "PASS",
+      "detail": "Forward-only rollback path: flag off skips writes; 0 published snapshots would be skipped on re-run"
+    }
+  ],
+  "summary": {
+    "pass": 14,
+    "fail": 0,
+    "skip": 0
+  },
+  "rollback": [
+    "TEAM_SNAPSHOT_PUBLISH_ENABLED=false stops all snapshot writes",
+    "DRAFT snapshots can be deleted manually; PUBLISHED rows protected by assertTeamSnapshotMutable",
+    "Published months skipped on regenerate script re-run"
+  ]
+}

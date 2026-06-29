@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-06-18T08:53:17.975Z",
+  "canonicalPlayerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+  "duplicatePlayerId": "484ff142-89b3-4752-91b4-d03d79df742e",
+  "canonicalRatings": [
+    {
+      "id": "21b2a600-c1eb-472b-a8ff-4d5459fe4d6d",
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U16",
+      "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+      "policyVersionId": "formula-v1-production",
+      "observedRating": "68.17",
+      "adjustedRating": "68.17",
+      "verifiedGameCount": 10,
+      "starRating": 2,
+      "ratingBasis": "PROJECTED_V1",
+      "computedAt": "2026-06-18T08:00:45.324Z"
+    },
+    {
+      "id": "6f6c87c6-f017-49ed-984b-ac064aa1c9e8",
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U16",
+      "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+      "policyVersionId": "rating-formula-vnext-shadow-v1",
+      "observedRating": "90.76",
+      "adjustedRating": "79.47",
+      "verifiedGameCount": 10,
+      "starRating": 3,
+      "ratingBasis": null,
+      "computedAt": "2026-06-18T07:32:37.059Z"
+    },
+    {
+      "id": "d909ea27-1a0c-4426-b234-1fc893fa68ff",
+      "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+      "ageGroup": "U19",
+      "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+      "policyVersionId": "formula-v1-production",
+      "observedRating": "68.17",
+      "adjustedRating": "68.17",
+      "verifiedGameCount": 10,
+      "starRating": 2,
+      "ratingBasis": null,
+      "computedAt": "2026-06-17T08:41:22.881Z"
+    }
+  ],
+  "duplicateRatings": [
+    {
+      "id": "2f1994e9-d547-444a-a61d-18046e8f1e73",
+      "playerId": "484ff142-89b3-4752-91b4-d03d79df742e",
+      "ageGroup": "U16",
+      "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+      "policyVersionId": "formula-v1-production",
+      "observedRating": "82.19",
+      "adjustedRating": "82.19",
+      "verifiedGameCount": 15,
+      "starRating": 4,
+      "ratingBasis": null,
+      "computedAt": "2026-06-17T08:41:22.881Z"
+    }
+  ],
+  "canonicalGameStatIds": [
+    "a9dc47f6-fe95-4986-b68f-6374cc252bc4",
+    "328bdf59-53a3-4ff3-8954-81e79a6599ed",
+    "0ab61338-92a6-4169-a010-3d6f06695bc8",
+    "68a9ccde-8b27-47cd-be8c-07588ace00b8",
+    "4ae78468-183d-42da-8dce-96f26922a053",
+    "ea52cfed-abcd-49ab-b58e-b1542268d1b0",
+    "c503b1ae-aeb5-4933-b8ab-f56cab414f1c",
+    "16cf7af2-7969-463e-8358-a3e4c762ba48",
+    "bee65390-7ac1-4ea0-9551-6a1eff639318",
+    "4cc0bc79-f30c-4465-a2a7-8527cf983d30"
+  ],
+  "duplicateGameStatIds": [
+    "5d491b62-550a-40f4-8420-bda546e5da80",
+    "00fff32d-6e09-4739-b43b-c6b94ab46ae9",
+    "d8d6c2ce-96ff-49dd-8e0d-1f0561d25ee1",
+    "f5925d3f-52cd-4aca-86aa-132ee3ddc820",
+    "03f357e6-807b-463b-a8e3-48ae57798dc8",
+    "473e3642-394b-40db-b952-788c916f749a",
+    "89176ba3-fca1-4309-9389-6b9a9455610d",
+    "2b8dcceb-f890-4eb3-9d54-9c52d627a5a7",
+    "da04e988-f980-4515-8960-41beeeca1042",
+    "48675a02-260b-4af2-9076-7faed9bd8f7a",
+    "e64417c0-34dd-4d4c-b734-d3ea5941e40b",
+    "e7d9f953-c12e-4f68-9fd7-180b10173795",
+    "5acc9f46-d6f1-4ff7-9d19-25af0c5f4ca4",
+    "4eb23116-aa24-497a-8082-c4eae4c9af8c",
+    "59d0aa73-ccea-4982-992f-34963b9fd561"
+  ],
+  "duplicateRosterSeasonIds": [
+    "001e94c4-f8a8-4931-87b2-104fb4474d0d"
+  ]
+}

@@ -1,0 +1,778 @@
+{
+  "generatedAt": "2026-06-18T07:09:45.643Z",
+  "mode": "read-only",
+  "productionFormula": "v1",
+  "counts": {
+    "players": 928,
+    "gps": 9391,
+    "playerRatings": 938,
+    "programTeamRatings": 66
+  },
+  "fieldCoverage": {
+    "players": {
+      "total": 928,
+      "withBirthDate": 149,
+      "birthDatePct": 16.1
+    },
+    "withPosition": {
+      "count": 164,
+      "pct": 17.7
+    },
+    "gameStatsWithMinutes": 9391,
+    "gpsWithEfg": 8424,
+    "gpsWithPer": 0,
+    "gpsWithWinShares": 0,
+    "programTeamRatings": 66,
+    "leaguesWithTier": 8
+  },
+  "v1ContextFactors": {
+    "opponentNeutralPct": 100,
+    "teamNeutralPct": 100,
+    "leagueNeutralPct": 100
+  },
+  "finalScoreDistribution": {
+    "count": 9391,
+    "min": 1,
+    "max": 100,
+    "mean": 50.5,
+    "median": 50.5,
+    "stdDev": 28.72
+  },
+  "crossBracket": {
+    "totalCases": 840,
+    "playingUp": 13,
+    "playingDown": 0,
+    "publicLimbo": 9,
+    "samples": [
+      {
+        "playerId": "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+        "displayName": "Nico Koa",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 32,
+        "avgBaseScore": 31.66,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "f986c3fc-5e81-4f83-8d32-0d94a524311a",
+        "displayName": "Mateo De La Paz",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 32,
+        "avgBaseScore": 63.85,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "756f616e-20f9-40fa-b0d8-115e9c2798a7",
+        "displayName": "Aidan Kaw",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 31,
+        "avgBaseScore": 74.69,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "8b695a69-4d6a-4b70-85fb-ed798cabd2ac",
+        "displayName": "Marcus Fernandez",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 30,
+        "avgBaseScore": 66.63,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "133d08e0-3a88-4dc8-85ad-61af238bd219",
+        "displayName": "Savian Go",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 30,
+        "avgBaseScore": 52.9,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+        "displayName": "Kurt Chua",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 29,
+        "avgBaseScore": 47.26,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "ec973537-10ca-4d19-950e-950730db3069",
+        "displayName": "Andwele Poa",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 28,
+        "avgBaseScore": 53.4,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "d977c21d-af18-490b-bbef-0cacc762f6dc",
+        "displayName": "Earl Solis",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 28,
+        "avgBaseScore": 70.01,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+        "displayName": "Hans Go",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 28,
+        "avgBaseScore": 84.08,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "e0b5822d-b1f4-411f-9f28-cb331288db44",
+        "displayName": "Miguel Lim",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 28,
+        "avgBaseScore": 60.09,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "3a24bd05-60de-4744-8893-ff39c274939e",
+        "displayName": "Liam Ang",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 27,
+        "avgBaseScore": 47.18,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "d3367846-883b-48a4-be3a-f08b0c1a0978",
+        "displayName": "Kaleb Chua",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 27,
+        "avgBaseScore": 43.18,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "c5efdaec-cf5b-47b4-9318-936bbd75b1e7",
+        "displayName": "Drew Cagadoc",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 26,
+        "avgBaseScore": 24.38,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+        "displayName": "Josh Lim",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 25,
+        "avgBaseScore": 67.72,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "356ff89b-6eff-46f5-84aa-222e6b604413",
+        "displayName": "Marcus Tiu",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 25,
+        "avgBaseScore": 20.84,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+        "displayName": "Kenzo Centeno",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 25,
+        "avgBaseScore": 53.1,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "721540b3-2e6b-421a-a7da-e92560008a3d",
+        "displayName": "Sean Yu",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 24,
+        "avgBaseScore": 18.94,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "1efb367c-063c-441d-ad59-33015f122691",
+        "displayName": "Xander Ty",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 36.94,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+        "displayName": "Yuan Ramirez",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 93.61,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "7b785ec5-b42f-4371-8147-71442dda3045",
+        "displayName": "Enzo Sosuan",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 67.19,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "d85d96d1-8502-48e4-8d91-bede872f5cc4",
+        "displayName": "Rocco Aranillo",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 51.46,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+        "displayName": "Lucas Kaw",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 93.98,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "8399af7e-0f13-43b1-86f1-641eac90d3bf",
+        "displayName": "Alonzo Tsai",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 51.16,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "17116e9a-f697-4d58-99f9-2a4255b3337e",
+        "displayName": "Kurt Ong",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 22,
+        "avgBaseScore": 40.99,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      },
+      {
+        "playerId": "d93435c8-839b-422f-9b09-75cdc446e75b",
+        "displayName": "Eanne Vargas",
+        "competitionAgeGroup": "U19",
+        "homeBracket": null,
+        "evidenceRole": "UNKNOWN",
+        "gpsCount": 21,
+        "avgBaseScore": 62.11,
+        "hasCompetitionRating": true,
+        "hasHomeRating": false,
+        "publicLimbo": false
+      }
+    ]
+  },
+  "calendarBoardMismatch": {
+    "count": 13,
+    "samples": [
+      {
+        "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+        "displayName": "Moussa Diakite",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 87.27,
+        "games": 17
+      },
+      {
+        "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+        "displayName": "Denden Enriquez",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 38.38,
+        "games": 14
+      },
+      {
+        "playerId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+        "displayName": "John Restificar",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 27.86,
+        "games": 10
+      },
+      {
+        "playerId": "29efab25-9417-43be-a879-9654ac889bac",
+        "displayName": "Nickson Cabañero",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 41.8,
+        "games": 15
+      },
+      {
+        "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+        "displayName": "Sky Jazul",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 37.76,
+        "games": 8
+      },
+      {
+        "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+        "displayName": "Francel Flores",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 69,
+        "games": 14
+      },
+      {
+        "playerId": "897d2344-362c-47f5-9d68-07aabef8b717",
+        "displayName": "Sam Villaruel",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 35.83,
+        "games": 7
+      },
+      {
+        "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+        "displayName": "Prince Cariño",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 44.67,
+        "games": 17
+      },
+      {
+        "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+        "displayName": "Brian Orca Jr.",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 30.32,
+        "games": 13
+      },
+      {
+        "playerId": "a74746cb-362d-4faa-99c4-c3bda00262ce",
+        "displayName": "Kean Poquiz",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 47.54,
+        "games": 14
+      },
+      {
+        "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+        "displayName": "Marvic Mesina",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 30.26,
+        "games": 13
+      },
+      {
+        "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+        "displayName": "Xyriel Macahipay",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 84.13,
+        "games": 15
+      },
+      {
+        "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+        "displayName": "Keefe Iledan",
+        "storedBoard": "U19",
+        "homeBracket": "U16",
+        "rating": 68.17,
+        "games": 10
+      }
+    ]
+  },
+  "volatility": {
+    "lowGameHighRating": [
+      {
+        "playerId": "609cb013-9ba7-4c72-8230-201f839c8e05",
+        "displayName": "Jordan Yeng",
+        "ageGroup": "U19",
+        "games": 3,
+        "rating": 89.96
+      },
+      {
+        "playerId": "17ce5d35-55d8-456c-adeb-af95f7973829",
+        "displayName": "Liam Santos",
+        "ageGroup": "U13",
+        "games": 2,
+        "rating": 88.74
+      },
+      {
+        "playerId": "e91b7959-607a-4887-a715-ae800cab5875",
+        "displayName": "Aiden Kitong",
+        "ageGroup": "U13",
+        "games": 2,
+        "rating": 95.83
+      },
+      {
+        "playerId": "eafa0f85-54a5-4fa1-864a-b1362f7a6c0f",
+        "displayName": "Joshua Hayden Chua",
+        "ageGroup": "U19",
+        "games": 1,
+        "rating": 87.84
+      }
+    ],
+    "ratingByGameCount": [
+      {
+        "games": 1,
+        "count": 27,
+        "min": 2.46,
+        "max": 87.84,
+        "mean": 36.38,
+        "median": 36.46,
+        "stdDev": 22.49
+      },
+      {
+        "games": 2,
+        "count": 23,
+        "min": 4.51,
+        "max": 95.83,
+        "mean": 33.13,
+        "median": 27.46,
+        "stdDev": 21.45
+      },
+      {
+        "games": 3,
+        "count": 31,
+        "min": 9.34,
+        "max": 89.96,
+        "mean": 37.7,
+        "median": 32.71,
+        "stdDev": 20.44
+      },
+      {
+        "games": 4,
+        "count": 45,
+        "min": 10.97,
+        "max": 96.49,
+        "mean": 39.83,
+        "median": 35.42,
+        "stdDev": 18.67
+      },
+      {
+        "games": 5,
+        "count": 60,
+        "min": 14.98,
+        "max": 95.09,
+        "mean": 42.33,
+        "median": 37.4,
+        "stdDev": 19.94
+      },
+      {
+        "games": 6,
+        "count": 104,
+        "min": 10.65,
+        "max": 96.13,
+        "mean": 41.27,
+        "median": 37.55,
+        "stdDev": 18.93
+      },
+      {
+        "games": 7,
+        "count": 86,
+        "min": 8.93,
+        "max": 87.75,
+        "mean": 46.07,
+        "median": 39.87,
+        "stdDev": 19.57
+      },
+      {
+        "games": 8,
+        "count": 99,
+        "min": 12.47,
+        "max": 93.78,
+        "mean": 48.34,
+        "median": 42.79,
+        "stdDev": 21.26
+      },
+      {
+        "games": 9,
+        "count": 34,
+        "min": 22.35,
+        "max": 94.05,
+        "mean": 46.76,
+        "median": 42.68,
+        "stdDev": 19.25
+      },
+      {
+        "games": 10,
+        "count": 34,
+        "min": 20.53,
+        "max": 83.49,
+        "mean": 43.95,
+        "median": 38.61,
+        "stdDev": 20.02
+      },
+      {
+        "games": 11,
+        "count": 35,
+        "min": 21.31,
+        "max": 90.09,
+        "mean": 44.82,
+        "median": 35.52,
+        "stdDev": 19.6
+      },
+      {
+        "games": 12,
+        "count": 37,
+        "min": 16.11,
+        "max": 90.61,
+        "mean": 45.38,
+        "median": 39.95,
+        "stdDev": 22.12
+      },
+      {
+        "games": 13,
+        "count": 37,
+        "min": 14.73,
+        "max": 78.44,
+        "mean": 42.44,
+        "median": 35.36,
+        "stdDev": 16.38
+      },
+      {
+        "games": 14,
+        "count": 106,
+        "min": 16.84,
+        "max": 96.58,
+        "mean": 54.74,
+        "median": 55.04,
+        "stdDev": 17.89
+      },
+      {
+        "games": 15,
+        "count": 54,
+        "min": 19.65,
+        "max": 87.15,
+        "mean": 55.05,
+        "median": 55.24,
+        "stdDev": 16.95
+      },
+      {
+        "games": 16,
+        "count": 19,
+        "min": 37.55,
+        "max": 98.33,
+        "mean": 66.16,
+        "median": 70.58,
+        "stdDev": 16.6
+      },
+      {
+        "games": 17,
+        "count": 16,
+        "min": 30.38,
+        "max": 92.5,
+        "mean": 59.55,
+        "median": 53.64,
+        "stdDev": 20.17
+      },
+      {
+        "games": 18,
+        "count": 32,
+        "min": 25.07,
+        "max": 86.85,
+        "mean": 59.03,
+        "median": 56.27,
+        "stdDev": 16.55
+      },
+      {
+        "games": 19,
+        "count": 18,
+        "min": 33.5,
+        "max": 88.82,
+        "mean": 60.66,
+        "median": 55.54,
+        "stdDev": 17.91
+      },
+      {
+        "games": 20,
+        "count": 11,
+        "min": 22.98,
+        "max": 76.19,
+        "mean": 50.9,
+        "median": 50.11,
+        "stdDev": 18.73
+      },
+      {
+        "games": 21,
+        "count": 5,
+        "min": 24.23,
+        "max": 63.21,
+        "mean": 49.89,
+        "median": 55.06,
+        "stdDev": 14.4
+      },
+      {
+        "games": 22,
+        "count": 7,
+        "min": 36.94,
+        "max": 93.98,
+        "mean": 62.19,
+        "median": 51.46,
+        "stdDev": 21.87
+      },
+      {
+        "games": 24,
+        "count": 1,
+        "min": 18.94,
+        "max": 18.94,
+        "mean": 18.94,
+        "median": 18.94,
+        "stdDev": 0
+      },
+      {
+        "games": 25,
+        "count": 3,
+        "min": 20.84,
+        "max": 67.72,
+        "mean": 47.22,
+        "median": 53.1,
+        "stdDev": 19.59
+      },
+      {
+        "games": 26,
+        "count": 1,
+        "min": 24.38,
+        "max": 24.38,
+        "mean": 24.38,
+        "median": 24.38,
+        "stdDev": 0
+      },
+      {
+        "games": 27,
+        "count": 3,
+        "min": 43.18,
+        "max": 61.42,
+        "mean": 50.59,
+        "median": 47.18,
+        "stdDev": 7.83
+      },
+      {
+        "games": 28,
+        "count": 4,
+        "min": 53.4,
+        "max": 84.08,
+        "mean": 66.89,
+        "median": 70.01,
+        "stdDev": 11.55
+      },
+      {
+        "games": 29,
+        "count": 1,
+        "min": 47.26,
+        "max": 47.26,
+        "mean": 47.26,
+        "median": 47.26,
+        "stdDev": 0
+      },
+      {
+        "games": 30,
+        "count": 2,
+        "min": 52.9,
+        "max": 66.63,
+        "mean": 59.77,
+        "median": 66.63,
+        "stdDev": 6.86
+      },
+      {
+        "games": 31,
+        "count": 1,
+        "min": 74.69,
+        "max": 74.69,
+        "mean": 74.69,
+        "median": 74.69,
+        "stdDev": 0
+      },
+      {
+        "games": 32,
+        "count": 2,
+        "min": 31.66,
+        "max": 63.85,
+        "mean": 47.76,
+        "median": 63.85,
+        "stdDev": 16.1
+      }
+    ]
+  },
+  "calibrationReadiness": {
+    "sufficientForOpponentFactor": true,
+    "sufficientForAgeContext": false,
+    "sufficientForAdvancedMetrics": true,
+    "sufficientForMinutesNormalization": true,
+    "recommendation": "Expand program team ratings and DOB coverage before calibration"
+  }
+}

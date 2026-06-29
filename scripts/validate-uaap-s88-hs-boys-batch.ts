@@ -2,7 +2,7 @@
 import { PlayerGender } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
-const dataFilePath = "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-10-games.json";
+const dataFilePath = "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-10-games.json";
 const seasonId = "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9";
 
 type SourcePlayer = {

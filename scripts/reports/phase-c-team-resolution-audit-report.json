@@ -1,0 +1,699 @@
+{
+  "generatedAt": "2026-06-17T10:23:43.204Z",
+  "phase": "C-team-resolution-audit",
+  "mode": "read-only",
+  "metrics": {
+    "programs": {
+      "active": 55,
+      "softDeleted": 2,
+      "withoutTeams": 3
+    },
+    "teams": {
+      "active": 81,
+      "softDeleted": 17,
+      "withoutProgram": 0,
+      "usedInActiveGames": 64,
+      "inactiveNoGames": 17,
+      "inactiveWithGameStats": 0
+    },
+    "teamExternalAlias": {
+      "total": 40,
+      "teamsCovered": 20,
+      "byProvider": [
+        {
+          "_count": {
+            "_all": 40
+          },
+          "provider": "statshub-v1"
+        }
+      ],
+      "splits": 0,
+      "pointingToDeletedTeam": 0
+    },
+    "games": {
+      "active": 405,
+      "sourceBuckets": [
+        {
+          "source_bucket": "statshub_url_import",
+          "games": 151,
+          "distinct_home_teams": 27,
+          "distinct_away_teams": 28
+        },
+        {
+          "source_bucket": "uaap_batch",
+          "games": 136,
+          "distinct_home_teams": 20,
+          "distinct_away_teams": 20
+        },
+        {
+          "source_bucket": "ncaa_batch",
+          "games": 81,
+          "distinct_home_teams": 10,
+          "distinct_away_teams": 10
+        },
+        {
+          "source_bucket": "spreadsheet_upload",
+          "games": 37,
+          "distinct_home_teams": 8,
+          "distinct_away_teams": 8
+        }
+      ]
+    },
+    "withinProgramExactDuplicates": 0,
+    "withinProgramDisplayKeyDuplicates": 9,
+    "withinProgramDisplayKeyDuplicatesWithStats": 8,
+    "crossProgramDisplayKeyCollisions": 0,
+    "crossProgramExactNameCollisions": 0,
+    "competitionContextDuplicateGroups": 0,
+    "highImpactContextDuplicates": 0,
+    "activeDeletedTeamNameOverlap": 0,
+    "gameStatTeamMismatch": 0,
+    "homeAwaySameTeam": 0,
+    "canonicalizationCandidates": 9
+  },
+  "inventory": {
+    "topProgramsByTeamCount": [
+      {
+        "fullName": "De La Salle Santiago Zobel",
+        "teamCount": 8
+      },
+      {
+        "fullName": "Ateneo de Manila University",
+        "teamCount": 5
+      },
+      {
+        "fullName": "National University Nazareth School",
+        "teamCount": 5
+      },
+      {
+        "fullName": "University of Santo Tomas",
+        "teamCount": 5
+      },
+      {
+        "fullName": "Adamson University",
+        "teamCount": 3
+      },
+      {
+        "fullName": "Far Eastern University Diliman",
+        "teamCount": 3
+      },
+      {
+        "fullName": "University of the East",
+        "teamCount": 3
+      },
+      {
+        "fullName": "University of the Philippines Integrated School",
+        "teamCount": 3
+      },
+      {
+        "fullName": "JPM-TEC San Beda",
+        "teamCount": 2
+      },
+      {
+        "fullName": "San Sebastian College-Recoletos",
+        "teamCount": 2
+      },
+      {
+        "fullName": "Aces Solar Locked In",
+        "teamCount": 1
+      },
+      {
+        "fullName": "Amsteel",
+        "teamCount": 1
+      },
+      {
+        "fullName": "Arellano University",
+        "teamCount": 1
+      },
+      {
+        "fullName": "Auto-Gard",
+        "teamCount": 1
+      },
+      {
+        "fullName": "Azarias",
+        "teamCount": 1
+      }
+    ],
+    "topTeamsByGameStats": [
+      {
+        "id": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+        "name": "BBC 17u U19 Boys",
+        "programName": "BBC 17u",
+        "gameStats": 313,
+        "games": 32
+      },
+      {
+        "id": "2114099c-3717-4894-8ab6-8c0738b1950b",
+        "name": "Letran Squires",
+        "programName": "Colegio de San Juan de Letran",
+        "gameStats": 262,
+        "games": 20
+      },
+      {
+        "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "name": "FEU - Diliman Baby Tamaraws",
+        "programName": "Far Eastern University Diliman",
+        "gameStats": 260,
+        "games": 19
+      },
+      {
+        "id": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+        "name": "Arellano Braves",
+        "programName": "Arellano University",
+        "gameStats": 253,
+        "games": 19
+      },
+      {
+        "id": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+        "name": "JPM-TEC San Beda",
+        "programName": "JPM-TEC San Beda",
+        "gameStats": 244,
+        "games": 18
+      },
+      {
+        "id": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+        "name": "FEU - Diliman Baby Tamaraws 16U",
+        "programName": "Far Eastern University Diliman",
+        "gameStats": 233,
+        "games": 18
+      },
+      {
+        "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "name": "Smile 360 Bullies",
+        "programName": "Smile 360 Bullies",
+        "gameStats": 229,
+        "games": 18
+      },
+      {
+        "id": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+        "name": "NUNS Bullpups 16U",
+        "programName": "National University Nazareth School",
+        "gameStats": 227,
+        "games": 16
+      },
+      {
+        "id": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+        "name": "EAC Brigadiers",
+        "programName": "Emilio Aguinaldo College",
+        "gameStats": 224,
+        "games": 18
+      },
+      {
+        "id": "79198fe3-c100-4da5-92a5-9db470417c14",
+        "name": "San Beda Red Cubs",
+        "programName": "San Beda University - Rizal",
+        "gameStats": 221,
+        "games": 15
+      },
+      {
+        "id": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "name": "NUNS Bullpups",
+        "programName": "National University Nazareth School",
+        "gameStats": 219,
+        "games": 18
+      },
+      {
+        "id": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+        "name": "Mapúa Red Robins",
+        "programName": "Malayan High School of Science",
+        "gameStats": 212,
+        "games": 18
+      },
+      {
+        "id": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+        "name": "Perpetual Junior Daltas",
+        "programName": "University of Perpetual Help System DALTA",
+        "gameStats": 209,
+        "games": 15
+      },
+      {
+        "id": "03269a6b-49d1-4c18-bc6c-d21281a01382",
+        "name": "Charm U19 Boys",
+        "programName": "Charm",
+        "gameStats": 208,
+        "games": 24
+      },
+      {
+        "id": "eb3afc39-536f-4557-80c2-636017e4eea0",
+        "name": "Gold Cross U19 Boys",
+        "programName": "Gold Cross",
+        "gameStats": 201,
+        "games": 22
+      }
+    ]
+  },
+  "canonicalizationCandidates": [
+    {
+      "type": "same_program_display_key",
+      "programName": "Far Eastern University Diliman",
+      "displayMatchKey": "FEU - DILIMAN BABY TAMARAWS",
+      "teamNames": [
+        "FEU - Diliman Baby Tamaraws",
+        "FEU - Diliman Baby Tamaraws 16U"
+      ],
+      "affectedGameStats": 493
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "National University Nazareth School",
+      "displayMatchKey": "NUNS BULLPUPS",
+      "teamNames": [
+        "NUNS Bullpups",
+        "NUNS Bullpups 16U"
+      ],
+      "affectedGameStats": 446
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "Ateneo de Manila University",
+      "displayMatchKey": "ATENEO BLUE EAGLETS",
+      "teamNames": [
+        "Ateneo Blue Eaglets",
+        "Ateneo Blue Eaglets 16U"
+      ],
+      "affectedGameStats": 377
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "De La Salle Santiago Zobel",
+      "displayMatchKey": "DE LA SALLE ZOBEL JRS ARCHERS",
+      "teamNames": [
+        "De La Salle Zobel Junior Archers",
+        "De La Salle Zobel Junior Archers 16U"
+      ],
+      "affectedGameStats": 356
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "University of Santo Tomas",
+      "displayMatchKey": "UST TIGER CUBS",
+      "teamNames": [
+        "UST Tiger Cubs",
+        "UST Tiger Cubs 16U"
+      ],
+      "affectedGameStats": 350
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "Adamson University",
+      "displayMatchKey": "ADAMSON BABY FALCONS",
+      "teamNames": [
+        "Adamson Baby Falcons",
+        "Adamson Baby Falcons 16U"
+      ],
+      "affectedGameStats": 341
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "University of the East",
+      "displayMatchKey": "UE JRS WARRIORS",
+      "teamNames": [
+        "UE Junior Warriors",
+        "UE Junior Warriors 16U"
+      ],
+      "affectedGameStats": 338
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "University of the Philippines Integrated School",
+      "displayMatchKey": "UP JRS FIGHTING MAROONS",
+      "teamNames": [
+        "UP Junior Fighting Maroons",
+        "UP Junior Fighting Maroons 16U"
+      ],
+      "affectedGameStats": 317
+    },
+    {
+      "type": "same_program_display_key",
+      "programName": "De La Salle Santiago Zobel",
+      "displayMatchKey": "LA SALLE",
+      "teamNames": [
+        "LA SALLE (DLSZ)",
+        "LA SALLE Girls (DLSU)",
+        "LA SALLE Girls (LA SALLE)"
+      ],
+      "affectedGameStats": 0
+    }
+  ],
+  "findings": [
+    {
+      "id": "same-program-display-key-duplicates",
+      "severity": "high",
+      "category": "within_program_duplicates",
+      "summary": "9 program(s) have multiple active Teams normalizing to the same display match key (8 with stats on 2+ records).",
+      "count": 9,
+      "sample": [
+        {
+          "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "programName": "Adamson University",
+          "displayMatchKey": "ADAMSON BABY FALCONS",
+          "teamNames": [
+            "Adamson Baby Falcons",
+            "Adamson Baby Falcons 16U"
+          ],
+          "teamIds": [
+            "28eaa2c2-be45-4de6-a030-acf090e0069c",
+            "685e9651-ad77-4824-b70c-f032365e1f80"
+          ],
+          "gameStatCounts": [
+            168,
+            173
+          ]
+        },
+        {
+          "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+          "programName": "Ateneo de Manila University",
+          "displayMatchKey": "ATENEO BLUE EAGLETS",
+          "teamNames": [
+            "Ateneo Blue Eaglets",
+            "Ateneo Blue Eaglets 16U"
+          ],
+          "teamIds": [
+            "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+            "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661"
+          ],
+          "gameStatCounts": [
+            180,
+            197
+          ]
+        },
+        {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "displayMatchKey": "DE LA SALLE ZOBEL JRS ARCHERS",
+          "teamNames": [
+            "De La Salle Zobel Junior Archers",
+            "De La Salle Zobel Junior Archers 16U"
+          ],
+          "teamIds": [
+            "f5480f4e-456e-427c-b2f2-6802f94b7470",
+            "3739a9f4-21ef-4938-83ff-811433a47656"
+          ],
+          "gameStatCounts": [
+            180,
+            176
+          ]
+        },
+        {
+          "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+          "programName": "Far Eastern University Diliman",
+          "displayMatchKey": "FEU - DILIMAN BABY TAMARAWS",
+          "teamNames": [
+            "FEU - Diliman Baby Tamaraws",
+            "FEU - Diliman Baby Tamaraws 16U"
+          ],
+          "teamIds": [
+            "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+            "604b7ecd-2cfe-4130-882e-28f7213a6240"
+          ],
+          "gameStatCounts": [
+            260,
+            233
+          ]
+        },
+        {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "programName": "De La Salle Santiago Zobel",
+          "displayMatchKey": "LA SALLE",
+          "teamNames": [
+            "LA SALLE (DLSZ)",
+            "LA SALLE Girls (DLSU)",
+            "LA SALLE Girls (LA SALLE)"
+          ],
+          "teamIds": [
+            "53650e64-ec1e-48cd-b2eb-5f575362e691",
+            "c010e83f-8a2d-4084-8497-0bea7119c6db",
+            "8b25947c-21d2-4878-a44f-32dc5160b5bd"
+          ],
+          "gameStatCounts": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+          "programName": "National University Nazareth School",
+          "displayMatchKey": "NUNS BULLPUPS",
+          "teamNames": [
+            "NUNS Bullpups",
+            "NUNS Bullpups 16U"
+          ],
+          "teamIds": [
+            "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+            "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7"
+          ],
+          "gameStatCounts": [
+            219,
+            227
+          ]
+        },
+        {
+          "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+          "programName": "University of the East",
+          "displayMatchKey": "UE JRS WARRIORS",
+          "teamNames": [
+            "UE Junior Warriors",
+            "UE Junior Warriors 16U"
+          ],
+          "teamIds": [
+            "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+            "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3"
+          ],
+          "gameStatCounts": [
+            191,
+            147
+          ]
+        },
+        {
+          "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+          "programName": "University of the Philippines Integrated School",
+          "displayMatchKey": "UP JRS FIGHTING MAROONS",
+          "teamNames": [
+            "UP Junior Fighting Maroons",
+            "UP Junior Fighting Maroons 16U"
+          ],
+          "teamIds": [
+            "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+            "7f96dc7f-8690-4fa4-b87b-5497ba3d857b"
+          ],
+          "gameStatCounts": [
+            165,
+            152
+          ]
+        },
+        {
+          "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+          "programName": "University of Santo Tomas",
+          "displayMatchKey": "UST TIGER CUBS",
+          "teamNames": [
+            "UST Tiger Cubs",
+            "UST Tiger Cubs 16U"
+          ],
+          "teamIds": [
+            "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+            "da58e619-1ed2-423f-8dac-b7e6c267a9f6"
+          ],
+          "gameStatCounts": [
+            191,
+            159
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inactive-teams-no-games",
+      "severity": "low",
+      "category": "canonicalization_candidates",
+      "summary": "17 active Team(s) never appear in any active Game (0 still have GameStats from orphaned attribution).",
+      "count": 17,
+      "sample": [
+        {
+          "teamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "teamName": "ADU Jrs (ADU)",
+          "programName": "Adamson University",
+          "publicSchoolDisplayName": "Adamson University",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "teamName": "ATENEO Girls (ATENEO)",
+          "programName": "Ateneo de Manila University",
+          "publicSchoolDisplayName": "Ateneo de Manila University",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "teamName": "ATENEO JRS (ATENEO)",
+          "programName": "Ateneo de Manila University",
+          "publicSchoolDisplayName": "Ateneo de Manila University",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+          "teamName": "DE LA SALLE Jrs (DLSU)",
+          "programName": "De La Salle Santiago Zobel",
+          "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "teamName": "FEU Jrs (FEU)",
+          "programName": "Far Eastern University Diliman",
+          "publicSchoolDisplayName": "Far Eastern University",
+          "gameStats": 0,
+          "city": "Manila",
+          "region": "NCR"
+        },
+        {
+          "teamId": "53650e64-ec1e-48cd-b2eb-5f575362e691",
+          "teamName": "LA SALLE (DLSZ)",
+          "programName": "De La Salle Santiago Zobel",
+          "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "city": "San Juan",
+          "region": "NCR"
+        },
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "programName": "De La Salle Santiago Zobel",
+          "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "city": "San Juan",
+          "region": "NCR"
+        },
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "teamName": "LA SALLE Girls (LA SALLE)",
+          "programName": "De La Salle Santiago Zobel",
+          "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "city": "San Juan",
+          "region": "NCR"
+        },
+        {
+          "teamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "teamName": "LA SALLE Jrs (LA SALLE)",
+          "programName": "De La Salle Santiago Zobel",
+          "publicSchoolDisplayName": "De La Salle Santiago Zobel",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "programName": "National University Nazareth School",
+          "publicSchoolDisplayName": "National University Nazareth School",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "teamName": "NU Jrs (NU)",
+          "programName": "National University Nazareth School",
+          "publicSchoolDisplayName": "National University Nazareth School",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+          "teamName": "SBU U16 Boys",
+          "programName": "JPM-TEC San Beda",
+          "publicSchoolDisplayName": "San Beda University",
+          "gameStats": 0,
+          "city": "Metro Manila",
+          "region": "NCR"
+        },
+        {
+          "teamId": "7543e4de-09d2-45e5-869e-341a760b59b8",
+          "teamName": "SSCR U19 Boys",
+          "programName": "San Sebastian College-Recoletos",
+          "publicSchoolDisplayName": "San Sebastian College-Recoletos",
+          "gameStats": 0,
+          "city": "Metro Manila",
+          "region": "NCR"
+        },
+        {
+          "teamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+          "teamName": "UE Jrs (UE)",
+          "programName": "University of the East",
+          "publicSchoolDisplayName": "University of the East",
+          "gameStats": 0,
+          "city": "Manila",
+          "region": "NCR"
+        },
+        {
+          "teamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+          "teamName": "UPIS Jrs (UP)",
+          "programName": "University of the Philippines Integrated School",
+          "publicSchoolDisplayName": "University of the Philippines Integrated School",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        },
+        {
+          "teamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+          "teamName": "UST Girls (UST)",
+          "programName": "University of Santo Tomas",
+          "publicSchoolDisplayName": "University of Santo Tomas",
+          "gameStats": 0,
+          "city": "San Juan",
+          "region": "NCR"
+        },
+        {
+          "teamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "teamName": "UST Jrs (UST)",
+          "programName": "University of Santo Tomas",
+          "publicSchoolDisplayName": "University of Santo Tomas",
+          "gameStats": 0,
+          "city": "Quezon City",
+          "region": "NCR"
+        }
+      ]
+    },
+    {
+      "id": "programs-without-teams",
+      "severity": "low",
+      "category": "inventory",
+      "summary": "3 active Program(s) have no active Teams.",
+      "count": 3,
+      "sample": [
+        {
+          "id": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+          "fullName": "LEV Construction Full Potential"
+        },
+        {
+          "id": "2a5f2b40-109d-49df-9df6-c34eb3b44672",
+          "fullName": "PYBC 15U"
+        },
+        {
+          "id": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+          "fullName": "San Pedro Spartans"
+        }
+      ]
+    }
+  ],
+  "severityCounts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 2,
+    "info": 0
+  },
+  "blockers": [
+    "8 same-program display-key group(s) split GameStats across duplicate Team records."
+  ],
+  "recommendation": "STOP"
+}

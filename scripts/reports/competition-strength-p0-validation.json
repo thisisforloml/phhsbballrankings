@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-06-18T14:30:00.251Z",
+  "mode": "read-only-validation",
+  "checks": {
+    "disclaimerCopy": "Ratings do not currently adjust for competition tier.",
+    "u16PublicWithPrimaryCompetition": 122,
+    "u19PublicWithPrimaryCompetition": 237,
+    "xyrielU16HasPrimary": true,
+    "xyrielU16PrimaryName": "NCAA S101 Junior's",
+    "xyrielU19Absent": true,
+    "xyrielProfileParticipation": true,
+    "xyrielProfileCompetitionCount": 1,
+    "gpsLeagueWeightsUnchanged": true,
+    "playerRatingCountUnchanged": true,
+    "ratingCountSnapshot": 1057,
+    "noTierBadgeInRowShape": true
+  },
+  "samples": {
+    "u16Top3": [
+      {
+        "displayName": "Goodluck Okebata",
+        "primary": "UAAP S88 16U Boys",
+        "games": 14
+      },
+      {
+        "displayName": "Prince Cariño",
+        "primary": "UAAP S88 HS Boys",
+        "games": 17
+      },
+      {
+        "displayName": "Akhiro Franz Reynon",
+        "primary": "PYBC 15U",
+        "games": 11
+      }
+    ],
+    "xyrielProfilePrimary": {
+      "leagueName": "NCAA Season 101 Junior's Basketball",
+      "shortName": "NCAA S101 Junior's",
+      "seasonName": "Season 101",
+      "verifiedGameCount": 15,
+      "tier": 1
+    }
+  },
+  "recommendation": {
+    "code": "A",
+    "label": "Ready for production"
+  }
+}

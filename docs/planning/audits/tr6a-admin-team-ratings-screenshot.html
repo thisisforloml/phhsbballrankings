@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>TR-6A Team Ratings Preview — U16 Boys (documentation snapshot)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f8f7f4; color: #1a2744; margin: 0; padding: 24px; }
+    .card { background: #fff; border: 1px solid #e7e5e4; box-shadow: 0 1px 2px rgba(0,0,0,.05); padding: 16px; margin-bottom: 16px; }
+    h1 { margin: 0 0 4px; font-size: 28px; }
+    .eyebrow { color: #ea580c; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .muted { color: #57534e; font-size: 14px; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+    .stat { background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 6px; padding: 12px; }
+    .stat label { display:block; font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:#78716c; font-weight:700; }
+    .stat strong { display:block; font-size:24px; margin-top:4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #f5f5f4; padding: 10px 12px; text-align: left; }
+    th { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #57534e; background: #fafaf9; }
+    .num { text-align: right; font-family: ui-monospace, monospace; }
+    .banner { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; padding: 12px 16px; border-radius: 6px; font-size: 14px; }
+    .ok { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="eyebrow">Team Rankings</p>
+    <h1>National Team Ratings Preview</h1>
+    <p class="muted">Internal admin view at <code>/admin/team-ratings</code> — TR-6A documentation snapshot generated from live DB (2026-06-17).</p>
+  </div>
+
+  <div class="banner">TEAM_NATIONAL_RATINGS_ENABLED remains false. This preview is admin-only and does not affect public routes.</div>
+
+  <div class="card stats">
+    <div class="stat"><label>Board size</label><strong>16</strong><span class="muted">U16 Boys · 16 public-eligible</span></div>
+    <div class="stat"><label>Highest rating</label><strong>53.11</strong><span class="muted">National University Nazareth School</span></div>
+    <div class="stat"><label>Lowest rating</label><strong>47.12</strong><span class="muted">De La Salle Santiago Zobel</span></div>
+    <div class="stat"><label>Missing programs</label><strong>0</strong><span class="muted">No soft-deleted program refs</span></div>
+  </div>
+
+  <div class="card ok banner">Validation: 10/10 checks PASS — see <code>scripts/reports/tr6a-validation-latest.json</code></div>
+
+  <div class="card" style="padding:0; overflow:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>Program</th><th>Age</th><th>Gender</th>
+          <th class="num">Rating</th><th class="num">Games</th><th class="num">Opponents</th>
+          <th>Formula</th><th>Policy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>National University Nazareth School</td><td>U16</td><td>Boys</td><td class="num">53.11</td><td class="num">16</td><td class="num">7</td><td>TPI-v1</td><td>TEAM-EVIDENCE-v1-official-import · TEAM-POLICY-v1-launch</td></tr>
+        <tr><td>2</td><td>San Pedro Spartans</td><td>U16</td><td>Boys</td><td class="num">51.11</td><td class="num">12</td><td class="num">7</td><td>TPI-v1</td><td>TEAM-EVIDENCE-v1-official-import · TEAM-POLICY-v1-launch</td></tr>
+        <tr><td>3</td><td>University of Santo Tomas</td><td>U16</td><td>Boys</td><td class="num">51.06</td><td class="num">15</td><td class="num">7</td><td>TPI-v1</td><td>TEAM-EVIDENCE-v1-official-import · TEAM-POLICY-v1-launch</td></tr>
+        <tr><td>4</td><td>Far Eastern University Diliman</td><td>U16</td><td>Boys</td><td class="num">50.69</td><td class="num">18</td><td class="num">7</td><td>TPI-v1</td><td>TEAM-EVIDENCE-v1-official-import · TEAM-POLICY-v1-launch</td></tr>
+        <tr><td>5</td><td>Adamson University</td><td>U16</td><td>Boys</td><td class="num">50.63</td><td class="num">15</td><td class="num">7</td><td>TPI-v1</td><td>TEAM-EVIDENCE-v1-official-import · TEAM-POLICY-v1-launch</td></tr>
+        <tr><td colspan="9" class="muted">… 11 more programs on board (full table in live admin UI)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

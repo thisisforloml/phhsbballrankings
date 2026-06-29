@@ -1,9 +1,9 @@
-import { readFileSync } from "node:fs";
+﻿import { readFileSync } from "node:fs";
 import path from "node:path";
 import { AgeGroup, PlayerGender } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
-const projectRoot = "D:\\OnCourt Rankings PH";
+const projectRoot = "D:\\Peach Basket";
 const formulaVersionNumber = 1;
 const formulaDescription = "Formula v1 possession-informed transparent baseline box-score model";
 const expectedTotalEligibleGameStats = 1885;

@@ -1,0 +1,92 @@
+{
+  "repairResult": {
+    "playersUpdated": 0,
+    "rosterSeasonsUpdated": 0,
+    "aliasesMoved": 0,
+    "aliasesDeleted": 0,
+    "teamRatingsMoved": 0,
+    "homeGamesUpdated": 1,
+    "gameStatsUpdated": 15,
+    "duplicateTeamRetiredAt": "2026-06-17T08:35:54.096Z",
+    "duplicateProgramRetiredAt": "2026-06-17T08:35:54.096Z"
+  },
+  "generatedAt": "2026-06-17T08:35:54.131Z",
+  "phase": "post-merge-validation",
+  "canonicalUsage": {
+    "activeGames": 18,
+    "activeGameStats": 229,
+    "rosterSeasons": 0,
+    "externalAliases": 1,
+    "teamRatings": 0
+  },
+  "duplicateUsage": {
+    "activeGames": 0,
+    "activeGameStats": 0,
+    "rosterSeasons": 0,
+    "externalAliases": 0,
+    "teamRatings": 0
+  },
+  "canonicalPybc13uGames": 9,
+  "expectedCanonicalGames": 18,
+  "expectedCanonicalGameStats": 229,
+  "expectedPybc13uGames": 9,
+  "preservedGames": {
+    "SH-47340-2779282": {
+      "id": "0c195e0c-fd64-44fc-a96d-f11889e94b77",
+      "awayTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+      "homeScore": 75,
+      "awayScore": 82
+    },
+    "SH-47340-2787987": {
+      "id": "a1545b57-8c60-49a6-a634-a6747b146c4b",
+      "homeTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+      "homeScore": 76,
+      "awayScore": 77
+    }
+  },
+  "protectedCountsAfter": {
+    "activeGameStats": 9391,
+    "gamePerformanceScores": 9391,
+    "playerRatings": 940,
+    "rankingSnapshots": 5,
+    "rankingSnapshotRows": 826
+  },
+  "validation": {
+    "duplicateTeamNoActiveUsage": true,
+    "duplicateTeamSoftDeleted": true,
+    "duplicateProgramSoftDeleted": true,
+    "canonicalGamesExpected": true,
+    "canonicalGameStatsExpected": true,
+    "canonicalPybc13uGamesExpected": true,
+    "preserveGameStillActive": true,
+    "preserveGameStillOnCanonicalTeam": true,
+    "targetGameHomeTeamCanonical": true,
+    "targetGameScoresUnchanged": true,
+    "activeGameStatCountUnchanged": true,
+    "gamePerformanceScoreCountUnchanged": true,
+    "playerRatingCountUnchanged": true,
+    "rankingSnapshotCountUnchanged": true,
+    "rankingSnapshotRowCountUnchanged": true,
+    "noPlayersOnDuplicateProgram": true
+  },
+  "validationPassed": true,
+  "rollbackInstructions": {
+    "summary": "Restore game homeTeamId and GameStat teamId from affectedRecords; set programs/teams deletedAt=null on duplicate entities.",
+    "steps": [
+      "UPDATE games SET \"homeTeamId\"='de02c99c-0b47-49f4-8af1-693b5dbf7493' WHERE id='a1545b57-8c60-49a6-a634-a6747b146c4b'",
+      "UPDATE game_stats SET teamId to teamIdBefore for each id in gameStatIds",
+      "UPDATE programs SET \"deletedAt\"=NULL WHERE id='60645321-d3b4-4db9-94aa-6176232b7476'",
+      "UPDATE teams SET \"deletedAt\"=NULL WHERE id='de02c99c-0b47-49f4-8af1-693b5dbf7493'"
+    ],
+    "tables": [
+      "games",
+      "game_stats",
+      "players",
+      "player_team_seasons",
+      "team_external_aliases",
+      "team_ratings",
+      "teams",
+      "programs"
+    ]
+  }
+}

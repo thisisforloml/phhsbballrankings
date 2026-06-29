@@ -1,11 +1,11 @@
 "use client";
 
 import type { PlayerProfile } from "@/lib/player-profile-types";
-import { buildPositivesOnlyScoutingReport } from "@/lib/scouting-report";
-import { PremiumGate } from "@/components/ui";
 import { ProfileModule } from "@/components/public/ProfileModule";
 import { HorizontalBarChart } from "@/components/public/charts/ProfileCharts";
+import { PlayerPercentileRadar } from "@/components/public/charts/PlayerPercentileRadar";
 import { PlayerTrendsChart } from "@/components/public/charts/PlayerTrendsChart";
+import { PlayerStatRelationshipsChart } from "@/components/public/charts/PlayerStatRelationshipsChart";
 
 // ── Main performance dashboard ────────────────────────────────────────────────
 
@@ -26,37 +26,24 @@ export function PlayerPerformanceDashboard({ profile }: { profile: PlayerProfile
     <ProfileModule
       id="analytics"
       title="Performance Analytics"
-      description="Player trends with adjustable rolling averages"
+      description="Trends, board context, percentile profile, and stat relationships"
     >
-      <PremiumGate description="Unlock advanced trend overlays, benchmark comparisons, and downloadable scouting exports with Premium Access.">
+      <div className="grid gap-8">
+        <PlayerPercentileRadar profile={profile} />
+
         <PlayerTrendsChart profile={profile} />
-      </PremiumGate>
+        <PlayerStatRelationshipsChart profile={profile} />
+      </div>
     </ProfileModule>
   );
 }
 
-// ── Scouting report ───────────────────────────────────────────────────────────
+// ── Scouting report (temporarily hidden from profile tab) ─────────────────────
 
-export function PlayerScoutingReport({ profile }: { profile: PlayerProfile }) {
-  const report = buildPositivesOnlyScoutingReport(profile);
+export function PlayerScoutingReport({ profile: _profile }: { profile: PlayerProfile }) {
   return (
-    <ProfileModule id="scouting" title="Scouting Report" bodyClassName="p-0">
-      <article className="bg-paper-500/45 px-4 py-4 md:px-5 md:py-5">
-        <p className="text-[0.65rem] font-black uppercase tracking-[0.14em] text-hardwood-600">{report.headline}</p>
-        <p className="mt-3 w-full text-[0.98rem] font-medium leading-7 text-court-800 md:text-base md:leading-8">
-          {report.summary}
-        </p>
-        {report.limitedSample && (
-          <p className="mt-3 text-sm font-semibold text-court-500">
-            More games are needed before a full board comparison can be written.
-          </p>
-        )}
-        {report.footnotes.length > 0 && (
-          <p className="mt-4 border-t border-line-500/80 pt-3 text-[0.68rem] font-semibold leading-5 text-court-400">
-            {report.footnotes.join(" · ")}
-          </p>
-        )}
-      </article>
+    <ProfileModule id="scouting" title="Scouting">
+      <p className="text-sm font-semibold text-court-500">Scouting report coming soon.</p>
     </ProfileModule>
   );
 }

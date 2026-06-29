@@ -1,0 +1,58 @@
+{
+  "capturedAt": "2026-06-17",
+  "policyVersion": "launch-v1",
+  "thresholds": { "boys": 10, "girls": 5 },
+  "totalRatingRows": 940,
+  "publicBoardRanked": 66,
+  "offBoardTotal": 874,
+  "byVerdict": {
+    "PROVISIONAL": 809,
+    "RANKED": 66,
+    "HIDDEN": 16,
+    "FORMER": 49
+  },
+  "offBoardPrecedenceShare": {
+    "P7_BELOW_THRESHOLD": { "count": 460, "pct": 52.6 },
+    "P12_UNKNOWN_DOB": { "count": 349, "pct": 39.9 },
+    "P2_GRADUATED": { "count": 49, "pct": 5.6 },
+    "P3_OUT_OF_BRACKET": { "count": 16, "pct": 1.8 }
+  },
+  "offBoardProvisionalReason": {
+    "BELOW_THRESHOLD": 460,
+    "UNKNOWN_DOB": 349
+  },
+  "offBoardExclusionReason": {
+    "GRADUATED": 49,
+    "OUT_OF_BRACKET": 16
+  },
+  "publicBoardByAgeGender": {
+    "U13|Boys": { "pool": 138, "ranked": 0, "yieldPct": 0 },
+    "U16|Boys": { "pool": 253, "ranked": 7, "yieldPct": 2.8 },
+    "U19|Boys": { "pool": 493, "ranked": 59, "yieldPct": 12.0 },
+    "U19|Girls": { "pool": 56, "ranked": 0, "yieldPct": 0 }
+  },
+  "classYearOverride": {
+    "onBoardWithOverride": 0,
+    "offBoardWithOverride": 12,
+    "onBoardWithoutOverride": 66
+  },
+  "unknownDob": {
+    "provisionalUnknownDob_qualifiedGames": 349,
+    "provisionalBelowThreshold_noDob": 444,
+    "hiddenUntrusted": 0,
+    "rankedWithOverrideOnly": 0
+  },
+  "u19BoysOffBoard": {
+    "total": 434,
+    "belowThreshold": 194,
+    "unknownDobQualified": 175,
+    "former": 49,
+    "outOfBracket": 16
+  },
+  "u19GirlsOffBoard": {
+    "total": 56,
+    "belowThreshold": 11,
+    "unknownDobQualified": 45,
+    "former": 0
+  }
+}

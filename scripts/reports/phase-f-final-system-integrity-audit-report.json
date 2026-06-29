@@ -1,0 +1,284 @@
+{
+  "generatedAt": "2026-06-17T09:50:22.506Z",
+  "phase": "F-final-system-integrity-audit",
+  "mode": "read-only",
+  "overallVerdict": "FAIL",
+  "productionReady": "NOT READY — resolve blockers before production launch.",
+  "summary": {
+    "domainsPassed": 3,
+    "domainsWarn": 4,
+    "domainsFailed": 1,
+    "totalBlockers": 1,
+    "totalWarnings": 7,
+    "keyCounts": {
+      "activePlayers": 930,
+      "activeGames": 405,
+      "activeGameStats": 9391,
+      "formulaV1Gps": 9391,
+      "playerRatings": 940,
+      "rankingSnapshots": 5,
+      "rankingSnapshotRows": 720,
+      "verifiedGameMismatches": 0
+    },
+    "remediationsValidated": {
+      "g1PlayerRatingRemediation": true,
+      "g2CumulativeAggregation": true,
+      "g3SnapshotRegeneration": true,
+      "phaseEVerifiedGameFix": true,
+      "bistrotSmileCanonicalization": true
+    }
+  },
+  "domains": {
+    "playerIdentities": {
+      "status": "WARN",
+      "counts": {
+        "players": {
+          "active": 930,
+          "softDeleted": 47
+        },
+        "playerAlias": {
+          "total": 32,
+          "bySource": [
+            {
+              "_count": {
+                "_all": 32
+              },
+              "source": "approved_merge"
+            }
+          ]
+        },
+        "playerExternalAlias": {
+          "total": 295
+        },
+        "activePlayersWithGameStats": 930,
+        "activePlayersWithoutGameStats": 0,
+        "displayNameGenderDuplicateGroups": 0,
+        "displayNameDuplicatesWithMultipleStatPlayers": 0,
+        "aliasesToDeletedPlayers": 0,
+        "aliasDisplayNameConflicts": 0,
+        "mergePlanDuplicateIdsTracked": 35,
+        "mergePlanDuplicatesStillActive": 0,
+        "mergePlanDuplicatesWithLingeringStats": 0,
+        "postMergeRecreations": 0,
+        "postMergeRecreationsWithStats": 0,
+        "sameGameExactNameCollisions": 0,
+        "sameGameNormalizedKeyCollisions": 0,
+        "importKeySplitGroups": 0,
+        "importKeySplitGroupsWithMultipleStatPlayers": 0,
+        "externalAliasSplitGroups": 0,
+        "orphanPlayers": 0,
+        "orphanPlayersWithAliases": 0,
+        "activeDeletedOverlapGroups": 3,
+        "auditLogMergeEntries": 0
+      },
+      "blockers": [],
+      "warnings": [
+        "3 displayName+gender string(s) exist on both active and soft-deleted players (expected after approved merges when canonical predates duplicate)."
+      ],
+      "topFindings": [
+        "3 displayName+gender string(s) exist on both active and soft-deleted players (expected after approved merges when canonical predates duplicate)."
+      ]
+    },
+    "teamIdentities": {
+      "status": "FAIL",
+      "counts": {
+        "programs": {
+          "active": 55,
+          "softDeleted": 2,
+          "withoutTeams": 3
+        },
+        "teams": {
+          "active": 81,
+          "softDeleted": 17,
+          "withoutProgram": 0,
+          "usedInActiveGames": 64,
+          "inactiveNoGames": 17,
+          "inactiveWithGameStats": 0
+        },
+        "teamExternalAlias": {
+          "total": 40,
+          "teamsCovered": 20,
+          "byProvider": [
+            {
+              "_count": {
+                "_all": 40
+              },
+              "provider": "statshub-v1"
+            }
+          ],
+          "splits": 0,
+          "pointingToDeletedTeam": 0
+        },
+        "games": {
+          "active": 405,
+          "sourceBuckets": [
+            {
+              "source_bucket": "statshub_url_import",
+              "games": 151,
+              "distinct_home_teams": 27,
+              "distinct_away_teams": 28
+            },
+            {
+              "source_bucket": "uaap_batch",
+              "games": 136,
+              "distinct_home_teams": 20,
+              "distinct_away_teams": 20
+            },
+            {
+              "source_bucket": "ncaa_batch",
+              "games": 81,
+              "distinct_home_teams": 10,
+              "distinct_away_teams": 10
+            },
+            {
+              "source_bucket": "spreadsheet_upload",
+              "games": 37,
+              "distinct_home_teams": 8,
+              "distinct_away_teams": 8
+            }
+          ]
+        },
+        "withinProgramExactDuplicates": 0,
+        "withinProgramDisplayKeyDuplicates": 9,
+        "withinProgramDisplayKeyDuplicatesWithStats": 8,
+        "crossProgramDisplayKeyCollisions": 0,
+        "crossProgramExactNameCollisions": 0,
+        "competitionContextDuplicateGroups": 0,
+        "highImpactContextDuplicates": 0,
+        "activeDeletedTeamNameOverlap": 0,
+        "gameStatTeamMismatch": 0,
+        "homeAwaySameTeam": 0,
+        "canonicalizationCandidates": 9
+      },
+      "blockers": [
+        "8 same-program display-key group(s) split GameStats across duplicate Team records."
+      ],
+      "warnings": [
+        "9 program(s) have multiple active Teams normalizing to the same display match key (8 with stats on 2+ records).",
+        "17 active Team(s) never appear in any active Game (0 still have GameStats from orphaned attribution).",
+        "3 active Program(s) have no active Teams."
+      ],
+      "topFindings": [
+        "9 program(s) have multiple active Teams normalizing to the same display match key (8 with stats on 2+ records)."
+      ]
+    },
+    "gameIdentities": {
+      "status": "WARN",
+      "counts": {
+        "activeGames": 405,
+        "homeAwaySameTeam": 0,
+        "gamesWithDeletedHomeTeam": 0,
+        "gamesWithDeletedAwayTeam": 0,
+        "gamesWithMissingSeason": 0,
+        "duplicateGameNumberGroups": 0,
+        "gamesWithoutStats": 5
+      },
+      "blockers": [],
+      "warnings": [
+        "5 active game(s) have zero active GameStats (may be forfeit/default)"
+      ],
+      "topFindings": [
+        "5 games without stats"
+      ]
+    },
+    "gameStatIntegrity": {
+      "status": "PASS",
+      "counts": {
+        "activeGameStats": 9391,
+        "orphanGameStats": 0,
+        "orphanPlayerRefs": 0,
+        "orphanTeamRefs": 0,
+        "duplicatePlayerGame": 0,
+        "teamMismatch": 0
+      },
+      "blockers": [],
+      "warnings": [],
+      "topFindings": []
+    },
+    "gpsIntegrity": {
+      "status": "PASS",
+      "counts": {
+        "formulaV1Gps": 9391,
+        "activeGameStats": 9391,
+        "gameStatsWithoutGps": 0,
+        "gpsWithoutGameStat": 0,
+        "gpsNullFinalScore": 0,
+        "gpsGameStatDelta": 0
+      },
+      "blockers": [],
+      "warnings": [],
+      "topFindings": []
+    },
+    "playerRatingIntegrity": {
+      "status": "WARN",
+      "counts": {
+        "playerRatings": 940,
+        "verifiedGameMismatches": 0,
+        "ratingMismatches": 0,
+        "starMismatches": 0,
+        "ratingsWithoutGps": 0,
+        "missingRatingsForGps": 0,
+        "orphanRatings": 0,
+        "wrongBoardAssignments": 16
+      },
+      "blockers": [],
+      "warnings": [
+        "16 PlayerRating row(s) on board != computed age bracket"
+      ],
+      "topFindings": [
+        "16 age-bracket board mismatches"
+      ]
+    },
+    "rankingSnapshotIntegrity": {
+      "status": "PASS",
+      "counts": {
+        "rankingSnapshots": 5,
+        "rankingSnapshotRows": 720,
+        "latestBoards": 4,
+        "orphanSnapshotRows": 0,
+        "ratingMismatches": 0,
+        "gameCountMismatches": 0,
+        "classYearIneligibleOnSnapshot": 0,
+        "belowMinGamesOnSnapshot": 0,
+        "missingExpectedPlayers": 0,
+        "extraSnapshotPlayers": 0,
+        "missingBoardsWithEligiblePlayers": 0,
+        "snapshotRowCountMismatch": 0
+      },
+      "blockers": [],
+      "warnings": [],
+      "topFindings": []
+    },
+    "publicRankingsIntegrity": {
+      "status": "WARN",
+      "counts": {
+        "lowSampleOnPublicBoard": 0,
+        "ineligibleOnPublicBoard": 0,
+        "snapshotPublicRowDelta": 0,
+        "publicRows_U13_boys": 0,
+        "publicRows_U13_girls": 0,
+        "publicRows_U16_boys": 7,
+        "publicRows_U16_girls": 0,
+        "publicRows_U19_boys": 59,
+        "publicRows_U19_girls": 0
+      },
+      "blockers": [],
+      "warnings": [
+        "U13 boys: 0 public-eligible rows despite 138 rated players"
+      ],
+      "topFindings": []
+    }
+  },
+  "blockers": [
+    "[teamIdentities] 8 same-program display-key group(s) split GameStats across duplicate Team records."
+  ],
+  "warnings": [
+    "[playerIdentities] 3 displayName+gender string(s) exist on both active and soft-deleted players (expected after approved merges when canonical predates duplicate).",
+    "[teamIdentities] 9 program(s) have multiple active Teams normalizing to the same display match key (8 with stats on 2+ records).",
+    "[teamIdentities] 17 active Team(s) never appear in any active Game (0 still have GameStats from orphaned attribution).",
+    "[teamIdentities] 3 active Program(s) have no active Teams.",
+    "[gameIdentities] 5 active game(s) have zero active GameStats (may be forfeit/default)",
+    "[playerRatingIntegrity] 16 PlayerRating row(s) on board != computed age bracket",
+    "[publicRankingsIntegrity] U13 boys: 0 public-eligible rows despite 138 rated players"
+  ]
+}

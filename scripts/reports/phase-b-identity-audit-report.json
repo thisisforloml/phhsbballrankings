@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-06-17T09:47:45.593Z",
+  "phase": "B-identity-audit",
+  "mode": "read-only",
+  "metrics": {
+    "players": {
+      "active": 930,
+      "softDeleted": 47
+    },
+    "playerAlias": {
+      "total": 32,
+      "bySource": [
+        {
+          "_count": {
+            "_all": 32
+          },
+          "source": "approved_merge"
+        }
+      ]
+    },
+    "playerExternalAlias": {
+      "total": 295
+    },
+    "activePlayersWithGameStats": 930,
+    "activePlayersWithoutGameStats": 0,
+    "displayNameGenderDuplicateGroups": 0,
+    "displayNameDuplicatesWithMultipleStatPlayers": 0,
+    "aliasesToDeletedPlayers": 0,
+    "aliasDisplayNameConflicts": 0,
+    "mergePlanDuplicateIdsTracked": 35,
+    "mergePlanDuplicatesStillActive": 0,
+    "mergePlanDuplicatesWithLingeringStats": 0,
+    "postMergeRecreations": 0,
+    "postMergeRecreationsWithStats": 0,
+    "sameGameExactNameCollisions": 0,
+    "sameGameNormalizedKeyCollisions": 0,
+    "importKeySplitGroups": 0,
+    "importKeySplitGroupsWithMultipleStatPlayers": 0,
+    "externalAliasSplitGroups": 0,
+    "orphanPlayers": 0,
+    "orphanPlayersWithAliases": 0,
+    "activeDeletedOverlapGroups": 3,
+    "auditLogMergeEntries": 0
+  },
+  "findings": [
+    {
+      "id": "active-deleted-displayName-overlap",
+      "severity": "low",
+      "category": "active_deleted_overlap",
+      "summary": "3 displayName+gender string(s) exist on both active and soft-deleted players (expected after approved merges when canonical predates duplicate).",
+      "count": 3,
+      "sample": [
+        {
+          "display_name": "John Addatu",
+          "gender": "BOYS",
+          "active_count": 1,
+          "deleted_count": 1,
+          "active_ids": [
+            "fac2ebfd-4e85-4003-a2c7-cdba900f6371"
+          ],
+          "deleted_ids": [
+            "be4ee3e4-8303-4bb2-bbf9-e29d26380089"
+          ]
+        },
+        {
+          "display_name": "Mark Jade Dulin",
+          "gender": "BOYS",
+          "active_count": 1,
+          "deleted_count": 1,
+          "active_ids": [
+            "94bf23af-63ac-4b45-8daf-df6038cc404c"
+          ],
+          "deleted_ids": [
+            "a11d4a79-39cf-42e2-b7d5-4b8538e6af68"
+          ]
+        },
+        {
+          "display_name": "Sam Hall",
+          "gender": "BOYS",
+          "active_count": 1,
+          "deleted_count": 1,
+          "active_ids": [
+            "c39b215b-fcf5-4760-a392-e4fc415bda42"
+          ],
+          "deleted_ids": [
+            "eda39169-352a-4411-8d41-e521bd99cd29"
+          ]
+        }
+      ]
+    }
+  ],
+  "severityCounts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1,
+    "info": 0
+  },
+  "blockers": [],
+  "recommendation": "PROCEED"
+}

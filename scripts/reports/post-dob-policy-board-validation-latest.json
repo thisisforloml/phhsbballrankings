@@ -1,0 +1,1120 @@
+{
+  "generatedAt": "2026-06-17T11:03:56.973Z",
+  "mode": "read-only",
+  "policyEffectiveDate": "2026-06-17T00:00:00.000Z",
+  "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+  "summary": {
+    "boardsValidated": 6,
+    "projectedBoardsMatched": 4,
+    "totalPendingVisible": 349,
+    "badgeViolationCount": 0,
+    "pendingInSnapshotRows": 349,
+    "snapshotMutationsSincePolicy": 2,
+    "blockers": [
+      "Snapshot protection: 349 no-DOB players in persisted snapshots",
+      "U16 Girls: zero rating pool"
+    ]
+  },
+  "boardCounts": [
+    {
+      "board": "U19 Boys",
+      "actual": {
+        "pool": 493,
+        "verifiedRanked": 59,
+        "pendingVisible": 175,
+        "totalPublic": 234,
+        "snapshotEligible": 59
+      },
+      "projected": {
+        "pool": 493,
+        "verifiedRanked": 59,
+        "pendingVisible": 175,
+        "totalPublic": 234,
+        "snapshotEligible": 59
+      },
+      "variance": {
+        "pool": {
+          "actual": 493,
+          "expected": 493,
+          "delta": 0,
+          "match": true
+        },
+        "verifiedRanked": {
+          "actual": 59,
+          "expected": 59,
+          "delta": 0,
+          "match": true
+        },
+        "pendingVisible": {
+          "actual": 175,
+          "expected": 175,
+          "delta": 0,
+          "match": true
+        },
+        "totalPublic": {
+          "actual": 234,
+          "expected": 234,
+          "delta": 0,
+          "match": true
+        },
+        "snapshotEligible": {
+          "actual": 59,
+          "expected": 59,
+          "delta": 0,
+          "match": true
+        }
+      },
+      "snapshotEligibleViolations": 0,
+      "topBlockers": [
+        {
+          "reason": "P* BELOW_THRESHOLD",
+          "count": 194
+        },
+        {
+          "reason": "P* UNKNOWN_DOB",
+          "count": 175
+        },
+        {
+          "reason": "P* GRADUATED",
+          "count": 49
+        },
+        {
+          "reason": "P* OUT_OF_BRACKET",
+          "count": 16
+        }
+      ]
+    },
+    {
+      "board": "U19 Girls",
+      "actual": {
+        "pool": 56,
+        "verifiedRanked": 0,
+        "pendingVisible": 45,
+        "totalPublic": 45,
+        "snapshotEligible": 0
+      },
+      "projected": {
+        "pool": 56,
+        "verifiedRanked": 0,
+        "pendingVisible": 45,
+        "totalPublic": 45,
+        "snapshotEligible": 0
+      },
+      "variance": {
+        "pool": {
+          "actual": 56,
+          "expected": 56,
+          "delta": 0,
+          "match": true
+        },
+        "verifiedRanked": {
+          "actual": 0,
+          "expected": 0,
+          "delta": 0,
+          "match": true
+        },
+        "pendingVisible": {
+          "actual": 45,
+          "expected": 45,
+          "delta": 0,
+          "match": true
+        },
+        "totalPublic": {
+          "actual": 45,
+          "expected": 45,
+          "delta": 0,
+          "match": true
+        },
+        "snapshotEligible": {
+          "actual": 0,
+          "expected": 0,
+          "delta": 0,
+          "match": true
+        }
+      },
+      "snapshotEligibleViolations": 0,
+      "topBlockers": [
+        {
+          "reason": "P* UNKNOWN_DOB",
+          "count": 45
+        },
+        {
+          "reason": "P* BELOW_THRESHOLD",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "board": "U16 Boys",
+      "actual": {
+        "pool": 253,
+        "verifiedRanked": 7,
+        "pendingVisible": 108,
+        "totalPublic": 115,
+        "snapshotEligible": 7
+      },
+      "projected": {
+        "pool": 253,
+        "verifiedRanked": 7,
+        "pendingVisible": 108,
+        "totalPublic": 115,
+        "snapshotEligible": 7
+      },
+      "variance": {
+        "pool": {
+          "actual": 253,
+          "expected": 253,
+          "delta": 0,
+          "match": true
+        },
+        "verifiedRanked": {
+          "actual": 7,
+          "expected": 7,
+          "delta": 0,
+          "match": true
+        },
+        "pendingVisible": {
+          "actual": 108,
+          "expected": 108,
+          "delta": 0,
+          "match": true
+        },
+        "totalPublic": {
+          "actual": 115,
+          "expected": 115,
+          "delta": 0,
+          "match": true
+        },
+        "snapshotEligible": {
+          "actual": 7,
+          "expected": 7,
+          "delta": 0,
+          "match": true
+        }
+      },
+      "snapshotEligibleViolations": 0,
+      "topBlockers": [
+        {
+          "reason": "P* BELOW_THRESHOLD",
+          "count": 138
+        },
+        {
+          "reason": "P* UNKNOWN_DOB",
+          "count": 108
+        }
+      ]
+    },
+    {
+      "board": "U16 Girls",
+      "actual": {
+        "pool": 0,
+        "verifiedRanked": 0,
+        "pendingVisible": 0,
+        "totalPublic": 0,
+        "snapshotEligible": 0
+      },
+      "projected": null,
+      "variance": null,
+      "snapshotEligibleViolations": 0,
+      "topBlockers": []
+    },
+    {
+      "board": "U13 Boys",
+      "actual": {
+        "pool": 136,
+        "verifiedRanked": 0,
+        "pendingVisible": 21,
+        "totalPublic": 21,
+        "snapshotEligible": 0
+      },
+      "projected": {
+        "pool": 136,
+        "verifiedRanked": 0,
+        "pendingVisible": 21,
+        "totalPublic": 21,
+        "snapshotEligible": 0
+      },
+      "variance": {
+        "pool": {
+          "actual": 136,
+          "expected": 136,
+          "delta": 0,
+          "match": true
+        },
+        "verifiedRanked": {
+          "actual": 0,
+          "expected": 0,
+          "delta": 0,
+          "match": true
+        },
+        "pendingVisible": {
+          "actual": 21,
+          "expected": 21,
+          "delta": 0,
+          "match": true
+        },
+        "totalPublic": {
+          "actual": 21,
+          "expected": 21,
+          "delta": 0,
+          "match": true
+        },
+        "snapshotEligible": {
+          "actual": 0,
+          "expected": 0,
+          "delta": 0,
+          "match": true
+        }
+      },
+      "snapshotEligibleViolations": 0,
+      "topBlockers": [
+        {
+          "reason": "P* BELOW_THRESHOLD",
+          "count": 115
+        },
+        {
+          "reason": "P* UNKNOWN_DOB",
+          "count": 21
+        }
+      ]
+    },
+    {
+      "board": "U13 Girls",
+      "actual": {
+        "pool": 0,
+        "verifiedRanked": 0,
+        "pendingVisible": 0,
+        "totalPublic": 0,
+        "snapshotEligible": 0
+      },
+      "projected": null,
+      "variance": null,
+      "snapshotEligibleViolations": 0,
+      "topBlockers": []
+    }
+  ],
+  "pendingByBoard": [
+    {
+      "board": "U19 Boys",
+      "pendingVisible": 175,
+      "expiredOnBoard": 0,
+      "byProgram": [
+        {
+          "program": "Unassigned",
+          "count": 78
+        },
+        {
+          "program": "University of Perpetual Help System DALTA",
+          "count": 10
+        },
+        {
+          "program": "University of the Philippines Integrated School",
+          "count": 9
+        },
+        {
+          "program": "San Beda University - Rizal",
+          "count": 9
+        },
+        {
+          "program": "Jose Rizal University",
+          "count": 8
+        },
+        {
+          "program": "San Sebastian College-Recoletos",
+          "count": 8
+        },
+        {
+          "program": "Arellano University",
+          "count": 8
+        },
+        {
+          "program": "Lyceum of the Philippines University Cavite",
+          "count": 7
+        },
+        {
+          "program": "Colegio de San Juan de Letran",
+          "count": 6
+        },
+        {
+          "program": "University of the East",
+          "count": 6
+        },
+        {
+          "program": "Emilio Aguinaldo College",
+          "count": 6
+        },
+        {
+          "program": "Malayan High School of Science",
+          "count": 6
+        },
+        {
+          "program": "University of Santo Tomas",
+          "count": 5
+        },
+        {
+          "program": "La Salle Green Hills",
+          "count": 3
+        },
+        {
+          "program": "De La Salle Santiago Zobel",
+          "count": 2
+        }
+      ],
+      "byCompetition": [
+        {
+          "competition": "NCAA Season 101 Junior's Basketball",
+          "count": 71
+        },
+        {
+          "competition": "4th Stallion Cup – Teens 17u",
+          "count": 68
+        },
+        {
+          "competition": "5th Stallion Cup – Teens 17u",
+          "count": 59
+        },
+        {
+          "competition": "3rd Stallion Cup – Teens 17u",
+          "count": 51
+        },
+        {
+          "competition": "6th Stallion Cup Teens – Jumbo Plastic Conference 18u",
+          "count": 45
+        },
+        {
+          "competition": "UAAP Season 88 HS Boys Basketball",
+          "count": 26
+        },
+        {
+          "competition": "UAAP Season 88 16U Boys Basketball",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "board": "U19 Girls",
+      "pendingVisible": 45,
+      "expiredOnBoard": 0,
+      "byProgram": [
+        {
+          "program": "Ateneo de Manila University",
+          "count": 12
+        },
+        {
+          "program": "University of Santo Tomas",
+          "count": 12
+        },
+        {
+          "program": "National University Nazareth School",
+          "count": 12
+        },
+        {
+          "program": "De La Salle Santiago Zobel",
+          "count": 9
+        }
+      ],
+      "byCompetition": [
+        {
+          "competition": "UAAP Season 88 HS Girls Basketball",
+          "count": 45
+        }
+      ]
+    },
+    {
+      "board": "U16 Boys",
+      "pendingVisible": 108,
+      "expiredOnBoard": 0,
+      "byProgram": [
+        {
+          "program": "National University Nazareth School",
+          "count": 15
+        },
+        {
+          "program": "Ateneo de Manila University",
+          "count": 13
+        },
+        {
+          "program": "Far Eastern University Diliman",
+          "count": 13
+        },
+        {
+          "program": "De La Salle Santiago Zobel",
+          "count": 11
+        },
+        {
+          "program": "University of Santo Tomas",
+          "count": 10
+        },
+        {
+          "program": "San Pedro Spartans",
+          "count": 10
+        },
+        {
+          "program": "University of the East",
+          "count": 10
+        },
+        {
+          "program": "Adamson University",
+          "count": 10
+        },
+        {
+          "program": "University of the Philippines Integrated School",
+          "count": 9
+        },
+        {
+          "program": "Unassigned",
+          "count": 7
+        }
+      ],
+      "byCompetition": [
+        {
+          "competition": "UAAP Season 88 16U Boys Basketball",
+          "count": 91
+        },
+        {
+          "competition": "PYBC 15U",
+          "count": 17
+        },
+        {
+          "competition": "Philippine Youth Basketball Championship - 15U",
+          "count": 17
+        },
+        {
+          "competition": "PYBC U16 Boys Basketball",
+          "count": 10
+        },
+        {
+          "competition": "UAAP Season 88 HS Boys Basketball",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "board": "U16 Girls",
+      "pendingVisible": 0,
+      "expiredOnBoard": 0,
+      "byProgram": [],
+      "byCompetition": []
+    },
+    {
+      "board": "U13 Boys",
+      "pendingVisible": 21,
+      "expiredOnBoard": 0,
+      "byProgram": [
+        {
+          "program": "Unassigned",
+          "count": 21
+        }
+      ],
+      "byCompetition": [
+        {
+          "competition": "Philippine Youth Basketball Championship – 13u",
+          "count": 21
+        }
+      ]
+    },
+    {
+      "board": "U13 Girls",
+      "pendingVisible": 0,
+      "expiredOnBoard": 0,
+      "byProgram": [],
+      "byCompetition": []
+    }
+  ],
+  "badgeIntegrity": {
+    "violationCount": 0,
+    "violations": [],
+    "rule": "PENDING + publicRankAllowed → badge; VERIFIED → no badge"
+  },
+  "snapshotProtection": {
+    "pendingInSnapshotRows": 349,
+    "snapshotMutationsSincePolicy": [
+      {
+        "id": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T05:28:03.058Z",
+        "_count": {
+          "rows": 248
+        }
+      },
+      {
+        "id": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "ageGroup": "U13",
+        "gender": "BOYS",
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T04:50:47.128Z",
+        "_count": {
+          "rows": 21
+        }
+      }
+    ],
+    "perBoard": [
+      {
+        "board": "U19 Boys",
+        "snapshotId": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "rowCount": 248,
+        "pendingNoDobInSnapshot": 175,
+        "notSnapshotEligibleInSnapshot": 189,
+        "createdAt": "2026-06-17T05:28:03.058Z"
+      },
+      {
+        "board": "U13 Boys",
+        "snapshotId": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "rowCount": 21,
+        "pendingNoDobInSnapshot": 21,
+        "notSnapshotEligibleInSnapshot": 21,
+        "createdAt": "2026-06-17T04:50:47.128Z"
+      },
+      {
+        "board": "U16 Boys",
+        "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "rowCount": 115,
+        "pendingNoDobInSnapshot": 108,
+        "notSnapshotEligibleInSnapshot": 109,
+        "createdAt": "2026-05-18T06:50:37.696Z"
+      },
+      {
+        "board": "U19 Girls",
+        "snapshotId": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "rowCount": 45,
+        "pendingNoDobInSnapshot": 45,
+        "notSnapshotEligibleInSnapshot": 45,
+        "createdAt": "2026-05-18T02:57:24.071Z"
+      }
+    ],
+    "codePathExcludesPending": "g3-ranking-snapshot-regeneration.ts filters verdict.snapshotEligible"
+  },
+  "ag4Compatibility": {
+    "recruitingClassFilterEnabled": false,
+    "u19BoysPublicTotal": 234,
+    "pendingWithUnknownClass": 175,
+    "verifiedWithUnknownClass": 0,
+    "classFilter2027ExcludesUnknown": 200,
+    "classFilter2027WithUnknownRetainsPending": 175,
+    "recruitingClassYearChipCount": 3,
+    "unknownClassExcludedByDefault": 175,
+    "vAg410PendingVisibleWithIncludeUnknown": true
+  },
+  "u16Readiness": {
+    "boys": {
+      "ratingPool": 253,
+      "publicTotal": 115,
+      "verifiedRanked": 7,
+      "pendingVisible": 108,
+      "prePolicyPublicRanked": 7,
+      "postPolicyPublicTotal": 115,
+      "ag3MinimumVerifiedRanked": 25,
+      "ag3SoftGateVerifiedRanked": 50,
+      "ag3MinimumPublicTotalWithPending": 25,
+      "meetsVerifiedRankedGate": false,
+      "meetsPublicTotalGate": true,
+      "meetsPublicSoftGate": true,
+      "recommendation": "CONDITIONAL — public depth OK post-DOB policy (115 target) but only 7 VERIFIED RANKED; Coming Soon removable only with Age Unverified disclosure and PO sign-off",
+      "comingSoonAppropriate": false
+    },
+    "girls": {
+      "ratingPool": 0,
+      "publicTotal": 0,
+      "verifiedRanked": 0,
+      "recommendation": "HARD BLOCK — zero rating pool; Coming Soon required",
+      "comingSoonAppropriate": true
+    }
+  },
+  "u13Readiness": {
+    "boys": {
+      "ratingPool": 136,
+      "publicTotal": 21,
+      "verifiedRanked": 0,
+      "agPlanMinimumPublic": 30,
+      "meetsAgPlanMinimum": false,
+      "meetsVerifiedMinimum": false,
+      "recommendation": "BLOCK — 21 public rows vs AG plan ≥30 minimum",
+      "comingSoonAppropriate": true
+    },
+    "girls": {
+      "ratingPool": 0,
+      "publicTotal": 0,
+      "recommendation": "BLOCK — no material Girls U13 evidence",
+      "comingSoonAppropriate": true
+    }
+  },
+  "topAnomalies": {
+    "countVariance": [],
+    "nearExpiry": [],
+    "expiredButVisible": [],
+    "thresholdGaps": [
+      {
+        "board": "U19 Boys",
+        "playerId": "f24f8205-9a79-439a-aafd-40e6b54aece1",
+        "name": "Aiori Aquino",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "31163f82-6166-4975-99b4-119a25677117",
+        "name": "Audwyn Tamayo",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "2f8f1983-7961-44ee-b211-03039b120b4c",
+        "name": "Kian Lim",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "0bb42b18-09d0-4287-bb58-22a79fcc8b38",
+        "name": "Joshua Miguel Chua",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "bd805575-cbaf-4596-9f31-cd28d2a7fd25",
+        "name": "Gavin Co",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "108648e9-92d8-4de3-852a-c91930d5f96d",
+        "name": "Zyril Li",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "98931f48-505f-40de-9b7e-17cedc70bb31",
+        "name": "Tev Rey",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "611eaa30-89ab-43df-a434-95d906990275",
+        "name": "Jk Sy",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "1e7cd163-5200-41c2-855d-409e1194ce67",
+        "name": "Jacob Chua",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "874dcf0f-70b7-4bcf-9c03-f64a6f70b97a",
+        "name": "Yuto Someya",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "13ef0521-d08b-4ec3-a1e5-2c5926ba97b8",
+        "name": "Charles Caspe",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "899d166b-8fe6-4c81-a4b5-7ea6f18ce998",
+        "name": "Craig Fongtong",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "05499fc8-1e09-4469-8489-258231b9a43d",
+        "name": "Jasper Palles",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "efb48168-dfaf-4eb6-b93c-62103afac0eb",
+        "name": "Renzy Saygo",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U19 Boys",
+        "playerId": "9d69cdd0-77ef-4da2-8369-f06911870fac",
+        "name": "Sean Reroma",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "83281218-93b7-4561-b5c2-5247e93ac02a",
+        "name": "Jesse Arellano",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "157c2483-a4eb-4ef4-a15d-c5bb00d06f63",
+        "name": "Prince Labong",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "5ab87a69-ae73-4542-9550-952fbea9a824",
+        "name": "Aaron Gidoc",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "761d8a0e-faf7-4b04-99d2-75c62b9bb1cd",
+        "name": "Xyrus Luzon",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "a5b7565d-4e44-4ece-9ba4-2dd236027fbb",
+        "name": "Elvin McCoy Pascual",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "00a4334e-ac96-465e-a320-6b8b96d86d28",
+        "name": "Louie Joaquin Sandig",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "a346d432-ca9d-4954-862b-98f6ed677101",
+        "name": "Santino Miguel Tison",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "07f502db-e4fe-40e9-9a4d-1d3d41b95517",
+        "name": "Chris Llavore",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "83a511e6-8fa3-4fbc-9e10-0c1fd48d5f0e",
+        "name": "Ethan Dumana",
+        "games": 9,
+        "gamesShort": 1
+      },
+      {
+        "board": "U16 Boys",
+        "playerId": "7c52c4a7-89b5-42e7-8750-b90098ec6060",
+        "name": "James Enriquez",
+        "games": 9,
+        "gamesShort": 1
+      }
+    ],
+    "trustEdgeCases": [
+      {
+        "playerId": "4abfebc5-1609-4402-82f3-1183e0acac03",
+        "name": "Eli Dulot",
+        "board": "U16 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "4abfebc5-1609-4402-82f3-1183e0acac03",
+        "name": "Eli Dulot",
+        "board": "U16 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "2d40867e-3318-47a9-ac96-9a84848e338b",
+        "name": "Marcus De Lara",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "2d40867e-3318-47a9-ac96-9a84848e338b",
+        "name": "Marcus De Lara",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "922a5522-3987-42ab-80cd-e2a5ce8a5c52",
+        "name": "Nadine Labay",
+        "board": "U19 GIRLS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "922a5522-3987-42ab-80cd-e2a5ce8a5c52",
+        "name": "Nadine Labay",
+        "board": "U19 GIRLS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "af1d1ab7-ef0a-42d1-a3f9-e2c160c6aecd",
+        "name": "Jacob Ang",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "af1d1ab7-ef0a-42d1-a3f9-e2c160c6aecd",
+        "name": "Jacob Ang",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "1915964c-a278-4db1-8e7b-c8c739ee5885",
+        "name": "Lexi Callueng",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "1915964c-a278-4db1-8e7b-c8c739ee5885",
+        "name": "Lexi Callueng",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "253c6cf5-68f5-42c1-96b0-8deb5969673d",
+        "name": "JC Roales",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "253c6cf5-68f5-42c1-96b0-8deb5969673d",
+        "name": "JC Roales",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "bc80f789-b5cf-43bd-b773-a7f18b86ea65",
+        "name": "Miky Chua",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "bc80f789-b5cf-43bd-b773-a7f18b86ea65",
+        "name": "Miky Chua",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "84747621-0eee-4de7-aa17-2af284717707",
+        "name": "Jeremy Tan",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "84747621-0eee-4de7-aa17-2af284717707",
+        "name": "Jeremy Tan",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "f1e17f00-adf6-4cd1-aa3e-1d693c94ec5f",
+        "name": "Kailie Tiu",
+        "board": "U13 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "f1e17f00-adf6-4cd1-aa3e-1d693c94ec5f",
+        "name": "Kailie Tiu",
+        "board": "U13 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "4f1cd332-49ed-44e3-a3c6-631adb7a128c",
+        "name": "Enzo Sy",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "4f1cd332-49ed-44e3-a3c6-631adb7a128c",
+        "name": "Enzo Sy",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+        "name": "Ruiza Olmos",
+        "board": "U19 GIRLS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+        "name": "Ruiza Olmos",
+        "board": "U19 GIRLS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "ae69c7e6-20b1-493b-998a-8e70ffd7377b",
+        "name": "Kean Dungca",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      },
+      {
+        "playerId": "ae69c7e6-20b1-493b-998a-8e70ffd7377b",
+        "name": "Kean Dungca",
+        "board": "U19 BOYS",
+        "issue": "Would hide if dobEscalationTier≥2 (P13)"
+      },
+      {
+        "playerId": "7f93137a-a67d-490f-8dc8-1b834bcc48bf",
+        "name": "Pablo Rufino",
+        "board": "U19 BOYS",
+        "issue": "Would hide if UNTRUSTED (P11)"
+      }
+    ],
+    "rankGaps": [
+      {
+        "board": "U19 Boys",
+        "publicCount": 234,
+        "rankGaps": [
+          2,
+          6,
+          7,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          20,
+          22,
+          23,
+          24,
+          27
+        ]
+      },
+      {
+        "board": "U19 Girls",
+        "publicCount": 45,
+        "rankGaps": [
+          30,
+          31,
+          35,
+          37,
+          39,
+          43,
+          45,
+          46,
+          47,
+          52
+        ]
+      },
+      {
+        "board": "U16 Boys",
+        "publicCount": 115,
+        "rankGaps": [
+          2,
+          3,
+          7,
+          8,
+          10,
+          11,
+          13,
+          14,
+          19,
+          20,
+          22,
+          23,
+          24,
+          26,
+          30
+        ]
+      },
+      {
+        "board": "U13 Boys",
+        "publicCount": 21,
+        "rankGaps": [
+          9,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          22,
+          23,
+          24,
+          27,
+          28
+        ]
+      }
+    ]
+  },
+  "verdictDistribution": [
+    {
+      "board": "U19 Boys",
+      "publicBoardRows": 234,
+      "verifiedRanked": 59,
+      "pendingVisible": 175,
+      "blockers": {
+        "P* BELOW_THRESHOLD": 194,
+        "P* UNKNOWN_DOB": 175,
+        "P* GRADUATED": 49,
+        "P* OUT_OF_BRACKET": 16
+      }
+    },
+    {
+      "board": "U19 Girls",
+      "publicBoardRows": 45,
+      "verifiedRanked": 0,
+      "pendingVisible": 45,
+      "blockers": {
+        "P* UNKNOWN_DOB": 45,
+        "P* BELOW_THRESHOLD": 11
+      }
+    },
+    {
+      "board": "U16 Boys",
+      "publicBoardRows": 115,
+      "verifiedRanked": 7,
+      "pendingVisible": 108,
+      "blockers": {
+        "P* BELOW_THRESHOLD": 138,
+        "P* UNKNOWN_DOB": 108
+      }
+    },
+    {
+      "board": "U16 Girls",
+      "publicBoardRows": 0,
+      "verifiedRanked": 0,
+      "pendingVisible": 0,
+      "blockers": {}
+    },
+    {
+      "board": "U13 Boys",
+      "publicBoardRows": 21,
+      "verifiedRanked": 0,
+      "pendingVisible": 21,
+      "blockers": {
+        "P* BELOW_THRESHOLD": 115,
+        "P* UNKNOWN_DOB": 21
+      }
+    },
+    {
+      "board": "U13 Girls",
+      "publicBoardRows": 0,
+      "verifiedRanked": 0,
+      "pendingVisible": 0,
+      "blockers": {}
+    }
+  ]
+}

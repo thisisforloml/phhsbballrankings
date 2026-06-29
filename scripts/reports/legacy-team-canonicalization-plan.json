@@ -1,0 +1,4258 @@
+{
+  "generatedAt": "2026-06-01T13:33:48.529Z",
+  "mode": "dry-run-read-only",
+  "guardrails": [
+    "No database writes.",
+    "No deletes.",
+    "No merges.",
+    "No schema changes.",
+    "No imports or publishes.",
+    "No rating/ranking recompute.",
+    "No GameStat/Game rewrites.",
+    "Any future execute path must require explicit approval and exact Team IDs/counts."
+  ],
+  "summary": {
+    "totalLegacyTeams": 27,
+    "AUTO_READY_ROSTER_ONLY": 5,
+    "NEEDS_REVIEW_ROSTER_ONLY": 0,
+    "AUTO_READY_GAME_AND_STATS": 0,
+    "NEEDS_REVIEW_GAME_AND_STATS": 0,
+    "KEEP_HISTORICAL_REFERENCE": 1,
+    "SAFE_TO_DELETE_ZERO_REFERENCES": 2,
+    "BLOCKED_NO_CANONICAL_TARGET": 18,
+    "BLOCKED_AMBIGUOUS_TARGETS": 1
+  },
+  "cleanupPath": [
+    "Step A: reassign safe PlayerTeamSeason rows.",
+    "Step B: reassign safe Game/GameStat refs only when approved.",
+    "Step C: after zero references remain, retire/delete/archive legacy Team.",
+    "Step D: rerun Program Management audit."
+  ],
+  "candidates": [
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "programName": "Adamson University",
+      "legacyTeamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+      "legacyTeamName": "ADU Jrs (ADU)",
+      "legacyDisplayName": "ADU Jrs (ADU)",
+      "legacyKey": "ADU",
+      "legacyReasons": [
+        "junior label",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 2,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "64e28375-c9ca-42c4-850c-d42e202bf5d3",
+          "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+          "playerName": "Francel Flores",
+          "playerGender": "BOYS",
+          "birthDate": "2009-10-29",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "f6f7a927-d60c-40b7-b62f-114716d357b7",
+          "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+          "playerName": "Keefe Iledan",
+          "playerGender": "BOYS",
+          "birthDate": "2010-08-07",
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+        "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "candidateTeamName": "Adamson Baby Falcons",
+          "candidateDisplayName": "Adamson Baby Falcons",
+          "candidateKey": "ADAMSON BABY FALCONS",
+          "score": 17,
+          "sameSeasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ],
+          "sameLeagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 2,
+          "playerOverlapIds": [
+            "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+            "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 14,
+            "gameStat": 168,
+            "gameHomeAway": 14,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "candidateTeamName": "Adamson Baby Falcons 16U",
+          "candidateDisplayName": "Adamson Baby Falcons",
+          "candidateKey": "ADAMSON BABY FALCONS",
+          "score": -22,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": "U19 vs U16",
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 173,
+            "gameHomeAway": 15,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          }
+        }
+      ],
+      "recommendedTarget": {
+        "candidateTeamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+        "candidateTeamName": "Adamson Baby Falcons",
+        "candidateDisplayName": "Adamson Baby Falcons",
+        "candidateKey": "ADAMSON BABY FALCONS",
+        "score": 17,
+        "sameSeasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ],
+        "sameLeagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "sameAgeGroups": [
+          "U19"
+        ],
+        "sameGender": "BOYS",
+        "crossGender": null,
+        "crossAge": null,
+        "playerOverlapCount": 2,
+        "playerOverlapIds": [
+          "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+          "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6"
+        ],
+        "candidateReferenceCounts": {
+          "playerTeamSeason": 14,
+          "gameStat": 168,
+          "gameHomeAway": 14,
+          "submissionsImports": "no direct Team relation found in Submission model"
+        },
+        "candidateContext": {
+          "gender": "BOYS",
+          "ageGroups": [
+            "U19"
+          ],
+          "leagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "seasonNames": [
+            "Season 88"
+          ],
+          "seasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      },
+      "recommendation": "AUTO_READY_ROSTER_ONLY",
+      "rationale": "Roster-only references have one same-season, same-age, same-gender target and no historical Game/GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "programName": "Ateneo de Manila University",
+      "legacyTeamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+      "legacyTeamName": "ATENEO JRS (ATENEO)",
+      "legacyDisplayName": "Ateneo Jrs (ateneo)",
+      "legacyKey": "ATENEO",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 1,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "436f6c93-5aec-47cb-87c5-5546a47f8a98",
+          "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+          "playerName": "Sky Jazul",
+          "playerGender": "BOYS",
+          "birthDate": "2010-10-25",
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "2d58ecfa-e62f-404d-95a7-c8a340d65e54"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "candidateTeamName": "Ateneo Blue Eaglets",
+          "candidateDisplayName": "Ateneo Blue Eaglets",
+          "candidateKey": "ATENEO BLUE EAGLETS",
+          "score": 15,
+          "sameSeasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ],
+          "sameLeagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 1,
+          "playerOverlapIds": [
+            "2d58ecfa-e62f-404d-95a7-c8a340d65e54"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 15,
+            "gameStat": 180,
+            "gameHomeAway": 16,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "candidateTeamName": "Ateneo Blue Eaglets 16U",
+          "candidateDisplayName": "Ateneo Blue Eaglets",
+          "candidateKey": "ATENEO BLUE EAGLETS",
+          "score": -20,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": "U19 vs U16",
+          "playerOverlapCount": 1,
+          "playerOverlapIds": [
+            "2d58ecfa-e62f-404d-95a7-c8a340d65e54"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 197,
+            "gameHomeAway": 14,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "candidateTeamName": "Ateneo Lady Eaglets",
+          "candidateDisplayName": "Ateneo Lady Eaglets",
+          "candidateKey": "ATENEO LADY EAGLETS",
+          "score": -97,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 74,
+            "gameHomeAway": 6,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "candidateTeamName": "ATENEO Girls (ATENEO)",
+          "candidateDisplayName": "ATENEO Girls (ATENEO)",
+          "candidateKey": "ATENEO",
+          "score": -98,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": {
+        "candidateTeamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+        "candidateTeamName": "Ateneo Blue Eaglets",
+        "candidateDisplayName": "Ateneo Blue Eaglets",
+        "candidateKey": "ATENEO BLUE EAGLETS",
+        "score": 15,
+        "sameSeasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ],
+        "sameLeagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "sameAgeGroups": [
+          "U19"
+        ],
+        "sameGender": "BOYS",
+        "crossGender": null,
+        "crossAge": null,
+        "playerOverlapCount": 1,
+        "playerOverlapIds": [
+          "2d58ecfa-e62f-404d-95a7-c8a340d65e54"
+        ],
+        "candidateReferenceCounts": {
+          "playerTeamSeason": 15,
+          "gameStat": 180,
+          "gameHomeAway": 16,
+          "submissionsImports": "no direct Team relation found in Submission model"
+        },
+        "candidateContext": {
+          "gender": "BOYS",
+          "ageGroups": [
+            "U19"
+          ],
+          "leagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "seasonNames": [
+            "Season 88"
+          ],
+          "seasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      },
+      "recommendation": "AUTO_READY_ROSTER_ONLY",
+      "rationale": "Roster-only references have one same-season, same-age, same-gender target and no historical Game/GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "legacyTeamId": "4108ff02-d59f-41aa-9219-070d56cfa5bc",
+      "legacyTeamName": "DE LA SALLE Jrs (DLSU)",
+      "legacyDisplayName": "DE LA SALLE Jrs (DLSU)",
+      "legacyKey": "DE LA SALLE",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [],
+        "leagueNames": [],
+        "seasonNames": [],
+        "seasonIds": []
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "candidateTeamName": "LA SALLE Girls (DLSU)",
+          "candidateDisplayName": "LA SALLE Girls (DLSU)",
+          "candidateKey": "LA SALLE",
+          "score": 0,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        },
+        {
+          "candidateTeamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "candidateTeamName": "LA SALLE Girls (LA SALLE)",
+          "candidateDisplayName": "LA SALLE Girls (LA SALLE)",
+          "candidateKey": "LA SALLE",
+          "score": 0,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": null,
+      "recommendation": "SAFE_TO_DELETE_ZERO_REFERENCES",
+      "rationale": "Legacy/generic Team has no active roster, Game, or GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "legacyTeamId": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+      "legacyTeamName": "De La Salle Zobel Junior Archers",
+      "legacyDisplayName": "De La Salle Zobel Junior Archers",
+      "legacyKey": "DE LA SALLE ZOBEL ARCHERS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 180,
+        "gameHomeAway": 15,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-HSB-004",
+        "UAAP-S88-HSB-005",
+        "UAAP-S88-HSB-011",
+        "UAAP-S88-HSB-013",
+        "UAAP-S88-HSB-018",
+        "UAAP-S88-HSB-021",
+        "UAAP-S88-HSB-027",
+        "UAAP-S88-HSB-031",
+        "UAAP-S88-HSB-036",
+        "UAAP-S88-HSB-040",
+        "UAAP-S88-HSB-044",
+        "UAAP-S88-HSB-047",
+        "UAAP-S88-HSB-051",
+        "UAAP-S88-HSB-053",
+        "UAAP-S88-HSB-059"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-HSB-004 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-005 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-011 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-013 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-018 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-021 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-027 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-031 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-036 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-040 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-044 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-047 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-051 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-053 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-059 | UAAP Season 88 HS Boys Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-HSB-004",
+        "UAAP-S88-HSB-005",
+        "UAAP-S88-HSB-011",
+        "UAAP-S88-HSB-013",
+        "UAAP-S88-HSB-018",
+        "UAAP-S88-HSB-021",
+        "UAAP-S88-HSB-027",
+        "UAAP-S88-HSB-031",
+        "UAAP-S88-HSB-036",
+        "UAAP-S88-HSB-040",
+        "UAAP-S88-HSB-044",
+        "UAAP-S88-HSB-047",
+        "UAAP-S88-HSB-051",
+        "UAAP-S88-HSB-053",
+        "UAAP-S88-HSB-059"
+      ],
+      "legacyPlayerIds": [
+        "0cee7eee-3f5b-41aa-b210-80c73358c2fa",
+        "101304ee-222e-4e34-8611-ef98a011b425",
+        "204b7115-fb23-4c58-9678-2fd27e82edcc",
+        "21a5b64e-d338-45eb-a335-c80280655bf9",
+        "2aa5b8b7-6656-4267-9dc2-d1036cc26f46",
+        "5222f5c8-6c45-42fc-86f3-15794d1cfbdf",
+        "5f0ad585-ab7a-431e-985d-91fc6268b172",
+        "75c01727-e3c1-4fa8-9f60-91d30a93acae",
+        "87fe37a4-408a-4cfd-b96e-8cc8615e7b3d",
+        "998fb770-0955-4042-9d24-7222519553cd",
+        "a0613f90-c90b-4ef7-9a90-4b14dc4ecac0",
+        "afa15785-0232-4ed1-901a-104492d05c0c",
+        "b2d4bd51-4551-45b0-ba2f-e0bde0b6fccf",
+        "e081f2c2-b6cb-4cf4-8e67-ab7977586e58",
+        "e16d6dc8-7ba5-4851-ac01-87729ae4ba85"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "candidateTeamName": "LA SALLE Girls (DLSU)",
+          "candidateDisplayName": "LA SALLE Girls (DLSU)",
+          "candidateKey": "LA SALLE",
+          "score": -100,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        },
+        {
+          "candidateTeamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "candidateTeamName": "LA SALLE Girls (LA SALLE)",
+          "candidateDisplayName": "LA SALLE Girls (LA SALLE)",
+          "candidateKey": "LA SALLE",
+          "score": -100,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "legacyTeamId": "3739a9f4-21ef-4938-83ff-811433a47656",
+      "legacyTeamName": "De La Salle Zobel Junior Archers 16U",
+      "legacyDisplayName": "De La Salle Zobel Junior Archers",
+      "legacyKey": "DE LA SALLE ZOBEL ARCHERS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 176,
+        "gameHomeAway": 14,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-16U-002",
+        "UAAP-S88-16U-008",
+        "UAAP-S88-16U-012",
+        "UAAP-S88-16U-015",
+        "UAAP-S88-16U-021",
+        "UAAP-S88-16U-023",
+        "UAAP-S88-16U-027",
+        "UAAP-S88-16U-032",
+        "UAAP-S88-16U-033",
+        "UAAP-S88-16U-037",
+        "UAAP-S88-16U-043",
+        "UAAP-S88-16U-049",
+        "UAAP-S88-16U-052",
+        "UAAP-S88-16U-053"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-16U-002 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-008 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-012 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-015 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-021 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-023 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-027 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-032 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-033 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-037 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-043 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-049 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-052 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-053 | UAAP Season 88 16U Boys Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-16U-002",
+        "UAAP-S88-16U-008",
+        "UAAP-S88-16U-012",
+        "UAAP-S88-16U-015",
+        "UAAP-S88-16U-021",
+        "UAAP-S88-16U-023",
+        "UAAP-S88-16U-027",
+        "UAAP-S88-16U-032",
+        "UAAP-S88-16U-033",
+        "UAAP-S88-16U-037",
+        "UAAP-S88-16U-043",
+        "UAAP-S88-16U-049",
+        "UAAP-S88-16U-052",
+        "UAAP-S88-16U-053"
+      ],
+      "legacyPlayerIds": [
+        "0a8c19f7-a925-4b2e-9365-90296ea39431",
+        "0faa2fe4-16db-4346-95b4-ca21bd914576",
+        "1d4f0ad8-f585-4bdd-9422-84c028c8b02f",
+        "1edb31d2-270c-4a82-8136-4c16f3c66584",
+        "2bf65968-df71-492e-91d3-0fd17a59ff96",
+        "35077e1a-4f98-4dbb-a2ca-b565c008747a",
+        "4f48c0db-c2e7-4657-9595-a33758686a6d",
+        "5a437905-5f9d-4c69-aeaa-c6b337346145",
+        "613817ac-6f2c-47fe-a691-7d1a269b4ecd",
+        "83a511e6-8fa3-4fbc-9e10-0c1fd48d5f0e",
+        "8d4143fb-495d-4c37-a375-70e2cbb432b1",
+        "b9a9903a-422c-464b-b387-ff2cb1e38111",
+        "c51904bd-a9f5-4234-8b7c-98e1be5bf102",
+        "c90f6016-684b-4c06-8174-bb5f8c33e3a3",
+        "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+        "d3f8946a-a605-48f6-b787-2415627db8a1",
+        "f88a25cd-a2a2-46c3-85e4-e7833f575935"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 16U Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "39a4a46c-6362-411f-ae85-6f631414f30b"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "candidateTeamName": "LA SALLE Girls (DLSU)",
+          "candidateDisplayName": "LA SALLE Girls (DLSU)",
+          "candidateKey": "LA SALLE",
+          "score": -100,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        },
+        {
+          "candidateTeamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "candidateTeamName": "LA SALLE Girls (LA SALLE)",
+          "candidateDisplayName": "LA SALLE Girls (LA SALLE)",
+          "candidateKey": "LA SALLE",
+          "score": -100,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "legacyTeamId": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+      "legacyTeamName": "De La Salle Zobel Lady Junior Archers",
+      "legacyDisplayName": "De La Salle Zobel Lady Junior Archers",
+      "legacyKey": "DE LA SALLE ZOBEL LADY ARCHERS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 63,
+        "gameHomeAway": 6,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-HSG-002",
+        "UAAP-S88-HSG-004",
+        "UAAP-S88-HSG-005",
+        "UAAP-S88-HSG-007",
+        "UAAP-S88-HSG-009",
+        "UAAP-S88-HSG-011"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-HSG-002 | UAAP Season 88 HS Girls Basketball / Season 88",
+        "UAAP-S88-HSG-004 | UAAP Season 88 HS Girls Basketball / Season 88",
+        "UAAP-S88-HSG-005 | UAAP Season 88 HS Girls Basketball / Season 88",
+        "UAAP-S88-HSG-007 | UAAP Season 88 HS Girls Basketball / Season 88",
+        "UAAP-S88-HSG-009 | UAAP Season 88 HS Girls Basketball / Season 88",
+        "UAAP-S88-HSG-011 | UAAP Season 88 HS Girls Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-HSG-002",
+        "UAAP-S88-HSG-004",
+        "UAAP-S88-HSG-005",
+        "UAAP-S88-HSG-007",
+        "UAAP-S88-HSG-009",
+        "UAAP-S88-HSG-011"
+      ],
+      "legacyPlayerIds": [
+        "2ee5360d-2c77-4179-aee4-9f3ee25ef7e2",
+        "389b1415-f364-4374-bd8c-c7ad20286b40",
+        "3c5bfd19-da74-405b-b386-6832839c186a",
+        "534ed135-5db6-4d2d-9d70-d56430642d1e",
+        "6e6d2044-3acb-4ef6-9a69-2008b85028bb",
+        "8613c64d-0732-4505-85a3-697b402b1836",
+        "9d516d88-00a5-44c2-9f83-5b0db3d2747f",
+        "a2b6bc31-2091-4e66-8b0a-78d106e0d54c",
+        "b2711433-e4ff-48e5-944c-be848d5bf51c",
+        "c3d939e9-9fd4-4953-bb02-7cae6f8c0a8f",
+        "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+        "f29f074b-2da5-4273-88b1-a171795dbadf",
+        "f688b16b-1bfa-4ffb-83c5-7beaa09ff68d"
+      ],
+      "legacyContext": {
+        "gender": "GIRLS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Girls Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "candidateTeamName": "LA SALLE Girls (DLSU)",
+          "candidateDisplayName": "LA SALLE Girls (DLSU)",
+          "candidateKey": "LA SALLE",
+          "score": 3,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "GIRLS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        },
+        {
+          "candidateTeamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "candidateTeamName": "LA SALLE Girls (LA SALLE)",
+          "candidateDisplayName": "LA SALLE Girls (LA SALLE)",
+          "candidateKey": "LA SALLE",
+          "score": 3,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "GIRLS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_AMBIGUOUS_TARGETS",
+      "rationale": "Multiple candidate Teams tie at evidence score 3.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "legacyTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+      "legacyTeamName": "LA SALLE Jrs (LA SALLE)",
+      "legacyDisplayName": "LA SALLE Jrs (LA SALLE)",
+      "legacyKey": "LA SALLE",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 15,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "235326e5-9b50-496e-91f7-a7cabb893680",
+          "playerId": "21a5b64e-d338-45eb-a335-c80280655bf9",
+          "playerName": "Maco Dabao",
+          "playerGender": "BOYS",
+          "birthDate": "2006-12-19",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "4cc72b9a-2c05-413e-933e-c358cdb58a14",
+          "playerId": "204b7115-fb23-4c58-9678-2fd27e82edcc",
+          "playerName": "Kio Favis",
+          "playerGender": "BOYS",
+          "birthDate": "2007-02-27",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "e937db59-68c2-46b9-b6d6-6ab87f6a2967",
+          "playerId": "2aa5b8b7-6656-4267-9dc2-d1036cc26f46",
+          "playerName": "Ram Luna",
+          "playerGender": "BOYS",
+          "birthDate": "2009-03-20",
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "c597749e-3880-4e86-885c-11701635b3e2",
+          "playerId": "a0613f90-c90b-4ef7-9a90-4b14dc4ecac0",
+          "playerName": "Jake Alpapara",
+          "playerGender": "BOYS",
+          "birthDate": "2007-03-12",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "2bef3840-8997-4d1b-a2be-df6a7c6982c6",
+          "playerId": "e16d6dc8-7ba5-4851-ac01-87729ae4ba85",
+          "playerName": "Mark Borrero",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "b1e54b20-6931-4827-8104-3ddff0062241",
+          "playerId": "0cee7eee-3f5b-41aa-b210-80c73358c2fa",
+          "playerName": "Champ Arejola",
+          "playerGender": "BOYS",
+          "birthDate": "2007-03-20",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "0666a5f6-364a-411c-b745-bc61f47ddffd",
+          "playerId": "998fb770-0955-4042-9d24-7222519553cd",
+          "playerName": "Yusuf Mikailu",
+          "playerGender": "BOYS",
+          "birthDate": "2007-03-07",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "587c6555-aec5-4741-9a0d-2d64f664dc0b",
+          "playerId": "5222f5c8-6c45-42fc-86f3-15794d1cfbdf",
+          "playerName": "Duncan Tan",
+          "playerGender": "BOYS",
+          "birthDate": "2009-03-12",
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "1e134eb7-37d3-46b1-8cb5-f551fb3dcd2d",
+          "playerId": "afa15785-0232-4ed1-901a-104492d05c0c",
+          "playerName": "Ken Atienza",
+          "playerGender": "BOYS",
+          "birthDate": "2007-12-21",
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "8c3cc1db-cf60-4479-bbf0-a595eef44ab3",
+          "playerId": "87fe37a4-408a-4cfd-b96e-8cc8615e7b3d",
+          "playerName": "Deron Llamas",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "12c7b4c9-675c-4f09-ad3a-6e6fb37e5003",
+          "playerId": "101304ee-222e-4e34-8611-ef98a011b425",
+          "playerName": "Nino Ferrer",
+          "playerGender": "BOYS",
+          "birthDate": "2007-06-08",
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "669b8903-1e79-49e5-b477-0b94e9927318",
+          "playerId": "b2d4bd51-4551-45b0-ba2f-e0bde0b6fccf",
+          "playerName": "Javi Dimayuga",
+          "playerGender": "BOYS",
+          "birthDate": "2008-01-05",
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "8632b5c8-1a7b-45ac-9ee5-2a79bb95df0d",
+          "playerId": "5f0ad585-ab7a-431e-985d-91fc6268b172",
+          "playerName": "Sherwin Reyes",
+          "playerGender": "BOYS",
+          "birthDate": "2007-09-29",
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "210c6941-0d79-4a94-854b-1985e532577a",
+          "playerId": "e081f2c2-b6cb-4cf4-8e67-ab7977586e58",
+          "playerName": "Mikel Trillo",
+          "playerGender": "BOYS",
+          "birthDate": "2008-03-07",
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "4b241160-39e2-4e8d-9d86-e69036b52b05",
+          "playerId": "75c01727-e3c1-4fa8-9f60-91d30a93acae",
+          "playerName": "John Alpapara",
+          "playerGender": "BOYS",
+          "birthDate": "2007-06-12",
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "0cee7eee-3f5b-41aa-b210-80c73358c2fa",
+        "101304ee-222e-4e34-8611-ef98a011b425",
+        "204b7115-fb23-4c58-9678-2fd27e82edcc",
+        "21a5b64e-d338-45eb-a335-c80280655bf9",
+        "2aa5b8b7-6656-4267-9dc2-d1036cc26f46",
+        "5222f5c8-6c45-42fc-86f3-15794d1cfbdf",
+        "5f0ad585-ab7a-431e-985d-91fc6268b172",
+        "75c01727-e3c1-4fa8-9f60-91d30a93acae",
+        "87fe37a4-408a-4cfd-b96e-8cc8615e7b3d",
+        "998fb770-0955-4042-9d24-7222519553cd",
+        "a0613f90-c90b-4ef7-9a90-4b14dc4ecac0",
+        "afa15785-0232-4ed1-901a-104492d05c0c",
+        "b2d4bd51-4551-45b0-ba2f-e0bde0b6fccf",
+        "e081f2c2-b6cb-4cf4-8e67-ab7977586e58",
+        "e16d6dc8-7ba5-4851-ac01-87729ae4ba85"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "candidateTeamName": "LA SALLE Girls (DLSU)",
+          "candidateDisplayName": "LA SALLE Girls (DLSU)",
+          "candidateKey": "LA SALLE",
+          "score": -98,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        },
+        {
+          "candidateTeamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "candidateTeamName": "LA SALLE Girls (LA SALLE)",
+          "candidateDisplayName": "LA SALLE Girls (LA SALLE)",
+          "candidateKey": "LA SALLE",
+          "score": -98,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "programName": "Far Eastern University Diliman",
+      "legacyTeamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+      "legacyTeamName": "FEU Jrs (FEU)",
+      "legacyDisplayName": "FEU Jrs (FEU)",
+      "legacyKey": "FEU",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 3,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "30e44ce3-12aa-4f86-b16c-bbb900a1c218",
+          "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+          "playerName": "Prince Cariño",
+          "playerGender": "BOYS",
+          "birthDate": "2009-08-15",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "7a5971f5-e964-4260-99d0-cc661fd50c46",
+          "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+          "playerName": "Denden Enriquez",
+          "playerGender": "BOYS",
+          "birthDate": "2010-05-26",
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "22231126-7e2c-45df-8475-939f58259451",
+          "playerId": "907425c8-8390-4418-8ef3-1aafed01bf42",
+          "playerName": "Duke Santos",
+          "playerGender": "BOYS",
+          "birthDate": "2009-05-15",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+        "907425c8-8390-4418-8ef3-1aafed01bf42",
+        "9d948f3f-9dd7-460b-ba1b-d60608d4e31f"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "candidateTeamName": "FEU - Diliman Baby Tamaraws",
+          "candidateDisplayName": "FEU - Diliman Baby Tamaraws",
+          "candidateKey": "FEU - DILIMAN BABY TAMARAWS",
+          "score": 19,
+          "sameSeasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ],
+          "sameLeagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 3,
+          "playerOverlapIds": [
+            "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+            "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+            "907425c8-8390-4418-8ef3-1aafed01bf42"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 14,
+            "gameStat": 260,
+            "gameHomeAway": 19,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "candidateTeamName": "FEU - Diliman Baby Tamaraws 16U",
+          "candidateDisplayName": "FEU - Diliman Baby Tamaraws",
+          "candidateKey": "FEU - DILIMAN BABY TAMARAWS",
+          "score": -20,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": "U19 vs U16",
+          "playerOverlapCount": 1,
+          "playerOverlapIds": [
+            "9d948f3f-9dd7-460b-ba1b-d60608d4e31f"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 233,
+            "gameHomeAway": 18,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          }
+        }
+      ],
+      "recommendedTarget": {
+        "candidateTeamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+        "candidateTeamName": "FEU - Diliman Baby Tamaraws",
+        "candidateDisplayName": "FEU - Diliman Baby Tamaraws",
+        "candidateKey": "FEU - DILIMAN BABY TAMARAWS",
+        "score": 19,
+        "sameSeasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ],
+        "sameLeagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "sameAgeGroups": [
+          "U19"
+        ],
+        "sameGender": "BOYS",
+        "crossGender": null,
+        "crossAge": null,
+        "playerOverlapCount": 3,
+        "playerOverlapIds": [
+          "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+          "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+          "907425c8-8390-4418-8ef3-1aafed01bf42"
+        ],
+        "candidateReferenceCounts": {
+          "playerTeamSeason": 14,
+          "gameStat": 260,
+          "gameHomeAway": 19,
+          "submissionsImports": "no direct Team relation found in Submission model"
+        },
+        "candidateContext": {
+          "gender": "BOYS",
+          "ageGroups": [
+            "U19"
+          ],
+          "leagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "seasonNames": [
+            "Season 88"
+          ],
+          "seasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      },
+      "recommendation": "AUTO_READY_ROSTER_ONLY",
+      "rationale": "Roster-only references have one same-season, same-age, same-gender target and no historical Game/GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+      "programName": "JMTG Medical Trading Infinite",
+      "legacyTeamId": "bf8f1578-6a68-4991-9966-da32aff82f60",
+      "legacyTeamName": "JMTG Medical Trading Infinite",
+      "legacyDisplayName": "JMTG Medical Trading Infinite",
+      "legacyKey": "JMTG MEDICAL TRADING INFINITE",
+      "legacyReasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 106,
+        "gameHomeAway": 8,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-008",
+        "G-2025-013",
+        "G-2025-015",
+        "G-2025-019",
+        "G-2025-020",
+        "G-2025-024",
+        "G-2025-026",
+        "G-2025-032"
+      ],
+      "legacyGameLabels": [
+        "G-2025-008 | PYBC 15U / 1",
+        "G-2025-013 | PYBC 15U / 1",
+        "G-2025-015 | PYBC 15U / 1",
+        "G-2025-019 | PYBC 15U / 1",
+        "G-2025-020 | PYBC 15U / 1",
+        "G-2025-024 | PYBC 15U / 1",
+        "G-2025-026 | PYBC 15U / 1",
+        "G-2025-032 | PYBC 15U / 1"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-008",
+        "G-2025-013",
+        "G-2025-015",
+        "G-2025-019",
+        "G-2025-020",
+        "G-2025-024",
+        "G-2025-026",
+        "G-2025-032"
+      ],
+      "legacyPlayerIds": [
+        "0b9e9987-003f-4d6d-866a-2ae7c213bcdb",
+        "1b46868e-d341-4cb6-bc3b-96e4e39011b5",
+        "1d12208f-ae6f-4299-aed9-eba0a91029db",
+        "2d8f0431-4ef2-4935-ba7f-3c4146ccec6c",
+        "2f2c3aaa-5a49-4518-9b97-5745d729e7e6",
+        "4731604a-1edd-4dfa-94f4-4e3a913e37e2",
+        "5527e9f8-e14e-41da-82e7-40b26facfc51",
+        "77f5b66e-ed76-4de6-a360-26ba202f686c",
+        "79f094e0-05c6-4534-a9d0-7cf53f66fb19",
+        "8ac48505-eb56-478b-9569-6fdff739d9f1",
+        "8c2ba897-8869-402a-b8da-1b12858dcdc2",
+        "9ff187f0-5808-407c-8190-a724da392155",
+        "a8f9f8c3-58f9-4008-b190-a7b4f57ea3fb",
+        "dfd4eb1e-fe06-49bb-af4e-b8a85ebb86f9",
+        "eac7d7c4-3ea4-4664-b3ba-e89e8175b721",
+        "ebcbb604-5ce9-4c8b-a0c9-46c4069a91ae"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "65908829-cfda-4053-821c-47435a45e33e",
+      "programName": "JPM-TEC San Beda",
+      "legacyTeamId": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+      "legacyTeamName": "JPM-TEC San Beda",
+      "legacyDisplayName": "JPM-TEC San Beda",
+      "legacyKey": "JPM-TEC SAN BEDA",
+      "legacyReasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 128,
+        "gameHomeAway": 9,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-007",
+        "G-2025-010",
+        "G-2025-016",
+        "G-2025-019",
+        "G-2025-021",
+        "G-2025-022",
+        "G-2025-027",
+        "G-2025-029",
+        "G-2025-033"
+      ],
+      "legacyGameLabels": [
+        "G-2025-007 | PYBC 15U / 1",
+        "G-2025-010 | PYBC 15U / 1",
+        "G-2025-016 | PYBC 15U / 1",
+        "G-2025-019 | PYBC 15U / 1",
+        "G-2025-021 | PYBC 15U / 1",
+        "G-2025-022 | PYBC 15U / 1",
+        "G-2025-027 | PYBC 15U / 1",
+        "G-2025-029 | PYBC 15U / 1",
+        "G-2025-033 | PYBC 15U / 1"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-007",
+        "G-2025-010",
+        "G-2025-016",
+        "G-2025-019",
+        "G-2025-021",
+        "G-2025-022",
+        "G-2025-027",
+        "G-2025-029",
+        "G-2025-033"
+      ],
+      "legacyPlayerIds": [
+        "00a4334e-ac96-465e-a320-6b8b96d86d28",
+        "014ff1a6-27e6-4122-9f60-2e8f5119563f",
+        "265df02a-5a97-4e3a-a302-df16ad777a16",
+        "31509588-644e-4316-9439-8f92355986d1",
+        "35c877b3-0264-4626-a783-8b5ae315f24b",
+        "6b4c10f4-13ba-4f1f-af5e-9f5bc2e293a6",
+        "72b480c3-b68d-451a-b897-f0b0dcc3f630",
+        "74ebfde2-200d-4008-80ee-b98a49c54218",
+        "8e19fb58-88c2-4d8e-9ca9-dcaf9d63127d",
+        "950771d8-9950-42d4-8f8a-16eff587f9c0",
+        "97cc1303-e917-47f3-9b28-e03e971de3b1",
+        "9a437b10-f43c-4739-9d77-03e0b3377df8",
+        "a346d432-ca9d-4954-862b-98f6ed677101",
+        "a5b7565d-4e44-4ece-9ba4-2dd236027fbb",
+        "a9cd521c-faeb-4fe7-a996-a96c25c026ad",
+        "d5f34ef8-0f03-4ea0-9687-ea7afa2eb36c",
+        "de935a30-9b50-48fc-82d5-f23e45b87827",
+        "e211519f-3510-4556-883c-601c17b03c4a"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+          "candidateTeamName": "SBU U16 Boys",
+          "candidateDisplayName": "SBU",
+          "candidateKey": "SBU",
+          "score": 3,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [
+            "U16"
+          ],
+          "sameGender": null,
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": {
+        "candidateTeamId": "f2705e3c-8cb6-4c27-84e9-8941e6c8599a",
+        "candidateTeamName": "SBU U16 Boys",
+        "candidateDisplayName": "SBU",
+        "candidateKey": "SBU",
+        "score": 3,
+        "sameSeasonIds": [],
+        "sameLeagueNames": [],
+        "sameAgeGroups": [
+          "U16"
+        ],
+        "sameGender": null,
+        "crossGender": null,
+        "crossAge": null,
+        "playerOverlapCount": 0,
+        "playerOverlapIds": [],
+        "candidateReferenceCounts": {
+          "playerTeamSeason": 0,
+          "gameStat": 0,
+          "gameHomeAway": 0,
+          "submissionsImports": "no direct Team relation found in Submission model"
+        },
+        "candidateContext": {
+          "gender": "BOYS",
+          "ageGroups": [
+            "U16"
+          ],
+          "leagueNames": [],
+          "seasonNames": [],
+          "seasonIds": []
+        }
+      },
+      "recommendation": "KEEP_HISTORICAL_REFERENCE",
+      "rationale": "Historical game/stat references may represent distinct team context (PYBC 15U). Keep unless separately approved.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+      "programName": "Lev Construction Full Potential",
+      "legacyTeamId": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+      "legacyTeamName": "LEV Construction Full Potential",
+      "legacyDisplayName": "LEV Construction Full Potential",
+      "legacyKey": "LEV CONSTRUCTION FULL POTENTIAL",
+      "legacyReasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 85,
+        "gameHomeAway": 8,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-002",
+        "G-2025-004",
+        "G-2025-006",
+        "G-2025-010",
+        "G-2025-017",
+        "G-2025-020",
+        "G-2025-025",
+        "G-2025-031"
+      ],
+      "legacyGameLabels": [
+        "G-2025-002 | PYBC 15U / 1",
+        "G-2025-004 | PYBC 15U / 1",
+        "G-2025-006 | PYBC 15U / 1",
+        "G-2025-010 | PYBC 15U / 1",
+        "G-2025-017 | PYBC 15U / 1",
+        "G-2025-020 | PYBC 15U / 1",
+        "G-2025-025 | PYBC 15U / 1",
+        "G-2025-031 | PYBC 15U / 1"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-002",
+        "G-2025-004",
+        "G-2025-006",
+        "G-2025-010",
+        "G-2025-017",
+        "G-2025-020",
+        "G-2025-031"
+      ],
+      "legacyPlayerIds": [
+        "00024733-633d-4793-a484-3511de66186a",
+        "0b66b11c-79a2-4664-9767-50cc18a3b02b",
+        "1230aeae-20be-4ce4-bafa-67e1a81c1956",
+        "234888da-1ecf-4843-b1c8-86282ca54ebe",
+        "289149f3-ae2f-454c-b674-7650fc0e7c1a",
+        "5666baa8-3153-416b-8c03-7e43bd56bfc2",
+        "60948ccf-2b70-4a8a-8140-fc8da8432fac",
+        "77cd7252-0571-4ff6-9015-f4ea81f12a84",
+        "7ee0216f-e9f1-4d06-b936-01b5721524cc",
+        "83079e55-4b51-40a1-8f39-cf49c8647366",
+        "9aa2baa2-0275-41b2-8518-0eb0e7089084",
+        "a40c18b2-ead8-40e6-bd9e-ba89ffb04175",
+        "a636c0fd-6417-427d-a8fc-76c31b073a1f",
+        "b455b454-e508-4c3b-ae40-5a25f6a8f5b9",
+        "b7b2defa-b770-4398-acfe-cd4b62d3b28e"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "programName": "Lyceum of the Philippines University Cavite",
+      "legacyTeamId": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+      "legacyTeamName": "LPU Junior Pirates",
+      "legacyDisplayName": "LPU Junior Pirates",
+      "legacyKey": "LPU PIRATES",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 160,
+        "gameHomeAway": 14,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "NCAA-S101-JB-040",
+        "NCAA-S101-JB-046",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-059",
+        "NCAA-S101-JB-064",
+        "NCAA-S101-JB-066",
+        "NCAA-S101-JRB-001",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-013",
+        "NCAA-S101-JRB-019",
+        "NCAA-S101-JRB-026",
+        "NCAA-S101-JRB-030",
+        "NCAA-S101-JRB-035",
+        "NCAA-S101-JRB-044"
+      ],
+      "legacyGameLabels": [
+        "NCAA-S101-JB-040 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-046 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-052 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-059 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-064 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-066 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-001 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-007 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-013 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-019 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-026 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-030 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-035 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-044 | NCAA Season 101 Junior's Basketball / Season 101"
+      ],
+      "legacyGameStatGameRefs": [
+        "NCAA-S101-JB-040",
+        "NCAA-S101-JB-046",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-059",
+        "NCAA-S101-JB-064",
+        "NCAA-S101-JB-066",
+        "NCAA-S101-JRB-001",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-013",
+        "NCAA-S101-JRB-019",
+        "NCAA-S101-JRB-026",
+        "NCAA-S101-JRB-030",
+        "NCAA-S101-JRB-035",
+        "NCAA-S101-JRB-044"
+      ],
+      "legacyPlayerIds": [
+        "10ed9e18-a48f-4921-9175-7d3a3d9e988a",
+        "22a3f951-467d-41fe-b08e-209c9ad30ca1",
+        "2c982f5f-59f6-417d-b93e-07498a22ef32",
+        "2d841475-d016-4fe9-bcfe-19aba8a9cd73",
+        "31123fbd-b643-47e5-b95a-1b26447e274c",
+        "34eb131a-9fe9-4e83-a441-353eb314e6c6",
+        "6864605b-3989-4519-b274-01e9cbfe41ea",
+        "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+        "824e2b0f-673f-4bba-9bb8-4b45d9b06d48",
+        "af2c8814-532c-4cd2-8939-40619459084d",
+        "d5f6b177-8e49-4fe6-bc7b-292437a6f05e",
+        "e5b32ee0-5b8e-4af5-86d1-8f2895f222d9",
+        "e60048fb-53da-4b5f-82de-890495a452f7",
+        "ef11ffb0-9519-409a-ae9a-0b7327fa278f",
+        "f0b248fe-d417-4628-9807-9c84c94c3e78",
+        "f1751ac7-7385-413e-87b4-039b54a502bd"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "NCAA Season 101 Junior's Basketball"
+        ],
+        "seasonNames": [
+          "Season 101"
+        ],
+        "seasonIds": [
+          "c4884785-34a9-4b1b-8841-06a390cfc74a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+      "programName": "Migrafix Doc Boleros",
+      "legacyTeamId": "f0063ff0-31f0-45ad-8efe-86905b479163",
+      "legacyTeamName": "Migrafix Doc Boleros",
+      "legacyDisplayName": "Migrafix Doc Boleros",
+      "legacyKey": "MIGRAFIX DOC BOLEROS",
+      "legacyReasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 129,
+        "gameHomeAway": 10,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-003",
+        "G-2025-006",
+        "G-2025-009",
+        "G-2025-013",
+        "G-2025-016",
+        "G-2025-018",
+        "G-2025-023",
+        "G-2025-031",
+        "G-2025-034",
+        "G-2025-036"
+      ],
+      "legacyGameLabels": [
+        "G-2025-003 | PYBC 15U / 1",
+        "G-2025-006 | PYBC 15U / 1",
+        "G-2025-009 | PYBC 15U / 1",
+        "G-2025-013 | PYBC 15U / 1",
+        "G-2025-016 | PYBC 15U / 1",
+        "G-2025-018 | PYBC 15U / 1",
+        "G-2025-023 | PYBC 15U / 1",
+        "G-2025-031 | PYBC 15U / 1",
+        "G-2025-034 | PYBC 15U / 1",
+        "G-2025-036 | PYBC 15U / 1"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-003",
+        "G-2025-006",
+        "G-2025-009",
+        "G-2025-013",
+        "G-2025-016",
+        "G-2025-018",
+        "G-2025-023",
+        "G-2025-031",
+        "G-2025-034",
+        "G-2025-036"
+      ],
+      "legacyPlayerIds": [
+        "1ecbafd0-c8f8-4b8f-ade7-bf2ad0aafd76",
+        "3012717d-e9dd-4a0e-9e41-7e9cabf2cabf",
+        "382e5553-7f79-4a66-b04a-dc043c51d81f",
+        "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+        "411acd67-e69b-4e91-8fb9-7d89aba5a9b4",
+        "43c4c452-a4be-4f38-a31d-5d7cb6d23a14",
+        "5ab87a69-ae73-4542-9550-952fbea9a824",
+        "5c67571f-7270-4070-856d-ac6bbda17d7e",
+        "71bcc55c-170a-4e92-96bb-17ca1f5c2eef",
+        "761d8a0e-faf7-4b04-99d2-75c62b9bb1cd",
+        "86d33338-21cf-4a75-84b4-42451e9c402c",
+        "95a6bf66-aaed-4911-bb08-64baacca73a4",
+        "9af775ea-9d4d-42ee-818d-73e738a0ecfb",
+        "a3a3ef8e-01e5-4114-9ee0-c498e4955266",
+        "affd27c0-88a0-4287-9c2c-02e4173ed14b",
+        "bc5f1c28-ab2e-4017-bd1e-ef945e81f685",
+        "e952f4c3-5dd3-4e6f-9aa4-f7fa28375863",
+        "f4fe64f2-882d-46c6-8e77-c31d56090208"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+      "programName": "Migueluz Trading Moderno",
+      "legacyTeamId": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+      "legacyTeamName": "Migueluz Trading Moderno",
+      "legacyDisplayName": "Migueluz Trading Moderno",
+      "legacyKey": "MIGUELUZ TRADING MODERNO",
+      "legacyReasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 110,
+        "gameHomeAway": 9,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-002",
+        "G-2025-005",
+        "G-2025-012",
+        "G-2025-015",
+        "G-2025-018",
+        "G-2025-022",
+        "G-2025-028",
+        "G-2025-030",
+        "G-2025-037"
+      ],
+      "legacyGameLabels": [
+        "G-2025-002 | PYBC 15U / 1",
+        "G-2025-005 | PYBC 15U / 1",
+        "G-2025-012 | PYBC 15U / 1",
+        "G-2025-015 | PYBC 15U / 1",
+        "G-2025-018 | PYBC 15U / 1",
+        "G-2025-022 | PYBC 15U / 1",
+        "G-2025-028 | PYBC 15U / 1",
+        "G-2025-030 | PYBC 15U / 1",
+        "G-2025-037 | PYBC 15U / 1"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-002",
+        "G-2025-005",
+        "G-2025-012",
+        "G-2025-015",
+        "G-2025-018",
+        "G-2025-022",
+        "G-2025-028",
+        "G-2025-030",
+        "G-2025-037"
+      ],
+      "legacyPlayerIds": [
+        "0987dc50-58d8-40ec-b833-6f058401816a",
+        "0f517fa4-618e-4c9d-b29e-f52ba8b51c42",
+        "15d21b15-99ea-40a4-9a17-8db8e5d07d66",
+        "1ecbafd0-c8f8-4b8f-ade7-bf2ad0aafd76",
+        "1f6eee18-5213-4ce7-bac3-69ba756f3ad6",
+        "2056c71c-50f4-451e-a412-33eea0c0e61b",
+        "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+        "411acd67-e69b-4e91-8fb9-7d89aba5a9b4",
+        "43c4c452-a4be-4f38-a31d-5d7cb6d23a14",
+        "48bb8355-07ec-4f7f-a4c5-fc2b1f384e96",
+        "519054cb-fe37-4db8-b078-79b3cbb3da0c",
+        "563e4831-1047-48c5-a238-04319d787fde",
+        "5ab87a69-ae73-4542-9550-952fbea9a824",
+        "5c67571f-7270-4070-856d-ac6bbda17d7e",
+        "5df18400-6e10-431a-81f4-acc6321d0442",
+        "605dec58-16c4-4d1c-97fe-f817759a82a6",
+        "71bcc55c-170a-4e92-96bb-17ca1f5c2eef",
+        "71cf669d-d6ec-4cfc-8987-ec0a98098a51",
+        "761d8a0e-faf7-4b04-99d2-75c62b9bb1cd",
+        "7fe5fa02-3eb9-4e3e-a9d7-e0999e5c50aa",
+        "8bf03a9c-0796-4244-9993-f85dcaeac404",
+        "95a6bf66-aaed-4911-bb08-64baacca73a4",
+        "9af775ea-9d4d-42ee-818d-73e738a0ecfb",
+        "affd27c0-88a0-4287-9c2c-02e4173ed14b",
+        "bc5f1c28-ab2e-4017-bd1e-ef945e81f685",
+        "c202a966-1d6e-4086-b7c7-25bf84b514ef",
+        "c540fac2-e66e-44e3-b6a2-b1b2cc84aca2",
+        "d21f1054-9fa3-483f-ae15-60cab06bc06e",
+        "e952f4c3-5dd3-4e6f-9aa4-f7fa28375863",
+        "f4fe64f2-882d-46c6-8e77-c31d56090208"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "programName": "National University Nazareth School",
+      "legacyTeamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "legacyTeamName": "NU Jrs (NU)",
+      "legacyDisplayName": "NU Jrs (NU)",
+      "legacyKey": "NU",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 1,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "6402c96a-1175-41ae-a533-c1e8e9a07314",
+          "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+          "playerName": "Moussa Diakite",
+          "playerGender": "BOYS",
+          "birthDate": "2009-11-01",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "0005726e-563f-46c0-85a2-4dcefe67bf0e"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "candidateTeamName": "NUNS Bullpups",
+          "candidateDisplayName": "NUNS Bullpups",
+          "candidateKey": "NUNS BULLPUPS",
+          "score": 15,
+          "sameSeasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ],
+          "sameLeagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 1,
+          "playerOverlapIds": [
+            "0005726e-563f-46c0-85a2-4dcefe67bf0e"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 15,
+            "gameStat": 219,
+            "gameHomeAway": 18,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "candidateTeamName": "NUNS Bullpups 16U",
+          "candidateDisplayName": "NUNS Bullpups",
+          "candidateKey": "NUNS BULLPUPS",
+          "score": -20,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": "U19 vs U16",
+          "playerOverlapCount": 1,
+          "playerOverlapIds": [
+            "0005726e-563f-46c0-85a2-4dcefe67bf0e"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 227,
+            "gameHomeAway": 16,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "candidateTeamName": "NUNS Lady Bullpups",
+          "candidateDisplayName": "NUNS Lady Bullpups",
+          "candidateKey": "NUNS LADY BULLPUPS",
+          "score": -97,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 98,
+            "gameHomeAway": 8,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "candidateTeamName": "NU Girls (NU)",
+          "candidateDisplayName": "NU Girls (NU)",
+          "candidateKey": "NU",
+          "score": -98,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          }
+        }
+      ],
+      "recommendedTarget": {
+        "candidateTeamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+        "candidateTeamName": "NUNS Bullpups",
+        "candidateDisplayName": "NUNS Bullpups",
+        "candidateKey": "NUNS BULLPUPS",
+        "score": 15,
+        "sameSeasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ],
+        "sameLeagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "sameAgeGroups": [
+          "U19"
+        ],
+        "sameGender": "BOYS",
+        "crossGender": null,
+        "crossAge": null,
+        "playerOverlapCount": 1,
+        "playerOverlapIds": [
+          "0005726e-563f-46c0-85a2-4dcefe67bf0e"
+        ],
+        "candidateReferenceCounts": {
+          "playerTeamSeason": 15,
+          "gameStat": 219,
+          "gameHomeAway": 18,
+          "submissionsImports": "no direct Team relation found in Submission model"
+        },
+        "candidateContext": {
+          "gender": "BOYS",
+          "ageGroups": [
+            "U19"
+          ],
+          "leagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "seasonNames": [
+            "Season 88"
+          ],
+          "seasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      },
+      "recommendation": "AUTO_READY_ROSTER_ONLY",
+      "rationale": "Roster-only references have one same-season, same-age, same-gender target and no historical Game/GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+      "programName": "Prime Ascencion Medical Supplies San Anton",
+      "legacyTeamId": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+      "legacyTeamName": "Prime Ascencion Medical Supplies San Anton",
+      "legacyDisplayName": "Prime Ascencion Medical Supplies San Anton",
+      "legacyKey": "PRIME ASCENCION MEDICAL SUPPLIES SAN ANTON",
+      "legacyReasons": [
+        "exact generic Program-name Team",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 106,
+        "gameHomeAway": 9,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-003",
+        "G-2025-004",
+        "G-2025-011",
+        "G-2025-012",
+        "G-2025-014",
+        "G-2025-026",
+        "G-2025-027",
+        "G-2025-032",
+        "G-2025-035"
+      ],
+      "legacyGameLabels": [
+        "G-2025-003 | PYBC 15U / 1",
+        "G-2025-004 | PYBC 15U / 1",
+        "G-2025-011 | PYBC 15U / 1",
+        "G-2025-012 | PYBC 15U / 1",
+        "G-2025-014 | PYBC 15U / 1",
+        "G-2025-026 | PYBC 15U / 1",
+        "G-2025-027 | PYBC 15U / 1",
+        "G-2025-032 | PYBC 15U / 1",
+        "G-2025-035 | PYBC 15U / 1"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-003",
+        "G-2025-004",
+        "G-2025-011",
+        "G-2025-012",
+        "G-2025-014",
+        "G-2025-026",
+        "G-2025-027",
+        "G-2025-032",
+        "G-2025-035"
+      ],
+      "legacyPlayerIds": [
+        "0cced6d8-2905-4dfb-be76-209923928b4d",
+        "101d5fb7-c4cb-4140-b79c-4f98329e3b90",
+        "11b4ebc4-b15e-424c-a3a8-92d661956ff9",
+        "157c2483-a4eb-4ef4-a15d-c5bb00d06f63",
+        "392f166e-c151-4439-94b5-1093dd1bfa06",
+        "3d8c0693-59d2-425a-9446-18bcd25eeae6",
+        "4a44c7e0-a4bf-47cb-84a1-7e591a7a1c47",
+        "58b978d2-3fca-496d-9eff-1488780005d6",
+        "5dc4d676-e85d-4da5-8ee3-ceebcd3a7578",
+        "6d5b44e2-e2d7-462c-986e-79905b916ed5",
+        "83281218-93b7-4561-b5c2-5247e93ac02a",
+        "8e6bde7f-3651-4992-9f4b-9d74028c0d09",
+        "a34312ce-704a-4ee3-9906-b5602d1597d3",
+        "a48b4f80-d65b-4f1c-ac4d-471c125d27b4",
+        "ccf6d9c9-9b9b-4f94-b920-f1101a71628f",
+        "d6397118-692b-43f5-82bb-5f09325b2ab5",
+        "e0f73bc1-045c-4de4-954e-dd3dc21b5a17"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "programName": "San Pedro Spartans",
+      "legacyTeamId": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+      "legacyTeamName": "San Pedro Spartans",
+      "legacyDisplayName": "San Pedro Spartans",
+      "legacyKey": "SAN PEDRO SPARTANS",
+      "legacyReasons": [
+        "exact generic Program-name Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 153,
+        "gameHomeAway": 12,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-008",
+        "G-2025-011",
+        "G-2025-017",
+        "G-2025-021",
+        "G-2025-023",
+        "G-2025-028",
+        "G-2025-029",
+        "G-2025-033",
+        "G-2025-035",
+        "G-2025-036",
+        "G-2025-037",
+        "PYBC-DRAFT-4864a2c8"
+      ],
+      "legacyGameLabels": [
+        "G-2025-008 | PYBC 15U / 1",
+        "G-2025-011 | PYBC 15U / 1",
+        "G-2025-017 | PYBC 15U / 1",
+        "G-2025-021 | PYBC 15U / 1",
+        "G-2025-023 | PYBC 15U / 1",
+        "G-2025-028 | PYBC 15U / 1",
+        "G-2025-029 | PYBC 15U / 1",
+        "G-2025-033 | PYBC 15U / 1",
+        "G-2025-035 | PYBC 15U / 1",
+        "G-2025-036 | PYBC 15U / 1",
+        "G-2025-037 | PYBC 15U / 1",
+        "PYBC-DRAFT-4864a2c8 | PYBC 15U / 2025 Season"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-008",
+        "G-2025-011",
+        "G-2025-017",
+        "G-2025-021",
+        "G-2025-023",
+        "G-2025-028",
+        "G-2025-029",
+        "G-2025-033",
+        "G-2025-035",
+        "G-2025-036",
+        "G-2025-037",
+        "PYBC-DRAFT-4864a2c8"
+      ],
+      "legacyPlayerIds": [
+        "2079752d-b711-434f-a7d9-38bbc689270a",
+        "318a9aed-4889-40b0-b084-05404ff55520",
+        "43c4ffe1-bd44-4957-ab52-4a2e657e46d5",
+        "4abfebc5-1609-4402-82f3-1183e0acac03",
+        "666d018d-7bec-4046-92f3-92ecb81e7fc0",
+        "7c52c4a7-89b5-42e7-8750-b90098ec6060",
+        "88b0bc38-0e1d-4d0b-9bbf-e09892f2f2c8",
+        "9172b9b5-681b-4b89-89ca-2372badc8d17",
+        "9d75305e-b7a4-4fc6-b25b-f6060a5ca32b",
+        "b1edc459-59c2-4a5f-b70d-e02ae6a8b0cb",
+        "bda6d8e8-e0aa-41b3-8c7a-d6cac6de91c6",
+        "cd3e5109-b09a-4adf-91be-521375eb0f67",
+        "d1d80980-aa0c-46c7-98b7-d5674c9b8a0d",
+        "f9dd9a78-9a19-4c24-abb0-6bff9bade904",
+        "fff6779a-8aa2-4b44-90f1-8846736d1fc6"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1",
+          "2025 Season"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "8edba76c-d122-4773-8125-8d2bef93f20e",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "programName": "Smile 360 Bullies",
+      "legacyTeamId": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+      "legacyTeamName": "Smile 360 Bullies",
+      "legacyDisplayName": "Smile 360 Bullies",
+      "legacyKey": "SMILE 360 BULLIES",
+      "legacyReasons": [
+        "exact generic Program-name Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 113,
+        "gameHomeAway": 9,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "G-2025-005",
+        "G-2025-007",
+        "G-2025-009",
+        "G-2025-014",
+        "G-2025-024",
+        "G-2025-025",
+        "G-2025-030",
+        "G-2025-034",
+        "PYBC-DRAFT-4864a2c8"
+      ],
+      "legacyGameLabels": [
+        "G-2025-005 | PYBC 15U / 1",
+        "G-2025-007 | PYBC 15U / 1",
+        "G-2025-009 | PYBC 15U / 1",
+        "G-2025-014 | PYBC 15U / 1",
+        "G-2025-024 | PYBC 15U / 1",
+        "G-2025-025 | PYBC 15U / 1",
+        "G-2025-030 | PYBC 15U / 1",
+        "G-2025-034 | PYBC 15U / 1",
+        "PYBC-DRAFT-4864a2c8 | PYBC 15U / 2025 Season"
+      ],
+      "legacyGameStatGameRefs": [
+        "G-2025-005",
+        "G-2025-007",
+        "G-2025-009",
+        "G-2025-014",
+        "G-2025-024",
+        "G-2025-030",
+        "G-2025-034",
+        "PYBC-DRAFT-4864a2c8"
+      ],
+      "legacyPlayerIds": [
+        "04221ff6-0d2b-4a5b-9cb9-53317233b9d3",
+        "1e2b5577-5960-4789-8897-52f6d775fca1",
+        "21593e35-ac96-440d-a552-a9821cc5906e",
+        "36c33548-2016-4f24-83f6-203aedd77813",
+        "457497e3-a7b5-4dda-856a-cc5280d2ad96",
+        "63e2ef82-a82d-4a5c-9016-685f49f03c45",
+        "66d1f60a-2094-4f82-ba0a-2e8e1c238699",
+        "6a2ae151-faf0-40ab-9197-5f91e6b7aac0",
+        "6b6a7194-5f94-41fb-9166-913576a506c1",
+        "71c8e6eb-dd7b-4da4-8339-6d048ec798fc",
+        "93f96817-0c75-46c1-892e-d487dc72a049",
+        "958588ec-e018-4d86-9ee8-11abb8adafa3",
+        "a5090c03-e1d5-4df3-92b3-44aea672c373",
+        "adf913ef-63e8-4fd6-84c0-7c878cd78906",
+        "b20a8263-5b06-4cf7-b547-3d1b02003b8d",
+        "bd7dcca4-1cf7-438c-97ac-efe2ad065ec4",
+        "d2f7a58d-1933-497f-b966-cc10d0f4870d",
+        "f26ec0c3-b971-46d0-90ac-78258e084077"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "PYBC 15U"
+        ],
+        "seasonNames": [
+          "1",
+          "2025 Season"
+        ],
+        "seasonIds": [
+          "1f04dc70-96b9-459a-8c42-bd83022c0f21",
+          "8edba76c-d122-4773-8125-8d2bef93f20e",
+          "a938fd85-a690-493a-8df0-b650d8059f4a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "programName": "University of Perpetual Help System DALTA",
+      "legacyTeamId": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+      "legacyTeamName": "Perpetual Junior Daltas",
+      "legacyDisplayName": "Perpetual Junior Daltas",
+      "legacyKey": "PERPETUAL DALTAS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 209,
+        "gameHomeAway": 15,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "NCAA-S101-JB-049",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-057",
+        "NCAA-S101-JB-060",
+        "NCAA-S101-JB-069",
+        "NCAA-S101-JB-072",
+        "NCAA-S101-JRB-003",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-011",
+        "NCAA-S101-JRB-016",
+        "NCAA-S101-JRB-022",
+        "NCAA-S101-JRB-025",
+        "NCAA-S101-JRB-032",
+        "NCAA-S101-JRB-036",
+        "NCAA-S101-JRB-042"
+      ],
+      "legacyGameLabels": [
+        "NCAA-S101-JB-049 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-052 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-057 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-060 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-069 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JB-072 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-003 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-007 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-011 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-016 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-022 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-025 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-032 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-036 | NCAA Season 101 Junior's Basketball / Season 101",
+        "NCAA-S101-JRB-042 | NCAA Season 101 Junior's Basketball / Season 101"
+      ],
+      "legacyGameStatGameRefs": [
+        "NCAA-S101-JB-049",
+        "NCAA-S101-JB-052",
+        "NCAA-S101-JB-057",
+        "NCAA-S101-JB-060",
+        "NCAA-S101-JB-069",
+        "NCAA-S101-JB-072",
+        "NCAA-S101-JRB-003",
+        "NCAA-S101-JRB-007",
+        "NCAA-S101-JRB-011",
+        "NCAA-S101-JRB-016",
+        "NCAA-S101-JRB-022",
+        "NCAA-S101-JRB-025",
+        "NCAA-S101-JRB-032",
+        "NCAA-S101-JRB-036",
+        "NCAA-S101-JRB-042"
+      ],
+      "legacyPlayerIds": [
+        "1171714d-bf38-4b7c-a243-d19dee3a341c",
+        "12108bea-dd29-4372-abb0-64d94b6d2980",
+        "21f6a7db-3041-4cf7-9fbb-22df1602b1c6",
+        "2248b156-2adc-4045-aca5-9be73d1cafd4",
+        "348559ad-b529-4496-8686-adb8cd5009d4",
+        "39844d89-e9f3-478c-8cdc-9558ad724d24",
+        "53735f16-4528-489d-ab51-e5235882ceb5",
+        "59dbc830-bc2a-4ab4-a7fb-2e2dffba343f",
+        "6d355d14-a2f1-41ec-a5c0-ad62138eca30",
+        "897d2344-362c-47f5-9d68-07aabef8b717",
+        "95e64c29-81df-4b99-b7b5-74448e115866",
+        "9689f91b-544e-463f-893d-655ff322f83d",
+        "9ad17e58-5380-43c0-b86f-6a8c06ee50fd",
+        "a3d8bde2-9792-477a-bf17-65ea5ee2f625",
+        "be68c7d0-5b93-40b3-ac17-36cdb60ab162",
+        "bea9b03c-aaea-4097-b51d-e95a91e5667a",
+        "c39bbd8c-1b5e-499c-8730-373dc20352a8",
+        "dbd9c730-6188-470e-ab96-4275706f33c7",
+        "e3e17178-a1b3-4430-a726-6cf101234326",
+        "fa6f0ab1-2b05-4d55-9c64-79830f7ff9ab"
+      ],
+      "legacyContext": {
+        "gender": "",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "NCAA Season 101 Junior's Basketball"
+        ],
+        "seasonNames": [
+          "Season 101"
+        ],
+        "seasonIds": [
+          "c4884785-34a9-4b1b-8841-06a390cfc74a"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "legacyTeamId": "8d66d8b4-c047-4257-b3b7-3d87b1a09aa3",
+      "legacyTeamName": "UST Girls (UST)",
+      "legacyDisplayName": "UST Girls (UST)",
+      "legacyKey": "UST",
+      "legacyReasons": [
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [],
+      "legacyContext": {
+        "gender": "GIRLS",
+        "ageGroups": [],
+        "leagueNames": [],
+        "seasonNames": [],
+        "seasonIds": []
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "candidateTeamName": "UST Tigress Cubs",
+          "candidateDisplayName": "UST Tigress Cubs",
+          "candidateKey": "UST TIGRESS CUBS",
+          "score": 3,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "GIRLS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 96,
+            "gameHomeAway": 8,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "candidateTeamName": "UST Tiger Cubs",
+          "candidateDisplayName": "UST Tiger Cubs",
+          "candidateKey": "UST TIGER CUBS",
+          "score": -100,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "GIRLS vs BOYS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 16,
+            "gameStat": 191,
+            "gameHomeAway": 14,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "candidateTeamName": "UST Tiger Cubs 16U",
+          "candidateDisplayName": "UST Tiger Cubs",
+          "candidateKey": "UST TIGER CUBS",
+          "score": -100,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": null,
+          "crossGender": "GIRLS vs BOYS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 159,
+            "gameHomeAway": 15,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          }
+        }
+      ],
+      "recommendedTarget": null,
+      "recommendation": "SAFE_TO_DELETE_ZERO_REFERENCES",
+      "rationale": "Legacy/generic Team has no active roster, Game, or GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "legacyTeamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+      "legacyTeamName": "UST Jrs (UST)",
+      "legacyDisplayName": "UST Jrs (UST)",
+      "legacyKey": "UST",
+      "legacyReasons": [
+        "junior label",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 1,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "50db3d18-b82d-47b7-8cd8-83c7d659d3c8",
+          "playerId": "146cfa1a-ee38-4c2e-8386-3310ace2ecd9",
+          "playerName": "JC Canapi",
+          "playerGender": "BOYS",
+          "birthDate": "2009-04-21",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "146cfa1a-ee38-4c2e-8386-3310ace2ecd9"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [
+        {
+          "candidateTeamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "candidateTeamName": "UST Tiger Cubs",
+          "candidateDisplayName": "UST Tiger Cubs",
+          "candidateKey": "UST TIGER CUBS",
+          "score": 15,
+          "sameSeasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ],
+          "sameLeagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": null,
+          "playerOverlapCount": 1,
+          "playerOverlapIds": [
+            "146cfa1a-ee38-4c2e-8386-3310ace2ecd9"
+          ],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 16,
+            "gameStat": 191,
+            "gameHomeAway": 14,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "candidateTeamName": "UST Tiger Cubs 16U",
+          "candidateDisplayName": "UST Tiger Cubs",
+          "candidateKey": "UST TIGER CUBS",
+          "score": -22,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [],
+          "sameGender": "BOYS",
+          "crossGender": null,
+          "crossAge": "U19 vs U16",
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 159,
+            "gameHomeAway": 15,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          }
+        },
+        {
+          "candidateTeamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "candidateTeamName": "UST Tigress Cubs",
+          "candidateDisplayName": "UST Tigress Cubs",
+          "candidateKey": "UST TIGRESS CUBS",
+          "score": -97,
+          "sameSeasonIds": [],
+          "sameLeagueNames": [],
+          "sameAgeGroups": [
+            "U19"
+          ],
+          "sameGender": null,
+          "crossGender": "BOYS vs GIRLS",
+          "crossAge": null,
+          "playerOverlapCount": 0,
+          "playerOverlapIds": [],
+          "candidateReferenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 96,
+            "gameHomeAway": 8,
+            "submissionsImports": "no direct Team relation found in Submission model"
+          },
+          "candidateContext": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          }
+        }
+      ],
+      "recommendedTarget": {
+        "candidateTeamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+        "candidateTeamName": "UST Tiger Cubs",
+        "candidateDisplayName": "UST Tiger Cubs",
+        "candidateKey": "UST TIGER CUBS",
+        "score": 15,
+        "sameSeasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ],
+        "sameLeagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "sameAgeGroups": [
+          "U19"
+        ],
+        "sameGender": "BOYS",
+        "crossGender": null,
+        "crossAge": null,
+        "playerOverlapCount": 1,
+        "playerOverlapIds": [
+          "146cfa1a-ee38-4c2e-8386-3310ace2ecd9"
+        ],
+        "candidateReferenceCounts": {
+          "playerTeamSeason": 16,
+          "gameStat": 191,
+          "gameHomeAway": 14,
+          "submissionsImports": "no direct Team relation found in Submission model"
+        },
+        "candidateContext": {
+          "gender": "BOYS",
+          "ageGroups": [
+            "U19"
+          ],
+          "leagueNames": [
+            "UAAP Season 88 HS Boys Basketball"
+          ],
+          "seasonNames": [
+            "Season 88"
+          ],
+          "seasonIds": [
+            "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+          ]
+        }
+      },
+      "recommendation": "AUTO_READY_ROSTER_ONLY",
+      "rationale": "Roster-only references have one same-season, same-age, same-gender target and no historical Game/GameStat references.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "legacyTeamId": "e560fa7d-c846-465b-98b4-7704cb17416b",
+      "legacyTeamName": "UE Jrs (UE)",
+      "legacyDisplayName": "UE Jrs (UE)",
+      "legacyKey": "UE",
+      "legacyReasons": [
+        "junior label",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 16,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "7bcc0921-74d5-4f33-9d97-6438fa6ede06",
+          "playerId": "78275386-272c-4a51-84d0-1b280e3d096a",
+          "playerName": "Louie Bual",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "7f36bbcf-9cad-4155-8271-81ac2fa6d2dc",
+          "playerId": "b6ea12bb-cec4-4265-94bc-c418c084dbe9",
+          "playerName": "Jamal Diaz",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "fa339625-a48f-4dfb-8787-f36cbccb5230",
+          "playerId": "49c63d5e-6fc8-41ce-b206-c9b5624bc4f6",
+          "playerName": "Ethan Aguas",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "c32703e3-d52a-40c8-8e72-99195e05b365",
+          "playerId": "ff47da56-5702-4107-a1f2-0ba5a358d2be",
+          "playerName": "Sizco Roquid",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "10b576f4-cd88-4e6a-8059-b65d69d34c19",
+          "playerId": "bdd07be3-e604-4858-9883-6a9d623306ca",
+          "playerName": "Gab Delos Reyes",
+          "playerGender": "BOYS",
+          "birthDate": "2009-05-08",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "0ed64c39-4a12-43f4-a38c-94a600ca8490",
+          "playerId": "b4b8441a-f728-4ced-a82b-b40eb59e25a0",
+          "playerName": "Mhico Abellar",
+          "playerGender": "BOYS",
+          "birthDate": "2008-08-22",
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "59bced5d-341d-4316-9324-2161b396ff8f",
+          "playerId": "af064d5d-eb5f-4ddd-ad46-f619a17592c2",
+          "playerName": "Eoin Braga",
+          "playerGender": "BOYS",
+          "birthDate": "2008-04-14",
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "8180f7c4-8238-4d3d-a66a-1091a44d3d04",
+          "playerId": "a7e409bd-2628-43a2-897d-a4f2768feaad",
+          "playerName": "JM Edoukou",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "3b250601-bdce-4a09-bec4-bac4cbe1ec0f",
+          "playerId": "37d63545-172e-4826-8d38-70d83d8cc64d",
+          "playerName": "Ethan Oraa",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "21866219-cff1-4d04-9559-882044125665",
+          "playerId": "c20617b7-29e4-4a8a-8021-e8528bc40c4a",
+          "playerName": "Kyle Timbol",
+          "playerGender": "BOYS",
+          "birthDate": "2006-10-15",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "87123126-8615-4b62-b97b-4574feabfa4e",
+          "playerId": "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+          "playerName": "Brian Orca Jr.",
+          "playerGender": "BOYS",
+          "birthDate": "2009-06-28",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "e2544399-b261-4541-95a1-732f1dbc599a",
+          "playerId": "0afc5dfc-60d9-49f5-b8f2-8ef83e2e67dd",
+          "playerName": "Drei Lorenzo",
+          "playerGender": "BOYS",
+          "birthDate": "2006-10-31",
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "41e158bb-a868-4a00-821a-2d0a4b431c19",
+          "playerId": "9f302fed-cd29-4af3-84df-1860c3627259",
+          "playerName": "Kiefer Panganiban",
+          "playerGender": "BOYS",
+          "birthDate": "2009-04-21",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "b5a138dd-9be7-404a-9964-c49269bf204b",
+          "playerId": "d1748200-9376-4d05-a2ef-5e4dc0bc4494",
+          "playerName": "Jolo Pascual",
+          "playerGender": "BOYS",
+          "birthDate": "2009-03-02",
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "14c5dd20-b77a-470c-aba8-d1b92b48d620",
+          "playerId": "9e16cd36-1439-4ead-9e55-f7192af6e8b9",
+          "playerName": "Bench Copada",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "befc9268-6f7e-4bd1-82ac-537107b0289a",
+          "playerId": "d77f2ff1-ed84-453e-8934-231f2fe55b6b",
+          "playerName": "Jared Ferreros",
+          "playerGender": "BOYS",
+          "birthDate": "2009-02-07",
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "0afc5dfc-60d9-49f5-b8f2-8ef83e2e67dd",
+        "37d63545-172e-4826-8d38-70d83d8cc64d",
+        "49c63d5e-6fc8-41ce-b206-c9b5624bc4f6",
+        "78275386-272c-4a51-84d0-1b280e3d096a",
+        "9e16cd36-1439-4ead-9e55-f7192af6e8b9",
+        "9f302fed-cd29-4af3-84df-1860c3627259",
+        "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+        "a7e409bd-2628-43a2-897d-a4f2768feaad",
+        "af064d5d-eb5f-4ddd-ad46-f619a17592c2",
+        "b4b8441a-f728-4ced-a82b-b40eb59e25a0",
+        "b6ea12bb-cec4-4265-94bc-c418c084dbe9",
+        "bdd07be3-e604-4858-9883-6a9d623306ca",
+        "c20617b7-29e4-4a8a-8021-e8528bc40c4a",
+        "d1748200-9376-4d05-a2ef-5e4dc0bc4494",
+        "d77f2ff1-ed84-453e-8934-231f2fe55b6b",
+        "ff47da56-5702-4107-a1f2-0ba5a358d2be"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "legacyTeamId": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+      "legacyTeamName": "UE Junior Warriors",
+      "legacyDisplayName": "UE Junior Warriors",
+      "legacyKey": "UE WARRIORS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 191,
+        "gameHomeAway": 14,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-HSB-001",
+        "UAAP-S88-HSB-007",
+        "UAAP-S88-HSB-012",
+        "UAAP-S88-HSB-016",
+        "UAAP-S88-HSB-019",
+        "UAAP-S88-HSB-023",
+        "UAAP-S88-HSB-027",
+        "UAAP-S88-HSB-029",
+        "UAAP-S88-HSB-033",
+        "UAAP-S88-HSB-037",
+        "UAAP-S88-HSB-044",
+        "UAAP-S88-HSB-048",
+        "UAAP-S88-HSB-049",
+        "UAAP-S88-HSB-054"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-HSB-001 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-007 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-012 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-016 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-019 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-023 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-027 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-029 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-033 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-037 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-044 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-048 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-049 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-054 | UAAP Season 88 HS Boys Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-HSB-001",
+        "UAAP-S88-HSB-007",
+        "UAAP-S88-HSB-012",
+        "UAAP-S88-HSB-016",
+        "UAAP-S88-HSB-019",
+        "UAAP-S88-HSB-023",
+        "UAAP-S88-HSB-027",
+        "UAAP-S88-HSB-029",
+        "UAAP-S88-HSB-033",
+        "UAAP-S88-HSB-037",
+        "UAAP-S88-HSB-044",
+        "UAAP-S88-HSB-048",
+        "UAAP-S88-HSB-049",
+        "UAAP-S88-HSB-054"
+      ],
+      "legacyPlayerIds": [
+        "0afc5dfc-60d9-49f5-b8f2-8ef83e2e67dd",
+        "37d63545-172e-4826-8d38-70d83d8cc64d",
+        "49c63d5e-6fc8-41ce-b206-c9b5624bc4f6",
+        "78275386-272c-4a51-84d0-1b280e3d096a",
+        "9e16cd36-1439-4ead-9e55-f7192af6e8b9",
+        "9f302fed-cd29-4af3-84df-1860c3627259",
+        "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
+        "a7e409bd-2628-43a2-897d-a4f2768feaad",
+        "af064d5d-eb5f-4ddd-ad46-f619a17592c2",
+        "b4b8441a-f728-4ced-a82b-b40eb59e25a0",
+        "b6ea12bb-cec4-4265-94bc-c418c084dbe9",
+        "bdd07be3-e604-4858-9883-6a9d623306ca",
+        "c20617b7-29e4-4a8a-8021-e8528bc40c4a",
+        "d1748200-9376-4d05-a2ef-5e4dc0bc4494",
+        "d77f2ff1-ed84-453e-8934-231f2fe55b6b",
+        "ff47da56-5702-4107-a1f2-0ba5a358d2be"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "programName": "University of the East",
+      "legacyTeamId": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+      "legacyTeamName": "UE Junior Warriors 16U",
+      "legacyDisplayName": "UE Junior Warriors",
+      "legacyKey": "UE WARRIORS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 147,
+        "gameHomeAway": 14,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-16U-004",
+        "UAAP-S88-16U-005",
+        "UAAP-S88-16U-009",
+        "UAAP-S88-16U-013",
+        "UAAP-S88-16U-019",
+        "UAAP-S88-16U-023",
+        "UAAP-S88-16U-028",
+        "UAAP-S88-16U-031",
+        "UAAP-S88-16U-033",
+        "UAAP-S88-16U-039",
+        "UAAP-S88-16U-042",
+        "UAAP-S88-16U-045",
+        "UAAP-S88-16U-048",
+        "UAAP-S88-16U-054"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-16U-004 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-005 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-009 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-013 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-019 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-023 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-028 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-031 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-033 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-039 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-042 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-045 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-048 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-054 | UAAP Season 88 16U Boys Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-16U-004",
+        "UAAP-S88-16U-005",
+        "UAAP-S88-16U-009",
+        "UAAP-S88-16U-013",
+        "UAAP-S88-16U-019",
+        "UAAP-S88-16U-023",
+        "UAAP-S88-16U-028",
+        "UAAP-S88-16U-031",
+        "UAAP-S88-16U-033",
+        "UAAP-S88-16U-039",
+        "UAAP-S88-16U-042",
+        "UAAP-S88-16U-045",
+        "UAAP-S88-16U-048",
+        "UAAP-S88-16U-054"
+      ],
+      "legacyPlayerIds": [
+        "04d2298b-2195-43db-956c-da5f40d0589f",
+        "092f8f0d-36d7-424a-a792-60a8b7c5d2a7",
+        "1c606af4-b07a-4da5-a2ac-3b609f9fc8a0",
+        "78d7ad36-070c-4bbb-904f-6050a7828f05",
+        "84ac3127-a447-416d-909b-e889aeec026c",
+        "987e2ec4-393b-44cd-b316-114be432dbfc",
+        "a67cd60b-c5a5-4b6d-a824-f3b98353e8b0",
+        "bc45c007-960f-4c93-8cc7-ab57201a1347",
+        "c5e26785-b849-4e43-8008-85ee3b4d369b",
+        "cece9e53-a43a-4795-bae3-270cd0e7e52d",
+        "fd894239-859c-4780-b3ff-1a1bed146130"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 16U Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "39a4a46c-6362-411f-ae85-6f631414f30b"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "legacyTeamId": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+      "legacyTeamName": "UP Junior Fighting Maroons",
+      "legacyDisplayName": "UP Junior Fighting Maroons",
+      "legacyKey": "UP FIGHTING MAROONS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 165,
+        "gameHomeAway": 14,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-HSB-004",
+        "UAAP-S88-HSB-006",
+        "UAAP-S88-HSB-012",
+        "UAAP-S88-HSB-015",
+        "UAAP-S88-HSB-017",
+        "UAAP-S88-HSB-024",
+        "UAAP-S88-HSB-025",
+        "UAAP-S88-HSB-032",
+        "UAAP-S88-HSB-036",
+        "UAAP-S88-HSB-037",
+        "UAAP-S88-HSB-043",
+        "UAAP-S88-HSB-045",
+        "UAAP-S88-HSB-050",
+        "UAAP-S88-HSB-056"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-HSB-004 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-006 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-012 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-015 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-017 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-024 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-025 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-032 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-036 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-037 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-043 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-045 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-050 | UAAP Season 88 HS Boys Basketball / Season 88",
+        "UAAP-S88-HSB-056 | UAAP Season 88 HS Boys Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-HSB-004",
+        "UAAP-S88-HSB-006",
+        "UAAP-S88-HSB-012",
+        "UAAP-S88-HSB-015",
+        "UAAP-S88-HSB-017",
+        "UAAP-S88-HSB-024",
+        "UAAP-S88-HSB-025",
+        "UAAP-S88-HSB-032",
+        "UAAP-S88-HSB-036",
+        "UAAP-S88-HSB-037",
+        "UAAP-S88-HSB-043",
+        "UAAP-S88-HSB-045",
+        "UAAP-S88-HSB-050",
+        "UAAP-S88-HSB-056"
+      ],
+      "legacyPlayerIds": [
+        "210d2e7b-866f-447d-b3fa-4250cfb9daf0",
+        "2cd6bae3-ade8-48f7-9c81-e73bcf60c1aa",
+        "3eddacf9-7caa-4eb0-b186-a764daaf2129",
+        "4617e909-b890-4441-a715-04400951e026",
+        "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+        "55232e02-1934-4bf4-923a-fcf54febd731",
+        "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+        "7f88a6a3-ab31-477e-8b58-34473d67c155",
+        "a74746cb-362d-4faa-99c4-c3bda00262ce",
+        "b55b85a0-5988-4e20-ac6f-913327563840",
+        "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+        "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+        "eacb642f-e2f6-40cf-b9d2-36e114295953",
+        "fac2ebfd-4e85-4003-a2c7-cdba900f6371"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "legacyTeamId": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+      "legacyTeamName": "UP Junior Fighting Maroons 16U",
+      "legacyDisplayName": "UP Junior Fighting Maroons",
+      "legacyKey": "UP FIGHTING MAROONS",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 0,
+        "gameStat": 152,
+        "gameHomeAway": 14,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [],
+      "legacyGameRefs": [
+        "UAAP-S88-16U-003",
+        "UAAP-S88-16U-006",
+        "UAAP-S88-16U-009",
+        "UAAP-S88-16U-014",
+        "UAAP-S88-16U-018",
+        "UAAP-S88-16U-022",
+        "UAAP-S88-16U-027",
+        "UAAP-S88-16U-030",
+        "UAAP-S88-16U-035",
+        "UAAP-S88-16U-040",
+        "UAAP-S88-16U-042",
+        "UAAP-S88-16U-050",
+        "UAAP-S88-16U-051",
+        "UAAP-S88-16U-053"
+      ],
+      "legacyGameLabels": [
+        "UAAP-S88-16U-003 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-006 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-009 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-014 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-018 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-022 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-027 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-030 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-035 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-040 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-042 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-050 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-051 | UAAP Season 88 16U Boys Basketball / Season 88",
+        "UAAP-S88-16U-053 | UAAP Season 88 16U Boys Basketball / Season 88"
+      ],
+      "legacyGameStatGameRefs": [
+        "UAAP-S88-16U-003",
+        "UAAP-S88-16U-006",
+        "UAAP-S88-16U-009",
+        "UAAP-S88-16U-014",
+        "UAAP-S88-16U-018",
+        "UAAP-S88-16U-022",
+        "UAAP-S88-16U-027",
+        "UAAP-S88-16U-030",
+        "UAAP-S88-16U-035",
+        "UAAP-S88-16U-040",
+        "UAAP-S88-16U-042",
+        "UAAP-S88-16U-050",
+        "UAAP-S88-16U-051",
+        "UAAP-S88-16U-053"
+      ],
+      "legacyPlayerIds": [
+        "0a77dde8-4623-4473-8ffb-6f901a31c566",
+        "1daa4313-334c-467e-a548-6af4a720606d",
+        "21bbf73d-3db9-4920-92b3-5a935bcf7569",
+        "4617e909-b890-4441-a715-04400951e026",
+        "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+        "5e3ebe65-7d60-4696-b303-0d7df4750319",
+        "6b910ffb-2ed1-4b21-9f53-11a774cf0316",
+        "6f0a3f39-4d1d-479e-beef-44e00684d59a",
+        "806846d2-a208-434a-86fd-5b1c3e5e3d36",
+        "8ba4904a-6567-407b-8291-e636067b22c7",
+        "a74746cb-362d-4faa-99c4-c3bda00262ce",
+        "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+        "eacb642f-e2f6-40cf-b9d2-36e114295953",
+        "f78d9740-b8f3-4639-b258-5f38df965042",
+        "fac2ebfd-4e85-4003-a2c7-cdba900f6371"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U16"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 16U Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "39a4a46c-6362-411f-ae85-6f631414f30b"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    },
+    {
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "programName": "University of the Philippines Integrated School",
+      "legacyTeamId": "e8e50710-0e6a-4482-ae1d-452b3471fdde",
+      "legacyTeamName": "UPIS Jrs (UP)",
+      "legacyDisplayName": "UPIS Jrs (UP)",
+      "legacyKey": "UPIS",
+      "legacyReasons": [
+        "junior label",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 14,
+        "gameStat": 0,
+        "gameHomeAway": 0,
+        "submissionsImports": "no direct Team relation found in Submission model"
+      },
+      "rosterRows": [
+        {
+          "playerTeamSeasonId": "bbf1bc13-ab71-41fe-8d6b-e090967247ce",
+          "playerId": "7f88a6a3-ab31-477e-8b58-34473d67c155",
+          "playerName": "Bruce Tubongbanua",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "2ad72b97-0b71-4fcc-853d-604ad8486ed2",
+          "playerId": "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+          "playerName": "Zandro Lugatiman",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "9e683a2e-ffe2-42f8-917c-b35eabac1ee7",
+          "playerId": "b55b85a0-5988-4e20-ac6f-913327563840",
+          "playerName": "Jhustin Hallare",
+          "playerGender": "BOYS",
+          "birthDate": "2009-04-08",
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "0832fa99-ecbc-4a55-a5c2-0a5b810d8ab2",
+          "playerId": "a74746cb-362d-4faa-99c4-c3bda00262ce",
+          "playerName": "Kean Poquiz",
+          "playerGender": "BOYS",
+          "birthDate": "2010-07-25",
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U16",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "c5936984-811e-46c1-9458-2299cdc21e4a",
+          "playerId": "4617e909-b890-4441-a715-04400951e026",
+          "playerName": "Dominic Labao",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "96827e9c-57f8-4b7a-b528-e928f1bb67fb",
+          "playerId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+          "playerName": "John Addatu",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "a797518d-848c-4989-a33b-4712ec93f619",
+          "playerId": "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+          "playerName": "Matt Rosete",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "a82e509e-a2d5-416c-b6d0-65edeb3fabdd",
+          "playerId": "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+          "playerName": "Peter Hernandez",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "5d1333ae-7fca-42b7-a982-51c4d4b89142",
+          "playerId": "eacb642f-e2f6-40cf-b9d2-36e114295953",
+          "playerName": "Yojan Manguerra",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "b6ffd073-af6d-4a1c-9b2f-f3e8a7283cb6",
+          "playerId": "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+          "playerName": "MJ Rosete",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "b55221dc-160c-4d4d-b0b2-460b900e8c88",
+          "playerId": "210d2e7b-866f-447d-b3fa-4250cfb9daf0",
+          "playerName": "Daniel Cobico",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "30ec3805-77c3-4482-8d3f-20e364ab0854",
+          "playerId": "55232e02-1934-4bf4-923a-fcf54febd731",
+          "playerName": "Tapel Ryan",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "59cb53c5-958b-4e5e-90f1-338c2f71b574",
+          "playerId": "3eddacf9-7caa-4eb0-b186-a764daaf2129",
+          "playerName": "Raiven Pascual",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        },
+        {
+          "playerTeamSeasonId": "0e22b55a-f3b1-46e7-b139-ee513bdab521",
+          "playerId": "be4ee3e4-8303-4bb2-bbf9-e29d26380089",
+          "playerName": "John Addatu",
+          "playerGender": "BOYS",
+          "birthDate": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredAgeGroup": "U19",
+          "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "seasonName": "Season 88",
+          "leagueName": "UAAP Season 88 HS Boys Basketball"
+        }
+      ],
+      "legacyGameRefs": [],
+      "legacyGameLabels": [],
+      "legacyGameStatGameRefs": [],
+      "legacyPlayerIds": [
+        "210d2e7b-866f-447d-b3fa-4250cfb9daf0",
+        "3eddacf9-7caa-4eb0-b186-a764daaf2129",
+        "4617e909-b890-4441-a715-04400951e026",
+        "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+        "55232e02-1934-4bf4-923a-fcf54febd731",
+        "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+        "7f88a6a3-ab31-477e-8b58-34473d67c155",
+        "a74746cb-362d-4faa-99c4-c3bda00262ce",
+        "b55b85a0-5988-4e20-ac6f-913327563840",
+        "be4ee3e4-8303-4bb2-bbf9-e29d26380089",
+        "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+        "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+        "eacb642f-e2f6-40cf-b9d2-36e114295953",
+        "fac2ebfd-4e85-4003-a2c7-cdba900f6371"
+      ],
+      "legacyContext": {
+        "gender": "BOYS",
+        "ageGroups": [
+          "U19"
+        ],
+        "leagueNames": [
+          "UAAP Season 88 HS Boys Basketball"
+        ],
+        "seasonNames": [
+          "Season 88"
+        ],
+        "seasonIds": [
+          "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+        ]
+      },
+      "candidateCanonicalTeams": [],
+      "recommendedTarget": null,
+      "recommendation": "BLOCKED_NO_CANONICAL_TARGET",
+      "rationale": "No same-Program canonical Team has enough same-season, same-age, same-gender, league, or player-overlap evidence.",
+      "cleanupPath": [
+        "Step A: reassign safe PlayerTeamSeason rows only after explicit admin approval.",
+        "Step B: reassign Game.homeTeamId / Game.awayTeamId / GameStat.teamId only when same-team historical evidence is approved.",
+        "Step C: after zero references remain, retire/delete/archive the legacy Team through a separate explicit action.",
+        "Step D: rerun Program Management and canonicalization audits."
+      ]
+    }
+  ]
+}

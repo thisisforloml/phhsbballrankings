@@ -1,8 +1,8 @@
-import { readFileSync } from "node:fs";
+﻿import { readFileSync } from "node:fs";
 import { prisma } from "../src/lib/prisma";
 import { getUaapSchoolDisplayName } from "../src/lib/uaap-school-display";
 
-const planPath = "D:/OnCourt Rankings PH/scripts/reports/u19-la-salle-team-identity-repair-plan.json";
+const planPath = "D:/Peach Basket/scripts/reports/u19-la-salle-team-identity-repair-plan.json";
 const targetTeamNames = {
   BOYS: "DLSZ U19 Boys",
   GIRLS: "DLSZ U19 Girls"

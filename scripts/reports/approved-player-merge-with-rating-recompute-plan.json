@@ -1,0 +1,2279 @@
+﻿{
+  "generatedAt": "2026-05-24T13:05:02.592Z",
+  "readOnly": true,
+  "inputPath": "D:\\Peach Basket\\scripts\\reports\\all-player-merge-plan.json",
+  "guardrails": {
+    "databaseModified": false,
+    "playersMerged": false,
+    "playersDeleted": false,
+    "migrationsRun": false,
+    "importsOrPublishRun": false,
+    "ratingsRecomputed": false,
+    "snapshotsRegenerated": false,
+    "formulaV1Changed": false
+  },
+  "ratingRecalculationMethod": {
+    "source": "Existing Formula v1 player rating scripts compute observedRating as average(finalPerformanceScore or performanceScore), adjustedRating equal to observedRating, and starRating from fixed Formula v1 bands.",
+    "scope": "Only canonical players in this merge plan and only age groups represented by their combined GamePerformanceScores.",
+    "gamePerformanceScoresChanged": false
+  },
+  "groupPlans": [
+    {
+      "groupId": "similar:f81a45d4-2dde-409a-8bd5-aee5d39e1f68,ffd5d986-8e58-4c82-9246-b5fc8c1b9198",
+      "canonicalPlayer": {
+        "playerId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+        "displayName": "Carlos Victolero",
+        "currentProgramId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+        "currentProgram": {
+          "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+          "fullName": "Mapua University",
+          "abbreviation": "MU"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "ffd5d986-8e58-4c82-9246-b5fc8c1b9198",
+          "displayName": "Carlos Victorlero",
+          "currentProgramId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+          "currentProgram": {
+            "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+            "fullName": "Mapua University",
+            "abbreviation": "MU"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 6,
+      "combinedGamePerformanceScoreCount": 6,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+          "displayName": "Carlos Victolero",
+          "ratings": [
+            {
+              "ratingId": "150488e8-f9b8-4ea3-be81-c2befc0b4944",
+              "ageGroup": "U19",
+              "observedRating": 14.29,
+              "adjustedRating": 14.29,
+              "verifiedGameCount": 5,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "ffd5d986-8e58-4c82-9246-b5fc8c1b9198",
+          "displayName": "Carlos Victorlero",
+          "ratings": [
+            {
+              "ratingId": "50a727ae-0097-4c3b-93c7-27d3a982b5b9",
+              "ageGroup": "U19",
+              "observedRating": 44.59,
+              "adjustedRating": 44.59,
+              "verifiedGameCount": 1,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+            "ffd5d986-8e58-4c82-9246-b5fc8c1b9198"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 1,
+          "GamePerformanceScore_playerId": 1,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "c26fd72b-175f-4c18-958f-d70fbe57256c",
+              "b7d5ed38-4b9e-45bb-886d-825ea3bc3dbd",
+              "c91d63e7-5c4e-4bdb-8b82-7cc7d1423513",
+              "560e1881-59e7-427d-9e63-f793b5a0d7f0",
+              "d8d17777-72a2-452c-93b0-1e6ae16a1537",
+              "f399fd77-968c-443b-8c75-bb263d3b907a"
+            ],
+            "verifiedGameCount": 6,
+            "observedRating": 19.34,
+            "adjustedRating": 19.34,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "150488e8-f9b8-4ea3-be81-c2befc0b4944",
+              "observedRating": 14.29,
+              "adjustedRating": 14.29,
+              "verifiedGameCount": 5,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "ffd5d986-8e58-4c82-9246-b5fc8c1b9198",
+                "ratingId": "50a727ae-0097-4c3b-93c7-27d3a982b5b9",
+                "observedRating": 44.59,
+                "adjustedRating": 44.59,
+                "verifiedGameCount": 1,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "No existing snapshot rows for this group; no snapshot row action needed during merge.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:b5ea2497-fd54-43eb-bef4-5cd3eef78395,cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+      "canonicalPlayer": {
+        "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+        "displayName": "Don Valdeavilla",
+        "currentProgramId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+        "currentProgram": {
+          "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+          "fullName": "Colegio de San Juan de Letran",
+          "abbreviation": "CSJL"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "b5ea2497-fd54-43eb-bef4-5cd3eef78395",
+          "displayName": "Don Valdevilla",
+          "currentProgramId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+          "currentProgram": {
+            "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+            "fullName": "Colegio de San Juan de Letran",
+            "abbreviation": "CSJL"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 19,
+      "combinedGamePerformanceScoreCount": 19,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+          "displayName": "Don Valdeavilla",
+          "ratings": [
+            {
+              "ratingId": "6e62fb0c-a1df-4245-a481-235ced67ff64",
+              "ageGroup": "U19",
+              "observedRating": 47.34,
+              "adjustedRating": 47.34,
+              "verifiedGameCount": 16,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "b5ea2497-fd54-43eb-bef4-5cd3eef78395",
+          "displayName": "Don Valdevilla",
+          "ratings": [
+            {
+              "ratingId": "01514cb9-ed12-4284-abde-dffa14979879",
+              "ageGroup": "U19",
+              "observedRating": 59.64,
+              "adjustedRating": 59.64,
+              "verifiedGameCount": 3,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "312dba51-579b-47b4-816c-430d6f0cf651",
+          "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+          "playerName": "Don Valdeavilla",
+          "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+          "scope": "NATIONAL",
+          "ageGroup": "U19",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 118,
+          "rating": 47.34,
+          "verifiedGameCount": 16,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+            "b5ea2497-fd54-43eb-bef4-5cd3eef78395"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 3,
+          "GamePerformanceScore_playerId": 3,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "abc7dcfd-eef8-4742-9bc9-7818e6d87900",
+              "5e4790d9-ce11-4817-bdea-617f13c9ba75",
+              "36b535e2-99af-43f4-8bf2-81460fd4bfde",
+              "f0a4709c-000f-4070-b265-b2bcd655b9ea",
+              "28de9f95-476f-4429-b744-3aaf5e2e1da6",
+              "db35ade9-c046-42d5-b1bf-cecbc359786b",
+              "01a716b3-21b7-4439-a516-2ef88bed3a90",
+              "7e5317dd-7519-4660-9d0f-85b518ddc01e",
+              "fc2f1130-20e7-42e6-bdac-8bb9c7e5b7a0",
+              "70a5a8a4-c9a4-4eef-9e42-579392a01bc5",
+              "cc2e6f46-5a8b-4e90-8963-6d0186222644",
+              "cb2da800-a1c5-4f8e-992a-8784cd0c8413",
+              "e64aa514-117a-4139-a145-266c9ecc4a12",
+              "3fdbed64-38b1-49df-abd2-91081fd80ca6",
+              "1bfee483-ede3-4b21-b68b-6d9b0977d714",
+              "b02545f9-8f1d-494e-b85e-9b7bc369b09e",
+              "7e3b0cd6-23d6-4c27-82e6-a22faefc86c0",
+              "116983f8-d756-4e0c-b394-8d9ebdd0f1d2",
+              "bab02ca3-28df-431e-9e00-72e44df40883"
+            ],
+            "verifiedGameCount": 19,
+            "observedRating": 49.29,
+            "adjustedRating": 49.29,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "6e62fb0c-a1df-4245-a481-235ced67ff64",
+              "observedRating": 47.34,
+              "adjustedRating": 47.34,
+              "verifiedGameCount": 16,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "b5ea2497-fd54-43eb-bef4-5cd3eef78395",
+                "ratingId": "01514cb9-ed12-4284-abde-dffa14979879",
+                "observedRating": 59.64,
+                "adjustedRating": 59.64,
+                "verifiedGameCount": 3,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+              "scope": "NATIONAL",
+              "ageGroup": "U19",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "312dba51-579b-47b4-816c-430d6f0cf651",
+                  "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+                  "playerName": "Don Valdeavilla",
+                  "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U19",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 118,
+                  "rating": 47.34,
+                  "verifiedGameCount": 16,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:3681d46e-6d0b-41e3-b625-ccc3dca98d0a,95e64c29-81df-4b99-b7b5-74448e115866",
+      "canonicalPlayer": {
+        "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+        "displayName": "Hanz Llupar",
+        "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+        "currentProgram": {
+          "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+          "fullName": "University of Perpetual Help System DALTA",
+          "abbreviation": "UPHSD"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "3681d46e-6d0b-41e3-b625-ccc3dca98d0a",
+          "displayName": "Hanz Lupar",
+          "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+          "currentProgram": {
+            "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+            "fullName": "University of Perpetual Help System DALTA",
+            "abbreviation": "UPHSD"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 15,
+      "combinedGamePerformanceScoreCount": 15,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+          "displayName": "Hanz Llupar",
+          "ratings": [
+            {
+              "ratingId": "d1fa88ff-c183-47df-9735-6ccc478119f4",
+              "ageGroup": "U19",
+              "observedRating": 50.64,
+              "adjustedRating": 50.64,
+              "verifiedGameCount": 12,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "3681d46e-6d0b-41e3-b625-ccc3dca98d0a",
+          "displayName": "Hanz Lupar",
+          "ratings": [
+            {
+              "ratingId": "28bda591-8051-4ed9-baf8-6c75d3ce3d7b",
+              "ageGroup": "U19",
+              "observedRating": 42.81,
+              "adjustedRating": 42.81,
+              "verifiedGameCount": 3,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "391b9067-26a6-4ae9-91c1-55e4a3476f43",
+          "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+          "playerName": "Hanz Llupar",
+          "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+          "scope": "NATIONAL",
+          "ageGroup": "U19",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 109,
+          "rating": 50.64,
+          "verifiedGameCount": 12,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "95e64c29-81df-4b99-b7b5-74448e115866",
+            "3681d46e-6d0b-41e3-b625-ccc3dca98d0a"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 3,
+          "GamePerformanceScore_playerId": 3,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "104664ca-b37a-4fd4-95cf-d12aab6fd536",
+              "879ca7ce-3f2d-4a26-873f-614851386082",
+              "09019012-2250-40d7-a856-a2ee369df002",
+              "2c0ce3ab-cd25-4ab1-a310-dedde54e5fef",
+              "e931fcec-6524-4e1c-9f08-2b0563e9cb9e",
+              "747a2869-5ed2-4460-a087-99f953914bdc",
+              "8f60bdd9-4697-4aea-9e25-49962c4dd582",
+              "ebc8cb0a-c793-45e0-bbe7-de2ea3d957ca",
+              "21851801-9453-4de8-9afa-1304930b092d",
+              "c2959681-622f-4d27-b9c4-d39b925a9675",
+              "902f91a7-c374-44b6-9c80-616f11ff42f5",
+              "48e213b2-f15f-48aa-84cb-be5a4a60a2ae",
+              "8e7ae07d-8036-42e8-8e37-382400efac77",
+              "b28837c0-e402-41ec-95f1-f05fab864b0d",
+              "3c7b0780-4497-4b8b-bc54-9d1e560e6233"
+            ],
+            "verifiedGameCount": 15,
+            "observedRating": 49.07,
+            "adjustedRating": 49.07,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "d1fa88ff-c183-47df-9735-6ccc478119f4",
+              "observedRating": 50.64,
+              "adjustedRating": 50.64,
+              "verifiedGameCount": 12,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "3681d46e-6d0b-41e3-b625-ccc3dca98d0a",
+                "ratingId": "28bda591-8051-4ed9-baf8-6c75d3ce3d7b",
+                "observedRating": 42.81,
+                "adjustedRating": 42.81,
+                "verifiedGameCount": 3,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+              "scope": "NATIONAL",
+              "ageGroup": "U19",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "391b9067-26a6-4ae9-91c1-55e4a3476f43",
+                  "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+                  "playerName": "Hanz Llupar",
+                  "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U19",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 109,
+                  "rating": 50.64,
+                  "verifiedGameCount": 12,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8,822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+      "canonicalPlayer": {
+        "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+        "displayName": "Inigo Adrade",
+        "currentProgramId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+        "currentProgram": {
+          "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "fullName": "Adamson University",
+          "abbreviation": "ADU"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+          "displayName": "Inigo Andrade",
+          "currentProgramId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+          "currentProgram": {
+            "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+            "fullName": "Adamson University",
+            "abbreviation": "ADU"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 6,
+      "combinedGamePerformanceScoreCount": 6,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+          "displayName": "Inigo Adrade",
+          "ratings": [
+            {
+              "ratingId": "7f1c57d6-cea9-40a2-9cd0-e77c09a8cbeb",
+              "ageGroup": "U16",
+              "observedRating": 24.89,
+              "adjustedRating": 24.89,
+              "verifiedGameCount": 4,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+          "displayName": "Inigo Andrade",
+          "ratings": [
+            {
+              "ratingId": "742d3d62-3209-4cbd-870b-ab2e75ed2f16",
+              "ageGroup": "U16",
+              "observedRating": 19.21,
+              "adjustedRating": 19.21,
+              "verifiedGameCount": 2,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "67b9e52c-d4e8-4ec1-bf27-cfa437db1386",
+          "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+          "playerName": "Inigo Adrade",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 132,
+          "rating": 24.89,
+          "verifiedGameCount": 4,
+          "starRating": 1
+        },
+        {
+          "rowId": "9fedf3ae-d429-4a8f-9658-b4c57fc32d85",
+          "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+          "playerName": "Inigo Andrade",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 143,
+          "rating": 19.21,
+          "verifiedGameCount": 2,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U16",
+          "playerIds": [
+            "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+            "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [
+        {
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "playerIds": [
+            "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+            "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8"
+          ]
+        }
+      ],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 2,
+          "GamePerformanceScore_playerId": 2,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+            "ageGroup": "U16",
+            "inputGamePerformanceScoreIds": [
+              "da59f72f-3575-4d00-aad9-9e55a8e83986",
+              "60c525b3-2598-4ace-b859-507466b4ddfd",
+              "18ba5b34-005c-4792-bb31-0e7e7a333b0a",
+              "03899057-1602-42dc-ae99-18ee3a6108cf",
+              "bf40f147-8034-48c7-a05a-fc4ba542c0c6",
+              "22b66c1e-7b89-40c3-97b8-418cf8ac2eba"
+            ],
+            "verifiedGameCount": 6,
+            "observedRating": 23,
+            "adjustedRating": 23,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "7f1c57d6-cea9-40a2-9cd0-e77c09a8cbeb",
+              "observedRating": 24.89,
+              "adjustedRating": 24.89,
+              "verifiedGameCount": 4,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+                "ratingId": "742d3d62-3209-4cbd-870b-ab2e75ed2f16",
+                "observedRating": 19.21,
+                "adjustedRating": 19.21,
+                "verifiedGameCount": 2,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+              "scope": "NATIONAL",
+              "ageGroup": "U16",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "67b9e52c-d4e8-4ec1-bf27-cfa437db1386",
+                  "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+                  "playerName": "Inigo Adrade",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 132,
+                  "rating": 24.89,
+                  "verifiedGameCount": 4,
+                  "starRating": 1
+                },
+                {
+                  "rowId": "9fedf3ae-d429-4a8f-9658-b4c57fc32d85",
+                  "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+                  "playerName": "Inigo Andrade",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 143,
+                  "rating": 19.21,
+                  "verifiedGameCount": 2,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:9ad94972-47d8-4a7e-9a94-740721ebbc36,f88a25cd-a2a2-46c3-85e4-e7833f575935",
+      "canonicalPlayer": {
+        "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+        "displayName": "Isaac Purugganan",
+        "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "currentProgram": {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "fullName": "De La Salle Santiago Zobel",
+          "abbreviation": "DLSZ"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+          "displayName": "Isaac Parugganan",
+          "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "currentProgram": {
+            "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "fullName": "De La Salle Santiago Zobel",
+            "abbreviation": "DLSZ"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 6,
+      "combinedGamePerformanceScoreCount": 6,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+          "displayName": "Isaac Purugganan",
+          "ratings": [
+            {
+              "ratingId": "bbe01c6c-47e5-4bf4-b585-e3541df2d025",
+              "ageGroup": "U16",
+              "observedRating": 62.1,
+              "adjustedRating": 62.1,
+              "verifiedGameCount": 5,
+              "starRating": 2
+            }
+          ]
+        },
+        {
+          "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+          "displayName": "Isaac Parugganan",
+          "ratings": [
+            {
+              "ratingId": "ad77f4c0-a5e9-4e97-b6a6-5f148849a19f",
+              "ageGroup": "U16",
+              "observedRating": 35.27,
+              "adjustedRating": 35.27,
+              "verifiedGameCount": 1,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "ce0b9b4b-3cb1-4b29-862a-7cadb50f70a3",
+          "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+          "playerName": "Isaac Purugganan",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 43,
+          "rating": 62.1,
+          "verifiedGameCount": 5,
+          "starRating": 2
+        },
+        {
+          "rowId": "a307c9e9-43d5-4430-874a-7d43541a356f",
+          "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+          "playerName": "Isaac Parugganan",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 99,
+          "rating": 35.27,
+          "verifiedGameCount": 1,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U16",
+          "playerIds": [
+            "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+            "f88a25cd-a2a2-46c3-85e4-e7833f575935"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [
+        {
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "playerIds": [
+            "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+            "f88a25cd-a2a2-46c3-85e4-e7833f575935"
+          ]
+        }
+      ],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 1,
+          "GamePerformanceScore_playerId": 1,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+            "ageGroup": "U16",
+            "inputGamePerformanceScoreIds": [
+              "714af563-ef22-41c6-96a0-81db14e04eac",
+              "7f5c1b9a-8708-41c2-b9aa-47a870ccf02f",
+              "32aef742-44b1-4c30-b704-4d8c46594049",
+              "f0933661-9c7e-492d-a4b1-ed88bbebe206",
+              "65d6091e-5187-4fa7-b00c-ddb96fcb3309",
+              "7f9a270d-422d-437a-acae-3832f5931b5c"
+            ],
+            "verifiedGameCount": 6,
+            "observedRating": 57.63,
+            "adjustedRating": 57.63,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "bbe01c6c-47e5-4bf4-b585-e3541df2d025",
+              "observedRating": 62.1,
+              "adjustedRating": 62.1,
+              "verifiedGameCount": 5,
+              "starRating": 2
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+                "ratingId": "ad77f4c0-a5e9-4e97-b6a6-5f148849a19f",
+                "observedRating": 35.27,
+                "adjustedRating": 35.27,
+                "verifiedGameCount": 1,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+              "scope": "NATIONAL",
+              "ageGroup": "U16",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "ce0b9b4b-3cb1-4b29-862a-7cadb50f70a3",
+                  "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+                  "playerName": "Isaac Purugganan",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 43,
+                  "rating": 62.1,
+                  "verifiedGameCount": 5,
+                  "starRating": 2
+                },
+                {
+                  "rowId": "a307c9e9-43d5-4430-874a-7d43541a356f",
+                  "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+                  "playerName": "Isaac Parugganan",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 99,
+                  "rating": 35.27,
+                  "verifiedGameCount": 1,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:8ed9d6e4-f812-4f72-a108-983eba8cd76c,d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+      "canonicalPlayer": {
+        "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+        "displayName": "Isaac Paugganan",
+        "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "currentProgram": {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "fullName": "De La Salle Santiago Zobel",
+          "abbreviation": "DLSZ"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+          "displayName": "Isaac Pauugganan",
+          "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "currentProgram": {
+            "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "fullName": "De La Salle Santiago Zobel",
+            "abbreviation": "DLSZ"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 8,
+      "combinedGamePerformanceScoreCount": 8,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+          "displayName": "Isaac Paugganan",
+          "ratings": [
+            {
+              "ratingId": "8a6dc636-d780-40fd-8cf4-2dbeabec447d",
+              "ageGroup": "U16",
+              "observedRating": 46.71,
+              "adjustedRating": 46.71,
+              "verifiedGameCount": 6,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+          "displayName": "Isaac Pauugganan",
+          "ratings": [
+            {
+              "ratingId": "e4f8712d-add4-4b2c-8068-cb34bcd9d8aa",
+              "ageGroup": "U16",
+              "observedRating": 50.24,
+              "adjustedRating": 50.24,
+              "verifiedGameCount": 2,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "78adf28b-1df6-4c11-8303-8e9d2d520582",
+          "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+          "playerName": "Isaac Paugganan",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 73,
+          "rating": 46.71,
+          "verifiedGameCount": 6,
+          "starRating": 1
+        },
+        {
+          "rowId": "31ccb9d0-5416-4d52-a3a6-534b307f6ef0",
+          "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+          "playerName": "Isaac Pauugganan",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 69,
+          "rating": 50.24,
+          "verifiedGameCount": 2,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U16",
+          "playerIds": [
+            "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+            "8ed9d6e4-f812-4f72-a108-983eba8cd76c"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [
+        {
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "playerIds": [
+            "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+            "8ed9d6e4-f812-4f72-a108-983eba8cd76c"
+          ]
+        }
+      ],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 2,
+          "GamePerformanceScore_playerId": 2,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+            "ageGroup": "U16",
+            "inputGamePerformanceScoreIds": [
+              "9618eaa1-6491-4d44-a009-be9869f3bf61",
+              "3af16799-083d-4080-90af-0a67a0ee76b1",
+              "fe9bc7d3-7844-4bc4-9f47-c6257a9ca02f",
+              "41bfb40c-8dbb-4a13-ac04-2afd38e78698",
+              "aff2c600-f5bc-4b57-94c5-bfa6095d4ac7",
+              "2b0a0d1f-bfb5-42fe-b5d1-2eceb70e0be8",
+              "873ddf06-c6bd-4c06-a22c-1cd37c317aeb",
+              "d42180b0-9691-4fc2-a7c1-7855784423af"
+            ],
+            "verifiedGameCount": 8,
+            "observedRating": 47.59,
+            "adjustedRating": 47.59,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "8a6dc636-d780-40fd-8cf4-2dbeabec447d",
+              "observedRating": 46.71,
+              "adjustedRating": 46.71,
+              "verifiedGameCount": 6,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+                "ratingId": "e4f8712d-add4-4b2c-8068-cb34bcd9d8aa",
+                "observedRating": 50.24,
+                "adjustedRating": 50.24,
+                "verifiedGameCount": 2,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+              "scope": "NATIONAL",
+              "ageGroup": "U16",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "78adf28b-1df6-4c11-8303-8e9d2d520582",
+                  "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+                  "playerName": "Isaac Paugganan",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 73,
+                  "rating": 46.71,
+                  "verifiedGameCount": 6,
+                  "starRating": 1
+                },
+                {
+                  "rowId": "31ccb9d0-5416-4d52-a3a6-534b307f6ef0",
+                  "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+                  "playerName": "Isaac Pauugganan",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 69,
+                  "rating": 50.24,
+                  "verifiedGameCount": 2,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:3d94da1d-139f-4f8a-9928-d4bdaa6bf157,5aa234c4-8245-4add-b475-e21db3b7c39e",
+      "canonicalPlayer": {
+        "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+        "displayName": "Khaizer Castillo",
+        "currentProgramId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+        "currentProgram": {
+          "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+          "fullName": "San Sebastian College-Recoletos",
+          "abbreviation": "SSCR"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "3d94da1d-139f-4f8a-9928-d4bdaa6bf157",
+          "displayName": "Khazer Castillo",
+          "currentProgramId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+          "currentProgram": {
+            "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+            "fullName": "San Sebastian College-Recoletos",
+            "abbreviation": "SSCR"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 14,
+      "combinedGamePerformanceScoreCount": 14,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+          "displayName": "Khaizer Castillo",
+          "ratings": [
+            {
+              "ratingId": "4c12da54-d8fd-4c3d-8fc9-dc5f448f51c0",
+              "ageGroup": "U19",
+              "observedRating": 50.54,
+              "adjustedRating": 50.54,
+              "verifiedGameCount": 11,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "3d94da1d-139f-4f8a-9928-d4bdaa6bf157",
+          "displayName": "Khazer Castillo",
+          "ratings": [
+            {
+              "ratingId": "85ce20f8-fdfe-421f-9dcd-dda1718aa06c",
+              "ageGroup": "U19",
+              "observedRating": 82.99,
+              "adjustedRating": 82.99,
+              "verifiedGameCount": 3,
+              "starRating": 4
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "d5b305a1-26c4-4606-a4e2-c8a90c4a88f5",
+          "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+          "playerName": "Khaizer Castillo",
+          "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+          "scope": "NATIONAL",
+          "ageGroup": "U19",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 110,
+          "rating": 50.54,
+          "verifiedGameCount": 11,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "5aa234c4-8245-4add-b475-e21db3b7c39e",
+            "3d94da1d-139f-4f8a-9928-d4bdaa6bf157"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 3,
+          "GamePerformanceScore_playerId": 3,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "1b2b6133-5705-41fa-bfa5-fa169de4ff78",
+              "168a6839-f74c-4e50-8e7f-9b3cccf9e5ee",
+              "1f9c62a6-1841-464e-a02d-f41e621b0340",
+              "192ac735-48da-416f-a93b-67b6e2605079",
+              "89f0c624-451c-445f-a6bd-0abe066cfaf1",
+              "0b2057ec-c2e4-46b5-a96a-fb4b78274b91",
+              "58071633-f5ff-41a4-b6e4-e9cf24dfe6fd",
+              "7fe6238c-a130-4983-ab2f-1209f523f224",
+              "f4cf0090-a472-48eb-8057-ee4db1bf38cc",
+              "67ad377b-0763-4bcd-bcd7-e46cc3f2f948",
+              "df1f86aa-1d30-4965-984b-f0b00454a4e3",
+              "e51c8392-bedf-4c27-b860-d8b81a8aa715",
+              "09a708ea-32ca-4e67-a33a-a2cde3c23151",
+              "984e1460-8c52-471f-8074-2c5bda797916"
+            ],
+            "verifiedGameCount": 14,
+            "observedRating": 57.49,
+            "adjustedRating": 57.49,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "4c12da54-d8fd-4c3d-8fc9-dc5f448f51c0",
+              "observedRating": 50.54,
+              "adjustedRating": 50.54,
+              "verifiedGameCount": 11,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "3d94da1d-139f-4f8a-9928-d4bdaa6bf157",
+                "ratingId": "85ce20f8-fdfe-421f-9dcd-dda1718aa06c",
+                "observedRating": 82.99,
+                "adjustedRating": 82.99,
+                "verifiedGameCount": 3,
+                "starRating": 4
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+              "scope": "NATIONAL",
+              "ageGroup": "U19",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "d5b305a1-26c4-4606-a4e2-c8a90c4a88f5",
+                  "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+                  "playerName": "Khaizer Castillo",
+                  "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U19",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 110,
+                  "rating": 50.54,
+                  "verifiedGameCount": 11,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:7061d80f-1ce0-4b8d-b0f0-80abbec16b3e,b9a9903a-422c-464b-b387-ff2cb1e38111",
+      "canonicalPlayer": {
+        "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+        "displayName": "Lorenzo Purugganan",
+        "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+        "currentProgram": {
+          "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "fullName": "De La Salle Santiago Zobel",
+          "abbreviation": "DLSZ"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+          "displayName": "Lorenzo Parugganan",
+          "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+          "currentProgram": {
+            "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+            "fullName": "De La Salle Santiago Zobel",
+            "abbreviation": "DLSZ"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 14,
+      "combinedGamePerformanceScoreCount": 14,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+          "displayName": "Lorenzo Purugganan",
+          "ratings": [
+            {
+              "ratingId": "26639048-fdff-4b9e-8c6c-64d09ab1aca5",
+              "ageGroup": "U16",
+              "observedRating": 74.97,
+              "adjustedRating": 74.97,
+              "verifiedGameCount": 13,
+              "starRating": 3
+            }
+          ]
+        },
+        {
+          "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+          "displayName": "Lorenzo Parugganan",
+          "ratings": [
+            {
+              "ratingId": "65768c81-9b57-42ab-84d2-28986dd85c23",
+              "ageGroup": "U16",
+              "observedRating": 98.73,
+              "adjustedRating": 98.73,
+              "verifiedGameCount": 1,
+              "starRating": 5
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "49e7c41a-c428-4d6d-b564-c9c19d8355a1",
+          "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+          "playerName": "Lorenzo Purugganan",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 24,
+          "rating": 74.97,
+          "verifiedGameCount": 13,
+          "starRating": 3
+        },
+        {
+          "rowId": "dadafa0b-4fbe-45b0-aab0-ed2352f1e3b6",
+          "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+          "playerName": "Lorenzo Parugganan",
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "scope": "NATIONAL",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 2,
+          "rating": 98.73,
+          "verifiedGameCount": 1,
+          "starRating": 5
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U16",
+          "playerIds": [
+            "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+            "b9a9903a-422c-464b-b387-ff2cb1e38111"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [
+        {
+          "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+          "ageGroup": "U16",
+          "gender": "BOYS",
+          "playerIds": [
+            "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+            "b9a9903a-422c-464b-b387-ff2cb1e38111"
+          ]
+        }
+      ],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 1,
+          "GamePerformanceScore_playerId": 1,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+            "ageGroup": "U16",
+            "inputGamePerformanceScoreIds": [
+              "fe05d697-1277-4271-aff7-76b59f2ca163",
+              "2f1b380a-8198-4462-aa1a-b55d100b01a5",
+              "106f2def-51cf-49a7-a591-bac3b5080fa3",
+              "31e1a51d-752f-4a58-9288-9dcb939e82bf",
+              "e07e5a11-f0c1-435b-9b9a-6aaace749c62",
+              "19607de3-14cc-462b-b58e-69b190ebb862",
+              "403c9f5a-8ca2-41e3-9130-5df29fa4396e",
+              "8f3b97bf-5a95-4be5-84ab-6dcf66dabc78",
+              "6c6d98ae-b041-4aae-9d9f-4ab6130d5488",
+              "5b3811bc-45b2-47f0-96a9-ab99eb9fd75e",
+              "25a030c8-3a26-40be-8300-f1747df0e91a",
+              "cc570a2b-0ea8-47d9-bf3d-029180cc1a02",
+              "4689f03f-e185-494c-8d1d-9ea7c90c4d38",
+              "daf6a4e3-0b0c-4f13-becb-7810a05dac87"
+            ],
+            "verifiedGameCount": 14,
+            "observedRating": 76.66,
+            "adjustedRating": 76.66,
+            "starRating": 3,
+            "existingCanonicalRating": {
+              "id": "26639048-fdff-4b9e-8c6c-64d09ab1aca5",
+              "observedRating": 74.97,
+              "adjustedRating": 74.97,
+              "verifiedGameCount": 13,
+              "starRating": 3
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+                "ratingId": "65768c81-9b57-42ab-84d2-28986dd85c23",
+                "observedRating": 98.73,
+                "adjustedRating": 98.73,
+                "verifiedGameCount": 1,
+                "starRating": 5
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+              "scope": "NATIONAL",
+              "ageGroup": "U16",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "49e7c41a-c428-4d6d-b564-c9c19d8355a1",
+                  "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+                  "playerName": "Lorenzo Purugganan",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 24,
+                  "rating": 74.97,
+                  "verifiedGameCount": 13,
+                  "starRating": 3
+                },
+                {
+                  "rowId": "dadafa0b-4fbe-45b0-aab0-ed2352f1e3b6",
+                  "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+                  "playerName": "Lorenzo Parugganan",
+                  "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U16",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 2,
+                  "rating": 98.73,
+                  "verifiedGameCount": 1,
+                  "starRating": 5
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:5a00d9fe-cbc6-457f-a55c-9be2870a99ae,e34d525c-ab75-4fe2-beca-b31447f6ed22",
+      "canonicalPlayer": {
+        "playerId": "5a00d9fe-cbc6-457f-a55c-9be2870a99ae",
+        "displayName": "Mirkuel Arsic",
+        "currentProgramId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+        "currentProgram": {
+          "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+          "fullName": "College of Saint Benilde",
+          "abbreviation": "CSB"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "e34d525c-ab75-4fe2-beca-b31447f6ed22",
+          "displayName": "Mikuel Arsic",
+          "currentProgramId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+          "currentProgram": {
+            "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+            "fullName": "College of Saint Benilde",
+            "abbreviation": "CSB"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 3,
+      "combinedGamePerformanceScoreCount": 3,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "5a00d9fe-cbc6-457f-a55c-9be2870a99ae",
+          "displayName": "Mirkuel Arsic",
+          "ratings": [
+            {
+              "ratingId": "4e24e546-b55d-473b-9f67-48cbf095c887",
+              "ageGroup": "U19",
+              "observedRating": 34.51,
+              "adjustedRating": 34.51,
+              "verifiedGameCount": 2,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "e34d525c-ab75-4fe2-beca-b31447f6ed22",
+          "displayName": "Mikuel Arsic",
+          "ratings": [
+            {
+              "ratingId": "406fca5a-07e2-4c96-857d-b074c7a15524",
+              "ageGroup": "U19",
+              "observedRating": 26.52,
+              "adjustedRating": 26.52,
+              "verifiedGameCount": 1,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "e34d525c-ab75-4fe2-beca-b31447f6ed22",
+            "5a00d9fe-cbc6-457f-a55c-9be2870a99ae"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 1,
+          "GamePerformanceScore_playerId": 1,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "5a00d9fe-cbc6-457f-a55c-9be2870a99ae",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "0df927c6-f493-40ff-ae93-3dcf1b443b71",
+              "83db0044-2699-4f48-8bae-4b24cb175fef",
+              "17c1720e-c83f-445d-9057-2ef342d43673"
+            ],
+            "verifiedGameCount": 3,
+            "observedRating": 31.85,
+            "adjustedRating": 31.85,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "4e24e546-b55d-473b-9f67-48cbf095c887",
+              "observedRating": 34.51,
+              "adjustedRating": 34.51,
+              "verifiedGameCount": 2,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "e34d525c-ab75-4fe2-beca-b31447f6ed22",
+                "ratingId": "406fca5a-07e2-4c96-857d-b074c7a15524",
+                "observedRating": 26.52,
+                "adjustedRating": 26.52,
+                "verifiedGameCount": 1,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "No existing snapshot rows for this group; no snapshot row action needed during merge.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:12108bea-dd29-4372-abb0-64d94b6d2980,9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+      "canonicalPlayer": {
+        "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+        "displayName": "Pertjude Binagatan",
+        "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+        "currentProgram": {
+          "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+          "fullName": "University of Perpetual Help System DALTA",
+          "abbreviation": "UPHSD"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+          "displayName": "Pertijude Binagatan",
+          "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+          "currentProgram": {
+            "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+            "fullName": "University of Perpetual Help System DALTA",
+            "abbreviation": "UPHSD"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 14,
+      "combinedGamePerformanceScoreCount": 14,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+          "displayName": "Pertjude Binagatan",
+          "ratings": [
+            {
+              "ratingId": "17726d30-0f78-4d59-bc61-598f9c9ff3e8",
+              "ageGroup": "U19",
+              "observedRating": 31.02,
+              "adjustedRating": 31.02,
+              "verifiedGameCount": 12,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+          "displayName": "Pertijude Binagatan",
+          "ratings": [
+            {
+              "ratingId": "3e802d34-6495-4b0d-857a-685f9f3ac8b2",
+              "ageGroup": "U19",
+              "observedRating": 41.08,
+              "adjustedRating": 41.08,
+              "verifiedGameCount": 2,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [
+        {
+          "rowId": "982962d9-e02c-4bf0-8aea-22575a242b65",
+          "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+          "playerName": "Pertjude Binagatan",
+          "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+          "scope": "NATIONAL",
+          "ageGroup": "U19",
+          "gender": "BOYS",
+          "weekOf": "2026-05-01",
+          "rank": 175,
+          "rating": 31.02,
+          "verifiedGameCount": 12,
+          "starRating": 1
+        }
+      ],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+            "12108bea-dd29-4372-abb0-64d94b6d2980"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 2,
+          "GamePerformanceScore_playerId": 2,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "dc089542-a3eb-4d0a-9584-308b6b609e85",
+              "cde618ea-2779-4166-85cc-6b975db3cdc8",
+              "32d1e31d-f68b-424f-b681-6bba677b0ce4",
+              "7ff0219c-e8c1-4efb-81ba-477fefc23083",
+              "9e7f1fa6-00f2-4c52-997d-8ffb74897878",
+              "35a03e58-9ce2-4a37-b198-c359fccac4e5",
+              "d72678d0-6255-47a5-8f4f-f520d2f375ce",
+              "53aac7ea-c4e6-4636-8a72-d1648d20f448",
+              "5d806aac-8423-4c5c-b78e-cba7cf64f7e5",
+              "dfac8d91-27f7-4cc1-9f8c-b406863c6b4d",
+              "f0b5b6b3-d583-4ac1-81d7-7b9444a8be46",
+              "5ed57880-3a19-4a71-a27d-a3ee9f8533f6",
+              "55bb345a-be85-4298-964e-b7024a73bb0c",
+              "51bb896b-2599-4983-b5a9-bec1692bf0ae"
+            ],
+            "verifiedGameCount": 14,
+            "observedRating": 32.46,
+            "adjustedRating": 32.46,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "17726d30-0f78-4d59-bc61-598f9c9ff3e8",
+              "observedRating": 31.02,
+              "adjustedRating": 31.02,
+              "verifiedGameCount": 12,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+                "ratingId": "3e802d34-6495-4b0d-857a-685f9f3ac8b2",
+                "observedRating": 41.08,
+                "adjustedRating": 41.08,
+                "verifiedGameCount": 2,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [
+            {
+              "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+              "scope": "NATIONAL",
+              "ageGroup": "U19",
+              "gender": "BOYS",
+              "weekOf": "2026-05-01",
+              "rowsForGroup": [
+                {
+                  "rowId": "982962d9-e02c-4bf0-8aea-22575a242b65",
+                  "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+                  "playerName": "Pertjude Binagatan",
+                  "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+                  "scope": "NATIONAL",
+                  "ageGroup": "U19",
+                  "gender": "BOYS",
+                  "weekOf": "2026-05-01",
+                  "rank": 175,
+                  "rating": 31.02,
+                  "verifiedGameCount": 12,
+                  "starRating": 1
+                }
+              ]
+            }
+          ],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "Do not perform partial row-only rank edits. Merging can change ratings and rank order, and same-snapshot duplicate rows exist for some groups. Regenerate only affected snapshots after merge/rating recalculation.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:6c8aa80f-1c6c-4b10-956d-6409a04dcccf,c62942d3-6990-40a4-a986-b4364db02164",
+      "canonicalPlayer": {
+        "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+        "displayName": "Romnick Araneta",
+        "currentProgramId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+        "currentProgram": {
+          "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+          "fullName": "Lyceum of the Philippines University",
+          "abbreviation": "LPU"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "c62942d3-6990-40a4-a986-b4364db02164",
+          "displayName": "Rommick Araneta",
+          "currentProgramId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+          "currentProgram": {
+            "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+            "fullName": "Lyceum of the Philippines University",
+            "abbreviation": "LPU"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 9,
+      "combinedGamePerformanceScoreCount": 9,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+          "displayName": "Romnick Araneta",
+          "ratings": [
+            {
+              "ratingId": "ae75d0c4-1d73-48f3-94d6-d68c1553e8ed",
+              "ageGroup": "U19",
+              "observedRating": 28.56,
+              "adjustedRating": 28.56,
+              "verifiedGameCount": 8,
+              "starRating": 1
+            }
+          ]
+        },
+        {
+          "playerId": "c62942d3-6990-40a4-a986-b4364db02164",
+          "displayName": "Rommick Araneta",
+          "ratings": [
+            {
+              "ratingId": "a30f71f9-f8b9-49a0-886f-f997c146c166",
+              "ageGroup": "U19",
+              "observedRating": 31.16,
+              "adjustedRating": 31.16,
+              "verifiedGameCount": 1,
+              "starRating": 1
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "c62942d3-6990-40a4-a986-b4364db02164",
+            "6c8aa80f-1c6c-4b10-956d-6409a04dcccf"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 1,
+          "GamePerformanceScore_playerId": 1,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "1a9dbcf1-c6d4-47c2-98ec-dc92e5320c83",
+              "7e80de1c-05bd-4d49-810e-5a2124112717",
+              "c0681cdb-b4d5-4af8-82c5-a0f3b1e835ad",
+              "5139aaa4-ed6f-4e3a-b448-96efea0930a6",
+              "7f96374f-f1ae-459a-b173-cf6d35a7339a",
+              "76cb53c8-9234-4a41-a106-c88f45846803",
+              "c5fa28da-5b9a-43a1-93cd-d20c5d75b243",
+              "ed5c2c1c-35da-4f6e-b610-ba7a110a8fea",
+              "41143b1c-7264-49d1-a5be-9a74195e0561"
+            ],
+            "verifiedGameCount": 9,
+            "observedRating": 28.85,
+            "adjustedRating": 28.85,
+            "starRating": 1,
+            "existingCanonicalRating": {
+              "id": "ae75d0c4-1d73-48f3-94d6-d68c1553e8ed",
+              "observedRating": 28.56,
+              "adjustedRating": 28.56,
+              "verifiedGameCount": 8,
+              "starRating": 1
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "c62942d3-6990-40a4-a986-b4364db02164",
+                "ratingId": "a30f71f9-f8b9-49a0-886f-f997c146c166",
+                "observedRating": 31.16,
+                "adjustedRating": 31.16,
+                "verifiedGameCount": 1,
+                "starRating": 1
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "No existing snapshot rows for this group; no snapshot row action needed during merge.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    },
+    {
+      "groupId": "similar:4335d0a4-aa8e-48f7-9647-1d63ca0919af,cce0c1c6-0170-45ed-bb28-6b7382821e82",
+      "canonicalPlayer": {
+        "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+        "displayName": "Xyriel Macahipay",
+        "currentProgramId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+        "currentProgram": {
+          "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+          "fullName": "Emilio Aguinaldo College",
+          "abbreviation": "EAC"
+        },
+        "gender": "BOYS",
+        "birthDate": null
+      },
+      "sourcePlayers": [
+        {
+          "playerId": "4335d0a4-aa8e-48f7-9647-1d63ca0919af",
+          "displayName": "Xyriel Machapipay",
+          "currentProgramId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+          "currentProgram": {
+            "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+            "fullName": "Emilio Aguinaldo College",
+            "abbreviation": "EAC"
+          },
+          "gender": "BOYS",
+          "birthDate": null
+        }
+      ],
+      "combinedGameStatsCount": 14,
+      "combinedGamePerformanceScoreCount": 14,
+      "existingPlayerRatingRowsByAgeGroup": [
+        {
+          "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+          "displayName": "Xyriel Macahipay",
+          "ratings": [
+            {
+              "ratingId": "25073147-097e-44b4-bf2a-751401619d26",
+              "ageGroup": "U19",
+              "observedRating": 83.35,
+              "adjustedRating": 83.35,
+              "verifiedGameCount": 9,
+              "starRating": 4
+            }
+          ]
+        },
+        {
+          "playerId": "4335d0a4-aa8e-48f7-9647-1d63ca0919af",
+          "displayName": "Xyriel Machapipay",
+          "ratings": [
+            {
+              "ratingId": "faa6ea35-5f84-4822-8f9f-d9c7b3376af6",
+              "ageGroup": "U19",
+              "observedRating": 86.34,
+              "adjustedRating": 86.34,
+              "verifiedGameCount": 5,
+              "starRating": 4
+            }
+          ]
+        }
+      ],
+      "existingRankingSnapshotRows": [],
+      "ratingCollisionRisks": [
+        {
+          "ageGroup": "U19",
+          "playerIds": [
+            "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+            "4335d0a4-aa8e-48f7-9647-1d63ca0919af"
+          ]
+        }
+      ],
+      "snapshotCollisionRisks": [],
+      "executionPlan": {
+        "transactionRequired": true,
+        "reassignSourcePlayerRecordsToCanonical": {
+          "GameStat_playerId": 5,
+          "GamePerformanceScore_playerId": 5,
+          "PlayerProgramHistory_playerId": 0,
+          "PlayerProfileSubmission_playerId": 0
+        },
+        "softDeleteSourcePlayersUsingDeletedAt": true,
+        "recalculateOnlyAffectedCanonicalPlayerRatings": [
+          {
+            "canonicalPlayerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+            "ageGroup": "U19",
+            "inputGamePerformanceScoreIds": [
+              "a7acbf48-9007-49c1-8d50-112c700bbe04",
+              "c1827e44-c76c-40ac-ab3c-003f491d3728",
+              "105afcb0-83bc-4f2b-ab3f-da9b52c5ffd3",
+              "48f41e1a-df1f-4017-83a0-1bf167628a5e",
+              "f3098063-a43c-4384-a9e3-a14b641bd516",
+              "496e4184-d6e0-4fe8-80bd-63f7179d495a",
+              "cb1067fe-ebed-4322-9de7-3526149836ef",
+              "f270bee2-b321-4c4d-b7a4-105d1b38a8b2",
+              "bec9978a-85bb-43d8-9750-33763ee9a35a",
+              "2cb8c76e-09bf-45de-825e-1a4883215483",
+              "22a5297f-40f7-4cae-9bcc-bf3f4406bbdf",
+              "52ca5f2b-2bd8-4888-b6ac-9d5fb35e20bb",
+              "bef0a773-c039-4c2c-9cdb-8c7a838c89e6",
+              "f91aba3c-64e2-4f71-8ab0-1ca9abc75f94"
+            ],
+            "verifiedGameCount": 14,
+            "observedRating": 84.42,
+            "adjustedRating": 84.42,
+            "starRating": 4,
+            "existingCanonicalRating": {
+              "id": "25073147-097e-44b4-bf2a-751401619d26",
+              "observedRating": 83.35,
+              "adjustedRating": 83.35,
+              "verifiedGameCount": 9,
+              "starRating": 4
+            },
+            "sourceRatingsToConsolidate": [
+              {
+                "playerId": "4335d0a4-aa8e-48f7-9647-1d63ca0919af",
+                "ratingId": "faa6ea35-5f84-4822-8f9f-d9c7b3376af6",
+                "observedRating": 86.34,
+                "adjustedRating": 86.34,
+                "verifiedGameCount": 5,
+                "starRating": 4
+              }
+            ]
+          }
+        ],
+        "playerRatingCollisionHandling": "Delete or retire source PlayerRating rows after canonical ratings are recalculated/upserted, otherwise unique(playerId, ageGroup) reassignment will collide.",
+        "rankingSnapshotHandling": {
+          "affectedSnapshots": [],
+          "partialSnapshotRowUpdateSafe": false,
+          "recommendation": "No existing snapshot rows for this group; no snapshot row action needed during merge.",
+          "doNotRegenerateInThisTask": true
+        },
+        "unchangedData": [
+          "GamePerformanceScore values",
+          "GameStat stat values",
+          "Game records",
+          "unaffected PlayerRating rows",
+          "unaffected RankingSnapshots"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "groupsPlanned": 12,
+    "affectedCanonicalPlayers": [
+      {
+        "playerId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+        "displayName": "Carlos Victolero"
+      },
+      {
+        "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+        "displayName": "Don Valdeavilla"
+      },
+      {
+        "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+        "displayName": "Hanz Llupar"
+      },
+      {
+        "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+        "displayName": "Inigo Adrade"
+      },
+      {
+        "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+        "displayName": "Isaac Purugganan"
+      },
+      {
+        "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+        "displayName": "Isaac Paugganan"
+      },
+      {
+        "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+        "displayName": "Khaizer Castillo"
+      },
+      {
+        "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+        "displayName": "Lorenzo Purugganan"
+      },
+      {
+        "playerId": "5a00d9fe-cbc6-457f-a55c-9be2870a99ae",
+        "displayName": "Mirkuel Arsic"
+      },
+      {
+        "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+        "displayName": "Pertjude Binagatan"
+      },
+      {
+        "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+        "displayName": "Romnick Araneta"
+      },
+      {
+        "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+        "displayName": "Xyriel Macahipay"
+      }
+    ],
+    "sourcePlayersToSoftDelete": [
+      {
+        "playerId": "ffd5d986-8e58-4c82-9246-b5fc8c1b9198",
+        "displayName": "Carlos Victorlero"
+      },
+      {
+        "playerId": "b5ea2497-fd54-43eb-bef4-5cd3eef78395",
+        "displayName": "Don Valdevilla"
+      },
+      {
+        "playerId": "3681d46e-6d0b-41e3-b625-ccc3dca98d0a",
+        "displayName": "Hanz Lupar"
+      },
+      {
+        "playerId": "29f7b7f2-dbe9-4ce3-88c6-26afed8cfaa8",
+        "displayName": "Inigo Andrade"
+      },
+      {
+        "playerId": "9ad94972-47d8-4a7e-9a94-740721ebbc36",
+        "displayName": "Isaac Parugganan"
+      },
+      {
+        "playerId": "8ed9d6e4-f812-4f72-a108-983eba8cd76c",
+        "displayName": "Isaac Pauugganan"
+      },
+      {
+        "playerId": "3d94da1d-139f-4f8a-9928-d4bdaa6bf157",
+        "displayName": "Khazer Castillo"
+      },
+      {
+        "playerId": "7061d80f-1ce0-4b8d-b0f0-80abbec16b3e",
+        "displayName": "Lorenzo Parugganan"
+      },
+      {
+        "playerId": "e34d525c-ab75-4fe2-beca-b31447f6ed22",
+        "displayName": "Mikuel Arsic"
+      },
+      {
+        "playerId": "9199f74f-d23e-4275-a5ec-c7b4233db2cb",
+        "displayName": "Pertijude Binagatan"
+      },
+      {
+        "playerId": "c62942d3-6990-40a4-a986-b4364db02164",
+        "displayName": "Rommick Araneta"
+      },
+      {
+        "playerId": "4335d0a4-aa8e-48f7-9647-1d63ca0919af",
+        "displayName": "Xyriel Machapipay"
+      }
+    ],
+    "gameStatsToReassign": 25,
+    "gamePerformanceScoresToReassign": 25,
+    "playerProgramHistoryRowsToReassign": 0,
+    "playerProfileSubmissionsToReassign": 0,
+    "playerRatingsToRecalculate": [
+      {
+        "playerId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "cc544f3e-a0aa-45e0-af28-ae01b95006ff",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "95e64c29-81df-4b99-b7b5-74448e115866",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "822b5d8b-d4f9-4d4a-add8-68edad48ad0f",
+        "ageGroup": "U16"
+      },
+      {
+        "playerId": "f88a25cd-a2a2-46c3-85e4-e7833f575935",
+        "ageGroup": "U16"
+      },
+      {
+        "playerId": "d3b7f8bf-b1ca-493b-b4c3-9646d70cd1ab",
+        "ageGroup": "U16"
+      },
+      {
+        "playerId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "b9a9903a-422c-464b-b387-ff2cb1e38111",
+        "ageGroup": "U16"
+      },
+      {
+        "playerId": "5a00d9fe-cbc6-457f-a55c-9be2870a99ae",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+        "ageGroup": "U19"
+      },
+      {
+        "playerId": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+        "ageGroup": "U19"
+      }
+    ],
+    "playerRatingRecalculationCount": 12,
+    "rankingSnapshotsAffected": [
+      "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+      "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc"
+    ],
+    "rankingSnapshotsAffectedCount": 2,
+    "fullAffectedSnapshotRegenerationRecommended": true,
+    "safestExecutionRecommendation": "Execute one transaction for player record reassignment, source soft-delete, source PlayerRating cleanup, and canonical PlayerRating recalculation. Do not update snapshot ranks inline. After merge validation, regenerate only affected RankingSnapshots in a separately approved step."
+  }
+}

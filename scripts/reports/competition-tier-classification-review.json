@@ -1,0 +1,424 @@
+﻿{
+  "generatedAt": "2026-06-18T13:21:19.412Z",
+  "auditType": "competition-tier-classification-review-read-only",
+  "frameworkDocument": "D:\\Peach Basket\\docs\\planning\\COMPETITION_TIER_GOVERNANCE_FRAMEWORK.md",
+  "numberingConvention": {
+    "tier1": "Highest competition (National Flagship)",
+    "tier4": "Lowest competition (Developmental / Local)",
+    "note": "Differs from legacy PHRANK_requirements.md (Tier 1 = Entry, Tier 4 = Elite) and current codebase labels."
+  },
+  "rubric": {
+    "dimensions": {
+      "talentConcentration": "Talent concentration",
+      "programQuality": "Program quality",
+      "recruitingRelevance": "Recruiting / scouting relevance",
+      "competitiveDepth": "Competitive depth",
+      "geographicReach": "Geographic reach"
+    },
+    "maxPerDimension": 20,
+    "tierThresholds": {
+      "1": {
+        "name": "Tier 1 — National Flagship",
+        "scoreMin": 82,
+        "scoreMax": 100,
+        "weight": 1.4
+      },
+      "2": {
+        "name": "Tier 2 — Elite National Circuit",
+        "scoreMin": 68,
+        "scoreMax": 81,
+        "weight": 1.25
+      },
+      "3": {
+        "name": "Tier 3 — Competitive Regional",
+        "scoreMin": 52,
+        "scoreMax": 67,
+        "weight": 1.1
+      },
+      "4": {
+        "name": "Tier 4 — Developmental / Local",
+        "scoreMin": 0,
+        "scoreMax": 51,
+        "weight": 1
+      }
+    }
+  },
+  "summary": {
+    "activeLeagues": 8,
+    "exactMatches": 3,
+    "mismatches": 5,
+    "largeMismatches": 0,
+    "matchRate": 0.38,
+    "insufficientEvidenceCount": 2,
+    "gpsRowsTotal": 9391,
+    "gamesTotal": 405,
+    "currentDbTierDistribution": {
+      "1": 4,
+      "2": 0,
+      "3": 4,
+      "4": 0
+    },
+    "recommendedTierDistribution": {
+      "1": 3,
+      "2": 5,
+      "3": 0,
+      "4": 0
+    },
+    "unusedDbTierSlots": [
+      2,
+      4
+    ]
+  },
+  "inventory": [
+    {
+      "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+      "leagueName": "NCAA Season 101 Junior's Basketball",
+      "competitionFamily": "NCAA",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 81,
+      "gpsCount": 2061,
+      "inDatabase": true,
+      "currentDbTier": 1,
+      "recommendedTier": 2,
+      "tierDelta": -1,
+      "rubricTotal": 78,
+      "dimensionScores": {
+        "talentConcentration": 17,
+        "programQuality": 15,
+        "recruitingRelevance": 17,
+        "competitiveDepth": 15,
+        "geographicReach": 14
+      },
+      "adjustments": [
+        "League verification PROVISIONAL: −1 program quality.",
+        "League Quality Score unset (0) — rubric score is expert-estimated, not LQS-derived."
+      ],
+      "rationale": "Major collegiate junior championship (NCAA Philippines); elite programs but NCR-concentrated and junior-division scope.",
+      "tierDefinition": "Tier 2 — Elite National Circuit",
+      "recommendedWeight": 1.25,
+      "confidence": "MEDIUM",
+      "dbMatchesRecommendation": false
+    },
+    {
+      "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+      "leagueName": "UAAP Season 88 16U Boys Basketball",
+      "competitionFamily": "UAAP",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 60,
+      "gpsCount": 1464,
+      "inDatabase": true,
+      "currentDbTier": 1,
+      "recommendedTier": 1,
+      "tierDelta": 0,
+      "rubricTotal": 83,
+      "dimensionScores": {
+        "talentConcentration": 18,
+        "programQuality": 16,
+        "recruitingRelevance": 18,
+        "competitiveDepth": 16,
+        "geographicReach": 15
+      },
+      "adjustments": [
+        "League verification PROVISIONAL: −1 program quality.",
+        "League Quality Score unset (0) — rubric score is expert-estimated, not LQS-derived."
+      ],
+      "rationale": "Official UAAP junior division; strong program infrastructure with slightly narrower recruiting window than HS.",
+      "tierDefinition": "Tier 1 — National Flagship",
+      "recommendedWeight": 1.4,
+      "confidence": "MEDIUM",
+      "dbMatchesRecommendation": true
+    },
+    {
+      "leagueId": "d721a82a-f182-4a54-983a-01453650ec9e",
+      "leagueName": "UAAP Season 88 HS Boys Basketball",
+      "competitionFamily": "UAAP",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "verificationStatus": "VERIFIED",
+      "qualityScore": 85,
+      "gameCount": 62,
+      "gpsCount": 1554,
+      "inDatabase": true,
+      "currentDbTier": 1,
+      "recommendedTier": 1,
+      "tierDelta": 0,
+      "rubricTotal": 90,
+      "dimensionScores": {
+        "talentConcentration": 19,
+        "programQuality": 18,
+        "recruitingRelevance": 20,
+        "competitiveDepth": 17,
+        "geographicReach": 16
+      },
+      "adjustments": [],
+      "rationale": "Flagship collegiate high-school championship; highest talent density and scouting attention in Philippine youth basketball.",
+      "tierDefinition": "Tier 1 — National Flagship",
+      "recommendedWeight": 1.4,
+      "confidence": "HIGH",
+      "dbMatchesRecommendation": true
+    },
+    {
+      "leagueId": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef",
+      "leagueName": "UAAP Season 88 HS Girls Basketball",
+      "competitionFamily": "UAAP",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "verificationStatus": "VERIFIED",
+      "qualityScore": 85,
+      "gameCount": 14,
+      "gpsCount": 331,
+      "inDatabase": true,
+      "currentDbTier": 1,
+      "recommendedTier": 1,
+      "tierDelta": 0,
+      "rubricTotal": 86,
+      "dimensionScores": {
+        "talentConcentration": 19,
+        "programQuality": 18,
+        "recruitingRelevance": 20,
+        "competitiveDepth": 13,
+        "geographicReach": 16
+      },
+      "adjustments": [
+        "Girls division: −2 competitive depth (smaller verified field in current dataset).",
+        "Low verified game count (14): −2 competitive depth."
+      ],
+      "rationale": "Flagship collegiate high-school championship; highest talent density and scouting attention in Philippine youth basketball.",
+      "tierDefinition": "Tier 1 — National Flagship",
+      "recommendedWeight": 1.4,
+      "confidence": "LOW",
+      "dbMatchesRecommendation": true
+    },
+    {
+      "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+      "leagueName": "6th Stallion Cup - 18U",
+      "competitionFamily": "Stallion",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 25,
+      "gpsCount": 461,
+      "inDatabase": true,
+      "currentDbTier": 3,
+      "recommendedTier": 2,
+      "tierDelta": 1,
+      "rubricTotal": 73,
+      "dimensionScores": {
+        "talentConcentration": 15,
+        "programQuality": 13,
+        "recruitingRelevance": 16,
+        "competitiveDepth": 12,
+        "geographicReach": 17
+      },
+      "adjustments": [
+        "Low verified game count (25): −2 competitive depth.",
+        "League verification PROVISIONAL: −1 program quality.",
+        "League Quality Score unset (0) — rubric score is expert-estimated, not LQS-derived.",
+        "Partial 18U cup coverage: −1 competitive depth."
+      ],
+      "rationale": "National invitational club circuit with broad geographic draw; strong but less concentrated talent than UAAP/NCAA.",
+      "tierDefinition": "Tier 2 — Elite National Circuit",
+      "recommendedWeight": 1.25,
+      "confidence": "MEDIUM",
+      "dbMatchesRecommendation": false
+    },
+    {
+      "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+      "leagueName": "Philippine Youth Basketball Championship – 13U",
+      "competitionFamily": "PYBC",
+      "ageGroup": "U13",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 37,
+      "gpsCount": 900,
+      "inDatabase": true,
+      "currentDbTier": 3,
+      "recommendedTier": 2,
+      "tierDelta": 1,
+      "rubricTotal": 69,
+      "dimensionScores": {
+        "talentConcentration": 14,
+        "programQuality": 12,
+        "recruitingRelevance": 14,
+        "competitiveDepth": 14,
+        "geographicReach": 15
+      },
+      "adjustments": [
+        "League verification PROVISIONAL: −1 program quality.",
+        "League Quality Score unset (0) — rubric score is expert-estimated, not LQS-derived."
+      ],
+      "rationale": "National youth championship with credible club participation; below flagship collegiate tier in program concentration.",
+      "tierDefinition": "Tier 2 — Elite National Circuit",
+      "recommendedWeight": 1.25,
+      "confidence": "MEDIUM",
+      "dbMatchesRecommendation": false
+    },
+    {
+      "leagueId": "636a2e94-13d9-4c6b-8d6a-becfb8db764b",
+      "leagueName": "Philippine Youth Basketball Championship – 15U",
+      "competitionFamily": "PYBC",
+      "ageGroup": "U16",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 37,
+      "gpsCount": 930,
+      "inDatabase": true,
+      "currentDbTier": 3,
+      "recommendedTier": 2,
+      "tierDelta": 1,
+      "rubricTotal": 69,
+      "dimensionScores": {
+        "talentConcentration": 14,
+        "programQuality": 12,
+        "recruitingRelevance": 14,
+        "competitiveDepth": 14,
+        "geographicReach": 15
+      },
+      "adjustments": [
+        "League verification PROVISIONAL: −1 program quality.",
+        "League Quality Score unset (0) — rubric score is expert-estimated, not LQS-derived."
+      ],
+      "rationale": "National youth championship with credible club participation; below flagship collegiate tier in program concentration.",
+      "tierDefinition": "Tier 2 — Elite National Circuit",
+      "recommendedWeight": 1.25,
+      "confidence": "MEDIUM",
+      "dbMatchesRecommendation": false
+    },
+    {
+      "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+      "leagueName": "Stallion Cup – 17U",
+      "competitionFamily": "Stallion",
+      "ageGroup": "U19",
+      "gender": "UNKNOWN",
+      "verificationStatus": "PROVISIONAL",
+      "qualityScore": 0,
+      "gameCount": 89,
+      "gpsCount": 1690,
+      "inDatabase": true,
+      "currentDbTier": 3,
+      "recommendedTier": 2,
+      "tierDelta": 1,
+      "rubricTotal": 76,
+      "dimensionScores": {
+        "talentConcentration": 15,
+        "programQuality": 13,
+        "recruitingRelevance": 16,
+        "competitiveDepth": 15,
+        "geographicReach": 17
+      },
+      "adjustments": [
+        "League verification PROVISIONAL: −1 program quality.",
+        "League Quality Score unset (0) — rubric score is expert-estimated, not LQS-derived."
+      ],
+      "rationale": "National invitational club circuit with broad geographic draw; strong but less concentrated talent than UAAP/NCAA.",
+      "tierDefinition": "Tier 2 — Elite National Circuit",
+      "recommendedWeight": 1.25,
+      "confidence": "MEDIUM",
+      "dbMatchesRecommendation": false
+    }
+  ],
+  "insufficientEvidence": [
+    {
+      "name": "NBTC National Finals",
+      "family": "NBTC",
+      "ageGroup": "U19",
+      "status": "not_in_database",
+      "reason": "No active League record or verified game stats in production DB.",
+      "recommendedTier": null,
+      "confidence": "INSUFFICIENT"
+    },
+    {
+      "name": "JCIMBL",
+      "family": "JCIMBL",
+      "ageGroup": "U19",
+      "status": "not_in_database",
+      "reason": "Referenced in import planning; no active League record in production DB.",
+      "recommendedTier": null,
+      "confidence": "INSUFFICIENT"
+    },
+    {
+      "leagueId": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef",
+      "leagueName": "UAAP Season 88 HS Girls Basketball",
+      "reason": "Low verified volume or provisional league status — tier recommendation provisional.",
+      "recommendedTier": 1,
+      "confidence": "LOW"
+    }
+  ],
+  "migrationRisk": {
+    "available": true,
+    "source": "scripts/reports/tier-weight-impact-simulation.json",
+    "u19Boys": {
+      "codeConventionAvgAbsRankDelta": 28.52,
+      "userConventionAvgAbsRankDelta": 27.51,
+      "codeConventionTop10Churn": 3,
+      "userConventionTop10Churn": 6
+    },
+    "specialReviewHighlights": [
+      {
+        "displayName": "Lucas Kaw",
+        "scenarioB": {
+          "rating": 99.93,
+          "rank": 5,
+          "verifiedGameCount": 22,
+          "rankDeltaVsA": -2,
+          "ratingDeltaVsA": 5.95
+        },
+        "scenarioC": {
+          "rating": 98.08,
+          "rank": 11,
+          "verifiedGameCount": 22,
+          "rankDeltaVsA": -8,
+          "ratingDeltaVsA": 4.1
+        }
+      },
+      {
+        "displayName": "Jude Eriobu",
+        "scenarioB": {
+          "rating": 98.33,
+          "rank": 8,
+          "verifiedGameCount": 16,
+          "rankDeltaVsA": -7,
+          "ratingDeltaVsA": 0
+        },
+        "scenarioC": {
+          "rating": 100,
+          "rank": 1,
+          "verifiedGameCount": 16,
+          "rankDeltaVsA": 0,
+          "ratingDeltaVsA": 1.67
+        }
+      },
+      {
+        "displayName": "Xyriel Macahipay",
+        "scenarioB": {
+          "rating": 84.13,
+          "rank": 49,
+          "verifiedGameCount": 15,
+          "rankDeltaVsA": -25,
+          "ratingDeltaVsA": 0
+        },
+        "scenarioC": {
+          "rating": 98.39,
+          "rank": 10,
+          "verifiedGameCount": 15,
+          "rankDeltaVsA": 14,
+          "ratingDeltaVsA": 14.26
+        }
+      }
+    ]
+  },
+  "recommendation": {
+    "choice": "D",
+    "text": "Tier system should be redesigned before activation: stakeholder numbering (Tier 1 = highest) conflicts with PHRANK requirements and codebase labels/weights; only two of four tier slots are used; circuit leagues are stored at Tier 3 but rubric places them at Tier 2.",
+    "confidence": "HIGH"
+  }
+}

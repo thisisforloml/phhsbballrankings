@@ -3,7 +3,7 @@ import path from "node:path";
 import { AgeGroup, SeasonStatus, SubmissionType, VerificationStatus } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
-const projectRoot = "D:\\OnCourt Rankings PH";
+const projectRoot = "D:\\Peach Basket";
 
 const batchFiles = [
   "scripts/data/uaap-s88-hs-boys-batch-01.json",

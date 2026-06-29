@@ -1,0 +1,4799 @@
+{
+  "generatedAt": "2026-06-17T09:44:56.455Z",
+  "counts": {
+    "u19GirlsP12Dob": 45,
+    "u19BoysP12Dob": 175,
+    "nearThresholdImport": 120,
+    "duplicatePlayers": 7,
+    "duplicatePrograms": 2
+  },
+  "worklists": {
+    "u19GirlsP12Dob": [
+      {
+        "entityName": "Adin Rosano",
+        "entityId": "7ed85dd3-7f49-4761-a5f5-708015df611d",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Aubrey Lapasaran",
+        "entityId": "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Bri Katigbak",
+        "entityId": "c29f4fa4-68fb-4c4a-90cf-9066b0b7ae75",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Hasly Mallari",
+        "entityId": "2386148f-33ef-47fc-8d6e-729bbc84c806",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Inday Sales",
+        "entityId": "c5df896b-04a3-4915-9f71-f3e2701fc74c",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Janice Oczon",
+        "entityId": "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "KJ Badajos",
+        "entityId": "d75c25ae-578b-4279-8b18-69507c75e09b",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Koukou Talla",
+        "entityId": "98826725-620c-4417-9f41-349da347c811",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Lea Pinuela",
+        "entityId": "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Riri Perez",
+        "entityId": "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Ruiza Olmos",
+        "entityId": "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Sabel Anacan",
+        "entityId": "0d6b9ff0-6d1e-4217-823f-b5cebaf45ad9",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Zane Singson",
+        "entityId": "f5f3ff63-ec12-4788-a3ab-680b6cac1ab9",
+        "reason": "P12 UNKNOWN_DOB — 8 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 8,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Angelika Agad",
+        "entityId": "9c764990-6326-488b-917d-afc850bf47f1",
+        "reason": "P12 UNKNOWN_DOB — 7 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 7,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Pia Petalcorin",
+        "entityId": "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+        "reason": "P12 UNKNOWN_DOB — 7 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 7,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Rhys Luzana",
+        "entityId": "75ca49b2-bde9-47fe-8b19-8f9e6203bf2b",
+        "reason": "P12 UNKNOWN_DOB — 7 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 7,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Sandra Abrantes",
+        "entityId": "4f43220a-4594-4351-854d-63080a54bf28",
+        "reason": "P12 UNKNOWN_DOB — 7 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 7,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Zia Onate",
+        "entityId": "e89fcccd-7ed4-433a-b257-e77cf6220492",
+        "reason": "P12 UNKNOWN_DOB — 7 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 7,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Alessia Palmiey",
+        "entityId": "ff1be5ad-0a71-4d22-8c5a-febe3bb4a6a7",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Apyang Dulay",
+        "entityId": "389b1415-f364-4374-bd8c-c7ad20286b40",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Ari Hew",
+        "entityId": "bb3c663e-ab00-48fc-8cca-25ad55607268",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Bing Padigos",
+        "entityId": "a2b6bc31-2091-4e66-8b0a-78d106e0d54c",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Celest Trillo",
+        "entityId": "85291f63-576e-4354-8b95-238dcb5a2308",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Ching Ching Gales",
+        "entityId": "534ed135-5db6-4d2d-9d70-d56430642d1e",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Chloe Mariano",
+        "entityId": "b7934aa1-7937-4b22-b16f-137e320c4eb4",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Fia Martinez",
+        "entityId": "c3d939e9-9fd4-4953-bb02-7cae6f8c0a8f",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Hazell Winar",
+        "entityId": "2ee5360d-2c77-4179-aee4-9f3ee25ef7e2",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Ima Navarro",
+        "entityId": "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Kairi Ebao",
+        "entityId": "cb2efa29-062f-451c-bd59-4d28bc3585e9",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Keisha Ogario",
+        "entityId": "b2711433-e4ff-48e5-944c-be848d5bf51c",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Klo Dalanon",
+        "entityId": "b172f0ef-71bf-4624-b669-e3cf010e60b1",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Louise Doque",
+        "entityId": "09c4dc79-fdb1-4a91-b4dc-717e099bf517",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Matia Molina",
+        "entityId": "f4f9e0a4-117f-4fda-84ac-690e6e740fe0",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Nadine Labay",
+        "entityId": "922a5522-3987-42ab-80cd-e2a5ce8a5c52",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Sara Madamba",
+        "entityId": "fbf4b1ed-cd1f-4cab-8a13-7a06c574643e",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Stef Contreras",
+        "entityId": "f688b16b-1bfa-4ffb-83c5-7beaa09ff68d",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Tyler Templo",
+        "entityId": "be99fc5f-5246-441f-9836-a4c899ee82e4",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Zoe Ablang",
+        "entityId": "54b26352-93f6-427b-87f1-0149dc0561d6",
+        "reason": "P12 UNKNOWN_DOB — 6 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 6,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Audrey Biongcog",
+        "entityId": "7fc64a83-707e-4259-b834-8a5235ce81d6",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Cheska Gozum",
+        "entityId": "62d91284-330a-432c-9c33-1d1433bdc83b",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Ice Gerona",
+        "entityId": "9d516d88-00a5-44c2-9f83-5b0db3d2747f",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Jam Vejerano",
+        "entityId": "db9562a3-2017-40c1-8dec-ff8a1fd24409",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Kat Insoy",
+        "entityId": "cc3158fb-3a92-4e14-8b31-9937a975b481",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Pau Arciaga",
+        "entityId": "c3d0f9d8-9854-4b29-8e95-4111847535a7",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      },
+      {
+        "entityName": "Sophia Townes",
+        "entityId": "1f2b7a27-a613-432b-8953-a98e74a02d91",
+        "reason": "P12 UNKNOWN_DOB — 5 verified games (threshold 5), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Girls board row at read time",
+        "priority": "P0",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "Unassigned",
+          "verifiedGames": 5,
+          "threshold": 5
+        }
+      }
+    ],
+    "u19BoysP12Dob": [
+      {
+        "entityName": "Mateo De La Paz",
+        "entityId": "f986c3fc-5e81-4f83-8d32-0d94a524311a",
+        "reason": "P12 UNKNOWN_DOB — 32 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 32,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Nico Koa",
+        "entityId": "382ba3d7-de05-4e36-bb50-cbbf678f9e44",
+        "reason": "P12 UNKNOWN_DOB — 32 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 32,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Aidan Kaw",
+        "entityId": "756f616e-20f9-40fa-b0d8-115e9c2798a7",
+        "reason": "P12 UNKNOWN_DOB — 31 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 31,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Marcus Fernandez",
+        "entityId": "8b695a69-4d6a-4b70-85fb-ed798cabd2ac",
+        "reason": "P12 UNKNOWN_DOB — 30 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 30,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Savian Go",
+        "entityId": "133d08e0-3a88-4dc8-85ad-61af238bd219",
+        "reason": "P12 UNKNOWN_DOB — 30 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 30,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kurt Chua",
+        "entityId": "237ec194-1d38-44bc-8154-60aecb4f2dfa",
+        "reason": "P12 UNKNOWN_DOB — 29 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 29,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Andwele Poa",
+        "entityId": "ec973537-10ca-4d19-950e-950730db3069",
+        "reason": "P12 UNKNOWN_DOB — 28 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 28,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Earl Solis",
+        "entityId": "d977c21d-af18-490b-bbef-0cacc762f6dc",
+        "reason": "P12 UNKNOWN_DOB — 28 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 28,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Hans Go",
+        "entityId": "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+        "reason": "P12 UNKNOWN_DOB — 28 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 28,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Miguel Lim",
+        "entityId": "e0b5822d-b1f4-411f-9f28-cb331288db44",
+        "reason": "P12 UNKNOWN_DOB — 28 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 28,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kaleb Chua",
+        "entityId": "d3367846-883b-48a4-be3a-f08b0c1a0978",
+        "reason": "P12 UNKNOWN_DOB — 27 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 27,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Liam Ang",
+        "entityId": "3a24bd05-60de-4744-8893-ff39c274939e",
+        "reason": "P12 UNKNOWN_DOB — 27 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 27,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Drew Cagadoc",
+        "entityId": "c5efdaec-cf5b-47b4-9318-936bbd75b1e7",
+        "reason": "P12 UNKNOWN_DOB — 26 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 26,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Josh Lim",
+        "entityId": "5b941f8a-4962-4952-aa92-fdc8e5620e51",
+        "reason": "P12 UNKNOWN_DOB — 25 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 25,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kenzo Centeno",
+        "entityId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+        "reason": "P12 UNKNOWN_DOB — 25 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 25,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Marcus Tiu",
+        "entityId": "356ff89b-6eff-46f5-84aa-222e6b604413",
+        "reason": "P12 UNKNOWN_DOB — 25 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 25,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Sean Yu",
+        "entityId": "721540b3-2e6b-421a-a7da-e92560008a3d",
+        "reason": "P12 UNKNOWN_DOB — 24 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 24,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Alonzo Tsai",
+        "entityId": "8399af7e-0f13-43b1-86f1-641eac90d3bf",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Enzo Sosuan",
+        "entityId": "7b785ec5-b42f-4371-8147-71442dda3045",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kurt Ong",
+        "entityId": "17116e9a-f697-4d58-99f9-2a4255b3337e",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Lucas Kaw",
+        "entityId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Rocco Aranillo",
+        "entityId": "d85d96d1-8502-48e4-8d91-bede872f5cc4",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Xander Ty",
+        "entityId": "1efb367c-063c-441d-ad59-33015f122691",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Yuan Ramirez",
+        "entityId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+        "reason": "P12 UNKNOWN_DOB — 22 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 22,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Calix Tiu",
+        "entityId": "3cd7328c-c26f-433e-8b4d-65bd53c9afc2",
+        "reason": "P12 UNKNOWN_DOB — 21 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 21,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Eanne Vargas",
+        "entityId": "d93435c8-839b-422f-9b09-75cdc446e75b",
+        "reason": "P12 UNKNOWN_DOB — 21 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 21,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Enzo Soledad",
+        "entityId": "18a7f5cf-395c-478f-949d-110e1c51f413",
+        "reason": "P12 UNKNOWN_DOB — 21 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 21,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Gavin Chua",
+        "entityId": "ff615827-be7b-488d-8117-ef30b3ccc2da",
+        "reason": "P12 UNKNOWN_DOB — 21 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 21,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Noah Tan",
+        "entityId": "e85aaf64-8dc3-486d-9ee2-f5918923b207",
+        "reason": "P12 UNKNOWN_DOB — 21 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 21,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Cedrick Tan",
+        "entityId": "14a8af2c-1fe2-44d4-baac-3baa10f756cc",
+        "reason": "P12 UNKNOWN_DOB — 20 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 20,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Earl Dahino",
+        "entityId": "2af2fa41-b96e-46b7-bd0c-4dbbd5c5faf2",
+        "reason": "P12 UNKNOWN_DOB — 20 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Colegio de San Juan de Letran",
+          "team": "Unassigned",
+          "verifiedGames": 20,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Isiah Chua",
+        "entityId": "1cb84e5f-a1a2-43b8-aa59-236c0f94dab0",
+        "reason": "P12 UNKNOWN_DOB — 20 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Colegio de San Juan de Letran",
+          "team": "Unassigned",
+          "verifiedGames": 20,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Justin Zeng",
+        "entityId": "b4113b97-351d-48c8-ac59-3e49efa4bd1c",
+        "reason": "P12 UNKNOWN_DOB — 20 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 20,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Mico Pascual",
+        "entityId": "aec66a81-cf0a-4a3c-9db4-2a43050c2952",
+        "reason": "P12 UNKNOWN_DOB — 20 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Colegio de San Juan de Letran",
+          "team": "Unassigned",
+          "verifiedGames": 20,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Rafa Del Mundo",
+        "entityId": "da1ec6cf-1ad3-4662-9b4f-b96d6f5b4f7b",
+        "reason": "P12 UNKNOWN_DOB — 20 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 20,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Caden Lim",
+        "entityId": "511bd2a3-26a8-4826-8aad-2c8b4ede87c8",
+        "reason": "P12 UNKNOWN_DOB — 19 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 19,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Dhale Lumague",
+        "entityId": "e0f64196-cc17-4634-8ecb-b46aa9e8feef",
+        "reason": "P12 UNKNOWN_DOB — 19 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Colegio de San Juan de Letran",
+          "team": "Unassigned",
+          "verifiedGames": 19,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Harvey Macadangdang",
+        "entityId": "4d79072c-36d3-45f2-9c55-1b018fc46ce1",
+        "reason": "P12 UNKNOWN_DOB — 19 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Colegio de San Juan de Letran",
+          "team": "Unassigned",
+          "verifiedGames": 19,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Sean Rodriguez",
+        "entityId": "9c16b77a-a334-4b70-829b-644518562125",
+        "reason": "P12 UNKNOWN_DOB — 19 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 19,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Yan Tagorda",
+        "entityId": "0607af31-4b55-4107-a4cb-0df3042e681f",
+        "reason": "P12 UNKNOWN_DOB — 19 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 19,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Gabriel Mercado",
+        "entityId": "40f25710-28f0-47b0-bbb4-79b28116f369",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Malayan High School of Science",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Gabriel Sun",
+        "entityId": "b7deb704-c833-4a76-9f29-382d6c0ae842",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "James Castro",
+        "entityId": "a9bf7bc9-a6f3-43e5-809f-2ae294efd077",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Emilio Aguinaldo College",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jermaine Sapo",
+        "entityId": "54d376cb-819b-464e-9aa0-fab8acff7623",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Joaquin Escudero",
+        "entityId": "991f148c-3273-4c07-8b54-02a79be96e25",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kean Dungca",
+        "entityId": "ae69c7e6-20b1-493b-998a-8e70ffd7377b",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Malayan High School of Science",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kent Castro",
+        "entityId": "e6fb61f0-ac55-4d0b-a866-90964421f1a9",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Malayan High School of Science",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Marcus De Lara",
+        "entityId": "2d40867e-3318-47a9-ac96-9a84848e338b",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Prince Taganas",
+        "entityId": "459fc5a2-22ba-4740-ba76-21f0fb80fc5c",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Emilio Aguinaldo College",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Shawn Vergara",
+        "entityId": "59a98b7e-7e8d-48e0-af15-26f078b7b077",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Wayne Sy",
+        "entityId": "8cbe4d0d-930a-4da7-9b44-213440db1947",
+        "reason": "P12 UNKNOWN_DOB — 18 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 18,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Allen Te",
+        "entityId": "483a768a-4853-4d53-80fe-fd206523d2cd",
+        "reason": "P12 UNKNOWN_DOB — 17 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 17,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Collin Lee",
+        "entityId": "5511fccd-17c0-4019-9d31-53a114ca5885",
+        "reason": "P12 UNKNOWN_DOB — 17 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 17,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Gabe Jorge",
+        "entityId": "d8188ac8-4ff6-4e45-b336-a6459155f472",
+        "reason": "P12 UNKNOWN_DOB — 17 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 17,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Johari Domingo",
+        "entityId": "a3f4f50e-6db3-4ffd-b78d-4ed12e64ad7d",
+        "reason": "P12 UNKNOWN_DOB — 17 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Emilio Aguinaldo College",
+          "team": "Unassigned",
+          "verifiedGames": 17,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "John Dela Cruz",
+        "entityId": "833091ab-0ccf-47b0-add7-3bb02fe63b4f",
+        "reason": "P12 UNKNOWN_DOB — 17 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Emilio Aguinaldo College",
+          "team": "Unassigned",
+          "verifiedGames": 17,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kint Aurita",
+        "entityId": "02921b1f-6154-49a1-a70b-5d48530675b7",
+        "reason": "P12 UNKNOWN_DOB — 17 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 17,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Christian Pedarce",
+        "entityId": "daa9216f-a9f8-4e8c-bae9-bd08bab3881e",
+        "reason": "P12 UNKNOWN_DOB — 16 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 16,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Enzo Sy",
+        "entityId": "4f1cd332-49ed-44e3-a3c6-631adb7a128c",
+        "reason": "P12 UNKNOWN_DOB — 16 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 16,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jeremy Tan",
+        "entityId": "84747621-0eee-4de7-aa17-2af284717707",
+        "reason": "P12 UNKNOWN_DOB — 16 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 16,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "John Bagro",
+        "entityId": "5782986a-4fba-48f3-b5cd-bf9195e13511",
+        "reason": "P12 UNKNOWN_DOB — 16 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Malayan High School of Science",
+          "team": "Unassigned",
+          "verifiedGames": 16,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Sean Tan",
+        "entityId": "4acbd55f-c814-4ba8-a989-94f19ecfff21",
+        "reason": "P12 UNKNOWN_DOB — 16 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 16,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Seth Ong",
+        "entityId": "3363a5a7-1c72-493c-820a-c4cbd641ff42",
+        "reason": "P12 UNKNOWN_DOB — 16 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 16,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Adiam Larosa",
+        "entityId": "0002f9c0-f93e-4ab9-9db7-eb1073050785",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Cobe Ang",
+        "entityId": "44cc2209-7ba2-42e5-a02c-d0a34b89c2d7",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Deron Llamas",
+        "entityId": "87fe37a4-408a-4cfd-b96e-8cc8615e7b3d",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "LA SALLE Jrs (LA SALLE)",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Enrico Feliciano",
+        "entityId": "cf144e2c-357f-4139-b152-fc1722c9bb01",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Enrico Guiral",
+        "entityId": "6cc7de82-82b0-4deb-9f95-ac7a1a090edd",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Ezekiel Zamoras",
+        "entityId": "9ad17e58-5380-43c0-b86f-6a8c06ee50fd",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Hanz Llupar",
+        "entityId": "95e64c29-81df-4b99-b7b5-74448e115866",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jacob Ang",
+        "entityId": "af1d1ab7-ef0a-42d1-a3f9-e2c160c6aecd",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jhon Gemao",
+        "entityId": "f688f06c-cf3c-4098-b119-a8ce38c76f7c",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Malayan High School of Science",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jhon Ramiso",
+        "entityId": "8e94c7d7-5752-4b08-aba7-cc0c9d3f5572",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Joachim Uy",
+        "entityId": "002702d3-fe63-491a-881d-81733da10f80",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Joaquin Wagan",
+        "entityId": "f784f33f-1a29-4031-8311-47da6f66ac60",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jose Jomalesa",
+        "entityId": "376670fa-917b-4d83-af37-91f02363282d",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kurt Patalinghug",
+        "entityId": "e3e17178-a1b3-4430-a726-6cf101234326",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kurt Velasquez",
+        "entityId": "c39bbd8c-1b5e-499c-8730-373dc20352a8",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Marcus Lu",
+        "entityId": "de578227-2054-439b-95c6-ac708c92938c",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Mark Borrero",
+        "entityId": "e16d6dc8-7ba5-4851-ac01-87729ae4ba85",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "De La Salle Santiago Zobel",
+          "team": "LA SALLE Jrs (LA SALLE)",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Martin Mejia",
+        "entityId": "9fd6aa13-b7f7-4e29-a69b-3121a04e106a",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Matthew Tan",
+        "entityId": "d5b88334-fdc8-4a9d-b289-c3402a8a3628",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Rich Tong",
+        "entityId": "45cd3633-2d92-4478-83fc-8812b1986eae",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Simon Go",
+        "entityId": "a810564c-fcb5-40bf-9c45-0c5f8915c85b",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Unri Madrangca",
+        "entityId": "ddec8296-625b-4815-876e-de03fa2125bc",
+        "reason": "P12 UNKNOWN_DOB — 15 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Ateneo de Manila University",
+          "team": "Ateneo Blue Eaglets",
+          "verifiedGames": 15,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Aaron Jao",
+        "entityId": "704291ca-5be6-48b0-b604-140a5a545c42",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Alarick Tan",
+        "entityId": "9dd12302-7194-4165-9f0a-37cea6bfda0e",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Alfonso Sy",
+        "entityId": "e3542079-17fb-48af-8126-381a5ecf7905",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Alfonso Villavicencio",
+        "entityId": "a4037a5b-0023-4f3b-a463-54fa8af7c510",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "La Salle Green Hills",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Anderson Yu",
+        "entityId": "f4fa4085-5d79-425f-b917-75e3c0fecdfe",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Bruce Tubongbanua",
+        "entityId": "7f88a6a3-ab31-477e-8b58-34473d67c155",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Cade Martinez",
+        "entityId": "9aaa5866-116f-44d6-b59b-a379753b110e",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Chrys Gomez",
+        "entityId": "bd4b8d4d-84fd-4929-a694-4fd955371c1a",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Adamson University",
+          "team": "Adamson Baby Falcons",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "CJ Satparam",
+        "entityId": "c82156ae-10fc-4a1e-8487-99f30195c945",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Dominic Labao",
+        "entityId": "4617e909-b890-4441-a715-04400951e026",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Don Eduard Dela Cruz",
+        "entityId": "57e50989-cae3-4484-be74-8311459167fb",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Dustin Bathan",
+        "entityId": "16230ab1-d67f-4f41-8105-c24c47119c8a",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "UST Tiger Cubs",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Dwayne Nonato",
+        "entityId": "f9ebf6ea-ff9d-4d28-9b97-3cb1e02d7507",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Ethan Aguas",
+        "entityId": "49c63d5e-6fc8-41ce-b206-c9b5624bc4f6",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the East",
+          "team": "UE Jrs (UE)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Evo Santiago",
+        "entityId": "8809c1f8-7090-4fb8-94ae-0652a78ff8c7",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jaime Teodoro",
+        "entityId": "3f45f7a1-f307-4f69-9977-765628e0f6d2",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "La Salle Green Hills",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jamal Diaz",
+        "entityId": "b6ea12bb-cec4-4265-94bc-c418c084dbe9",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the East",
+          "team": "UE Jrs (UE)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jan Leon Villanueva",
+        "entityId": "cd73d63f-fc87-4eda-abf3-0c95e80ac3c4",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "JM Edoukou",
+        "entityId": "a7e409bd-2628-43a2-897d-a4f2768feaad",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the East",
+          "team": "UE Jrs (UE)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "John Addatu",
+        "entityId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "John Baluyot",
+        "entityId": "21f76301-791a-4bb2-8fab-fc5c948d6ba1",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "John Calanasan",
+        "entityId": "887cc41c-2e85-4174-bd31-f181d6471a72",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "La Salle Green Hills",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Joshua Chua",
+        "entityId": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Joshua Scott",
+        "entityId": "5e8e325a-0d32-4240-9ff5-67e4a2dfd798",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Ken Bo",
+        "entityId": "6864605b-3989-4519-b274-01e9cbfe41ea",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Khaizer Castillo",
+        "entityId": "5aa234c4-8245-4add-b475-e21db3b7c39e",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Khellian Taparan",
+        "entityId": "62849bb4-f6f1-47a6-afcd-6390a06ba8dd",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Lexi Callueng",
+        "entityId": "1915964c-a278-4db1-8e7b-c8c739ee5885",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "LJ Lapastora",
+        "entityId": "a64b03d9-06f0-417e-9003-94547555a1f3",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "UST Tiger Cubs",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Louie Bual",
+        "entityId": "78275386-272c-4a51-84d0-1b280e3d096a",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the East",
+          "team": "UE Jrs (UE)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Marcus Co Say",
+        "entityId": "cc3bd37a-32da-457d-aa26-9208dbf69fd2",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Mark San Buenaventura",
+        "entityId": "468538ba-ad0d-4017-996b-e6587d29bedd",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Mateo Baltazar",
+        "entityId": "808725d1-8bf0-4be6-9258-d06c1c824282",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Matt Rosete",
+        "entityId": "d6b9a96d-cd13-452c-89d5-99b9fa78cf1f",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Melvin Tailan",
+        "entityId": "ed499e9d-c337-47cc-bfdb-21ab7660d8f5",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Persist Loque",
+        "entityId": "1874c51b-18f5-4f1c-858c-97833d8c34d9",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Pertjude Binagatan",
+        "entityId": "12108bea-dd29-4372-abb0-64d94b6d2980",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Peter Hernandez",
+        "entityId": "794b36ba-66f6-43a2-92dc-1bf97859cae2",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Renzo Zanoria",
+        "entityId": "348559ad-b529-4496-8686-adb8cd5009d4",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Reuben Sigua",
+        "entityId": "27f91d96-9527-47ad-ac56-99ba1eb363d7",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Malayan High School of Science",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Rhon-J Matias",
+        "entityId": "ec49a29d-06ce-40b2-b00a-af9f47e271d3",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "National University Nazareth School",
+          "team": "NUNS Bullpups",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Simon Mercado",
+        "entityId": "31123fbd-b643-47e5-b95a-1b26447e274c",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Sizco Roquid",
+        "entityId": "ff47da56-5702-4107-a1f2-0ba5a358d2be",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the East",
+          "team": "UE Jrs (UE)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Zandro Lugatiman",
+        "entityId": "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+        "reason": "P12 UNKNOWN_DOB — 14 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 14,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Aldrich Chong",
+        "entityId": "7d7c2d9e-22cb-407e-bbb5-75da1c3f1095",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Carsson Vidanes",
+        "entityId": "a31b434a-38ca-4166-bdc5-96d9e7095128",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "UST Tiger Cubs",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Charles Victoria",
+        "entityId": "c57dd039-802b-4ce6-bb3e-fcedf616b72d",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Ethan Carniyan",
+        "entityId": "dd2bd020-a67f-4426-91d6-1ae19b9796cc",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Emilio Aguinaldo College",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Harvey Turno",
+        "entityId": "34eb131a-9fe9-4e83-a441-353eb314e6c6",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "James Nodalo",
+        "entityId": "af2c8814-532c-4cd2-8939-40619459084d",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "JC Roales",
+        "entityId": "253c6cf5-68f5-42c1-96b0-8deb5969673d",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jeremy Pascual",
+        "entityId": "c84ce3cb-71b4-4201-ae90-8cef610426ab",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Juancho Bernabe",
+        "entityId": "3bc473a4-6dc4-4aff-9db6-1d200ef68599",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kobe Urbina",
+        "entityId": "9646d96e-db03-4e4f-9732-3493531836b2",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Lord Dulanas",
+        "entityId": "9689f91b-544e-463f-893d-655ff322f83d",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Lucas Ang",
+        "entityId": "96844238-d5f4-4d16-9ad0-26e071b2cfe9",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Mark Gutierrez",
+        "entityId": "72d1a26e-3294-463e-9e52-b90af1ff36df",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Marvic Mesina",
+        "entityId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Colegio de San Juan de Letran",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Rafa Selda",
+        "entityId": "c6a19a8e-b639-49dc-b22f-6e8f9dd8a922",
+        "reason": "P12 UNKNOWN_DOB — 13 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 13,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Cedric Sy",
+        "entityId": "9ca7f4b7-a6d1-4e03-a366-30e3c548a3e3",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Colin Mathay",
+        "entityId": "7fbd24cd-252c-4052-9a54-b68c5de2dbd0",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Denzel Ong",
+        "entityId": "e03c1279-5846-4958-94e7-3da4ec12c801",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Ethan Oraa",
+        "entityId": "37d63545-172e-4826-8d38-70d83d8cc64d",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the East",
+          "team": "UE Jrs (UE)",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jack Cua",
+        "entityId": "6431bd1b-da28-491b-8e9b-c388c4480390",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Joaquim Tiu",
+        "entityId": "54b9ad47-69a3-4c41-b703-6b4744ae4558",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Josh Hayden Chua",
+        "entityId": "5f3425b2-3536-42eb-b4f0-e39226d955fc",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kent Auditor",
+        "entityId": "1a47deb4-be7f-49e8-951f-6f37f0c9b181",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Emilio Aguinaldo College",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Matthew Acop",
+        "entityId": "3ccc00bd-b5d8-48a2-ac2f-57a23f4dc4e3",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Pablo Rufino",
+        "entityId": "7f93137a-a67d-490f-8dc8-1b834bcc48bf",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Third Candare",
+        "entityId": "fa4a0f80-fa1d-4649-9fd3-4e36ad99f6ef",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "UST Tiger Cubs",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Yojan Manguerra",
+        "entityId": "eacb642f-e2f6-40cf-b9d2-36e114295953",
+        "reason": "P12 UNKNOWN_DOB — 12 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 12,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Cristito Ferrer",
+        "entityId": "39844d89-e9f3-478c-8cdc-9558ad724d24",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Gavin Sy",
+        "entityId": "addf381c-0d8f-4400-befb-84493e9b02f9",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jesus Il Yonzon",
+        "entityId": "2d841475-d016-4fe9-bcfe-19aba8a9cd73",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jowitzki Ignacio",
+        "entityId": "53735f16-4528-489d-ab51-e5235882ceb5",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Justine Laxamana",
+        "entityId": "dddbd35b-6e44-4b89-af6a-1a3f65d1859a",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Jose Rizal University",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Mark Jade Dulin",
+        "entityId": "94bf23af-63ac-4b45-8daf-df6038cc404c",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Far Eastern University Diliman",
+          "team": "FEU - Diliman Baby Tamaraws",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "MJ Rosete",
+        "entityId": "e257cc89-d5b2-4ab5-bbb7-3d29bb299911",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Raphael Bautista",
+        "entityId": "d8e721c5-d9e1-4143-9f0b-0dcae623b2cd",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Beda University - Rizal",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Yuan Pacheco",
+        "entityId": "d5a711a5-b828-41c0-b44b-b5d53ff07380",
+        "reason": "P12 UNKNOWN_DOB — 11 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "San Sebastian College-Recoletos",
+          "team": "Unassigned",
+          "verifiedGames": 11,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Daniel Cobico",
+        "entityId": "210d2e7b-866f-447d-b3fa-4250cfb9daf0",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of the Philippines Integrated School",
+          "team": "UPIS Jrs (UP)",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "John Restificar",
+        "entityId": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Perpetual Help System DALTA",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Josh Chua",
+        "entityId": "3f59df23-68b4-49f1-a3c3-924b23e57e50",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Jovan Chen",
+        "entityId": "c6039351-75f5-464f-a4de-5d913475e4fe",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Khian Panerio",
+        "entityId": "f1751ac7-7385-413e-87b4-039b54a502bd",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Kobe Ngo",
+        "entityId": "6633f4a5-2b87-4806-a6b6-9a4f7f87c230",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Martin Pangilinan",
+        "entityId": "59a93aa1-e020-4d57-9864-7d0e3db78352",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Arellano University",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Miky Chua",
+        "entityId": "bc80f789-b5cf-43bd-b773-a7f18b86ea65",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Unassigned",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Romnick Araneta",
+        "entityId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "Lyceum of the Philippines University Cavite",
+          "team": "Unassigned",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      },
+      {
+        "entityName": "Sean Bohol",
+        "entityId": "914f6a5c-1358-4c09-bb65-41d543e5976a",
+        "reason": "P12 UNKNOWN_DOB — 10 verified games (threshold 10), no birthDate",
+        "impact": "Clears provisional block; likely adds RANKED U19 Boys board row at read time",
+        "priority": "P1",
+        "context": {
+          "program": "University of Santo Tomas",
+          "team": "UST Tiger Cubs",
+          "verifiedGames": 10,
+          "threshold": 10
+        }
+      }
+    ],
+    "nearThresholdImport": [
+      {
+        "entityName": "Aiori Aquino",
+        "entityId": "f24f8205-9a79-439a-aafd-40e6b54aece1",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Ateneo de Manila University",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Audwyn Tamayo",
+        "entityId": "31163f82-6166-4975-99b4-119a25677117",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Ateneo de Manila University",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Charles Caspe",
+        "entityId": "13ef0521-d08b-4ec3-a1e5-2c5926ba97b8",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Jose Rizal University",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Craig Fongtong",
+        "entityId": "899d166b-8fe6-4c81-a4b5-7ea6f18ce998",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Adamson University",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Gavin Co",
+        "entityId": "bd805575-cbaf-4596-9f31-cd28d2a7fd25",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jacob Chua",
+        "entityId": "1e7cd163-5200-41c2-855d-409e1194ce67",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jasper Palles",
+        "entityId": "05499fc8-1e09-4469-8489-258231b9a43d",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Jose Rizal University",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jk Sy",
+        "entityId": "611eaa30-89ab-43df-a434-95d906990275",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Joshua Miguel Chua",
+        "entityId": "0bb42b18-09d0-4287-bb58-22a79fcc8b38",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Kian Lim",
+        "entityId": "2f8f1983-7961-44ee-b211-03039b120b4c",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Renzy Saygo",
+        "entityId": "efb48168-dfaf-4eb6-b93c-62103afac0eb",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Adamson University",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Sean Reroma",
+        "entityId": "9d69cdd0-77ef-4da2-8369-f06911870fac",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "San Beda University - Rizal",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Tev Rey",
+        "entityId": "98931f48-505f-40de-9b7e-17cedc70bb31",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Yuto Someya",
+        "entityId": "874dcf0f-70b7-4bcf-9c03-f64a6f70b97a",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Zyril Li",
+        "entityId": "108648e9-92d8-4de3-852a-c91930d5f96d",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 10 (9 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P1",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 9,
+          "gamesShort": 1,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Bela Chuidian",
+        "entityId": "e01b4b29-d630-4ced-8f7b-e0a6b2447a88",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "Ateneo de Manila University",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Denise Calig-onan",
+        "entityId": "c1552a71-7147-4c23-bc0c-9f49e7738cb2",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "University of Santo Tomas",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Laela Mateo",
+        "entityId": "602112b9-d581-4f10-801f-ae73cef1a7f7",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "University of Santo Tomas",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Queennie Cordero",
+        "entityId": "ee38fa02-fedb-4cc8-8fd7-3ef8d77efa75",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "National University Nazareth School",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Sophie Sanares",
+        "entityId": "f29f074b-2da5-4273-88b1-a171795dbadf",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "De La Salle Santiago Zobel",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Trishma Arciaga",
+        "entityId": "fab39b9b-2f35-48d9-9fe3-9a5510f351e2",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "National University Nazareth School",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Yuyi Capinpin",
+        "entityId": "d6301d13-5d6a-4dae-9a73-dfbb48a20e70",
+        "reason": "P7 BELOW_THRESHOLD — 1 game(s) short of 5 (4 verified)",
+        "impact": "Import/verify 1 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P1",
+        "context": {
+          "gender": "Girls",
+          "program": "University of Santo Tomas",
+          "verifiedGames": 4,
+          "gamesShort": 1,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Alden Alfonso",
+        "entityId": "1eb68c9c-00e3-4ba2-81d9-80d39ae40696",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Alexavier Ong",
+        "entityId": "e72b3366-d12b-4c5e-af92-222b96cbb390",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Andres Braganza",
+        "entityId": "b92a898f-76bb-481d-943c-db663521ec30",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Anton Acero",
+        "entityId": "cd29fe7b-d404-4e08-92d8-ca38b97e57e7",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Azriel Sy",
+        "entityId": "33999dd9-18d0-41c2-b2fc-7164e255b322",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Benjamin Cheng",
+        "entityId": "88f0c151-35d2-4f77-bc80-366508e2ba1a",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Bryce Uy",
+        "entityId": "16d30820-0c5e-4f60-87f2-86a716bc3909",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Chester Tulabut",
+        "entityId": "a9b55d02-9add-4e50-948c-f550cf9c5ce4",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "National University Nazareth School",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Eyo Castillo",
+        "entityId": "c8b1921c-eda8-43d7-a6d2-27302a74f6e4",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Emilio Aguinaldo College",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Ghian Natividad",
+        "entityId": "12c1709b-ac98-4a25-9bfa-2e1682792adb",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Giersvynn Depano",
+        "entityId": "d4b00ec7-e276-4075-b083-857ecd7eb6f4",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Hanzen Hernandez",
+        "entityId": "4d129153-26d7-4177-9de2-f9badf894db9",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Henry Bebing",
+        "entityId": "76cc8367-5b11-4e39-a61f-04d5cacf287f",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Ian Asay",
+        "entityId": "3c65019d-a0db-4fa8-bd15-4b4a1066c97d",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Arellano University",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jaden So",
+        "entityId": "429d0d41-8996-417d-94b0-2ae30709f0b2",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jared Valenzuela",
+        "entityId": "a7511c9c-36f0-41fd-b3d4-99cd7a738242",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Josiah Sy",
+        "entityId": "c84c4451-a640-475d-b87e-060888bde9a0",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jude Gabriel Mariano",
+        "entityId": "d67a7f26-ddba-4c80-91b5-2b6008f9322e",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Kenzo Rui Centeno",
+        "entityId": "b49e07d6-b3e4-4a64-800b-006792ab6c82",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Knas Humady",
+        "entityId": "7bd78c85-c212-4ffb-acc6-cd52ee21403e",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "San Sebastian College-Recoletos",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Kyle Barrieta",
+        "entityId": "47680301-fa8e-4ebd-aef7-b4c9d462454b",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Colegio de San Juan de Letran",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Larrius Villacorte",
+        "entityId": "f87123b2-f98a-4e1a-9e5a-2c2f26e461f3",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Lesly Gelin",
+        "entityId": "11adae97-5576-4498-acec-be8fc70f1e59",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Colegio de San Juan de Letran",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Makoy Matillano",
+        "entityId": "4af7b9af-924a-442b-adff-419b609bf889",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Adamson University",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Neil Garcia",
+        "entityId": "ca2312a2-c279-4231-8228-2ea9cb556798",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Colegio de San Juan de Letran",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Park Sung-Min",
+        "entityId": "0a45f29a-8491-4b57-8b78-d7bff17c5812",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Quino Escudero",
+        "entityId": "3c321e00-9422-46b9-b9d3-f95f12498b4e",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Raiven Pascual",
+        "entityId": "3eddacf9-7caa-4eb0-b186-a764daaf2129",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "University of the Philippines Integrated School",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Ryian Wright Fernandez",
+        "entityId": "942c1e56-3d93-40d4-9568-745fddee4c13",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Shaun Caparros",
+        "entityId": "ab1c4633-8ac6-492f-94d1-f474baafae45",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Tapel Ryan",
+        "entityId": "55232e02-1934-4bf4-923a-fcf54febd731",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "University of the Philippines Integrated School",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "YJ Lacsamana",
+        "entityId": "e9c23daf-201b-4fce-94dc-244e411c3ead",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 10 (8 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P2",
+        "context": {
+          "gender": "Boys",
+          "program": "Ateneo de Manila University",
+          "verifiedGames": 8,
+          "gamesShort": 2,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "CJ Luz Roque",
+        "entityId": "3c5bfd19-da74-405b-b386-6832839c186a",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 5 (3 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P2",
+        "context": {
+          "gender": "Girls",
+          "program": "De La Salle Santiago Zobel",
+          "verifiedGames": 3,
+          "gamesShort": 2,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Zia Kallos",
+        "entityId": "4b0df456-851d-4fd8-915c-166861ccba0e",
+        "reason": "P7 BELOW_THRESHOLD — 2 game(s) short of 5 (3 verified)",
+        "impact": "Import/verify 2 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P2",
+        "context": {
+          "gender": "Girls",
+          "program": "University of Santo Tomas",
+          "verifiedGames": 3,
+          "gamesShort": 2,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Adam Victorino",
+        "entityId": "f3d1f00a-2fdb-4bc5-9c31-2460782eccd8",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Aiden Tan",
+        "entityId": "8d6687dd-2051-4aeb-96df-85b80e239986",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Alvin Grant Ngo",
+        "entityId": "6d6f2eb2-9ed7-4a81-9c3f-7fbda414206d",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Alvin Ngo",
+        "entityId": "851d08ef-81b7-44d7-88c0-1fd8ab714491",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Braedan Co",
+        "entityId": "510c9e8e-aed8-4a8b-9f2c-45d80cc25eca",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Brent Lee",
+        "entityId": "72772e90-7adf-4f29-8ef1-29b44a0ee417",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Carlos Gubat",
+        "entityId": "59a9104c-f3c5-4ac5-9ccf-fe96ea081f34",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Daniel Altamirano",
+        "entityId": "e60048fb-53da-4b5f-82de-890495a452f7",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Lyceum of the Philippines University Cavite",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Dre Banaag",
+        "entityId": "35d4c82e-d2ab-4c6c-83a0-dcbfa16b0b1f",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Drew Chua",
+        "entityId": "cfa748af-5861-47b0-bd63-1ba361008579",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "ER Reyes",
+        "entityId": "e0907b64-0c17-4e83-abed-e379ada2b5d2",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Ateneo de Manila University",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Florence Omelio",
+        "entityId": "e5b32ee0-5b8e-4af5-86d1-8f2895f222d9",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Lyceum of the Philippines University Cavite",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Huey Vergara",
+        "entityId": "d238d971-008d-4d57-934e-ac0cb0c7d634",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jared Chen",
+        "entityId": "7fe06f83-6811-4247-9990-4cda3f1614f9",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Jun Marie Lucero",
+        "entityId": "37d62d4c-8d01-4ea7-98de-13d462cf5bc8",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Emilio Aguinaldo College",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Keith Tee",
+        "entityId": "c24afd93-8829-48a2-957a-066a7402b63d",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Koen Olmedo",
+        "entityId": "696cd4af-c79d-43d7-9d30-299702af6936",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Maddox Lim",
+        "entityId": "dc3b4729-ad29-467a-99af-65eeafca91dc",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Marco Alcartado",
+        "entityId": "26b3b8be-5507-4b09-b5f6-8090bac52417",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Adamson University",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Noah Ongcarranceja",
+        "entityId": "feeaf01f-61a3-4f11-8e25-a395e16660b1",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Ram Talaga",
+        "entityId": "24c28d27-f975-4f28-85b8-e1ad6e10a480",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Renzo Nepomuceno",
+        "entityId": "41299696-b4fc-4c72-b553-ce575386b1d7",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Ronald Tubid",
+        "entityId": "fb44c1fd-7d2a-4e4c-a6de-e7c475481fd3",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Sam Villaruel",
+        "entityId": "897d2344-362c-47f5-9d68-07aabef8b717",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "University of Perpetual Help System DALTA",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Seth Ngo",
+        "entityId": "fc1fc8a8-2d37-4371-bb18-53b2863a2c95",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Shaun Haw",
+        "entityId": "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Shaun Jordan Haw",
+        "entityId": "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Sungwon Park",
+        "entityId": "f4de6217-86f1-4536-92fe-71823d413db5",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Thirdy Docto",
+        "entityId": "0716564e-437b-48cd-bfd2-2e4448c97a50",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Malayan High School of Science",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Zyron Gonzales",
+        "entityId": "7ef4b7d0-f94a-461c-bc7e-bf8b78df0037",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 10 (7 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Adamson University",
+          "verifiedGames": 7,
+          "gamesShort": 3,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Fritz Cuaresma",
+        "entityId": "8613c64d-0732-4505-85a3-697b402b1836",
+        "reason": "P7 BELOW_THRESHOLD — 3 game(s) short of 5 (2 verified)",
+        "impact": "Import/verify 3 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P3",
+        "context": {
+          "gender": "Girls",
+          "program": "De La Salle Santiago Zobel",
+          "verifiedGames": 2,
+          "gamesShort": 3,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Aidan Yap",
+        "entityId": "3f222c99-0d7a-44d5-b0ca-4c0ba0aef3ff",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Andres Thaddeus Braganza",
+        "entityId": "72a234a5-4dc6-4110-9fdc-4add0aa37bda",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Bench Copada",
+        "entityId": "9e16cd36-1439-4ead-9e55-f7192af6e8b9",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "University of the East",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Brandon Quintana",
+        "entityId": "c83c4744-3683-4352-b2fe-457aa3c01e14",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Bugsy Lavarro",
+        "entityId": "f6c5e06b-8de1-4371-bfb5-acbeb1f6539d",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Carlos Victolero",
+        "entityId": "f81a45d4-2dde-409a-8bd5-aee5d39e1f68",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Malayan High School of Science",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "David Que",
+        "entityId": "1d953911-bdd5-43a1-a6d1-3e170a2424a4",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Dominic Tuason",
+        "entityId": "75424486-748d-4577-8982-0cc403bc47a0",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "La Salle Green Hills",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Drake Yaomuntek",
+        "entityId": "009be491-fece-412e-af66-cda7a2211353",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Edlex Bonzalida",
+        "entityId": "8e106df5-b59b-492a-9000-96bc56a688fc",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "San Beda University - Rizal",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Gabriel Fernandez",
+        "entityId": "331db1fe-f8a7-4bb0-82ce-9e6f36e0233c",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "John Alpapara",
+        "entityId": "75c01727-e3c1-4fa8-9f60-91d30a93acae",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "De La Salle Santiago Zobel",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "John Sy",
+        "entityId": "c0c2773b-0125-4538-ab02-f54d3ddb39c6",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Justin Que",
+        "entityId": "a992cef4-eea3-4ff0-93ee-43b1da3f280e",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Justin Tiu",
+        "entityId": "1d84b6e1-6fd8-4c65-b860-eee5c05daff8",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Kidd Lanete",
+        "entityId": "e9dd6139-75b8-467f-9dcb-d521a82506c6",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Kurt Gabinete",
+        "entityId": "8171fdc9-ec77-4e0b-8897-212aaef48ad5",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Colegio de San Juan de Letran",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Lex Balucan",
+        "entityId": "db5ad293-fce4-4c6a-b0e1-010a973bfbf2",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Mallachi Relucio",
+        "entityId": "81e1890a-7a76-4dd4-befb-eea3306d7e64",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Matthew Lim",
+        "entityId": "8fde1cde-4f15-41d6-b306-11693e6ee38e",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Miggy Ochoa",
+        "entityId": "1ae09171-2214-4706-8763-75d4fcfd6376",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Nathan Lee",
+        "entityId": "d3973b6f-a7d0-492a-8f19-d7c67bd3c28d",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Nhian Seff Sy",
+        "entityId": "90d1b6d2-ae9c-4525-975f-5039e42007e7",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Q Molina",
+        "entityId": "ffff5c0a-b708-464d-91f3-8e5192485776",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Ateneo de Manila University",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Rafael Fontelera",
+        "entityId": "30b0fd6e-e5e7-411b-99b7-215643b1ff25",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Rey Uy",
+        "entityId": "df32906d-012d-4bc0-9fa8-291a0c89d3ae",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Malayan High School of Science",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Rurik Osabel",
+        "entityId": "b7a30ce8-aaaf-4120-909e-42a453b54269",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Sherwin Reyes",
+        "entityId": "5f0ad585-ab7a-431e-985d-91fc6268b172",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "De La Salle Santiago Zobel",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Tomas Cruz",
+        "entityId": "3abbf7c1-8c30-47b6-95d3-a2f7adfa00bf",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "University of Santo Tomas",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 1
+        }
+      },
+      {
+        "entityName": "Trey Chua",
+        "entityId": "8eebfad9-d3fa-4462-8b4c-d101845505e6",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "William Cheng",
+        "entityId": "4d6e28ae-b852-47a6-b6ce-37ed1e38a8f2",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "Unassigned",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Zedrick Victorioso",
+        "entityId": "8a65386e-f9c2-4a48-a550-dfbc80d5701f",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 10 (6 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Boys row",
+        "priority": "P3",
+        "context": {
+          "gender": "Boys",
+          "program": "La Salle Green Hills",
+          "verifiedGames": 6,
+          "gamesShort": 4,
+          "threshold": 10,
+          "hasDob": 0
+        }
+      },
+      {
+        "entityName": "Irish Notarte",
+        "entityId": "6e6d2044-3acb-4ef6-9a69-2008b85028bb",
+        "reason": "P7 BELOW_THRESHOLD — 4 game(s) short of 5 (1 verified)",
+        "impact": "Import/verify 4 official game(s) → potential RANKED U19 Girls row",
+        "priority": "P3",
+        "context": {
+          "gender": "Girls",
+          "program": "De La Salle Santiago Zobel",
+          "verifiedGames": 1,
+          "gamesShort": 4,
+          "threshold": 5,
+          "hasDob": 0
+        }
+      }
+    ],
+    "duplicatePlayers": [
+      {
+        "entityName": "Kenzo Centeno / Kenzo Rui Centeno",
+        "entityId": "98c2a218-d20f-4be4-a47c-c3325c48b1c2,b49e07d6-b3e4-4a64-800b-006792ab6c82",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 2,
+          "gameStats": 33,
+          "ratings": 2,
+          "gender": "BOYS"
+        }
+      },
+      {
+        "entityName": "Shaun Haw / Shaun Jordan Haw",
+        "entityId": "10583f1f-46b0-4f3e-b74d-82b624a05c23,a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 2,
+          "gameStats": 14,
+          "ratings": 2,
+          "gender": "BOYS"
+        }
+      },
+      {
+        "entityName": "Andres Braganza / Andres Thaddeus Braganza",
+        "entityId": "b92a898f-76bb-481d-943c-db663521ec30,72a234a5-4dc6-4110-9fdc-4add0aa37bda",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 2,
+          "gameStats": 14,
+          "ratings": 2,
+          "gender": "BOYS"
+        }
+      },
+      {
+        "entityName": "Christiane Chan / Christiane Dion Chan / Vance Chan",
+        "entityId": "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87,655760d2-044f-47e3-93de-80c072489e00,d9c8a66e-3218-4c38-bef8-800cda1db8bb",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 3,
+          "gameStats": 11,
+          "ratings": 3,
+          "gender": "BOYS"
+        }
+      },
+      {
+        "entityName": "Liam Jardin / Liam Franko Jardin",
+        "entityId": "2e36b608-bfe7-416c-8e77-095f26d2379d,c29f6596-8ddd-4c04-ac3b-2be6b8ce63a9",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 2,
+          "gameStats": 7,
+          "ratings": 2,
+          "gender": "BOYS"
+        }
+      },
+      {
+        "entityName": "Roberto Sison / Roberto Sancho Sison / Denver Sison",
+        "entityId": "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe,f88dc10d-c0f3-4e58-bbfc-9389d1c0db96,a619b173-cd49-4b22-9df9-a5cf67df31d1",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 3,
+          "gameStats": 14,
+          "ratings": 3,
+          "gender": "BOYS"
+        }
+      },
+      {
+        "entityName": "Franco Macapagal / Franco Javier Macapagal",
+        "entityId": "61c28d47-e2cf-4f59-bc71-8629f435f95f,0b541b5e-09c5-454a-9ac8-4bac29260738",
+        "reason": "Same gender + shared surname cluster with overlapping first-name tokens",
+        "impact": "Review before merge — may consolidate duplicate identity or reveal spelling variants",
+        "priority": "P3",
+        "context": {
+          "recordCount": 2,
+          "gameStats": 6,
+          "ratings": 2,
+          "gender": "BOYS"
+        }
+      }
+    ],
+    "duplicatePrograms": [
+      {
+        "entityName": "San Pedro Spartans / San Pedro Spartans",
+        "entityId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711,1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+        "reason": "Duplicate Program identity — 2 active records share normalized name",
+        "impact": "Reassign or retire 1 empty program shell(s); prevents split team/roster identity",
+        "priority": "P2",
+        "context": {
+          "programCount": 2,
+          "teams": 3,
+          "gameStats": 153,
+          "emptyShells": 1
+        }
+      },
+      {
+        "entityName": "LEV Construction Full Potential / Lev Construction Full Potential",
+        "entityId": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b,b668fd23-c767-4c14-9659-8b2d418fd36a",
+        "reason": "Duplicate Program identity — 2 active records share normalized name",
+        "impact": "Reassign or retire 1 empty program shell(s); prevents split team/roster identity",
+        "priority": "P2",
+        "context": {
+          "programCount": 2,
+          "teams": 2,
+          "gameStats": 85,
+          "emptyShells": 1
+        }
+      }
+    ]
+  }
+}

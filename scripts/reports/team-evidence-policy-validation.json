@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-06-17T13:38:28.808Z",
+  "policy": "TEAM-EVIDENCE-v1-official-import",
+  "counts": {
+    "activeGames": 405,
+    "importedGameIds": 319,
+    "baseEligible": 405,
+    "policyEligible": 319,
+    "excludedByImport": 86
+  },
+  "checks": [
+    {
+      "id": "V-TR-EV-01",
+      "status": "PASS",
+      "detail": "319 game IDs resolved from IMPORTED submissions"
+    },
+    {
+      "id": "V-TR-EV-02",
+      "status": "WARN",
+      "detail": "86 staff-import games lack IMPORTED submission linkage (compute path excludes them; persisted ratings unchanged until recompute)"
+    },
+    {
+      "id": "V-TR-EV-03",
+      "status": "WARN",
+      "detail": "Policy-eligible=319, staffManualSubmitted=405 — data linkage gap documented"
+    },
+    {
+      "id": "V-TR-EV-04",
+      "status": "PASS",
+      "detail": "Persisted ratings use TEAM-EVIDENCE-v1-official-import"
+    }
+  ],
+  "summary": {
+    "pass": 2,
+    "warn": 2,
+    "fail": 0,
+    "skip": 0
+  }
+}

@@ -2,7 +2,7 @@
 import { PlayerGender } from "@prisma/client";
 import { prisma } from "../src/lib/prisma";
 
-const dataFilePath = "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-10-games.json";
+const dataFilePath = "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-10-games.json";
 
 const playerDefaults = {
   gender: PlayerGender.BOYS,

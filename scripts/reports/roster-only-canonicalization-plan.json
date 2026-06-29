@@ -1,0 +1,2457 @@
+{
+  "generatedAt": "2026-06-01T13:33:47.788Z",
+  "mode": "dry-run-read-only",
+  "guardrails": [
+    "No database writes.",
+    "No deletes.",
+    "No merges.",
+    "No schema changes.",
+    "No GameStat or Game rewrites.",
+    "Only PlayerTeamSeason roster-only reassignment can be considered in a later approved execute path."
+  ],
+  "summary": {
+    "legacyTeamsReviewed": 6,
+    "rosterRowsReviewed": 23,
+    "READY_FOR_APPROVAL": 0,
+    "NEEDS_MANUAL_TARGET": 0,
+    "BLOCKED_NO_VALID_TARGET": 15,
+    "BLOCKED_CROSS_SEASON": 8
+  },
+  "groups": [
+    {
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "programName": "Adamson University",
+      "sourceTeamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+      "sourceTeamName": "ADU Jrs (ADU)",
+      "legacyReasons": [
+        "junior label",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 2,
+        "gameStat": 0,
+        "gameHomeAway": 0
+      },
+      "candidateTargetTeams": [
+        {
+          "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+          "teamName": "Adamson Baby Falcons",
+          "displayName": "Adamson Baby Falcons",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 14,
+            "gameStat": 168,
+            "gameHomeAway": 14
+          }
+        },
+        {
+          "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+          "teamName": "Adamson Baby Falcons 16U",
+          "displayName": "Adamson Baby Falcons",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 173,
+            "gameHomeAway": 15
+          }
+        }
+      ],
+      "rows": [
+        {
+          "playerTeamSeasonId": "64e28375-c9ca-42c4-850c-d42e202bf5d3",
+          "playerId": "6fadf9d1-74ee-4e00-bfa5-a2e5a5eb9aec",
+          "playerName": "Francel Flores",
+          "birthDate": "2009-10-29",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "currentSourceTeamName": "ADU Jrs (ADU)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+              "teamName": "Adamson Baby Falcons",
+              "displayName": "Adamson Baby Falcons",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+              "teamName": "Adamson Baby Falcons 16U",
+              "displayName": "Adamson Baby Falcons",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+            "teamName": "Adamson Baby Falcons 16U",
+            "displayName": "Adamson Baby Falcons",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        },
+        {
+          "playerTeamSeasonId": "f6f7a927-d60c-40b7-b62f-114716d357b7",
+          "playerId": "ed94eaa9-0923-433e-a2d9-a319b3ab7ba6",
+          "playerName": "Keefe Iledan",
+          "birthDate": "2010-08-07",
+          "yearOfBirth": 2010,
+          "classYearOverride": null,
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "e9b2dc44-3103-4612-ab7a-5ce67e7ef6a8",
+          "currentSourceTeamName": "ADU Jrs (ADU)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+              "teamName": "Adamson Baby Falcons",
+              "displayName": "Adamson Baby Falcons",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+              "teamName": "Adamson Baby Falcons 16U",
+              "displayName": "Adamson Baby Falcons",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "685e9651-ad77-4824-b70c-f032365e1f80",
+            "teamName": "Adamson Baby Falcons 16U",
+            "displayName": "Adamson Baby Falcons",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        }
+      ]
+    },
+    {
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "programName": "Ateneo de Manila University",
+      "sourceTeamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+      "sourceTeamName": "ATENEO JRS (ATENEO)",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 1,
+        "gameStat": 0,
+        "gameHomeAway": 0
+      },
+      "candidateTargetTeams": [
+        {
+          "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+          "teamName": "Ateneo Blue Eaglets",
+          "displayName": "Ateneo Blue Eaglets",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 15,
+            "gameStat": 180,
+            "gameHomeAway": 16
+          }
+        },
+        {
+          "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+          "teamName": "Ateneo Blue Eaglets 16U",
+          "displayName": "Ateneo Blue Eaglets",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 197,
+            "gameHomeAway": 14
+          }
+        },
+        {
+          "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+          "teamName": "ATENEO Girls (ATENEO)",
+          "displayName": "ATENEO Girls (ATENEO)",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0
+          }
+        },
+        {
+          "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+          "teamName": "Ateneo Lady Eaglets",
+          "displayName": "Ateneo Lady Eaglets",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 74,
+            "gameHomeAway": 6
+          }
+        }
+      ],
+      "rows": [
+        {
+          "playerTeamSeasonId": "436f6c93-5aec-47cb-87c5-5546a47f8a98",
+          "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+          "playerName": "Sky Jazul",
+          "birthDate": "2010-10-25",
+          "yearOfBirth": 2010,
+          "classYearOverride": null,
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "1f44864b-91c6-4b52-a1d3-1b88eee3b487",
+          "currentSourceTeamName": "ATENEO JRS (ATENEO)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+              "teamName": "Ateneo Blue Eaglets",
+              "displayName": "Ateneo Blue Eaglets",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+              "teamName": "Ateneo Blue Eaglets 16U",
+              "displayName": "Ateneo Blue Eaglets",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            },
+            {
+              "teamId": "acb69a9e-e10c-4486-b3e1-9fe8c056c57c",
+              "teamName": "ATENEO Girls (ATENEO)",
+              "displayName": "ATENEO Girls (ATENEO)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+              "teamName": "Ateneo Lady Eaglets",
+              "displayName": "Ateneo Lady Eaglets",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Girls Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS",
+                "age-group mismatch: player U16, team U19"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+            "teamName": "Ateneo Blue Eaglets 16U",
+            "displayName": "Ateneo Blue Eaglets",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        }
+      ]
+    },
+    {
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "programName": "De La Salle Santiago Zobel",
+      "sourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+      "sourceTeamName": "LA SALLE Jrs (LA SALLE)",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 15,
+        "gameStat": 0,
+        "gameHomeAway": 0
+      },
+      "candidateTargetTeams": [
+        {
+          "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+          "teamName": "LA SALLE Girls (DLSU)",
+          "displayName": "LA SALLE Girls (DLSU)",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0
+          }
+        },
+        {
+          "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+          "teamName": "LA SALLE Girls (LA SALLE)",
+          "displayName": "LA SALLE Girls (LA SALLE)",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0
+          }
+        }
+      ],
+      "rows": [
+        {
+          "playerTeamSeasonId": "235326e5-9b50-496e-91f7-a7cabb893680",
+          "playerId": "21a5b64e-d338-45eb-a335-c80280655bf9",
+          "playerName": "Maco Dabao",
+          "birthDate": "2006-12-19",
+          "yearOfBirth": 2006,
+          "classYearOverride": null,
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "4cc72b9a-2c05-413e-933e-c358cdb58a14",
+          "playerId": "204b7115-fb23-4c58-9678-2fd27e82edcc",
+          "playerName": "Kio Favis",
+          "birthDate": "2007-02-27",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "e937db59-68c2-46b9-b6d6-6ab87f6a2967",
+          "playerId": "2aa5b8b7-6656-4267-9dc2-d1036cc26f46",
+          "playerName": "Ram Luna",
+          "birthDate": "2009-03-20",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "c597749e-3880-4e86-885c-11701635b3e2",
+          "playerId": "a0613f90-c90b-4ef7-9a90-4b14dc4ecac0",
+          "playerName": "Jake Alpapara",
+          "birthDate": "2007-03-12",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "2bef3840-8997-4d1b-a2be-df6a7c6982c6",
+          "playerId": "e16d6dc8-7ba5-4851-ac01-87729ae4ba85",
+          "playerName": "Mark Borrero",
+          "birthDate": null,
+          "yearOfBirth": null,
+          "classYearOverride": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "b1e54b20-6931-4827-8104-3ddff0062241",
+          "playerId": "0cee7eee-3f5b-41aa-b210-80c73358c2fa",
+          "playerName": "Champ Arejola",
+          "birthDate": "2007-03-20",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "0666a5f6-364a-411c-b745-bc61f47ddffd",
+          "playerId": "998fb770-0955-4042-9d24-7222519553cd",
+          "playerName": "Yusuf Mikailu",
+          "birthDate": "2007-03-07",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2026,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "587c6555-aec5-4741-9a0d-2d64f664dc0b",
+          "playerId": "5222f5c8-6c45-42fc-86f3-15794d1cfbdf",
+          "playerName": "Duncan Tan",
+          "birthDate": "2009-03-12",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2028,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "1e134eb7-37d3-46b1-8cb5-f551fb3dcd2d",
+          "playerId": "afa15785-0232-4ed1-901a-104492d05c0c",
+          "playerName": "Ken Atienza",
+          "birthDate": "2007-12-21",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "8c3cc1db-cf60-4479-bbf0-a595eef44ab3",
+          "playerId": "87fe37a4-408a-4cfd-b96e-8cc8615e7b3d",
+          "playerName": "Deron Llamas",
+          "birthDate": null,
+          "yearOfBirth": null,
+          "classYearOverride": null,
+          "classYear": null,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "12c7b4c9-675c-4f09-ad3a-6e6fb37e5003",
+          "playerId": "101304ee-222e-4e34-8611-ef98a011b425",
+          "playerName": "Nino Ferrer",
+          "birthDate": "2007-06-08",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "669b8903-1e79-49e5-b477-0b94e9927318",
+          "playerId": "b2d4bd51-4551-45b0-ba2f-e0bde0b6fccf",
+          "playerName": "Javi Dimayuga",
+          "birthDate": "2008-01-05",
+          "yearOfBirth": 2008,
+          "classYearOverride": null,
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "8632b5c8-1a7b-45ac-9ee5-2a79bb95df0d",
+          "playerId": "5f0ad585-ab7a-431e-985d-91fc6268b172",
+          "playerName": "Sherwin Reyes",
+          "birthDate": "2007-09-29",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "210c6941-0d79-4a94-854b-1985e532577a",
+          "playerId": "e081f2c2-b6cb-4cf4-8e67-ab7977586e58",
+          "playerName": "Mikel Trillo",
+          "birthDate": "2008-03-07",
+          "yearOfBirth": 2008,
+          "classYearOverride": null,
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        },
+        {
+          "playerTeamSeasonId": "4b241160-39e2-4e8d-9d86-e69036b52b05",
+          "playerId": "75c01727-e3c1-4fa8-9f60-91d30a93acae",
+          "playerName": "John Alpapara",
+          "birthDate": "2007-06-12",
+          "yearOfBirth": 2007,
+          "classYearOverride": null,
+          "classYear": 2027,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U19",
+          "currentSourceTeamId": "8f999ac0-0823-4eac-91af-842957c026ff",
+          "currentSourceTeamName": "LA SALLE Jrs (LA SALLE)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "c010e83f-8a2d-4084-8497-0bea7119c6db",
+              "teamName": "LA SALLE Girls (DLSU)",
+              "displayName": "LA SALLE Girls (DLSU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "8b25947c-21d2-4878-a44f-32dc5160b5bd",
+              "teamName": "LA SALLE Girls (LA SALLE)",
+              "displayName": "LA SALLE Girls (LA SALLE)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": null,
+          "status": "BLOCKED_NO_VALID_TARGET",
+          "reason": "No target Team under the same Program matches Season, gender, and inferred age group."
+        }
+      ]
+    },
+    {
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "programName": "Far Eastern University Diliman",
+      "sourceTeamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+      "sourceTeamName": "FEU Jrs (FEU)",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 3,
+        "gameStat": 0,
+        "gameHomeAway": 0
+      },
+      "candidateTargetTeams": [
+        {
+          "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+          "teamName": "FEU - Diliman Baby Tamaraws",
+          "displayName": "FEU - Diliman Baby Tamaraws",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 14,
+            "gameStat": 260,
+            "gameHomeAway": 19
+          }
+        },
+        {
+          "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+          "teamName": "FEU - Diliman Baby Tamaraws 16U",
+          "displayName": "FEU - Diliman Baby Tamaraws",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 233,
+            "gameHomeAway": 18
+          }
+        }
+      ],
+      "rows": [
+        {
+          "playerTeamSeasonId": "30e44ce3-12aa-4f86-b16c-bbb900a1c218",
+          "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+          "playerName": "Prince Cariño",
+          "birthDate": "2009-08-15",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "currentSourceTeamName": "FEU Jrs (FEU)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+              "teamName": "FEU - Diliman Baby Tamaraws",
+              "displayName": "FEU - Diliman Baby Tamaraws",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+              "teamName": "FEU - Diliman Baby Tamaraws 16U",
+              "displayName": "FEU - Diliman Baby Tamaraws",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+            "teamName": "FEU - Diliman Baby Tamaraws 16U",
+            "displayName": "FEU - Diliman Baby Tamaraws",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        },
+        {
+          "playerTeamSeasonId": "7a5971f5-e964-4260-99d0-cc661fd50c46",
+          "playerId": "1ddb8582-17fd-4c32-87a7-e58f7f62a2e8",
+          "playerName": "Denden Enriquez",
+          "birthDate": "2010-05-26",
+          "yearOfBirth": 2010,
+          "classYearOverride": null,
+          "classYear": 2030,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "currentSourceTeamName": "FEU Jrs (FEU)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+              "teamName": "FEU - Diliman Baby Tamaraws",
+              "displayName": "FEU - Diliman Baby Tamaraws",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+              "teamName": "FEU - Diliman Baby Tamaraws 16U",
+              "displayName": "FEU - Diliman Baby Tamaraws",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+            "teamName": "FEU - Diliman Baby Tamaraws 16U",
+            "displayName": "FEU - Diliman Baby Tamaraws",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        },
+        {
+          "playerTeamSeasonId": "22231126-7e2c-45df-8475-939f58259451",
+          "playerId": "907425c8-8390-4418-8ef3-1aafed01bf42",
+          "playerName": "Duke Santos",
+          "birthDate": "2009-05-15",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "b9efc141-ef1a-4214-aebf-3a9db0f2071d",
+          "currentSourceTeamName": "FEU Jrs (FEU)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+              "teamName": "FEU - Diliman Baby Tamaraws",
+              "displayName": "FEU - Diliman Baby Tamaraws",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+              "teamName": "FEU - Diliman Baby Tamaraws 16U",
+              "displayName": "FEU - Diliman Baby Tamaraws",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+            "teamName": "FEU - Diliman Baby Tamaraws 16U",
+            "displayName": "FEU - Diliman Baby Tamaraws",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        }
+      ]
+    },
+    {
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "programName": "National University Nazareth School",
+      "sourceTeamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+      "sourceTeamName": "NU Jrs (NU)",
+      "legacyReasons": [
+        "junior label"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 1,
+        "gameStat": 0,
+        "gameHomeAway": 0
+      },
+      "candidateTargetTeams": [
+        {
+          "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+          "teamName": "NU Girls (NU)",
+          "displayName": "NU Girls (NU)",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [],
+            "leagueNames": [],
+            "seasonNames": [],
+            "seasonIds": []
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 0,
+            "gameHomeAway": 0
+          }
+        },
+        {
+          "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+          "teamName": "NUNS Bullpups",
+          "displayName": "NUNS Bullpups",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 15,
+            "gameStat": 219,
+            "gameHomeAway": 18
+          }
+        },
+        {
+          "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+          "teamName": "NUNS Bullpups 16U",
+          "displayName": "NUNS Bullpups",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 227,
+            "gameHomeAway": 16
+          }
+        },
+        {
+          "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+          "teamName": "NUNS Lady Bullpups",
+          "displayName": "NUNS Lady Bullpups",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 98,
+            "gameHomeAway": 8
+          }
+        }
+      ],
+      "rows": [
+        {
+          "playerTeamSeasonId": "6402c96a-1175-41ae-a533-c1e8e9a07314",
+          "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
+          "playerName": "Moussa Diakite",
+          "birthDate": "2009-11-01",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "d81d5179-b450-4eba-b7a2-07f558a9268c",
+          "currentSourceTeamName": "NU Jrs (NU)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "9ebec3dc-2e89-4a32-9326-54297c71f8bc",
+              "teamName": "NU Girls (NU)",
+              "displayName": "NU Girls (NU)",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [],
+                "leagueNames": [],
+                "seasonNames": [],
+                "seasonIds": []
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS"
+              ]
+            },
+            {
+              "teamId": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+              "teamName": "NUNS Bullpups",
+              "displayName": "NUNS Bullpups",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+              "teamName": "NUNS Bullpups 16U",
+              "displayName": "NUNS Bullpups",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            },
+            {
+              "teamId": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+              "teamName": "NUNS Lady Bullpups",
+              "displayName": "NUNS Lady Bullpups",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Girls Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS",
+                "age-group mismatch: player U16, team U19"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+            "teamName": "NUNS Bullpups 16U",
+            "displayName": "NUNS Bullpups",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        }
+      ]
+    },
+    {
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "programName": "University of Santo Tomas",
+      "sourceTeamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+      "sourceTeamName": "UST Jrs (UST)",
+      "legacyReasons": [
+        "junior label",
+        "exact generic Program-abbreviation Team"
+      ],
+      "referenceCounts": {
+        "playerTeamSeason": 1,
+        "gameStat": 0,
+        "gameHomeAway": 0
+      },
+      "candidateTargetTeams": [
+        {
+          "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+          "teamName": "UST Tiger Cubs",
+          "displayName": "UST Tiger Cubs",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 16,
+            "gameStat": 191,
+            "gameHomeAway": 14
+          }
+        },
+        {
+          "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+          "teamName": "UST Tiger Cubs 16U",
+          "displayName": "UST Tiger Cubs",
+          "context": {
+            "gender": "BOYS",
+            "ageGroups": [
+              "U16"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 16U Boys Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "39a4a46c-6362-411f-ae85-6f631414f30b"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 159,
+            "gameHomeAway": 15
+          }
+        },
+        {
+          "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+          "teamName": "UST Tigress Cubs",
+          "displayName": "UST Tigress Cubs",
+          "context": {
+            "gender": "GIRLS",
+            "ageGroups": [
+              "U19"
+            ],
+            "leagueNames": [
+              "UAAP Season 88 HS Girls Basketball"
+            ],
+            "seasonNames": [
+              "Season 88"
+            ],
+            "seasonIds": [
+              "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+            ]
+          },
+          "referenceCounts": {
+            "playerTeamSeason": 0,
+            "gameStat": 96,
+            "gameHomeAway": 8
+          }
+        }
+      ],
+      "rows": [
+        {
+          "playerTeamSeasonId": "50db3d18-b82d-47b7-8cd8-83c7d659d3c8",
+          "playerId": "146cfa1a-ee38-4c2e-8386-3310ace2ecd9",
+          "playerName": "JC Canapi",
+          "birthDate": "2009-04-21",
+          "yearOfBirth": 2009,
+          "classYearOverride": null,
+          "classYear": 2029,
+          "ageGroupOverride": null,
+          "inferredGender": "BOYS",
+          "inferredAgeGroup": "U16",
+          "currentSourceTeamId": "7c2934ce-f07a-4f5c-af9e-d3d291b7428c",
+          "currentSourceTeamName": "UST Jrs (UST)",
+          "currentSeasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+          "currentSeasonName": "Season 88",
+          "currentLeagueName": "UAAP Season 88 HS Boys Basketball",
+          "possibleTargetTeams": [
+            {
+              "teamId": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+              "teamName": "UST Tiger Cubs",
+              "displayName": "UST Tiger Cubs",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9"
+                ]
+              },
+              "sameSeason": true,
+              "sameGender": true,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "age-group mismatch: player U16, team U19"
+              ]
+            },
+            {
+              "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+              "teamName": "UST Tiger Cubs 16U",
+              "displayName": "UST Tiger Cubs",
+              "context": {
+                "gender": "BOYS",
+                "ageGroups": [
+                  "U16"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 16U Boys Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "39a4a46c-6362-411f-ae85-6f631414f30b"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": true,
+              "sameAgeGroup": true,
+              "validExactTarget": false,
+              "crossSeasonOnly": true,
+              "rejectionReasons": [
+                "different season context"
+              ]
+            },
+            {
+              "teamId": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+              "teamName": "UST Tigress Cubs",
+              "displayName": "UST Tigress Cubs",
+              "context": {
+                "gender": "GIRLS",
+                "ageGroups": [
+                  "U19"
+                ],
+                "leagueNames": [
+                  "UAAP Season 88 HS Girls Basketball"
+                ],
+                "seasonNames": [
+                  "Season 88"
+                ],
+                "seasonIds": [
+                  "308c354b-3f3e-418e-ba34-5d6f7de9485e"
+                ]
+              },
+              "sameSeason": false,
+              "sameGender": false,
+              "sameAgeGroup": false,
+              "validExactTarget": false,
+              "crossSeasonOnly": false,
+              "rejectionReasons": [
+                "different season context",
+                "gender mismatch: player BOYS, team GIRLS",
+                "age-group mismatch: player U16, team U19"
+              ]
+            }
+          ],
+          "recommendedTargetTeam": {
+            "teamId": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+            "teamName": "UST Tiger Cubs 16U",
+            "displayName": "UST Tiger Cubs",
+            "context": {
+              "gender": "BOYS",
+              "ageGroups": [
+                "U16"
+              ],
+              "leagueNames": [
+                "UAAP Season 88 16U Boys Basketball"
+              ],
+              "seasonNames": [
+                "Season 88"
+              ],
+              "seasonIds": [
+                "39a4a46c-6362-411f-ae85-6f631414f30b"
+              ]
+            },
+            "sameSeason": false,
+            "sameGender": true,
+            "sameAgeGroup": true,
+            "validExactTarget": false,
+            "crossSeasonOnly": true,
+            "rejectionReasons": [
+              "different season context"
+            ]
+          },
+          "status": "BLOCKED_CROSS_SEASON",
+          "reason": "Only same-age/gender target is in a different Season context."
+        }
+      ]
+    }
+  ]
+}

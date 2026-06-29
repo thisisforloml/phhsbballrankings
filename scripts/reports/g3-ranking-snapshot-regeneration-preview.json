@@ -1,0 +1,144 @@
+﻿{
+  "generatedAt": "2026-06-17T11:11:37.300Z",
+  "phase": "G3-ranking-snapshot-regeneration-preview",
+  "mode": "read-only",
+  "backupPath": "D:\\Peach Basket\\scripts\\reports\\g3-ranking-snapshot-backup-2026-06-17T11-11-37-159Z.json",
+  "beforeCounts": {
+    "snapshotCount": 5,
+    "snapshotRowCount": 720,
+    "snapshots": [
+      {
+        "id": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T05:28:03.058Z",
+        "rowCount": 248
+      },
+      {
+        "id": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+        "scope": "NATIONAL",
+        "ageGroup": "U13",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-06-01T00:00:00.000Z",
+        "createdAt": "2026-06-17T04:50:47.128Z",
+        "rowCount": 21
+      },
+      {
+        "id": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+        "scope": "NATIONAL",
+        "ageGroup": "U16",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T06:50:37.696Z",
+        "rowCount": 115
+      },
+      {
+        "id": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "GIRLS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T02:57:24.071Z",
+        "rowCount": 45
+      },
+      {
+        "id": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+        "scope": "NATIONAL",
+        "ageGroup": "U19",
+        "gender": "BOYS",
+        "formulaVersionId": "b8bbcc82-e240-4af6-9d71-84293fdc8b86",
+        "city": null,
+        "region": null,
+        "weekOf": "2026-05-01T00:00:00.000Z",
+        "createdAt": "2026-05-18T02:57:23.961Z",
+        "rowCount": 291
+      }
+    ]
+  },
+  "plannedExistingSnapshotUpdates": [
+    {
+      "snapshotId": "9bcffcb9-57db-4a72-ac04-a67ea69f9500",
+      "scope": "NATIONAL",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "weekOf": "2026-06-01T00:00:00.000Z",
+      "beforeRows": 248,
+      "afterRows": 59,
+      "eligibleByThreshold": 293,
+      "excludedByEligibility": 234,
+      "action": "update"
+    },
+    {
+      "snapshotId": "890c35aa-7a37-49e8-b7e1-e869ac6dc05e",
+      "scope": "NATIONAL",
+      "ageGroup": "U13",
+      "gender": "BOYS",
+      "weekOf": "2026-06-01T00:00:00.000Z",
+      "beforeRows": 21,
+      "afterRows": 0,
+      "eligibleByThreshold": 21,
+      "excludedByEligibility": 21,
+      "action": "update"
+    },
+    {
+      "snapshotId": "319b72cd-91c1-4e8b-bf0e-2f870ea1eadc",
+      "scope": "NATIONAL",
+      "ageGroup": "U16",
+      "gender": "BOYS",
+      "weekOf": "2026-05-01T00:00:00.000Z",
+      "beforeRows": 115,
+      "afterRows": 6,
+      "eligibleByThreshold": 115,
+      "excludedByEligibility": 109,
+      "action": "update"
+    },
+    {
+      "snapshotId": "c4b062ad-015f-4ce4-9beb-4d55058b224b",
+      "scope": "NATIONAL",
+      "ageGroup": "U19",
+      "gender": "GIRLS",
+      "weekOf": "2026-05-01T00:00:00.000Z",
+      "beforeRows": 45,
+      "afterRows": 0,
+      "eligibleByThreshold": 45,
+      "excludedByEligibility": 45,
+      "action": "update"
+    },
+    {
+      "snapshotId": "0e7cf39c-b67c-4c3a-8f10-08ab801a8734",
+      "scope": "NATIONAL",
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "weekOf": "2026-05-01T00:00:00.000Z",
+      "beforeRows": 291,
+      "afterRows": 71,
+      "eligibleByThreshold": 293,
+      "excludedByEligibility": 222,
+      "action": "update"
+    }
+  ],
+  "plannedMissingBoardCreates": [],
+  "nextStep": "npx tsx scripts/g3-ranking-snapshot-regeneration.ts --execute",
+  "protectedTables": [
+    "players",
+    "teams",
+    "games",
+    "game_stats",
+    "game_performance_scores",
+    "player_ratings"
+  ]
+}

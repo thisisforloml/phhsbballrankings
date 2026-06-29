@@ -3,42 +3,42 @@
 const batchFiles = [
   {
     label: "boys batch 01",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-batch-01.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-batch-01.json",
     expectedGames: 10
   },
   {
     label: "boys batch 02",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-batch-02.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-batch-02.json",
     expectedGames: 10
   },
   {
     label: "boys batch 03",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-batch-03.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-batch-03.json",
     expectedGames: 10
   },
   {
     label: "boys batch 04",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-batch-04.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-batch-04.json",
     expectedGames: 10
   },
   {
     label: "boys batch 05",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-batch-05.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-batch-05.json",
     expectedGames: 11
   },
   {
     label: "boys batch 06",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-boys-batch-06.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-boys-batch-06.json",
     expectedGames: 11
   },
   {
     label: "girls batch 01",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-girls-batch-01.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-girls-batch-01.json",
     expectedGames: 10
   },
   {
     label: "girls batch 02",
-    path: "D:\\OnCourt Rankings PH\\scripts\\data\\uaap-s88-hs-girls-batch-02.json",
+    path: "D:\\Peach Basket\\scripts\\data\\uaap-s88-hs-girls-batch-02.json",
     expectedGames: 4
   }
 ] as const;
