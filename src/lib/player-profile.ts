@@ -20,13 +20,13 @@ import {
   mapFullGameStat,
 } from "@/lib/player-profile-build";
 import { buildProfileIntelligence } from "@/lib/player-profile-intelligence";
+import { resolvePlayerIdBySlug } from "@/lib/player-profile-slug";
 import type { PlayerProfile } from "@/lib/player-profile-types";
 import { prisma } from "./prisma";
 
 export type { PlayerProfile, PlayerProfileGame, PlayerProfileLeague } from "./player-profile-types";
 
 const formulaVersionNumber = 1;
-const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 type LoadedPlayer = NonNullable<Awaited<ReturnType<typeof loadPlayerById>>>;
 
@@ -125,35 +125,6 @@ async function loadPlayerById(id: string) {
       },
     },
   });
-}
-
-async function resolvePlayerIdBySlug(slug: string) {
-  if (uuidPattern.test(slug)) {
-    const exactPlayer = await prisma.player.findFirst({
-      where: {
-        id: slug,
-        deletedAt: null,
-      },
-      select: {
-        id: true,
-      },
-    });
-
-    if (exactPlayer) return exactPlayer.id;
-  }
-
-  const candidates = await prisma.player.findMany({
-    where: {
-      deletedAt: null,
-    },
-    select: {
-      id: true,
-      displayName: true,
-    },
-  });
-  const matches = candidates.filter((player) => slugify(player.displayName) === slug);
-
-  return matches.length === 1 ? matches[0].id : null;
 }
 
 function latestSnapshotRow(player: LoadedPlayer, ageGroup: AgeGroup) {

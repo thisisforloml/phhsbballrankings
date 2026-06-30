@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-06-30T14:51:33.323Z",
+  "slug": "jude-eriobu",
+  "playerCounts": {
+    "total": 927,
+    "indexed": 927
+  },
+  "idsMatch": true,
+  "beforeId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+  "afterId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+  "slugResolve": {
+    "before": {
+      "strategy": "Player.findMany all non-deleted players + JS slugify filter",
+      "ms": 212,
+      "prismaQueryCount": 0
+    },
+    "after": {
+      "strategy": "Player.findFirst by profileSlug (+ legacy fallback for null profileSlug)",
+      "ms": 182,
+      "prismaQueryCount": 0
+    },
+    "delta": {
+      "msSaved": 30,
+      "pctFaster": 14,
+      "prismaQueriesSaved": 0
+    }
+  },
+  "fullProfileLoader": {
+    "ms": 2553,
+    "prismaQueryCount": 0,
+    "found": true
+  },
+  "priorInvestigation": {
+    "slugResolveMs": 619,
+    "source": "metadata loader trace jude-eriobu pre-Phase-2"
+  }
+}

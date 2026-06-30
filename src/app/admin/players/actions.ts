@@ -8,6 +8,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 import { slugify } from "@/lib/format";
+import { resolveUniqueProfileSlugForStorage } from "@/lib/player-profile-slug";
 import { getClassYear } from "@/lib/ranking-eligibility";
 import { updatePlayerSchoolAssignment } from "@/lib/admin/player-school-transfer";
 import { assignPlayerRosterFromAgeBracket } from "@/lib/admin/roster-from-game-evidence";
@@ -189,6 +190,7 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
     const calculatedClassYear = getClassYear(birthDate);
     const classYearOverride = submittedClassYear === null || submittedClassYear === calculatedClassYear ? null : submittedClassYear;
     const photoUrl = await readOptionalPhotoUrl(formData, playerId);
+    const profileSlug = await resolveUniqueProfileSlugForStorage(displayName, playerId);
 
     await prisma.player.update({
       where: {
@@ -207,7 +209,8 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
         heightCm,
         birthDate,
         classYearOverride,
-        photoUrl
+        photoUrl,
+        profileSlug,
       }
     });
 
