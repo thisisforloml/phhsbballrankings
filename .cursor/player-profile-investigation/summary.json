@@ -1,0 +1,397 @@
+{
+  "generatedAt": "2026-06-30T14:26:47.659Z",
+  "route": "/players/[slug]",
+  "slug": "jude-eriobu",
+  "slugNote": "cli",
+  "timeoutAnalysis": {
+    "verdict": "Within local tolerance; production slowness may be DB latency or duplicate full loads",
+    "whereTimeIsSpent": "split Prisma + post-Prisma CPU",
+    "rscRenderingNote": "This script measures server loader + JSON serialization only. Client chart components (PlayerTrendsChart etc.) fetch /api/players/[slug]/profile separately after hydration — not included in initial RSC TTFB unless measured via --http."
+  },
+  "pageSimulation": {
+    "duplicateCalls": "generateMetadata + PlayerProfilePage each call getPlayerProfileBySlug independently (no cache)",
+    "metadataLoaderMs": 3472,
+    "pageLoaderMs": 2572,
+    "combinedLoaderMs": 6044,
+    "combinedPrismaMs": 0,
+    "combinedPostPrismaMs": 6044,
+    "combinedJsonBytes": 47900,
+    "prismaQueryCount": 0
+  },
+  "metadataWaterfall": {
+    "totalMs": 3472,
+    "buckets": [
+      {
+        "label": "Inside Prisma (query phases)",
+        "ms": 3461,
+        "pct": 100
+      },
+      {
+        "label": "After Prisma (CPU transforms + JSON)",
+        "ms": 10,
+        "pct": 0
+      }
+    ],
+    "phases": [
+      {
+        "phase": "resolvePlayerIdBySlug",
+        "startedAtMs": 0,
+        "durationMs": 619,
+        "meta": {
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e"
+        },
+        "pctOfTotal": 18
+      },
+      {
+        "phase": "loadPlayerById (deep include)",
+        "startedAtMs": 619,
+        "durationMs": 1128,
+        "meta": {
+          "gameStats": 16,
+          "rankingRows": 2,
+          "currentRatings": 1
+        },
+        "pctOfTotal": 32
+      },
+      {
+        "phase": "selectRatingAndSnapshotRow (CPU)",
+        "startedAtMs": 1747,
+        "durationMs": 1,
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "deriveSnapshotRanks",
+        "startedAtMs": 1748,
+        "durationMs": 336,
+        "meta": {
+          "snapshotRowsLoaded": 234,
+          "regionRank": 1,
+          "positionRank": 1
+        },
+        "pctOfTotal": 10
+      },
+      {
+        "phase": "mapGamesAndAggregations (CPU)",
+        "startedAtMs": 2084,
+        "durationMs": 8,
+        "meta": {
+          "games": 16,
+          "leagues": 1,
+          "rankingTrendPoints": 2
+        },
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "eligibilityVerdict (CPU)",
+        "startedAtMs": 2092,
+        "durationMs": 1,
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "buildProfileIntelligence",
+        "startedAtMs": 2094,
+        "durationMs": 1378,
+        "meta": {
+          "comparisonCount": 467,
+          "percentiles": 7
+        },
+        "pctOfTotal": 40
+      },
+      {
+        "phase": "assembleProfileObject (CPU)",
+        "startedAtMs": 3472,
+        "durationMs": 0,
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "JSON.stringify profile (RSC payload proxy)",
+        "startedAtMs": 3472,
+        "durationMs": 0,
+        "meta": {
+          "jsonBytes": 23950
+        },
+        "pctOfTotal": 0
+      }
+    ]
+  },
+  "pageWaterfall": {
+    "totalMs": 2572,
+    "buckets": [
+      {
+        "label": "Inside Prisma (query phases)",
+        "ms": 2571,
+        "pct": 100
+      },
+      {
+        "label": "After Prisma (CPU transforms + JSON)",
+        "ms": 1,
+        "pct": 0
+      }
+    ],
+    "phases": [
+      {
+        "phase": "resolvePlayerIdBySlug",
+        "startedAtMs": 0,
+        "durationMs": 219,
+        "meta": {
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e"
+        },
+        "pctOfTotal": 9
+      },
+      {
+        "phase": "loadPlayerById (deep include)",
+        "startedAtMs": 219,
+        "durationMs": 1130,
+        "meta": {
+          "gameStats": 16,
+          "rankingRows": 2,
+          "currentRatings": 1
+        },
+        "pctOfTotal": 44
+      },
+      {
+        "phase": "selectRatingAndSnapshotRow (CPU)",
+        "startedAtMs": 1349,
+        "durationMs": 0,
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "deriveSnapshotRanks",
+        "startedAtMs": 1349,
+        "durationMs": 342,
+        "meta": {
+          "snapshotRowsLoaded": 234,
+          "regionRank": 1,
+          "positionRank": 1
+        },
+        "pctOfTotal": 13
+      },
+      {
+        "phase": "mapGamesAndAggregations (CPU)",
+        "startedAtMs": 1690,
+        "durationMs": 1,
+        "meta": {
+          "games": 16,
+          "leagues": 1,
+          "rankingTrendPoints": 2
+        },
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "eligibilityVerdict (CPU)",
+        "startedAtMs": 1692,
+        "durationMs": 0,
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "buildProfileIntelligence",
+        "startedAtMs": 1692,
+        "durationMs": 880,
+        "meta": {
+          "comparisonCount": 467,
+          "percentiles": 7
+        },
+        "pctOfTotal": 34
+      },
+      {
+        "phase": "assembleProfileObject (CPU)",
+        "startedAtMs": 2572,
+        "durationMs": 0,
+        "pctOfTotal": 0
+      },
+      {
+        "phase": "JSON.stringify profile (RSC payload proxy)",
+        "startedAtMs": 2572,
+        "durationMs": 0,
+        "meta": {
+          "jsonBytes": 23950
+        },
+        "pctOfTotal": 0
+      }
+    ]
+  },
+  "childLoaders": {
+    "metadata": [
+      {
+        "phase": "resolvePlayerIdBySlug",
+        "startedAtMs": 0,
+        "durationMs": 619,
+        "meta": {
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e"
+        }
+      },
+      {
+        "phase": "loadPlayerById (deep include)",
+        "startedAtMs": 619,
+        "durationMs": 1128,
+        "meta": {
+          "gameStats": 16,
+          "rankingRows": 2,
+          "currentRatings": 1
+        }
+      },
+      {
+        "phase": "selectRatingAndSnapshotRow (CPU)",
+        "startedAtMs": 1747,
+        "durationMs": 1
+      },
+      {
+        "phase": "deriveSnapshotRanks",
+        "startedAtMs": 1748,
+        "durationMs": 336,
+        "meta": {
+          "snapshotRowsLoaded": 234,
+          "regionRank": 1,
+          "positionRank": 1
+        }
+      },
+      {
+        "phase": "mapGamesAndAggregations (CPU)",
+        "startedAtMs": 2084,
+        "durationMs": 8,
+        "meta": {
+          "games": 16,
+          "leagues": 1,
+          "rankingTrendPoints": 2
+        }
+      },
+      {
+        "phase": "eligibilityVerdict (CPU)",
+        "startedAtMs": 2092,
+        "durationMs": 1
+      },
+      {
+        "phase": "buildProfileIntelligence",
+        "startedAtMs": 2094,
+        "durationMs": 1378,
+        "meta": {
+          "comparisonCount": 467,
+          "percentiles": 7
+        }
+      },
+      {
+        "phase": "assembleProfileObject (CPU)",
+        "startedAtMs": 3472,
+        "durationMs": 0
+      },
+      {
+        "phase": "JSON.stringify profile (RSC payload proxy)",
+        "startedAtMs": 3472,
+        "durationMs": 0,
+        "meta": {
+          "jsonBytes": 23950
+        }
+      }
+    ],
+    "page": [
+      {
+        "phase": "resolvePlayerIdBySlug",
+        "startedAtMs": 0,
+        "durationMs": 219,
+        "meta": {
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e"
+        }
+      },
+      {
+        "phase": "loadPlayerById (deep include)",
+        "startedAtMs": 219,
+        "durationMs": 1130,
+        "meta": {
+          "gameStats": 16,
+          "rankingRows": 2,
+          "currentRatings": 1
+        }
+      },
+      {
+        "phase": "selectRatingAndSnapshotRow (CPU)",
+        "startedAtMs": 1349,
+        "durationMs": 0
+      },
+      {
+        "phase": "deriveSnapshotRanks",
+        "startedAtMs": 1349,
+        "durationMs": 342,
+        "meta": {
+          "snapshotRowsLoaded": 234,
+          "regionRank": 1,
+          "positionRank": 1
+        }
+      },
+      {
+        "phase": "mapGamesAndAggregations (CPU)",
+        "startedAtMs": 1690,
+        "durationMs": 1,
+        "meta": {
+          "games": 16,
+          "leagues": 1,
+          "rankingTrendPoints": 2
+        }
+      },
+      {
+        "phase": "eligibilityVerdict (CPU)",
+        "startedAtMs": 1692,
+        "durationMs": 0
+      },
+      {
+        "phase": "buildProfileIntelligence",
+        "startedAtMs": 1692,
+        "durationMs": 880,
+        "meta": {
+          "comparisonCount": 467,
+          "percentiles": 7
+        }
+      },
+      {
+        "phase": "assembleProfileObject (CPU)",
+        "startedAtMs": 2572,
+        "durationMs": 0
+      },
+      {
+        "phase": "JSON.stringify profile (RSC payload proxy)",
+        "startedAtMs": 2572,
+        "durationMs": 0,
+        "meta": {
+          "jsonBytes": 23950
+        }
+      }
+    ]
+  },
+  "prismaQueries": {
+    "metadata": [],
+    "page": [],
+    "combinedCount": 0,
+    "byModel": []
+  },
+  "duplicateQueries": [],
+  "nPlusOneSignals": [
+    {
+      "pattern": "resolvePlayerIdBySlug loads ALL players when slug is not a UUID",
+      "evidence": "Player.findMany { deletedAt: null } with displayName-only select, slugify filter in JS",
+      "severity": "high"
+    },
+    {
+      "pattern": "deriveSnapshotRanks loads full national snapshot row set",
+      "evidence": "RankingSnapshot.findFirst include all rows + nested player region/position",
+      "severity": "high"
+    },
+    {
+      "pattern": "loadPeerProduction loads entire age-group rating pool with nested gameStats per player",
+      "evidence": "PlayerRating.findMany for ageGroup with player.gameStats nested select",
+      "severity": "critical"
+    },
+    {
+      "pattern": "Full page calls getPlayerProfileBySlug twice (metadata + RSC page)",
+      "evidence": "page.tsx generateMetadata + default export",
+      "severity": "high"
+    }
+  ],
+  "profileStats": {
+    "gameStats": 16,
+    "rankingRows": 2,
+    "snapshotRowsLoaded": 234,
+    "intelligencePeers": 467,
+    "ageGroup": "U19",
+    "gender": "BOYS"
+  },
+  "http": null
+}

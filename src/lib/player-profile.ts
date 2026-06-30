@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cache } from "react";
 import { AgeGroup, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
@@ -226,7 +227,7 @@ async function deriveSnapshotRanks(player: LoadedPlayer, ageGroup: AgeGroup, sna
   };
 }
 
-export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfile | null> {
+export async function loadPlayerProfileBySlugUncached(slug: string): Promise<PlayerProfile | null> {
   const playerId = await resolvePlayerIdBySlug(slug);
   if (!playerId) return null;
 
@@ -358,3 +359,6 @@ export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfil
     rankingTrend: buildRankingTrend(player.rankingRows, profileAgeGroup, player.gender),
   };
 }
+
+/** Request-scoped loader shared by generateMetadata() and the page component. */
+export const getPlayerProfileBySlug = cache(loadPlayerProfileBySlugUncached);

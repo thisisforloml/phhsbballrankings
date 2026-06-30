@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-06-30T14:20:39.519Z",
+  "live": {
+    "strategy": "buildLatestNationalRankingsLive (PlayerRating + GameStat)",
+    "loaderMs": 3376,
+    "jsonBytes": 1684170,
+    "totalRowCount": 947,
+    "publicRowCount": 423
+  },
+  "snapshot": {
+    "strategy": "buildLatestNationalRankingsFromSnapshots (RankingSnapshotRow + player.findMany)",
+    "loaderMs": 994,
+    "jsonBytes": 692522,
+    "totalRowCount": 422,
+    "publicRowCount": 418
+  },
+  "wiredSnapshotFlag": {
+    "strategy": "getLatestNationalRankings with RANKINGS_READ_FROM_SNAPSHOTS=1 (falls back to live if incomplete)",
+    "loaderMs": 1029,
+    "jsonBytes": 692522
+  },
+  "delta": {
+    "loaderMsSaved": 2382,
+    "loaderPctFaster": 71,
+    "jsonBytesDelta": -991648
+  },
+  "http": null
+}

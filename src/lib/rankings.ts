@@ -22,7 +22,6 @@ import {
 import { runWithConcurrency } from "./run-with-concurrency";
 
 const defaultAgeGroup = AgeGroup.U19;
-const rankingAgeGroups = [AgeGroup.U13, AgeGroup.U16, AgeGroup.U19] as const;
 const HOME_BOARD_DISPLAY_LIMIT = 10;
 /** Max independent boards loaded at once (each board uses several sequential Prisma calls). */
 const RANKINGS_BOARD_CONCURRENCY = Math.max(
@@ -30,7 +29,9 @@ const RANKINGS_BOARD_CONCURRENCY = Math.max(
   Number.parseInt(process.env.RANKINGS_BOARD_CONCURRENCY ?? "3", 10) || 3
 );
 
-const playerRatingPlayerSelect = {
+export const rankingAgeGroups = [AgeGroup.U13, AgeGroup.U16, AgeGroup.U19] as const;
+
+export const rankingPlayerSelect = {
   id: true,
   displayName: true,
   city: true,
@@ -46,6 +47,8 @@ const playerRatingPlayerSelect = {
   ageGroupOverride: true,
   currentProgram: { select: { fullName: true, abbreviation: true, type: true } },
 } as const;
+
+const playerRatingPlayerSelect = rankingPlayerSelect;
 
 const playerAffiliationGameStatsSelect = {
   team: {
@@ -164,7 +167,7 @@ type PlayerRatingWithPlayer = Awaited<
   };
 };
 
-function playerRatingBoardWhere(
+export function rankingBoardPlayerRatingWhere(
   gender: PlayerGender,
   ageGroup: RankingAgeGroup,
   ratingFilter: ActiveRatingFilter,
@@ -177,6 +180,8 @@ function playerRatingBoardWhere(
     player: { gender, deletedAt: null },
   };
 }
+
+const playerRatingBoardWhere = rankingBoardPlayerRatingWhere;
 
 function mapNationalRankingRow(
   rating: PlayerRatingWithPlayer,
@@ -339,8 +344,8 @@ async function getLatestSnapshot(
   };
 }
 
-async function buildLatestNationalRankings(
-  ageGroups: readonly RankingAgeGroup[]
+export async function buildLatestNationalRankingsLive(
+  ageGroups: readonly RankingAgeGroup[] = rankingAgeGroups
 ): Promise<LatestNationalRankings> {
   postPrismaMark("loader.buildLatestNationalRankings.start", {
     ageGroups: [...ageGroups],
@@ -386,10 +391,27 @@ async function buildLatestNationalRankings(
   };
 }
 
-export const getLatestNationalRankings = cache(async () => buildLatestNationalRankings(rankingAgeGroups));
+async function getLatestNationalRankingsWithFallback(): Promise<LatestNationalRankings> {
+  if (process.env.RANKINGS_READ_FROM_SNAPSHOTS === "1") {
+    try {
+      const { buildLatestNationalRankingsFromSnapshots } = await import("./rankings-snapshot-read");
+      return await buildLatestNationalRankingsFromSnapshots(rankingAgeGroups);
+    } catch (error) {
+      postPrismaMark("loader.snapshotRead.fallback", {
+        reason: error instanceof Error ? error.name : "unknown",
+        message: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+  return buildLatestNationalRankingsLive(rankingAgeGroups);
+}
+
+export const getLatestNationalRankings = cache(async () => getLatestNationalRankingsWithFallback());
+
+export { getLatestNationalRankingsFromSnapshots } from "./rankings-snapshot-read";
 
 export const getHomeNationalRankings = cache(async () =>
-  buildLatestNationalRankings([defaultAgeGroup as RankingAgeGroup])
+  buildLatestNationalRankingsLive([defaultAgeGroup as RankingAgeGroup])
 );
 
 export type HomeNationalBoardPreview = {
