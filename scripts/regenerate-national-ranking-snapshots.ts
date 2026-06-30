@@ -17,6 +17,7 @@ async function main() {
         policyVersionId: getActivePolicyVersionId(),
         formulaVersionId: result.formulaVersionId,
         snapshotDate: result.snapshotDate,
+        evaluationDate: result.evaluationDate,
         results: result.results
       },
       null,

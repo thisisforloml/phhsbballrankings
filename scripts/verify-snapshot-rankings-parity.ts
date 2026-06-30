@@ -190,8 +190,9 @@ async function main() {
     })),
     notes: [
       "Compares getPublicBoardRows() output per board (what the public UI renders).",
-      "Phase 1 snapshot read omits gameStat affiliation and primaryCompetition — currentTeam/primaryCompetition mismatches are expected until write-time denormalization.",
-      "Enable production snapshot read with RANKINGS_READ_FROM_SNAPSHOTS=1 after parity is acceptable.",
+      "Snapshot regeneration uses evaluationDate=now (weekOf remains month start) so refreshed boards match live eligibility.",
+      "Snapshot read hydrates currentTeam and primaryCompetition from batched gameStat loads (same helpers as live path).",
+      "Enable production snapshot read with RANKINGS_READ_FROM_SNAPSHOTS=1 only after allPublicBoardsIdentical is true.",
     ],
   };
 

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-30T14:22:03.155Z",
+  "generatedAt": "2026-06-30T15:21:46.173Z",
   "snapshotReadAvailable": true,
   "snapshotError": null,
-  "allPublicBoardsIdentical": false,
-  "allCoreRankingsIdentical": false,
+  "allPublicBoardsIdentical": true,
+  "allCoreRankingsIdentical": true,
   "boards": [
     {
       "boardKey": "U13/BOYS",
@@ -12,45 +12,11 @@
       "playerSetMatches": true,
       "onlyLive": [],
       "onlySnapshot": [],
-      "mismatchCountsByField": {
-        "currentTeam": 21,
-        "primaryCompetition": 21
-      },
+      "mismatchCountsByField": {},
       "coreRankingsIdentical": true,
-      "identical": false,
-      "fieldMismatches": [
-        {
-          "playerId": "01d4ea7a-3bb9-4ac0-8edb-c67d429c82af",
-          "field": "currentTeam",
-          "live": "Chef's Magic MLO Basketball",
-          "snapshot": "Program pending"
-        },
-        {
-          "playerId": "01d4ea7a-3bb9-4ac0-8edb-c67d429c82af",
-          "field": "primaryCompetition",
-          "live": "Philippine Youth Championship – 13U",
-          "snapshot": null
-        },
-        {
-          "playerId": "0cc4954a-993f-4ffe-82d1-e1f96449b986",
-          "field": "currentTeam",
-          "live": "Jet's Barbershop",
-          "snapshot": "Program pending"
-        },
-        {
-          "playerId": "0cc4954a-993f-4ffe-82d1-e1f96449b986",
-          "field": "primaryCompetition",
-          "live": "Philippine Youth Championship – 13U",
-          "snapshot": null
-        },
-        {
-          "playerId": "1317eacc-3779-4adf-a348-dcabd8441407",
-          "field": "currentTeam",
-          "live": "Chef's Magic MLO Basketball",
-          "snapshot": "Program pending"
-        }
-      ],
-      "fieldMismatchTotal": 42,
+      "identical": true,
+      "fieldMismatches": [],
+      "fieldMismatchTotal": 0,
       "coreFieldMismatchTotal": 0
     },
     {
@@ -74,45 +40,11 @@
       "playerSetMatches": true,
       "onlyLive": [],
       "onlySnapshot": [],
-      "mismatchCountsByField": {
-        "primaryCompetition": 118,
-        "currentTeam": 16
-      },
+      "mismatchCountsByField": {},
       "coreRankingsIdentical": true,
-      "identical": false,
-      "fieldMismatches": [
-        {
-          "playerId": "0005726e-563f-46c0-85a2-4dcefe67bf0e",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 HS Boys",
-          "snapshot": null
-        },
-        {
-          "playerId": "0180b75e-e877-414c-a912-65c10a181865",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 16U Boys",
-          "snapshot": null
-        },
-        {
-          "playerId": "03ce86bf-8620-4a05-805f-e49ba1da24d8",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 16U Boys",
-          "snapshot": null
-        },
-        {
-          "playerId": "0434149b-0d98-4378-bc4f-1761ae21bbf8",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 16U Boys",
-          "snapshot": null
-        },
-        {
-          "playerId": "04d2298b-2195-43db-956c-da5f40d0589f",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 16U Boys",
-          "snapshot": null
-        }
-      ],
-      "fieldMismatchTotal": 134,
+      "identical": true,
+      "fieldMismatches": [],
+      "fieldMismatchTotal": 0,
       "coreFieldMismatchTotal": 0
     },
     {
@@ -132,57 +64,16 @@
     {
       "boardKey": "U19/BOYS",
       "liveCount": 239,
-      "snapshotCount": 234,
-      "playerSetMatches": false,
-      "onlyLive": [
-        "155da59e-233b-443b-a0aa-4056d6aa7439",
-        "2248b156-2adc-4045-aca5-9be73d1cafd4",
-        "29efab25-9417-43be-a879-9654ac889bac",
-        "a1e6db1c-eeb2-4ead-b0a4-0cca2d4cc3f4",
-        "cce0c1c6-0170-45ed-bb28-6b7382821e82"
-      ],
+      "snapshotCount": 239,
+      "playerSetMatches": true,
+      "onlyLive": [],
       "onlySnapshot": [],
-      "mismatchCountsByField": {
-        "rank": 230,
-        "primaryCompetition": 234,
-        "currentTeam": 78
-      },
-      "coreRankingsIdentical": false,
-      "identical": false,
-      "fieldMismatches": [
-        {
-          "playerId": "0002f9c0-f93e-4ab9-9db7-eb1073050785",
-          "field": "rank",
-          "live": 55,
-          "snapshot": 53
-        },
-        {
-          "playerId": "0002f9c0-f93e-4ab9-9db7-eb1073050785",
-          "field": "primaryCompetition",
-          "live": "NCAA S101 Junior's",
-          "snapshot": null
-        },
-        {
-          "playerId": "002702d3-fe63-491a-881d-81733da10f80",
-          "field": "rank",
-          "live": 53,
-          "snapshot": 51
-        },
-        {
-          "playerId": "002702d3-fe63-491a-881d-81733da10f80",
-          "field": "currentTeam",
-          "live": "Amsteel",
-          "snapshot": "Program pending"
-        },
-        {
-          "playerId": "002702d3-fe63-491a-881d-81733da10f80",
-          "field": "primaryCompetition",
-          "live": "Stallion Cup – 17U",
-          "snapshot": null
-        }
-      ],
-      "fieldMismatchTotal": 542,
-      "coreFieldMismatchTotal": 230
+      "mismatchCountsByField": {},
+      "coreRankingsIdentical": true,
+      "identical": true,
+      "fieldMismatches": [],
+      "fieldMismatchTotal": 0,
+      "coreFieldMismatchTotal": 0
     },
     {
       "boardKey": "U19/GIRLS",
@@ -191,50 +82,18 @@
       "playerSetMatches": true,
       "onlyLive": [],
       "onlySnapshot": [],
-      "mismatchCountsByField": {
-        "primaryCompetition": 45
-      },
+      "mismatchCountsByField": {},
       "coreRankingsIdentical": true,
-      "identical": false,
-      "fieldMismatches": [
-        {
-          "playerId": "09c4dc79-fdb1-4a91-b4dc-717e099bf517",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 HS Girls",
-          "snapshot": null
-        },
-        {
-          "playerId": "0d6b9ff0-6d1e-4217-823f-b5cebaf45ad9",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 HS Girls",
-          "snapshot": null
-        },
-        {
-          "playerId": "1d310334-b30a-4c02-b1b6-09c6c1d90161",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 HS Girls",
-          "snapshot": null
-        },
-        {
-          "playerId": "1f2b7a27-a613-432b-8953-a98e74a02d91",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 HS Girls",
-          "snapshot": null
-        },
-        {
-          "playerId": "2386148f-33ef-47fc-8d6e-729bbc84c806",
-          "field": "primaryCompetition",
-          "live": "UAAP S88 HS Girls",
-          "snapshot": null
-        }
-      ],
-      "fieldMismatchTotal": 45,
+      "identical": true,
+      "fieldMismatches": [],
+      "fieldMismatchTotal": 0,
       "coreFieldMismatchTotal": 0
     }
   ],
   "notes": [
     "Compares getPublicBoardRows() output per board (what the public UI renders).",
-    "Phase 1 snapshot read omits gameStat affiliation and primaryCompetition — currentTeam/primaryCompetition mismatches are expected until write-time denormalization.",
-    "Enable production snapshot read with RANKINGS_READ_FROM_SNAPSHOTS=1 after parity is acceptable."
+    "Snapshot regeneration uses evaluationDate=now (weekOf remains month start) so refreshed boards match live eligibility.",
+    "Snapshot read hydrates currentTeam and primaryCompetition from batched gameStat loads (same helpers as live path).",
+    "Enable production snapshot read with RANKINGS_READ_FROM_SNAPSHOTS=1 only after allPublicBoardsIdentical is true."
   ]
 }

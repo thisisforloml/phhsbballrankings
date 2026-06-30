@@ -1,6 +1,13 @@
 import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { slugify } from "./format";
 import { resolvePrimaryRankingAffiliation } from "./player-display-affiliation";
+import {
+  affiliationGameStatsFromBoardStats,
+  buildCompetitionParticipationFromStats,
+  loadRankingBoardGameStatsByPlayerIds,
+  primaryCompetitionFromSummary,
+  type RankingBoardGameStat,
+} from "./player-competition-context";
 import { buildEligibilityInput, evaluateEligibility } from "./eligibility";
 import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
 import { prisma } from "./prisma";
@@ -66,7 +73,8 @@ export function mapSnapshotRowToNationalRankingRow(
   snapshotRow: SnapshotRowRecord,
   player: PlayerForRankingRow,
   ageGroup: RankingAgeGroup,
-  activeFormulaVersionId: string
+  activeFormulaVersionId: string,
+  boardStats: RankingBoardGameStat[] = []
 ): NationalRankingRow {
   const eligibilityVerdict = evaluateEligibility(
     buildEligibilityInput({
@@ -84,6 +92,10 @@ export function mapSnapshotRowToNationalRankingRow(
   );
 
   const effectiveClassYear = getEffectiveClassYear(player.birthDate, player.classYearOverride);
+  const affiliationStats = affiliationGameStatsFromBoardStats(boardStats);
+  const primaryCompetition = primaryCompetitionFromSummary(
+    buildCompetitionParticipationFromStats(boardStats.map((stat) => ({ game: stat.game })))
+  );
 
   return {
     rank: snapshotRow.rank,
@@ -99,7 +111,7 @@ export function mapSnapshotRowToNationalRankingRow(
     currentTeam: resolvePrimaryRankingAffiliation({
       schoolOverride: player.schoolOverride,
       currentProgram: player.currentProgram,
-      gameStats: null,
+      gameStats: affiliationStats,
     }),
     photoUrl: player.photoUrl,
     gender: toDisplayGender(player.gender),
@@ -111,7 +123,7 @@ export function mapSnapshotRowToNationalRankingRow(
     rating: Number(snapshotRow.rating),
     starRating: snapshotRow.starRating,
     verifiedGameCount: snapshotRow.verifiedGameCount,
-    primaryCompetition: null,
+    primaryCompetition,
   };
 }
 
@@ -169,7 +181,8 @@ async function loadSnapshotBoard(
 function buildNationalSnapshotFromLoadedBoard(
   board: LoadedSnapshotBoard,
   formulaVersionId: string,
-  playerById: Map<string, PlayerForRankingRow>
+  playerById: Map<string, PlayerForRankingRow>,
+  statsByPlayer: Map<string, RankingBoardGameStat[]>
 ): NationalRankingSnapshot {
   const snapshot = board.snapshot;
   if (!snapshot || snapshot.rows.length === 0) {
@@ -180,7 +193,15 @@ function buildNationalSnapshotFromLoadedBoard(
   for (const snapshotRow of snapshot.rows) {
     const player = playerById.get(snapshotRow.playerId);
     if (!player) continue;
-    rows.push(mapSnapshotRowToNationalRankingRow(snapshotRow, player, board.ageGroup, formulaVersionId));
+    rows.push(
+      mapSnapshotRowToNationalRankingRow(
+        snapshotRow,
+        player,
+        board.ageGroup,
+        formulaVersionId,
+        statsByPlayer.get(snapshotRow.playerId) ?? []
+      )
+    );
   }
 
   return {
@@ -243,16 +264,18 @@ export async function buildLatestNationalRankingsFromSnapshots(
     select: rankingPlayerSelect,
   });
   const playerById = new Map(players.map((player) => [player.id, player]));
+  const statsByPlayer = await loadRankingBoardGameStatsByPlayerIds(allPlayerIds);
 
   postPrismaMark("loader.buildLatestNationalRankingsFromSnapshots.playersLoaded", {
     playerIds: allPlayerIds.length,
     playersFound: players.length,
+    gameStatPlayers: statsByPlayer.size,
   });
 
   const boardByKey = new Map(
     loadedBoards.map((board) => [
       `${board.ageGroup}:${board.gender}`,
-      buildNationalSnapshotFromLoadedBoard(board, formulaVersionId, playerById),
+      buildNationalSnapshotFromLoadedBoard(board, formulaVersionId, playerById, statsByPlayer),
     ] as const)
   );
 

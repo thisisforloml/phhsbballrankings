@@ -28,11 +28,12 @@ async function upsertNationalRankingSnapshot(params: {
   gender: PlayerGender;
   formulaVersionId: string;
   snapshotDate: Date;
+  evaluationDate: Date;
 }): Promise<UpsertNationalSnapshotResult> {
   const built = await buildSnapshotBoardRows({
     ageGroup: params.ageGroup,
     gender: params.gender,
-    evaluationDate: params.snapshotDate,
+    evaluationDate: params.evaluationDate,
     formulaVersionId: params.formulaVersionId
   });
 
@@ -118,7 +119,10 @@ async function upsertNationalRankingSnapshot(params: {
 
 export async function regenerateNationalRankingSnapshots(options: {
   boards?: NationalRankingBoard[];
+  /** Snapshot identity (`weekOf`). Defaults to current month start. */
   snapshotDate?: Date;
+  /** Eligibility evaluation date for row membership. Defaults to now so refreshed snapshots match the live public board. */
+  evaluationDate?: Date;
 } = {}) {
   const formulaVersion = await prisma.formulaVersion.findUnique({
     where: { versionNumber: FORMULA_V1_VERSION_NUMBER },
@@ -127,6 +131,7 @@ export async function regenerateNationalRankingSnapshots(options: {
   if (!formulaVersion) throw new Error("Formula v1 version row not found.");
 
   const snapshotDate = options.snapshotDate ?? getMonthStart(new Date());
+  const evaluationDate = options.evaluationDate ?? new Date();
   const boards = options.boards ?? NATIONAL_RANKING_BOARDS;
   const results: UpsertNationalSnapshotResult[] = [];
 
@@ -135,7 +140,8 @@ export async function regenerateNationalRankingSnapshots(options: {
       await upsertNationalRankingSnapshot({
         ...board,
         formulaVersionId: formulaVersion.id,
-        snapshotDate
+        snapshotDate,
+        evaluationDate
       })
     );
   }
@@ -143,6 +149,7 @@ export async function regenerateNationalRankingSnapshots(options: {
   return {
     formulaVersionId: formulaVersion.id,
     snapshotDate: snapshotDate.toISOString(),
+    evaluationDate: evaluationDate.toISOString(),
     results
   };
 }
