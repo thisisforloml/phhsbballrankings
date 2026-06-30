@@ -1,0 +1,421 @@
+{
+  "url": "http://localhost:3000/",
+  "wallClock": {
+    "navigationStart": 0,
+    "htmlReceived": 2085,
+    "loadEvent": 2582,
+    "hydratedWall": 122593
+  },
+  "marks": {
+    "timeOrigin": 1782752140054.7,
+    "probe-injected": 2085,
+    "fcp": 2340
+  },
+  "paints": [
+    {
+      "name": "first-paint",
+      "startTime": 2340
+    },
+    {
+      "name": "first-contentful-paint",
+      "startTime": 2340
+    }
+  ],
+  "navigation": {
+    "domContentLoaded": 2274,
+    "loadEventEnd": 2576,
+    "responseEnd": 2085,
+    "domInteractive": 2273,
+    "transferSize": 21755
+  },
+  "firstScript": {
+    "name": "http://localhost:3000/_next/static/chunks/webpack-347f77474357b5ae.js",
+    "initiatorType": "link",
+    "startTime": 2081,
+    "responseEnd": 2145,
+    "duration": 64,
+    "transferSize": 2033,
+    "encodedBodySize": 1733
+  },
+  "lastScript": {
+    "name": "http://localhost:3000/_next/static/chunks/2615-2798bf456a7626a1.js",
+    "initiatorType": "script",
+    "startTime": 2082,
+    "responseEnd": 2213,
+    "duration": 131,
+    "transferSize": 300,
+    "encodedBodySize": 0
+  },
+  "layoutCss": {
+    "name": "http://localhost:3000/_next/image",
+    "initiatorType": "link",
+    "startTime": 2080,
+    "responseEnd": 2160,
+    "duration": 80,
+    "transferSize": 6680,
+    "encodedBodySize": 6380
+  },
+  "scriptCount": 12,
+  "cssCount": 5,
+  "scripts": [
+    {
+      "name": "http://localhost:3000/_next/static/chunks/2658-6e8f7c7bcb670fa0.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2172,
+      "duration": 91,
+      "transferSize": 300,
+      "encodedBodySize": 0
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/fd9d1056-99fa35ef89615e3a.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2168,
+      "duration": 87,
+      "transferSize": 54042,
+      "encodedBodySize": 53742
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/111-51a5a07244b7d829.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2161,
+      "duration": 80,
+      "transferSize": 300,
+      "encodedBodySize": 0
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/5878-8f8963ef7373023b.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2156,
+      "duration": 75,
+      "transferSize": 5452,
+      "encodedBodySize": 5152
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/2972-7a2405fbd0c4774d.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2151,
+      "duration": 70,
+      "transferSize": 9009,
+      "encodedBodySize": 8709
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/2117-a3ee0af3437f6a96.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2149,
+      "duration": 68,
+      "transferSize": 32143,
+      "encodedBodySize": 31843
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/webpack-347f77474357b5ae.js",
+      "initiatorType": "link",
+      "startTime": 2081,
+      "responseEnd": 2145,
+      "duration": 64,
+      "transferSize": 2033,
+      "encodedBodySize": 1733
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/main-app-3dcd348b01712d70.js",
+      "initiatorType": "script",
+      "startTime": 2081,
+      "responseEnd": 2144,
+      "duration": 63,
+      "transferSize": 764,
+      "encodedBodySize": 464
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/2615-2798bf456a7626a1.js",
+      "initiatorType": "script",
+      "startTime": 2082,
+      "responseEnd": 2213,
+      "duration": 131,
+      "transferSize": 300,
+      "encodedBodySize": 0
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/app/page-49857069a5b35f5d.js",
+      "initiatorType": "script",
+      "startTime": 2082,
+      "responseEnd": 2213,
+      "duration": 131,
+      "transferSize": 300,
+      "encodedBodySize": 0
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/3340-56e1369fde6b01f5.js",
+      "initiatorType": "script",
+      "startTime": 2082,
+      "responseEnd": 2201,
+      "duration": 119,
+      "transferSize": 18315,
+      "encodedBodySize": 18015
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/app/layout-19b3393d682e68f5.js",
+      "initiatorType": "script",
+      "startTime": 2082,
+      "responseEnd": 2181,
+      "duration": 99,
+      "transferSize": 300,
+      "encodedBodySize": 0
+    }
+  ],
+  "css": [
+    {
+      "name": "http://localhost:3000/_next/image",
+      "initiatorType": "link",
+      "startTime": 2080,
+      "responseEnd": 2160,
+      "duration": 80,
+      "transferSize": 6680,
+      "encodedBodySize": 6380
+    },
+    {
+      "name": "http://localhost:3000/_next/image",
+      "initiatorType": "link",
+      "startTime": 2080,
+      "responseEnd": 2572,
+      "duration": 492,
+      "transferSize": 50322,
+      "encodedBodySize": 50022
+    },
+    {
+      "name": "http://localhost:3000/_next/static/css/ad08ea2136b7c6cb.css",
+      "initiatorType": "link",
+      "startTime": 2080,
+      "responseEnd": 2135,
+      "duration": 54,
+      "transferSize": 300,
+      "encodedBodySize": 0
+    },
+    {
+      "name": "http://localhost:3000/_next/static/chunks/webpack-347f77474357b5ae.js",
+      "initiatorType": "link",
+      "startTime": 2081,
+      "responseEnd": 2145,
+      "duration": 64,
+      "transferSize": 2033,
+      "encodedBodySize": 1733
+    },
+    {
+      "name": "https://fonts.googleapis.com/css2",
+      "initiatorType": "link",
+      "startTime": 2082,
+      "responseEnd": 2193,
+      "duration": 111,
+      "transferSize": 842,
+      "encodedBodySize": 542
+    }
+  ],
+  "htmlLen": 58409,
+  "bodyChildCount": 21,
+  "nextChildCount": 0,
+  "headLinks": [
+    {
+      "tag": "LINK",
+      "rel": "stylesheet",
+      "href": "/_next/static/css/ad08ea2136b7c6cb.css",
+      "blocking": true
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/fd9d1056-99fa35ef89615e3a.js",
+      "blocking": false
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/2117-a3ee0af3437f6a96.js",
+      "blocking": false
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/main-app-3dcd348b01712d70.js",
+      "blocking": false
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/2972-7a2405fbd0c4774d.js",
+      "blocking": false
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/5878-8f8963ef7373023b.js",
+      "blocking": false
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/3340-56e1369fde6b01f5.js",
+      "blocking": false
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "",
+      "blocking": false
+    },
+    {
+      "tag": "LINK",
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
+      "blocking": true
+    },
+    {
+      "tag": "SCRIPT",
+      "rel": null,
+      "href": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "blocking": false
+    }
+  ],
+  "status": "complete",
+  "cdpMetrics": {
+    "Timestamp": 46223.280744,
+    "AudioHandlers": 0,
+    "AudioWorkletProcessors": 0,
+    "Documents": 1,
+    "Frames": 1,
+    "JSEventListeners": 160,
+    "LayoutObjects": 771,
+    "MediaKeySessions": 0,
+    "MediaKeys": 0,
+    "Nodes": 895,
+    "Resources": 15,
+    "ContextLifecycleStateObservers": 17,
+    "V8PerContextDatas": 2,
+    "WorkerGlobalScopes": 0,
+    "UACSSResources": 0,
+    "RTCPeerConnections": 0,
+    "ResourceFetchers": 1,
+    "AdSubframes": 0,
+    "DetachedScriptStates": 0,
+    "ArrayBufferContents": 0,
+    "LayoutCount": 4,
+    "RecalcStyleCount": 4,
+    "LayoutDuration": 0.037136,
+    "RecalcStyleDuration": 0.002776,
+    "DevToolsCommandDuration": 0.006215,
+    "ScriptDuration": 0.214806,
+    "V8CompileDuration": 0.000929,
+    "TaskDuration": 2.639361,
+    "TaskOtherDuration": 2.377499,
+    "ThreadTime": 3.051196,
+    "ProcessTime": 5.952591,
+    "JSHeapUsedSize": 2258784,
+    "JSHeapTotalSize": 3145728,
+    "FirstMeaningfulPaint": 46102.524672,
+    "DomContentLoaded": 46102.461795,
+    "NavigationStart": 46100.188486
+  },
+  "networkSample": [
+    {
+      "url": "http://localhost:3000/_next/static/css/ad08ea2136b7c6cb.css",
+      "fullUrl": "http://localhost:3000/_next/static/css/ad08ea2136b7c6cb.css",
+      "mime": "text/html",
+      "type": "Stylesheet",
+      "status": 400
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/main-app-3dcd348b01712d70.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/main-app-3dcd348b01712d70.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/webpack-347f77474357b5ae.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/webpack-347f77474357b5ae.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/2117-a3ee0af3437f6a96.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/2117-a3ee0af3437f6a96.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/2972-7a2405fbd0c4774d.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/2972-7a2405fbd0c4774d.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/5878-8f8963ef7373023b.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/5878-8f8963ef7373023b.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/111-51a5a07244b7d829.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/111-51a5a07244b7d829.js",
+      "mime": "text/html",
+      "type": "Script",
+      "status": 400
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/fd9d1056-99fa35ef89615e3a.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/fd9d1056-99fa35ef89615e3a.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/2658-6e8f7c7bcb670fa0.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/2658-6e8f7c7bcb670fa0.js",
+      "mime": "text/html",
+      "type": "Script",
+      "status": 400
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/app/layout-19b3393d682e68f5.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/app/layout-19b3393d682e68f5.js",
+      "mime": "text/html",
+      "type": "Script",
+      "status": 400
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2",
+      "fullUrl": "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
+      "mime": "text/css",
+      "type": "Stylesheet",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/2615-2798bf456a7626a1.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/2615-2798bf456a7626a1.js",
+      "mime": "text/html",
+      "type": "Script",
+      "status": 400
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/app/page-49857069a5b35f5d.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/app/page-49857069a5b35f5d.js",
+      "mime": "text/html",
+      "type": "Script",
+      "status": 400
+    },
+    {
+      "url": "http://localhost:3000/_next/static/chunks/3340-56e1369fde6b01f5.js",
+      "fullUrl": "http://localhost:3000/_next/static/chunks/3340-56e1369fde6b01f5.js",
+      "mime": "application/javascript",
+      "type": "Script",
+      "status": 200
+    }
+  ]
+}

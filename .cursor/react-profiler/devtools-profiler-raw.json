@@ -1,0 +1,26 @@
+[
+  {
+    "route": "/",
+    "rawProfilingPayload": {
+      "dataForRoots": [],
+      "rendererID": 1,
+      "timelineData": null
+    }
+  },
+  {
+    "route": "/teams",
+    "rawProfilingPayload": {
+      "dataForRoots": [],
+      "rendererID": 1,
+      "timelineData": null
+    }
+  },
+  {
+    "route": "/rankings",
+    "rawProfilingPayload": {
+      "dataForRoots": [],
+      "rendererID": 1,
+      "timelineData": null
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "perf": {
+    "measureCount": 0,
+    "reactMeasureCount": 0,
+    "reactMeasures": [],
+    "reactMarks": [],
+    "topFibers": [],
+    "fiberCount": 0
+  },
+  "profilingData": {
+    "dataForRoots": [],
+    "rendererID": 1,
+    "timelineData": null
+  }
+}

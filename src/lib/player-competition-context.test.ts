@@ -1,9 +1,10 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
+  affiliationGameStatsFromBoardStats,
   buildCompetitionParticipationFromStats,
   formatPrimaryCompetitionLine,
-  shortenCompetitionName
+  shortenCompetitionName,
 } from "@/lib/player-competition-context";
 
 describe("player-competition-context", () => {
@@ -36,5 +37,23 @@ describe("player-competition-context", () => {
     assert.equal(summary.primary?.verifiedGameCount, 2);
     assert.equal(summary.competitionCount, 2);
     assert.equal(formatPrimaryCompetitionLine(summary.primary!), "UAAP S88 HS Boys · 2 games");
+  });
+
+  it("limits affiliation stats to the 40 most recent games", () => {
+    const stats = Array.from({ length: 45 }, (_, index) => ({
+      playerId: "p1",
+      game: {
+        gameDate: new Date(Date.UTC(2025, 0, index + 1)),
+        season: { name: "Season 88", league: { id: "l1", name: "UAAP Season 88 HS Boys Basketball", tier: 1 } },
+      },
+      team: {
+        name: "Team A",
+        program: { fullName: "School A", abbreviation: "SA", type: "SCHOOL" as const },
+      },
+    }));
+
+    const affiliation = affiliationGameStatsFromBoardStats(stats);
+    assert.equal(affiliation.length, 40);
+    assert.equal(affiliation[0]?.game?.gameDate?.toISOString().slice(0, 10), "2025-02-14");
   });
 });

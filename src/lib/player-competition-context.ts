@@ -46,6 +46,102 @@ export type GameStatWithLeague = {
   };
 };
 
+/** Fields needed for national ranking boards (affiliation + competition badges). */
+export const rankingBoardGameStatSelect = {
+  playerId: true,
+  game: {
+    select: {
+      gameDate: true,
+      season: {
+        select: {
+          name: true,
+          league: { select: { id: true, name: true, tier: true } },
+        },
+      },
+    },
+  },
+  team: {
+    select: {
+      name: true,
+      program: { select: { fullName: true, abbreviation: true, type: true } },
+    },
+  },
+} as const;
+
+export type RankingBoardGameStat = {
+  playerId: string;
+  game: GameStatWithLeague["game"];
+  team: {
+    name: string;
+    program: {
+      fullName: string;
+      abbreviation: string | null;
+      type: import("@prisma/client").ProgramType;
+    } | null;
+  };
+};
+
+const rankingBoardGameStatWhere = {
+  deletedAt: null,
+  game: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } },
+} as const;
+
+const AFFILIATION_GAME_STAT_LIMIT = 40;
+
+export function groupRankingBoardGameStatsByPlayerId(
+  stats: RankingBoardGameStat[]
+): Map<string, RankingBoardGameStat[]> {
+  const grouped = new Map<string, RankingBoardGameStat[]>();
+  for (const stat of stats) {
+    const bucket = grouped.get(stat.playerId) ?? [];
+    bucket.push(stat);
+    grouped.set(stat.playerId, bucket);
+  }
+  return grouped;
+}
+
+/** Match prior nested `gameStats` take:40 order for affiliation labels. */
+export function affiliationGameStatsFromBoardStats(stats: RankingBoardGameStat[]) {
+  return [...stats]
+    .sort((left, right) => right.game.gameDate.getTime() - left.game.gameDate.getTime())
+    .slice(0, AFFILIATION_GAME_STAT_LIMIT)
+    .map((stat) => ({
+      team: stat.team,
+      game: { gameDate: stat.game.gameDate },
+    }));
+}
+
+export function buildParticipationMapFromBoardStats(
+  playerIds: string[],
+  statsByPlayer: Map<string, RankingBoardGameStat[]>
+): Map<string, CompetitionParticipationSummary> {
+  const result = new Map<string, CompetitionParticipationSummary>();
+  for (const playerId of playerIds) {
+    const stats = statsByPlayer.get(playerId) ?? [];
+    result.set(
+      playerId,
+      buildCompetitionParticipationFromStats(stats.map((stat) => ({ game: stat.game })))
+    );
+  }
+  return result;
+}
+
+export async function loadRankingBoardGameStatsByPlayerIds(
+  playerIds: string[]
+): Promise<Map<string, RankingBoardGameStat[]>> {
+  if (!playerIds.length) return new Map();
+
+  const stats = await prisma.gameStat.findMany({
+    where: {
+      playerId: { in: playerIds },
+      ...rankingBoardGameStatWhere,
+    },
+    select: rankingBoardGameStatSelect,
+  });
+
+  return groupRankingBoardGameStatsByPlayerId(stats);
+}
+
 export function shortenCompetitionName(name: string): string {
   const normalized = normalizeCompetitionDisplayName(name);
   return normalized
@@ -135,43 +231,8 @@ export function buildCompetitionParticipationFromStats(
 export async function loadCompetitionParticipationByPlayerIds(
   playerIds: string[]
 ): Promise<Map<string, CompetitionParticipationSummary>> {
-  const result = new Map<string, CompetitionParticipationSummary>();
-  if (!playerIds.length) return result;
-
-  const stats = await prisma.gameStat.findMany({
-    where: {
-      playerId: { in: playerIds },
-      deletedAt: null,
-      game: { deletedAt: null, season: { deletedAt: null, league: { deletedAt: null } } }
-    },
-    select: {
-      playerId: true,
-      game: {
-        select: {
-          gameDate: true,
-          season: {
-            select: {
-              name: true,
-              league: { select: { id: true, name: true, tier: true } }
-            }
-          }
-        }
-      }
-    }
-  });
-
-  const grouped = new Map<string, GameStatWithLeague[]>();
-  for (const stat of stats) {
-    const bucket = grouped.get(stat.playerId) ?? [];
-    bucket.push({ game: stat.game });
-    grouped.set(stat.playerId, bucket);
-  }
-
-  for (const playerId of playerIds) {
-    result.set(playerId, buildCompetitionParticipationFromStats(grouped.get(playerId) ?? []));
-  }
-
-  return result;
+  const statsByPlayer = await loadRankingBoardGameStatsByPlayerIds(playerIds);
+  return buildParticipationMapFromBoardStats(playerIds, statsByPlayer);
 }
 
 export function primaryCompetitionFromSummary(

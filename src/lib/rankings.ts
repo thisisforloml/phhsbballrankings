@@ -1,21 +1,34 @@
 import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { cache } from "react";
 import { slugify } from "./format";
-import { resolvePrimaryRankingAffiliation } from "./player-display-affiliation";
+import { resolvePrimaryRankingAffiliation, type GameStatAffiliationRef } from "./player-display-affiliation";
 import { buildEligibilityInput, evaluateEligibility, type EligibilityVerdict } from "./eligibility";
 import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
 import { prisma } from "./prisma";
 import { getPublicBoardRows, normalizePublicBoardPosition } from "./public-board-ranks";
 import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
 import {
-  loadCompetitionParticipationByPlayerIds,
+  affiliationGameStatsFromBoardStats,
+  buildParticipationMapFromBoardStats,
+  loadRankingBoardGameStatsByPlayerIds,
   primaryCompetitionFromSummary,
   type PrimaryCompetition,
 } from "./player-competition-context";
+import {
+  isPostPrismaProfileEnabled,
+  postPrismaCount,
+  postPrismaMark,
+} from "./post-prisma-profile";
+import { runWithConcurrency } from "./run-with-concurrency";
 
 const defaultAgeGroup = AgeGroup.U19;
 const rankingAgeGroups = [AgeGroup.U13, AgeGroup.U16, AgeGroup.U19] as const;
 const HOME_BOARD_DISPLAY_LIMIT = 10;
+/** Max independent boards loaded at once (each board uses several sequential Prisma calls). */
+const RANKINGS_BOARD_CONCURRENCY = Math.max(
+  1,
+  Number.parseInt(process.env.RANKINGS_BOARD_CONCURRENCY ?? "3", 10) || 3
+);
 
 const playerRatingPlayerSelect = {
   id: true,
@@ -34,14 +47,21 @@ const playerRatingPlayerSelect = {
   currentProgram: { select: { fullName: true, abbreviation: true, type: true } },
 } as const;
 
-const playerRatingPlayerSelectWithGameStats = {
+const playerAffiliationGameStatsSelect = {
+  team: {
+    select: {
+      name: true,
+      program: { select: { fullName: true, abbreviation: true, type: true } },
+    },
+  },
+  game: { select: { gameDate: true } },
+} as const;
+
+const playerRatingPlayerSelectForHomePreview = {
   ...playerRatingPlayerSelect,
   gameStats: {
     where: { deletedAt: null },
-    include: {
-      team: { include: { program: { select: { fullName: true, abbreviation: true, type: true } } } },
-      game: { select: { gameDate: true } },
-    },
+    select: playerAffiliationGameStatsSelect,
     orderBy: { game: { gameDate: "desc" } },
     take: 40,
   },
@@ -129,10 +149,20 @@ type ActiveRatingFilter = Awaited<ReturnType<typeof resolveActivePlayerRatingFil
 type PlayerRatingWithPlayer = Awaited<
   ReturnType<
     typeof prisma.playerRating.findMany<{
-      include: { player: { select: typeof playerRatingPlayerSelectWithGameStats } };
+      include: { player: { select: typeof playerRatingPlayerSelect } };
     }>
   >
->[number];
+>[number] & {
+  player: Awaited<
+    ReturnType<
+      typeof prisma.playerRating.findMany<{
+        include: { player: { select: typeof playerRatingPlayerSelect } };
+      }>
+    >
+  >[number]["player"] & {
+    gameStats?: GameStatAffiliationRef[] | null;
+  };
+};
 
 function playerRatingBoardWhere(
   gender: PlayerGender,
@@ -216,31 +246,87 @@ async function getLatestSnapshot(
   const activeFormulaVersionId = ratingFilter.formulaVersionId ?? formulaVersionId;
   if (!activeFormulaVersionId) return emptySnapshot(gender, null, ageGroup);
 
-  const latestSnapshot = await prisma.rankingSnapshot.findFirst({
-    where: {
-      scope: RankingScope.NATIONAL,
-      ageGroup: ageGroup as AgeGroup,
-      gender,
-      formulaVersionId: activeFormulaVersionId,
-      city: null,
-      region: null
-    },
-    orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }]
-  });
-
-  const ratings = await prisma.playerRating.findMany({
-    where: playerRatingBoardWhere(gender, ageGroup, ratingFilter, activeFormulaVersionId),
-    include: {
-      player: {
-        select: playerRatingPlayerSelectWithGameStats,
+  const [latestSnapshot, ratings] = await Promise.all([
+    prisma.rankingSnapshot.findFirst({
+      where: {
+        scope: RankingScope.NATIONAL,
+        ageGroup: ageGroup as AgeGroup,
+        gender,
+        formulaVersionId: activeFormulaVersionId,
+        city: null,
+        region: null,
       },
-    },
-    orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }],
+      orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
+    }),
+    prisma.playerRating.findMany({
+      where: playerRatingBoardWhere(gender, ageGroup, ratingFilter, activeFormulaVersionId),
+      include: {
+        player: {
+          select: playerRatingPlayerSelect,
+        },
+      },
+      orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }],
+    }),
+  ]);
+
+  const playerIds = ratings.map((rating) => rating.playerId);
+  const statsByPlayer = await loadRankingBoardGameStatsByPlayerIds(playerIds);
+  postPrismaMark(`prisma.finished.${ageGroup}.${gender}`, {
+    ratings: ratings.length,
+    gameStatPlayers: statsByPlayer.size,
   });
 
-  const participationByPlayer = await loadCompetitionParticipationByPlayerIds(
-    ratings.map((rating) => rating.playerId)
-  );
+  const participationByPlayer = buildParticipationMapFromBoardStats(playerIds, statsByPlayer);
+  if (isPostPrismaProfileEnabled()) {
+    postPrismaCount("participationMapPlayers", playerIds.length);
+    postPrismaMark(`transform.participationMap.${ageGroup}.${gender}`, {
+      players: playerIds.length,
+    });
+  }
+
+  let mapNationalRankingRowMs = 0;
+  const rows = ratings.map((rating, index) => {
+    const boardStats = statsByPlayer.get(rating.playerId) ?? [];
+    const mapStart = isPostPrismaProfileEnabled() ? performance.now() : 0;
+    if (isPostPrismaProfileEnabled()) {
+      postPrismaCount("affiliationTransforms");
+      postPrismaCount("affiliationSortOps", boardStats.length > 1 ? boardStats.length * Math.log2(boardStats.length) : 0);
+      postPrismaCount("ratingSpreadCopies");
+      postPrismaCount("mapNationalRankingRowCalls");
+    }
+    const row = mapNationalRankingRow(
+      {
+        ...rating,
+        player: {
+          ...rating.player,
+          gameStats: affiliationGameStatsFromBoardStats(boardStats),
+        },
+      },
+      index,
+      ageGroup,
+      activeFormulaVersionId,
+      primaryCompetitionFromSummary(
+        participationByPlayer.get(rating.playerId) ?? {
+          primary: null,
+          totalVerifiedGames: 0,
+          competitionCount: 0,
+          competitions: [],
+        }
+      )
+    );
+    if (isPostPrismaProfileEnabled()) {
+      mapNationalRankingRowMs += performance.now() - mapStart;
+    }
+    return row;
+  });
+
+  if (isPostPrismaProfileEnabled()) {
+    postPrismaMark(`transform.mapNationalRankingRow.${ageGroup}.${gender}`, {
+      rows: rows.length,
+      totalMs: mapNationalRankingRowMs,
+      avgMsPerRow: rows.length ? mapNationalRankingRowMs / rows.length : 0,
+    });
+  }
 
   return {
     snapshotId: latestSnapshot?.id ?? null,
@@ -249,38 +335,50 @@ async function getLatestSnapshot(
     weekOf: latestSnapshot?.weekOf.toISOString() ?? null,
     formulaVersionId: activeFormulaVersionId,
     totalRows: ratings.length,
-    rows: ratings.map((rating, index) =>
-      mapNationalRankingRow(
-        rating,
-        index,
-        ageGroup,
-        activeFormulaVersionId,
-        primaryCompetitionFromSummary(
-          participationByPlayer.get(rating.playerId) ?? {
-            primary: null,
-            totalVerifiedGames: 0,
-            competitionCount: 0,
-            competitions: [],
-          }
-        )
-      )
-    ),
+    rows,
   };
 }
 
 async function buildLatestNationalRankings(
   ageGroups: readonly RankingAgeGroup[]
 ): Promise<LatestNationalRankings> {
+  postPrismaMark("loader.buildLatestNationalRankings.start", {
+    ageGroups: [...ageGroups],
+    boardConcurrency: RANKINGS_BOARD_CONCURRENCY,
+  });
   const ratingFilter = await resolveActivePlayerRatingFilter();
   const formulaVersionId = ratingFilter.formulaVersionId;
-  const snapshotsByAge = {} as Record<RankingAgeGroup, { boys: NationalRankingSnapshot; girls: NationalRankingSnapshot }>;
 
+  const boardJobs = ageGroups.flatMap((ageGroup) => [
+    { ageGroup, gender: PlayerGender.BOYS },
+    { ageGroup, gender: PlayerGender.GIRLS },
+  ]);
+
+  const loadedBoards = await runWithConcurrency(
+    boardJobs,
+    RANKINGS_BOARD_CONCURRENCY,
+    async ({ ageGroup, gender }) => {
+      const snapshot = await getLatestSnapshot(gender, formulaVersionId, ageGroup, ratingFilter);
+      return { ageGroup, gender, snapshot };
+    }
+  );
+
+  const boardByKey = new Map(
+    loadedBoards.map((board) => [`${board.ageGroup}:${board.gender}`, board.snapshot] as const)
+  );
+
+  const snapshotsByAge = {} as Record<RankingAgeGroup, { boys: NationalRankingSnapshot; girls: NationalRankingSnapshot }>;
   for (const ageGroup of ageGroups) {
-    const boys = await getLatestSnapshot(PlayerGender.BOYS, formulaVersionId, ageGroup, ratingFilter);
-    const girls = await getLatestSnapshot(PlayerGender.GIRLS, formulaVersionId, ageGroup, ratingFilter);
+    const boys = boardByKey.get(`${ageGroup}:${PlayerGender.BOYS}`)!;
+    const girls = boardByKey.get(`${ageGroup}:${PlayerGender.GIRLS}`)!;
     snapshotsByAge[ageGroup] = { boys, girls };
+    postPrismaMark(`loader.boardPair.done.${ageGroup}`, {
+      boysRows: boys.rows.length,
+      girlsRows: girls.rows.length,
+    });
   }
 
+  postPrismaMark("loader.buildLatestNationalRankings.done");
   return {
     formulaVersionId,
     snapshots: snapshotsByAge[defaultAgeGroup as RankingAgeGroup],
@@ -327,7 +425,7 @@ async function fetchHomeGenderBoard(
       where: playerRatingBoardWhere(gender, ageGroup, ratingFilter, formulaVersionId),
       include: {
         player: {
-          select: playerRatingPlayerSelectWithGameStats,
+          select: playerRatingPlayerSelectForHomePreview,
         },
       },
       orderBy: [{ adjustedRating: "desc" }, { verifiedGameCount: "desc" }, { player: { displayName: "asc" } }],

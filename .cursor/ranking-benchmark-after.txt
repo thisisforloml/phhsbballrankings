@@ -1,0 +1,311 @@
+﻿node.exe : npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm 
+help npmrc` for supported config options.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn Unknow...config options.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+=== Ranking Pipeline Profiler ===
+
+{"label":"resolveActivePlayerRatingFilter","elapsedMs":1239,"queries":1,"queryBreakdown":[{"key":"FormulaVersion.findUnique","count":1,"ms":1236,"rows":0}],"result":{"formulaVersionId":"b8bbcc82-e240-4af6-9d71-84293fdc8b86","policyVersionId":"formula-v1-tier-normalized-soft-v1"}}
+{
+  "label": "getHomeNationalBoardPreview",
+  "elapsedMs": 2697,
+  "boysCount": 493,
+  "girlsCount": 56,
+  "previewRows": 20,
+  "embeddedGameStats": 237,
+  "snapshotsFound": 2,
+  "queries": 6,
+  "queryBreakdown": [
+    {
+      "key": "PlayerRating.findMany",
+      "count": 2,
+      "ms": 5284,
+      "rows": 20
+    },
+    {
+      "key": "PlayerRating.count",
+      "count": 2,
+      "ms": 2799,
+      "rows": 549
+    },
+    {
+      "key": "RankingSnapshot.findFirst",
+      "count": 2,
+      "ms": 2005,
+      "rows": 0
+    }
+  ]
+}
+
+{
+  "label": "getLatestNationalRankings",
+  "elapsedMs": 12328,
+  "snapshots": [
+    {
+      "label": "getLatestSnapshot U13/BOYS",
+      "elapsedMs": 2916,
+      "ratingRows": 136,
+      "embeddedGameStats": 0,
+      "participationGameStatRows": 900
+    },
+    {
+      "label": "getLatestSnapshot U13/GIRLS",
+      "elapsedMs": 746,
+      "ratingRows": 0,
+      "embeddedGameStats": 0,
+      "participationGameStatRows": 0
+    },
+    {
+      "label": "getLatestSnapshot U16/BOYS",
+      "elapsedMs": 2737,
+      "ratingRows": 262,
+      "embeddedGameStats": 0,
+      "participationGameStatRows": 2637
+    },
+    {
+      "label": "getLatestSnapshot U16/GIRLS",
+      "elapsedMs": 668,
+      "ratingRows": 0,
+      "embeddedGameStats": 0,
+      "participationGameStatRows": 0
+    },
+    {
+      "label": "getLatestSnapshot U19/BOYS",
+      "elapsedMs": 2696,
+      "ratingRows": 493,
+      "embeddedGameStats": 0,
+      "participationGameStatRows": 5919
+    },
+    {
+      "label": "getLatestSnapshot U19/GIRLS",
+      "elapsedMs": 2564,
+      "ratingRows": 56,
+      "embeddedGameStats": 0,
+      "participationGameStatRows": 331
+    }
+  ],
+  "totalRatingRows": 947,
+  "totalEmbeddedGameStats": 0,
+  "totalParticipationRows": 9787,
+  "queries": 16,
+  "queryBreakdown": [
+    {
+      "key": "GameStat.findMany",
+      "count": 4,
+      "ms": 6401,
+      "rows": 9787
+    },
+    {
+      "key": "PlayerRating.findMany",
+      "count": 6,
+      "ms": 3761,
+      "rows": 947
+    },
+    {
+      "key": "RankingSnapshot.findFirst",
+      "count": 6,
+      "ms": 2047,
+      "rows": 0
+    }
+  ]
+}
+
+{
+  "label": "getHomeData (non-ranking extras)",
+  "elapsedMs": 1024,
+  "gamesForCounts": 405,
+  "moverSnapshotRows": 525,
+  "recentGameRows": 9,
+  "queries": 4,
+  "queryBreakdown": [
+    {
+      "key": "Game.findMany",
+      "count": 2,
+      "ms": 1040,
+      "rows": 414
+    },
+    {
+      "key": "RankingSnapshot.findMany",
+      "count": 1,
+      "ms": 407,
+      "rows": 2
+    },
+    {
+      "key": "RankingSnapshotRow.findMany",
+      "count": 1,
+      "ms": 387,
+      "rows": 525
+    }
+  ]
+}
+
+{
+  "label": "getDynamicTeamStandings (/teams)",
+  "elapsedMs": 1282,
+  "gameRows": 405,
+  "queries": 1,
+  "queryBreakdown": [
+    {
+      "key": "Game.findMany",
+      "count": 1,
+      "ms": 1278,
+      "rows": 405
+    }
+  ]
+}
+
+{
+  "label": "getValidatedDbGames (/games)",
+  "elapsedMs": 4035,
+  "gameRows": 405,
+  "gameStatRows": 9391,
+  "queries": 1,
+  "queryBreakdown": [
+    {
+      "key": "Game.findMany",
+      "count": 1,
+      "ms": 3967,
+      "rows": 405
+    }
+  ]
+}
+
+{
+  "label": "getPublicLeagues (/leagues)",
+  "elapsedMs": 1087,
+  "leagueRows": 8,
+  "gameRows": 405,
+  "queries": 1,
+  "queryBreakdown": [
+    {
+      "key": "League.findMany",
+      "count": 1,
+      "ms": 1085,
+      "rows": 8
+    }
+  ]
+}
+
+=== Flame graph (cumulative ms, getLatestNationalRankings) ===
+
+[
+  {
+    "name": "U13/BOYS",
+    "ms": 2916,
+    "children": [
+      {
+        "name": "GameStat.findMany",
+        "ms": 1584,
+        "rows": 900
+      },
+      {
+        "name": "PlayerRating.findMany",
+        "ms": 941,
+        "rows": 136
+      },
+      {
+        "name": "RankingSnapshot.findFirst",
+        "ms": 371,
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "name": "U13/GIRLS",
+    "ms": 746,
+    "children": [
+      {
+        "name": "PlayerRating.findMany",
+        "ms": 375,
+        "rows": 0
+      },
+      {
+        "name": "RankingSnapshot.findFirst",
+        "ms": 370,
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "name": "U16/BOYS",
+    "ms": 2737,
+    "children": [
+      {
+        "name": "GameStat.findMany",
+        "ms": 1682,
+        "rows": 2637
+      },
+      {
+        "name": "PlayerRating.findMany",
+        "ms": 676,
+        "rows": 262
+      },
+      {
+        "name": "RankingSnapshot.findFirst",
+        "ms": 351,
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "name": "U16/GIRLS",
+    "ms": 668,
+    "children": [
+      {
+        "name": "PlayerRating.findMany",
+        "ms": 341,
+        "rows": 0
+      },
+      {
+        "name": "RankingSnapshot.findFirst",
+        "ms": 327,
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "name": "U19/BOYS",
+    "ms": 2696,
+    "children": [
+      {
+        "name": "GameStat.findMany",
+        "ms": 1597,
+        "rows": 5919
+      },
+      {
+        "name": "PlayerRating.findMany",
+        "ms": 726,
+        "rows": 493
+      },
+      {
+        "name": "RankingSnapshot.findFirst",
+        "ms": 309,
+        "rows": 0
+      }
+    ]
+  },
+  {
+    "name": "U19/GIRLS",
+    "ms": 2564,
+    "children": [
+      {
+        "name": "GameStat.findMany",
+        "ms": 1538,
+        "rows": 331
+      },
+      {
+        "name": "PlayerRating.findMany",
+        "ms": 703,
+        "rows": 56
+      },
+      {
+        "name": "RankingSnapshot.findFirst",
+        "ms": 319,
+        "rows": 0
+      }
+    ]
+  }
+]
