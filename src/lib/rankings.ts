@@ -394,15 +394,23 @@ export async function buildLatestNationalRankingsLive(
 async function getLatestNationalRankingsWithFallback(): Promise<LatestNationalRankings> {
   if (process.env.RANKINGS_READ_FROM_SNAPSHOTS === "1") {
     try {
+      console.error("[RANKINGS_LOADER_VERIFY] SNAPSHOT LOADER");
       const { buildLatestNationalRankingsFromSnapshots } = await import("./rankings-snapshot-read");
       return await buildLatestNationalRankingsFromSnapshots(rankingAgeGroups);
     } catch (error) {
+      console.error("[RANKINGS_LOADER_VERIFY] SNAPSHOT LOADER failed — falling back to LIVE LOADER", {
+        reason: error instanceof Error ? error.name : "unknown",
+        message: error instanceof Error ? error.message : String(error),
+      });
       postPrismaMark("loader.snapshotRead.fallback", {
         reason: error instanceof Error ? error.name : "unknown",
         message: error instanceof Error ? error.message : String(error),
       });
     }
   }
+  console.error("[RANKINGS_LOADER_VERIFY] LIVE LOADER", {
+    RANKINGS_READ_FROM_SNAPSHOTS: process.env.RANKINGS_READ_FROM_SNAPSHOTS ?? "(unset)",
+  });
   return buildLatestNationalRankingsLive(rankingAgeGroups);
 }
 
