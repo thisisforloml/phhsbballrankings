@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
+import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 import { slugify } from "@/lib/format";
 
 export type ProgramActionState = {
@@ -54,7 +55,7 @@ function revalidatePlayerProgramPaths(programId: string, player: { id: string; d
   revalidatePath(`/admin/programs/${nextProgramId}`);
   if (player.currentProgramId) revalidatePath(`/admin/programs/${player.currentProgramId}`);
   revalidatePath("/admin/players");
-  revalidatePath("/rankings");
+  revalidatePublicRankingSurfaces();
   revalidatePath(`/players/${slugify(player.displayName)}`);
   revalidatePath(`/players/${player.id}`);
 }
@@ -82,8 +83,7 @@ export async function updateProgram(_previousState: ProgramActionState = initial
     revalidatePath("/admin/programs");
     revalidatePath(`/admin/programs/${programId}`);
     revalidatePath("/admin/teams");
-    revalidatePath("/teams");
-    revalidatePath("/rankings");
+    revalidatePublicRankingSurfaces();
     return { ok: true, message: "Program updated." };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update program." };
@@ -107,8 +107,7 @@ export async function updateProgramTeam(_previousState: ProgramActionState = ini
     revalidatePath("/admin/programs");
     revalidatePath(`/admin/programs/${programId}`);
     revalidatePath("/admin/teams");
-    revalidatePath("/teams");
-    revalidatePath("/rankings");
+    revalidatePublicRankingSurfaces();
     return { ok: true, message: "Team / moniker updated." };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update team." };

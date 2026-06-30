@@ -4,6 +4,7 @@ import {
   regenerateNationalRankingSnapshots,
   type NationalRankingBoard
 } from "@/lib/rankings/national-snapshot-regeneration";
+import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import {
   projectHomeBoardTierNormalizedRatings,
@@ -31,9 +32,7 @@ export async function syncDerivedRatingsAfterEvidenceChange(options: SyncDerived
   }
 
   if (options.revalidatePublicPaths !== false) {
-    revalidatePath("/rankings");
-    revalidatePath("/teams");
-    revalidatePath("/search");
+    revalidatePublicRankingSurfaces();
     revalidatePath("/admin/players");
     revalidatePath("/admin/team-ratings");
   }

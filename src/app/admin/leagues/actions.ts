@@ -77,8 +77,6 @@ async function refreshDerivedRatingsAfterLeagueEvidenceChange(input: {
   await syncDerivedRatingsAfterEvidenceChange({ allSnapshots: true });
   revalidatePath("/admin/leagues");
   revalidatePath(`/admin/leagues/${input.leagueId}`);
-  revalidatePath("/rankings");
-  revalidatePath("/teams");
 }
 
 export async function updateLeagueMetadata(_previous: LeagueActionState, formData: FormData): Promise<LeagueActionState> {

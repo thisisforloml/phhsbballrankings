@@ -3,6 +3,7 @@ import { ProgramType, type Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { slugify } from "@/lib/format";
 import { resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
+import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 
 type SchoolChangeMode = "ASSIGN" | "TRANSFER";
 
@@ -163,6 +164,7 @@ export async function updatePlayerSchoolAssignment(input: SchoolAssignmentInput)
 
   revalidatePath("/admin/players");
   revalidatePath("/admin/programs");
+  revalidatePublicRankingSurfaces();
   revalidatePath(`/players/${slugify(player.displayName)}`);
 
   return {

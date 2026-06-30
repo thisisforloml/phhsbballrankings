@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getHomeData, getPublicTrustMeta } from "@/lib/public-site-data";
 import { HomeClient } from "./HomeClient";
 
-export const dynamic = "force-dynamic";
+/** Homepage data changes on admin publish, not per-request. Revalidate on demand via revalidatePublicRankingSurfaces(). */
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Peach Basket",

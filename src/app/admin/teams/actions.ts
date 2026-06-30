@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 
 export type UpdateTeamState = {
   ok: boolean;
@@ -41,9 +42,7 @@ export async function updateTeamBio(_previousState: UpdateTeamState, formData: F
     });
 
     revalidatePath("/admin/teams");
-    revalidatePath("/rankings");
-    revalidatePath("/teams");
-    revalidatePath("/leagues");
+    revalidatePublicRankingSurfaces();
 
     return { ok: true, message: "Team updated.", teamId };
   } catch (error) {

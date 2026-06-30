@@ -6,6 +6,7 @@ import path from "node:path";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireAdminUser } from "@/lib/portal-auth";
+import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 import { slugify } from "@/lib/format";
 import { getClassYear } from "@/lib/ranking-eligibility";
 import { updatePlayerSchoolAssignment } from "@/lib/admin/player-school-transfer";
@@ -218,7 +219,7 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
     revalidatePath("/admin/players");
     revalidatePath("/admin/programs");
     revalidatePath("/portal/players");
-    revalidatePath("/rankings");
+    revalidatePublicRankingSurfaces();
     revalidatePath(`/players/${slugify(existingPlayer.displayName)}`);
     revalidatePath(`/players/${slugify(displayName)}`);
     revalidatePath(`/players/${playerId}`);
