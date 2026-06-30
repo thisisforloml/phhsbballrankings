@@ -1,8 +1,7 @@
 import "server-only";
 
 import { AgeGroup } from "@prisma/client";
-import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
-import { boxEfficiencyFromStat } from "@/lib/player-profile-build";
+import { loadPeerProduction } from "@/lib/player-profile-peer-production";
 import type {
   PlayerProfileAverages,
   PlayerProfileGame,
@@ -26,19 +25,6 @@ type LoadedGameStat = {
     seasonId: string;
     season: { id: string; name: string; league: { name: string; tier: number } };
   };
-};
-
-type PeerProduction = {
-  games: number;
-  ppg: number;
-  rpg: number;
-  apg: number;
-  spg: number;
-  bpg: number;
-  tov: number;
-  mpg: number | null;
-  boxEfficiency: number;
-  trueShootingPct: number | null;
 };
 
 function roundOne(value: number) {
@@ -107,81 +93,6 @@ function buildStrengthBadges(percentiles: PlayerProfileIntelligence["percentiles
                   : "Shooter",
       reason: `${item.label} ranks in the ${item.percentile}th percentile on the ${item.comparisonCount}-player board sample.`,
     }));
-}
-
-async function loadPeerProduction(ageGroup: AgeGroup, gender: "BOYS" | "GIRLS"): Promise<PeerProduction[]> {
-  const policyVersionId = getActivePolicyVersionId();
-  const ratings = await prisma.playerRating.findMany({
-    where: {
-      policyVersionId,
-      ageGroup,
-      player: {
-        deletedAt: null,
-        gender,
-      },
-    },
-    select: {
-      player: {
-        select: {
-          gameStats: {
-            where: {
-              deletedAt: null,
-              performanceScores: {
-                some: {
-                  deletedAt: null,
-                  formulaVersion: { versionNumber: 1 },
-                },
-              },
-            },
-            select: {
-              points: true,
-              rebounds: true,
-              assists: true,
-              steals: true,
-              blocks: true,
-              turnovers: true,
-              minutes: true,
-              fieldGoalsAttempt: true,
-              freeThrowsAttempt: true,
-            },
-          },
-        },
-      },
-    },
-  });
-
-  return ratings
-    .map((rating) => {
-      const stats = rating.player.gameStats;
-      if (stats.length < 3) return null;
-      const games = stats.length;
-      const minutes = stats
-        .map((stat) => (stat.minutes ? stat.minutes.toNumber() : null))
-        .filter((value): value is number => value !== null);
-      const tsValues = stats
-        .map((stat) => {
-          const fga = stat.fieldGoalsAttempt ?? 0;
-          const fta = stat.freeThrowsAttempt ?? 0;
-          if (!fga && !fta) return null;
-          const denominator = 2 * (fga + 0.44 * fta);
-          return denominator > 0 ? (stat.points / denominator) * 100 : null;
-        })
-        .filter((value): value is number => value !== null);
-
-      return {
-        games,
-        ppg: stats.reduce((sum, stat) => sum + stat.points, 0) / games,
-        rpg: stats.reduce((sum, stat) => sum + stat.rebounds, 0) / games,
-        apg: stats.reduce((sum, stat) => sum + stat.assists, 0) / games,
-        spg: stats.reduce((sum, stat) => sum + (stat.steals ?? 0), 0) / games,
-        bpg: stats.reduce((sum, stat) => sum + (stat.blocks ?? 0), 0) / games,
-        tov: stats.reduce((sum, stat) => sum + (stat.turnovers ?? 0), 0) / games,
-        mpg: minutes.length ? minutes.reduce((sum, value) => sum + value, 0) / minutes.length : null,
-        boxEfficiency: stats.reduce((sum, stat) => sum + boxEfficiencyFromStat(stat), 0) / games,
-        trueShootingPct: tsValues.length ? tsValues.reduce((sum, value) => sum + value, 0) / tsValues.length : null,
-      };
-    })
-    .filter((item): item is PeerProduction => item !== null);
 }
 
 function resolvePrimarySeasonId(gameStats: LoadedGameStat[], leagues: PlayerProfileLeague[]) {

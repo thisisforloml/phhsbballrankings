@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-06-30T15:02:32.586Z",
+  "ageGroup": "U19",
+  "gender": "BOYS",
+  "before": {
+    "strategy": "legacy (playerRating.findMany + nested gameStats)",
+    "loaderMs": 911,
+    "prismaQueryCount": 0,
+    "prismaQueryMs": 0,
+    "ratingRows": 493,
+    "nestedGameStatRows": 5881,
+    "peerCount": 467
+  },
+  "after": {
+    "strategy": "aggregated (single $queryRaw GROUP BY)",
+    "loaderMs": 257,
+    "prismaQueryCount": 0,
+    "prismaQueryMs": 0,
+    "rowsLoaded": 467,
+    "peerCount": 467
+  },
+  "delta": {
+    "loaderMsSaved": 654,
+    "loaderPctFaster": 72,
+    "nestedGameStatRowsEliminated": 5414,
+    "prismaQueriesSaved": 0
+  },
+  "fullProfileLoader": {
+    "slug": "jude-eriobu",
+    "loaderMs": 2230,
+    "prismaQueryCount": 0,
+    "prismaQueryMs": 0,
+    "comparisonCount": 467,
+    "gamesPlayed": 16
+  }
+}
