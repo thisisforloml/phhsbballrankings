@@ -1,0 +1,1140 @@
+{
+  "generatedAt": "2026-06-30T15:14:32.637Z",
+  "route": "/players/[slug]",
+  "slug": "jude-eriobu",
+  "investigationScope": "read-only measurement; no application code changes",
+  "database": {
+    "host": {
+      "host": "aws-1-ap-southeast-1.pooler.supabase.com",
+      "port": "6543",
+      "pgbouncer": true,
+      "mode": "transaction-pooler"
+    },
+    "dataset": {
+      "players": 927,
+      "gameStats": 9391,
+      "playerRatings": 2004,
+      "snapshotRows": 872
+    },
+    "note": "Local script uses DATABASE_URL from .env — compare host/mode to Vercel production env."
+  },
+  "local": {
+    "appLoaderMs": 3047,
+    "profileMeta": {
+      "gamesPlayed": 16,
+      "comparisonCount": 467,
+      "ageGroup": "U19",
+      "gender": "BOYS",
+      "jsonBytes": 24698
+    },
+    "phaseWallClock": [
+      {
+        "phase": "loadPlayerById",
+        "durationMs": 1419,
+        "querySummary": {
+          "queryCount": 17,
+          "overheadMs": 105,
+          "dataMs": 1014,
+          "overheadPct": 9,
+          "phases": [
+            {
+              "phase": "loadPlayerById",
+              "count": 17,
+              "totalMs": 1119,
+              "overheadMs": 105,
+              "dataMs": 1014
+            }
+          ],
+          "signatures": [
+            {
+              "signature": "raw.select",
+              "count": 14,
+              "totalMs": 1014,
+              "maxMs": 76,
+              "sampleSql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…"
+            },
+            {
+              "signature": "pgbouncer.pooler-transaction",
+              "count": 3,
+              "totalMs": 105,
+              "maxMs": 35,
+              "sampleSql": "BEGIN"
+            }
+          ],
+          "slowest": [
+            {
+              "phase": "loadPlayerById",
+              "seq": 15,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 76,
+              "sql": "SELECT \"public\".\"seasons\".\"id\", \"public\".\"seasons\".\"leagueId\", \"public\".\"seasons\".\"name\", \"public\".\"seasons\".\"seasonYear\", \"public\".\"seasons\".\"status\"::text, \"public\".\"seasons\".\"startsOn\", \"public\".\"seasons\".\"endsOn\", \"public\".\"seasons\".\"createdAt\", \"public\".\"seasons\".\"updatedAt\", \"public\".\"seasons\".\"deletedAt\" FROM \"public\".\"seasons\" WHERE \"public\".\"seasons\".\"id\" IN ($1) OFFSET $2",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 11,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 74,
+              "sql": "SELECT \"public\".\"game_performance_scores\".\"id\", \"public\".\"game_performance_scores\".\"gameId\", \"public\".\"game_performance_scores\".\"gameStatId\", \"public\".\"game_performance_scores\".\"playerId\", \"public\".\"game_performance_scores\".\"formulaVersionId\", \"public\".\"game_performance_scores\".\"productionScore\", \"public\".\"game_performance_scores\".\"leagueWeight\", \"public\".\"game_performance_scores\".\"opponentFactor\", \"public\".\"game_performance_scores\".\"teamFactor\", \"public\".\"game_performance_scores\".\"performanceSc…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 6,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 73,
+              "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" LEFT JOIN \"public\".\"ranking_snapshots…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 8,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 73,
+              "sql": "SELECT \"public\".\"game_stats\".\"id\", \"public\".\"game_stats\".\"gameId\", \"public\".\"game_stats\".\"playerId\", \"public\".\"game_stats\".\"teamId\", \"public\".\"game_stats\".\"jerseyNumber\", \"public\".\"game_stats\".\"starter\", \"public\".\"game_stats\".\"minutes\", \"public\".\"game_stats\".\"points\", \"public\".\"game_stats\".\"offensiveRebounds\", \"public\".\"game_stats\".\"defensiveRebounds\", \"public\".\"game_stats\".\"rebounds\", \"public\".\"game_stats\".\"assists\", \"public\".\"game_stats\".\"steals\", \"public\".\"game_stats\".\"blocks\", \"public\".\"game…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 3,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 4,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"programs\".\"id\", \"public\".\"programs\".\"fullName\", \"public\".\"programs\".\"abbreviation\", \"public\".\"programs\".\"type\"::text, \"public\".\"programs\".\"city\", \"public\".\"programs\".\"region\", \"public\".\"programs\".\"aliases\", \"public\".\"programs\".\"createdAt\", \"public\".\"programs\".\"updatedAt\", \"public\".\"programs\".\"deletedAt\" FROM \"public\".\"programs\" WHERE \"public\".\"programs\".\"id\" IN ($1) OFFSET $2",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 5,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"player_ratings\".\"id\", \"public\".\"player_ratings\".\"playerId\", \"public\".\"player_ratings\".\"ageGroup\"::text, \"public\".\"player_ratings\".\"observedRating\", \"public\".\"player_ratings\".\"adjustedRating\", \"public\".\"player_ratings\".\"verifiedGameCount\", \"public\".\"player_ratings\".\"starRating\", \"public\".\"player_ratings\".\"computedAt\", \"public\".\"player_ratings\".\"formulaVersionId\", \"public\".\"player_ratings\".\"policyVersionId\", \"public\".\"player_ratings\".\"ratingBasis\" FROM \"public\".\"player_ratings\" WH…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 7,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"ranking_snapshots\".\"id\", \"public\".\"ranking_snapshots\".\"scope\"::text, \"public\".\"ranking_snapshots\".\"ageGroup\"::text, \"public\".\"ranking_snapshots\".\"city\", \"public\".\"ranking_snapshots\".\"region\", \"public\".\"ranking_snapshots\".\"weekOf\", \"public\".\"ranking_snapshots\".\"createdAt\", \"public\".\"ranking_snapshots\".\"gender\"::text, \"public\".\"ranking_snapshots\".\"formulaVersionId\", \"public\".\"ranking_snapshots\".\"policyVersionId\" FROM \"public\".\"ranking_snapshots\" WHERE \"public\".\"ranking_snapshots\".…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 9,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"teams\".\"id\", \"public\".\"teams\".\"name\", \"public\".\"teams\".\"city\", \"public\".\"teams\".\"region\", \"public\".\"teams\".\"createdAt\", \"public\".\"teams\".\"updatedAt\", \"public\".\"teams\".\"deletedAt\", \"public\".\"teams\".\"programId\", \"public\".\"teams\".\"logoUrl\" FROM \"public\".\"teams\" WHERE \"public\".\"teams\".\"id\" IN ($1) OFFSET $2",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 10,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"programs\".\"id\", \"public\".\"programs\".\"fullName\", \"public\".\"programs\".\"abbreviation\", \"public\".\"programs\".\"type\"::text, \"public\".\"programs\".\"city\", \"public\".\"programs\".\"region\", \"public\".\"programs\".\"aliases\", \"public\".\"programs\".\"createdAt\", \"public\".\"programs\".\"updatedAt\", \"public\".\"programs\".\"deletedAt\" FROM \"public\".\"programs\" WHERE \"public\".\"programs\".\"id\" IN ($1) OFFSET $2",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 12,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"games\".\"id\", \"public\".\"games\".\"seasonId\", \"public\".\"games\".\"homeTeamId\", \"public\".\"games\".\"awayTeamId\", \"public\".\"games\".\"gameNumber\", \"public\".\"games\".\"gameDate\", \"public\".\"games\".\"venueName\", \"public\".\"games\".\"city\", \"public\".\"games\".\"region\", \"public\".\"games\".\"referees\", \"public\".\"games\".\"attendance\", \"public\".\"games\".\"homeScore\", \"public\".\"games\".\"awayScore\", \"public\".\"games\".\"homeQ1\", \"public\".\"games\".\"homeQ2\", \"public\".\"games\".\"homeQ3\", \"public\".\"games\".\"homeQ4\", \"public\".…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 16,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"leagues\".\"id\", \"public\".\"leagues\".\"name\", \"public\".\"leagues\".\"ageGroup\"::text, \"public\".\"leagues\".\"organizerName\", \"public\".\"leagues\".\"city\", \"public\".\"leagues\".\"region\", \"public\".\"leagues\".\"verificationStatus\"::text, \"public\".\"leagues\".\"adminNotes\", \"public\".\"leagues\".\"sanctionScore\", \"public\".\"leagues\".\"teamCountScore\", \"public\".\"leagues\".\"gamesPerTeamScore\", \"public\".\"leagues\".\"complianceScore\", \"public\".\"leagues\".\"playerQualityScore\", \"public\".\"leagues\".\"qualityScore\", \"publ…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 13,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 71,
+              "sql": "SELECT \"public\".\"teams\".\"id\", \"public\".\"teams\".\"name\", \"public\".\"teams\".\"city\", \"public\".\"teams\".\"region\", \"public\".\"teams\".\"createdAt\", \"public\".\"teams\".\"updatedAt\", \"public\".\"teams\".\"deletedAt\", \"public\".\"teams\".\"programId\", \"public\".\"teams\".\"logoUrl\" FROM \"public\".\"teams\" WHERE \"public\".\"teams\".\"id\" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 14,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 71,
+              "sql": "SELECT \"public\".\"teams\".\"id\", \"public\".\"teams\".\"name\", \"public\".\"teams\".\"city\", \"public\".\"teams\".\"region\", \"public\".\"teams\".\"createdAt\", \"public\".\"teams\".\"updatedAt\", \"public\".\"teams\".\"deletedAt\", \"public\".\"teams\".\"programId\", \"public\".\"teams\".\"logoUrl\" FROM \"public\".\"teams\" WHERE \"public\".\"teams\".\"id\" IN ($1,$2,$3,$4,$5,$6,$7,$8) OFFSET $9",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadPlayerById",
+              "seq": 1,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 35,
+              "sql": "BEGIN",
+              "isPoolerOverhead": true
+            }
+          ]
+        }
+      },
+      {
+        "phase": "loadLeaguePerGameAverages",
+        "durationMs": 657,
+        "querySummary": {
+          "queryCount": 13,
+          "overheadMs": 308,
+          "dataMs": 287,
+          "overheadPct": 52,
+          "phases": [
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "count": 13,
+              "totalMs": 595,
+              "overheadMs": 308,
+              "dataMs": 287
+            }
+          ],
+          "signatures": [
+            {
+              "signature": "pgbouncer.pooler-transaction",
+              "count": 9,
+              "totalMs": 308,
+              "maxMs": 36,
+              "sampleSql": "BEGIN"
+            },
+            {
+              "signature": "raw.select",
+              "count": 4,
+              "totalMs": 287,
+              "maxMs": 74,
+              "sampleSql": "SELECT \"public\".\"game_stats\".\"id\", \"public\".\"game_stats\".\"gameId\" FROM \"public\".\"game_stats\" LEFT JOIN \"public\".\"games\" AS \"orderby_1\" ON (\"orderby_1\".\"id\") = (\"public\".\"game_stats\".\"gameId\") WHERE (\"public\".\"game_stats\".\"playerId\" = $1 AND \"public\".\"game_stats\".\"deletedAt\" IS NULL) ORDER BY \"orderby_1\".\"gameDate\" DESC LIMIT $2 OFFSET $3"
+            }
+          ],
+          "slowest": [
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 42,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 74,
+              "sql": "SELECT \"public\".\"league_season_averages\".\"id\", \"public\".\"league_season_averages\".\"seasonId\", \"public\".\"league_season_averages\".\"points\", \"public\".\"league_season_averages\".\"fieldGoalsMade\", \"public\".\"league_season_averages\".\"fieldGoalsAttempt\", \"public\".\"league_season_averages\".\"threeMade\", \"public\".\"league_season_averages\".\"threeAttempt\", \"public\".\"league_season_averages\".\"freeThrowsMade\", \"public\".\"league_season_averages\".\"freeThrowsAttempt\", \"public\".\"league_season_averages\".\"offensiveRebounds…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 37,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 73,
+              "sql": "SELECT \"public\".\"game_stats\".\"id\", \"public\".\"game_stats\".\"gameId\" FROM \"public\".\"game_stats\" LEFT JOIN \"public\".\"games\" AS \"orderby_1\" ON (\"orderby_1\".\"id\") = (\"public\".\"game_stats\".\"gameId\") WHERE (\"public\".\"game_stats\".\"playerId\" = $1 AND \"public\".\"game_stats\".\"deletedAt\" IS NULL) ORDER BY \"orderby_1\".\"gameDate\" DESC LIMIT $2 OFFSET $3",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 38,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"games\".\"id\", \"public\".\"games\".\"seasonId\" FROM \"public\".\"games\" WHERE \"public\".\"games\".\"id\" IN ($1) OFFSET $2",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 46,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 68,
+              "sql": "SELECT COUNT(*) FROM (SELECT \"public\".\"game_stats\".\"id\" FROM \"public\".\"game_stats\" LEFT JOIN \"public\".\"games\" AS \"j1\" ON (\"j1\".\"id\") = (\"public\".\"game_stats\".\"gameId\") WHERE (\"public\".\"game_stats\".\"deletedAt\" IS NULL AND (\"j1\".\"seasonId\" = $1 AND \"j1\".\"deletedAt\" IS NULL AND (\"j1\".\"id\" IS NOT NULL))) OFFSET $2) AS \"sub\"",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 35,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 36,
+              "sql": "BEGIN",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 41,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 36,
+              "sql": "DEALLOCATE ALL",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 43,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 36,
+              "sql": "COMMIT",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 36,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 35,
+              "sql": "DEALLOCATE ALL",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 39,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 35,
+              "sql": "COMMIT",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 40,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 35,
+              "sql": "BEGIN",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 45,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 32,
+              "sql": "DEALLOCATE ALL",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 47,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 32,
+              "sql": "COMMIT",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "loadLeaguePerGameAverages",
+              "seq": 44,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 31,
+              "sql": "BEGIN",
+              "isPoolerOverhead": true
+            }
+          ]
+        }
+      },
+      {
+        "phase": "deriveSnapshotRanks",
+        "durationMs": 372,
+        "querySummary": {
+          "queryCount": 6,
+          "overheadMs": 106,
+          "dataMs": 255,
+          "overheadPct": 29,
+          "phases": [
+            {
+              "phase": "deriveSnapshotRanks",
+              "count": 6,
+              "totalMs": 361,
+              "overheadMs": 106,
+              "dataMs": 255
+            }
+          ],
+          "signatures": [
+            {
+              "signature": "raw.select",
+              "count": 3,
+              "totalMs": 255,
+              "maxMs": 110,
+              "sampleSql": "SELECT \"public\".\"ranking_snapshots\".\"id\", \"public\".\"ranking_snapshots\".\"scope\"::text, \"public\".\"ranking_snapshots\".\"ageGroup\"::text, \"public\".\"ranking_snapshots\".\"city\", \"public\".\"ranking_snapshots\".\"region\", \"public\".\"ranking_snapshots\".\"weekOf\", \"public\".\"ranking_snapshots\".\"createdAt\", \"public\".\"ranking_snapshots\".\"gender\"::text, \"public\".\"ranking_snapshots\".\"formulaVersionId\", \"public\".\"ranking_snapshots\".\"policyVersionId\" FROM \"public\".\"ranking_snapshots\" LEFT JOIN \"public\".\"formula_version…"
+            },
+            {
+              "signature": "pgbouncer.pooler-transaction",
+              "count": 3,
+              "totalMs": 106,
+              "maxMs": 36,
+              "sampleSql": "BEGIN"
+            }
+          ],
+          "slowest": [
+            {
+              "phase": "deriveSnapshotRanks",
+              "seq": 32,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 110,
+              "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" WHERE \"public\".\"ranking_snapshot_rows…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "deriveSnapshotRanks",
+              "seq": 33,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 73,
+              "sql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"deletedAt\" FROM \"public\".\"players\" WHERE \"public\".\"players\".\"id\" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$40,$41,$42,$43,$44,$45,$46,$47,$48,$49,$50,$51,$52,$53,$54,$55,$56,$57,$58,$59,$60,$61,$62,$63,$64,$65,$66,$67,$68,$69,$70,$71,$72,$73,$74,$75,$76,$77,$78,$79,$80,$81,$82,…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "deriveSnapshotRanks",
+              "seq": 31,
+              "model": "raw",
+              "operation": "select",
+              "durationMs": 72,
+              "sql": "SELECT \"public\".\"ranking_snapshots\".\"id\", \"public\".\"ranking_snapshots\".\"scope\"::text, \"public\".\"ranking_snapshots\".\"ageGroup\"::text, \"public\".\"ranking_snapshots\".\"city\", \"public\".\"ranking_snapshots\".\"region\", \"public\".\"ranking_snapshots\".\"weekOf\", \"public\".\"ranking_snapshots\".\"createdAt\", \"public\".\"ranking_snapshots\".\"gender\"::text, \"public\".\"ranking_snapshots\".\"formulaVersionId\", \"public\".\"ranking_snapshots\".\"policyVersionId\" FROM \"public\".\"ranking_snapshots\" LEFT JOIN \"public\".\"formula_version…",
+              "isPoolerOverhead": false
+            },
+            {
+              "phase": "deriveSnapshotRanks",
+              "seq": 30,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 36,
+              "sql": "DEALLOCATE ALL",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "deriveSnapshotRanks",
+              "seq": 29,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 35,
+              "sql": "BEGIN",
+              "isPoolerOverhead": true
+            },
+            {
+              "phase": "deriveSnapshotRanks",
+              "seq": 34,
+              "model": "pgbouncer",
+              "operation": "pooler-transaction",
+              "durationMs": 35,
+              "sql": "COMMIT",
+              "isPoolerOverhead": true
+            }
+          ]
+        }
+      },
+      {
+        "phase": "loadPeerProduction",
+        "durationMs": 308,
+        "querySummary": {
+          "queryCount": 0,
+          "overheadMs": 0,
+          "dataMs": 0,
+          "overheadPct": 0,
+          "phases": [],
+          "signatures": [],
+          "slowest": []
+        }
+      },
+      {
+        "phase": "resolvePlayerIdBySlug",
+        "durationMs": 175,
+        "querySummary": {
+          "queryCount": 0,
+          "overheadMs": 0,
+          "dataMs": 0,
+          "overheadPct": 0,
+          "phases": [],
+          "signatures": [],
+          "slowest": []
+        }
+      }
+    ],
+    "querySummary": {
+      "queryCount": 47,
+      "overheadMs": 626,
+      "dataMs": 2137,
+      "overheadPct": 23,
+      "phases": [
+        {
+          "phase": "loadPlayerById",
+          "count": 28,
+          "totalMs": 1807,
+          "overheadMs": 212,
+          "dataMs": 1595
+        },
+        {
+          "phase": "loadLeaguePerGameAverages",
+          "count": 13,
+          "totalMs": 595,
+          "overheadMs": 308,
+          "dataMs": 287
+        },
+        {
+          "phase": "deriveSnapshotRanks",
+          "count": 6,
+          "totalMs": 361,
+          "overheadMs": 106,
+          "dataMs": 255
+        }
+      ],
+      "signatures": [
+        {
+          "signature": "raw.select",
+          "count": 29,
+          "totalMs": 2137,
+          "maxMs": 110,
+          "sampleSql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…"
+        },
+        {
+          "signature": "pgbouncer.pooler-transaction",
+          "count": 18,
+          "totalMs": 626,
+          "maxMs": 36,
+          "sampleSql": "BEGIN"
+        }
+      ],
+      "slowest": [
+        {
+          "phase": "deriveSnapshotRanks",
+          "seq": 32,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 110,
+          "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" WHERE \"public\".\"ranking_snapshot_rows…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 15,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 76,
+          "sql": "SELECT \"public\".\"seasons\".\"id\", \"public\".\"seasons\".\"leagueId\", \"public\".\"seasons\".\"name\", \"public\".\"seasons\".\"seasonYear\", \"public\".\"seasons\".\"status\"::text, \"public\".\"seasons\".\"startsOn\", \"public\".\"seasons\".\"endsOn\", \"public\".\"seasons\".\"createdAt\", \"public\".\"seasons\".\"updatedAt\", \"public\".\"seasons\".\"deletedAt\" FROM \"public\".\"seasons\" WHERE \"public\".\"seasons\".\"id\" IN ($1) OFFSET $2",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 11,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 74,
+          "sql": "SELECT \"public\".\"game_performance_scores\".\"id\", \"public\".\"game_performance_scores\".\"gameId\", \"public\".\"game_performance_scores\".\"gameStatId\", \"public\".\"game_performance_scores\".\"playerId\", \"public\".\"game_performance_scores\".\"formulaVersionId\", \"public\".\"game_performance_scores\".\"productionScore\", \"public\".\"game_performance_scores\".\"leagueWeight\", \"public\".\"game_performance_scores\".\"opponentFactor\", \"public\".\"game_performance_scores\".\"teamFactor\", \"public\".\"game_performance_scores\".\"performanceSc…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 23,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 74,
+          "sql": "SELECT \"public\".\"player_ratings\".\"id\", \"public\".\"player_ratings\".\"playerId\", \"public\".\"player_ratings\".\"ageGroup\"::text, \"public\".\"player_ratings\".\"observedRating\", \"public\".\"player_ratings\".\"adjustedRating\", \"public\".\"player_ratings\".\"verifiedGameCount\", \"public\".\"player_ratings\".\"starRating\", \"public\".\"player_ratings\".\"computedAt\", \"public\".\"player_ratings\".\"formulaVersionId\", \"public\".\"player_ratings\".\"policyVersionId\", \"public\".\"player_ratings\".\"ratingBasis\" FROM \"public\".\"player_ratings\" WH…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 26,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 74,
+          "sql": "SELECT \"public\".\"seasons\".\"id\", \"public\".\"seasons\".\"leagueId\" FROM \"public\".\"seasons\" WHERE \"public\".\"seasons\".\"id\" IN ($1) OFFSET $2",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadLeaguePerGameAverages",
+          "seq": 42,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 74,
+          "sql": "SELECT \"public\".\"league_season_averages\".\"id\", \"public\".\"league_season_averages\".\"seasonId\", \"public\".\"league_season_averages\".\"points\", \"public\".\"league_season_averages\".\"fieldGoalsMade\", \"public\".\"league_season_averages\".\"fieldGoalsAttempt\", \"public\".\"league_season_averages\".\"threeMade\", \"public\".\"league_season_averages\".\"threeAttempt\", \"public\".\"league_season_averages\".\"freeThrowsMade\", \"public\".\"league_season_averages\".\"freeThrowsAttempt\", \"public\".\"league_season_averages\".\"offensiveRebounds…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 6,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 73,
+          "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" LEFT JOIN \"public\".\"ranking_snapshots…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 8,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 73,
+          "sql": "SELECT \"public\".\"game_stats\".\"id\", \"public\".\"game_stats\".\"gameId\", \"public\".\"game_stats\".\"playerId\", \"public\".\"game_stats\".\"teamId\", \"public\".\"game_stats\".\"jerseyNumber\", \"public\".\"game_stats\".\"starter\", \"public\".\"game_stats\".\"minutes\", \"public\".\"game_stats\".\"points\", \"public\".\"game_stats\".\"offensiveRebounds\", \"public\".\"game_stats\".\"defensiveRebounds\", \"public\".\"game_stats\".\"rebounds\", \"public\".\"game_stats\".\"assists\", \"public\".\"game_stats\".\"steals\", \"public\".\"game_stats\".\"blocks\", \"public\".\"game…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 21,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 73,
+          "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" LEFT JOIN \"public\".\"ranking_snapshots…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 27,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 73,
+          "sql": "SELECT \"public\".\"leagues\".\"id\", \"public\".\"leagues\".\"ageGroup\"::text FROM \"public\".\"leagues\" WHERE \"public\".\"leagues\".\"id\" IN ($1) OFFSET $2",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "deriveSnapshotRanks",
+          "seq": 33,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 73,
+          "sql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"deletedAt\" FROM \"public\".\"players\" WHERE \"public\".\"players\".\"id\" IN ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$40,$41,$42,$43,$44,$45,$46,$47,$48,$49,$50,$51,$52,$53,$54,$55,$56,$57,$58,$59,$60,$61,$62,$63,$64,$65,$66,$67,$68,$69,$70,$71,$72,$73,$74,$75,$76,$77,$78,$79,$80,$81,$82,…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadLeaguePerGameAverages",
+          "seq": 37,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 73,
+          "sql": "SELECT \"public\".\"game_stats\".\"id\", \"public\".\"game_stats\".\"gameId\" FROM \"public\".\"game_stats\" LEFT JOIN \"public\".\"games\" AS \"orderby_1\" ON (\"orderby_1\".\"id\") = (\"public\".\"game_stats\".\"gameId\") WHERE (\"public\".\"game_stats\".\"playerId\" = $1 AND \"public\".\"game_stats\".\"deletedAt\" IS NULL) ORDER BY \"orderby_1\".\"gameDate\" DESC LIMIT $2 OFFSET $3",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 3,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 72,
+          "sql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 4,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 72,
+          "sql": "SELECT \"public\".\"programs\".\"id\", \"public\".\"programs\".\"fullName\", \"public\".\"programs\".\"abbreviation\", \"public\".\"programs\".\"type\"::text, \"public\".\"programs\".\"city\", \"public\".\"programs\".\"region\", \"public\".\"programs\".\"aliases\", \"public\".\"programs\".\"createdAt\", \"public\".\"programs\".\"updatedAt\", \"public\".\"programs\".\"deletedAt\" FROM \"public\".\"programs\" WHERE \"public\".\"programs\".\"id\" IN ($1) OFFSET $2",
+          "isPoolerOverhead": false
+        },
+        {
+          "phase": "loadPlayerById",
+          "seq": 5,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 72,
+          "sql": "SELECT \"public\".\"player_ratings\".\"id\", \"public\".\"player_ratings\".\"playerId\", \"public\".\"player_ratings\".\"ageGroup\"::text, \"public\".\"player_ratings\".\"observedRating\", \"public\".\"player_ratings\".\"adjustedRating\", \"public\".\"player_ratings\".\"verifiedGameCount\", \"public\".\"player_ratings\".\"starRating\", \"public\".\"player_ratings\".\"computedAt\", \"public\".\"player_ratings\".\"formulaVersionId\", \"public\".\"player_ratings\".\"policyVersionId\", \"public\".\"player_ratings\".\"ratingBasis\" FROM \"public\".\"player_ratings\" WH…",
+          "isPoolerOverhead": false
+        }
+      ]
+    },
+    "slowestPhase": {
+      "phase": "loadPlayerById",
+      "wallClockMs": 1419,
+      "queries": {
+        "queryCount": 17,
+        "overheadMs": 105,
+        "dataMs": 1014,
+        "overheadPct": 9,
+        "phases": [
+          {
+            "phase": "loadPlayerById",
+            "count": 17,
+            "totalMs": 1119,
+            "overheadMs": 105,
+            "dataMs": 1014
+          }
+        ],
+        "signatures": [
+          {
+            "signature": "raw.select",
+            "count": 14,
+            "totalMs": 1014,
+            "maxMs": 76,
+            "sampleSql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…"
+          },
+          {
+            "signature": "pgbouncer.pooler-transaction",
+            "count": 3,
+            "totalMs": 105,
+            "maxMs": 35,
+            "sampleSql": "BEGIN"
+          }
+        ],
+        "slowest": [
+          {
+            "phase": "loadPlayerById",
+            "seq": 15,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 76,
+            "sql": "SELECT \"public\".\"seasons\".\"id\", \"public\".\"seasons\".\"leagueId\", \"public\".\"seasons\".\"name\", \"public\".\"seasons\".\"seasonYear\", \"public\".\"seasons\".\"status\"::text, \"public\".\"seasons\".\"startsOn\", \"public\".\"seasons\".\"endsOn\", \"public\".\"seasons\".\"createdAt\", \"public\".\"seasons\".\"updatedAt\", \"public\".\"seasons\".\"deletedAt\" FROM \"public\".\"seasons\" WHERE \"public\".\"seasons\".\"id\" IN ($1) OFFSET $2",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 11,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 74,
+            "sql": "SELECT \"public\".\"game_performance_scores\".\"id\", \"public\".\"game_performance_scores\".\"gameId\", \"public\".\"game_performance_scores\".\"gameStatId\", \"public\".\"game_performance_scores\".\"playerId\", \"public\".\"game_performance_scores\".\"formulaVersionId\", \"public\".\"game_performance_scores\".\"productionScore\", \"public\".\"game_performance_scores\".\"leagueWeight\", \"public\".\"game_performance_scores\".\"opponentFactor\", \"public\".\"game_performance_scores\".\"teamFactor\", \"public\".\"game_performance_scores\".\"performanceSc…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 6,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 73,
+            "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" LEFT JOIN \"public\".\"ranking_snapshots…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 8,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 73,
+            "sql": "SELECT \"public\".\"game_stats\".\"id\", \"public\".\"game_stats\".\"gameId\", \"public\".\"game_stats\".\"playerId\", \"public\".\"game_stats\".\"teamId\", \"public\".\"game_stats\".\"jerseyNumber\", \"public\".\"game_stats\".\"starter\", \"public\".\"game_stats\".\"minutes\", \"public\".\"game_stats\".\"points\", \"public\".\"game_stats\".\"offensiveRebounds\", \"public\".\"game_stats\".\"defensiveRebounds\", \"public\".\"game_stats\".\"rebounds\", \"public\".\"game_stats\".\"assists\", \"public\".\"game_stats\".\"steals\", \"public\".\"game_stats\".\"blocks\", \"public\".\"game…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 3,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 4,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"programs\".\"id\", \"public\".\"programs\".\"fullName\", \"public\".\"programs\".\"abbreviation\", \"public\".\"programs\".\"type\"::text, \"public\".\"programs\".\"city\", \"public\".\"programs\".\"region\", \"public\".\"programs\".\"aliases\", \"public\".\"programs\".\"createdAt\", \"public\".\"programs\".\"updatedAt\", \"public\".\"programs\".\"deletedAt\" FROM \"public\".\"programs\" WHERE \"public\".\"programs\".\"id\" IN ($1) OFFSET $2",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 5,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"player_ratings\".\"id\", \"public\".\"player_ratings\".\"playerId\", \"public\".\"player_ratings\".\"ageGroup\"::text, \"public\".\"player_ratings\".\"observedRating\", \"public\".\"player_ratings\".\"adjustedRating\", \"public\".\"player_ratings\".\"verifiedGameCount\", \"public\".\"player_ratings\".\"starRating\", \"public\".\"player_ratings\".\"computedAt\", \"public\".\"player_ratings\".\"formulaVersionId\", \"public\".\"player_ratings\".\"policyVersionId\", \"public\".\"player_ratings\".\"ratingBasis\" FROM \"public\".\"player_ratings\" WH…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 7,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"ranking_snapshots\".\"id\", \"public\".\"ranking_snapshots\".\"scope\"::text, \"public\".\"ranking_snapshots\".\"ageGroup\"::text, \"public\".\"ranking_snapshots\".\"city\", \"public\".\"ranking_snapshots\".\"region\", \"public\".\"ranking_snapshots\".\"weekOf\", \"public\".\"ranking_snapshots\".\"createdAt\", \"public\".\"ranking_snapshots\".\"gender\"::text, \"public\".\"ranking_snapshots\".\"formulaVersionId\", \"public\".\"ranking_snapshots\".\"policyVersionId\" FROM \"public\".\"ranking_snapshots\" WHERE \"public\".\"ranking_snapshots\".…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 9,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"teams\".\"id\", \"public\".\"teams\".\"name\", \"public\".\"teams\".\"city\", \"public\".\"teams\".\"region\", \"public\".\"teams\".\"createdAt\", \"public\".\"teams\".\"updatedAt\", \"public\".\"teams\".\"deletedAt\", \"public\".\"teams\".\"programId\", \"public\".\"teams\".\"logoUrl\" FROM \"public\".\"teams\" WHERE \"public\".\"teams\".\"id\" IN ($1) OFFSET $2",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 10,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"programs\".\"id\", \"public\".\"programs\".\"fullName\", \"public\".\"programs\".\"abbreviation\", \"public\".\"programs\".\"type\"::text, \"public\".\"programs\".\"city\", \"public\".\"programs\".\"region\", \"public\".\"programs\".\"aliases\", \"public\".\"programs\".\"createdAt\", \"public\".\"programs\".\"updatedAt\", \"public\".\"programs\".\"deletedAt\" FROM \"public\".\"programs\" WHERE \"public\".\"programs\".\"id\" IN ($1) OFFSET $2",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 12,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"games\".\"id\", \"public\".\"games\".\"seasonId\", \"public\".\"games\".\"homeTeamId\", \"public\".\"games\".\"awayTeamId\", \"public\".\"games\".\"gameNumber\", \"public\".\"games\".\"gameDate\", \"public\".\"games\".\"venueName\", \"public\".\"games\".\"city\", \"public\".\"games\".\"region\", \"public\".\"games\".\"referees\", \"public\".\"games\".\"attendance\", \"public\".\"games\".\"homeScore\", \"public\".\"games\".\"awayScore\", \"public\".\"games\".\"homeQ1\", \"public\".\"games\".\"homeQ2\", \"public\".\"games\".\"homeQ3\", \"public\".\"games\".\"homeQ4\", \"public\".…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 16,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 72,
+            "sql": "SELECT \"public\".\"leagues\".\"id\", \"public\".\"leagues\".\"name\", \"public\".\"leagues\".\"ageGroup\"::text, \"public\".\"leagues\".\"organizerName\", \"public\".\"leagues\".\"city\", \"public\".\"leagues\".\"region\", \"public\".\"leagues\".\"verificationStatus\"::text, \"public\".\"leagues\".\"adminNotes\", \"public\".\"leagues\".\"sanctionScore\", \"public\".\"leagues\".\"teamCountScore\", \"public\".\"leagues\".\"gamesPerTeamScore\", \"public\".\"leagues\".\"complianceScore\", \"public\".\"leagues\".\"playerQualityScore\", \"public\".\"leagues\".\"qualityScore\", \"publ…",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 13,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 71,
+            "sql": "SELECT \"public\".\"teams\".\"id\", \"public\".\"teams\".\"name\", \"public\".\"teams\".\"city\", \"public\".\"teams\".\"region\", \"public\".\"teams\".\"createdAt\", \"public\".\"teams\".\"updatedAt\", \"public\".\"teams\".\"deletedAt\", \"public\".\"teams\".\"programId\", \"public\".\"teams\".\"logoUrl\" FROM \"public\".\"teams\" WHERE \"public\".\"teams\".\"id\" IN ($1,$2,$3,$4,$5,$6,$7) OFFSET $8",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 14,
+            "model": "raw",
+            "operation": "select",
+            "durationMs": 71,
+            "sql": "SELECT \"public\".\"teams\".\"id\", \"public\".\"teams\".\"name\", \"public\".\"teams\".\"city\", \"public\".\"teams\".\"region\", \"public\".\"teams\".\"createdAt\", \"public\".\"teams\".\"updatedAt\", \"public\".\"teams\".\"deletedAt\", \"public\".\"teams\".\"programId\", \"public\".\"teams\".\"logoUrl\" FROM \"public\".\"teams\" WHERE \"public\".\"teams\".\"id\" IN ($1,$2,$3,$4,$5,$6,$7,$8) OFFSET $9",
+            "isPoolerOverhead": false
+          },
+          {
+            "phase": "loadPlayerById",
+            "seq": 1,
+            "model": "pgbouncer",
+            "operation": "pooler-transaction",
+            "durationMs": 35,
+            "sql": "BEGIN",
+            "isPoolerOverhead": true
+          }
+        ]
+      }
+    },
+    "slowestQuerySignature": {
+      "signature": "raw.select",
+      "count": 29,
+      "totalMs": 2137,
+      "maxMs": 110,
+      "sampleSql": "SELECT \"public\".\"players\".\"id\", \"public\".\"players\".\"firstName\", \"public\".\"players\".\"lastName\", \"public\".\"players\".\"displayName\", \"public\".\"players\".\"birthDate\", \"public\".\"players\".\"gender\"::text, \"public\".\"players\".\"photoUrl\", \"public\".\"players\".\"heightCm\", \"public\".\"players\".\"city\", \"public\".\"players\".\"region\", \"public\".\"players\".\"position\", \"public\".\"players\".\"createdAt\", \"public\".\"players\".\"updatedAt\", \"public\".\"players\".\"deletedAt\", \"public\".\"players\".\"classYearOverride\", \"public\".\"players\".…"
+    }
+  },
+  "productionHttp": [
+    {
+      "label": "page https://oncourtrankings.ph",
+      "url": "https://oncourtrankings.ph/players/jude-eriobu",
+      "runs": 3,
+      "samples": [
+        {
+          "run": 1,
+          "ttfbMs": 513,
+          "totalMs": 513,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 2,
+          "ttfbMs": 426,
+          "totalMs": 426,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 3,
+          "ttfbMs": 436,
+          "totalMs": 436,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        }
+      ],
+      "medianTotalMs": null,
+      "medianBytes": null,
+      "coldFirstMs": 513,
+      "warmMedianMs": null
+    },
+    {
+      "label": "api https://oncourtrankings.ph",
+      "url": "https://oncourtrankings.ph/api/players/jude-eriobu/profile",
+      "runs": 2,
+      "samples": [
+        {
+          "run": 1,
+          "ttfbMs": 427,
+          "totalMs": 427,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 2,
+          "ttfbMs": 435,
+          "totalMs": 435,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        }
+      ],
+      "medianTotalMs": null,
+      "medianBytes": null,
+      "coldFirstMs": 427,
+      "warmMedianMs": null
+    },
+    {
+      "label": "page https://peachbasket.ph",
+      "url": "https://peachbasket.ph/players/jude-eriobu",
+      "runs": 3,
+      "samples": [
+        {
+          "run": 1,
+          "ttfbMs": 492,
+          "totalMs": 492,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 2,
+          "ttfbMs": 442,
+          "totalMs": 442,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 3,
+          "ttfbMs": 459,
+          "totalMs": 459,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        }
+      ],
+      "medianTotalMs": null,
+      "medianBytes": null,
+      "coldFirstMs": 492,
+      "warmMedianMs": null
+    },
+    {
+      "label": "api https://peachbasket.ph",
+      "url": "https://peachbasket.ph/api/players/jude-eriobu/profile",
+      "runs": 2,
+      "samples": [
+        {
+          "run": 1,
+          "ttfbMs": 445,
+          "totalMs": 445,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 2,
+          "ttfbMs": 449,
+          "totalMs": 449,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        }
+      ],
+      "medianTotalMs": null,
+      "medianBytes": null,
+      "coldFirstMs": 445,
+      "warmMedianMs": null
+    },
+    {
+      "label": "page https://www.peachbasket.ph",
+      "url": "https://www.peachbasket.ph/players/jude-eriobu",
+      "runs": 3,
+      "samples": [
+        {
+          "run": 1,
+          "ttfbMs": 490,
+          "totalMs": 490,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 2,
+          "ttfbMs": 445,
+          "totalMs": 445,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 3,
+          "ttfbMs": 441,
+          "totalMs": 441,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        }
+      ],
+      "medianTotalMs": null,
+      "medianBytes": null,
+      "coldFirstMs": 490,
+      "warmMedianMs": null
+    },
+    {
+      "label": "api https://www.peachbasket.ph",
+      "url": "https://www.peachbasket.ph/api/players/jude-eriobu/profile",
+      "runs": 2,
+      "samples": [
+        {
+          "run": 1,
+          "ttfbMs": 448,
+          "totalMs": 448,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        },
+        {
+          "run": 2,
+          "ttfbMs": 440,
+          "totalMs": 440,
+          "status": null,
+          "bytes": 0,
+          "error": "fetch failed"
+        }
+      ],
+      "medianTotalMs": null,
+      "medianBytes": null,
+      "coldFirstMs": 448,
+      "warmMedianMs": null
+    }
+  ],
+  "comparison": {
+    "localAppLoaderMs": 3047,
+    "productionMedianPageMs": null,
+    "productionColdFirstMs": 513,
+    "ratioProductionToLocal": null,
+    "priorBenchmarks": {
+      "preOptimizationCombinedMs": 6044,
+      "postPhase3CachedLoaderMs": 2218,
+      "postPhase3PeerProductionMs": {
+        "before": 911,
+        "after": 257
+      },
+      "sources": [
+        ".cursor/player-profile-investigation/summary.json",
+        ".cursor/player-profile-cache-benchmark/summary.json",
+        ".cursor/player-profile-peer-production-benchmark/summary.json"
+      ]
+    }
+  },
+  "rootCauseAnalysis": {
+    "dominantLocalPhase": "loadPlayerById",
+    "dominantLocalQuery": "raw.select",
+    "pgbouncerOverheadMs": 626,
+    "pgbouncerOverheadPct": 23,
+    "sequentialQueryCount": 47,
+    "rscCpuMsEstimate": 116,
+    "clientSecondLoaderNote": "PlayerTrendsChart and PlayerPercentileRadar fetch /api/players/[slug]/profile after hydration — adds a second serverless invocation not included in RSC HTML TTFB."
+  },
+  "waterfall": {
+    "totalWallClockMs": 2931,
+    "appLoaderMs": 3047,
+    "unaccountedMs": 116,
+    "steps": [
+      {
+        "phase": "loadPlayerById",
+        "startMs": 0,
+        "durationMs": 1419,
+        "endMs": 1419,
+        "prismaQueries": 17,
+        "prismaMs": 1119,
+        "poolerOverheadMs": 105,
+        "slowestQuery": {
+          "phase": "loadPlayerById",
+          "seq": 15,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 76,
+          "sql": "SELECT \"public\".\"seasons\".\"id\", \"public\".\"seasons\".\"leagueId\", \"public\".\"seasons\".\"name\", \"public\".\"seasons\".\"seasonYear\", \"public\".\"seasons\".\"status\"::text, \"public\".\"seasons\".\"startsOn\", \"public\".\"seasons\".\"endsOn\", \"public\".\"seasons\".\"createdAt\", \"public\".\"seasons\".\"updatedAt\", \"public\".\"seasons\".\"deletedAt\" FROM \"public\".\"seasons\" WHERE \"public\".\"seasons\".\"id\" IN ($1) OFFSET $2",
+          "isPoolerOverhead": false
+        }
+      },
+      {
+        "phase": "loadLeaguePerGameAverages",
+        "startMs": 1419,
+        "durationMs": 657,
+        "endMs": 2076,
+        "prismaQueries": 13,
+        "prismaMs": 595,
+        "poolerOverheadMs": 308,
+        "slowestQuery": {
+          "phase": "loadLeaguePerGameAverages",
+          "seq": 42,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 74,
+          "sql": "SELECT \"public\".\"league_season_averages\".\"id\", \"public\".\"league_season_averages\".\"seasonId\", \"public\".\"league_season_averages\".\"points\", \"public\".\"league_season_averages\".\"fieldGoalsMade\", \"public\".\"league_season_averages\".\"fieldGoalsAttempt\", \"public\".\"league_season_averages\".\"threeMade\", \"public\".\"league_season_averages\".\"threeAttempt\", \"public\".\"league_season_averages\".\"freeThrowsMade\", \"public\".\"league_season_averages\".\"freeThrowsAttempt\", \"public\".\"league_season_averages\".\"offensiveRebounds…",
+          "isPoolerOverhead": false
+        }
+      },
+      {
+        "phase": "deriveSnapshotRanks",
+        "startMs": 2076,
+        "durationMs": 372,
+        "endMs": 2448,
+        "prismaQueries": 6,
+        "prismaMs": 361,
+        "poolerOverheadMs": 106,
+        "slowestQuery": {
+          "phase": "deriveSnapshotRanks",
+          "seq": 32,
+          "model": "raw",
+          "operation": "select",
+          "durationMs": 110,
+          "sql": "SELECT \"public\".\"ranking_snapshot_rows\".\"id\", \"public\".\"ranking_snapshot_rows\".\"snapshotId\", \"public\".\"ranking_snapshot_rows\".\"playerId\", \"public\".\"ranking_snapshot_rows\".\"rank\", \"public\".\"ranking_snapshot_rows\".\"rating\", \"public\".\"ranking_snapshot_rows\".\"starRating\", \"public\".\"ranking_snapshot_rows\".\"verifiedGameCount\", \"public\".\"ranking_snapshot_rows\".\"movement\", \"public\".\"ranking_snapshot_rows\".\"ageVerificationStatus\" FROM \"public\".\"ranking_snapshot_rows\" WHERE \"public\".\"ranking_snapshot_rows…",
+          "isPoolerOverhead": false
+        }
+      },
+      {
+        "phase": "loadPeerProduction",
+        "startMs": 2448,
+        "durationMs": 308,
+        "endMs": 2756,
+        "prismaQueries": 0,
+        "prismaMs": 0,
+        "poolerOverheadMs": 0,
+        "slowestQuery": null
+      },
+      {
+        "phase": "resolvePlayerIdBySlug",
+        "startMs": 2756,
+        "durationMs": 175,
+        "endMs": 2931,
+        "prismaQueries": 0,
+        "prismaMs": 0,
+        "poolerOverheadMs": 0,
+        "slowestQuery": null
+      }
+    ]
+  },
+  "recommendations": [
+    "DATABASE_URL uses Supabase transaction pooler (:6543). Each Prisma statement pays BEGIN/DEALLOCATE/COMMIT overhead (~626ms measured locally across 47 statements). Fewer round-trips help more than micro-optimizing SQL inside a phase.",
+    "Slowest phase is loadPlayerById deep include — Prisma expands this into many SQL round-trips (player, ratings, ranking rows, game stats, games, teams, leagues). Indexing alone may not fix; reducing join breadth or denormalizing hot fields would.",
+    "If Vercel functions cold-start, first request adds 1–3s+ before any DB work — compare coldFirstMs vs warmMedianMs in productionHttp.",
+    "Charts issue a second GET /api/players/[slug]/profile after hydration — users measuring 'page ready' in DevTools may see ~2× loader cost."
+  ]
+}
