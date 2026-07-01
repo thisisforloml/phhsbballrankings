@@ -19,6 +19,18 @@ function traceId() {
 
 function requestContext() {
   const headerStore = headers();
+  console.log("[RAW_HEADERS]", {
+    cookie: headersList.get("cookie"),
+    host: headersList.get("host"),
+    origin: headersList.get("origin"),
+    referer: headersList.get("referer"),
+    nextUrl: headersList.get("next-url"),
+    rsc: headersList.get("rsc"),
+    nextRouterPrefetch: headersList.get("next-router-prefetch"),
+    secFetchSite: headersList.get("sec-fetch-site"),
+    secFetchMode: headersList.get("sec-fetch-mode"),
+    secFetchDest: headersList.get("sec-fetch-dest"),
+  });
   const cookieHeader = headerStore.get("cookie") ?? "";
 
   return {
