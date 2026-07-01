@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
 import { BrandLogo } from "@/components/layout/BrandLogo";
@@ -39,7 +40,9 @@ async function login(formData: FormData) {
   }
 
   createPortalSession(user);
-  redirect(user.role === UserRole.ADMIN ? "/admin" : "/organizer");
+  const destination = user.role === UserRole.ADMIN ? "/admin" : "/organizer";
+  revalidatePath(destination, "layout");
+  redirect(destination);
 }
 
 function errorMessage(error?: string) {

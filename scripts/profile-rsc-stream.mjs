@@ -7,15 +7,15 @@
  *   node scripts/profile-rsc-stream.mjs --start-server
  *
  * With --start-server:
- *   POST_PRISMA_PROFILE=1 PORT=3010 next start
+ *   PORT=3010 npm run start
  */
 import { spawn } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { mkdirSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
 import { brotliCompressSync, gzipSync } from "node:zlib";
 
-const outDir = path.join(process.cwd(), ".cursor", "post-prisma-profile");
+const outDir = path.join(process.cwd(), ".cursor", "rsc-stream-profile");
 mkdirSync(outDir, { recursive: true });
 
 function parseArgs(argv) {
@@ -172,7 +172,6 @@ async function main() {
       env: {
         ...process.env,
         PORT: String(args.port),
-        POST_PRISMA_PROFILE: "1",
       },
       stdio: ["ignore", "pipe", "pipe"],
     });
@@ -186,31 +185,11 @@ async function main() {
 
   try {
     const report = await profileStream(args.url);
-    const serverProfilePath = path.join(outDir, "rankings-server.json");
-    let serverProfile = null;
-    if (existsSync(serverProfilePath)) {
-      serverProfile = JSON.parse(readFileSync(serverProfilePath, "utf8"));
-    }
 
     const combined = {
       generatedAt: new Date().toISOString(),
       http: report,
-      serverStages: serverProfile,
       waterfall: [
-        {
-          stage: "db+loaders (server report)",
-          ms: serverProfile?.stages?.find((s) => s.name === "loader.getLatestNationalRankings.done")?.cumulativeMs ?? null,
-        },
-        {
-          stage: "post-prisma transform+serialize (server report)",
-          ms: serverProfile
-            ? Math.round(
-                (serverProfile.stages ?? [])
-                  .filter((s) => s.name.startsWith("transform.") || s.name.startsWith("json.stringify."))
-                  .reduce((sum, s) => sum + s.deltaMs, 0)
-              )
-            : null,
-        },
         {
           stage: "ttfb (client fetch)",
           ms: report.timingMs.ttfb,

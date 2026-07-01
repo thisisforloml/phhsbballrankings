@@ -14,11 +14,6 @@ import {
   primaryCompetitionFromSummary,
   type PrimaryCompetition,
 } from "./player-competition-context";
-import {
-  isPostPrismaProfileEnabled,
-  postPrismaCount,
-  postPrismaMark,
-} from "./post-prisma-profile";
 import { runWithConcurrency } from "./run-with-concurrency";
 
 const defaultAgeGroup = AgeGroup.U19;
@@ -276,30 +271,12 @@ async function getLatestSnapshot(
 
   const playerIds = ratings.map((rating) => rating.playerId);
   const statsByPlayer = await loadRankingBoardGameStatsByPlayerIds(playerIds);
-  postPrismaMark(`prisma.finished.${ageGroup}.${gender}`, {
-    ratings: ratings.length,
-    gameStatPlayers: statsByPlayer.size,
-  });
 
   const participationByPlayer = buildParticipationMapFromBoardStats(playerIds, statsByPlayer);
-  if (isPostPrismaProfileEnabled()) {
-    postPrismaCount("participationMapPlayers", playerIds.length);
-    postPrismaMark(`transform.participationMap.${ageGroup}.${gender}`, {
-      players: playerIds.length,
-    });
-  }
 
-  let mapNationalRankingRowMs = 0;
   const rows = ratings.map((rating, index) => {
     const boardStats = statsByPlayer.get(rating.playerId) ?? [];
-    const mapStart = isPostPrismaProfileEnabled() ? performance.now() : 0;
-    if (isPostPrismaProfileEnabled()) {
-      postPrismaCount("affiliationTransforms");
-      postPrismaCount("affiliationSortOps", boardStats.length > 1 ? boardStats.length * Math.log2(boardStats.length) : 0);
-      postPrismaCount("ratingSpreadCopies");
-      postPrismaCount("mapNationalRankingRowCalls");
-    }
-    const row = mapNationalRankingRow(
+    return mapNationalRankingRow(
       {
         ...rating,
         player: {
@@ -319,19 +296,7 @@ async function getLatestSnapshot(
         }
       )
     );
-    if (isPostPrismaProfileEnabled()) {
-      mapNationalRankingRowMs += performance.now() - mapStart;
-    }
-    return row;
   });
-
-  if (isPostPrismaProfileEnabled()) {
-    postPrismaMark(`transform.mapNationalRankingRow.${ageGroup}.${gender}`, {
-      rows: rows.length,
-      totalMs: mapNationalRankingRowMs,
-      avgMsPerRow: rows.length ? mapNationalRankingRowMs / rows.length : 0,
-    });
-  }
 
   return {
     snapshotId: latestSnapshot?.id ?? null,
@@ -347,10 +312,6 @@ async function getLatestSnapshot(
 export async function buildLatestNationalRankingsLive(
   ageGroups: readonly RankingAgeGroup[] = rankingAgeGroups
 ): Promise<LatestNationalRankings> {
-  postPrismaMark("loader.buildLatestNationalRankings.start", {
-    ageGroups: [...ageGroups],
-    boardConcurrency: RANKINGS_BOARD_CONCURRENCY,
-  });
   const ratingFilter = await resolveActivePlayerRatingFilter();
   const formulaVersionId = ratingFilter.formulaVersionId;
 
@@ -377,13 +338,8 @@ export async function buildLatestNationalRankingsLive(
     const boys = boardByKey.get(`${ageGroup}:${PlayerGender.BOYS}`)!;
     const girls = boardByKey.get(`${ageGroup}:${PlayerGender.GIRLS}`)!;
     snapshotsByAge[ageGroup] = { boys, girls };
-    postPrismaMark(`loader.boardPair.done.${ageGroup}`, {
-      boysRows: boys.rows.length,
-      girlsRows: girls.rows.length,
-    });
   }
 
-  postPrismaMark("loader.buildLatestNationalRankings.done");
   return {
     formulaVersionId,
     snapshots: snapshotsByAge[defaultAgeGroup as RankingAgeGroup],
@@ -394,23 +350,12 @@ export async function buildLatestNationalRankingsLive(
 async function getLatestNationalRankingsWithFallback(): Promise<LatestNationalRankings> {
   if (process.env.RANKINGS_READ_FROM_SNAPSHOTS === "1") {
     try {
-      console.error("[RANKINGS_LOADER_VERIFY] SNAPSHOT LOADER");
       const { buildLatestNationalRankingsFromSnapshots } = await import("./rankings-snapshot-read");
       return await buildLatestNationalRankingsFromSnapshots(rankingAgeGroups);
-    } catch (error) {
-      console.error("[RANKINGS_LOADER_VERIFY] SNAPSHOT LOADER failed — falling back to LIVE LOADER", {
-        reason: error instanceof Error ? error.name : "unknown",
-        message: error instanceof Error ? error.message : String(error),
-      });
-      postPrismaMark("loader.snapshotRead.fallback", {
-        reason: error instanceof Error ? error.name : "unknown",
-        message: error instanceof Error ? error.message : String(error),
-      });
+    } catch {
+      // Fall through to live path when snapshots are incomplete or unreadable.
     }
   }
-  console.error("[RANKINGS_LOADER_VERIFY] LIVE LOADER", {
-    RANKINGS_READ_FROM_SNAPSHOTS: process.env.RANKINGS_READ_FROM_SNAPSHOTS ?? "(unset)",
-  });
   return buildLatestNationalRankingsLive(rankingAgeGroups);
 }
 

@@ -13,7 +13,6 @@ import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-el
 import { prisma } from "./prisma";
 import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
 import { runWithConcurrency } from "./run-with-concurrency";
-import { postPrismaMark } from "./post-prisma-profile";
 import type {
   LatestNationalRankings,
   NationalRankingRow,
@@ -218,11 +217,6 @@ function buildNationalSnapshotFromLoadedBoard(
 export async function buildLatestNationalRankingsFromSnapshots(
   ageGroups: readonly RankingAgeGroup[] = rankingAgeGroups
 ): Promise<LatestNationalRankings> {
-  postPrismaMark("loader.buildLatestNationalRankingsFromSnapshots.start", {
-    ageGroups: [...ageGroups],
-    boardConcurrency: RANKINGS_BOARD_CONCURRENCY,
-  });
-
   const ratingFilter = await resolveActivePlayerRatingFilter();
   const formulaVersionId = ratingFilter.formulaVersionId;
   if (!formulaVersionId) {
@@ -266,12 +260,6 @@ export async function buildLatestNationalRankingsFromSnapshots(
   const playerById = new Map(players.map((player) => [player.id, player]));
   const statsByPlayer = await loadRankingBoardGameStatsByPlayerIds(allPlayerIds);
 
-  postPrismaMark("loader.buildLatestNationalRankingsFromSnapshots.playersLoaded", {
-    playerIds: allPlayerIds.length,
-    playersFound: players.length,
-    gameStatPlayers: statsByPlayer.size,
-  });
-
   const boardByKey = new Map(
     loadedBoards.map((board) => [
       `${board.ageGroup}:${board.gender}`,
@@ -285,13 +273,8 @@ export async function buildLatestNationalRankingsFromSnapshots(
       boys: boardByKey.get(`${ageGroup}:${PlayerGender.BOYS}`)!,
       girls: boardByKey.get(`${ageGroup}:${PlayerGender.GIRLS}`)!,
     };
-    postPrismaMark(`loader.snapshotBoardPair.done.${ageGroup}`, {
-      boysRows: snapshotsByAge[ageGroup].boys.rows.length,
-      girlsRows: snapshotsByAge[ageGroup].girls.rows.length,
-    });
   }
 
-  postPrismaMark("loader.buildLatestNationalRankingsFromSnapshots.done");
   return {
     formulaVersionId,
     snapshots: snapshotsByAge[defaultAgeGroup as RankingAgeGroup],
