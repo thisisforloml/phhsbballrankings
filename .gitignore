@@ -12,3 +12,5 @@ yarn-error.log*
 HS STATS/
 storage/submissions/
 *.backup
+.vercel
+.env*

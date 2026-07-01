@@ -23,24 +23,31 @@ export function AdminSidebar({ active }: { active: AdminNavKey }) {
         <p className="text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-accent-400">{BRAND_ADMIN_EYEBROW}</p>
       </div>
       <nav className="mt-4 grid gap-0.5 text-sm font-medium" aria-label="Admin">
-        {primaryItems.map((item) => (
-          <Link
-            key={item.key}
-            href={item.href}
-            className={`rounded-md px-2.5 py-2 transition ${active === item.key ? "bg-accent-500/15 font-semibold text-accent-300 shadow-[inset_2px_0_0_theme(colors.accent.400)]" : "text-white/70 hover:bg-white/10 hover:text-white"}`}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {primaryItems.map((item) => {
+          const className = `rounded-md px-2.5 py-2 transition ${active === item.key ? "bg-accent-500/15 font-semibold text-accent-300 shadow-[inset_2px_0_0_theme(colors.accent.400)]" : "text-white/70 hover:bg-white/10 hover:text-white"}`;
+          if (item.key === "players") {
+            return (
+              <a key={item.key} href={item.href} className={className}>
+                {item.label}
+              </a>
+            );
+          }
+          return (
+            <Link key={item.key} href={item.href} prefetch={false} className={className}>
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
       <nav className="mt-6 border-t border-white/10 pt-4 text-sm" aria-label="Admin utilities">
         <Link
           href={opsItem.href}
+          prefetch={false}
           className={`block rounded-md px-2.5 py-2 transition ${active === opsItem.key ? "bg-accent-500/15 font-semibold text-accent-300" : "text-white/45 hover:bg-white/10 hover:text-white/80"}`}
         >
           {opsItem.label}
         </Link>
-        <Link href="/portal/logout" className="mt-0.5 block rounded-md px-2.5 py-2 text-white/45 transition hover:bg-white/10 hover:text-white/80">
+        <Link href="/portal/logout" prefetch={false} className="mt-0.5 block rounded-md px-2.5 py-2 text-white/45 transition hover:bg-white/10 hover:text-white/80">
           Sign out
         </Link>
       </nav>

@@ -9,5 +9,5 @@ export default async function PortalPage() {
     redirect("/portal/login");
   }
 
-  redirect(user.role === UserRole.ADMIN ? "/admin" : "/organizer");
+  redirect(user.role === UserRole.ADMIN ? "/admin/submissions" : "/organizer");
 }

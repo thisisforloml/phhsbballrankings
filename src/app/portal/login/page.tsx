@@ -40,7 +40,7 @@ async function login(formData: FormData) {
   }
 
   createPortalSession(user);
-  const destination = user.role === UserRole.ADMIN ? "/admin" : "/organizer";
+  const destination = user.role === UserRole.ADMIN ? "/admin/submissions" : "/organizer";
   revalidatePath(destination, "layout");
   redirect(destination);
 }

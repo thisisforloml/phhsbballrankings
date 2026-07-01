@@ -5,6 +5,11 @@ import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { UserRole, type User } from "@prisma/client";
 import { prisma } from "./prisma";
+import {
+  classifyNavigationRequest,
+  cookieHeaderHasSession,
+  logNavInstrument,
+} from "./nav-instrument";
 
 const cookieName = "oncourt_portal_session";
 const maxAgeSeconds = 60 * 60 * 12;
@@ -19,32 +24,23 @@ function traceId() {
 
 function requestContext() {
   const headerStore = headers();
-  console.log("[RAW_HEADERS]", {
-    cookie: headersList.get("cookie"),
-    host: headersList.get("host"),
-    origin: headersList.get("origin"),
-    referer: headersList.get("referer"),
-    nextUrl: headersList.get("next-url"),
-    rsc: headersList.get("rsc"),
-    nextRouterPrefetch: headersList.get("next-router-prefetch"),
-    secFetchSite: headersList.get("sec-fetch-site"),
-    secFetchMode: headersList.get("sec-fetch-mode"),
-    secFetchDest: headersList.get("sec-fetch-dest"),
-  });
-  const cookieHeader = headerStore.get("cookie") ?? "";
 
-  return {
+  const context = {
+    cookie: headerStore.get("cookie"),
+    host: headerStore.get("host"),
+    origin: headerStore.get("origin"),
     referer: headerStore.get("referer"),
     nextUrl: headerStore.get("next-url"),
-    xInvokePath: headerStore.get("x-invoke-path"),
-    xMatchedPath: headerStore.get("x-matched-path"),
-    xNextjsData: headerStore.get("x-nextjs-data"),
     rsc: headerStore.get("rsc"),
     nextRouterPrefetch: headerStore.get("next-router-prefetch"),
-    secFetchMode: headerStore.get("sec-fetch-mode"),
-    secFetchDest: headerStore.get("sec-fetch-dest"),
-    cookieHeaderHasSession: cookieHeader.includes(`${cookieName}=`),
+    secFetchSite: headerStore.get("sec-fetch-site") ?? "",
+    secFetchMode: headerStore.get("sec-fetch-mode") ?? "",
+    secFetchDest: headerStore.get("sec-fetch-dest") ?? "",
   };
+
+  console.log("[RAW_HEADERS]", context);
+
+  return context;
 }
 
 type AuthAudit = {
@@ -113,6 +109,40 @@ async function auditPortalUser(): Promise<AuthAudit> {
   audit.allowedRoleOk = allowedRoles.has(user.role);
 
   return audit;
+}
+
+function getPortalUserRequestMeta() {
+  const headerStore = headers();
+  const cookieHeader = headerStore.get("cookie");
+  const cookieRecord = cookies().get(cookieName);
+  const pathname =
+    headerStore.get("next-url") ??
+    headerStore.get("x-invoke-path") ??
+    headerStore.get("x-matched-path") ??
+    null;
+  const matchedPath = headerStore.get("x-matched-path") ?? pathname;
+  const search = headerStore.get("x-invoke-query") ?? "";
+
+  return {
+    navInstrumentId: headerStore.get("x-nav-instrument-id"),
+    pathname,
+    matchedPath,
+    cookieHeaderExists: Boolean(cookieHeader),
+    sessionCookieInHeader: cookieHeaderHasSession(cookieHeader, cookieName),
+    cookiesGetReturned: cookieRecord !== undefined,
+    cookiesGetHasValue: Boolean(cookieRecord?.value),
+    requestKind: classifyNavigationRequest({
+      pathname: pathname ?? "",
+      search,
+      method: headerStore.get("x-http-method-override") ?? "GET",
+      rsc: headerStore.get("rsc"),
+      nextRouterPrefetch: headerStore.get("next-router-prefetch"),
+      purpose: headerStore.get("purpose"),
+      secFetchDest: headerStore.get("sec-fetch-dest"),
+      secFetchMode: headerStore.get("sec-fetch-mode"),
+      contentType: headerStore.get("content-type"),
+    }),
+  };
 }
 
 function logTrace(event: string, fields: Record<string, unknown>) {
@@ -214,7 +244,6 @@ export function createPortalSession(user: SessionUserInput) {
     userId: user.id,
     username: user.username,
     role: user.role,
-    ...requestContext(),
   });
 }
 
@@ -224,17 +253,31 @@ export function clearPortalSession() {
 
 export async function getPortalUser(): Promise<PortalSessionUser | null> {
   const id = traceId();
+  const requestMeta = getPortalUserRequestMeta();
+
+  logNavInstrument("getPortalUser.enter", {
+    traceId: id,
+    navInstrumentId: requestMeta.navInstrumentId,
+    pathname: requestMeta.pathname,
+    matchedPath: requestMeta.matchedPath,
+    requestKind: requestMeta.requestKind,
+    cookieHeaderExists: requestMeta.cookieHeaderExists,
+    sessionCookieInHeader: requestMeta.sessionCookieInHeader,
+    cookiesGetReturned: requestMeta.cookiesGetReturned,
+    cookiesGetHasValue: requestMeta.cookiesGetHasValue,
+  });
+
   const ctx = requestContext();
   const rawCookie = cookies().get(cookieName)?.value;
   const audit = auditPortalSession();
 
   if (!rawCookie) {
-    logTrace("getPortalUser", { id, ...ctx, audit });
+    logTrace("getPortalUser", { id, ...requestMeta, ...ctx, audit });
     return null;
   }
 
   if (!audit.decodeSessionOk) {
-    logTrace("getPortalUser", { id, ...ctx, audit: { ...audit, cookiesGetHasValue: true } });
+    logTrace("getPortalUser", { id, ...requestMeta, ...ctx, audit: { ...audit, cookiesGetHasValue: true } });
     return null;
   }
 
@@ -259,7 +302,7 @@ export async function getPortalUser(): Promise<PortalSessionUser | null> {
   audit.allowedRoleOk = user ? allowedRoles.has(user.role) : false;
 
   if (!user || !allowedRoles.has(user.role)) {
-    logTrace("getPortalUser", { id, ...ctx, audit });
+    logTrace("getPortalUser", { id, ...requestMeta, ...ctx, audit });
     return null;
   }
 
@@ -268,6 +311,7 @@ export async function getPortalUser(): Promise<PortalSessionUser | null> {
     userId: user.id,
     username: user.username,
     role: user.role,
+    ...requestMeta,
     ...ctx,
     audit,
   });
