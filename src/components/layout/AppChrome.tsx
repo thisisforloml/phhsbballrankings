@@ -47,7 +47,10 @@ function AdminTopBar() {
           <Link href="/" className="hidden rounded-md border border-line-500 px-3 py-2 font-semibold text-court-700 hover:border-court-400 hover:text-court-900 sm:inline-flex">
             View public site
           </Link>
-          <Link href="/portal/logout" className="rounded-md bg-navy-800 px-3 py-2 font-semibold text-white hover:bg-navy-700">
+          <Link
+            href="/portal/logout" 
+            prefetch={false}
+          >
             Sign out
           </Link>
         </div>
