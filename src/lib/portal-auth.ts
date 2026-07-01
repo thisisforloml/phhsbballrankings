@@ -1,7 +1,7 @@
 import "server-only";
 
 import { createHmac, timingSafeEqual } from "node:crypto";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { UserRole, type User } from "@prisma/client";
 import { prisma } from "./prisma";
@@ -9,6 +9,103 @@ import { prisma } from "./prisma";
 const cookieName = "oncourt_portal_session";
 const maxAgeSeconds = 60 * 60 * 12;
 const allowedRoles = new Set<UserRole>([UserRole.ADMIN, UserRole.ORGANIZER]);
+
+// TEMP: read-only auth lifecycle trace — remove after diagnosis
+const PORTAL_AUTH_TRACE = "[PORTAL_AUTH_TRACE]";
+
+function traceId() {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function requestContext() {
+  const headerStore = headers();
+  const cookieHeader = headerStore.get("cookie") ?? "";
+
+  return {
+    referer: headerStore.get("referer"),
+    nextUrl: headerStore.get("next-url"),
+    xInvokePath: headerStore.get("x-invoke-path"),
+    xMatchedPath: headerStore.get("x-matched-path"),
+    xNextjsData: headerStore.get("x-nextjs-data"),
+    rsc: headerStore.get("rsc"),
+    nextRouterPrefetch: headerStore.get("next-router-prefetch"),
+    secFetchMode: headerStore.get("sec-fetch-mode"),
+    secFetchDest: headerStore.get("sec-fetch-dest"),
+    cookieHeaderHasSession: cookieHeader.includes(`${cookieName}=`),
+  };
+}
+
+type AuthAudit = {
+  cookiesGetHasValue: boolean;
+  decodeSessionOk: boolean;
+  decodedUserId: string | null;
+  decodedUsername: string | null;
+  decodedRole: string | null;
+  prismaUserFound: boolean;
+  prismaUserId: string | null;
+  prismaUsername: string | null;
+  prismaRole: string | null;
+  allowedRoleOk: boolean;
+};
+
+function auditPortalSession(): AuthAudit {
+  const rawCookie = cookies().get(cookieName)?.value;
+  const audit: AuthAudit = {
+    cookiesGetHasValue: Boolean(rawCookie),
+    decodeSessionOk: false,
+    decodedUserId: null,
+    decodedUsername: null,
+    decodedRole: null,
+    prismaUserFound: false,
+    prismaUserId: null,
+    prismaUsername: null,
+    prismaRole: null,
+    allowedRoleOk: false,
+  };
+
+  if (!rawCookie) return audit;
+
+  const payload = decodeSession(rawCookie);
+  if (!payload) return audit;
+
+  audit.decodeSessionOk = true;
+  audit.decodedUserId = payload.userId;
+  audit.decodedUsername = payload.username;
+  audit.decodedRole = payload.role;
+
+  return audit;
+}
+
+async function auditPortalUser(): Promise<AuthAudit> {
+  const audit = auditPortalSession();
+  if (!audit.decodeSessionOk || !audit.decodedUserId) return audit;
+
+  const user = await prisma.user.findFirst({
+    where: {
+      id: audit.decodedUserId,
+      deletedAt: null,
+    },
+    select: {
+      id: true,
+      username: true,
+      role: true,
+    },
+  });
+
+  if (!user) return audit;
+
+  audit.prismaUserFound = true;
+  audit.prismaUserId = user.id;
+  audit.prismaUsername = user.username;
+  audit.prismaRole = user.role;
+  audit.allowedRoleOk = allowedRoles.has(user.role);
+
+  return audit;
+}
+
+function logTrace(event: string, fields: Record<string, unknown>) {
+  console.log(PORTAL_AUTH_TRACE, JSON.stringify({ event, ...fields }));
+}
 
 type PortalSessionPayload = {
   userId: string;
@@ -99,6 +196,14 @@ export function createPortalSession(user: SessionUserInput) {
     path: "/",
     maxAge: maxAgeSeconds
   });
+
+  logTrace("createPortalSession", {
+    id: traceId(),
+    userId: user.id,
+    username: user.username,
+    role: user.role,
+    ...requestContext(),
+  });
 }
 
 export function clearPortalSession() {
@@ -106,35 +211,72 @@ export function clearPortalSession() {
 }
 
 export async function getPortalUser(): Promise<PortalSessionUser | null> {
+  const id = traceId();
+  const ctx = requestContext();
   const rawCookie = cookies().get(cookieName)?.value;
-  if (!rawCookie) return null;
+  const audit = auditPortalSession();
 
-  const payload = decodeSession(rawCookie);
-  if (!payload) return null;
+  if (!rawCookie) {
+    logTrace("getPortalUser", { id, ...ctx, audit });
+    return null;
+  }
+
+  if (!audit.decodeSessionOk) {
+    logTrace("getPortalUser", { id, ...ctx, audit: { ...audit, cookiesGetHasValue: true } });
+    return null;
+  }
 
   const user = await prisma.user.findFirst({
     where: {
-      id: payload.userId,
-      deletedAt: null
+      id: audit.decodedUserId!,
+      deletedAt: null,
     },
     select: {
       id: true,
       name: true,
       username: true,
       email: true,
-      role: true
-    }
+      role: true,
+    },
   });
 
-  if (!user || !allowedRoles.has(user.role)) return null;
+  audit.prismaUserFound = Boolean(user);
+  audit.prismaUserId = user?.id ?? null;
+  audit.prismaUsername = user?.username ?? null;
+  audit.prismaRole = user?.role ?? null;
+  audit.allowedRoleOk = user ? allowedRoles.has(user.role) : false;
+
+  if (!user || !allowedRoles.has(user.role)) {
+    logTrace("getPortalUser", { id, ...ctx, audit });
+    return null;
+  }
+
+  logTrace("getPortalUser.success", {
+    id,
+    userId: user.id,
+    username: user.username,
+    role: user.role,
+    ...ctx,
+    audit,
+  });
 
   return user;
 }
 
 export async function requirePortalUser() {
+  const id = traceId();
+  const ctx = requestContext();
   const user = await getPortalUser();
 
   if (!user) {
+    const audit = await auditPortalUser();
+    logTrace("redirect", {
+      id,
+      guard: "requirePortalUser",
+      target: "/portal/login",
+      ...ctx,
+      audit,
+    });
     redirect("/portal/login");
   }
 
@@ -146,9 +288,19 @@ export async function requireOrganizerUser() {
 }
 
 export async function requireAdminUser() {
+  const id = traceId();
+  const ctx = requestContext();
   const user = await requirePortalUser();
 
   if (user.role !== UserRole.ADMIN) {
+    logTrace("redirect", {
+      id,
+      guard: "requireAdminUser",
+      target: "/organizer",
+      userId: user.id,
+      role: user.role,
+      ...ctx,
+    });
     redirect("/organizer");
   }
 
