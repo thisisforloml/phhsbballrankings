@@ -24,6 +24,7 @@ function FilterField({ label, children, className = "" }: { label: string; child
 }
 
 type TeamsToolbarProps = {
+  children?: ReactNode;
   ageGroup: PublicCoverageAgeGroup;
   gender: "Boys" | "Girls";
   query: string;
@@ -85,7 +86,7 @@ export function TeamsToolbar(props: TeamsToolbarProps) {
         </div>
       </div>
 
-      <div className="sticky top-20 z-40 bg-paper-500">
+      <div className="sticky top-[var(--navbar-height)] z-30 bg-paper-500">
         <div className="container-px pb-4">
           <div className="mx-auto max-w-[74rem]">
             <div className="hidden flex-wrap items-end gap-3 lg:flex">
@@ -196,6 +197,8 @@ export function TeamsToolbar(props: TeamsToolbarProps) {
           </div>
         </div>
       </div>
+
+      {props.children}
     </section>
   );
 }

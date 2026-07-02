@@ -339,7 +339,51 @@ export function RankingsClient({
         }}
         onClear={clearFilters}
         onMobileFiltersOpen={() => setMobileFiltersOpen(true)}
-      />
+      >
+        <section className="container-px">
+          <div className="mx-auto max-w-[74rem]">
+            {recruitingFilterActive && shouldShowRecruitingSortBanner(classYear, sortKey) ? (
+              <p className="mb-3 text-xs text-court-500">Sorted by {sortKey}; national board rank numbers are unchanged.</p>
+            ) : null}
+
+            {visibleRows.length > 0 && visibleRows.length < 25 ? (
+              <p className="mb-3 text-sm text-court-500">{publicRankingsCoverageCopy.sparseBoard(ageGroup, gender, visibleRows.length)}</p>
+            ) : null}
+
+            {visibleRows.length > 0 ? (
+              <PaginationToolbar
+                className="mb-3"
+                pageStart={pageStart}
+                pageEnd={pageEnd}
+                total={visibleRows.length}
+                page={currentPage}
+                pageCount={pageCount}
+                onChange={(nextPage) => navigateRankings({ page: nextPage })}
+                labelSuffix={`${ageGroup} ${gender}`}
+              />
+            ) : null}
+
+            <div className="overflow-hidden rounded-sm border border-line-500 bg-white shadow-panel">
+              {pagedRows.length ? (
+                <RankingTable
+                  rows={pagedRows}
+                  rankByPlayerId={boardRankByPlayerId}
+                  rankColumnLabel={recruitingFilterActive ? recruitingRankColumnLabel(gender, classYear) : undefined}
+                  sortKey={sortKey}
+                  sortDirection={sortDirection}
+                  onSort={updateSort}
+                  variant="scout"
+                  tone="light"
+                />
+              ) : (
+                <div className="p-8">
+                  <EmptyState icon="players" title="No players ranked yet" />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      </RankingsToolbar>
 
       {mobileFiltersOpen ? (
         <div className="fixed inset-0 z-50 lg:hidden">
@@ -486,51 +530,6 @@ export function RankingsClient({
           </aside>
         </div>
       ) : null}
-
-      <section className="container-px">
-        <div className="mx-auto max-w-[74rem]">
-          {recruitingFilterActive && shouldShowRecruitingSortBanner(classYear, sortKey) ? (
-            <p className="mb-3 text-xs text-court-500">Sorted by {sortKey}; national board rank numbers are unchanged.</p>
-          ) : null}
-
-          {visibleRows.length > 0 && visibleRows.length < 25 ? (
-            <p className="mb-3 text-sm text-court-500">{publicRankingsCoverageCopy.sparseBoard(ageGroup, gender, visibleRows.length)}</p>
-          ) : null}
-
-          {visibleRows.length > 0 ? (
-            <PaginationToolbar
-              className="mb-3"
-              pageStart={pageStart}
-              pageEnd={pageEnd}
-              total={visibleRows.length}
-              page={currentPage}
-              pageCount={pageCount}
-              onChange={(nextPage) => navigateRankings({ page: nextPage })}
-              labelSuffix={`${ageGroup} ${gender}`}
-            />
-          ) : null}
-
-          <div className="overflow-hidden rounded-sm border border-line-500 bg-white shadow-panel">
-            {pagedRows.length ? (
-              <RankingTable
-                rows={pagedRows}
-                rankByPlayerId={boardRankByPlayerId}
-                rankColumnLabel={recruitingFilterActive ? recruitingRankColumnLabel(gender, classYear) : undefined}
-                sortKey={sortKey}
-                sortDirection={sortDirection}
-                onSort={updateSort}
-                variant="scout"
-                tone="light"
-              />
-            ) : (
-              <div className="p-8">
-                <EmptyState icon="players" title="No players ranked yet" />
-              </div>
-            )}
-          </div>
-
-        </div>
-      </section>
     </PublicPageShell>
   );
 }

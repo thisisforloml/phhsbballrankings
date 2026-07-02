@@ -24,6 +24,7 @@ function formatTrustDate(value: string) {
 }
 
 type RankingsToolbarProps = {
+  children?: ReactNode;
   ageGroup: PublicCoverageAgeGroup;
   gender: "Boys" | "Girls";
   query: string;
@@ -223,7 +224,7 @@ export function RankingsToolbar(props: RankingsToolbarProps) {
         </div>
       </div>
 
-      <div className="sticky top-20 z-40 bg-paper-500">
+      <div className="sticky top-[var(--navbar-height)] z-30 bg-paper-500">
         <div className="container-px pb-4">
           <div className="mx-auto max-w-[74rem]">
             <DesktopFilters {...props} />
@@ -257,6 +258,8 @@ export function RankingsToolbar(props: RankingsToolbarProps) {
           </div>
         </div>
       </div>
+
+      {props.children}
     </section>
   );
 }

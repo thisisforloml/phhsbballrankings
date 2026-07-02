@@ -229,54 +229,54 @@ export function TeamsClient({
         onMinimumGamesChange={setMinimumGames}
         onClear={clearFilters}
         lastUpdated={lastUpdated}
-      />
-
-      <section className="container-px mt-2 pb-4">
-        <div className="mx-auto max-w-[74rem]">
-          {isNationalView ? (
-            sortedNational.length > 0 ? (
+      >
+        <section className="container-px mt-2 pb-4">
+          <div className="mx-auto max-w-[74rem]">
+            {isNationalView ? (
+              sortedNational.length > 0 ? (
+                <PaginationSummary
+                  className="mb-3"
+                  pageStart={1}
+                  pageEnd={sortedNational.length}
+                  total={sortedNational.length}
+                  unit="programs"
+                  labelSuffix={`${ageGroup} ${gender} | TPI-v1 national board`}
+                />
+              ) : null
+            ) : visibleCompetitionRows.length > 0 ? (
               <PaginationSummary
                 className="mb-3"
                 pageStart={1}
-                pageEnd={sortedNational.length}
-                total={sortedNational.length}
-                unit="programs"
-                labelSuffix={`${ageGroup} ${gender} | TPI-v1 national board`}
+                pageEnd={visibleCompetitionRows.length}
+                total={visibleCompetitionRows.length}
+                unit="teams"
+                labelSuffix={`${ageGroup} ${gender} | Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}
               />
-            ) : null
-          ) : visibleCompetitionRows.length > 0 ? (
-            <PaginationSummary
-              className="mb-3"
-              pageStart={1}
-              pageEnd={visibleCompetitionRows.length}
-              total={visibleCompetitionRows.length}
-              unit="teams"
-              labelSuffix={`${ageGroup} ${gender} | Min. ${selectedMinimumGames} game${selectedMinimumGames === 1 ? "" : "s"} played`}
-            />
-          ) : null}
+            ) : null}
 
-          <div className="overflow-hidden rounded-sm border border-line-500 bg-white shadow-panel">
-          {isNationalView ? (
-            sortedNational.length ? (
-              <>
-                {nationalBoardIsSparse ? (
-                  <p className="mb-3 border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-900">
-                    {nationalTeamBoardCoverageCopy.sparseBoard(sortedNational.length, ageGroup, gender)}
-                  </p>
-                ) : null}
-                <NationalTeamRankingTable rows={sortedNational} sortKey={nationalSortKey} sortDirection={nationalSortDirection} onSort={updateNationalSort} />
-              </>
-            ) : (
-              <EmptyState icon="teams" title={nationalEmptyCopy.title} description={nationalEmptyCopy.description} />
-            )
-          ) : visibleCompetitionRows.length ? (
-            <TeamStandingTable rows={visibleCompetitionRows} sortKey={sortKey} sortDirection={sortDirection} onSort={updateSort} />
-          ) : (
-            <EmptyState icon="teams" title="No official team rankings yet" />
-          )}
-        </div>
-        </div>
-      </section>
+            <div className="overflow-hidden rounded-sm border border-line-500 bg-white shadow-panel">
+              {isNationalView ? (
+                sortedNational.length ? (
+                  <>
+                    {nationalBoardIsSparse ? (
+                      <p className="mb-3 border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-900">
+                        {nationalTeamBoardCoverageCopy.sparseBoard(sortedNational.length, ageGroup, gender)}
+                      </p>
+                    ) : null}
+                    <NationalTeamRankingTable rows={sortedNational} sortKey={nationalSortKey} sortDirection={nationalSortDirection} onSort={updateNationalSort} />
+                  </>
+                ) : (
+                  <EmptyState icon="teams" title={nationalEmptyCopy.title} description={nationalEmptyCopy.description} />
+                )
+              ) : visibleCompetitionRows.length ? (
+                <TeamStandingTable rows={visibleCompetitionRows} sortKey={sortKey} sortDirection={sortDirection} onSort={updateSort} />
+              ) : (
+                <EmptyState icon="teams" title="No official team rankings yet" />
+              )}
+            </div>
+          </div>
+        </section>
+      </TeamsToolbar>
     </>
   );
 }
