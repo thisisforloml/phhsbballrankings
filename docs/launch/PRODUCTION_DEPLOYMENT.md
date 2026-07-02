@@ -64,8 +64,10 @@ Stack traces and `error.message` are **not** exposed to users in production.
 ## Hosting notes (Vercel)
 
 1. Set `DATABASE_URL`, `PORTAL_SESSION_SECRET`, and `CRON_SECRET` in project Environment Variables (Production).
-2. `vercel.json` schedules weekly cron to `/api/cron/update-ratings` — `CRON_SECRET` must match what Vercel sends as `Authorization: Bearer …`.
-3. Stop local `next dev` before running `npm run build` locally if Prisma reports `EPERM` on the query engine DLL.
+2. **Node.js version:** set **22.x** in Vercel → Project Settings → Build and Deployment → Node.js Version. This must match `package.json` `engines.node` (`22.x`) and `.nvmrc` (`22`). Use major-only pins (`22.x`), not an exact patch (e.g. `22.14.0`).
+3. `vercel.json` schedules weekly cron to `/api/cron/update-ratings` — `CRON_SECRET` must match what Vercel sends as `Authorization: Bearer …`.
+4. Portal login uses the `argon2` native module. `next.config.mjs` includes the Linux glibc prebuild via `outputFileTracingIncludes` so Vercel serverless bundles ship the `.node` binary. Do not remove that config without an equivalent fix.
+5. Stop local `next dev` before running `npm run build` locally if Prisma reports `EPERM` on the query engine DLL.
 
 ## Post-deploy smoke test
 

@@ -2,6 +2,9 @@
   "name": "ph-hoops-index",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "description": "Verified Philippine basketball rankings website built with Next.js, TypeScript, PostgreSQL, and Prisma.",
   "scripts": {
     "dev": "next dev",
