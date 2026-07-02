@@ -287,21 +287,21 @@ function AnimatedTrendPath({
   strokeWidth?: number;
 }) {
   const pathRef = useRef<SVGPathElement>(null);
-  const hasDrawnRef = useRef(false);
-
-  useLayoutEffect(() => {
-    const path = pathRef.current;
-    if (!path) return;
-    if (d) path.setAttribute("d", d);
-  }, [d]);
+  const previousPathRef = useRef<string | null>(null);
 
   useLayoutEffect(() => {
     const path = pathRef.current;
     if (!path || !d) return;
 
+    const geometryChanged = previousPathRef.current !== null && previousPathRef.current !== d;
+    const isFirstDraw = previousPathRef.current === null;
+    previousPathRef.current = d;
+
     const length = path.getTotalLength();
-    const shouldAnimate = animateKey > 0 || !hasDrawnRef.current;
-    hasDrawnRef.current = true;
+    const shouldAnimate = animateKey > 0 || isFirstDraw || geometryChanged;
+
+    let frameId = 0;
+    let timeoutId: number | undefined;
 
     if (dashed) {
       if (!shouldAnimate) {
@@ -312,16 +312,17 @@ function AnimatedTrendPath({
         return;
       }
 
+      path.style.transition = "none";
       path.style.strokeDasharray = `${length}`;
       path.style.strokeDashoffset = `${length}`;
       path.style.opacity = "0.35";
 
-      const frame = requestAnimationFrame(() => {
+      frameId = requestAnimationFrame(() => {
         path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
         path.style.strokeDashoffset = "0";
         path.style.opacity = "0.9";
 
-        window.setTimeout(() => {
+        timeoutId = window.setTimeout(() => {
           if (pathRef.current !== path) return;
           path.style.transition = "none";
           path.style.strokeDasharray = "8 6";
@@ -329,13 +330,16 @@ function AnimatedTrendPath({
         }, 920);
       });
 
-      return () => cancelAnimationFrame(frame);
+      return () => {
+        cancelAnimationFrame(frameId);
+        if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      };
     }
 
+    path.style.transition = "none";
     path.style.strokeDasharray = `${length}`;
 
     if (!shouldAnimate) {
-      path.style.transition = "none";
       path.style.strokeDashoffset = "0";
       path.style.opacity = "1";
       return;
@@ -344,14 +348,14 @@ function AnimatedTrendPath({
     path.style.strokeDashoffset = `${length}`;
     path.style.opacity = "0.35";
 
-    const frame = requestAnimationFrame(() => {
+    frameId = requestAnimationFrame(() => {
       path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
       path.style.strokeDashoffset = "0";
       path.style.opacity = "1";
     });
 
-    return () => cancelAnimationFrame(frame);
-  }, [animateKey, dashed]);
+    return () => cancelAnimationFrame(frameId);
+  }, [animateKey, d, dashed]);
 
   if (!d) return null;
 
