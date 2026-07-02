@@ -3,9 +3,12 @@ import type { HomeData, HomeLeaderboardRow, PublicAgeGroup, PublicGender } from 
 const ageGroups: PublicAgeGroup[] = ["U13", "U16", "U19"];
 const genders: PublicGender[] = ["Boys", "Girls"];
 
-/** Cross-board featured picks — always up to four, excluding the hero #1. */
+/** Cross-board featured picks — always up to four, excluding the hero spotlight player. */
 export function buildCrossBoardFeaturedProspects(data: HomeData, limit = 4): HomeLeaderboardRow[] {
-  const heroId = data.leaderboardsByAge.U19.boys[0]?.playerId ?? null;
+  const heroId =
+    data.weeklyBestPerformer?.playerId ??
+    data.leaderboardsByAge.U19.boys[0]?.playerId ??
+    null;
   const boysRest = data.leaderboardsByAge.U19.boys.slice(1);
   const girls = data.leaderboardsByAge.U19.girls;
 

@@ -12,7 +12,6 @@ export default async function LeaguesPage() {
       <ScoutPageHeader
         eyebrow="Competitions"
         title="Leagues"
-        meta={`${leagues.length} verified competitions`}
       />
       <LeaguesClient leagues={leagues} />
     </PublicPageShell>

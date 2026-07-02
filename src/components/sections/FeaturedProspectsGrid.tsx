@@ -32,6 +32,7 @@ export function FeaturedProspectsGrid({ players, rankDeltaByPlayerId = {} }: Fea
           <Link
             key={player.playerId}
             href={getPlayerProfileHref(player)}
+            aria-label={`${player.displayName}, ${player.ageGroup} ${player.gender}, rated ${player.rating.toFixed(1)}`}
             className="home-mobile-tap-card group overflow-hidden rounded-sm border border-white/[0.08] bg-court-800/90 text-left transition-colors duration-200 hover:border-hardwood-500/40"
           >
             <div className="prospect-portrait-frame relative h-40 overflow-hidden">
@@ -82,7 +83,7 @@ export function FeaturedProspectsGrid({ players, rankDeltaByPlayerId = {} }: Fea
               <div className="mt-3 grid grid-cols-3 gap-2 border-t border-white/[0.08] pt-3">
                 <div>
                   <div className="font-numeric text-sm font-normal italic text-scout-50">{player.rating.toFixed(1)}</div>
-                  <div className="text-[0.65rem] font-bold uppercase tracking-[0.08em] text-scout-500">RTG</div>
+                  <div className="text-[0.65rem] font-bold uppercase tracking-[0.08em] text-scout-500">Rating</div>
                 </div>
                 <div>
                   <div className="font-numeric text-sm font-normal text-scout-50">{player.verifiedGameCount}</div>

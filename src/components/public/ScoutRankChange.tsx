@@ -16,11 +16,13 @@ export function ScoutRankChange({ delta, className = "" }: ScoutRankChangeProps)
   }
 
   const up = delta > 0;
+  const label = up ? `Up ${Math.abs(delta)} ranks` : `Down ${Math.abs(delta)} ranks`;
   return (
     <span
       className={`inline-flex items-center gap-0.5 font-numeric text-xs font-normal tracking-wide ${
         up ? "text-emerald-400" : "text-rose-400"
       } ${className}`}
+      aria-label={label}
     >
       {up ? "▲" : "▼"}
       {Math.abs(delta)}

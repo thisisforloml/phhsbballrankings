@@ -20,6 +20,7 @@ export function BoardMovementCards({ movers }: { movers: HomeRankMover[] }) {
         <Link
           key={mover.playerId}
           href={getPlayerProfileHref({ slug: mover.slug })}
+          aria-label={`${mover.displayName}, now rank ${mover.currentRank}, ${mover.delta > 0 ? `up ${mover.delta}` : `down ${Math.abs(mover.delta)}`} places`}
           className="home-mobile-tap-card rounded-sm border border-white/[0.08] bg-scout-800/80 p-3 text-left transition-colors duration-200 hover:border-scout-orange/40 hover:bg-scout-800"
         >
           <div className="mb-2 flex items-center justify-between gap-2">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { getHomeData, getPublicTrustMeta } from "@/lib/public-site-data";
+import { getHomeData } from "@/lib/public-site-data";
 
 import { HomeClient } from "./HomeClient";
 
@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const data = await getHomeData();
-  const trustMeta = await getPublicTrustMeta();
 
-  return <HomeClient data={data} lastUpdated={trustMeta.lastUpdated} />;
+  return <HomeClient data={data} />;
 }

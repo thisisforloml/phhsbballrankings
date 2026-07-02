@@ -19,15 +19,15 @@ export function NationalBoardRail({
   rankDeltaByPlayerId = {},
   rankingsHref,
 }: NationalBoardRailProps) {
-  const boardRows = players.slice(0, 8);
+  const boardRows = players.slice(0, 10);
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-sm border border-white/[0.08] bg-scout-800/80">
       <div className="grid grid-cols-[2rem_minmax(0,1fr)_2.75rem_2.75rem] gap-1.5 border-b border-white/[0.08] px-2.5 py-2 text-[0.55rem] font-bold uppercase tracking-[0.1em] text-scout-500 md:grid-cols-[2.5rem_minmax(0,1fr)_3rem_3rem] md:gap-2 md:px-3 md:py-2.5 md:text-[0.6rem]">
         <span>#</span>
         <span>Player</span>
-        <span className="text-right">RTG</span>
-        <span className="text-right">+/−</span>
+        <span className="text-right">Rating</span>
+        <span className="text-right">Change</span>
       </div>
       {!boardRows.length ? (
         <p className="p-3 text-sm text-scout-500 md:p-4">No eligible players on this board yet.</p>
@@ -38,6 +38,7 @@ export function NationalBoardRail({
             <Link
               key={player.playerId}
               href={getPlayerProfileHref(player)}
+              aria-label={`${player.displayName}, rank ${formatBoardRank(player.rank)}, rated ${player.rating.toFixed(0)}`}
               className={`home-mobile-tap-list grid grid-cols-[2rem_minmax(0,1fr)_2.75rem_2.75rem] items-center gap-1.5 px-2.5 py-1.5 transition-colors duration-200 hover:bg-court-800 md:grid-cols-[2.5rem_minmax(0,1fr)_3rem_3rem] md:gap-2 md:px-3 md:py-2.5 ${
                 index < boardRows.length - 1 ? "border-b border-white/[0.06]" : ""
               }`}
@@ -71,7 +72,9 @@ export function NationalBoardRail({
                 {delta !== undefined ? (
                   <ScoutRankChange delta={delta} className="max-md:text-[0.65rem] md:text-xs" />
                 ) : (
-                  <ScoutRankChange delta={0} className="max-md:text-[0.65rem] md:text-xs" />
+                  <span className="font-numeric text-xs text-scout-500" aria-hidden="true">
+                    —
+                  </span>
                 )}
               </span>
             </Link>
@@ -109,6 +112,7 @@ export function NationalBoardGenderToggle({
           <button
             key={option}
             type="button"
+            aria-pressed={active}
             onClick={() => onGenderChange(option)}
             className={`home-mobile-tap-btn rounded-sm px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.08em] transition-colors duration-200 ${
               active ? "bg-court-700 text-white" : "text-scout-500 hover:text-white/80"

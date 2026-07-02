@@ -64,11 +64,12 @@ function ScoreCheck({ points, expected }: { points: number; expected: number }) 
   );
 }
 
-export function BoxScoreTable({ team, rows, expectedScore, totals }: {
+export function BoxScoreTable({ team, rows, expectedScore, totals, showScoreCheck = false }: {
   team: { id: string; name: string };
   rows: BoxScoreRow[];
   expectedScore: number;
   totals: BoxScoreTotals;
+  showScoreCheck?: boolean;
 }) {
   return (
     <article className="border border-line-500 bg-white">
@@ -79,7 +80,7 @@ export function BoxScoreTable({ team, rows, expectedScore, totals }: {
         </div>
         <div className="flex flex-wrap gap-2">
           <span className="border border-court-900 bg-court-900 px-4 py-2 text-xs font-black uppercase tracking-[0.1em] text-white">{expectedScore} points</span>
-          <ScoreCheck points={totals.points} expected={expectedScore} />
+          {showScoreCheck ? <ScoreCheck points={totals.points} expected={expectedScore} /> : null}
         </div>
       </div>
       <div className="overflow-x-auto">

@@ -9,6 +9,7 @@ import { slugify } from "./format";
 import { prisma } from "./prisma";
 import type { PublicTrustMeta } from "./public-rankings-coverage";
 import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
+import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
@@ -51,6 +52,7 @@ export type HomeData = {
   };
   leader: HomeLeaderboardRow | null;
   boardLeaders: HomeLeaderboardRow[];
+  weeklyBestPerformer: HomeLeaderboardRow | null;
   leaderboards: {
     boys: HomeLeaderboardRow[];
     girls: HomeLeaderboardRow[];
@@ -254,8 +256,11 @@ async function getHomeDataImpl(): Promise<HomeData> {
   const girlsRows = rankings.snapshots.girls.rows.slice(0, 10) as HomeLeaderboardRow[];
   const officialCounts = await getOfficialTeamCompetitionCounts();
   const boardMovers = await getBoardMovers();
-  const recentGames = await getHomeRecentGames();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
+  const weeklyBestPerformer = await resolveWeeklyBestPerformer(
+    [...boysRows, ...girlsRows],
+    boysRows[0] ?? allTopRows[0] ?? null
+  );
   const emptyBoard = { boys: [] as HomeLeaderboardRow[], girls: [] as HomeLeaderboardRow[] };
   const leaderboardsByAge: HomeData["leaderboardsByAge"] = {
     U13: emptyBoard,
@@ -271,13 +276,14 @@ async function getHomeDataImpl(): Promise<HomeData> {
     },
     leader: allTopRows[0] ?? null,
     boardLeaders: allTopRows.slice(0, 6),
+    weeklyBestPerformer,
     leaderboards: {
       boys: boysRows,
       girls: girlsRows
     },
     leaderboardsByAge,
     teamPreview: [],
-    recentGames,
+    recentGames: [],
     boardMovers
   };
 }

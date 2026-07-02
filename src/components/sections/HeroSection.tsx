@@ -39,7 +39,7 @@ function CountUpSpan({ target }: { target: number }) {
 }
 
 function featuredProspect(data: HomeData): HomeLeaderboardRow | null {
-  return data.leaderboardsByAge.U19.boys[0] ?? data.leader ?? null;
+  return data.weeklyBestPerformer ?? data.leaderboardsByAge.U19.boys[0] ?? data.leader ?? null;
 }
 
 function initials(name: string) {
@@ -99,11 +99,12 @@ export function HeroSection({ data }: { data: HomeData }) {
             <div className="animate-hero-enter-delayed">
               <Link
                 href={getPlayerProfileHref(featured)}
+                aria-label={`${featured.displayName}, best performer of the week, rated ${featured.rating.toFixed(1)}`}
                 className="home-mobile-tap-card group relative block overflow-hidden rounded-sm border border-white/[0.08] bg-scout-800 text-left transition-colors duration-200 hover:border-scout-orange/40"
               >
                 <div className="absolute left-2.5 top-2.5 z-10 md:left-3 md:top-3">
                   <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-scout-orange-bright">
-                    Featured Prospect
+                    Best Performer of the Week
                   </span>
                 </div>
                 <div className="prospect-portrait-frame relative h-[22rem] overflow-hidden sm:h-96 md:h-[26rem]">
@@ -126,9 +127,11 @@ export function HeroSection({ data }: { data: HomeData }) {
                     <div className="mb-2 flex items-end justify-between gap-2 md:mb-3 md:gap-3">
                       <div className="min-w-0">
                         <div className="mb-0.5 flex flex-wrap items-center gap-1.5 md:mb-1 md:gap-2">
-                          <span className="font-numeric text-4xl font-normal leading-none text-scout-orange-bright md:text-5xl">
-                            {formatPublicRank(featured.rank)}
-                          </span>
+                          {featured.rank > 0 ? (
+                            <span className="font-numeric text-4xl font-normal leading-none text-scout-orange-bright md:text-5xl">
+                              {formatPublicRank(featured.rank)}
+                            </span>
+                          ) : null}
                           {featured.position ? (
                             <span className="rounded-sm border border-white/15 bg-scout-900/60 px-1.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.08em] text-scout-50 md:px-2 md:text-[0.65rem]">
                               {featured.position}

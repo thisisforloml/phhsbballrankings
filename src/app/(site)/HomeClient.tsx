@@ -6,18 +6,15 @@ import { useMemo, useState } from "react";
 import { BoardMovementCards } from "@/components/public/BoardMovementCards";
 import { PublicPageShell } from "@/components/public/PublicPageShell";
 import { ScoutSectionLabel } from "@/components/public/ScoutSectionLabel";
-import { TrustBand } from "@/components/public/TrustBand";
 import {
   FeaturedProspectsGrid,
   HeroSection,
   NationalBoardGenderToggle,
   NationalBoardRail,
 } from "@/components/sections";
-import { EmptyState } from "@/components/ui";
 import { buildCrossBoardFeaturedProspects } from "@/lib/home-featured-prospects";
 import { publicRankingsCoverageCopy } from "@/lib/public-rankings-coverage";
-import type { HomeData, HomeRecentGame, PublicGender } from "@/lib/public-site-data";
-import { getProgramAbbreviation } from "@/lib/uaap-school-display";
+import type { HomeData, PublicGender } from "@/lib/public-site-data";
 
 const NATIONAL_BOARD_AGE = "U19" as const;
 
@@ -27,7 +24,7 @@ const homeSectionHeadingClass =
 const homeSectionLinkClass =
   "home-mobile-link text-xs font-bold uppercase tracking-[0.1em] text-scout-orange-bright transition-colors duration-200 hover:text-hardwood-500";
 
-export function HomeClient({ data, lastUpdated }: { data: HomeData; lastUpdated?: string | null }) {
+export function HomeClient({ data }: { data: HomeData }) {
   const [gender, setGender] = useState<PublicGender>("Boys");
 
   const rankedPlayers = useMemo(() => {
@@ -54,7 +51,7 @@ export function HomeClient({ data, lastUpdated }: { data: HomeData; lastUpdated?
             <div className="mb-2 flex flex-wrap items-end justify-between gap-3">
               <div>
                 <ScoutSectionLabel>Board Movement</ScoutSectionLabel>
-                <h2 className={homeSectionHeadingClass}>This Week on the Board</h2>
+                <h2 className={homeSectionHeadingClass}>Latest Board Moves</h2>
               </div>
               <Link
                 href="/rankings?gender=Boys&age=U19"
@@ -64,7 +61,7 @@ export function HomeClient({ data, lastUpdated }: { data: HomeData; lastUpdated?
               </Link>
             </div>
             <p className="mb-5 max-w-2xl text-sm text-scout-500">
-              Biggest rank shifts from the latest verified snapshot — featured prospects and the national board below reflect these moves.
+              Players who moved up or down the most after our latest board update — see who&apos;s climbing and who slipped.
             </p>
             <BoardMovementCards movers={data.boardMovers} />
           </div>
@@ -96,7 +93,7 @@ export function HomeClient({ data, lastUpdated }: { data: HomeData; lastUpdated?
           </div>
 
           <p className="mb-5 max-w-xl text-sm text-scout-500 lg:max-w-none lg:pr-[34%]">
-            Top-rated athletes across divisions — not limited to one age group or gender.
+            Four ranked players to watch from the boys and girls national boards.
           </p>
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
@@ -123,42 +120,17 @@ export function HomeClient({ data, lastUpdated }: { data: HomeData; lastUpdated?
                   />
                 </>
               ) : (
-                <div className="rounded-sm border border-white/[0.08] bg-scout-800/80 p-6">
-                  <EmptyState icon="players" title={publicRankingsCoverageCopy.emptyBoardTitle} />
+                <div className="rounded-sm border border-white/[0.08] bg-scout-800/80 p-6 text-center">
+                  <p className="text-sm font-semibold text-scout-50">{publicRankingsCoverageCopy.emptyBoardTitle}</p>
+                  <p className="mt-2 text-sm text-scout-500">{publicRankingsCoverageCopy.emptyBoardDescription}</p>
                 </div>
               )}
             </div>
           </div>
-
-          {data.recentGames.length ? (
-            <div className="mt-6 pt-5 md:mt-10 md:pt-8">
-              <div className="mb-4 flex justify-center md:mb-6" aria-hidden="true">
-                <div className="h-px w-20 bg-white/10" />
-              </div>
-              <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <ScoutSectionLabel>Recent Scores</ScoutSectionLabel>
-                  <h2 className={homeSectionHeadingClass}>Verified Games Behind the Board</h2>
-                </div>
-                <Link
-                  href="/games"
-                  className={homeSectionLinkClass}
-                >
-                  All games →
-                </Link>
-              </div>
-              <RecentResults games={data.recentGames} />
-            </div>
-          ) : null}
         </div>
       </section>
 
       <HomeTeamModule data={data} />
-
-      <TrustBand
-        variant="scout-panel"
-        trustMeta={lastUpdated ? { lastUpdated } : undefined}
-      />
     </PublicPageShell>
   );
 }
@@ -226,50 +198,5 @@ function HomeTeamModule({ data }: { data: HomeData }) {
         </article>
       </div>
     </section>
-  );
-}
-
-function RecentResults({ games }: { games: HomeRecentGame[] }) {
-  return (
-    <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-2 lg:grid-cols-3">
-      {games.slice(0, 9).map((game) => {
-        const homeWon = game.homeScore > game.awayScore;
-        const awayWon = game.awayScore > game.homeScore;
-        return (
-          <Link
-            key={game.id}
-            href={`/games/${game.id}`}
-            className="home-mobile-tap-card rounded-sm border border-white/[0.08] bg-scout-800/80 p-2.5 transition-colors duration-200 hover:border-hardwood-500/40 hover:bg-court-800 md:p-3"
-          >
-            <div className="mb-1 flex items-center justify-between gap-2 md:mb-2">
-              <span className="min-w-0 truncate text-[0.6rem] font-bold uppercase tracking-[0.1em] text-scout-500 md:text-[0.65rem]">
-                {game.leagueName}
-              </span>
-              <span className="shrink-0 text-[0.6rem] font-bold uppercase tracking-[0.1em] text-scout-500 md:text-[0.65rem]">
-                Final
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-2 md:gap-3">
-              <div className="min-w-0 flex-1 space-y-0.5">
-                <div className={`truncate text-xs font-bold uppercase leading-tight md:text-sm ${homeWon ? "text-white" : "text-scout-500"}`}>
-                  {getProgramAbbreviation(game.homeTeamName)}
-                </div>
-                <div className={`truncate text-xs font-bold uppercase leading-tight md:text-sm ${awayWon ? "text-white" : "text-scout-500"}`}>
-                  {getProgramAbbreviation(game.awayTeamName)}
-                </div>
-              </div>
-              <div className="flex shrink-0 flex-col justify-center space-y-0.5 text-right">
-                <div className={`font-numeric text-2xl font-normal leading-none md:text-xl ${homeWon ? "text-white" : "text-scout-500"}`}>
-                  {game.homeScore}
-                </div>
-                <div className={`font-numeric text-2xl font-normal leading-none md:text-xl ${awayWon ? "text-white" : "text-scout-500"}`}>
-                  {game.awayScore}
-                </div>
-              </div>
-            </div>
-          </Link>
-        );
-      })}
-    </div>
   );
 }

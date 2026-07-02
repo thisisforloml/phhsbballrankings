@@ -10,6 +10,13 @@
   html {
     scroll-behavior: smooth;
     background: #f7f4ef;
+    --navbar-height: 4.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      --navbar-height: 5rem;
+    }
   }
 
   body {
