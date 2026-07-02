@@ -6,11 +6,14 @@ import {
   approveOrganizerApplication,
   approvePlayerProfileSubmission,
   type IntakeReviewAction,
+  ORGANIZER_APPLICATION_DELETE_REASON,
   organizerApprovalMessage,
   rejectOrganizerApplication,
   rejectPlayerProfileSubmission,
+  softDeleteOrganizerApplication,
 } from "@/lib/admin/intake-review";
 import { writeAuditLog } from "@/lib/admin/log-admin-action";
+import { assertRateLimit, RATE_LIMIT_PRESETS } from "@/lib/rate-limit";
 import { requireAdminUser } from "@/lib/portal-auth";
 
 export type IntakeActionState = { ok: boolean; message: string };
@@ -116,5 +119,48 @@ export async function reviewOrganizerApplication(
     return { ok: true, message: organizerApprovalMessage(result) };
   } catch (error) {
     return initialFailure(error instanceof Error ? error.message : "Could not review organizer application.");
+  }
+}
+
+export async function deleteOrganizerApplication(
+  _previous: IntakeActionState,
+  formData: FormData,
+): Promise<IntakeActionState> {
+  try {
+    const user = await requireAdminUser();
+    assertRateLimit("admin:destructive", user.id, RATE_LIMIT_PRESETS.destructiveAdmin(), "Organizer application delete");
+
+    const applicationId = String(formData.get("applicationId") ?? "").trim();
+    const confirmText = String(formData.get("confirmText") ?? "").trim();
+
+    if (!applicationId) {
+      throw new Error("Application id is required.");
+    }
+
+    if (confirmText !== "DELETE") {
+      throw new Error("Type DELETE to confirm removal.");
+    }
+
+    const application = await softDeleteOrganizerApplication(applicationId, user);
+    await writeAuditLog({
+      userId: user.id,
+      entityType: "ORGANIZER_APPLICATION",
+      entityId: applicationId,
+      action: "DELETE",
+      reason: ORGANIZER_APPLICATION_DELETE_REASON,
+      previousData: {
+        status: application.status,
+        applicantName: application.applicantName,
+        deletedAt: null,
+      },
+      newData: {
+        deletedAt: new Date().toISOString(),
+        deletedById: user.id,
+      },
+    });
+    revalidatePath("/admin/intake");
+    return { ok: true, message: "Organizer application removed from intake." };
+  } catch (error) {
+    return initialFailure(error instanceof Error ? error.message : "Could not remove organizer application.");
   }
 }

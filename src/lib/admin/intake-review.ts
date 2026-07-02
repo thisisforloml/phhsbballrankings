@@ -4,8 +4,20 @@ import { hashPassword } from "@/lib/password-hash";
 import { prisma } from "@/lib/prisma";
 
 export const INTAKE_LIST_LIMIT = 50;
+export const ORGANIZER_APPLICATION_DELETE_REASON = "Admin removed organizer application";
 
 export type IntakeReviewAction = "APPROVE" | "REJECT";
+
+const activeOrganizerApplicationFilter = { deletedAt: null } as const;
+
+export function appendOrganizerApplicationAuditNote(existingNotes: string | null, actorLabel: string, note: string) {
+  const stamped = `[${new Date().toISOString()}] ${actorLabel}: ${note}`;
+  return existingNotes ? `${existingNotes}\n${stamped}` : stamped;
+}
+
+export function formatOrganizerApplicationActorLabel(user: { name: string; username: string }) {
+  return user.name.trim() || user.username;
+}
 
 export function splitSubmissionName(firstName: string, lastName: string) {
   return {
@@ -29,6 +41,7 @@ export async function loadIntakeReviewQueues() {
       take: INTAKE_LIST_LIMIT,
     }),
     prisma.organizerApplication.findMany({
+      where: activeOrganizerApplicationFilter,
       orderBy: { createdAt: "desc" },
       take: INTAKE_LIST_LIMIT,
     }),
@@ -97,11 +110,63 @@ export async function approvePlayerProfileSubmission(submissionId: string) {
   return submission;
 }
 
-export async function rejectOrganizerApplication(applicationId: string) {
+export async function getOrganizerApplicationForAudit(applicationId: string) {
+  return prisma.organizerApplication.findUnique({
+    where: { id: applicationId },
+    include: {
+      deletedBy: {
+        select: { id: true, name: true, username: true },
+      },
+    },
+  });
+}
+
+export async function softDeleteOrganizerApplication(
+  applicationId: string,
+  deletedBy: { id: string; name: string; username: string },
+) {
   const application = await prisma.organizerApplication.findUnique({ where: { id: applicationId } });
   if (!application) {
     throw new Error("Organizer application not found.");
   }
+  if (application.deletedAt) {
+    throw new Error("Organizer application was already removed.");
+  }
+
+  const actorLabel = formatOrganizerApplicationActorLabel(deletedBy);
+  const adminNotes = appendOrganizerApplicationAuditNote(
+    application.adminNotes,
+    actorLabel,
+    ORGANIZER_APPLICATION_DELETE_REASON,
+  );
+
+  await prisma.organizerApplication.update({
+    where: { id: applicationId },
+    data: {
+      deletedAt: new Date(),
+      deletedById: deletedBy.id,
+      adminNotes,
+    },
+  });
+
+  return application;
+}
+
+function assertActiveOrganizerApplication<T extends { deletedAt: Date | null }>(
+  application: T | null,
+  notFoundMessage: string,
+): asserts application is T {
+  if (!application) {
+    throw new Error(notFoundMessage);
+  }
+  if (application.deletedAt) {
+    throw new Error("Organizer application was removed.");
+  }
+}
+
+export async function rejectOrganizerApplication(applicationId: string) {
+  const application = await prisma.organizerApplication.findUnique({ where: { id: applicationId } });
+  assertActiveOrganizerApplication(application, "Organizer application not found.");
 
   await prisma.organizerApplication.update({
     where: { id: applicationId },
@@ -119,9 +184,7 @@ export type OrganizerApprovalResult = {
 
 export async function approveOrganizerApplication(applicationId: string): Promise<OrganizerApprovalResult> {
   const application = await prisma.organizerApplication.findUnique({ where: { id: applicationId } });
-  if (!application) {
-    throw new Error("Organizer application not found.");
-  }
+  assertActiveOrganizerApplication(application, "Organizer application not found.");
 
   const organizerUsername = await uniqueOrganizerUsername(application.applicantName, application.id);
   const initialPasswordHash = await hashPassword("Organizer123");

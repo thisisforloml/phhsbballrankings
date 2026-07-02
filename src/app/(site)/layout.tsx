@@ -8,7 +8,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <>
       <Navbar />
-      {children}
+      <div className="-mt-[var(--navbar-height)]">{children}</div>
       <Footer trustMeta={trustMeta} />
     </>
   );

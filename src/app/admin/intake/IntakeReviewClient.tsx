@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 
+import { OrganizerApplicationDeleteForm } from "./OrganizerApplicationDeleteForm";
 import {
   type IntakeActionState,
   reviewOrganizerApplication,
@@ -83,9 +84,16 @@ export function IntakeReviewClient({
                   {row.experienceNotes ? <p className="mt-2 text-sm text-ink-700">{row.experienceNotes}</p> : null}
                   <p className="mt-1 text-xs text-ink-500">Submitted {row.createdAt}</p>
                 </div>
-                <span className="rounded bg-surface-100 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-ink-600">
-                  {row.status}
-                </span>
+                <div className="flex flex-col items-end gap-2">
+                  <span className="rounded bg-surface-100 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-ink-600">
+                    {row.status}
+                  </span>
+                  <OrganizerApplicationDeleteForm
+                    applicationId={row.id}
+                    applicantName={row.applicantName}
+                    status={row.status}
+                  />
+                </div>
               </div>
               {isPending(row.status) ? (
                 <form action={organizerAction} className="mt-4 grid gap-2 md:grid-cols-[1fr_auto_auto]">

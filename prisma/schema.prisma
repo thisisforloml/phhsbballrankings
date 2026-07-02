@@ -21,8 +21,9 @@ model User {
   auditLogs             AuditLog[]
   gameEditAudits        GameEditAudit[]
   profileClaimsReviewed ProfileClaim[]     @relation("ProfileClaimReviewer")
-  deletedSubmissions    Submission[]       @relation("SubmissionDeletedBy")
-  submissions           Submission[]
+  deletedSubmissions           Submission[]            @relation("SubmissionDeletedBy")
+  deletedOrganizerApplications OrganizerApplication[] @relation("OrganizerApplicationDeletedBy")
+  submissions                  Submission[]
   leagueAccess          UserLeagueAccess[]
 
   @@index([role])
@@ -159,11 +160,16 @@ model OrganizerApplication {
   region          String
   contact         String
   experienceNotes String?
+  adminNotes      String?
   status          String    @default("PENDING")
   createdAt       DateTime  @default(now())
   reviewedAt      DateTime?
+  deletedAt       DateTime?
+  deletedById     String?   @db.Uuid
+  deletedBy       User?     @relation("OrganizerApplicationDeletedBy", fields: [deletedById], references: [id])
 
   @@index([status, createdAt])
+  @@index([deletedAt])
   @@map("organizer_applications")
 }
 

@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { organizerApprovalMessage, splitSubmissionName } from "@/lib/admin/intake-review";
+import {
+  appendOrganizerApplicationAuditNote,
+  formatOrganizerApplicationActorLabel,
+  organizerApprovalMessage,
+  ORGANIZER_APPLICATION_DELETE_REASON,
+  splitSubmissionName,
+} from "@/lib/admin/intake-review";
 
 describe("intake-review helpers", () => {
   it("splitSubmissionName trims and builds display name", () => {
@@ -10,6 +16,21 @@ describe("intake-review helpers", () => {
       lastName: "Dela Cruz",
       displayName: "Juan Dela Cruz",
     });
+  });
+
+  it("appendOrganizerApplicationAuditNote preserves prior notes", () => {
+    const note = appendOrganizerApplicationAuditNote(
+      "Prior note",
+      "Admin User",
+      ORGANIZER_APPLICATION_DELETE_REASON,
+    );
+    assert.match(note, /^Prior note\n\[/);
+    assert.match(note, /Admin User: Admin removed organizer application$/);
+  });
+
+  it("formatOrganizerApplicationActorLabel prefers name", () => {
+    assert.equal(formatOrganizerApplicationActorLabel({ name: "Admin User", username: "admin" }), "Admin User");
+    assert.equal(formatOrganizerApplicationActorLabel({ name: "  ", username: "admin" }), "admin");
   });
 
   it("organizerApprovalMessage matches legacy API copy", () => {
@@ -23,9 +44,12 @@ describe("intake-review helpers", () => {
         region: "Region",
         contact: "contact",
         experienceNotes: null,
+        adminNotes: null,
         status: "PENDING",
         createdAt: new Date(),
         reviewedAt: null,
+        deletedAt: null,
+        deletedById: null,
       },
       organizerUsername: "TestOrgOrg",
       initialPassword: "Organizer123",

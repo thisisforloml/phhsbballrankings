@@ -53,7 +53,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-court-900">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-court-900">
         <div className="container-px flex min-h-[4.5rem] items-center justify-between gap-4 lg:min-h-20 lg:gap-6">
           <BrandMark />
 
