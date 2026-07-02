@@ -1,15 +1,12 @@
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { getPublicTrustMeta } from "@/lib/public-site-data";
 
-export default async function SiteLayout({ children }: { children: React.ReactNode }) {
-  const trustMeta = await getPublicTrustMeta();
-
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar />
       {children}
-      <Footer trustMeta={trustMeta} />
+      <Footer />
     </>
   );
 }

@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { BRAND_NAME_FULL } from "@/lib/brand";
 import type { PublicTrustMeta } from "@/lib/public-rankings-coverage";
 
+import { usePublicTrustMeta } from "./usePublicTrustMeta";
+
 type FooterLink = {
   label: string;
   href: string;
@@ -62,8 +64,9 @@ function formatTrustDate(value: string) {
   });
 }
 
-export function Footer({ trustMeta }: { trustMeta?: PublicTrustMeta }) {
+export function Footer({ trustMeta: trustMetaProp }: { trustMeta?: PublicTrustMeta }) {
   const pathname = usePathname();
+  const trustMeta = usePublicTrustMeta(trustMetaProp);
   const isHome = pathname === "/";
   const copyrightYear = new Date().getFullYear();
   const lastUpdatedLabel = trustMeta?.lastUpdated ? formatTrustDate(trustMeta.lastUpdated) : null;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import { getPublicTrustMeta } from "@/lib/public-site-data";
+import { getPublicTrustMeta } from "@/lib/public-trust-meta";
 import { getLatestNationalRankings } from "@/lib/rankings";
 
 import { RankingsClient } from "./RankingsClient";

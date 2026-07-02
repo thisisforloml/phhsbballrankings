@@ -8,12 +8,12 @@ import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import { slugify } from "./format";
 import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { prisma } from "./prisma";
-import type { PublicTrustMeta } from "./public-rankings-coverage";
 import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
-export type { PublicTrustMeta };
+export type { PublicTrustMeta } from "./public-rankings-coverage";
+export { getPublicTrustMeta } from "./public-trust-meta";
 
 export type PublicAgeGroup = "U13" | "U16" | "U19";
 export type PublicGender = "Boys" | "Girls";
@@ -427,35 +427,4 @@ export async function getPublicGamesIndex(): Promise<PublicGamesIndex> {
     games: rows
   };
 }
-
-async function getPublicTrustMetaImpl(): Promise<PublicTrustMeta> {
-  const latestGame = await prisma.game.findFirst({
-    where: {
-      deletedAt: null,
-      verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] },
-      season: { deletedAt: null, league: { deletedAt: null } }
-    },
-    orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
-    select: { gameDate: true }
-  });
-  const latestSnapshot = await prisma.rankingSnapshot.findFirst({
-    orderBy: [{ weekOf: "desc" }, { createdAt: "desc" }],
-    select: { weekOf: true, createdAt: true }
-  });
-
-  const candidates = [
-    latestGame?.gameDate,
-    latestSnapshot?.weekOf,
-    latestSnapshot?.createdAt
-  ].filter((value): value is Date => value instanceof Date);
-
-  const latest = candidates.reduce<Date | null>((current, candidate) => {
-    if (!current || candidate > current) return candidate;
-    return current;
-  }, null);
-
-  return { lastUpdated: latest?.toISOString() ?? null };
-}
-
-export const getPublicTrustMeta = cache(getPublicTrustMetaImpl);
 
