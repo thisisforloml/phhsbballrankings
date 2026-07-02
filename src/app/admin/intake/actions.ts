@@ -13,8 +13,8 @@ import {
   softDeleteOrganizerApplication,
 } from "@/lib/admin/intake-review";
 import { writeAuditLog } from "@/lib/admin/log-admin-action";
-import { assertRateLimit, RATE_LIMIT_PRESETS } from "@/lib/rate-limit";
 import { requireAdminUser } from "@/lib/portal-auth";
+import { assertRateLimit, RATE_LIMIT_PRESETS } from "@/lib/rate-limit";
 
 export type IntakeActionState = { ok: boolean; message: string };
 

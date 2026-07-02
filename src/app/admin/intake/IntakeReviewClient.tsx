@@ -5,12 +5,12 @@ import { useFormState } from "react-dom";
 
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 
-import { OrganizerApplicationDeleteForm } from "./OrganizerApplicationDeleteForm";
 import {
   type IntakeActionState,
   reviewOrganizerApplication,
   reviewPlayerProfileSubmission,
 } from "./actions";
+import { OrganizerApplicationDeleteForm } from "./OrganizerApplicationDeleteForm";
 
 const initialState: IntakeActionState = { ok: false, message: "" };
 

@@ -4,8 +4,8 @@ import { describe, it } from "node:test";
 import {
   appendOrganizerApplicationAuditNote,
   formatOrganizerApplicationActorLabel,
-  organizerApprovalMessage,
   ORGANIZER_APPLICATION_DELETE_REASON,
+  organizerApprovalMessage,
   splitSubmissionName,
 } from "@/lib/admin/intake-review";
 
