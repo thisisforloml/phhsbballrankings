@@ -6,10 +6,10 @@ import { cache } from "react";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 
 import { slugify } from "./format";
+import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { prisma } from "./prisma";
 import type { PublicTrustMeta } from "./public-rankings-coverage";
 import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
-import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
@@ -172,30 +172,6 @@ async function getValidatedDbGames() {
       },
     },
   });
-}
-
-async function getHomeRecentGames(limit = 9): Promise<HomeRecentGame[]> {
-  const games = await prisma.game.findMany({
-    where: officialPublicGameWhere(),
-    include: {
-      homeTeam: true,
-      awayTeam: true,
-      season: { include: { league: true } },
-    },
-    orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
-    take: limit,
-  });
-
-  return games.map((game) => ({
-      id: game.id,
-      gameDate: game.gameDate.toISOString().slice(0, 10),
-      leagueName: game.season.league.name,
-      seasonName: game.season.name,
-      homeTeamName: getUaapSchoolDisplayName(game.homeTeam.name),
-      awayTeamName: getUaapSchoolDisplayName(game.awayTeam.name),
-      homeScore: game.homeScore,
-      awayScore: game.awayScore,
-    }));
 }
 
 async function getBoardMovers(limit = 6): Promise<HomeRankMover[]> {

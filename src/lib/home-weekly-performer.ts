@@ -3,10 +3,10 @@ import "server-only";
 import { AgeGroup } from "@prisma/client";
 
 import { buildEligibilityInput, evaluateEligibility } from "@/lib/eligibility";
-import { resolveFormulaV1VersionId } from "@/lib/formula-v1/compute-game-performance-scores";
 import { slugify } from "@/lib/format";
-import { prisma } from "@/lib/prisma";
+import { resolveFormulaV1VersionId } from "@/lib/formula-v1/compute-game-performance-scores";
 import { resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
+import { prisma } from "@/lib/prisma";
 import type { HomeLeaderboardRow } from "@/lib/public-site-data";
 import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "@/lib/ranking-eligibility";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
