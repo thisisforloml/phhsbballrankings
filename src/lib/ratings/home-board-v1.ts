@@ -1,11 +1,12 @@
 import { AgeGroup } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+
 import {
   buildCumulativePlayerRatingTarget,
   type CumulativePlayerRatingTarget
 } from "@/lib/player-rating-cumulative";
-import { FORMULA_V1_POLICY_ID, FORMULA_V1_VERSION_NUMBER } from "@/lib/ratings/formula-constants";
+import { prisma } from "@/lib/prisma";
 import { getCurrentRankingAgeBracket, type RankingAgeBracket } from "@/lib/ranking-eligibility";
+import { FORMULA_V1_POLICY_ID, FORMULA_V1_VERSION_NUMBER } from "@/lib/ratings/formula-constants";
 
 export const RATING_BASIS_DIRECT = "DIRECT" as const;
 export const RATING_BASIS_PROJECTED_V1 = "PROJECTED_V1" as const;

@@ -1,4 +1,5 @@
 import type { AgeGroup } from "@prisma/client";
+
 import type {
   PlayerProfileAverages,
   PlayerProfileBestGame,

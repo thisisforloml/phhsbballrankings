@@ -1,21 +1,22 @@
 import "server-only";
 
 import type { AgeGroup, PlayerGender } from "@prisma/client";
-import { slugify } from "@/lib/format";
+
 import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
-import { formatPublicRank } from "@/lib/public-rank-display";
-import { getEffectiveClassYear } from "@/lib/ranking-eligibility";
-import { getActivePolicyVersionId } from "@/lib/ratings/player-rating-query";
-import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
+import { slugify } from "@/lib/format";
 import {
   buildCompetitionParticipationFromStats,
   formatPrimaryCompetitionLine
 } from "@/lib/player-competition-context";
-import { getPublicBoardRows } from "@/lib/public-board-ranks";
 import { formatProgramTypeLabel, resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
-import { getTeamDisplayName } from "@/lib/uaap-school-display";
 import { prisma } from "@/lib/prisma";
+import { getPublicBoardRows } from "@/lib/public-board-ranks";
+import { formatPublicRank } from "@/lib/public-rank-display";
+import { getEffectiveClassYear } from "@/lib/ranking-eligibility";
 import { getLatestNationalRankings, type RankingAgeGroup } from "@/lib/rankings";
+import { getActivePolicyVersionId } from "@/lib/ratings/player-rating-query";
+import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
+import { getTeamDisplayName } from "@/lib/uaap-school-display";
 
 export type PublicSearchResult =
   | {

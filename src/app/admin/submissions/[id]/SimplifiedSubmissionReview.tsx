@@ -1,12 +1,15 @@
-import Link from "next/link";
 import type { Submission, UserRole } from "@prisma/client";
-import type { SubmissionReview } from "@/lib/submission-review";
+import Link from "next/link";
+
 import { AdminAlert } from "@/components/admin/AdminAlert";
 import { AdminBadge } from "@/components/admin/AdminBadge";
 import { displaySubmissionStatus, submissionStatusBadge } from "@/components/admin/submissionStatus";
-import { isSubmissionDeleted } from "@/lib/submission-lifecycle";
-import { publishSubmission, updateSubmissionDraftJson, updateSubmissionReviewStatus } from "../actions";
+import type { SubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
+import { isSubmissionDeleted } from "@/lib/submission-lifecycle";
+import type { SubmissionReview } from "@/lib/submission-review";
+
+import { publishSubmission, updateSubmissionDraftJson, updateSubmissionReviewStatus } from "../actions";
 import { EditableGameStatsForm } from "./EditableGameStatsForm";
 
 type JsonRecord = Record<string, unknown>;
@@ -21,11 +24,17 @@ type SubmissionWithSubmitter = Submission & {
   };
 };
 
+type ImportPreflightSummary = SubmissionImportPreflight;
+
+type DerivedPipelineStatus = {
+  published?: boolean;
+};
+
 type SimplifiedSubmissionReviewProps = {
   submission: SubmissionWithSubmitter;
   review: SubmissionReview;
-  preflight: any;
-  pipelineStatus: any;
+  preflight: ImportPreflightSummary;
+  pipelineStatus: DerivedPipelineStatus;
   reviewSuccess?: string;
   reviewError?: string;
   editMode?: boolean;
@@ -43,7 +52,7 @@ function stringValue(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function numberValue(value: unknown) {
+function _numberValue(value: unknown) {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
 }
 
@@ -74,7 +83,7 @@ function getGameRows(submission: Pick<Submission, "rawText" | "parsedPreview">) 
   return packages.flatMap((submissionPackage) => asArray(submissionPackage.games).map(asRecord).filter((game): game is JsonRecord => game !== null));
 }
 
-function readinessLabel(submission: Submission, preflight: any, pipelineStatus: any) {
+function readinessLabel(submission: Submission, preflight: ImportPreflightSummary, pipelineStatus: DerivedPipelineStatus) {
   if (pipelineStatus?.published) return "Published";
   if (submission.status === "APPROVED" && !preflight?.overallSummary?.importBlocked) return "Ready to Publish";
   return "Needs Review";
@@ -115,7 +124,13 @@ function pointTotalStatus(gameNumber: string, review: SubmissionReview) {
 }
 
 
-function publishBlockers(submission: Submission, review: SubmissionReview, preflight: any, jsonInvalid: boolean, jsonParseResult: ReturnType<typeof safeParseSubmissionJson>) {
+function publishBlockers(
+  submission: Submission,
+  review: SubmissionReview,
+  preflight: ImportPreflightSummary,
+  jsonInvalid: boolean,
+  jsonParseResult: ReturnType<typeof safeParseSubmissionJson>,
+) {
   const blockers: string[] = [];
   if (isSubmissionDeleted(submission)) blockers.push("Deleted submissions cannot be reviewed or published.");
   if (submission.status === "REJECTED") blockers.push("Cannot publish a rejected submission. Reopen review in Step 4 first.");
@@ -133,7 +148,7 @@ function publishBlockers(submission: Submission, review: SubmissionReview, prefl
 
   return Array.from(new Set(blockers));
 }
-function plainValidationMessages(review: SubmissionReview, preflight: any) {
+function plainValidationMessages(review: SubmissionReview, preflight: ImportPreflightSummary) {
   const messages: string[] = [];
 
   for (const check of review.validation.pointTotals) {
@@ -160,7 +175,7 @@ function plainValidationMessages(review: SubmissionReview, preflight: any) {
   }
 
   for (const player of preflight?.players ?? []) {
-    const possible = player.possibleCaseMatches?.[0]?.displayName;
+    const possible = player.matchedPlayer?.displayName;
     if (player.action === "manual_review" && possible) {
       messages.push(`Player name may already exist: ${player.submittedName} -> ${possible}.`);
     }
@@ -182,7 +197,7 @@ function plainValidationMessages(review: SubmissionReview, preflight: any) {
 }
 
 export function SimplifiedSubmissionReview({ submission, review, preflight, pipelineStatus, reviewSuccess, reviewError, editMode = false }: SimplifiedSubmissionReviewProps) {
-  const deleted = isSubmissionDeleted(submission);
+  const _deleted = isSubmissionDeleted(submission);
   const jsonParseResult = safeParseSubmissionJson(submission);
   const jsonInvalid = !jsonParseResult.ok;
   const games = jsonInvalid ? [] : getGameRows(submission);
@@ -292,7 +307,7 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
             <h2 className="font-display text-3xl text-navy-800">{editMode ? "Edit Game Stats" : "Submitted Games"}</h2>
             <p className="mt-1 text-sm text-ink-600">{editMode ? "Edits affect the submission draft only. Official data is unchanged until import." : "Game information, teams, scores, and player stat rows from the submitted draft."}</p>
           </div>
-          {canEditGameStats && !editMode ? <Link href={`/admin/submissions/${submission.id}?editStats=1`} className="button primary">Edit Game Stats</Link> : null}
+          {canEditGameStats && !editMode ? <Link href={`/admin/submissions/${submission.id}?editStats=1`} prefetch={false} className="button primary">Edit Game Stats</Link> : null}
           {submission.status === "IMPORTED" ? <span className="rounded-full bg-navy-50 px-3 py-1 font-mono text-[0.65rem] uppercase text-navy-800">Read-only imported</span> : null}
         </div>
         {editMode && canEditGameStats ? <EditableGameStatsForm submission={submission} /> : !jsonInvalid && games.length ? games.map((game) => {

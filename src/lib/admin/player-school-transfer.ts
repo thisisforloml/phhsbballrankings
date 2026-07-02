@@ -1,8 +1,14 @@
+import { type Prisma,ProgramType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { ProgramType, type Prisma } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
-import { slugify } from "@/lib/format";
+
 import { resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
+import { invalidateAdminProgramMembershipCaches, invalidateAdminTeamsCaches } from "@/lib/admin/invalidate-admin-caches";
+import {
+  resolveCurrentSchoolId,
+  validateSchoolAssignmentInput,
+} from "@/lib/admin/validate-school-assignment";
+import { slugify } from "@/lib/format";
+import { prisma } from "@/lib/prisma";
 import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
 
 type SchoolChangeMode = "ASSIGN" | "TRANSFER";
@@ -65,24 +71,18 @@ export async function updatePlayerSchoolAssignment(input: SchoolAssignmentInput)
   if (!player) throw new Error("Player does not exist or has been deleted.");
   if (!nextProgram) throw new Error("Target school does not exist or is not a school program.");
 
-  const currentSchoolId =
-    player.currentProgram?.type === ProgramType.SCHOOL ? player.currentProgramId : null;
+  const currentSchoolId = resolveCurrentSchoolId(
+    player.currentProgramId,
+    player.currentProgram?.type,
+  );
 
-  if (input.mode === "ASSIGN") {
-    if (currentSchoolId) {
-      throw new Error("Player already has a school. Use Transfer to change schools.");
-    }
-  } else {
-    if (!currentSchoolId) {
-      throw new Error("Player has no current school to transfer from. Use Assign instead.");
-    }
-    if (input.expectedFromProgramId && input.expectedFromProgramId !== currentSchoolId) {
-      throw new Error("Origin school no longer matches. Refresh the page and try again.");
-    }
-    if (currentSchoolId === input.nextProgramId) {
-      throw new Error("Target school must be different from the origin school.");
-    }
-  }
+  const validationError = validateSchoolAssignmentInput({
+    mode: input.mode,
+    currentSchoolId,
+    nextProgramId: input.nextProgramId,
+    expectedFromProgramId: input.expectedFromProgramId,
+  });
+  if (validationError) throw new Error(validationError);
 
   const rosterTarget = await resolveRosterTarget(input.playerId, input.nextProgramId, input.manualRoster);
 
@@ -162,6 +162,8 @@ export async function updatePlayerSchoolAssignment(input: SchoolAssignmentInput)
 
   await prisma.$transaction(writes);
 
+  invalidateAdminProgramMembershipCaches();
+  invalidateAdminTeamsCaches();
   revalidatePath("/admin/players");
   revalidatePath("/admin/programs");
   revalidatePublicRankingSurfaces();

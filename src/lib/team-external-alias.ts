@@ -1,5 +1,6 @@
-import { prisma } from "@/lib/prisma";
 import type { Prisma } from "@prisma/client";
+
+import { prisma } from "@/lib/prisma";
 import type { StatsImportProviderId, UrlImportTeamMapping } from "@/lib/stats-import/types";
 import { getTeamDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
 

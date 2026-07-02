@@ -1,10 +1,11 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import {
-  regenerateNationalRankingSnapshots,
-  type NationalRankingBoard
-} from "@/lib/rankings/national-snapshot-regeneration";
+
+import { invalidateAdminEvidenceCaches } from "@/lib/admin/invalidate-admin-caches";
 import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
+import {
+  type NationalRankingBoard,
+  regenerateNationalRankingSnapshots} from "@/lib/rankings/national-snapshot-regeneration";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import {
   projectHomeBoardTierNormalizedRatings,
@@ -33,6 +34,7 @@ export async function syncDerivedRatingsAfterEvidenceChange(options: SyncDerived
 
   if (options.revalidatePublicPaths !== false) {
     revalidatePublicRankingSurfaces();
+    invalidateAdminEvidenceCaches();
     revalidatePath("/admin/players");
     revalidatePath("/admin/team-ratings");
   }

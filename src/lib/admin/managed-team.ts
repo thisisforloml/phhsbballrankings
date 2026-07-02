@@ -1,0 +1,24 @@
+export type ManagedTeam = {
+  id: string;
+  name: string;
+  publicSchoolName: string;
+  programKey: string;
+  programAbbreviation: string;
+  programType: string;
+  teamDisplayName: string;
+  needsCleanup: boolean;
+  isActiveCompetitionTeam: boolean;
+  city: string;
+  region: string;
+  logoUrl: string | null;
+  homeGames: number;
+  awayGames: number;
+  gameStats: number;
+  historicalHomeGames: number;
+  historicalAwayGames: number;
+  historicalGameStats: number;
+  playerCount: number;
+  playerNames: string[];
+  context: string;
+  contexts: string[];
+};

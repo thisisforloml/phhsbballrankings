@@ -1,14 +1,11 @@
-export type {
-  AgeVerificationStatus,
-  ClassYearStatus,
-  CompetitionTrustLevel,
-  EligibilityBoard,
-  EligibilityInput,
-  EligibilityVerdict,
-  EligibilityVerdictType,
-  ExclusionReason,
-  ProvisionalReason
-} from "./types";
+export {
+  buildEligibilityInput,
+  evaluateBoardEligibility,
+  evaluateEligibility,
+  isPublicBoardRanked,
+  isPublicBoardVisible,
+  shouldShowAgeUnverifiedBadge
+} from "./evaluate-eligibility";
 export {
   LAUNCH_POLICY_V1,
   LAUNCH_POLICY_V1_ID,
@@ -25,11 +22,14 @@ export {
   PENDING_POLICY_EFFECTIVE_DATE,
   satisfiesPendingPublicPath
 } from "./pending-public-policy";
-export {
-  buildEligibilityInput,
-  evaluateBoardEligibility,
-  evaluateEligibility,
-  isPublicBoardRanked,
-  isPublicBoardVisible,
-  shouldShowAgeUnverifiedBadge
-} from "./evaluate-eligibility";
+export type {
+  AgeVerificationStatus,
+  ClassYearStatus,
+  CompetitionTrustLevel,
+  EligibilityBoard,
+  EligibilityInput,
+  EligibilityVerdict,
+  EligibilityVerdictType,
+  ExclusionReason,
+  ProvisionalReason
+} from "./types";

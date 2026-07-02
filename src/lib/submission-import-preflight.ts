@@ -1,18 +1,19 @@
 import { AgeGroup, PlayerGender, type Submission } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
-import { buildSubmissionReview } from "@/lib/submission-review";
-import { safeParseSubmissionJson } from "@/lib/submission-json";
+
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
-import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
 import {
   buildGameStatBoxScoreFromPlayerRow,
   evaluateGameStatImmutability,
   existingGameStatToCompareInput,
-  gameStatBoxScoreSelect,
   type GameStatBlockedDetail,
+  gameStatBoxScoreSelect,
   type GameStatFieldDiff
 } from "@/lib/game-stat-import-integrity";
 import { prepareImportedPlayerName, resolvePlayerForImport } from "@/lib/player-import-identity";
+import { prisma } from "@/lib/prisma";
+import { safeParseSubmissionJson } from "@/lib/submission-json";
+import { buildSubmissionReview } from "@/lib/submission-review";
+import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
 type PreflightAction = "reuse" | "create" | "update" | "manual_review";
@@ -86,7 +87,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const parsed = parseSubmissionJson(submission);
   const packages = getPackages(parsed);
   const primaryPackage = packages[0] ?? null;
-  const leagueRecord = asRecord(primaryPackage?.league);
+  const _leagueRecord = asRecord(primaryPackage?.league);
   const seasonRecord = asRecord(primaryPackage?.season);
   const games = packages.flatMap((submissionPackage) => asArray(submissionPackage.games).map(asRecord).filter((game): game is JsonRecord => game !== null));
   const targetLeagueName = recommendedLeagueName(submission, review.summary.leagueName);

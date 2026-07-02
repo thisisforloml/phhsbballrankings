@@ -1,6 +1,7 @@
 import { AgeGroup } from "@prisma/client";
-import { getAgeBracketAsOfMarch31 } from "@/lib/ranking-eligibility";
+
 import { prisma } from "@/lib/prisma";
+import { getAgeBracketAsOfMarch31 } from "@/lib/ranking-eligibility";
 
 export type AutoRosterMatch = {
   teamId: string;

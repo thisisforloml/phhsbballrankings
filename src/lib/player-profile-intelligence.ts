@@ -1,6 +1,7 @@
 import "server-only";
 
 import { AgeGroup } from "@prisma/client";
+
 import { loadPeerProduction } from "@/lib/player-profile-peer-production";
 import type {
   PlayerProfileAverages,
@@ -9,6 +10,7 @@ import type {
   PlayerProfileLeague,
   PlayerProfileShooting,
 } from "@/lib/player-profile-types";
+
 import { prisma } from "./prisma";
 
 type LoadedGameStat = {

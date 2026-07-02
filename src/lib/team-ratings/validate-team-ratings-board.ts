@@ -1,5 +1,5 @@
-import { AgeGroup, PlayerGender } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+
 import {
   TEAM_EVIDENCE_POLICY_V1,
   TEAM_FORMULA_SLUG_V1,

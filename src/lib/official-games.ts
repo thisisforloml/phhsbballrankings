@@ -1,9 +1,11 @@
 import "server-only";
 
 import { notFound } from "next/navigation";
+
 import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
-import { slugify } from "./format";
 import { prisma } from "@/lib/prisma";
+
+import { slugify } from "./format";
 
 function inferGender(...values: Array<string | null | undefined>) {
   return values.filter(Boolean).join(" ").toLowerCase().includes("girls") ? "Girls" : "Boys";

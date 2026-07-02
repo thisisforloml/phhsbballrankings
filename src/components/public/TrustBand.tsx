@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import type { PublicTrustMeta } from "@/lib/public-rankings-coverage";
 
 function formatTrustDate(value: string) {
@@ -25,12 +26,12 @@ export function TrustBand({ trustMeta, className = "", variant = "paper" }: Trus
 
   if (variant === "scout-panel") {
     return (
-      <section className={`container-px border-t border-white/10 py-10 md:py-12 ${className}`}>
+      <section className={`container-px border-t border-white/10 py-6 md:py-12 ${className}`}>
         <div className="mx-auto max-w-[74rem]">
           <article className="rounded-sm border border-white/[0.08] bg-scout-800/80 p-6 md:p-8">
             <p className="text-xs font-bold uppercase tracking-[0.12em] text-scout-orange-bright">Verified intelligence</p>
-            <h2 className="mt-2 font-display text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
-              Built from official games
+            <h2 className="mt-1.5 font-display text-2xl font-bold tracking-tight text-white max-md:normal-case md:mt-2 md:text-3xl md:uppercase">
+              Built From Official Games
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-scout-500">
               Peach Basket ranks prospects from verified box scores — not polls or social buzz.
@@ -39,7 +40,7 @@ export function TrustBand({ trustMeta, className = "", variant = "paper" }: Trus
             <div className="mt-6">
               <Link
                 href="/how-we-rank"
-                className="inline-flex text-sm font-bold text-scout-orange-bright hover:text-hardwood-500"
+                className="home-mobile-link inline-flex text-sm font-bold text-scout-orange-bright transition-colors duration-200 hover:text-hardwood-500"
               >
                 How we rank →
               </Link>

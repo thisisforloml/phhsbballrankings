@@ -3,22 +3,44 @@
 import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prisma";
-import { requireAdminUser } from "@/lib/portal-auth";
-import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
-import { slugify } from "@/lib/format";
-import { resolveUniqueProfileSlugForStorage } from "@/lib/player-profile-slug";
-import { getClassYear } from "@/lib/ranking-eligibility";
+
+import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
+import { invalidateAdminPlayerProfileCaches } from "@/lib/admin/invalidate-admin-caches";
+import { writeAuditLog } from "@/lib/admin/log-admin-action";
 import { updatePlayerSchoolAssignment } from "@/lib/admin/player-school-transfer";
 import { assignPlayerRosterFromAgeBracket } from "@/lib/admin/roster-from-game-evidence";
-import { writeAuditLog } from "@/lib/admin/log-admin-action";
+import { managedPlayerInclude, serializeManagedPlayer } from "@/lib/admin/serialize-managed-player";
+import { slugify } from "@/lib/format";
+import { logUploadFailure } from "@/lib/monitoring/events";
+import { resolveUniqueProfileSlugForStorage } from "@/lib/player-profile-slug";
+import { requireAdminUser } from "@/lib/portal-auth";
+import { prisma } from "@/lib/prisma";
+import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
+import { getClassYear } from "@/lib/ranking-eligibility";
 
 export type UpdatePlayerBioState = {
   ok: boolean;
   message: string;
   playerId?: string;
 };
+
+export async function loadAdminPlayerDetail(playerId: string): Promise<ManagedPlayer | null> {
+  await requireAdminUser();
+
+  const id = playerId.trim();
+  if (!id) return null;
+
+  const player = await prisma.player.findFirst({
+    where: { id, deletedAt: null },
+    include: managedPlayerInclude,
+  });
+
+  if (!player) return null;
+
+  return serializeManagedPlayer(player);
+}
 
 function readRequiredString(formData: FormData, key: string, label: string, maxLength: number) {
   const value = String(formData.get(key) ?? "").trim();
@@ -105,20 +127,25 @@ function safeBaseName(name: string) {
 }
 
 async function storePlayerPhoto(file: File, playerId: string) {
-  if (!allowedPhotoTypes.has(file.type)) {
-    throw new Error("Player photo must be a JPG, PNG, or WEBP image.");
-  }
-  if (file.size > maxPhotoBytes) {
-    throw new Error("Player photo must be 3 MB or smaller.");
-  }
+  try {
+    if (!allowedPhotoTypes.has(file.type)) {
+      throw new Error("Player photo must be a JPG, PNG, or WEBP image.");
+    }
+    if (file.size > maxPhotoBytes) {
+      throw new Error("Player photo must be 3 MB or smaller.");
+    }
 
-  const extension = allowedPhotoTypes.get(file.type) ?? "jpg";
-  const uploadDir = path.join(process.cwd(), "public", "uploads", "player-photos");
-  await mkdir(uploadDir, { recursive: true });
-  const filename = `${playerId}-${Date.now()}-${randomUUID()}-${safeBaseName(file.name || `photo.${extension}`)}`;
-  const finalName = filename.includes(".") ? filename : `${filename}.${extension}`;
-  await writeFile(path.join(uploadDir, finalName), Buffer.from(await file.arrayBuffer()));
-  return `/uploads/player-photos/${finalName}`;
+    const extension = allowedPhotoTypes.get(file.type) ?? "jpg";
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "player-photos");
+    await mkdir(uploadDir, { recursive: true });
+    const filename = `${playerId}-${Date.now()}-${randomUUID()}-${safeBaseName(file.name || `photo.${extension}`)}`;
+    const finalName = filename.includes(".") ? filename : `${filename}.${extension}`;
+    await writeFile(path.join(uploadDir, finalName), Buffer.from(await file.arrayBuffer()));
+    return `/uploads/player-photos/${finalName}`;
+  } catch (error) {
+    logUploadFailure("player_photo", error, { playerId, bytes: file.size, mimeType: file.type });
+    throw error;
+  }
 }
 
 async function readOptionalPhotoUrl(formData: FormData, playerId: string) {
@@ -219,6 +246,7 @@ export async function updatePlayerBio(_previousState: UpdatePlayerBioState, form
       await assignPlayerRosterFromAgeBracket(playerId);
     }
 
+    invalidateAdminPlayerProfileCaches();
     revalidatePath("/admin/players");
     revalidatePath("/admin/programs");
     revalidatePath("/portal/players");
@@ -364,6 +392,7 @@ export async function updatePlayerRecruitment(
       data: { commitmentStatus, committedUniversity },
     });
 
+    invalidateAdminPlayerProfileCaches();
     revalidatePath("/admin/players");
     revalidatePath("/admin/programs");
     revalidatePath(`/players/${slugify(existingPlayer.displayName)}`);

@@ -1,6 +1,7 @@
 import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
+
+import { buildEligibilityInput, evaluateEligibility } from "./eligibility";
 import { slugify } from "./format";
-import { resolvePrimaryRankingAffiliation } from "./player-display-affiliation";
 import {
   affiliationGameStatsFromBoardStats,
   buildCompetitionParticipationFromStats,
@@ -8,11 +9,9 @@ import {
   primaryCompetitionFromSummary,
   type RankingBoardGameStat,
 } from "./player-competition-context";
-import { buildEligibilityInput, evaluateEligibility } from "./eligibility";
-import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
+import { resolvePrimaryRankingAffiliation } from "./player-display-affiliation";
 import { prisma } from "./prisma";
-import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
-import { runWithConcurrency } from "./run-with-concurrency";
+import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
 import type {
   LatestNationalRankings,
   NationalRankingRow,
@@ -21,6 +20,8 @@ import type {
   RankingGender,
 } from "./rankings";
 import { rankingAgeGroups, rankingBoardPlayerRatingWhere, rankingPlayerSelect } from "./rankings";
+import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
+import { runWithConcurrency } from "./run-with-concurrency";
 
 const defaultAgeGroup = AgeGroup.U19;
 const RANKINGS_BOARD_CONCURRENCY = Math.max(

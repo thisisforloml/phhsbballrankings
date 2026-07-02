@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import type { PlayerProfile, PlayerProfileGame } from "@/lib/player-profile-types";
 
 type RelationshipStatId =

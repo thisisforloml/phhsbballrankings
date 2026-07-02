@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
+
+import { LeagueGameAdminClient } from "@/app/admin/leagues/LeagueGameAdminClient";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { LeagueGameAdminClient } from "@/app/admin/leagues/LeagueGameAdminClient";
 
 export const metadata = {
   title: "Game | Admin",
@@ -14,9 +15,9 @@ export default async function AdminLeagueGamePage({
 }: {
   params: { id: string; gameId: string };
 }) {
-  await requireAdminUser();
-
-  const game = await prisma.game.findFirst({
+  const [, game] = await Promise.all([
+    requireAdminUser(),
+    prisma.game.findFirst({
     where: {
       id: params.gameId,
       deletedAt: null,
@@ -34,7 +35,8 @@ export default async function AdminLeagueGamePage({
         orderBy: { points: "desc" }
       }
     }
-  });
+    }),
+  ]);
 
   if (!game) notFound();
 

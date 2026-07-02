@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
 import {
   buildEligibilityInput,
+  type EligibilityInput,
   evaluateEligibility,
   isPublicBoardRanked,
   isPublicBoardVisible,
-  shouldShowAgeUnverifiedBadge,
   LAUNCH_POLICY_V1_ID,
-  type EligibilityInput
-} from "@/lib/eligibility";
+  shouldShowAgeUnverifiedBadge} from "@/lib/eligibility";
 
 function baseInput(overrides: Partial<EligibilityInput> = {}): EligibilityInput {
   return {

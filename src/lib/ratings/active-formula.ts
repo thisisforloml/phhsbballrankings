@@ -1,6 +1,5 @@
 import {
   FORMULA_TIER_NORMALIZED_V1_POLICY_ID,
-  FORMULA_V1_POLICY_ID,
   FORMULA_V1_VERSION_NUMBER
 } from "@/lib/ratings/formula-constants";
 import { FORMULA_VNEXT_POLICY_ID } from "@/lib/ratings/formula-vnext";

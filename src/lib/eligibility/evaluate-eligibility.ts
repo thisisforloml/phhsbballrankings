@@ -1,10 +1,10 @@
 import {
   getCurrentRankingAgeBracket,
   getRankingAgeBracket,
-  getEffectiveClassYear,
   isRankingEligibleByClassYear,
   type RankingAgeBracket
 } from "@/lib/ranking-eligibility";
+
 import { LAUNCH_POLICY_V1_ID, normalizeEligibilityBoard, normalizeEligibilityGender, resolveLaunchPolicy, resolveLaunchThreshold } from "./launch-policy";
 import { satisfiesPendingPublicPath } from "./pending-public-policy";
 import type {

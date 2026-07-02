@@ -1,7 +1,7 @@
-import { COMPETITION_PARTICIPATION_FOOTNOTE, COMPETITION_STRENGTH_DISCLAIMER } from "@/lib/competition-strength-copy";
-import type { CompetitionParticipationSummary } from "@/lib/player-competition-context";
-import { formatPrimaryCompetitionLine } from "@/lib/player-competition-context";
 import { ProfileModule } from "@/components/public/ProfileModule";
+import { COMPETITION_PARTICIPATION_FOOTNOTE, COMPETITION_STRENGTH_DISCLAIMER } from "@/lib/competition-strength-copy";
+import type { CompetitionParticipationSummary } from "@/lib/player-competition-display";
+import { formatPrimaryCompetitionLine } from "@/lib/player-competition-display";
 
 export function CompetitionParticipationSummary({
   summary

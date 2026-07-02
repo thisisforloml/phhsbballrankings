@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+
 import { PortraitAvatar } from "@/components/public/PortraitAvatar";
 import { StarRating } from "@/components/ui";
 

@@ -1,7 +1,7 @@
-import type { GameResult } from "@/lib/mock-data";
-import type { PlayerProfileRecentForm } from "@/lib/player-profile-types";
 import { ProfileModule } from "@/components/public/ProfileModule";
 import { EmptyState, WinLossPill } from "@/components/ui";
+import type { GameResult } from "@/lib/mock-data";
+import type { PlayerProfileRecentForm } from "@/lib/player-profile-types";
 
 function signed(value: number | null) {
   if (value === null) return null;

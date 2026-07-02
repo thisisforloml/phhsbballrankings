@@ -1,14 +1,16 @@
 import "server-only";
 
+import { AgeGroup, PlayerGender, RankingScope,VerificationStatus } from "@prisma/client";
 import { cache } from "react";
-import { AgeGroup, PlayerGender, VerificationStatus, RankingScope } from "@prisma/client";
-import { slugify } from "./format";
-import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
-import { prisma } from "./prisma";
-import { getUaapSchoolDisplayName } from "./uaap-school-display";
+
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
-import { getOfficialTeamCompetitionCounts } from "./team-rankings";
+
+import { slugify } from "./format";
+import { prisma } from "./prisma";
 import type { PublicTrustMeta } from "./public-rankings-coverage";
+import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
+import { getOfficialTeamCompetitionCounts } from "./team-rankings";
+import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
 export type { PublicTrustMeta };
 

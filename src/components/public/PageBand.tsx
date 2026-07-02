@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import { SectionHeader } from "@/components/public/SectionHeader";
 
 type PageBandProps = {

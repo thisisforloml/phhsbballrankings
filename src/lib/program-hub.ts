@@ -1,11 +1,13 @@
 import "server-only";
 
 import { notFound } from "next/navigation";
-import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+
 import { slugify } from "@/lib/format";
+import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+
+import { prisma } from "./prisma";
 import { getPublicBoardRows } from "./public-board-ranks";
 import { getLatestNationalRankings } from "./rankings";
-import { prisma } from "./prisma";
 
 export async function getPublicProgramHub(programId: string) {
   const program = await prisma.program.findFirst({

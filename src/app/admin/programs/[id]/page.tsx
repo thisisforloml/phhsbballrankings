@@ -1,11 +1,13 @@
-﻿import { notFound } from "next/navigation";
-import { ProgramType } from "@prisma/client";
+﻿import { ProgramType } from "@prisma/client";
+import { notFound } from "next/navigation";
+
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { managedPlayerInclude, serializeManagedPlayer } from "@/lib/admin/serialize-managed-player";
+import { formatHeight, getPlayerProfileHref } from "@/lib/format";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { formatHeight, getPlayerProfileHref } from "@/lib/format";
-import { managedPlayerInclude, serializeManagedPlayer } from "@/lib/admin/serialize-managed-player";
 import { getClassYear, getEffectiveClassYear, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
+
 import {
   ProgramDetailShell,
   type ProgramEditorData,
@@ -20,7 +22,7 @@ export const revalidate = 0;
 type LoadedProgram = NonNullable<Awaited<ReturnType<typeof loadProgram>>["program"]>;
 type LoadedTeam = LoadedProgram["teams"][number];
 type LoadedPlayer = LoadedTeam["gameStats"][number]["player"];
-type LoadedCurrentPlayer = LoadedProgram["currentPlayers"][number];
+type _LoadedCurrentPlayer = LoadedProgram["currentPlayers"][number];
 
 function inferGender(...values: Array<string | null | undefined>) {
   return values.filter(Boolean).join(" ").toLowerCase().includes("girls") ? "Girls" : "Boys";
@@ -134,8 +136,8 @@ async function loadProgram(id: string) {
 }
 
 export default async function AdminProgramDetailPage({ params }: { params: { id: string } }) {
-  await requireAdminUser();
-  const { program, linkedPlayers, schoolPrograms } = await loadProgram(params.id);
+  const [, loaded] = await Promise.all([requireAdminUser(), loadProgram(params.id)]);
+  const { program, linkedPlayers, schoolPrograms } = loaded;
   if (!program) notFound();
 
   const programData: ProgramEditorData = {

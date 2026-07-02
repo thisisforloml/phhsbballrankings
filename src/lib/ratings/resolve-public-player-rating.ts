@@ -1,6 +1,7 @@
 import type { AgeGroup, PlayerRating } from "@prisma/client";
-import { getActivePolicyVersionId } from "@/lib/ratings/player-rating-query";
+
 import { getCurrentRankingAgeBracket } from "@/lib/ranking-eligibility";
+import { getActivePolicyVersionId } from "@/lib/ratings/player-rating-query";
 
 type RatedPlayer = {
   birthDate: Date | null;

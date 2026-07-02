@@ -9,7 +9,7 @@ function prismaSchemaFingerprint() {
   return Object.keys(Prisma.PlayerScalarFieldEnum).sort().join(",");
 }
 
-function createPrismaClient() {
+function createPrismaClient(): PrismaClient {
   return new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
   });

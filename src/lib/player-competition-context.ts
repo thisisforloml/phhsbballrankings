@@ -1,27 +1,9 @@
-import { normalizeCompetitionDisplayName, isPybcCompetitionName } from "@/lib/competition-naming";
+import { isPybcCompetitionName,normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import type { CompetitionParticipationSummary, PrimaryCompetition } from "@/lib/player-competition-display";
 import { prisma } from "@/lib/prisma";
 
-export type PrimaryCompetition = {
-  leagueName: string;
-  shortName: string;
-  seasonName: string;
-  verifiedGameCount: number;
-  /** Internal sort key only — not shown in P0 UI */
-  tier: number;
-};
-
-export type CompetitionParticipationEntry = {
-  leagueName: string;
-  seasonName: string;
-  verifiedGames: number;
-};
-
-export type CompetitionParticipationSummary = {
-  primary: PrimaryCompetition | null;
-  totalVerifiedGames: number;
-  competitionCount: number;
-  competitions: CompetitionParticipationEntry[];
-};
+export type { CompetitionParticipationEntry, CompetitionParticipationSummary, PrimaryCompetition } from "@/lib/player-competition-display";
+export { formatPrimaryCompetitionLine } from "@/lib/player-competition-display";
 
 type LeagueBucket = {
   leagueId: string;
@@ -149,11 +131,6 @@ export function shortenCompetitionName(name: string): string {
     .replace(/\s+Basketball\b/gi, "")
     .replace(/\s+/g, " ")
     .trim();
-}
-
-export function formatPrimaryCompetitionLine(primary: PrimaryCompetition): string {
-  const gamesLabel = primary.verifiedGameCount === 1 ? "game" : "games";
-  return `${primary.shortName} · ${primary.verifiedGameCount} ${gamesLabel}`;
 }
 
 function leagueGroupKey(leagueId: string, seasonId: string, leagueName: string): string {

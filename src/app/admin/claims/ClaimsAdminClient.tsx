@@ -1,10 +1,11 @@
 "use client";
 
-import { useFormState } from "react-dom";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
-import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
-import { reviewProfileClaim, type ClaimActionState } from "./actions";
+
+import { type ClaimActionState, reviewProfileClaim } from "./actions";
 
 const initialState: ClaimActionState = { ok: false, message: "" };
 
@@ -40,7 +41,7 @@ export function ClaimsAdminClient({ pending, approved }: { pending: ClaimRow[]; 
                   <p className="text-sm text-ink-500">{claim.contactEmail ?? claim.contactPhone ?? "No contact"}</p>
                   {claim.message ? <p className="mt-2 text-sm text-ink-700">{claim.message}</p> : null}
                 </div>
-                <Link href={claim.playerHref} className="text-sm font-semibold text-orange-700">View profile</Link>
+                <Link href={claim.playerHref} prefetch={false} className="text-sm font-semibold text-orange-700">View profile</Link>
               </div>
               <form action={action} className="mt-4 grid gap-2 md:grid-cols-[1fr_auto_auto]">
                 <input type="hidden" name="claimId" value={claim.id} />
@@ -63,7 +64,7 @@ export function ClaimsAdminClient({ pending, approved }: { pending: ClaimRow[]; 
                 <p className="font-semibold text-navy-900">{claim.playerName}</p>
                 <p className="text-sm text-ink-600">{claim.claimantName} · {claim.createdAt}</p>
               </div>
-              <Link href={`/portal/my-profile?playerId=${claim.playerId}`} className="text-sm font-semibold text-orange-700">Monitoring</Link>
+              <Link href={`/portal/my-profile?playerId=${claim.playerId}`} prefetch={false} className="text-sm font-semibold text-orange-700">Monitoring</Link>
             </li>
           ))}
           {!approved.length ? <li className="py-3 text-sm text-ink-500">No approved claims yet.</li> : null}

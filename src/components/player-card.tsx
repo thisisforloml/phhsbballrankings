@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+
 import { leaderboardMinimumGamesForGender } from "@/lib/demo-data";
 import { initials } from "@/lib/format";
 import type { PlayerSummary } from "@/lib/types";

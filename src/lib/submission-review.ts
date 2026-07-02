@@ -1,6 +1,7 @@
 import type { Submission } from "@prisma/client";
+
 import { hasExplicitBoysCompetitionContext, inferCompetitionGender, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
-import { safeParseSubmissionJson, formatSubmissionJsonParseError, type SubmissionJsonParseResult } from "@/lib/submission-json";
+import { formatSubmissionJsonParseError, safeParseSubmissionJson, type SubmissionJsonParseResult } from "@/lib/submission-json";
 
 const gameRequiredFields = [
   "gameNumber",
@@ -189,6 +190,118 @@ function getSubmissionPackages(parsed: unknown): { packages: JsonRecord[]; error
   }
 
   return { packages: [], error: "JSON root must be an object or an array of package objects.", multiplePackagesFound: false };
+}
+
+export type SubmissionListReview = {
+  importReady: boolean;
+  readinessLabel: string;
+  summary: {
+    leagueName: string | null;
+    gameCount: number;
+    totalPlayerRows: number;
+  };
+};
+
+const emptyListReview: SubmissionListReview = {
+  importReady: false,
+  readinessLabel: "Needs review",
+  summary: { leagueName: null, gameCount: 0, totalPlayerRows: 0 },
+};
+
+export function buildSubmissionListReview(
+  submission: Pick<Submission, "rawText" | "parsedPreview" | "title" | "leagueName">,
+): SubmissionListReview {
+  const { parsed } = parseSubmissionJson(submission);
+  const packageResult = getSubmissionPackages(parsed);
+  const packages = packageResult.packages;
+  const root = packages[0] ?? null;
+
+  if (!root) {
+    return emptyListReview;
+  }
+
+  let hasMissingRequiredFields = false;
+  let hasTeamMismatches = false;
+  let hasDuplicatePlayers = false;
+  let pointTotalsPass = true;
+
+  if (packageResult.multiplePackagesFound) {
+    hasMissingRequiredFields = true;
+  }
+
+  let totalPlayerRows = 0;
+  const allGames: JsonRecord[] = [];
+
+  for (const submissionPackage of packages) {
+    const rootMissing = missingFields(submissionPackage, ["league", "season", "games"]);
+    if (rootMissing.length) hasMissingRequiredFields = true;
+    const packageGames = asArray(submissionPackage.games).map(asRecord).filter((game): game is JsonRecord => game !== null);
+    allGames.push(...packageGames);
+  }
+
+  const league = asRecord(root.league);
+
+  for (const game of allGames) {
+    const gameNumber = stringValue(game.gameNumber) || "Unknown game";
+    const gameMissing = missingFields(game, gameRequiredFields);
+    if (gameMissing.length) hasMissingRequiredFields = true;
+
+    const homeTeamName = stringValue(game.homeTeamName);
+    const awayTeamName = stringValue(game.awayTeamName);
+    const homeTeamKey = normalizeTeamName(homeTeamName);
+    const awayTeamKey = normalizeTeamName(awayTeamName);
+    const homeScore = numberValue(game.homeScore);
+    const awayScore = numberValue(game.awayScore);
+    const isTeamResultOnly = booleanValue(game.teamResultOnly) || booleanValue(game.defaultWin);
+    const players = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
+    totalPlayerRows += players.length;
+
+    let summedHomePlayerPoints = 0;
+    let summedAwayPlayerPoints = 0;
+    const duplicateKeyCounts = new Map<string, number>();
+
+    for (const player of players) {
+      const cleanedName = cleanPlayerName(player.name);
+      const team = stringValue(player.team);
+      const teamKey = normalizeTeamName(team);
+      const points = numberValue(player.PTS);
+      const playerMissing = missingFields(player, playerRequiredFields);
+
+      if (playerMissing.length) hasMissingRequiredFields = true;
+
+      if (teamKey === homeTeamKey) summedHomePlayerPoints += points;
+      if (teamKey === awayTeamKey) summedAwayPlayerPoints += points;
+      if (teamKey !== homeTeamKey && teamKey !== awayTeamKey) {
+        hasTeamMismatches = true;
+      }
+
+      const duplicateKey = `${gameNumber}:${teamKey}:${cleanedName.toUpperCase()}`;
+      duplicateKeyCounts.set(duplicateKey, (duplicateKeyCounts.get(duplicateKey) ?? 0) + 1);
+    }
+
+    for (const count of duplicateKeyCounts.values()) {
+      if (count > 1) hasDuplicatePlayers = true;
+    }
+
+    const homePass = isTeamResultOnly && players.length === 0 ? true : homeScore === summedHomePlayerPoints;
+    const awayPass = isTeamResultOnly && players.length === 0 ? true : awayScore === summedAwayPlayerPoints;
+    if (!homePass || !awayPass) pointTotalsPass = false;
+  }
+
+  const rawLeagueName = stringValue(league?.name) || submission.leagueName || null;
+  const leagueName = rawLeagueName ? normalizeCompetitionDisplayName(rawLeagueName) : null;
+  const importReady =
+    Boolean(root) && pointTotalsPass && !hasMissingRequiredFields && !hasTeamMismatches && !hasDuplicatePlayers;
+
+  return {
+    importReady,
+    readinessLabel: importReady ? "Ready for admin cleanup/import" : "Needs review",
+    summary: {
+      leagueName,
+      gameCount: allGames.length,
+      totalPlayerRows,
+    },
+  };
 }
 
 export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "parsedPreview" | "title" | "leagueName">): SubmissionReview {

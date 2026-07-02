@@ -1,4 +1,5 @@
 ﻿import { NextResponse } from "next/server";
+
 import { getPortalUser } from "@/lib/portal-auth";
 
 export async function GET() {

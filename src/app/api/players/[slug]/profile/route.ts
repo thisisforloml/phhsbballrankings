@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { getPlayerProfileBySlug } from "@/lib/player-profile";
 
 export const dynamic = "force-dynamic";

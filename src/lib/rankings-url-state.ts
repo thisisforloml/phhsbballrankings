@@ -1,4 +1,5 @@
 import type { ReadonlyURLSearchParams } from "next/navigation";
+
 import type { RankingAgeGroup, RankingGender } from "@/lib/rankings";
 
 export const boysMinGameStops = Array.from({ length: 19 }, (_, index) => 10 + index * 5);
@@ -27,7 +28,7 @@ export function normalizedGender(value: string | null): RankingGender {
   return value?.toLowerCase() === "girls" ? "Girls" : "Boys";
 }
 
-export function eligibilityMinimum(gender: RankingGender, ageGroup: RankingAgeGroup) {
+export function eligibilityMinimum(gender: RankingGender, _ageGroup: RankingAgeGroup) {
   return gender === "Girls" ? 5 : 10;
 }
 

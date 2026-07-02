@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import type { SubmissionStatus } from "@prisma/client";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
 import { SubmissionDeleteDraftForm } from "./SubmissionDeleteDraftForm";
 
 type SubmissionRowMenuProps = {
@@ -60,6 +61,7 @@ export function SubmissionRowMenu({
         >
           <Link
             href={detailHref}
+            prefetch={false}
             role="menuitem"
             className="block px-3 py-2 text-sm font-semibold text-navy-900 hover:bg-surface-50"
             onClick={() => setOpen(false)}

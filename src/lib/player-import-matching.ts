@@ -1,28 +1,10 @@
 import { PlayerGender } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
-import type { PlayerConfidenceBand, UrlImportPlayerMapping } from "@/lib/stats-import/types";
+
 import {
   normalizeImportedPlayerNameKey,
   prepareImportedPlayerName
 } from "@/lib/player-import-identity";
-import { buildMatchQualityAnalytics, type AmbiguityKind } from "@/lib/player-import-matching/analytics";
-import {
-  buildRosterIndex,
-  resolveRosterScope,
-  type RosterIndex
-} from "@/lib/player-import-matching/roster-index";
-import {
-  generatePlayerMatchKeys,
-  isFirstLastOnlyMatch,
-  isInitialLastMatch,
-  sharedMatchKey
-} from "@/lib/player-import-matching/name-keys";
-import {
-  applyTeamScoreBonus,
-  confidenceBandFromScore,
-  teamEvidenceBonus,
-  wasPromotedByTeamEvidence
-} from "@/lib/player-import-matching/scoring";
+import { type AmbiguityKind,buildMatchQualityAnalytics } from "@/lib/player-import-matching/analytics";
 import {
   applyPrecisionAutoMatchPolicy,
   detectWeakNameOnlyMatch,
@@ -30,6 +12,25 @@ import {
   isNormalizedFirstAndLastNameMatch,
   partitionReviewCandidates
 } from "@/lib/player-import-matching/auto-match-policy";
+import {
+  generatePlayerMatchKeys,
+  isFirstLastOnlyMatch,
+  isInitialLastMatch,
+  sharedMatchKey
+} from "@/lib/player-import-matching/name-keys";
+import {
+  buildRosterIndex,
+  resolveRosterScope,
+  type RosterIndex
+} from "@/lib/player-import-matching/roster-index";
+import {
+  applyTeamScoreBonus,
+  confidenceBandFromScore,
+  teamEvidenceBonus,
+  wasPromotedByTeamEvidence
+} from "@/lib/player-import-matching/scoring";
+import { prisma } from "@/lib/prisma";
+import type { PlayerConfidenceBand, UrlImportPlayerMapping } from "@/lib/stats-import/types";
 
 export type PlayerMatchTier = "T0" | "P0" | "P1" | "P2" | "P3" | "none";
 

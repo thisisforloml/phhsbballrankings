@@ -1,12 +1,13 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
+
 import { buildShadowRatings } from "./accumulation";
 import { loadFormulaVnextEvidence } from "./load-evidence";
-import { DEFAULT_FORMULA_VNEXT_PARAMS, mergeFormulaVnextParams } from "./params";
+import { mergeFormulaVnextParams } from "./params";
 import type { FormulaVnextParams, ShadowBoard } from "./types";
 
 export {
-  adjustGameScore,
   accumulatePlayerRating,
+  adjustGameScore,
   buildShadowRatings
 } from "./accumulation";
 export {

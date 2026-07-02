@@ -322,7 +322,7 @@ export function fibaMatchToSubmissionGame(
   };
 }
 
-export async function enrichSingleGamePreview(matchId: string, sourceUrl: string) {
+export async function enrichSingleGamePreview(matchId: string, _sourceUrl: string) {
   const data = await fetchFibaMatchData(matchId);
   const homeTeam = data.tm?.["1"];
   const awayTeam = data.tm?.["2"];

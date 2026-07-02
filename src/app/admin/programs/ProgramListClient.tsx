@@ -1,26 +1,17 @@
 "use client";
 
+import type { ProgramType } from "@prisma/client";
 import Link from "next/link";
 import { useMemo } from "react";
-import type { ProgramType } from "@prisma/client";
-import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+
 import { AdminBadge } from "@/components/admin/AdminBadge";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
 import { AdminFilterRow } from "@/components/admin/AdminFilterRow";
+import type { ProgramListRow } from "@/lib/admin/program-list-row";
 import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
 
-export type ProgramListRow = {
-  id: string;
-  fullName: string;
-  abbreviation: string | null;
-  type: ProgramType;
-  city: string | null;
-  region: string | null;
-  teamCount: number;
-  possibleDuplicateContextGroups: number;
-  derivedPlayerCount: number;
-  officialGameCount: number;
-};
+export type { ProgramListRow };
 
 const FILTER_DEFAULTS = { search: "", type: "ALL" };
 
@@ -104,7 +95,12 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
           <span>Program</span><span>Abbrev.</span><span>Type</span><span className="text-center">Teams</span><span className="text-center">Players</span><span className="text-center">Games</span><span>Status</span><span className="text-right">Action</span>
         </div>
         {filtered.map((program) => (
-          <Link key={program.id} href={`/admin/programs/${program.id}`} className="grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:grid-cols-[minmax(22rem,1fr)_6rem_7rem_5rem_6rem_6rem_9rem_6rem] lg:items-center">
+          <Link
+            key={program.id}
+            href={`/admin/programs/${program.id}`}
+            prefetch={false}
+            className="grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:grid-cols-[minmax(22rem,1fr)_6rem_7rem_5rem_6rem_6rem_9rem_6rem] lg:items-center"
+          >
             <span><strong className="block text-ink-900">{program.fullName}</strong><small className="block text-ink-500">{[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}</small></span>
             <span className="font-mono text-sm text-ink-700">{program.abbreviation || "-"}</span>
             <span className="border border-surface-200 bg-surface-50 px-2 py-1 text-center font-mono text-[0.65rem] uppercase text-ink-700">{program.type}</span>

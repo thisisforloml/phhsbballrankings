@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { searchPublicSite } from "@/lib/public-search";
 
 export const dynamic = "force-dynamic";

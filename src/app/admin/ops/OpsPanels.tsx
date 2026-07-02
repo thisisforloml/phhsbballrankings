@@ -1,10 +1,12 @@
 "use client";
 
-import { useFormState } from "react-dom";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
-import { recomputeAllTeamRatings, type OpsActionState } from "./actions";
+
+import { type OpsActionState,recomputeAllTeamRatings } from "./actions";
 
 const initialState: OpsActionState = { ok: false, message: "" };
 
@@ -60,7 +62,7 @@ export function OpsToolsLinks() {
   const links = [
     { href: "/admin/data-health", label: "Data health" },
     { href: "/admin/data-health/player-duplicates", label: "Duplicate players" },
-    { href: "/administrator", label: "Legacy organizer applications" }
+    { href: "/admin/intake", label: "Public intake queue" },
   ] as const;
 
   return (
@@ -69,7 +71,7 @@ export function OpsToolsLinks() {
       <ul className="mt-3 divide-y divide-surface-100">
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="block py-3 font-semibold text-navy-900 hover:text-orange-700">
+            <Link href={link.href} prefetch={false} className="block py-3 font-semibold text-navy-900 hover:text-orange-700">
               {link.label}
             </Link>
           </li>

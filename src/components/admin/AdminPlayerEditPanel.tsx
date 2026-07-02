@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
-import { useFormState } from "react-dom";
-import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { type ReactNode,useEffect, useState } from "react";
+import { useFormState } from "react-dom";
+
+import { type UpdatePlayerBioState, updatePlayerRecruitment, updatePlayerSchool } from "@/app/admin/players/actions";
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
 import { PlayerPhotoCropper } from "@/components/admin/PlayerPhotoCropper";
 import { slugify } from "@/lib/format";
-import { updatePlayerBio, updatePlayerRecruitment, updatePlayerSchool, type UpdatePlayerBioState } from "@/app/admin/players/actions";
 
 const initialFormState: UpdatePlayerBioState = { ok: false, message: "" };
 
@@ -207,6 +208,7 @@ export function AdminPlayerEditPanel({
               <Link
                 href={profileHref}
                 target="_blank"
+                prefetch={false}
                 className="inline-flex items-center gap-1 rounded-md border border-white/25 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-white/20"
               >
                 Public profile

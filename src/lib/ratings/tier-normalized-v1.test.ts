@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
 import {
   aggregateTierNormalizedRating,
-  tierNormalizedGameScore,
-  TIER_NORMALIZED_SOFT_WEIGHTS
-} from "@/lib/ratings/tier-normalized-v1";
+  TIER_NORMALIZED_SOFT_WEIGHTS,
+  tierNormalizedGameScore} from "@/lib/ratings/tier-normalized-v1";
 
 describe("tier-normalized-v1", () => {
   it("discounts lower-tier games without inflating tier-1 scores", () => {

@@ -1,4 +1,5 @@
 ﻿import { NextResponse } from "next/server";
+
 import { getPlayerSummaries } from "@/lib/players";
 
 export async function GET() {

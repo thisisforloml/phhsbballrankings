@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useMemo, useState } from "react";
+
 import type { PlayerProfileGame, PlayerProfileLeague } from "@/lib/player-profile-types";
 
 type TrajectoryMode = "line" | "bars";

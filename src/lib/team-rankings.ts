@@ -1,23 +1,23 @@
 import "server-only";
 
 import { AgeGroup } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
-import { getTeamDisplayName } from "@/lib/uaap-school-display";
+import { prisma } from "@/lib/prisma";
 import type {
+  TeamStandingRow,
   TeamStandingsAgeGroup,
   TeamStandingsData,
-  TeamStandingsFilters,
   TeamStandingsGender,
-  TeamStandingRow,
 } from "@/lib/team-rankings-types";
+import { getTeamDisplayName } from "@/lib/uaap-school-display";
 
 export type {
+  TeamStandingRow,
   TeamStandingsAgeGroup,
   TeamStandingsData,
   TeamStandingsFilters,
   TeamStandingsGender,
-  TeamStandingRow,
 } from "@/lib/team-rankings-types";
 
 type TeamBucket = Omit<TeamStandingRow, "pointDifferential" | "winPercentage" | "rank">;
@@ -107,7 +107,6 @@ export async function getDynamicTeamStandings(): Promise<TeamStandingsData> {
     const gender = inferGender(game.season.league.name, sourceTeam.name);
     const ageGroup = toPublicAgeGroup(game.season.league.ageGroup);
     const scope = competitionScope(game);
-    const normalizedLeagueName = normalizeCompetitionDisplayName(game.season.league.name);
     const identityKey = sourceTeam.programId ?? sourceTeam.id;
     const key = `${scope.leagueId}:${scope.seasonId}:${gender}:${identityKey}`;
     const existing = buckets.get(key);

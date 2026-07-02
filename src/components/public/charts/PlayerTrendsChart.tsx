@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+
 import type { PlayerProfile, PlayerProfileBenchmarkStat, PlayerProfileGame } from "@/lib/player-profile-types";
 
 const ROLLING_WINDOW_CAP = 100;
@@ -77,7 +78,7 @@ const TREND_STATS: TrendStatOption[] = [
   },
 ];
 
-type AxisState = { yMin: number; yMax: number; ticks: number[] };
+type _AxisState = { yMin: number; yMax: number; ticks: number[] };
 
 type ActiveSeries = {
   option: TrendStatOption;
@@ -175,7 +176,7 @@ function formatShortDate(iso: string) {
   return new Date(iso).toLocaleDateString("en", { month: "short", day: "numeric", timeZone: "UTC" });
 }
 
-function formatStatLine(game: PlayerProfileGame) {
+function _formatStatLine(game: PlayerProfileGame) {
   return `${game.points} PTS · ${game.rebounds} REB · ${game.assists} AST`;
 }
 

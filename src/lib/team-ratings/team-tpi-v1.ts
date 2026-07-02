@@ -1,4 +1,5 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
+
 import { DEFAULT_TPI_V1_PARAMETERS, type TpiV1Parameters } from "./constants";
 
 export type TeamStandingsGender = "Boys" | "Girls";

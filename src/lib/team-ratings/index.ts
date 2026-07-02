@@ -1,7 +1,6 @@
 export type {
+  TeamStandingRow,
   TeamStandingsAgeGroup,
   TeamStandingsData,
   TeamStandingsFilters,
-  TeamStandingsGender,
-  TeamStandingRow
-} from "@/lib/team-rankings-types";
+  TeamStandingsGender} from "@/lib/team-rankings-types";

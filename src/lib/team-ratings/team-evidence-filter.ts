@@ -1,4 +1,5 @@
 import { SubmissionType, VerificationStatus } from "@prisma/client";
+
 import { TEAM_EVIDENCE_POLICY_V1 } from "./constants";
 
 export type TeamEvidenceGameFilter = {

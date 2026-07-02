@@ -1,12 +1,13 @@
 import Link from "next/link";
-import type { NationalRankingRow } from "@/lib/rankings";
-import type { RankingSortKey, SortDirection } from "@/lib/rankings-url-state";
-import { formatBoardRank, isPublicRankBand } from "@/lib/public-rank-display";
-import { formatHeight, getPlayerProfileHref } from "@/lib/format";
-import { getProgramDisplayName } from "@/lib/uaap-school-display";
+
 import { PortraitAvatar } from "@/components/public/PortraitAvatar";
 import { SortIndicator } from "@/components/public/SortIndicator";
 import { StarRating } from "@/components/ui";
+import { formatHeight, getPlayerProfileHref } from "@/lib/format";
+import { formatBoardRank, isPublicRankBand } from "@/lib/public-rank-display";
+import type { NationalRankingRow } from "@/lib/rankings";
+import type { RankingSortKey, SortDirection } from "@/lib/rankings-url-state";
+import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 function positionLabel(position: string | null) {
   return position?.trim() || "Not listed";
@@ -101,12 +102,39 @@ function ScoutRatingCell({
   starRating,
   light = false,
   starsOnly = false,
+  compact = false,
 }: {
   rating: number;
   starRating: number;
   light?: boolean;
   starsOnly?: boolean;
+  compact?: boolean;
 }) {
+  if (compact) {
+    if (starsOnly) {
+      return (
+        <div className="flex items-center justify-end">
+          <StarRating stars={starRating} />
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex flex-col items-end justify-center">
+        <span
+          className={`font-numeric text-lg font-bold italic leading-none tracking-wide ${
+            light ? "text-hardwood-600" : "text-scout-orange-bright"
+          }`}
+        >
+          {rating.toFixed(1)}
+        </span>
+        <span className="mt-0.5 block origin-right scale-90">
+          <StarRating stars={starRating} />
+        </span>
+      </div>
+    );
+  }
+
   if (starsOnly) {
     return (
       <div className="flex items-center justify-center">
@@ -236,7 +264,7 @@ export function RankingTable({
             <Link
               key={row.playerId}
               href={getPlayerProfileHref(row)}
-              className={`group block px-4 transition ${isLight ? "bg-white hover:bg-paper-500/70" : "hover:bg-scout-800"}`}
+              className={`group block px-3 transition lg:px-4 ${isLight ? "bg-white hover:bg-paper-500/70" : "hover:bg-scout-800"}`}
             >
               <div
                 className={`hidden items-center py-3.5 lg:grid ${scoutDesktopGrid} ${
@@ -287,35 +315,51 @@ export function RankingTable({
               </div>
 
               <div
-                className={`grid grid-cols-12 items-center gap-3 py-3.5 lg:hidden ${
+                className={`grid min-h-[44px] grid-cols-[2.5rem_minmax(0,1fr)_4.25rem] items-center gap-x-3 py-2.5 lg:hidden ${
                   isLast ? "" : rowBorder
                 }`}
               >
-                <div className="col-span-2 flex items-center justify-center">
-                  <span className={`font-numeric text-2xl font-bold leading-none ${rankClass}`}>
+                <div className="flex items-center justify-center">
+                  <span className={`font-numeric text-xl font-bold tabular-nums leading-none ${rankClass}`}>
                     {formatBoardRank(rank)}
                   </span>
                 </div>
 
-                <div className="col-span-7 min-w-0">
-                  <span className={`block truncate text-base font-bold leading-tight ${nameClass}`}>
+                <div className="min-w-0">
+                  <span className={`block truncate text-[0.9375rem] font-bold leading-tight ${nameClass}`}>
                     {row.displayName}
                   </span>
-                  <span className={`mt-0.5 block truncate text-sm font-semibold ${metaClass}`}>{schoolLabel(row)}</span>
-                  {row.classYearLabel ? (
-                    <span className={`mt-0.5 block text-xs font-medium ${metaClass}`}>{row.classYearLabel}</span>
-                  ) : null}
-                  <span className={`mt-1 block text-xs font-semibold ${metaClass}`}>
-                    {hometownLabel(row)} · {positionLabel(row.position)} · {leagueLabel(row)}
+                  <span className={`mt-0.5 flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0 truncate text-[0.6875rem] font-semibold leading-tight ${metaClass}`}>
+                    <span className="truncate">{schoolLabel(row)}</span>
+                    {row.position ? (
+                      <>
+                        <span aria-hidden="true" className={isLight ? "text-court-300" : "text-white/20"}>
+                          ·
+                        </span>
+                        <span className="shrink-0 uppercase">{positionLabel(row.position)}</span>
+                      </>
+                    ) : null}
+                    {row.classYearLabel ? (
+                      <>
+                        <span aria-hidden="true" className={isLight ? "text-court-300" : "text-white/20"}>
+                          ·
+                        </span>
+                        <span className="shrink-0">{row.classYearLabel}</span>
+                      </>
+                    ) : null}
+                  </span>
+                  <span className={`mt-0.5 block truncate text-[0.625rem] font-medium leading-tight ${metaClass}`}>
+                    {hometownLabel(row)} · {leagueLabel(row)}
                   </span>
                 </div>
 
-                <div className="col-span-3 flex items-center justify-center">
+                <div className="flex items-center justify-end">
                   <ScoutRatingCell
                     rating={row.rating}
                     starRating={row.starRating}
                     light={isLight}
                     starsOnly={hideNumericRating}
+                    compact
                   />
                 </div>
               </div>

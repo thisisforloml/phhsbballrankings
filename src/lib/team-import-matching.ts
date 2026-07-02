@@ -1,4 +1,5 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
+
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
 import type { StatsImportProviderId, TeamCreationPreview, UrlImportTeamMapping } from "@/lib/stats-import/types";
@@ -11,9 +12,8 @@ import {
   getTeamDisplayName,
   getUaapInternalTeamName,
   normalizeProgramAlias,
-  resolveProgramIdentity,
-  type ProgramIdentity
-} from "@/lib/uaap-school-display";
+  type ProgramIdentity,
+  resolveProgramIdentity} from "@/lib/uaap-school-display";
 
 export type TeamMatchTier = "T0" | "T1" | "T2" | "T3" | "T4" | "T5" | "T6" | "none";
 export type TeamConfidenceBand = "Exact" | "Strong Match" | "Review Needed" | "Unmatched";

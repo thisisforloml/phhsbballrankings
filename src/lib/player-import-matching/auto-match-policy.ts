@@ -1,8 +1,8 @@
-import type { PlayerConfidenceBand } from "@/lib/stats-import/types";
 import {
   isFirstLastOnlyMatch,
   normalizeNameForKeys
 } from "@/lib/player-import-matching/name-keys";
+import type { PlayerConfidenceBand } from "@/lib/stats-import/types";
 
 /** Strip team_/program_ scope prefix from matcher method names. */
 export function baseMatchMethod(method: string) {

@@ -1,40 +1,70 @@
 "use server";
 
-import { OrganizerSubmissionType, SubmissionStatus, type Prisma } from "@prisma/client";
+import { OrganizerSubmissionType, type Prisma, SubmissionStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+import { invalidateAdminEvidenceCaches, invalidateAdminSubmissionListCaches } from "@/lib/admin/invalidate-admin-caches";
+import { childLogger, newAdminActionId } from "@/lib/logger";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { buildSubmissionReview } from "@/lib/submission-review";
+import { assertRateLimit, RATE_LIMIT_PRESETS } from "@/lib/rate-limit";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
-import { parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
-import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-import";
-import {
-  computeImportedSubmissionFormulaScores,
-  computeImportedSubmissionPlayerRatings,
-  computeImportedSubmissionTeamRatings,
-  generateImportedSubmissionMonthlyRankings,
-  refreshImportedSubmissionDerivedRatings,
-  validateImportedSubmissionRankings
-} from "@/lib/submission-post-import-processing";
 import {
   assertSubmissionReviewable,
   canDeleteDraftSubmission,
   draftDeleteIneligibilityReason,
   initialSubmissionStatusForCreate,
-  submissionRequiresDeleteReviewWarning
+  submissionRequiresDeleteReviewWarning,
+  submissionStatusTransitions,
 } from "@/lib/submission-lifecycle";
+import { withListReviewInValidationSummary } from "@/lib/submission-list-review-snapshot";
+import { importApprovedSubmissionOfficialData } from "@/lib/submission-official-import";
+import {
+  computeImportedSubmissionFormulaScores,
+  computeImportedSubmissionPlayerRatings,
+  generateImportedSubmissionMonthlyRankings,
+  refreshImportedSubmissionDerivedRatings,
+  validateImportedSubmissionRankings
+} from "@/lib/submission-post-import-processing";
+import { buildSubmissionListReview, buildSubmissionReview } from "@/lib/submission-review";
+import { parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
 
-const allowedTransitions: Record<SubmissionStatus, SubmissionStatus[]> = {
-  DRAFT: ["SUBMITTED"],
-  SUBMITTED: ["UNDER_REVIEW"],
-  UNDER_REVIEW: ["APPROVED", "REJECTED"],
-  APPROVED: ["UNDER_REVIEW"],
-  REJECTED: ["UNDER_REVIEW"],
-  IMPORTED: []
-};
+function invalidateSubmissionQueueCaches() {
+  invalidateAdminSubmissionListCaches();
+}
 
+function invalidateSubmissionEvidenceCaches() {
+  invalidateAdminEvidenceCaches();
+}
+
+function enforceSubmissionPublishRateLimit(userId: string) {
+  assertRateLimit(
+    "submission:publish",
+    userId,
+    RATE_LIMIT_PRESETS.submissionPublish(),
+    "Submission publish",
+  );
+}
+
+function enforceSubmissionImportRateLimit(userId: string) {
+  assertRateLimit(
+    "submission:import",
+    userId,
+    RATE_LIMIT_PRESETS.submissionImport(),
+    "Submission import",
+  );
+}
+
+function enforceDestructiveAdminRateLimit(userId: string, action: string) {
+  assertRateLimit(
+    "admin:destructive",
+    userId,
+    RATE_LIMIT_PRESETS.destructiveAdmin(),
+    action,
+  );
+}
 
 type JsonRecord = Record<string, unknown>;
 
@@ -147,7 +177,7 @@ export async function updateSubmissionDraftJson(formData: FormData) {
 
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true, deletedAt: true }
+    select: { id: true, status: true, title: true, leagueName: true, deletedAt: true },
   });
   if (!submission) throw new Error("Submission not found.");
   assertSubmissionReviewable(submission);
@@ -161,24 +191,35 @@ export async function updateSubmissionDraftJson(formData: FormData) {
   }
 
   try {
+    const listReview = buildSubmissionListReview({
+      rawText,
+      parsedPreview: jsonPreview(parsed.data) as import("@prisma/client").Prisma.JsonValue,
+      title: submission.title,
+      leagueName: submission.leagueName,
+    });
+
     await prisma.submission.update({
       where: { id: submission.id },
       data: {
         rawText,
         parsedPreview: jsonPreview(parsed.data),
-        validationSummary: {
-          ok: true,
-          format: "json",
-          messages: ["Draft JSON updated by admin. No official import was performed."],
-          previewSupported: true
-        }
+        validationSummary: withListReviewInValidationSummary(
+          {
+            ok: true,
+            format: "json",
+            messages: ["Draft JSON updated by admin. No official import was performed."],
+            previewSupported: true,
+          },
+          listReview,
+        ),
       },
-      select: { id: true }
+      select: { id: true },
     });
   } catch {
     redirect(reviewRedirectUrl(submission.id, { reviewError: "Draft JSON is not valid. Nothing was saved." }));
   }
 
+  invalidateSubmissionQueueCaches();
   revalidatePath("/admin/submissions");
   revalidatePath(`/admin/submissions/${submission.id}`);
   redirect(reviewRedirectUrl(submission.id, { reviewSuccess: "Draft JSON saved and validation refreshed." }));
@@ -195,7 +236,7 @@ export async function updateSubmissionStructuredDraft(formData: FormData) {
 
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true, rawText: true, parsedPreview: true, deletedAt: true }
+    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true, deletedAt: true },
   });
   if (!submission) throw new Error("Submission not found.");
   assertSubmissionReviewable(submission);
@@ -214,24 +255,35 @@ export async function updateSubmissionStructuredDraft(formData: FormData) {
     const validation = safeJsonParse(rawText);
     if (!validation.ok) throw new Error(formatSubmissionJsonParseError(validation) ?? "Updated JSON could not be parsed.");
 
+    const listReview = buildSubmissionListReview({
+      rawText,
+      parsedPreview: jsonPreview(updated) as import("@prisma/client").Prisma.JsonValue,
+      title: submission.title,
+      leagueName: submission.leagueName,
+    });
+
     await prisma.submission.update({
       where: { id: submission.id },
       data: {
         rawText,
         parsedPreview: jsonPreview(updated),
-        validationSummary: {
-          ok: true,
-          format: "json",
-          messages: ["Structured game/stat edits saved to the submission draft. Official data was not changed."],
-          previewSupported: true
-        }
+        validationSummary: withListReviewInValidationSummary(
+          {
+            ok: true,
+            format: "json",
+            messages: ["Structured game/stat edits saved to the submission draft. Official data was not changed."],
+            previewSupported: true,
+          },
+          listReview,
+        ),
       },
-      select: { id: true }
+      select: { id: true },
     });
   } catch (error) {
     redirect(reviewRedirectUrl(submission.id, { reviewError: error instanceof Error ? error.message : "Draft game/stat edits could not be saved." }));
   }
 
+  invalidateSubmissionQueueCaches();
   revalidatePath("/admin/submissions");
   revalidatePath(`/admin/submissions/${submission.id}`);
   redirect(reviewRedirectUrl(submission.id, { reviewSuccess: "Draft game/stat edits saved. Review and preflight have refreshed." }));
@@ -276,6 +328,7 @@ export async function createAdminJsonSubmission(formData: FormData) {
     redirect(`/admin/submissions?tab=json&jsonError=${message}`);
   }
 
+  invalidateSubmissionQueueCaches();
   revalidatePath("/admin/submissions");
   redirect("/admin/submissions?tab=json&jsonCreated=1");
 }
@@ -309,7 +362,10 @@ async function setSubmissionStatusForPublish(submissionId: string, status: Submi
 }
 
 export async function publishSubmission(formData: FormData) {
-  await requireAdminUser();
+  const user = await requireAdminUser();
+  enforceSubmissionPublishRateLimit(user.id);
+  const adminActionId = newAdminActionId();
+  const log = childLogger({ adminActionId, action: "publishSubmission", userId: user.id });
 
   const submissionId = formData.get("submissionId");
   if (typeof submissionId !== "string" || !submissionId) {
@@ -383,6 +439,8 @@ export async function publishSubmission(formData: FormData) {
     });
     completedSteps.push("published");
 
+    invalidateSubmissionEvidenceCaches();
+    log.info({ submissionId, completedSteps }, "submission publish completed");
     revalidatePath("/admin/submissions");
     revalidatePath(`/admin/submissions/${submission.id}`);
     redirectParams = { reviewSuccess: `Publish completed: ${completedSteps.join(", ")}.` };
@@ -422,8 +480,8 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
 
   assertSubmissionReviewable(submission);
 
-  const allowedTargets = allowedTransitions[submission.status] ?? [];
-  if (!allowedTargets.includes(targetStatus)) {
+  const allowedTargets = submissionStatusTransitions[submission.status] ?? [];
+  if (!targetStatus || !allowedTargets.includes(targetStatus)) {
     redirect(reviewRedirectUrl(submission.id, {
       reviewError: `Cannot change submission from ${submission.status} to ${targetStatus}. Mark Under Review first if needed.`
     }));
@@ -440,6 +498,7 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
     select: { id: true }
   });
 
+  invalidateSubmissionQueueCaches();
   revalidatePath("/admin/submissions");
   revalidatePath(`/admin/submissions/${submission.id}`);
 
@@ -449,7 +508,8 @@ export async function updateSubmissionReviewStatus(formData: FormData) {
 }
 
 export async function importSubmissionOfficialData(formData: FormData) {
-  await requireAdminUser();
+  const user = await requireAdminUser();
+  enforceSubmissionImportRateLimit(user.id);
 
   const submissionId = formData.get("submissionId");
   if (typeof submissionId !== "string" || !submissionId) {
@@ -458,6 +518,7 @@ export async function importSubmissionOfficialData(formData: FormData) {
 
   try {
     const summary = await importApprovedSubmissionOfficialData(submissionId);
+    invalidateSubmissionEvidenceCaches();
     revalidatePath("/admin/submissions");
     revalidatePath(`/admin/submissions/${submissionId}`);
 
@@ -477,7 +538,8 @@ async function runPostImportAction(
   actionName: string,
   action: (submissionId: string) => Promise<unknown>
 ) {
-  await requireAdminUser();
+  const user = await requireAdminUser();
+  enforceSubmissionImportRateLimit(user.id);
 
   const submissionId = formData.get("submissionId");
   if (typeof submissionId !== "string" || !submissionId) {
@@ -487,6 +549,7 @@ async function runPostImportAction(
   let redirectParams: Record<string, string>;
   try {
     await action(submissionId);
+    invalidateSubmissionEvidenceCaches();
     revalidatePath("/admin/submissions");
     revalidatePath(`/admin/submissions/${submissionId}`);
     redirectParams = { reviewSuccess: `${actionName} completed.` };
@@ -514,7 +577,8 @@ export async function validateSubmissionRankings(formData: FormData) {
 }
 
 export async function processAndPublishSubmissionRankings(formData: FormData) {
-  await requireAdminUser();
+  const user = await requireAdminUser();
+  enforceSubmissionPublishRateLimit(user.id);
 
   const submissionId = formData.get("submissionId");
   if (typeof submissionId !== "string" || !submissionId) {
@@ -544,6 +608,7 @@ export async function processAndPublishSubmissionRankings(formData: FormData) {
       select: { id: true }
     });
 
+    invalidateSubmissionEvidenceCaches();
     revalidatePath("/admin/submissions");
     revalidatePath(`/admin/submissions/${submissionId}`);
     redirectParams = {
@@ -559,7 +624,8 @@ export async function processAndPublishSubmissionRankings(formData: FormData) {
 }
 
 export async function deleteSubmissionDraft(formData: FormData) {
-  await requireAdminUser();
+  const user = await requireAdminUser();
+  enforceDestructiveAdminRateLimit(user.id, "Submission delete");
 
   const submissionId = formData.get("submissionId");
   const confirmText = formData.get("confirmText");
@@ -601,6 +667,7 @@ export async function deleteSubmissionDraft(formData: FormData) {
     select: { id: true }
   });
 
+  invalidateSubmissionQueueCaches();
   revalidatePath("/admin/submissions");
   revalidatePath(`/admin/submissions/${submission.id}`);
 

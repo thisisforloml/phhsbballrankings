@@ -1,7 +1,8 @@
 import Link from "next/link";
-import type { NationalTeamRatingRow } from "@/lib/team-ratings/get-national-team-rankings";
-import { formatBoardRank } from "@/lib/public-rank-display";
+
 import { SortIndicator } from "@/components/public/SortIndicator";
+import { formatBoardRank } from "@/lib/public-rank-display";
+import type { NationalTeamRatingRow } from "@/lib/team-ratings/get-national-team-rankings";
 
 type NationalSortKey = "rank" | "program" | "rating" | "games" | "opponents";
 type SortDirection = "asc" | "desc";

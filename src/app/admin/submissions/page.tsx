@@ -1,17 +1,20 @@
+import type { SubmissionStatus } from "@prisma/client";
 import Link from "next/link";
+
 import { AdminAlert } from "@/components/admin/AdminAlert";
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { resolveSubmissionHubTab } from "@/lib/admin/submission-hub-tabs";
 import { SubmissionsHubTabs } from "@/components/admin/SubmissionsHubTabs";
-import { ReadinessBadge, SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
 import { displaySubmissionStatus, submissionReadinessBadgeClass, submissionStatusBadge } from "@/components/admin/submissionStatus";
+import { SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
+import { ADMIN_SUBMISSION_QUEUE_LIMIT, type AdminSubmissionQueueRow,loadAdminSubmissionQueue } from "@/lib/admin/load-admin-submission-queue";
+import { resolveSubmissionHubTab } from "@/lib/admin/submission-hub-tabs";
 import { requireAdminUser } from "@/lib/portal-auth";
-import { prisma } from "@/lib/prisma";
-import { buildSubmissionReview, type SubmissionReview } from "@/lib/submission-review";
-import { activeSubmissionWhere, canDeleteDraftSubmission } from "@/lib/submission-lifecycle";
-import type { Submission, SubmissionStatus, User } from "@prisma/client";
+import { canDeleteDraftSubmission } from "@/lib/submission-lifecycle";
+import { resolveSubmissionListReview } from "@/lib/submission-list-review-snapshot";
+import type { SubmissionListReview } from "@/lib/submission-review";
+
 import { SubmissionFileIntakePanel, SubmissionJsonIntakePanel, SubmissionUrlIntakePanel } from "./SubmissionIntakePanels";
 import { SubmissionManualTab } from "./SubmissionManualTab";
 import { SubmissionRowMenu } from "./SubmissionRowMenu";
@@ -21,7 +24,7 @@ export const metadata = {
   description: "Submit, review, and publish game statistics."
 };
 
-const QUEUE_LIMIT = 100;
+const QUEUE_LIMIT = ADMIN_SUBMISSION_QUEUE_LIMIT;
 
 const PRESET_FILTERS = [
   { key: "all", label: "All" },
@@ -34,9 +37,7 @@ const PRESET_FILTERS = [
 
 type PresetKey = (typeof PRESET_FILTERS)[number]["key"];
 
-type SubmissionRow = Submission & {
-  submittedBy: Pick<User, "id" | "name" | "username" | "email" | "role">;
-};
+type SubmissionRow = AdminSubmissionQueueRow;
 
 type PageProps = {
   searchParams?: {
@@ -77,7 +78,7 @@ function nextAction(status: string, importReady: boolean) {
   return "Review";
 }
 
-function displayReadinessLabel(review: SubmissionReview, status: string) {
+function displayReadinessLabel(review: SubmissionListReview, status: string) {
   if (status === "APPROVED" && review.importReady) return "Ready to publish";
   if (status === "IMPORTED") return "Imported";
   const normalized = review.readinessLabel.toUpperCase();
@@ -109,7 +110,7 @@ function resolvePreset(searchParams: PageProps["searchParams"]): PresetKey {
   return "all";
 }
 
-function matchesPreset(submission: SubmissionRow, review: SubmissionReview, preset: PresetKey) {
+function matchesPreset(submission: SubmissionRow, review: SubmissionListReview, preset: PresetKey) {
   switch (preset) {
     case "open":
       return submission.status === "SUBMITTED" || submission.status === "UNDER_REVIEW" || submission.status === "APPROVED";
@@ -131,7 +132,7 @@ function matchesLegacyStatus(submission: SubmissionRow, selectedStatus: string) 
   return submission.status === selectedStatus;
 }
 
-function priorityScore(submission: SubmissionRow, review: SubmissionReview) {
+function priorityScore(submission: SubmissionRow, review: SubmissionListReview) {
   if (submission.status === "APPROVED" && review.importReady) return 1;
   if (submission.status === "UNDER_REVIEW" && review.importReady) return 2;
   if (submission.status === "SUBMITTED" && review.importReady) return 3;
@@ -142,7 +143,7 @@ function priorityScore(submission: SubmissionRow, review: SubmissionReview) {
   return 8;
 }
 
-function sortForTriage(left: { submission: SubmissionRow; review: SubmissionReview }, right: { submission: SubmissionRow; review: SubmissionReview }) {
+function sortForTriage(left: { submission: SubmissionRow; review: SubmissionListReview }, right: { submission: SubmissionRow; review: SubmissionListReview }) {
   const priorityDelta = priorityScore(left.submission, left.review) - priorityScore(right.submission, right.review);
   if (priorityDelta !== 0) return priorityDelta;
   return right.submission.updatedAt.getTime() - left.submission.updatedAt.getTime();
@@ -155,8 +156,6 @@ function actionButtonClass(action: string) {
 }
 
 export default async function AdminSubmissionsPage({ searchParams }: PageProps) {
-  await requireAdminUser();
-
   const activeTab = resolveSubmissionHubTab(searchParams?.tab);
   const tabPreserve = {
     preset: searchParams?.preset,
@@ -165,6 +164,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
   };
 
   if (activeTab === "json") {
+    await requireAdminUser();
     return (
       <>
         <AdminPageHeader title="Game Stats" />
@@ -175,6 +175,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
   }
 
   if (activeTab === "file") {
+    await requireAdminUser();
     return (
       <>
         <AdminPageHeader title="Game Stats" />
@@ -185,6 +186,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
   }
 
   if (activeTab === "url") {
+    await requireAdminUser();
     return (
       <>
         <AdminPageHeader title="Game Stats" />
@@ -195,6 +197,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
   }
 
   if (activeTab === "manual") {
+    await requireAdminUser();
     return (
       <>
         <AdminPageHeader title="Game Stats" />
@@ -204,23 +207,15 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
     );
   }
 
-  const [submissions, totalSubmissionCount] = await Promise.all([
-    prisma.submission.findMany({
-      where: activeSubmissionWhere,
-      include: {
-        submittedBy: {
-          select: { id: true, name: true, username: true, email: true, role: true }
-        }
-      },
-      orderBy: { createdAt: "desc" },
-      take: QUEUE_LIMIT
-    }),
-    prisma.submission.count({ where: activeSubmissionWhere })
+  const [, queueResult] = await Promise.all([
+    requireAdminUser(),
+    loadAdminSubmissionQueue(QUEUE_LIMIT),
   ]);
+  const { submissions, totalCount: totalSubmissionCount } = queueResult;
 
   const enriched = submissions.map((submission) => ({
     submission,
-    review: buildSubmissionReview(submission)
+    review: resolveSubmissionListReview(submission),
   }));
 
   const selectedPreset = resolvePreset(searchParams);
@@ -319,7 +314,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                   <h2 className="font-display text-lg font-black text-navy-900">Review next</h2>
                   <p className="text-xs font-semibold text-ink-600">Highest-priority open work from the latest {QUEUE_LIMIT} records.</p>
                 </div>
-                <Link href={queueHref({ preset: "open", search: searchParams?.search })} className="text-xs font-black uppercase tracking-[0.08em] text-orange-800 hover:text-orange-900">
+                <Link href={queueHref({ preset: "open", search: searchParams?.search })} prefetch={false} className="text-xs font-black uppercase tracking-[0.08em] text-orange-800 hover:text-orange-900">
                   View all open
                 </Link>
               </div>
@@ -329,7 +324,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                   return (
                     <div key={submission.id} className="flex flex-wrap items-center justify-between gap-3 border border-white/80 bg-white px-3 py-2">
                       <div className="min-w-0 flex-1">
-                        <Link href={`/admin/submissions/${submission.id}`} className="truncate font-semibold text-navy-900 hover:text-orange-700">
+                        <Link href={`/admin/submissions/${submission.id}`} prefetch={false} className="truncate font-semibold text-navy-900 hover:text-orange-700">
                           {submission.title}
                         </Link>
                         <div className="mt-1 flex flex-wrap gap-1.5">
@@ -338,7 +333,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                           <span className="text-xs text-ink-500">Updated {formatDate(submission.updatedAt)}</span>
                         </div>
                       </div>
-                      <Link href={`/admin/submissions/${submission.id}`} className={actionButtonClass(action)}>{action}</Link>
+                      <Link href={`/admin/submissions/${submission.id}`} prefetch={false} className={actionButtonClass(action)}>{action}</Link>
                     </div>
                   );
                 })}
@@ -364,7 +359,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
               </label>
               <div className="flex flex-wrap gap-2">
                 <button type="submit" className="h-10 bg-navy-900 px-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-white hover:bg-orange-600">Search</button>
-                <Link href="/admin/submissions" className="flex h-10 items-center border border-surface-300 px-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink-700 hover:border-orange-400 hover:text-orange-700">Clear</Link>
+                <Link href="/admin/submissions" prefetch={false} className="flex h-10 items-center border border-surface-300 px-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink-700 hover:border-orange-400 hover:text-orange-700">Clear</Link>
               </div>
             </form>
           </section>
@@ -388,7 +383,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                 return (
                   <article key={submission.id} className="grid gap-2.5 px-4 py-3 lg:min-w-[1120px] lg:grid-cols-[minmax(16rem,1fr)_minmax(8rem,0.8fr)_4.25rem_6.75rem_10rem_6.5rem_minmax(8rem,0.75fr)_9rem] lg:items-center lg:gap-4 lg:py-2.5">
                     <div className="min-w-0">
-                      <Link href={`/admin/submissions/${submission.id}`} className="block truncate font-display text-lg leading-tight text-navy-900 hover:text-orange-700 lg:text-base">
+                      <Link href={`/admin/submissions/${submission.id}`} prefetch={false} className="block truncate font-display text-lg leading-tight text-navy-900 hover:text-orange-700 lg:text-base">
                         {submission.title}
                       </Link>
                       <p className="mt-0.5 text-xs text-ink-500">Created {formatDate(submission.createdAt)}</p>
@@ -425,7 +420,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 lg:justify-end">
-                      <Link href={`/admin/submissions/${submission.id}`} className={actionButtonClass(action)}>{action}</Link>
+                      <Link href={`/admin/submissions/${submission.id}`} prefetch={false} className={actionButtonClass(action)}>{action}</Link>
                       <SubmissionRowMenu
                         submissionId={submission.id}
                         submissionTitle={submission.title}

@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import type { HomeData, HomeLeaderboardRow, PublicAgeGroup, PublicGender } from "@/lib/public-site-data";
-import { formatBoardRank } from "@/lib/public-rank-display";
+
 import { getPlayerProfileHref } from "@/lib/format";
+import { formatBoardRank } from "@/lib/public-rank-display";
+import type { HomeData, HomeLeaderboardRow, PublicAgeGroup, PublicGender } from "@/lib/public-site-data";
 import { getProgramAbbreviation } from "@/lib/uaap-school-display";
 
 const ageGroups: PublicAgeGroup[] = ["U13", "U16", "U19"];

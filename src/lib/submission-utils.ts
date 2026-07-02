@@ -1,15 +1,21 @@
 import "server-only";
 
-import { mkdir, writeFile } from "node:fs/promises";
-import { inflateRawSync } from "node:zlib";
-import path from "node:path";
 import { randomUUID } from "node:crypto";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { inflateRawSync } from "node:zlib";
+
 import { OrganizerSubmissionType } from "@prisma/client";
+
 import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
+import { withListReviewInValidationSummary } from "@/lib/submission-list-review-snapshot";
+import { buildSubmissionListReview } from "@/lib/submission-review";
 
 const maxFileSizeBytes = 5 * 1024 * 1024;
 const previewLimit = 10;
+
+import type { SubmissionListReviewSnapshot } from "@/lib/submission-list-review-snapshot";
 
 export type SubmissionValidationSummary = {
   ok: boolean;
@@ -18,6 +24,7 @@ export type SubmissionValidationSummary = {
   gameCount?: number;
   rowCount?: number;
   previewSupported: boolean;
+  listReview?: SubmissionListReviewSnapshot;
 };
 
 export type ParsedSubmissionPayload = {
@@ -95,7 +102,7 @@ function parseCsvLine(line: string) {
   return cells;
 }
 
-function parseCsvPreview(rawText: string) {
+function _parseCsvPreview(rawText: string) {
   const lines = rawText.replace(/^\uFEFF/, "").split(/\r?\n/).filter((line) => line.trim().length > 0);
   const rows = lines.map(parseCsvLine);
   const headers = rows[0] ?? [];
@@ -118,7 +125,7 @@ type SpreadsheetCell = string | number;
 type SpreadsheetRow = SpreadsheetCell[];
 type ParsedBoxScorePlayer = Record<string, string | number>;
 
-type ParsedBoxScore = {
+type _ParsedBoxScore = {
   packageJson: Record<string, unknown>;
   homeTeamName: string;
   awayTeamName: string;
@@ -852,7 +859,7 @@ async function storeUploadedFileBuffer(file: File, buffer: Buffer) {
   };
 }
 
-async function storeUploadedFile(file: File) {
+async function _storeUploadedFile(file: File) {
   return storeUploadedFileBuffer(file, Buffer.from(await file.arrayBuffer()));
 }
 
@@ -881,6 +888,20 @@ export function inferSubmissionType(formData: FormData): OrganizerSubmissionType
   throw new Error("Unsupported file type. Upload JSON, CSV, or XLSX only. JSON submissions are admin-managed.");
 }
 
+function attachListReviewToPayload(payload: ParsedSubmissionPayload, leagueName: string | null): ParsedSubmissionPayload {
+  const listReview = buildSubmissionListReview({
+    rawText: payload.rawText,
+    parsedPreview: payload.parsedPreview as import("@prisma/client").Prisma.JsonValue,
+    title: "",
+    leagueName,
+  });
+
+  return {
+    ...payload,
+    validationSummary: withListReviewInValidationSummary(payload.validationSummary, listReview),
+  };
+}
+
 export async function parseSubmissionPayload(type: OrganizerSubmissionType, formData: FormData): Promise<ParsedSubmissionPayload> {
   if (type === OrganizerSubmissionType.PASTE_JSON) {
     const rawText = String(formData.get("rawText") ?? "").trim();
@@ -890,7 +911,7 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
     const parsed = safeJsonParse(rawText);
     if (!parsed.ok) throw new Error(`Invalid JSON: ${formatSubmissionJsonParseError(parsed) ?? "JSON could not be parsed."}`);
 
-    return {
+    return attachListReviewToPayload({
       rawText,
       parsedPreview: jsonPreview(parsed.data),
       validationSummary: {
@@ -903,7 +924,7 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
       mimeType: null,
       fileSizeBytes: Buffer.byteLength(rawText, "utf8"),
       storedFilePath: null
-    };
+    }, null);
   }
 
   const file = assertFile(formData.get("file"));
@@ -917,7 +938,7 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
     if (!parsed.ok) throw new Error(`Invalid JSON: ${formatSubmissionJsonParseError(parsed) ?? "Uploaded file could not be parsed."}`);
 
     const { storedFilePath } = await storeUploadedFileBuffer(file, initialBuffer);
-    return {
+    return attachListReviewToPayload({
       rawText,
       parsedPreview: jsonPreview(parsed.data),
       validationSummary: {
@@ -930,7 +951,7 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
       mimeType,
       fileSizeBytes: file.size,
       storedFilePath
-    };
+    }, null);
   }
 
   const { storedFilePath, buffer } = await storeUploadedFileBuffer(file, initialBuffer);
@@ -939,7 +960,7 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
     const format = type === OrganizerSubmissionType.UPLOAD_CSV ? "csv" : "xlsx";
     const parsedBoxScore = parsePybcSpreadsheetBuffer(buffer, formData, format);
     const rawText = JSON.stringify(parsedBoxScore.packageJson, null, 2);
-    return {
+    return attachListReviewToPayload({
       rawText,
       parsedPreview: jsonPreview(parsedBoxScore.packageJson),
       validationSummary: {
@@ -954,7 +975,7 @@ export async function parseSubmissionPayload(type: OrganizerSubmissionType, form
       mimeType,
       fileSizeBytes: file.size,
       storedFilePath
-    };
+    }, null);
   }
 
   throw new Error("Unsupported submission type.");

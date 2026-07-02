@@ -1,16 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { slugify } from "@/lib/format";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { useFormState } from "react-dom";
-import { ExternalLink } from "lucide-react";
 import type { ProgramType } from "@prisma/client";
-import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
-import { AdminPlayerEditModal } from "@/components/admin/AdminPlayerEditModal";
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { type ReactNode,useEffect, useMemo, useState } from "react";
+import { useFormState } from "react-dom";
+
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
+import { AdminPlayerEditModal } from "@/components/admin/AdminPlayerEditModal";
+import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
-import { updateProgram, updateProgramTeam, type ProgramActionState } from "../actions";
+import { slugify } from "@/lib/format";
+
+import { type ProgramActionState,updateProgram, updateProgramTeam } from "../actions";
 
 const initialState: ProgramActionState = { ok: false, message: "" };
 const inputClassName =
@@ -438,7 +440,7 @@ function PlayerTable({
         <div key={player.id} className="grid gap-2 border-b border-surface-100 px-4 py-3 last:border-b-0 lg:grid-cols-[minmax(12rem,1.4fr)_6rem_6rem_7rem_5rem] lg:items-center">
           <div className="min-w-0">
             <strong className="block truncate text-sm font-semibold text-ink-900">{player.displayName}</strong>
-            <Link href={player.profileHref} target="_blank" className="mt-0.5 inline-flex items-center gap-1 text-xs font-semibold text-orange-700 hover:text-orange-800">
+            <Link href={player.profileHref} target="_blank" prefetch={false} className="mt-0.5 inline-flex items-center gap-1 text-xs font-semibold text-orange-700 hover:text-orange-800">
               Public profile
               <ExternalLink className="h-3 w-3" aria-hidden="true" />
             </Link>

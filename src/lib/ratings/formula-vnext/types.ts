@@ -1,4 +1,5 @@
 import type { AgeGroup, PlayerGender } from "@prisma/client";
+
 import type { RankingAgeBracket } from "@/lib/ranking-eligibility";
 
 export const FORMULA_VNEXT_POLICY_ID = "rating-formula-vnext-shadow-v1";

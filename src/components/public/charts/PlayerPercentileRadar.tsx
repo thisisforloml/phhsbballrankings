@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import type { PlayerProfile, PlayerProfilePercentile } from "@/lib/player-profile-types";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
 import { RadarChart, type RadarPoint } from "@/components/public/charts/ProfileCharts";
 import { metricHelp } from "@/lib/metric-explanations";
+import type { PlayerProfile, PlayerProfilePercentile } from "@/lib/player-profile-types";
 
 type SearchPlayer = {
   type: "Player";

@@ -1,7 +1,8 @@
 import Link from "next/link";
+
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { loadAdminLeaguesList } from "@/lib/admin/load-admin-leagues-list";
 import { requireAdminUser } from "@/lib/portal-auth";
-import { prisma } from "@/lib/prisma";
 
 export const metadata = {
   title: "Leagues | Admin",
@@ -9,29 +10,10 @@ export const metadata = {
 };
 
 export default async function AdminLeaguesPage() {
-  await requireAdminUser();
-
-  const leagues = await prisma.league.findMany({
-    where: { deletedAt: null },
-    include: {
-      _count: {
-        select: {
-          seasons: true
-        }
-      },
-      seasons: {
-        where: { deletedAt: null },
-        include: {
-          _count: {
-            select: { games: true }
-          }
-        },
-        orderBy: { seasonYear: "desc" },
-        take: 1
-      }
-    },
-    orderBy: { name: "asc" }
-  });
+  const [, leagues] = await Promise.all([
+    requireAdminUser(),
+    loadAdminLeaguesList(),
+  ]);
 
   return (
     <>
@@ -54,7 +36,7 @@ export default async function AdminLeaguesPage() {
               return (
                 <tr key={league.id}>
                   <td className="px-4 py-3 font-semibold text-navy-900">
-                    <Link href={`/admin/leagues/${league.id}`} className="hover:text-orange-700">
+                    <Link href={`/admin/leagues/${league.id}`} prefetch={false} className="hover:text-orange-700">
                       {league.name}
                     </Link>
                   </td>

@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import type { HomeLeaderboardRow } from "@/lib/public-site-data";
-import { formatBoardRank } from "@/lib/public-rank-display";
-import { formatHeight, getPlayerProfileHref } from "@/lib/format";
-import { getProgramAbbreviation } from "@/lib/uaap-school-display";
+import Link from "next/link";
+
 import { StarRating } from "@/components/ui";
+import { formatHeight, getPlayerProfileHref } from "@/lib/format";
+import { formatBoardRank } from "@/lib/public-rank-display";
+import type { HomeLeaderboardRow } from "@/lib/public-site-data";
+import { getProgramAbbreviation } from "@/lib/uaap-school-display";
 
 function initials(name: string) {
   return name

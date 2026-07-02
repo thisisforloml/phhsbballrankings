@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
 import { assertTeamSnapshotMutable, canRewriteTeamSnapshot, TeamSnapshotImmutabilityError } from "@/lib/team-ratings/snapshot-immutability";
 
 describe("team snapshot immutability", () => {

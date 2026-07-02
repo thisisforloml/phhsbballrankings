@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import type { HomeData } from "@/lib/public-site-data";
 
 export function BoardReport({ data }: { data: HomeData }) {

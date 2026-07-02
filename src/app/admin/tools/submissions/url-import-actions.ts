@@ -1,22 +1,35 @@
 "use server";
 
-import { AgeGroup, OrganizerSubmissionType, PlayerGender, SubmissionStatus, type Prisma } from "@prisma/client";
+import { AgeGroup, OrganizerSubmissionType, PlayerGender, type Prisma,SubmissionStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+import {
+  invalidateAdminProgramMembershipCaches,
+  invalidateAdminSubmissionListCaches,
+  invalidateAdminTeamsCaches,
+} from "@/lib/admin/invalidate-admin-caches";
+import { persistPlayerExternalAliases } from "@/lib/player-external-alias";
+import { buildPlayerMappingAuditNotes } from "@/lib/player-import-matching";
+import { requireAdminUser } from "@/lib/portal-auth";
+import { prisma } from "@/lib/prisma";
 import { buildStatsHubSubmissionPackage, discoverStatsHubImport } from "@/lib/stats-import/adapters/statshub-v1";
-import { packageDraftToRawText } from "@/lib/stats-import/adapters/statshub-v1/normalize-package";
 import { fetchFibaTeamLabels } from "@/lib/stats-import/adapters/statshub-v1/fetch-match-data";
+import { packageDraftToRawText } from "@/lib/stats-import/adapters/statshub-v1/normalize-package";
 import type {
   OrganizationCreationPreview,
   OrganizationCreationResult,
   PlayerMatchingPreview,
-  TeamMatchPreviewRow,
   TeamMatchingPreview,
+  TeamMatchPreviewRow,
   UrlImportCreationPlan,
   UrlImportDiscovery,
   UrlImportPlayerMapping,
   UrlImportTeamMapping
 } from "@/lib/stats-import/types";
+import { submissionReviewToListSnapshot } from "@/lib/submission-list-review-snapshot";
+import { buildSubmissionReview } from "@/lib/submission-review";
+import { persistTeamExternalAliases } from "@/lib/team-external-alias";
 import {
   applyTeamMappingsToPackageDraft,
   buildTeamMappingAuditNotes,
@@ -26,18 +39,12 @@ import {
   loadTeamMatchDbContext,
   matchExternalTeam
 } from "@/lib/team-import-matching";
-import { buildPlayerMappingAuditNotes } from "@/lib/player-import-matching";
-import { buildUrlImportPlayerMatchingPreview } from "@/lib/url-import-player-preview";
-import { persistPlayerExternalAliases } from "@/lib/player-external-alias";
-import { persistTeamExternalAliases } from "@/lib/team-external-alias";
+import { buildMissingOrganizationsAuditNotes } from "@/lib/url-import-creation-plan";
 import {
   createMissingOrganizationsFromImport,
   previewMissingOrganizationsFromImport
 } from "@/lib/url-import-organization-creation";
-import { buildMissingOrganizationsAuditNotes } from "@/lib/url-import-creation-plan";
-import { buildSubmissionReview } from "@/lib/submission-review";
-import { requireAdminUser } from "@/lib/portal-auth";
-import { prisma } from "@/lib/prisma";
+import { buildUrlImportPlayerMatchingPreview } from "@/lib/url-import-player-preview";
 
 function jsonPreview(value: unknown): Prisma.InputJsonValue {
   const preview = Array.isArray(value)
@@ -309,6 +316,8 @@ export async function createMissingOrganizationsFromImportAction(input: {
     region: input.region
   });
 
+  invalidateAdminProgramMembershipCaches();
+  invalidateAdminTeamsCaches();
   revalidatePath("/admin/programs");
   revalidatePath("/admin/tools/submissions");
   return result;
@@ -499,49 +508,50 @@ export async function createUrlImportSubmission(formData: FormData) {
           provider: "statshub-v1",
           sourceUrl,
           gameCount: built.gameCount,
+          listReview: submissionReviewToListSnapshot(built.review),
           messages: [
-            ...built.review.importReady ? [] : [`Review readiness: ${built.review.readinessLabel}`],
-            ...(built.reconciliationSummary.inaccessibleFeedMatchIds.length
-              ? [
-                  `Inaccessible feed reconciliation applied to match(es): ${built.reconciliationSummary.inaccessibleFeedMatchIds.join(", ")}`
-                ]
-              : []),
-            ...(built.review.validation.missingRequiredFields.length
-              ? [`Missing fields detected: ${built.review.validation.missingRequiredFields.length}`]
-              : [])
-          ],
-          previewSupported: true,
-          ...(teamMappings.length
-            ? {
-                importTeamMappings: {
-                  total: teamMappings.length,
-                  reuse: teamMappings.filter((mapping) => mapping.action === "mapped_existing").length,
-                  create: teamMappings.filter((mapping) => mapping.action === "create_on_import").length,
-                  aliasesSaved: aliasPersistence.newAliasesCreated + aliasPersistence.aliasesUpdated
+              ...built.review.importReady ? [] : [`Review readiness: ${built.review.readinessLabel}`],
+              ...(built.reconciliationSummary.inaccessibleFeedMatchIds.length
+                ? [
+                    `Inaccessible feed reconciliation applied to match(es): ${built.reconciliationSummary.inaccessibleFeedMatchIds.join(", ")}`
+                  ]
+                : []),
+              ...(built.review.validation.missingRequiredFields.length
+                ? [`Missing fields detected: ${built.review.validation.missingRequiredFields.length}`]
+                : [])
+            ],
+            previewSupported: true,
+            ...(teamMappings.length
+              ? {
+                  importTeamMappings: {
+                    total: teamMappings.length,
+                    reuse: teamMappings.filter((mapping) => mapping.action === "mapped_existing").length,
+                    create: teamMappings.filter((mapping) => mapping.action === "create_on_import").length,
+                    aliasesSaved: aliasPersistence.newAliasesCreated + aliasPersistence.aliasesUpdated
+                  }
                 }
-              }
-            : {}),
-          ...(creationPlan
-            ? {
-                importCreationPlan: {
-                  version: creationPlan.version,
-                  programCount: creationPlan.summary.programCount,
-                  teamCount: creationPlan.summary.teamCount,
-                  gamesAffected: creationPlan.summary.gamesAffected,
-                  generatedAt: creationPlan.generatedAt
+              : {}),
+            ...(creationPlan
+              ? {
+                  importCreationPlan: {
+                    version: creationPlan.version,
+                    programCount: creationPlan.summary.programCount,
+                    teamCount: creationPlan.summary.teamCount,
+                    gamesAffected: creationPlan.summary.gamesAffected,
+                    generatedAt: creationPlan.generatedAt
+                  }
                 }
-              }
-            : {}),
-          ...(playerMappings.length
-            ? {
-                importPlayerMappings: {
-                  total: playerMappings.length,
-                  reuse: playerMappings.filter((mapping) => mapping.action === "mapped_existing").length,
-                  create: playerMappings.filter((mapping) => mapping.action === "create_on_import").length,
-                  aliasesSaved: playerAliasPersistence.newAliasesCreated + playerAliasPersistence.aliasesUpdated
+              : {}),
+            ...(playerMappings.length
+              ? {
+                  importPlayerMappings: {
+                    total: playerMappings.length,
+                    reuse: playerMappings.filter((mapping) => mapping.action === "mapped_existing").length,
+                    create: playerMappings.filter((mapping) => mapping.action === "create_on_import").length,
+                    aliasesSaved: playerAliasPersistence.newAliasesCreated + playerAliasPersistence.aliasesUpdated
+                  }
                 }
-              }
-            : {})
+              : {})
         },
         adminNotes: appendAdminNotes(
           null,
@@ -572,6 +582,7 @@ export async function createUrlImportSubmission(formData: FormData) {
       select: { id: true }
     });
 
+    invalidateAdminSubmissionListCaches();
     revalidatePath("/admin/tools/submissions");
     revalidatePath("/admin/submissions");
     redirect(`/admin/submissions/${submission.id}?reviewSuccess=${encodeURIComponent("Draft submission created from URL import. Review before publish.")}`);

@@ -1,9 +1,10 @@
 ﻿"use client";
 
 import { motion } from "framer-motion";
+
+import { PlayerAvatar, RatingBadge, StarRating, StatCard, VerifiedBadge } from "@/components/ui";
 import type { Player } from "@/lib/mock-data";
 import { formatPlayerName } from "@/lib/mock-data";
-import { PlayerAvatar, RatingBadge, StarRating, StatCard, VerifiedBadge } from "@/components/ui";
 
 export function PlayerHero({ player }: { player: Player }) {
   const positionText = player.position ? `${player.position} - ` : "";

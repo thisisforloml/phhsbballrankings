@@ -1,6 +1,23 @@
-import { SubmissionStatus, type Submission } from "@prisma/client";
+import { type Submission,SubmissionStatus } from "@prisma/client";
 
 export const activeSubmissionWhere = { deletedAt: null } as const;
+
+export const submissionStatusTransitions: Record<SubmissionStatus, SubmissionStatus[]> = {
+  DRAFT: [SubmissionStatus.SUBMITTED],
+  SUBMITTED: [SubmissionStatus.UNDER_REVIEW],
+  UNDER_REVIEW: [SubmissionStatus.APPROVED, SubmissionStatus.REJECTED],
+  APPROVED: [SubmissionStatus.UNDER_REVIEW],
+  REJECTED: [SubmissionStatus.UNDER_REVIEW],
+  IMPORTED: [],
+};
+
+export function canTransitionSubmissionStatus(from: SubmissionStatus, to: SubmissionStatus): boolean {
+  return submissionStatusTransitions[from]?.includes(to) ?? false;
+}
+
+export function publishLifecycleSteps(): string[] {
+  return ["submitted", "under review", "approved", "imported", "scores", "ratings, team-ratings, rankings", "validation", "published"];
+}
 
 type SubmissionDeleteEligibility = Pick<Submission, "publishedAt" | "importedAt" | "deletedAt">;
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import type { PublicLeagueRow } from "@/lib/public-site-data";
 
 export function LeagueCard({ league }: { league: PublicLeagueRow }) {

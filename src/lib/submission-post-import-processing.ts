@@ -1,19 +1,20 @@
 import { AgeGroup, PlayerGender, RankingScope, SubmissionStatus } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+
 import {
   resolveFormulaV1VersionId,
   upsertGamePerformanceScoresForStats
 } from "@/lib/formula-v1/compute-game-performance-scores";
+import { prisma } from "@/lib/prisma";
+import { getMonthStart, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
 import { getActivePolicyVersionId } from "@/lib/ratings/player-rating-query";
+import { syncDerivedRatingsForSubmissionBoard } from "@/lib/ratings/sync-derived-ratings";
 import {
   buildTierNormalizedRatingTargets,
   loadTierNormalizedGpsGames
 } from "@/lib/ratings/tier-normalized-v1";
-import { syncDerivedRatingsForSubmissionBoard } from "@/lib/ratings/sync-derived-ratings";
-import { getMonthStart, isRankingEligibleByClassYear } from "@/lib/ranking-eligibility";
 import { buildSnapshotBoardRows } from "@/lib/snapshot-board-rows";
-import { buildSubmissionReview } from "@/lib/submission-review";
 import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
+import { buildSubmissionReview } from "@/lib/submission-review";
 
 function minimumVerifiedGamesForContext(ageGroup: AgeGroup, gender: PlayerGender) {
   if (ageGroup === AgeGroup.U16 && gender === PlayerGender.BOYS) return 1;
@@ -508,7 +509,7 @@ export async function validateImportedSubmissionRankings(submissionId: string) {
   const latest = snapshots.find((snapshot) => isMonthStart(snapshot.weekOf)) ?? null;
   if (!latest) issues.push(`Missing latest monthly ${rankingContextLabel(context.ageGroup, context.gender)} snapshot.`);
 
-  let snapshotIssues: string[] = [];
+  const snapshotIssues: string[] = [];
   let expectedSnapshotRows = 0;
   let snapshotRowsChecked = 0;
   let missingBirthDate = 0;

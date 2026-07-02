@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { authorizeCronRequest } from "@/lib/cron-auth";
 import { runWeeklyRatingsUpdate } from "@/lib/weekly-ratings";
 

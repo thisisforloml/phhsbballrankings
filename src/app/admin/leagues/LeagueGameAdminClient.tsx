@@ -1,10 +1,12 @@
 "use client";
 
-import { useFormState } from "react-dom";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
-import { updateOfficialGame, updateOfficialGameStat, type LeagueActionState } from "./actions";
+
+import { type LeagueActionState,updateOfficialGame, updateOfficialGameStat } from "./actions";
 
 const initialState: LeagueActionState = { ok: false, message: "" };
 
@@ -59,7 +61,7 @@ export function LeagueGameAdminClient({
               <h2 className="font-display text-2xl font-bold text-navy-900">{game.gameNumber}</h2>
               <p className="text-sm text-ink-600">{game.homeTeamName} vs {game.awayTeamName}</p>
             </div>
-            <Link href={`/admin/leagues/${leagueId}`} className="text-sm font-semibold text-orange-700 hover:text-orange-800">
+            <Link href={`/admin/leagues/${leagueId}`} prefetch={false} className="text-sm font-semibold text-orange-700 hover:text-orange-800">
               Back to league
             </Link>
           </div>

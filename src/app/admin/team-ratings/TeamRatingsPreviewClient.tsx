@@ -1,12 +1,13 @@
 "use client";
 
+import { AgeGroup, PlayerGender } from "@prisma/client";
 import Link from "next/link";
 import { useMemo } from "react";
-import { AgeGroup, PlayerGender } from "@prisma/client";
+
 import { AdminAlert } from "@/components/admin/AdminAlert";
+import { AdminBadge } from "@/components/admin/AdminBadge";
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
-import { AdminBadge } from "@/components/admin/AdminBadge";
 import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
 import type {
   AdminProgramTeamRatingBoard,
@@ -174,7 +175,7 @@ export function TeamRatingsPreviewClient({
                   <td className="px-3 py-2.5 font-bold text-navy-800">{row.rank}</td>
                   <td className="px-3 py-2.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <Link href={`/admin/programs/${row.programId}`} className="font-semibold text-orange-700 hover:text-orange-800">
+                      <Link href={`/admin/programs/${row.programId}`} prefetch={false} className="font-semibold text-orange-700 hover:text-orange-800">
                         {row.programName}
                       </Link>
                       {row.programDeleted ? <AdminBadge variant="warning">Deleted program</AdminBadge> : null}

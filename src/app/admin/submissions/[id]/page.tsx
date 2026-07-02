@@ -1,21 +1,20 @@
 ﻿import Link from "next/link";
+import { notFound } from "next/navigation";
+
 import { AdminAlert } from "@/components/admin/AdminAlert";
 import { AdminBadge } from "@/components/admin/AdminBadge";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
-import { PassFailBadge, HealthCheckBadge, YesNoBadge } from "@/components/admin/submissionHealthBadges";
-import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
-import { ReadinessBadge, SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
-import { notFound } from "next/navigation";
+import { HealthCheckBadge, PassFailBadge } from "@/components/admin/submissionHealthBadges";
+import { SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { buildSubmissionReview } from "@/lib/submission-review";
-import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { getSubmissionImportPublishAudit, getSubmissionPipelineStatus } from "@/lib/submission-audit";
-import { getImportedSubmissionProcessingStatus } from "@/lib/submission-post-import-processing";
-import { submissionTypeLabel } from "@/lib/submission-utils";
+import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { canDeleteDraftSubmission, isSubmissionDeleted } from "@/lib/submission-lifecycle";
-import { SimplifiedSubmissionReview } from "./SimplifiedSubmissionReview";
-import { SubmissionDeleteDraftForm } from "../SubmissionDeleteDraftForm";
+import { getImportedSubmissionProcessingStatus } from "@/lib/submission-post-import-processing";
+import { buildSubmissionReview } from "@/lib/submission-review";
+import { submissionTypeLabel } from "@/lib/submission-utils";
+
 import {
   computeSubmissionFormulaScores,
   computeSubmissionPlayerRatings,
@@ -25,6 +24,8 @@ import {
   updateSubmissionReviewStatus,
   validateSubmissionRankings
 } from "../actions";
+import { SubmissionDeleteDraftForm } from "../SubmissionDeleteDraftForm";
+import { SimplifiedSubmissionReview } from "./SimplifiedSubmissionReview";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -54,11 +55,11 @@ function formatJson(value: unknown) {
   return JSON.stringify(value, null, 2);
 }
 
-function passFail(pass: boolean) {
+function _passFail(pass: boolean) {
   return <span className={`rounded-full px-2 py-1 font-mono text-[0.65rem] uppercase ${pass ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{pass ? "Pass" : "Fail"}</span>;
 }
 
-function healthBadge(pass: boolean) {
+function _healthBadge(pass: boolean) {
   return <span className={`rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase ${pass ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>{pass ? "Pass" : "Fail"}</span>;
 }
 
@@ -83,13 +84,13 @@ function statusBadgeClass(status: string) {
 
 type PipelineStepState = "complete" | "current" | "pending" | "blocked";
 
-type PipelineStep = {
+type _PipelineStep = {
   label: string;
   description: string;
   state: PipelineStepState;
 };
 
-type DerivedPipelineStatus = {
+type _DerivedPipelineStatus = {
   submitted: boolean;
   underReview: boolean;
   approved: boolean;
@@ -117,7 +118,7 @@ function pipelineDotClass(state: PipelineStepState) {
   }
 }
 
-function pipelineStateLabel(state: PipelineStepState) {
+function _pipelineStateLabel(state: PipelineStepState) {
   switch (state) {
     case "complete": return "Complete";
     case "current": return "Current";
@@ -128,16 +129,17 @@ function pipelineStateLabel(state: PipelineStepState) {
 
 
 export default async function AdminSubmissionDetailPage({ params, searchParams }: PageProps) {
-  await requireAdminUser();
-
-  const submission = await prisma.submission.findUnique({
+  const [, submission] = await Promise.all([
+    requireAdminUser(),
+    prisma.submission.findUnique({
     where: { id: params.id },
     include: {
       submittedBy: {
         select: { id: true, name: true, username: true, email: true, role: true }
       }
     }
-  });
+    }),
+  ]);
 
   if (!submission) notFound();
 
@@ -184,7 +186,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
 
         <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
-            <Link href="/admin/submissions" className="font-mono text-mono-sm uppercase text-amber-700 hover:text-amber-800">Back to submissions</Link>
+            <Link href="/admin/submissions" prefetch={false} className="font-mono text-mono-sm uppercase text-amber-700 hover:text-amber-800">Back to submissions</Link>
             <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
               <div>
                 <p className="label">Submission detail</p>
@@ -202,6 +204,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
             pipelineStatus={pipelineStatus}
             reviewSuccess={reviewSuccess}
             reviewError={reviewError}
+            editMode={editStats}
           />
 
           <details className="rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
@@ -506,6 +509,12 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
             )}
           </section>
 
+
+          {processingStatusError ? (
+            <AdminAlert variant="error" title="Processing status unavailable">
+              {processingStatusError}
+            </AdminAlert>
+          ) : null}
 
           {processingStatus ? (
             <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">

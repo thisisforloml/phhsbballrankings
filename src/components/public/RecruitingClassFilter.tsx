@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+
 import { publicRankingsCoverageCopy } from "@/lib/public-rankings-coverage";
 import type { RecruitingClassYearOption } from "@/lib/recruiting-class-filter";
 

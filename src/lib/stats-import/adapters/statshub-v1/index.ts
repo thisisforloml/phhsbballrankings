@@ -1,4 +1,3 @@
-import type { ExternalGameIndex, UrlImportDiscovery } from "@/lib/stats-import/types";
 import { classifyStatsImportUrl } from "@/lib/stats-import/adapters/statshub-v1/classify-url";
 import {
   enrichSingleGamePreview,
@@ -6,17 +5,18 @@ import {
   fibaMatchToSubmissionGame,
   scheduleGameToSubmissionDraft
 } from "@/lib/stats-import/adapters/statshub-v1/fetch-match-data";
+import { inferAgeGroupFromText, inferGender, inferSeasonYear, normalizeLeagueName } from "@/lib/stats-import/adapters/statshub-v1/infer-metadata";
+import { buildSubmissionPackageDraft, packageDraftToRawText } from "@/lib/stats-import/adapters/statshub-v1/normalize-package";
+import { buildScheduleDiagnostics,parseScheduleHtml, singleGameIndex } from "@/lib/stats-import/adapters/statshub-v1/parse-schedule";
+import { fetchGeniusEmbedSchedule, resolveStatsHubCompetition } from "@/lib/stats-import/adapters/statshub-v1/resolve-competition";
+import { applyPreferredGameDate } from "@/lib/stats-import/adapters/statshub-v1/schedule-dates";
 import {
   isInaccessibleFeedStatus,
   reconcileInaccessibleFeedSubmissionGame,
   reconcileSubmissionGame,
   shouldReconcileInaccessibleFeed
 } from "@/lib/stats-import/reconciliation";
-import { inferAgeGroupFromText, inferGender, inferSeasonYear, normalizeLeagueName } from "@/lib/stats-import/adapters/statshub-v1/infer-metadata";
-import { parseScheduleHtml, singleGameIndex, buildScheduleDiagnostics } from "@/lib/stats-import/adapters/statshub-v1/parse-schedule";
-import { fetchGeniusEmbedSchedule, resolveStatsHubCompetition } from "@/lib/stats-import/adapters/statshub-v1/resolve-competition";
-import { buildSubmissionPackageDraft, packageDraftToRawText } from "@/lib/stats-import/adapters/statshub-v1/normalize-package";
-import { applyPreferredGameDate } from "@/lib/stats-import/adapters/statshub-v1/schedule-dates";
+import type { ExternalGameIndex, UrlImportDiscovery } from "@/lib/stats-import/types";
 import { buildSubmissionReview } from "@/lib/submission-review";
 
 const MAX_IMPORT_GAMES = 40;

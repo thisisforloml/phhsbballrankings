@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
 import { LAUNCH_POLICY_V1_ID } from "@/lib/eligibility";
+import type { NationalRankingRow } from "@/lib/rankings";
 import {
   applyClassYearFilter,
   getRecruitingClassYearOptions,
@@ -8,7 +10,6 @@ import {
   recruitingRankColumnLabel,
   shouldShowRecruitingSortBanner
 } from "@/lib/recruiting-class-filter";
-import type { NationalRankingRow } from "@/lib/rankings";
 
 function row(overrides: Partial<NationalRankingRow> & Pick<NationalRankingRow, "playerId">): NationalRankingRow {
   return {

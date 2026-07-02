@@ -1,8 +1,9 @@
 import Link from "next/link";
-import type { TeamStandingRow } from "@/lib/team-rankings-types";
-import { formatBoardRank } from "@/lib/public-rank-display";
+
 import { SortIndicator } from "@/components/public/SortIndicator";
 import { WinLossPill } from "@/components/ui";
+import { formatBoardRank } from "@/lib/public-rank-display";
+import type { TeamStandingRow } from "@/lib/team-rankings-types";
 
 type TeamSortKey = "rank" | "team" | "record" | "winPercentage" | "pointsFor" | "pointsAgainst" | "pointDifferential" | "league";
 type SortDirection = "asc" | "desc";

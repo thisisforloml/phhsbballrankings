@@ -1,13 +1,13 @@
 import type { AgeGroup, PlayerGender } from "@prisma/client";
+
 import {
+  type AgeVerificationStatus,
   buildEligibilityInput,
+  type EligibilityBoard,
+  type EligibilityVerdict,
   evaluateEligibility,
   isPublicBoardVisible,
-  publicBoardMinimumGames,
-  type AgeVerificationStatus,
-  type EligibilityBoard,
-  type EligibilityVerdict
-} from "@/lib/eligibility";
+  publicBoardMinimumGames} from "@/lib/eligibility";
 import { prisma } from "@/lib/prisma";
 import { resolveActivePlayerRatingFilter } from "@/lib/ratings/player-rating-query";
 

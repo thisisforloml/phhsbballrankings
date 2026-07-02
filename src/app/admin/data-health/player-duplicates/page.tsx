@@ -1,10 +1,13 @@
 ﻿import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+
 import { Suspense } from "react";
+
 import { AdminAlert } from "@/components/admin/AdminAlert";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { requireAdminUser } from "@/lib/portal-auth";
-import { PlayerDuplicateReviewClient, type DuplicatePlayerGroup } from "./PlayerDuplicateReviewClient";
+
+import { type DuplicatePlayerGroup,PlayerDuplicateReviewClient } from "./PlayerDuplicateReviewClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -44,8 +47,8 @@ async function loadDuplicateGroups() {
 }
 
 export default async function PlayerDuplicateReviewPage() {
-  await requireAdminUser();
-  const { generatedAt, groups, summary } = await loadDuplicateGroups();
+  const [, duplicateReport] = await Promise.all([requireAdminUser(), loadDuplicateGroups()]);
+  const { generatedAt, groups, summary } = duplicateReport;
 
   return (
     <>

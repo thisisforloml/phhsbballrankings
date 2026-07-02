@@ -1,40 +1,20 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { useFormState } from "react-dom";
-import Link from "next/link";
 import { ExternalLink, Search } from "lucide-react";
-import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+import Link from "next/link";
+import { type ReactNode,useEffect, useMemo, useState } from "react";
+import { useFormState } from "react-dom";
+
 import { AdminBadge } from "@/components/admin/AdminBadge";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterRow } from "@/components/admin/AdminFilterRow";
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
+import type { ManagedTeam } from "@/lib/admin/managed-team";
+
 import { updateTeamBio, type UpdateTeamState } from "./actions";
 
-export type ManagedTeam = {
-  id: string;
-  name: string;
-  publicSchoolName: string;
-  programKey: string;
-  programAbbreviation: string;
-  programType: string;
-  teamDisplayName: string;
-  needsCleanup: boolean;
-  isActiveCompetitionTeam: boolean;
-  city: string;
-  region: string;
-  logoUrl: string | null;
-  homeGames: number;
-  awayGames: number;
-  gameStats: number;
-  historicalHomeGames: number;
-  historicalAwayGames: number;
-  historicalGameStats: number;
-  playerCount: number;
-  playerNames: string[];
-  context: string;
-  contexts: string[];
-};
+export type { ManagedTeam };
 
 type RecordFilter = "ACTIVE" | "INACTIVE" | "NEEDS_CLEANUP";
 
@@ -330,6 +310,7 @@ function TeamEditPanel({
             <Link
               href={profileHref}
               target="_blank"
+              prefetch={false}
               className="inline-flex items-center gap-1.5 border border-surface-300 px-3 py-1.5 text-xs font-semibold text-ink-700 hover:border-orange-400 hover:text-orange-700"
             >
               Public profile

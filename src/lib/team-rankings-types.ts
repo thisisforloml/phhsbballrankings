@@ -86,5 +86,5 @@ export function mergeCompetitionBoardRows(rows: TeamStandingRow[]): TeamStanding
     });
   }
 
-  return [...merged.values()].map(({ scopeCount, seasonNames, ...row }) => row);
+  return [...merged.values()].map(({ scopeCount: _scopeCount, seasonNames: _seasonNames, ...row }) => row);
 }

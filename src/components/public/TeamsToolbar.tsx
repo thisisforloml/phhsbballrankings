@@ -1,8 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { PublicCoverageAgeGroup } from "@/lib/public-rankings-coverage";
+
 import { SegmentedControl } from "@/components/public/SegmentedControl";
+import type { PublicCoverageAgeGroup } from "@/lib/public-rankings-coverage";
 
 const ageGroups: PublicCoverageAgeGroup[] = ["U13", "U16", "U19"];
 const genders = ["Boys", "Girls"] as const;

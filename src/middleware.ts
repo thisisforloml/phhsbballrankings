@@ -1,61 +1,82 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { UserRole } from "@prisma/client";
+import { type NextRequest, NextResponse } from "next/server";
+
 import {
-  classifyNavigationRequest,
-  cookieHeaderHasSession,
-  logNavInstrument,
-  navTraceId,
-} from "@/lib/nav-instrument";
+  PORTAL_SESSION_COOKIE_NAME,
+  portalSessionSecret,
+  verifyPortalSessionToken,
+} from "@/lib/portal-session-token-edge";
 
-const sessionCookieName = "oncourt_portal_session";
+const LOGIN_PATH = "/portal/login";
+const ORGANIZER_PATH = "/organizer";
 
-export function middleware(request: NextRequest) {
-  const { pathname, search } = request.nextUrl;
-  const traceId = navTraceId();
-  const cookieHeader = request.headers.get("cookie");
+function middlewareSecret(): string | null {
+  try {
+    return portalSessionSecret();
+  } catch {
+    return null;
+  }
+}
 
-  const requestKind = classifyNavigationRequest({
-    pathname,
-    search,
-    method: request.method,
-    rsc: request.headers.get("rsc"),
-    nextRouterPrefetch: request.headers.get("next-router-prefetch"),
-    purpose: request.headers.get("purpose"),
-    secFetchDest: request.headers.get("sec-fetch-dest"),
-    secFetchMode: request.headers.get("sec-fetch-mode"),
-    contentType: request.headers.get("content-type"),
-  });
-
-  logNavInstrument("middleware.request", {
-    traceId,
-    pathname,
-    matchedPath: pathname,
-    search,
-    method: request.method,
-    requestKind,
-    cookieHeaderExists: Boolean(cookieHeader),
-    sessionCookieInHeader: cookieHeaderHasSession(cookieHeader, sessionCookieName),
-    referer: request.headers.get("referer"),
-    host: request.headers.get("host"),
-    origin: request.headers.get("origin"),
-    rsc: request.headers.get("rsc"),
-    nextRouterPrefetch: request.headers.get("next-router-prefetch"),
-    nextRouterStateTree: request.headers.get("next-router-state-tree") ? "present" : null,
-    secFetchMode: request.headers.get("sec-fetch-mode"),
-    secFetchDest: request.headers.get("sec-fetch-dest"),
-    secFetchSite: request.headers.get("sec-fetch-site"),
-    purpose: request.headers.get("purpose"),
-    accept: request.headers.get("accept"),
-  });
-
+function withRequestContext(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-nav-instrument-id", traceId);
+  const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
+  const correlationId = request.headers.get("x-correlation-id") ?? requestId;
+  requestHeaders.set("x-request-id", requestId);
+  requestHeaders.set("x-correlation-id", correlationId);
+  return { requestHeaders, requestId, correlationId };
+}
 
-  return NextResponse.next({
-    request: { headers: requestHeaders },
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const { requestHeaders, requestId, correlationId } = withRequestContext(request);
+
+  if (!pathname.startsWith("/admin")) {
+    const response = NextResponse.next({
+      request: { headers: requestHeaders },
+    });
+    response.headers.set("x-request-id", requestId);
+    response.headers.set("x-correlation-id", correlationId);
+    return response;
+  }
+
+  const secret = middlewareSecret();
+  if (!secret) {
+    return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
+  }
+
+  const rawSession = request.cookies.get(PORTAL_SESSION_COOKIE_NAME)?.value;
+  if (!rawSession) {
+    const loginUrl = new URL(LOGIN_PATH, request.url);
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  const payload = await verifyPortalSessionToken(rawSession, secret);
+  if (!payload) {
+    const loginUrl = new URL(LOGIN_PATH, request.url);
+    loginUrl.searchParams.set("next", pathname);
+    const response = NextResponse.redirect(loginUrl);
+    response.cookies.delete(PORTAL_SESSION_COOKIE_NAME);
+    return response;
+  }
+
+  if (payload.role !== UserRole.ADMIN) {
+    return NextResponse.redirect(new URL(ORGANIZER_PATH, request.url));
+  }
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
   });
+  response.headers.set("x-request-id", requestId);
+  response.headers.set("x-correlation-id", correlationId);
+  return response;
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/portal/:path*", "/api/portal/:path*"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|peach-basket|uploads|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+  ],
 };

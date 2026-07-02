@@ -1,6 +1,8 @@
-import Link from "next/link";
 import type { Submission } from "@prisma/client";
+import Link from "next/link";
+
 import { safeParseSubmissionJson } from "@/lib/submission-json";
+
 import { updateSubmissionStructuredDraft } from "../actions";
 
 type JsonRecord = Record<string, unknown>;
@@ -62,7 +64,7 @@ export function EditableGameStatsForm({ submission }: { submission: Pick<Submiss
         <p><strong>Edits affect the submission draft only.</strong> Official games, stats, ratings, and rankings are unchanged until import.</p>
         <div className="flex gap-2">
           <button type="submit" className="button primary">Save Changes</button>
-          <Link href={`/admin/submissions/${submission.id}`} className="button secondary">Cancel</Link>
+          <Link href={`/admin/submissions/${submission.id}`} prefetch={false} className="button secondary">Cancel</Link>
         </div>
       </div>
 

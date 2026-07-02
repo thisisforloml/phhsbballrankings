@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
+
 import { LeagueMetadataForm, LeagueSeasonGames } from "../LeagueDetailClient";
 
 export const metadata = {
@@ -14,9 +16,9 @@ function formatDate(date: Date | null) {
 }
 
 export default async function AdminLeagueDetailPage({ params }: { params: { id: string } }) {
-  await requireAdminUser();
-
-  const league = await prisma.league.findFirst({
+  const [, league] = await Promise.all([
+    requireAdminUser(),
+    prisma.league.findFirst({
     where: { id: params.id, deletedAt: null },
     include: {
       seasons: {
@@ -35,7 +37,8 @@ export default async function AdminLeagueDetailPage({ params }: { params: { id: 
         }
       }
     }
-  });
+    }),
+  ]);
 
   if (!league) notFound();
 

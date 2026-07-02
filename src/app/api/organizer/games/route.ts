@@ -1,7 +1,8 @@
-﻿import { NextResponse } from "next/server";
-import { AgeGroup, SeasonStatus, SubmissionType, VerificationStatus } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+﻿import { AgeGroup, SeasonStatus, SubmissionType, VerificationStatus } from "@prisma/client";
+import { NextResponse } from "next/server";
+
 import { getPortalUser } from "@/lib/portal-auth";
+import { prisma } from "@/lib/prisma";
 
 interface PlayerStatInput {
   team: "home" | "away";

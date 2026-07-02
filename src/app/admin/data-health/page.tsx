@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { requireAdminUser } from "@/lib/portal-auth";
-import { prisma } from "@/lib/prisma";
+
 import { AdminPageTemplate } from "@/components/admin/AdminPageTemplate";
+import { loadAdminDataHealthSignals } from "@/lib/admin/load-admin-data-health-signals";
+import { requireAdminUser } from "@/lib/portal-auth";
 
 export const metadata = {
   title: "Data Health | Admin",
@@ -9,23 +10,18 @@ export const metadata = {
 };
 
 export default async function AdminDataHealthPage() {
-  await requireAdminUser();
-
-  const [missingBirthDate, missingPhoto, missingPosition, duplicateCandidates, programsNeedingReview, blockedRosterNote] = await Promise.all([
-    prisma.player.count({ where: { deletedAt: null, birthDate: null } }),
-    prisma.player.count({ where: { deletedAt: null, photoUrl: null } }),
-    prisma.player.count({ where: { deletedAt: null, position: null } }),
-    prisma.player.count({
-      where: {
-        deletedAt: null,
-        OR: [
-          { firstName: { contains: " ", mode: "insensitive" } }
-        ]
-      }
-    }),
-    prisma.program.count({ where: { deletedAt: null, teams: { some: { deletedAt: null } } } }),
-    Promise.resolve(23)
+  const [, signals] = await Promise.all([
+    requireAdminUser(),
+    loadAdminDataHealthSignals(),
   ]);
+  const {
+    missingBirthDate,
+    missingPhoto,
+    missingPosition,
+    duplicateCandidates,
+    programsNeedingReview,
+  } = signals;
+  const blockedRosterNote = 23;
 
   const queues = [
     {
@@ -84,7 +80,7 @@ export default async function AdminDataHealthPage() {
             <p className="text-[0.62rem] font-bold uppercase tracking-[0.12em] text-ink-500">{queue.label}</p>
             <strong className="mt-2 block font-display text-3xl font-bold text-court-900">{queue.count.toLocaleString()}</strong>
             <p className="mt-2 text-xs font-semibold leading-5 text-ink-600">{queue.detail}</p>
-            <Link href={queue.href} className="mt-3 inline-block text-xs font-bold uppercase tracking-[0.08em] text-hardwood-600 hover:underline">
+            <Link href={queue.href} prefetch={false} className="mt-3 inline-block text-xs font-bold uppercase tracking-[0.08em] text-hardwood-600 hover:underline">
               Open remediation →
             </Link>
           </article>

@@ -1,5 +1,5 @@
+import { inferSeasonName, inferSeasonYear, normalizeLeagueName } from "@/lib/stats-import/adapters/statshub-v1/infer-metadata";
 import type { SubmissionGameDraft, SubmissionPackageDraft } from "@/lib/stats-import/types";
-import { inferGender, inferSeasonName, inferSeasonYear, normalizeLeagueName } from "@/lib/stats-import/adapters/statshub-v1/infer-metadata";
 
 export function buildSubmissionPackageDraft(options: {
   leagueName: string;

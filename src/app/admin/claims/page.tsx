@@ -1,8 +1,10 @@
 import { ProfileClaimStatus } from "@prisma/client";
+
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { slugify } from "@/lib/format";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { slugify } from "@/lib/format";
+
 import { ClaimsAdminClient } from "./ClaimsAdminClient";
 
 export const metadata = {
@@ -37,13 +39,14 @@ function serializeClaim(claim: {
 }
 
 export default async function AdminClaimsPage() {
-  await requireAdminUser();
-
-  const claims = await prisma.profileClaim.findMany({
+  const [, claims] = await Promise.all([
+    requireAdminUser(),
+    prisma.profileClaim.findMany({
     include: { player: { select: { displayName: true, id: true } } },
     orderBy: { createdAt: "desc" },
     take: 200
-  });
+    }),
+  ]);
 
   const pending = claims.filter((claim) => claim.status === ProfileClaimStatus.PENDING).map(serializeClaim);
   const approved = claims.filter((claim) => claim.status === ProfileClaimStatus.APPROVED).map(serializeClaim);

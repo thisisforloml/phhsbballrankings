@@ -1,4 +1,5 @@
-import { ProgramType, type Prisma } from "@prisma/client";
+import { type Prisma,ProgramType } from "@prisma/client";
+
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
 import type {
@@ -8,8 +9,8 @@ import type {
   OrganizationCreationResult,
   UrlImportCreationPlan
 } from "@/lib/stats-import/types";
-import { teamDisplayMatchKey } from "@/lib/team-import-matching";
 import { labelsForExternalAlias, upsertTeamExternalAliasBatch } from "@/lib/team-external-alias";
+import { teamDisplayMatchKey } from "@/lib/team-import-matching";
 import { getUaapInternalTeamName, normalizeProgramAlias } from "@/lib/uaap-school-display";
 
 const PROVIDER = "statshub-v1" as const;

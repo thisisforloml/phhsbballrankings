@@ -1,4 +1,5 @@
 import { isPublicBoardVisible } from "@/lib/eligibility";
+
 import type { NationalRankingRow, NationalRankingSnapshot } from "./rankings";
 
 export { publicBoardMinimumGames } from "@/lib/eligibility";

@@ -1,4 +1,5 @@
 ﻿import Image from "next/image";
+
 import type { Player } from "@/lib/mock-data";
 
 const sizes = {

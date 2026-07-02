@@ -1,5 +1,5 @@
-import type { EligibilityInput } from "./types";
 import { resolveLaunchThreshold } from "./launch-policy";
+import type { EligibilityInput } from "./types";
 
 export const PENDING_ELIGIBILITY_EXPIRY_DAYS = 365;
 

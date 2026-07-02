@@ -80,7 +80,7 @@ function isPlaceholderTeamLabel(label: string, side: "A" | "B", matchId: string)
   return label === `Team ${side} (${matchId})`;
 }
 
-export function parseScheduleHtml(html: string, competitionId: string, sourceUrl: string): ExternalGameIndex[] {
+export function parseScheduleHtml(html: string, competitionId: string, _sourceUrl: string): ExternalGameIndex[] {
   const games: ExternalGameIndex[] = [];
   const blockPattern = /<div class="match-wrap ([^"]+)" id\s*=\s*"extfix_(\d+)"[\s\S]*?(?=<div class="match-wrap |$)/gi;
   let match: RegExpExecArray | null;

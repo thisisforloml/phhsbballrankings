@@ -1,19 +1,20 @@
 import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 import { cache } from "react";
+
+import { buildEligibilityInput, type EligibilityVerdict,evaluateEligibility } from "./eligibility";
 import { slugify } from "./format";
-import { resolvePrimaryRankingAffiliation, type GameStatAffiliationRef } from "./player-display-affiliation";
-import { buildEligibilityInput, evaluateEligibility, type EligibilityVerdict } from "./eligibility";
-import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
-import { prisma } from "./prisma";
-import { getPublicBoardRows, normalizePublicBoardPosition } from "./public-board-ranks";
-import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
 import {
   affiliationGameStatsFromBoardStats,
   buildParticipationMapFromBoardStats,
   loadRankingBoardGameStatsByPlayerIds,
-  primaryCompetitionFromSummary,
   type PrimaryCompetition,
+  primaryCompetitionFromSummary,
 } from "./player-competition-context";
+import { type GameStatAffiliationRef,resolvePrimaryRankingAffiliation } from "./player-display-affiliation";
+import { prisma } from "./prisma";
+import { getPublicBoardRows, normalizePublicBoardPosition } from "./public-board-ranks";
+import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "./ranking-eligibility";
+import { resolveActivePlayerRatingFilter } from "./ratings/player-rating-query";
 import { runWithConcurrency } from "./run-with-concurrency";
 
 const defaultAgeGroup = AgeGroup.U19;

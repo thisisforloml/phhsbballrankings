@@ -1,4 +1,5 @@
 import { ProgramType } from "@prisma/client";
+
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
 export type ProgramRef = {

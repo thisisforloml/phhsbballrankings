@@ -1,6 +1,7 @@
 import type { ReadonlyURLSearchParams } from "next/navigation";
-import { normalizedAge, normalizedGender } from "@/lib/rankings-url-state";
+
 import type { RankingAgeGroup, RankingGender } from "@/lib/rankings";
+import { normalizedAge, normalizedGender } from "@/lib/rankings-url-state";
 
 export type TeamsUrlState = {
   gender: RankingGender;

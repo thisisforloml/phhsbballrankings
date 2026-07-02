@@ -1,10 +1,11 @@
-import Link from "next/link";
 import Image from "next/image";
-import type { HomeLeaderboardRow } from "@/lib/public-site-data";
-import { formatBoardRank } from "@/lib/public-rank-display";
-import { getPlayerProfileHref } from "@/lib/format";
-import { getProgramDisplayName } from "@/lib/uaap-school-display";
+import Link from "next/link";
+
 import { ScoutRankChange } from "@/components/public/ScoutRankChange";
+import { getPlayerProfileHref } from "@/lib/format";
+import { formatBoardRank } from "@/lib/public-rank-display";
+import type { HomeLeaderboardRow } from "@/lib/public-site-data";
+import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 function initials(name: string) {
   return name
@@ -31,7 +32,7 @@ export function FeaturedProspectsGrid({ players, rankDeltaByPlayerId = {} }: Fea
           <Link
             key={player.playerId}
             href={getPlayerProfileHref(player)}
-            className="group overflow-hidden rounded-sm border border-white/[0.08] bg-court-800/90 text-left transition hover:border-hardwood-500/40"
+            className="home-mobile-tap-card group overflow-hidden rounded-sm border border-white/[0.08] bg-court-800/90 text-left transition-colors duration-200 hover:border-hardwood-500/40"
           >
             <div className="prospect-portrait-frame relative h-40 overflow-hidden">
               {player.photoUrl ? (

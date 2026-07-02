@@ -1,8 +1,10 @@
 import { AgeGroup, PlayerGender, VerificationStatus } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+
 import { FORMULA_V1_VERSION_NUMBER } from "@/lib/player-rating-cumulative";
-import { deriveEvidenceRole } from "./context-factors";
+import { prisma } from "@/lib/prisma";
 import { getCurrentRankingAgeBracket } from "@/lib/ranking-eligibility";
+
+import { deriveEvidenceRole } from "./context-factors";
 import type { LoadedGameEvidence } from "./types";
 
 type LoadOptions = {

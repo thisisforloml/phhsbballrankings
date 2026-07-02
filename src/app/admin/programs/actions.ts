@@ -2,11 +2,12 @@
 
 import { ProgramType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+
+import { invalidateAdminProgramMembershipCaches, invalidateAdminTeamsCaches } from "@/lib/admin/invalidate-admin-caches";
+import { slugify } from "@/lib/format";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
 import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
-import { slugify } from "@/lib/format";
 
 export type ProgramActionState = {
   ok: boolean;
@@ -50,6 +51,7 @@ function readOptionalDate(formData: FormData, key: string, label: string) {
 }
 
 function revalidatePlayerProgramPaths(programId: string, player: { id: string; displayName: string; currentProgramId: string | null }, nextProgramId: string) {
+  invalidateAdminProgramMembershipCaches();
   revalidatePath("/admin/programs");
   revalidatePath(`/admin/programs/${programId}`);
   revalidatePath(`/admin/programs/${nextProgramId}`);
@@ -80,6 +82,7 @@ export async function updateProgram(_previousState: ProgramActionState = initial
       data: { fullName, abbreviation, type, city, region }
     });
 
+    invalidateAdminProgramMembershipCaches();
     revalidatePath("/admin/programs");
     revalidatePath(`/admin/programs/${programId}`);
     revalidatePath("/admin/teams");
@@ -104,6 +107,8 @@ export async function updateProgramTeam(_previousState: ProgramActionState = ini
     const name = readRequiredString(formData, "name", "Team / Moniker Name", 120);
     await prisma.team.update({ where: { id: teamId }, data: { name } });
 
+    invalidateAdminTeamsCaches();
+    invalidateAdminProgramMembershipCaches();
     revalidatePath("/admin/programs");
     revalidatePath(`/admin/programs/${programId}`);
     revalidatePath("/admin/teams");

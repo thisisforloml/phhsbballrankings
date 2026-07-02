@@ -1,6 +1,6 @@
+import { LiveStatsClient } from "@/app/(site)/portal/live-stats/LiveStatsClient";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
-import { LiveStatsClient } from "@/app/portal/live-stats/LiveStatsClient";
 
 export async function SubmissionManualTab({ errorMessage }: { errorMessage?: string }) {
   await requireAdminUser();

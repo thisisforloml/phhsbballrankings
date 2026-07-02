@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { BRAND_ADMIN_EYEBROW } from "@/lib/brand";
 
 const primaryItems = [
@@ -7,7 +8,8 @@ const primaryItems = [
   { href: "/admin/leagues", label: "Leagues", key: "leagues" },
   { href: "/admin/programs", label: "Programs", key: "programs" },
   { href: "/admin/submissions", label: "Game Stats", key: "submissions" },
-  { href: "/admin/claims", label: "Profile Claims", key: "claims" }
+  { href: "/admin/claims", label: "Profile Claims", key: "claims" },
+  { href: "/admin/intake", label: "Public Intake", key: "intake" }
 ] as const;
 
 const opsItem = { href: "/admin/ops", label: "Ops", key: "ops" } as const;
@@ -25,13 +27,6 @@ export function AdminSidebar({ active }: { active: AdminNavKey }) {
       <nav className="mt-4 grid gap-0.5 text-sm font-medium" aria-label="Admin">
         {primaryItems.map((item) => {
           const className = `rounded-md px-2.5 py-2 transition ${active === item.key ? "bg-accent-500/15 font-semibold text-accent-300 shadow-[inset_2px_0_0_theme(colors.accent.400)]" : "text-white/70 hover:bg-white/10 hover:text-white"}`;
-          if (item.key === "players") {
-            return (
-              <a key={item.key} href={item.href} className={className}>
-                {item.label}
-              </a>
-            );
-          }
           return (
             <Link key={item.key} href={item.href} prefetch={false} className={className}>
               {item.label}

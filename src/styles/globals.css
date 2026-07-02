@@ -348,6 +348,82 @@
     .rank-grid {
       grid-template-columns: 3.25rem minmax(0, 1fr) 5rem 5rem;
     }
+
+    .home-mobile-tap-btn {
+      -webkit-tap-highlight-color: transparent;
+      transition:
+        transform 200ms ease,
+        background-color 200ms ease,
+        border-color 200ms ease,
+        color 200ms ease;
+    }
+
+    .home-mobile-tap-btn:active {
+      transform: scale(0.98);
+    }
+
+    .home-mobile-tap-card {
+      -webkit-tap-highlight-color: transparent;
+      transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        border-color 200ms ease,
+        background-color 200ms ease;
+    }
+
+    .home-mobile-tap-card:active {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+    }
+
+    .home-mobile-tap-list {
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 200ms ease;
+    }
+
+    .home-mobile-tap-list:active {
+      background-color: rgb(30 35 48);
+    }
+
+    .home-mobile-link {
+      transition: color 200ms ease;
+    }
+
+    .home-mobile-featured-photo {
+      transform: scale(1.14);
+      transform-origin: center 18%;
+      transition: transform 220ms ease;
+    }
+
+    .group:active .home-mobile-featured-photo {
+      transform: scale(1.2);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .home-mobile-featured-photo {
+      transform: none;
+      transition: none;
+    }
+  }
+
+  @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+    .home-mobile-tap-btn:active,
+    .home-mobile-tap-card:active {
+      transform: none;
+    }
+
+    .group:active .home-mobile-featured-photo {
+      transform: scale(1.14);
+    }
+
+    .home-mobile-tap-btn,
+    .home-mobile-tap-card,
+    .home-mobile-tap-list,
+    .home-mobile-link,
+    .home-mobile-featured-photo {
+      transition: none;
+    }
   }
 }
 

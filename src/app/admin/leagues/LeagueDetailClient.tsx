@@ -1,10 +1,12 @@
 "use client";
 
-import { useFormState } from "react-dom";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
-import { updateLeagueMetadata, type LeagueActionState } from "./actions";
+
+import { type LeagueActionState,updateLeagueMetadata } from "./actions";
 
 const initialState: LeagueActionState = { ok: false, message: "" };
 
@@ -88,7 +90,7 @@ export function LeagueSeasonGames({
                     <td className="px-2 py-2 text-ink-700">{game.homeTeamName} vs {game.awayTeamName}</td>
                     <td className="px-2 py-2 text-center font-semibold text-ink-900">{game.homeScore}–{game.awayScore}</td>
                     <td className="px-2 py-2 text-right">
-                      <Link href={`/admin/leagues/${leagueId}/games/${game.id}`} className="text-sm font-semibold text-orange-700 hover:text-orange-800">
+                      <Link href={`/admin/leagues/${leagueId}/games/${game.id}`} prefetch={false} className="text-sm font-semibold text-orange-700 hover:text-orange-800">
                         Open
                       </Link>
                     </td>

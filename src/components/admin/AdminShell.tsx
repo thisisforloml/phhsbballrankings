@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { AdminSidebar, type AdminNavKey } from "@/components/admin/AdminSidebar";
+
+import { type AdminNavKey,AdminSidebar } from "@/components/admin/AdminSidebar";
 import { DEFAULT_ADMIN_CONTENT_CLASS_NAME } from "@/lib/admin/adminNav";
 
 export function AdminShell({

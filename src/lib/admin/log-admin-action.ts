@@ -1,3 +1,4 @@
+import { invalidateAdminOpsPageCaches } from "@/lib/admin/invalidate-admin-caches";
 import { prisma } from "@/lib/prisma";
 
 export async function writeAuditLog(input: {
@@ -20,4 +21,5 @@ export async function writeAuditLog(input: {
       newData: input.newData === undefined ? undefined : (input.newData as object)
     }
   });
+  invalidateAdminOpsPageCaches();
 }

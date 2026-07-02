@@ -1,5 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+
 import { BRAND_ASSETS, BRAND_NAME } from "@/lib/brand";
 
 type BrandLogoProps = {

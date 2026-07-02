@@ -1,6 +1,8 @@
 import { PlayerGender } from "@prisma/client";
+
 import { starFromAdjustedRating } from "@/lib/player-rating-cumulative";
 import type { RankingAgeBracket } from "@/lib/ranking-eligibility";
+
 import {
   advancedCompositeBonus,
   ageFactor,

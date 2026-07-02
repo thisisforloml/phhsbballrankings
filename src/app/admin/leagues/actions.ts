@@ -1,10 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prisma";
+
+import { invalidateAdminLeaguesListCaches } from "@/lib/admin/invalidate-admin-caches";
+import { writeAuditLog } from "@/lib/admin/log-admin-action";
 import { recomputeSeasonFormulaScores } from "@/lib/formula-v1/compute-game-performance-scores";
 import { requireAdminUser } from "@/lib/portal-auth";
-import { writeAuditLog } from "@/lib/admin/log-admin-action";
+import { prisma } from "@/lib/prisma";
 import { syncDerivedRatingsAfterEvidenceChange } from "@/lib/ratings/sync-derived-ratings";
 
 export type LeagueActionState = { ok: boolean; message: string };
@@ -111,6 +113,8 @@ export async function updateLeagueMetadata(_previous: LeagueActionState, formDat
 
     if (existing.tier !== tier) {
       await refreshDerivedRatingsAfterLeagueEvidenceChange({ leagueId });
+    } else {
+      invalidateAdminLeaguesListCaches();
     }
 
     revalidatePath("/admin/leagues");

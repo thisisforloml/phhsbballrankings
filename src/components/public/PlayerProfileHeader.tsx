@@ -1,17 +1,18 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Globe, type LucideIcon,Shirt, Trophy } from "lucide-react";
 import Link from "next/link";
-import { Globe, Shirt, Trophy, type LucideIcon } from "lucide-react";
-import type { PlayerProfile } from "@/lib/player-profile-types";
+import type { ReactNode } from "react";
+
 import { AgeUnverifiedBadge } from "@/components/public/AgeUnverifiedBadge";
 import {
-  PlayerProfileSectionNav,
   type PlayerProfileSectionId,
+  PlayerProfileSectionNav,
 } from "@/components/public/PlayerProfileSectionNav";
 import { ProfileShareButton } from "@/components/public/ProfileQuickActions";
 import { StarRating } from "@/components/ui";
 import { formatHeight } from "@/lib/format";
+import type { PlayerProfile } from "@/lib/player-profile-types";
 import { formatPublicRank, isPublicRankBand } from "@/lib/public-rank-display";
 import { getProgramDisplayName } from "@/lib/uaap-school-display";
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { adminFilterChipClassName, adminFilterChipCountClassName } from "@/components/admin/adminFilterStyles";
 
 export type AdminFilterChipItem = {
@@ -38,7 +39,7 @@ export function AdminFilterChipBar({
 
         if (mode === "link" && item.href) {
           return (
-            <Link key={item.key} href={item.href} className={adminFilterChipClassName(active)}>
+            <Link key={item.key} href={item.href} prefetch={false} className={adminFilterChipClassName(active)}>
               {content}
             </Link>
           );

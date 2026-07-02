@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
 import { buildRankingsSearchParams, parseRankingsUrlState } from "@/lib/rankings-url-state";
 
 function params(input: Record<string, string>) {

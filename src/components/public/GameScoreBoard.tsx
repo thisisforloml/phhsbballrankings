@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { MapPin } from "lucide-react";
+import Link from "next/link";
+
 import { ScoutSectionLabel } from "@/components/public/ScoutSectionLabel";
 import { getProgramAbbreviation } from "@/lib/uaap-school-display";
 

@@ -1,6 +1,6 @@
-import type { LeagueHistory } from "@/lib/mock-data";
-import { EmptyState } from "@/components/ui";
 import { SectionHeader } from "@/components/public/SectionHeader";
+import { EmptyState } from "@/components/ui";
+import type { LeagueHistory } from "@/lib/mock-data";
 
 export function CompetitionHistory({ leagues }: { leagues: LeagueHistory[] }) {
   return (

@@ -78,6 +78,7 @@ export function AdminFilterRow({
     clearHref ? (
       <Link
         href={clearHref}
+        prefetch={false}
         className="flex h-10 items-center border border-surface-300 px-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-ink-700 hover:border-orange-400 hover:text-orange-700"
       >
         Clear

@@ -26,7 +26,7 @@ export function AdminPageHeader({
   return (
     <div className="border border-surface-200 bg-white p-4 shadow-sm">
       {backLink ? (
-        <Link href={backLink.href} className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-orange-700 hover:text-orange-800">
+        <Link href={backLink.href} prefetch={false} className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-orange-700 hover:text-orange-800">
           {backLink.label}
         </Link>
       ) : null}

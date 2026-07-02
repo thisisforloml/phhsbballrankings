@@ -1,6 +1,7 @@
-import { prisma } from "@/lib/prisma";
 import type { Prisma } from "@prisma/client";
+
 import { importedPlayerKey } from "@/lib/player-import-matching";
+import { prisma } from "@/lib/prisma";
 import type { StatsImportProviderId, UrlImportPlayerMapping } from "@/lib/stats-import/types";
 
 export type PlayerExternalAliasRecord = {

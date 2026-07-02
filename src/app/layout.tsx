@@ -1,8 +1,9 @@
-﻿import type { Metadata } from "next";
-import { AppChrome } from "@/components/layout/AppChrome";
+﻿import "../styles/globals.css";
+
+import type { Metadata } from "next";
+
+import { RootProviders } from "@/components/layout/RootProviders";
 import { BRAND_ASSETS, BRAND_DESCRIPTION, BRAND_NAME, BRAND_NAME_FULL } from "@/lib/brand";
-import { getPublicTrustMeta } from "@/lib/public-site-data";
-import "../styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://oncourtrankings.ph"),
@@ -35,9 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const trustMeta = await getPublicTrustMeta();
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -50,7 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body className="font-sans">
-        <AppChrome trustMeta={trustMeta}>{children}</AppChrome>
+        <RootProviders>{children}</RootProviders>
       </body>
     </html>
   );

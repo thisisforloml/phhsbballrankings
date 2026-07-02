@@ -1,10 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+
+import { writeAuditLog } from "@/lib/admin/log-admin-action";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { computeProgramTeamRatings } from "@/lib/team-ratings/compute-program-team-ratings";
-import { prisma } from "@/lib/prisma";
-import { writeAuditLog } from "@/lib/admin/log-admin-action";
 
 export type OpsActionState = { ok: boolean; message: string };
 
@@ -30,13 +30,4 @@ export async function recomputeAllTeamRatings(_previous: OpsActionState, formDat
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Recompute failed." };
   }
-}
-
-export async function loadRecentAuditLogs() {
-  await requireAdminUser();
-  return prisma.auditLog.findMany({
-    orderBy: { createdAt: "desc" },
-    take: 50,
-    include: { user: { select: { name: true, username: true } } }
-  });
 }

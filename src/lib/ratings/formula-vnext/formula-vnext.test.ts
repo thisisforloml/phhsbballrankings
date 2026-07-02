@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
+import { AgeGroup, PlayerGender } from "@prisma/client";
+
 import { adjustGameScore, buildShadowRatings } from "@/lib/ratings/formula-vnext/accumulation";
-import { deriveEvidenceRole, opponentFactor, ageFactor } from "@/lib/ratings/formula-vnext/context-factors";
+import { ageFactor,deriveEvidenceRole, opponentFactor } from "@/lib/ratings/formula-vnext/context-factors";
 import { DEFAULT_FORMULA_VNEXT_PARAMS } from "@/lib/ratings/formula-vnext/params";
 import type { LoadedGameEvidence } from "@/lib/ratings/formula-vnext/types";
-import { AgeGroup, PlayerGender } from "@prisma/client";
 
 function baseEvidence(overrides: Partial<LoadedGameEvidence> = {}): LoadedGameEvidence {
   return {

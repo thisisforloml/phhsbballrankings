@@ -1,17 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
-import type { PlayerProfile, PlayerProfileAverages, PlayerProfileGame } from "@/lib/player-profile-types";
-import type { CompetitionParticipationSummary } from "@/lib/player-competition-context";
-import type { LeagueHistory } from "@/lib/mock-data";
-import { getProgramAbbreviation } from "@/lib/uaap-school-display";
-import { ProfileModule } from "@/components/public/ProfileModule";
+import { useMemo, useState } from "react";
+
 import { LineTrendChart } from "@/components/public/charts/ProfileCharts";
-import { metricHelp } from "@/lib/metric-explanations";
 import { HorizontalBarChart } from "@/components/public/charts/ProfileCharts";
+import { ProfileModule } from "@/components/public/ProfileModule";
 import { SortIndicator } from "@/components/public/SortIndicator";
 import { EmptyState, WinLossPill } from "@/components/ui";
+import { metricHelp } from "@/lib/metric-explanations";
+import type { CompetitionParticipationSummary } from "@/lib/player-competition-context";
+import type { PlayerProfile, PlayerProfileGame } from "@/lib/player-profile-types";
+import { getProgramAbbreviation } from "@/lib/uaap-school-display";
 
 type GameLogResultFilter = "ALL" | "W" | "L";
 type GameLogSort =
@@ -932,17 +932,17 @@ export function PlayerAnalytics({ profile }: { profile: PlayerProfile }) {
 }
 
 /** @deprecated Merged into PlayerSeasonProduction */
-export function PlayerBestGame({ profile }: { profile: PlayerProfile }) {
+export function PlayerBestGame({ profile: _profile }: { profile: PlayerProfile }) {
   return null;
 }
 
 /** @deprecated Merged into PlayerSeasonProduction */
-export function PlayerProfileStrengths({ profile }: { profile: PlayerProfile }) {
+export function PlayerProfileStrengths({ profile: _profile }: { profile: PlayerProfile }) {
   return null;
 }
 
 /** @deprecated Merged into PlayerSeasonProduction */
-export function PlayerProductionProfile({ profile }: { profile: PlayerProfile }) {
+export function PlayerProductionProfile({ profile: _profile }: { profile: PlayerProfile }) {
   return null;
 }
 

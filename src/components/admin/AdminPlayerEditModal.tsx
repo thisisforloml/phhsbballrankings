@@ -1,10 +1,11 @@
 "use client";
 
+import { X } from "lucide-react";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
-import { X } from "lucide-react";
-import { AdminPlayerEditPanel, type ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
+
 import { updatePlayerBio, type UpdatePlayerBioState } from "@/app/admin/players/actions";
+import { AdminPlayerEditPanel, type ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
 
 const initialFormState: UpdatePlayerBioState = { ok: false, message: "" };
 

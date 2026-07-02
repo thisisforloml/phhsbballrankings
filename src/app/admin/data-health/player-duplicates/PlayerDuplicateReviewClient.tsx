@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
+
 import { AdminBadge } from "@/components/admin/AdminBadge";
+import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
 import { AdminFilterRow } from "@/components/admin/AdminFilterRow";
 import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
@@ -194,7 +195,7 @@ export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlaye
               </table>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-surface-200 p-4">
-              <Link href={`/admin/players?search=${encodeURIComponent(group.displayNames[0] ?? "")}`} className="text-sm font-semibold text-navy-700 hover:text-navy-900">Open Player Search</Link>
+              <Link href={`/admin/players?search=${encodeURIComponent(group.displayNames[0] ?? "")}`} prefetch={false} className="text-sm font-semibold text-navy-700 hover:text-navy-900">Open Player Search</Link>
               <button type="button" disabled className="button secondary cursor-not-allowed opacity-60">Repair requires approved plan</button>
             </div>
           </article>

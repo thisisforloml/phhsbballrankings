@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
+import { AgeGroup, PlayerGender } from "@prisma/client";
+
+import type { NationalTeamRatingRow } from "@/lib/team-ratings/get-national-team-rankings";
 import {
   buildNationalBoardRankByProgramId,
   sortNationalBoardRows
 } from "@/lib/team-ratings/national-board-display";
-import type { NationalTeamRatingRow } from "@/lib/team-ratings/get-national-team-rankings";
-import { AgeGroup, PlayerGender } from "@prisma/client";
 
 function row(overrides: Partial<NationalTeamRatingRow> & Pick<NationalTeamRatingRow, "programId" | "programName" | "rating">): NationalTeamRatingRow {
   return {

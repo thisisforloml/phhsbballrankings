@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
+import { buildEligibilityInput } from "@/lib/eligibility";
 import {
   isPendingEligibilityExpired,
   PENDING_POLICY_EFFECTIVE_DATE,
   satisfiesPendingPublicPath
 } from "@/lib/eligibility/pending-public-policy";
-import { buildEligibilityInput } from "@/lib/eligibility";
 
 describe("pending-public-policy", () => {
   it("uses policy effective date when firstRankingEligibilityAt is missing", () => {

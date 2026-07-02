@@ -1,6 +1,7 @@
-import { AdminAlert } from "@/components/admin/AdminAlert";
+import { createOrganizerSubmission } from "@/app/(site)/organizer/submissions/actions";
 import { UrlImportClient } from "@/app/admin/tools/submissions/UrlImportClient";
-import { createOrganizerSubmission } from "@/app/organizer/submissions/actions";
+import { AdminAlert } from "@/components/admin/AdminAlert";
+
 import { createAdminJsonSubmission } from "./actions";
 
 function CommonFileFields({ titlePlaceholder }: { titlePlaceholder: string }) {

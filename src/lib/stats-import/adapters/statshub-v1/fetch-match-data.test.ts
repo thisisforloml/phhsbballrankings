@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
+import { parseImportedMinutes } from "@/lib/game-stat-import-integrity";
 import {
   canonicalPlayerName,
   fibaMatchToSubmissionGame,
   formatMinutes,
   normalizeColonClockString
 } from "@/lib/stats-import/adapters/statshub-v1/fetch-match-data";
-import { parseImportedMinutes } from "@/lib/game-stat-import-integrity";
 
 describe("normalizeColonClockString", () => {
   it("carries seconds overflow into minutes", () => {

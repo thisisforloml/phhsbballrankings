@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { BRAND_ASSETS, BRAND_NAME } from "@/lib/brand";
 
 type LogoVariant = "horizontal" | "stacked" | "icon";

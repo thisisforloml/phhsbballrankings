@@ -1,9 +1,10 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
-import { slugify } from "@/lib/format";
+
 import { buildEligibilityInput, evaluateEligibility } from "@/lib/eligibility";
-import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "@/lib/ranking-eligibility";
+import { slugify } from "@/lib/format";
 import { resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
 import { prisma } from "@/lib/prisma";
+import { getCurrentRankingAgeBracket, getEffectiveClassYear } from "@/lib/ranking-eligibility";
 import type { NationalRankingRow, NationalRankingSnapshot, RankingAgeGroup } from "@/lib/rankings";
 import { computeShadowBoard } from "@/lib/ratings/formula-vnext";
 import { resolveShadowFormulaParams } from "@/lib/ratings/formula-vnext/resolve-params";

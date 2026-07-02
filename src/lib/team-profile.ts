@@ -1,6 +1,7 @@
 import "server-only";
 
 import { notFound } from "next/navigation";
+
 import { slugify } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
 import { formatClassYear } from "@/lib/ranking-eligibility";

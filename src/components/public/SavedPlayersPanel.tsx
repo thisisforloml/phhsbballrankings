@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useSavedPlayers } from "@/components/public/SavedPlayersProvider";
+
 import { PortraitAvatar } from "@/components/public/PortraitAvatar";
+import { useSavedPlayers } from "@/components/public/SavedPlayersProvider";
 
 export function SavedPlayersPanel() {
   const { saved, remove } = useSavedPlayers();

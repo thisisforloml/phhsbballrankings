@@ -1,8 +1,9 @@
 import { AgeGroup, type ProgramType } from "@prisma/client";
+
 import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
 import { resolveAdminPlayerStats } from "@/lib/admin/resolve-admin-player-stats";
-import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
 import { resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
+import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
 
 type PlayerForSerialize = {
   id: string;
@@ -33,6 +34,65 @@ type PlayerForSerialize = {
     team: { name: string; program: { fullName: string; abbreviation: string | null; type: ProgramType } | null };
     game: { id: string; gameDate: Date | null };
   }>;
+};
+
+export const managedPlayerListSelect = {
+  id: true,
+  displayName: true,
+  firstName: true,
+  lastName: true,
+  gender: true,
+  schoolOverride: true,
+  birthDate: true,
+  ageGroupOverride: true,
+  city: true,
+  hometown: true,
+  region: true,
+  currentProgramId: true,
+  position: true,
+  heightCm: true,
+  classYearOverride: true,
+  photoUrl: true,
+  commitmentStatus: true,
+  committedUniversity: true,
+  currentProgram: {
+    select: {
+      fullName: true,
+      abbreviation: true,
+      type: true,
+    },
+  },
+  currentRatings: {
+    orderBy: { ageGroup: "desc" as const },
+    select: {
+      ageGroup: true,
+      adjustedRating: true,
+      verifiedGameCount: true,
+    },
+  },
+} as const;
+
+export type PlayerListRowRecord = {
+  id: string;
+  displayName: string;
+  firstName: string | null;
+  lastName: string | null;
+  gender: "BOYS" | "GIRLS";
+  schoolOverride: string | null;
+  birthDate: Date | null;
+  ageGroupOverride: string | null;
+  city: string;
+  hometown: string | null;
+  region: string;
+  currentProgramId: string | null;
+  position: string | null;
+  heightCm: number | null;
+  classYearOverride: number | null;
+  photoUrl: string | null;
+  commitmentStatus: "UNDECLARED" | "COMMITTED";
+  committedUniversity: string | null;
+  currentProgram: PlayerForSerialize["currentProgram"];
+  currentRatings: PlayerForSerialize["currentRatings"];
 };
 
 export function serializeManagedPlayer(player: PlayerForSerialize): ManagedPlayer {
@@ -69,6 +129,11 @@ export function serializeManagedPlayer(player: PlayerForSerialize): ManagedPlaye
     commitmentStatus: player.commitmentStatus ?? "UNDECLARED",
     committedUniversity: player.committedUniversity ?? null,
   };
+}
+
+/** List row: affiliation from override/currentProgram only; ratings from PlayerRating. */
+export function serializeManagedPlayerListRow(player: PlayerListRowRecord): ManagedPlayer {
+  return serializeManagedPlayer({ ...player, gameStats: [] });
 }
 
 export const managedPlayerInclude = {

@@ -1,10 +1,7 @@
-﻿import { createHash } from "node:crypto";
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+﻿import { NextResponse } from "next/server";
 
-function passwordHash(password: string) {
-  return createHash("sha256").update(password).digest("hex");
-}
+import { hashPassword, verifyPassword } from "@/lib/password-hash";
+import { prisma } from "@/lib/prisma";
 
 function pct(made?: number | null, attempt?: number | null) {
   if (!attempt) return null;
@@ -37,15 +34,30 @@ export async function POST(request: Request) {
     where: {
       username: body.username,
       role: "ADMIN",
-      deletedAt: null
-    }
+      deletedAt: null,
+    },
   });
 
-  if (!user || user.username !== "DarwinOwner" || !body.password || user.passwordHash !== passwordHash(body.password)) {
+  if (!user || user.username !== "DarwinOwner" || !body.password) {
     return NextResponse.json(
       { ok: false, message: "Licensed data access requires a Premium account." },
-      { status: 403 }
+      { status: 403 },
     );
+  }
+
+  const verification = await verifyPassword(body.password, user.passwordHash);
+  if (!verification.valid) {
+    return NextResponse.json(
+      { ok: false, message: "Licensed data access requires a Premium account." },
+      { status: 403 },
+    );
+  }
+
+  if (verification.needsUpgrade) {
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { passwordHash: await hashPassword(body.password) },
+    });
   }
 
   const players = await prisma.player.findMany({
@@ -58,14 +70,14 @@ export async function POST(request: Request) {
             include: {
               homeTeam: true,
               awayTeam: true,
-              season: { include: { league: true } }
-            }
-          }
+              season: { include: { league: true } },
+            },
+          },
         },
-        orderBy: { game: { gameDate: "desc" } }
-      }
+        orderBy: { game: { gameDate: "desc" } },
+      },
     },
-    orderBy: { displayName: "asc" }
+    orderBy: { displayName: "asc" },
   });
 
   const payload = players
@@ -83,9 +95,9 @@ export async function POST(request: Request) {
           threesMade: acc.threesMade + (hasDetailedBoxScore(stat) ? (stat.threeMade ?? 0) : 0),
           threesAttempt: acc.threesAttempt + (hasDetailedBoxScore(stat) ? (stat.threeAttempt ?? 0) : 0),
           ftm: acc.ftm + (hasDetailedBoxScore(stat) ? (stat.freeThrowsMade ?? 0) : 0),
-          fta: acc.fta + (hasDetailedBoxScore(stat) ? (stat.freeThrowsAttempt ?? 0) : 0)
+          fta: acc.fta + (hasDetailedBoxScore(stat) ? (stat.freeThrowsAttempt ?? 0) : 0),
         }),
-        { points: 0, rebounds: 0, assists: 0, turnovers: 0, fgm: 0, fga: 0, threesMade: 0, threesAttempt: 0, ftm: 0, fta: 0 }
+        { points: 0, rebounds: 0, assists: 0, turnovers: 0, fgm: 0, fga: 0, threesMade: 0, threesAttempt: 0, ftm: 0, fta: 0 },
       );
       const games = player.gameStats.length;
       const detailedGames = detailedStats.length;
@@ -99,14 +111,14 @@ export async function POST(request: Request) {
         averages: {
           points: Number((totals.points / games).toFixed(1)),
           rebounds: detailedGames ? Number((totals.rebounds / detailedGames).toFixed(1)) : null,
-          assists: detailedGames ? Number((totals.assists / detailedGames).toFixed(1)) : null
+          assists: detailedGames ? Number((totals.assists / detailedGames).toFixed(1)) : null,
         },
         advanced: {
           fgPct: pct(totals.fgm, totals.fga),
           threePct: pct(totals.threesMade, totals.threesAttempt),
           ftPct: pct(totals.ftm, totals.fta),
           effectiveFgPct: efg(totals.fgm, totals.threesMade, totals.fga),
-          assistToTurnover: totals.turnovers ? Number((totals.assists / totals.turnovers).toFixed(2)) : null
+          assistToTurnover: totals.turnovers ? Number((totals.assists / totals.turnovers).toFixed(2)) : null,
         },
         gamesByLeague: Object.values(
           player.gameStats.reduce<Record<string, { league: string; season: string; games: typeof player.gameStats }>>(
@@ -116,8 +128,8 @@ export async function POST(request: Request) {
               acc[key].games.push(stat);
               return acc;
             },
-            {}
-          )
+            {},
+          ),
         ).map((group) => ({
           league: group.league,
           season: group.season,
@@ -134,10 +146,10 @@ export async function POST(request: Request) {
               fieldGoals: `${stat.fieldGoalsMade ?? 0}/${stat.fieldGoalsAttempt ?? 0}`,
               threes: `${stat.threeMade ?? 0}/${stat.threeAttempt ?? 0}`,
               freeThrows: `${stat.freeThrowsMade ?? 0}/${stat.freeThrowsAttempt ?? 0}`,
-              effectiveFgPct: efg(stat.fieldGoalsMade, stat.threeMade, stat.fieldGoalsAttempt)
-            }
-          }))
-        }))
+              effectiveFgPct: efg(stat.fieldGoalsMade, stat.threeMade, stat.fieldGoalsAttempt),
+            },
+          })),
+        })),
       };
     });
 

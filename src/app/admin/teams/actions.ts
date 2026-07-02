@@ -1,6 +1,8 @@
 ﻿"use server";
 
 import { revalidatePath } from "next/cache";
+
+import { invalidateAdminTeamsCaches } from "@/lib/admin/invalidate-admin-caches";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePublicRankingSurfaces } from "@/lib/public-cache-revalidation";
@@ -41,6 +43,7 @@ export async function updateTeamBio(_previousState: UpdateTeamState, formData: F
       data: { name, city, region, logoUrl }
     });
 
+    invalidateAdminTeamsCaches();
     revalidatePath("/admin/teams");
     revalidatePublicRankingSurfaces();
 

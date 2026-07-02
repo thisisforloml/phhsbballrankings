@@ -1,8 +1,9 @@
 import Link from "next/link";
-import type { HomeRankMover } from "@/lib/public-site-data";
-import { formatBoardRank } from "@/lib/public-rank-display";
-import { getPlayerProfileHref } from "@/lib/format";
+
 import { ScoutRankChange } from "@/components/public/ScoutRankChange";
+import { getPlayerProfileHref } from "@/lib/format";
+import { formatBoardRank } from "@/lib/public-rank-display";
+import type { HomeRankMover } from "@/lib/public-site-data";
 
 export function BoardMovementCards({ movers }: { movers: HomeRankMover[] }) {
   if (!movers.length) return null;
@@ -19,7 +20,7 @@ export function BoardMovementCards({ movers }: { movers: HomeRankMover[] }) {
         <Link
           key={mover.playerId}
           href={getPlayerProfileHref({ slug: mover.slug })}
-          className="rounded-sm border border-white/[0.08] bg-scout-800/80 p-3 text-left transition hover:border-scout-orange/40 hover:bg-scout-800"
+          className="home-mobile-tap-card rounded-sm border border-white/[0.08] bg-scout-800/80 p-3 text-left transition-colors duration-200 hover:border-scout-orange/40 hover:bg-scout-800"
         >
           <div className="mb-2 flex items-center justify-between gap-2">
             <span className="font-numeric text-2xl font-normal leading-none text-scout-50">{formatBoardRank(mover.currentRank)}</span>

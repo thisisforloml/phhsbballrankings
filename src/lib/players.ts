@@ -1,8 +1,10 @@
 ﻿import { AgeGroup } from "@prisma/client";
+
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
-import { slugify } from "./format";
+
 import { buildEligibilityInput, evaluateEligibility, isPublicBoardVisible } from "./eligibility";
+import { slugify } from "./format";
 import { prisma } from "./prisma";
 import type { LeagueParticipation, PlayerSummary } from "./types";
 

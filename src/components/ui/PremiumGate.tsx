@@ -1,8 +1,9 @@
 ﻿"use client";
 
-import Link from "next/link";
 import { Lock } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
+
 import { useAuth } from "@/components/auth/AuthContext";
 
 const defaultPremiumDescription = "Unlock deeper player insights, advanced stats, ranking movement, and recruiting tools with Premium Access.";

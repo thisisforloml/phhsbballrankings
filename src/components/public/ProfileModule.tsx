@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { Card, CardHeader, CardBody } from "@/components/ui/Card";
+
+import { Card, CardBody,CardHeader } from "@/components/ui/Card";
 
 type ProfileModuleProps = {
   title: string;

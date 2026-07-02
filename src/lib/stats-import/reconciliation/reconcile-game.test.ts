@@ -1,5 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+
+import {
+  fibaMatchToSubmissionGame,
+  scheduleGameToSubmissionDraft
+} from "@/lib/stats-import/adapters/statshub-v1/fetch-match-data";
 import { assessFeedCompleteness } from "@/lib/stats-import/reconciliation/assess-feed";
 import {
   reconcileInaccessibleFeedSubmissionGame,
@@ -7,10 +12,6 @@ import {
   shouldApplyScoreReconciliation,
   shouldReconcileInaccessibleFeed
 } from "@/lib/stats-import/reconciliation/reconcile-game";
-import {
-  fibaMatchToSubmissionGame,
-  scheduleGameToSubmissionDraft
-} from "@/lib/stats-import/adapters/statshub-v1/fetch-match-data";
 import type { ExternalGameIndex, SubmissionGameDraft } from "@/lib/stats-import/types";
 
 const MATCH_2779286_FEED = {

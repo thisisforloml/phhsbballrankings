@@ -1,22 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import type { PlayerProfile } from "@/lib/player-profile-types";
-import type { GameResult } from "@/lib/mock-data";
-import { RecentGames } from "@/components/sections";
+
 import { HighlightsPlaceholder } from "@/components/public/HighlightsPlaceholder";
 import {
+  PlayerCompetitionModule,
   PlayerFullGameLog,
   PlayerRankingTrend,
   PlayerSeasonProduction,
-  PlayerCompetitionModule,
 } from "@/components/public/PlayerAnalytics";
 import {
   PlayerPerformanceDashboard,
   PlayerScoutingReport,
 } from "@/components/public/PlayerProfileCharts";
-import { PlayerProfileHeader, PLAYER_PROFILE_MAX_WIDTH } from "@/components/public/PlayerProfileHeader";
+import { PLAYER_PROFILE_MAX_WIDTH,PlayerProfileHeader } from "@/components/public/PlayerProfileHeader";
 import type { PlayerProfileSectionId } from "@/components/public/PlayerProfileSectionNav";
+import { RecentGames } from "@/components/sections";
+import type { GameResult } from "@/lib/mock-data";
+import type { PlayerProfile } from "@/lib/player-profile-types";
 
 const PROFILE_PANEL = "overflow-hidden rounded-md border border-line-500 bg-white shadow-sm";
 

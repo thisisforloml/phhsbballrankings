@@ -1,8 +1,10 @@
 import "server-only";
 
 import { AgeGroup, Prisma } from "@prisma/client";
-import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+
 import { boxEfficiencyFromStat } from "@/lib/player-profile-build";
+import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+
 import { prisma } from "./prisma";
 
 export type PeerProduction = {

@@ -1,11 +1,11 @@
 "use client";
 
-import type { PlayerProfile } from "@/lib/player-profile-types";
-import { ProfileModule } from "@/components/public/ProfileModule";
-import { HorizontalBarChart } from "@/components/public/charts/ProfileCharts";
 import { PlayerPercentileRadar } from "@/components/public/charts/PlayerPercentileRadar";
-import { PlayerTrendsChart } from "@/components/public/charts/PlayerTrendsChart";
 import { PlayerStatRelationshipsChart } from "@/components/public/charts/PlayerStatRelationshipsChart";
+import { PlayerTrendsChart } from "@/components/public/charts/PlayerTrendsChart";
+import { HorizontalBarChart } from "@/components/public/charts/ProfileCharts";
+import { ProfileModule } from "@/components/public/ProfileModule";
+import type { PlayerProfile } from "@/lib/player-profile-types";
 
 // ── Main performance dashboard ────────────────────────────────────────────────
 

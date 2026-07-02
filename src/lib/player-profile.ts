@@ -1,12 +1,8 @@
 import "server-only";
 
-import { cache } from "react";
 import { AgeGroup, RankingScope } from "@prisma/client";
-import { slugify } from "./format";
-import { getUaapSchoolDisplayName } from "./uaap-school-display";
-import { formatClassYear, getMonthStart } from "./ranking-eligibility";
-import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
-import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
+import { cache } from "react";
+
 import { buildEligibilityInput, evaluateEligibility } from "@/lib/eligibility";
 import { buildCompetitionParticipationFromStats } from "@/lib/player-competition-context";
 import {
@@ -22,7 +18,13 @@ import {
 import { buildProfileIntelligence } from "@/lib/player-profile-intelligence";
 import { resolvePlayerIdBySlug } from "@/lib/player-profile-slug";
 import type { PlayerProfile } from "@/lib/player-profile-types";
+import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
+import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
+
+import { slugify } from "./format";
 import { prisma } from "./prisma";
+import { formatClassYear, getMonthStart } from "./ranking-eligibility";
+import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
 export type { PlayerProfile, PlayerProfileGame, PlayerProfileLeague } from "./player-profile-types";
 

@@ -1,5 +1,5 @@
-import type { PublicLeagueRow } from "@/lib/public-site-data";
 import { LeagueCard } from "@/components/public/LeagueCard";
+import type { PublicLeagueRow } from "@/lib/public-site-data";
 
 export function LeagueGrid({ leagues }: { leagues: PublicLeagueRow[] }) {
   return (

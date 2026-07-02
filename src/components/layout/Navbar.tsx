@@ -1,12 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Search, User, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+
 import { useAuth } from "@/components/auth/AuthContext";
 import { BRAND_ASSETS, BRAND_NAME } from "@/lib/brand";
+
 import { SearchOverlay } from "./SearchOverlay";
 
 const groups = ["U13", "U16", "U19"] as const;
@@ -52,7 +54,7 @@ export function Navbar() {
   return (
     <>
       <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-court-900">
-        <div className="container-px flex min-h-20 items-center justify-between gap-6">
+        <div className="container-px flex min-h-[4.5rem] items-center justify-between gap-4 lg:min-h-20 lg:gap-6">
           <BrandMark />
 
           <nav className="hidden items-center gap-7 text-sm font-bold uppercase tracking-[0.04em] text-white lg:flex" aria-label="Main navigation">
@@ -69,7 +71,7 @@ export function Navbar() {
             </div>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 lg:gap-3">
             <button aria-label="Open search" onClick={() => setSearchOpen(true)} className="rounded-sm border border-white/30 p-2.5 text-white hover:border-gold-500 hover:text-gold-500">
               <Search className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -139,8 +141,8 @@ function BrandMark() {
         width={640}
         height={214}
         priority
-        sizes="(max-width: 640px) 160px, 200px"
-        className="h-10 w-auto max-w-[11rem] object-contain object-left sm:h-11 sm:max-w-[12.5rem]"
+        sizes="(max-width: 1023px) 184px, 200px"
+        className="h-[2.875rem] w-auto max-w-[12.65rem] object-contain object-left lg:h-11 lg:max-w-[12.5rem]"
       />
     </Link>
   );

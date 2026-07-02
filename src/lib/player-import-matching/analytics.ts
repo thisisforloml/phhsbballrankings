@@ -1,5 +1,5 @@
-import type { PlayerConfidenceBand } from "@/lib/stats-import/types";
 import { baseMatchMethod } from "@/lib/player-import-matching/auto-match-policy";
+import type { PlayerConfidenceBand } from "@/lib/stats-import/types";
 
 export type AmbiguityKind = "same_team" | "same_program" | "different_program";
 
@@ -20,7 +20,7 @@ export type PlayerMatchAnalyticsRow = {
   suppressedWeakCandidates?: number;
 };
 
-export function buildMatchQualityAnalytics(players: PlayerMatchAnalyticsRow[], uniquePlayers: number) {
+export function buildMatchQualityAnalytics(players: PlayerMatchAnalyticsRow[], _uniquePlayers: number) {
   const tierCounts: Record<string, number> = {};
   const methodCounts: Record<string, number> = {};
   let promotedByTeamEvidence = 0;

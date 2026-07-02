@@ -1,7 +1,8 @@
 import type { Prisma } from "@prisma/client";
 import { ProgramType } from "@prisma/client";
+
+import { type AutoRosterMatch,resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
 import { prisma } from "@/lib/prisma";
-import { resolveAutoRosterAssignment, type AutoRosterMatch } from "@/lib/admin/auto-roster-assignment";
 
 type DbClient = Prisma.TransactionClient | typeof prisma;
 
