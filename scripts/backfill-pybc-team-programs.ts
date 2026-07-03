@@ -1,4 +1,4 @@
-import { PrismaClient, ProgramType } from "@prisma/client";
+import { Prisma, ProgramRole, ProgramType } from "@prisma/client";
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "../src/lib/competition-naming";
 import { getTeamDisplayName, normalizeProgramAlias, type ProgramIdentity } from "../src/lib/uaap-school-display";
 

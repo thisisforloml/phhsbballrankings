@@ -1,0 +1,1098 @@
+{
+  "programs": [
+    {
+      "id": "4635fe38-3173-4ae9-8f12-6c73cf6249ce",
+      "fullName": "Aces Solar Locked In",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "fullName": "Adamson University",
+      "abbreviation": "ADU",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "a4921d86-a618-4199-b92a-b68628d89013",
+      "fullName": "Amsteel",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+      "fullName": "Arellano University",
+      "abbreviation": "AU",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "fullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "type": "SCHOOL",
+      "city": "Quezon City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "8793ed22-3433-4109-9ca2-5560bf34be82",
+      "fullName": "Auto-Gard",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "e99fbb24-f8eb-4b95-aee7-3187ce042d53",
+      "fullName": "Azarias",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "5c4d8120-fa39-4403-858e-66d6f31585c1",
+      "fullName": "BBC",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "97062465-a28b-4097-a9fb-0a6c451c5cc4",
+      "fullName": "Bistrot Le Coucou",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "65cde8f7-e861-4c4f-b3a2-165778b5eab1",
+      "fullName": "BistrotLeCoucou",
+      "abbreviation": "BistrotLeCoucou",
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": "2026-06-17T08:26:50.436Z"
+    },
+    {
+      "id": "d498aa0e-84c3-457c-bfa8-7c879e66ff75",
+      "fullName": "Boysen",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "4296d4c8-7377-4144-ba5a-850d2b62a208",
+      "fullName": "Buttery & Co",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "2f3034fb-a599-4c48-b84d-b5a1649de553",
+      "fullName": "Celsius",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "d3544fbc-1cd6-4e0c-8798-a4c17af0691b",
+      "fullName": "Charm",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "d75fe1e6-a5a3-415d-8dfe-fa80799b3e5f",
+      "fullName": "Chatime",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "b90f02a7-f01a-49ba-8ca9-6e7e6a57d9b9",
+      "fullName": "Chef's Magic MLO Basketball",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "fullName": "Colegio de San Juan de Letran",
+      "abbreviation": "CSJL",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "fullName": "De La Salle Santiago Zobel",
+      "abbreviation": "DLSZ",
+      "type": "SCHOOL",
+      "city": "Muntinlupa City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "74c3139d-b922-450e-aa58-af9cb1e8a72b",
+      "fullName": "EMDS Rizal Knights",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+      "fullName": "Emilio Aguinaldo College",
+      "abbreviation": "EAC",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "aa111c95-cffa-4e49-ac05-69a7ca503e9d",
+      "fullName": "Fair N Square",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "fullName": "Far Eastern University Diliman",
+      "abbreviation": "FEU-D",
+      "type": "SCHOOL",
+      "city": "Quezon City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "16596554-517e-44d2-8326-8669ed24cb1f",
+      "fullName": "Firestone",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "d9c95764-46cb-4df6-8e09-1bf50389aec9",
+      "fullName": "Fruteria",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "4b4e59ac-1765-4207-ada6-a205e385ab43",
+      "fullName": "Gold Cross",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "3c384f3b-067a-4d3d-9343-7c0a0c368a69",
+      "fullName": "GTG Foundation Los Baños Gallants",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "a8f71f63-c83c-4d73-a8ad-38ee5936a166",
+      "fullName": "Jet's Barbershop",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "c815cb3d-089d-4b0c-9cd8-a689abb38346",
+      "fullName": "JJ Sports",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "7e62a36c-4691-497a-990f-201a0ca42810",
+      "fullName": "JMTG Medical Trading Infinite",
+      "abbreviation": "JMTG Medical Trading Infinite",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": null
+    },
+    {
+      "id": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+      "fullName": "Jose Rizal University",
+      "abbreviation": "JRU",
+      "type": "SCHOOL",
+      "city": "Mandaluyong City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "65908829-cfda-4053-821c-47435a45e33e",
+      "fullName": "JPM-TEC San Beda",
+      "abbreviation": "JPM-TEC San Beda",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": null
+    },
+    {
+      "id": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+      "fullName": "La Salle Green Hills",
+      "abbreviation": "LSGH",
+      "type": "SCHOOL",
+      "city": "Mandaluyong City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+      "fullName": "Lev Construction Full Potential",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Quezon City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "b3009ae6-ac6f-43d4-af9a-fb45613fc20b",
+      "fullName": "LEV Construction Full Potential",
+      "abbreviation": "LEV Construction Full Potential",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": "2026-06-17T10:32:11.035Z"
+    },
+    {
+      "id": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "fullName": "Lyceum of the Philippines University Cavite",
+      "abbreviation": "LPU",
+      "type": "SCHOOL",
+      "city": "General Trias",
+      "region": "Cavite",
+      "deletedAt": null
+    },
+    {
+      "id": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+      "fullName": "Malayan High School of Science",
+      "abbreviation": "MHSS",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "65478d68-3f9a-46b5-a626-f158a1075f0b",
+      "fullName": "MARCars",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "132b41bb-5470-4a52-b295-5625177566cd",
+      "fullName": "Migrafix Doc Boleros",
+      "abbreviation": "Migrafix Doc Boleros",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": null
+    },
+    {
+      "id": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+      "fullName": "Migueluz Trading Moderno",
+      "abbreviation": "Migueluz Trading Moderno",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": null
+    },
+    {
+      "id": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "fullName": "National University Nazareth School",
+      "abbreviation": "NUNS",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "31bd2d32-0c58-44a4-aeb2-e269f859c651",
+      "fullName": "Ogalala",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+      "fullName": "Prime Ascencion Medical Supplies San Anton",
+      "abbreviation": "Prime Ascencion Medical Supplies San Anton",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": null
+    },
+    {
+      "id": "2a5f2b40-109d-49df-9df6-c34eb3b44672",
+      "fullName": "PYBC 15U",
+      "abbreviation": "PYBC 15U",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": "2026-06-17T10:32:11.035Z"
+    },
+    {
+      "id": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+      "fullName": "San Beda University - Rizal",
+      "abbreviation": "SBU-R",
+      "type": "SCHOOL",
+      "city": "Taytay",
+      "region": "Rizal",
+      "deletedAt": null
+    },
+    {
+      "id": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "fullName": "San Pedro Spartans",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "San Pedro",
+      "region": "Laguna",
+      "deletedAt": null
+    },
+    {
+      "id": "1ec13bb5-3fea-420c-a3b6-3a849922a3b6",
+      "fullName": "San Pedro Spartans",
+      "abbreviation": "San Pedro Spartans",
+      "type": "CLUB",
+      "city": null,
+      "region": null,
+      "deletedAt": "2026-06-17T10:32:11.035Z"
+    },
+    {
+      "id": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "fullName": "San Sebastian College-Recoletos",
+      "abbreviation": "SSC-R",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "fullName": "Smile 360 Bullies",
+      "abbreviation": null,
+      "type": "CLUB",
+      "city": "Parañaque City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "60645321-d3b4-4db9-94aa-6176232b7476",
+      "fullName": "SMILE 360 BULLIES",
+      "abbreviation": "SMILE 360 BULLIES",
+      "type": "CLUB",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": "2026-06-17T08:35:54.096Z"
+    },
+    {
+      "id": "fc1763c0-d1bd-42bb-92ba-72e8b45224bb",
+      "fullName": "Tapa Mama",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "f48ed107-e567-416e-b5a2-a1e07968b717",
+      "fullName": "Tapa Mama",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": "2026-06-18T05:07:57.544Z"
+    },
+    {
+      "id": "c20b4e4d-bf46-4e8f-bc27-eba980fc6e68",
+      "fullName": "TOPS Mordeno",
+      "abbreviation": null,
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "8941ab00-9c2d-4600-a5d4-47a3e8028d0c",
+      "fullName": "Torch",
+      "abbreviation": "Torch",
+      "type": "TEAM",
+      "city": "Metro Manila",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "fullName": "University of Perpetual Help System DALTA",
+      "abbreviation": "UPHSD",
+      "type": "SCHOOL",
+      "city": "Las Piñas City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "fullName": "University of Santo Tomas",
+      "abbreviation": "UST",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "fullName": "University of the East",
+      "abbreviation": "UE",
+      "type": "SCHOOL",
+      "city": "Manila City",
+      "region": "NCR",
+      "deletedAt": null
+    },
+    {
+      "id": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "fullName": "University of the Philippines Integrated School",
+      "abbreviation": "UPIS",
+      "type": "SCHOOL",
+      "city": "Quezon City",
+      "region": "NCR",
+      "deletedAt": null
+    }
+  ],
+  "teams": [
+    {
+      "id": "004bd126-017f-4279-bf2b-d57c3a5cd0e4",
+      "name": "Aces Solar Locked In 13U",
+      "programId": "4635fe38-3173-4ae9-8f12-6c73cf6249ce",
+      "program_name": "Aces Solar Locked In",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "28eaa2c2-be45-4de6-a030-acf090e0069c",
+      "name": "Adamson Baby Falcons",
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "program_name": "Adamson University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "685e9651-ad77-4824-b70c-f032365e1f80",
+      "name": "Adamson Baby Falcons 16U",
+      "programId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "program_name": "Adamson University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "b09feec4-1603-4ded-b2e4-b6a25da8b6c4",
+      "name": "Amsteel",
+      "programId": "a4921d86-a618-4199-b92a-b68628d89013",
+      "program_name": "Amsteel",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "d11c7fe4-0a9d-44ba-9386-8d6054387216",
+      "name": "Arellano Braves",
+      "programId": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+      "program_name": "Arellano University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "3e29df0f-062d-4e43-bb01-a3960fdcbb43",
+      "name": "Ateneo Blue Eaglets",
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "program_name": "Ateneo de Manila University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "f7afb1a1-b2ec-4a7f-a72e-d668d39d2661",
+      "name": "Ateneo Blue Eaglets 16U",
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "program_name": "Ateneo de Manila University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "139a2c1d-8615-4019-8209-a634cd6abbb8",
+      "name": "Ateneo Lady Eaglets",
+      "programId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "program_name": "Ateneo de Manila University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "60f3e558-067c-4b35-829d-f646f599c852",
+      "name": "Auto-Gard",
+      "programId": "8793ed22-3433-4109-9ca2-5560bf34be82",
+      "program_name": "Auto-Gard",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "206d226d-059b-478d-b94c-d24a41767805",
+      "name": "Azarias",
+      "programId": "e99fbb24-f8eb-4b95-aee7-3187ce042d53",
+      "program_name": "Azarias",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+      "name": "BBC",
+      "programId": "5c4d8120-fa39-4403-858e-66d6f31585c1",
+      "program_name": "BBC",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "ff96c815-68e3-4402-804a-4d49c91313ed",
+      "name": "Bistrot Le Coucou U19 Boys",
+      "programId": "97062465-a28b-4097-a9fb-0a6c451c5cc4",
+      "program_name": "Bistrot Le Coucou",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "c616eb7e-c8b6-445c-b529-f15d822c6082",
+      "name": "Boysen",
+      "programId": "d498aa0e-84c3-457c-bfa8-7c879e66ff75",
+      "program_name": "Boysen",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "ad0e54db-d3c8-4098-9f53-e1083b468111",
+      "name": "Buttery & Co",
+      "programId": "4296d4c8-7377-4144-ba5a-850d2b62a208",
+      "program_name": "Buttery & Co",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "658e0a0e-22e4-4dca-b0fe-f4cfe8287c9b",
+      "name": "Celsius",
+      "programId": "2f3034fb-a599-4c48-b84d-b5a1649de553",
+      "program_name": "Celsius",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "03269a6b-49d1-4c18-bc6c-d21281a01382",
+      "name": "Charm",
+      "programId": "d3544fbc-1cd6-4e0c-8798-a4c17af0691b",
+      "program_name": "Charm",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "baa2a62d-5e63-47b8-9e2a-1c8076c10ebf",
+      "name": "Chatime",
+      "programId": "d75fe1e6-a5a3-415d-8dfe-fa80799b3e5f",
+      "program_name": "Chatime",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "caf07c2b-76d2-43ba-9b20-7faa31f675dd",
+      "name": "Chef's Magic MLO Basketball 13U",
+      "programId": "b90f02a7-f01a-49ba-8ca9-6e7e6a57d9b9",
+      "program_name": "Chef's Magic MLO Basketball",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "2114099c-3717-4894-8ab6-8c0738b1950b",
+      "name": "Letran Squires",
+      "programId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "program_name": "Colegio de San Juan de Letran",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "f5480f4e-456e-427c-b2f2-6802f94b7470",
+      "name": "De La Salle Zobel Junior Archers",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "program_name": "De La Salle Santiago Zobel",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "3739a9f4-21ef-4938-83ff-811433a47656",
+      "name": "De La Salle Zobel Junior Archers 16U",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "program_name": "De La Salle Santiago Zobel",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "564ae4ca-61d1-496e-9472-ee3819df8ce6",
+      "name": "De La Salle Zobel Lady Junior Archers",
+      "programId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "program_name": "De La Salle Santiago Zobel",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "9120f30e-73bb-4d65-bf40-c953c143a2c2",
+      "name": "EMDS Rizal Knights 13U",
+      "programId": "74c3139d-b922-450e-aa58-af9cb1e8a72b",
+      "program_name": "EMDS Rizal Knights",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "73329cf8-f802-41a7-b6ba-b1fc259f6a94",
+      "name": "EAC Brigadiers",
+      "programId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+      "program_name": "Emilio Aguinaldo College",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "36357a40-bf3a-458e-9bb2-0f58b03cf252",
+      "name": "Fair N Square",
+      "programId": "aa111c95-cffa-4e49-ac05-69a7ca503e9d",
+      "program_name": "Fair N Square",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "8f5d2b7d-e353-482f-8665-9f16e7c8290d",
+      "name": "FEU - Diliman Baby Tamaraws",
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "program_name": "Far Eastern University Diliman",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "604b7ecd-2cfe-4130-882e-28f7213a6240",
+      "name": "FEU - Diliman Baby Tamaraws 16U",
+      "programId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "program_name": "Far Eastern University Diliman",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "cd6e9f53-ffcd-424d-81ba-6977a22a72ba",
+      "name": "Firestone",
+      "programId": "16596554-517e-44d2-8326-8669ed24cb1f",
+      "program_name": "Firestone",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "68295b9f-d505-467e-bda8-39fc4e2e936c",
+      "name": "Fruteria",
+      "programId": "d9c95764-46cb-4df6-8e09-1bf50389aec9",
+      "program_name": "Fruteria",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "eb3afc39-536f-4557-80c2-636017e4eea0",
+      "name": "Gold Cross",
+      "programId": "4b4e59ac-1765-4207-ada6-a205e385ab43",
+      "program_name": "Gold Cross",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "f91943e7-f3c3-4783-a9fb-e96a44a13e48",
+      "name": "GTG Foundation Los Baños Gallants 13U",
+      "programId": "3c384f3b-067a-4d3d-9343-7c0a0c368a69",
+      "program_name": "GTG Foundation Los Baños Gallants",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "06d49945-1652-462c-9f15-1beeb1a7b1cd",
+      "name": "Jet's Barbershop 13U",
+      "programId": "a8f71f63-c83c-4d73-a8ad-38ee5936a166",
+      "program_name": "Jet's Barbershop",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "027b8a5e-ff80-47df-a1b0-c458eb309c54",
+      "name": "JJ Sports",
+      "programId": "c815cb3d-089d-4b0c-9cd8-a689abb38346",
+      "program_name": "JJ Sports",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "bf8f1578-6a68-4991-9966-da32aff82f60",
+      "name": "JMTG Medical Trading Infinite",
+      "programId": "7e62a36c-4691-497a-990f-201a0ca42810",
+      "program_name": "JMTG Medical Trading Infinite",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "d02f0d99-990c-4628-8d10-a81c4577d1a1",
+      "name": "JRU Light Bombers",
+      "programId": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+      "program_name": "Jose Rizal University",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+      "name": "JPM-TEC San Beda",
+      "programId": "65908829-cfda-4053-821c-47435a45e33e",
+      "program_name": "JPM-TEC San Beda",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "ae00ef56-203b-405f-b0ba-1a95637834db",
+      "name": "LSGH Greenies",
+      "programId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+      "program_name": "La Salle Green Hills",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "aae3a772-c203-4dc0-bd87-35015466c6ea",
+      "name": "LEV Construction Full Potential",
+      "programId": "b668fd23-c767-4c14-9659-8b2d418fd36a",
+      "program_name": "Lev Construction Full Potential",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "82b86d5f-ae2c-4073-96b4-c095bd3d9d57",
+      "name": "LPU Junior Pirates",
+      "programId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "program_name": "Lyceum of the Philippines University Cavite",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "2742ad9e-da2f-4e62-802e-f8cd34d23c49",
+      "name": "Mapúa Red Robins",
+      "programId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+      "program_name": "Malayan High School of Science",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "e7a01135-967c-44bc-82b2-8bfebd0655ef",
+      "name": "MARCars U19 Boys",
+      "programId": "65478d68-3f9a-46b5-a626-f158a1075f0b",
+      "program_name": "MARCars",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "f0063ff0-31f0-45ad-8efe-86905b479163",
+      "name": "Migrafix Doc Boleros",
+      "programId": "132b41bb-5470-4a52-b295-5625177566cd",
+      "program_name": "Migrafix Doc Boleros",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "efbfd74c-0a70-4764-82df-65f2a883b92b",
+      "name": "Migueluz Trading Moderno",
+      "programId": "68b06396-32af-4b8c-9c5d-7ff2fbb5817d",
+      "program_name": "Migueluz Trading Moderno",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "0b191fd5-7d10-4496-8a2c-f75a0da3e7a3",
+      "name": "NUNS Bullpups",
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "program_name": "National University Nazareth School",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "179a4a3e-8dbd-4235-bae5-f0b5125bd0d7",
+      "name": "NUNS Bullpups 16U",
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "program_name": "National University Nazareth School",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "97a43fca-47d3-4a56-b98b-4582f86ab5d3",
+      "name": "NUNS Lady Bullpups",
+      "programId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "program_name": "National University Nazareth School",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "24a2753a-ac62-419f-ad1f-390d641b2e20",
+      "name": "Ogalala U19 Boys",
+      "programId": "31bd2d32-0c58-44a4-aeb2-e269f859c651",
+      "program_name": "Ogalala",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "5a0d52b6-a998-455f-b5ab-4c8ea538e32a",
+      "name": "Prime Ascencion Medical Supplies San Anton",
+      "programId": "10bdfbd4-397c-4f00-a29d-6fc6bb2b76f2",
+      "program_name": "Prime Ascencion Medical Supplies San Anton",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "79198fe3-c100-4da5-92a5-9db470417c14",
+      "name": "San Beda Red Cubs",
+      "programId": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+      "program_name": "San Beda University - Rizal",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+      "name": "San Pedro Spartans",
+      "programId": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+      "program_name": "San Pedro Spartans",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "08b4a2a4-670b-4a02-a88b-4a6151c0c343",
+      "name": "San Sebastian Golden Staglets",
+      "programId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "program_name": "San Sebastian College-Recoletos",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+      "name": "Smile 360 Bullies",
+      "programId": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "program_name": "Smile 360 Bullies",
+      "program_type": "CLUB",
+      "program_deleted": null
+    },
+    {
+      "id": "10ba586d-7c5d-4fd1-b4af-0d95107fb495",
+      "name": "Tapa Mama",
+      "programId": "fc1763c0-d1bd-42bb-92ba-72e8b45224bb",
+      "program_name": "Tapa Mama",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "3a70ba98-1fb3-43cc-8825-243749eadbc1",
+      "name": "TOPS Mordeno 13U",
+      "programId": "c20b4e4d-bf46-4e8f-bc27-eba980fc6e68",
+      "program_name": "TOPS Mordeno",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "2a12dbee-a7ac-4908-b1c4-a843d8fc42fe",
+      "name": "Torch",
+      "programId": "8941ab00-9c2d-4600-a5d4-47a3e8028d0c",
+      "program_name": "Torch",
+      "program_type": "TEAM",
+      "program_deleted": null
+    },
+    {
+      "id": "b0b3dac3-f3a1-4873-a7da-7d24caf35664",
+      "name": "Perpetual Junior Daltas",
+      "programId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "program_name": "University of Perpetual Help System DALTA",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "d56b5b1a-62c0-4639-993d-b6c2fb15e923",
+      "name": "UST Tiger Cubs",
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "program_name": "University of Santo Tomas",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "da58e619-1ed2-423f-8dac-b7e6c267a9f6",
+      "name": "UST Tiger Cubs 16U",
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "program_name": "University of Santo Tomas",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "d25c88fb-ebca-472b-9d19-6a5ebd28ecf0",
+      "name": "UST Tigress Cubs",
+      "programId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "program_name": "University of Santo Tomas",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "6e58e1c8-8684-4789-b4be-1ec0752b1057",
+      "name": "UE Junior Warriors",
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "program_name": "University of the East",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "baa90e67-3f0a-49c7-8a4d-e10a1ff24ea3",
+      "name": "UE Junior Warriors 16U",
+      "programId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "program_name": "University of the East",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "3e3baff4-9393-4cba-904f-c6aa0216d2a0",
+      "name": "UP Junior Fighting Maroons",
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "program_name": "University of the Philippines Integrated School",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    },
+    {
+      "id": "7f96dc7f-8690-4fa4-b87b-5497ba3d857b",
+      "name": "UP Junior Fighting Maroons 16U",
+      "programId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "program_name": "University of the Philippines Integrated School",
+      "program_type": "SCHOOL",
+      "program_deleted": null
+    }
+  ],
+  "players": [
+    {
+      "currentProgramId": "416055d8-bf1e-4c18-93ea-529094f8ab9f",
+      "c": 18
+    },
+    {
+      "currentProgramId": "697b16be-d6d3-49e4-80c4-ac77daef2093",
+      "c": 47
+    },
+    {
+      "currentProgramId": "c85b141e-a218-4acd-9fb4-c0b70ae767d8",
+      "c": 19
+    },
+    {
+      "currentProgramId": "3a120437-f18c-4269-8abc-88a5aa39c7cd",
+      "c": 19
+    },
+    {
+      "currentProgramId": "0da48409-ec3c-4f8c-a6bd-6a89301d7eee",
+      "c": 28
+    },
+    {
+      "currentProgramId": "3f5093b4-afba-4028-b662-d7ef22d91f1b",
+      "c": 30
+    },
+    {
+      "currentProgramId": "bfb1dbc5-063a-4dca-924a-e896717c92bc",
+      "c": 17
+    },
+    {
+      "currentProgramId": "89c66328-4c0a-43d1-ac0b-bdd613db6fa8",
+      "c": 32
+    },
+    {
+      "currentProgramId": "c2a82d8d-a61d-40bd-83b4-2aab4337625f",
+      "c": 16
+    },
+    {
+      "currentProgramId": "a2cce9e2-795c-4580-9f2b-499d02c2673a",
+      "c": 16
+    },
+    {
+      "currentProgramId": "a7efc53f-0fc0-4a27-b358-76f2ad16aa4e",
+      "c": 46
+    },
+    {
+      "currentProgramId": "e9b0e32c-0fce-414b-87a4-068c82b9a1c6",
+      "c": 19
+    },
+    {
+      "currentProgramId": "85268294-bd6d-4121-b06d-106d2b7d8929",
+      "c": 45
+    },
+    {
+      "currentProgramId": "91e7a306-f45a-45c3-b4d7-77ea31e727af",
+      "c": 16
+    },
+    {
+      "currentProgramId": "27fc03c4-c90f-40e0-b29b-cc1fcb593929",
+      "c": 19
+    },
+    {
+      "currentProgramId": "58908047-acec-4c3b-9c53-28ad62fede5a",
+      "c": 22
+    },
+    {
+      "currentProgramId": "f3e7480f-e66d-4f7c-b249-6a4bacb70c95",
+      "c": 43
+    },
+    {
+      "currentProgramId": "ad9a5671-4cd1-4688-9718-7d342f633f87",
+      "c": 22
+    }
+  ],
+  "generatedAt": "2026-07-03T08:50:13.969Z"
+}

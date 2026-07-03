@@ -1,7 +1,7 @@
 import { activeCompetitionGameJoins, activeCompetitionGameSql } from "@/lib/admin/active-competition-sql";
+import { buildChildrenByParentId, countChildPrograms } from "@/lib/admin/program-hierarchy";
 import type { ProgramListRow } from "@/lib/admin/program-list-row";
 import { prisma } from "@/lib/prisma";
-
 type ProgramTeamGameRow = {
   programId: string;
   teamId: string;
@@ -81,11 +81,15 @@ function serializeProgramListRow(
     type: ProgramListRow["type"];
     city: string | null;
     region: string | null;
+    parentProgramId: string | null;
+    programRole: ProgramListRow["programRole"];
   },
   gameRows: ProgramTeamGameRow[],
   playerRows: ProgramTeamPlayerRow[],
-): ProgramListRow {
-  const officialGameIds = new Set<string>();
+  explicitTeamCount: number,
+  parentProgramFullName: string | null,
+  childProgramCount: number,
+): ProgramListRow {  const officialGameIds = new Set<string>();
   const playerIds = new Set<string>();
   const activeTeamIds = new Set<string>();
   const contextTeams = new Map<string, Set<string>>();
@@ -110,10 +114,13 @@ function serializeProgramListRow(
     fullName: program.fullName,
     abbreviation: program.abbreviation,
     type: program.type,
+    programRole: program.programRole,
     city: program.city,
     region: program.region,
-    teamCount: activeTeamIds.size,
-    possibleDuplicateContextGroups: Array.from(contextTeams.values()).filter((teamIds) => teamIds.size > 1).length,
+    parentProgramId: program.parentProgramId,
+    parentProgramFullName,
+    childProgramCount,
+    teamCount: Math.max(activeTeamIds.size, explicitTeamCount),    possibleDuplicateContextGroups: Array.from(contextTeams.values()).filter((teamIds) => teamIds.size > 1).length,
     derivedPlayerCount: playerIds.size,
     officialGameCount: officialGameIds.size,
   };
@@ -136,14 +143,16 @@ export async function loadProgramListRows(options?: { bypassCache?: boolean }): 
     return programListCache.value;
   }
 
-  const [programs, gameRows, playerRows] = await Promise.all([
+  const [programs, gameRows, playerRows, teamMembershipCounts] = await Promise.all([
     prisma.program.findMany({
       where: { deletedAt: null },
       select: {
         id: true,
+        parentProgramId: true,
         fullName: true,
         abbreviation: true,
         type: true,
+        programRole: true,
         city: true,
         region: true,
       },
@@ -151,7 +160,18 @@ export async function loadProgramListRows(options?: { bypassCache?: boolean }): 
     }),
     loadProgramTeamGameRows(),
     loadProgramTeamPlayerRows(),
+    prisma.team.groupBy({
+      by: ["programId"],
+      where: { deletedAt: null, programId: { not: null } },
+      _count: { _all: true },
+    }),
   ]);
+
+  const explicitTeamCountByProgramId = new Map(
+    teamMembershipCounts
+      .filter((row): row is typeof row & { programId: string } => row.programId !== null)
+      .map((row) => [row.programId, row._count._all]),
+  );
 
   const gameRowsByProgramId = new Map<string, ProgramTeamGameRow[]>();
   for (const row of gameRows) {
@@ -167,11 +187,28 @@ export async function loadProgramListRows(options?: { bypassCache?: boolean }): 
     playerRowsByProgramId.set(row.programId, bucket);
   }
 
+  const parentNameById = new Map(
+    programs.map((program) => [program.id, program.fullName]),
+  );
+  const childrenByParentId = buildChildrenByParentId(
+    programs.map((program) => ({
+      id: program.id,
+      fullName: program.fullName,
+      abbreviation: program.abbreviation,
+      parentProgramId: program.parentProgramId,
+      programRole: program.programRole,
+      deletedAt: null,
+    })),
+  );
+
   const value = programs.map((program) =>
     serializeProgramListRow(
       program,
       gameRowsByProgramId.get(program.id) ?? [],
       playerRowsByProgramId.get(program.id) ?? [],
+      explicitTeamCountByProgramId.get(program.id) ?? 0,
+      program.parentProgramId ? parentNameById.get(program.parentProgramId) ?? null : null,
+      countChildPrograms(program.id, childrenByParentId),
     ),
   );
   programListCache = { value, loadedAt: now };

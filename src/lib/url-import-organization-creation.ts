@@ -1,5 +1,6 @@
-import { type Prisma,ProgramType } from "@prisma/client";
+import { type Prisma, ProgramRole, ProgramType } from "@prisma/client";
 
+import { assertImportProgramReusable } from "@/lib/admin/program-role";
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
 import type {
@@ -196,9 +197,10 @@ async function findOrCreateProgramInTx(
 
   const existing = await tx.program.findFirst({
     where: { fullName: program.suggestedProgramName, deletedAt: null },
-    select: { id: true, fullName: true }
+    select: { id: true, fullName: true, programRole: true },
   });
   if (existing) {
+    assertImportProgramReusable(existing);
     programCache.set(program.suggestedProgramName, existing);
     return { program: existing, created: false };
   }
@@ -208,11 +210,12 @@ async function findOrCreateProgramInTx(
       fullName: program.suggestedProgramName,
       abbreviation: program.suggestedAbbreviation || null,
       type: programTypeFromLabel(program.suggestedProgramType),
+      programRole: ProgramRole.OPERATIONAL,
       city: location.city || null,
       region: location.region || null,
-      aliases: [program.normalizedAlias, program.suggestedProgramName, program.suggestedAbbreviation].filter(Boolean)
+      aliases: [program.normalizedAlias, program.suggestedProgramName, program.suggestedAbbreviation].filter(Boolean),
     },
-    select: { id: true, fullName: true }
+    select: { id: true, fullName: true },
   });
   programCache.set(program.suggestedProgramName, created);
   return { program: created, created: true };

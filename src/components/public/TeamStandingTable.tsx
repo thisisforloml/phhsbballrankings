@@ -4,6 +4,7 @@ import { SortIndicator } from "@/components/public/SortIndicator";
 import { WinLossPill } from "@/components/ui";
 import { formatBoardRank } from "@/lib/public-rank-display";
 import type { TeamStandingRow } from "@/lib/team-rankings-types";
+import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 type TeamSortKey = "rank" | "team" | "record" | "winPercentage" | "pointsFor" | "pointsAgainst" | "pointDifferential" | "league";
 type SortDirection = "asc" | "desc";
@@ -40,6 +41,10 @@ export function TeamStandingTable({
 
       {rows.map((team, index) => {
         const isLast = index === rows.length - 1;
+        const programName = getProgramDisplayName(team.internalTeamName);
+        const teamSubtitle =
+          programName !== team.displayName ? programName : `${team.ageGroup} ${team.gender}`;
+
         return (
           <Link
             key={team.id}
@@ -54,8 +59,8 @@ export function TeamStandingTable({
                 <strong className="block truncate text-base font-bold leading-tight text-court-900 group-hover:text-hardwood-600" title={team.displayName}>
                   {team.displayName}
                 </strong>
-                <small className="mt-0.5 block truncate text-sm font-semibold text-court-500" title={team.internalTeamName}>
-                  {team.internalTeamName}
+                <small className="mt-0.5 block truncate text-sm font-semibold text-court-500" title={teamSubtitle}>
+                  {teamSubtitle}
                 </small>
                 <small className="mt-0.5 block text-xs font-medium text-court-400">
                   {team.city}, {team.region}

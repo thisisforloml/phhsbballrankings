@@ -287,18 +287,14 @@ function AnimatedTrendPath({
   strokeWidth?: number;
 }) {
   const pathRef = useRef<SVGPathElement>(null);
-  const previousPathRef = useRef<string | null>(null);
+  const lastDrawnKeyRef = useRef(0);
 
   useLayoutEffect(() => {
     const path = pathRef.current;
     if (!path || !d) return;
 
-    const geometryChanged = previousPathRef.current !== null && previousPathRef.current !== d;
-    const isFirstDraw = previousPathRef.current === null;
-    previousPathRef.current = d;
-
     const length = path.getTotalLength();
-    const shouldAnimate = animateKey > 0 || isFirstDraw || geometryChanged;
+    const shouldAnimate = animateKey > lastDrawnKeyRef.current;
 
     let frameId = 0;
     let timeoutId: number | undefined;
@@ -309,6 +305,7 @@ function AnimatedTrendPath({
         path.style.strokeDasharray = "8 6";
         path.style.strokeDashoffset = "0";
         path.style.opacity = "0.9";
+        lastDrawnKeyRef.current = animateKey;
         return;
       }
 
@@ -318,6 +315,7 @@ function AnimatedTrendPath({
       path.style.opacity = "0.35";
 
       frameId = requestAnimationFrame(() => {
+        lastDrawnKeyRef.current = animateKey;
         path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
         path.style.strokeDashoffset = "0";
         path.style.opacity = "0.9";
@@ -349,6 +347,7 @@ function AnimatedTrendPath({
     path.style.opacity = "0.35";
 
     frameId = requestAnimationFrame(() => {
+      lastDrawnKeyRef.current = animateKey;
       path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
       path.style.strokeDashoffset = "0";
       path.style.opacity = "1";
@@ -387,6 +386,10 @@ async function searchPlayers(query: string): Promise<SearchPlayer[]> {
   return data.results.filter((row) => row.type === "Player").slice(0, 8);
 }
 
+function pickDefaultTrendStatId(available: TrendStatOption[]): TrendStatId {
+  return (available.find((item) => item.id === "points") ?? available[0]).id;
+}
+
 type Props = {
   profile: PlayerProfile;
   height?: number;
@@ -412,6 +415,18 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
   const [compareLoadingProfile, setCompareLoadingProfile] = useState(false);
   const [compareProfile, setCompareProfile] = useState<PlayerProfile | null>(null);
   const [compareError, setCompareError] = useState<string | null>(null);
+
+  const autoSelectedForProfileRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (autoSelectedForProfileRef.current === profile.id) return;
+    if (!availableStats.length) return;
+
+    const defaultStatId = pickDefaultTrendStatId(availableStats);
+    autoSelectedForProfileRef.current = profile.id;
+    setActiveStatIds([defaultStatId]);
+    setLineAnimKeys({ [defaultStatId]: 1 });
+  }, [availableStats, profile.id]);
 
   const compareGames = useMemo(
     () => (compareProfile ? chronologicalGames(compareProfile.allGames) : []),
@@ -519,24 +534,25 @@ export function PlayerTrendsChart({ profile, height = 300 }: Props) {
 
   const toggleStat = useCallback((id: TrendStatId) => {
     const option = statOption(id);
+    const validCurrent = activeStatIds.filter((statId) => availableStats.some((item) => item.id === statId));
 
-    setActiveStatIds((current) => {
-      const validCurrent = current.filter((statId) => availableStats.some((item) => item.id === statId));
-      if (validCurrent.includes(id)) {
-        return validCurrent.filter((item) => item !== id);
-      }
+    if (validCurrent.includes(id)) {
+      setActiveStatIds(validCurrent.filter((item) => item !== id));
+      return;
+    }
 
-      const anchor = validCurrent[0] ? statOption(validCurrent[0]) : null;
-      if (anchor && !statsCompatible(anchor, option)) {
-        setLineAnimKeys({ [id]: 1 });
-        return [id];
-      }
+    const anchor = validCurrent[0] ? statOption(validCurrent[0]) : null;
+    if (anchor && !statsCompatible(anchor, option)) {
+      setLineAnimKeys({ [id]: 1 });
+      setActiveStatIds([id]);
+      return;
+    }
 
-      if (validCurrent.length >= MAX_ACTIVE_STATS) return validCurrent;
-      setLineAnimKeys((keys) => ({ ...keys, [id]: (keys[id] ?? 0) + 1 }));
-      return [...validCurrent, id];
-    });
-  }, [availableStats]);
+    if (validCurrent.length >= MAX_ACTIVE_STATS) return;
+
+    setLineAnimKeys((keys) => ({ ...keys, [id]: (keys[id] ?? 0) + 1 }));
+    setActiveStatIds([...validCurrent, id]);
+  }, [activeStatIds, availableStats]);
 
   const loadComparePlayer = useCallback(async (playerKey: string) => {
     setCompareError(null);

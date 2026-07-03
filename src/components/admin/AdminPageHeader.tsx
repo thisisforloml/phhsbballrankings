@@ -14,7 +14,7 @@ export function AdminPageHeader({
 }: {
   backLink?: { href: string; label: string };
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   description?: string;
   actions?: ReactNode;
   statusBadge?: string | { label: string; className?: string };

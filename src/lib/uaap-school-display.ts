@@ -21,7 +21,8 @@ const programRules: ProgramRule[] = [
   { key: "admu", fullName: "Ateneo de Manila University", abbreviation: "ADMU", aliases: ["ADMU", "ATENEO", "ATENEO JRS", "ATENEO BLUE EAGLETS", "ATENEO LADY EAGLETS", "BLUE EAGLETS", "LADY EAGLETS"] },
   { key: "feu", fullName: "Far Eastern University", abbreviation: "FEU", aliases: ["FEU", "FEU JRS", "FEU BABY TAMARAWS", "FAR EASTERN UNIVERSITY"] },
   { key: "feu-d", fullName: "Far Eastern University Diliman", abbreviation: "FEU-D", aliases: ["FEU-D", "FEU DILIMAN", "FEU-DILIMAN", "FAR EASTERN UNIVERSITY DILIMAN"] },
-  { key: "dlsz", fullName: "De La Salle Santiago Zobel", abbreviation: "DLSZ", aliases: ["DLSZ", "DLSU", "LA SALLE", "DE LA SALLE", "DE LA SALLE JRS", "DE LA SALLE SANTIAGO ZOBEL", "ZOBEL"] },
+  { key: "dlsz", fullName: "De La Salle Santiago Zobel", abbreviation: "DLSZ", aliases: ["DLSZ", "DE LA SALLE SANTIAGO ZOBEL", "SANTIAGO ZOBEL", "ZOBEL"] },
+  { key: "lsgh", fullName: "La Salle Green Hills", abbreviation: "LSGH", aliases: ["LSGH", "LA SALLE GREEN HILLS", "GREEN HILLS"] },
   { key: "nuns", fullName: "National University Nazareth School", abbreviation: "NUNS", aliases: ["NU", "NUNS", "NU JRS", "NATIONAL UNIVERSITY", "NATIONAL UNIVERSITY NAZARETH SCHOOL"] },
   { key: "ust", fullName: "University of Santo Tomas", abbreviation: "UST", aliases: ["UST", "UST JRS", "UNIVERSITY OF SANTO TOMAS"] },
   { key: "upis", fullName: "University of the Philippines Integrated School", abbreviation: "UPIS", aliases: ["UP", "UPIS", "UPIS JRS", "UP JUNIOR FIGHTING MAROONS", "UP FIGHTING MAROONS", "UNIVERSITY OF THE PHILIPPINES INTEGRATED SCHOOL"] },
@@ -74,7 +75,7 @@ function aliasToRule(): Map<string, ProgramRule> {
   return aliasToRuleCache;
 }
 
-export const approvedUaapSchoolNames = Array.from(new Set(programRules.slice(0, 9).map((rule) => rule.fullName))).sort();
+export const approvedUaapSchoolNames = Array.from(new Set(programRules.slice(0, 10).map((rule) => rule.fullName))).sort();
 export const knownProgramNames = Array.from(new Set(programRules.map((rule) => rule.fullName))).sort();
 
 export function normalizeSchoolAlias(value: string): string {
@@ -86,6 +87,7 @@ const displayAcronyms = new Set([
   "FEU",
   "DLSZ",
   "DLSU",
+  "LSGH",
   "NUNS",
   "NU",
   "UST",
@@ -106,7 +108,8 @@ const displayAcronyms = new Set([
   "PYBC",
   "JMTG",
   "LEV",
-  "JPM-TEC"
+  "JPM-TEC",
+  "BBC"
 ]);
 
 function stripTeamContextSuffix(value: string): string {
@@ -137,7 +140,51 @@ function cleanedTeamDisplayName(value: string | null | undefined): string {
 }
 
 function cleanedProgramFallbackName(value: string): string {
-  return stripTeamContextSuffix(value) || value;
+  const stripped = stripTeamContextSuffix(value) || value;
+  const token = stripped.trim().split(/\s+/)[0] ?? stripped;
+  const upper = token.toUpperCase();
+  if (displayAcronyms.has(upper)) return upper;
+  return formatAllCapsDisplayName(stripped);
+}
+
+export type PublicTeamNames = {
+  rawName: string;
+  displayName: string;
+  programName: string;
+  abbreviation: string;
+};
+
+export type ExplicitProgramDisplay = {
+  fullName: string;
+  abbreviation: string | null;
+  type?: string | null;
+};
+
+export function resolvePublicTeamNames(value: string | null | undefined): PublicTeamNames {
+  const rawName = cleanedTeamDisplayName(value);
+  return {
+    rawName,
+    displayName: getTeamDisplayName(rawName),
+    programName: getProgramDisplayName(rawName),
+    abbreviation: getProgramAbbreviation(rawName),
+  };
+}
+
+export function resolvePublicTeamNamesWithProgram(
+  teamName: string | null | undefined,
+  program: ExplicitProgramDisplay | null | undefined,
+): PublicTeamNames {
+  const aliasNames = resolvePublicTeamNames(teamName);
+  if (!program?.fullName) {
+    return aliasNames;
+  }
+
+  return {
+    rawName: aliasNames.rawName,
+    displayName: aliasNames.displayName,
+    programName: program.fullName,
+    abbreviation: program.abbreviation?.trim() || program.fullName,
+  };
 }
 
 function fallbackKey(value: string) {
@@ -150,10 +197,20 @@ function findProgramRule(value: string): ProgramRule | null {
   if (exact) return exact;
 
   const compact = ` ${normalized} `;
-  return programRules.find((rule) => rule.aliases.some((alias) => {
-    const normalizedAlias = normalizeProgramAlias(alias);
-    return normalizedAlias.length >= 3 && compact.includes(` ${normalizedAlias} `);
-  })) ?? null;
+  let bestMatch: { rule: ProgramRule; aliasLength: number } | null = null;
+
+  for (const rule of programRules) {
+    for (const alias of rule.aliases) {
+      const normalizedAlias = normalizeProgramAlias(alias);
+      if (normalizedAlias.length < 3) continue;
+      if (!compact.includes(` ${normalizedAlias} `)) continue;
+      if (!bestMatch || normalizedAlias.length > bestMatch.aliasLength) {
+        bestMatch = { rule, aliasLength: normalizedAlias.length };
+      }
+    }
+  }
+
+  return bestMatch?.rule ?? null;
 }
 
 export function resolveProgramIdentity(value: string | null | undefined): ProgramIdentity {

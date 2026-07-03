@@ -1,6 +1,10 @@
 export type ManagedTeam = {
   id: string;
   name: string;
+  programId: string | null;
+  explicitProgramFullName: string | null;
+  explicitProgramAbbreviation: string | null;
+  explicitProgramType: string | null;
   publicSchoolName: string;
   programKey: string;
   programAbbreviation: string;

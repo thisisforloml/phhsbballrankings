@@ -1,6 +1,7 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { getProgramAbbreviation, getProgramDisplayName } from "@/lib/uaap-school-display";
 
 import { formatPlayerGenderLabel } from "./get-admin-program-team-rating-board";
 
@@ -83,8 +84,8 @@ export async function getNationalTeamRankings(): Promise<NationalTeamRankingsDat
       rows.push({
         id: `${row.programId}:${row.ageGroup}:${row.gender}`,
         programId: row.programId,
-        programName: row.program.fullName,
-        programAbbreviation: row.program.abbreviation,
+        programName: getProgramDisplayName(row.program.fullName ?? row.program.abbreviation ?? ""),
+        programAbbreviation: getProgramAbbreviation(row.program.abbreviation ?? row.program.fullName ?? ""),
         city: row.program.city ?? "Not listed",
         region: row.program.region ?? "Not listed",
         teamId: row.program.teams[0]?.id ?? null,

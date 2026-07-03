@@ -1,7 +1,10 @@
-﻿import { ProgramType } from "@prisma/client";
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { ProgramRoleBadge } from "@/components/admin/ProgramRoleBadge";
+import { loadProgramHierarchyContext } from "@/lib/admin/program-hierarchy";
+import { loadProgramManagedTeamRows } from "@/lib/admin/program-team-management";
+import { loadActiveProgramOptions, loadProgramTeamOptions, serializeProgramTeamOptions } from "@/lib/admin/program-team-membership";
 import { managedPlayerInclude, serializeManagedPlayer } from "@/lib/admin/serialize-managed-player";
 import { formatHeight, getPlayerProfileHref } from "@/lib/format";
 import { requireAdminUser } from "@/lib/portal-auth";
@@ -63,7 +66,7 @@ function createRosterRow(
 }
 
 async function loadProgram(id: string) {
-  const [program, linkedPlayers, schoolPrograms] = await Promise.all([
+  const [program, linkedPlayers, teamOptions, programOptions, hierarchy] = await Promise.all([
     prisma.program.findFirst({
       where: { id, deletedAt: null },
       include: {
@@ -126,25 +129,36 @@ async function loadProgram(id: string) {
       include: managedPlayerInclude,
       orderBy: { displayName: "asc" },
     }),
-    prisma.program.findMany({
-      where: { deletedAt: null, type: ProgramType.SCHOOL },
-      select: { id: true, fullName: true },
-      orderBy: { fullName: "asc" },
-    }),
+    loadProgramTeamOptions().then(serializeProgramTeamOptions),
+    loadActiveProgramOptions(),
+    loadProgramHierarchyContext(id),
   ]);
-  return { program, linkedPlayers, schoolPrograms };
+  return { program, linkedPlayers, teamOptions, programOptions, hierarchy };
 }
 
 export default async function AdminProgramDetailPage({ params }: { params: { id: string } }) {
   const [, loaded] = await Promise.all([requireAdminUser(), loadProgram(params.id)]);
-  const { program, linkedPlayers, schoolPrograms } = loaded;
+  const { program, linkedPlayers, teamOptions, programOptions, hierarchy } = loaded;
   if (!program) notFound();
+
+  const managedTeamRows = await loadProgramManagedTeamRows(program.id, program.fullName);
+
+  const hierarchyData = {
+    programId: program.id,
+    programFullName: program.fullName,
+    parentProgramId: hierarchy.parentProgramId,
+    parentProgram: hierarchy.parentProgram,
+    breadcrumb: hierarchy.breadcrumb,
+    childPrograms: hierarchy.childPrograms,
+    parentPickerOptions: hierarchy.parentPickerOptions,
+  };
 
   const programData: ProgramEditorData = {
     id: program.id,
     fullName: program.fullName,
     abbreviation: program.abbreviation,
     type: program.type,
+    programRole: program.programRole,
     city: program.city,
     region: program.region,
   };
@@ -270,22 +284,30 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
       <AdminPageHeader
         backLink={{ href: "/admin/programs", label: "Back to Program Management" }}
         eyebrow="Program Detail"
-        title={program.fullName}
+        title={
+          <span className="flex flex-wrap items-center gap-3">
+            {program.fullName}
+            <ProgramRoleBadge role={program.programRole} />
+          </span>
+        }
         description={`${program.abbreviation || "No abbreviation"} · ${program.type} · ${[program.city, program.region].filter(Boolean).join(", ") || "Location not listed"}`}
       />
 
       <ProgramDetailShell
         programId={program.id}
         program={programData}
+        hierarchy={hierarchyData}
+        managedTeamRows={managedTeamRows}
+        teamOptions={teamOptions}
+        programOptions={programOptions}
         teamRows={teamRows}
         teamRosterSections={teamRosterSections}
         unassignedRoster={unassignedRoster}
         graduatePlayers={graduatePlayers}
         managedPlayersById={managedPlayersById}
-        schoolPrograms={schoolPrograms}
         cleanupItems={cleanupItems}
         stats={{
-          teamCount: teamRows.length,
+          teamCount: managedTeamRows.length,
           playerCount: uniqueProgramPlayers.size,
           graduateCount: graduatePlayers.length,
           officialGames,

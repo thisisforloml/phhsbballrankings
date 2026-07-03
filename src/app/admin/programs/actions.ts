@@ -1,9 +1,21 @@
 "use server";
 
-import { ProgramType } from "@prisma/client";
+import { ProgramRole, ProgramType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 import { invalidateAdminProgramMembershipCaches, invalidateAdminTeamsCaches } from "@/lib/admin/invalidate-admin-caches";
+import { clearProgramListCache } from "@/lib/admin/load-program-list";
+import { updateProgramParentProgramId } from "@/lib/admin/program-hierarchy";
+import { readProgramRoleFromForm } from "@/lib/admin/program-role";
+import {
+  archiveProgramRecord,
+  assignTeamToProgram,
+  createProgramAndAssignTeam,
+  createProgramRecord,
+  createTeamRecord,
+  moveTeamBetweenPrograms,
+  removeTeamFromProgram,
+} from "@/lib/admin/program-team-membership";
 import { slugify } from "@/lib/format";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
@@ -60,6 +72,179 @@ function revalidatePlayerProgramPaths(programId: string, player: { id: string; d
   revalidatePublicRankingSurfaces();
   revalidatePath(`/players/${slugify(player.displayName)}`);
   revalidatePath(`/players/${player.id}`);
+}
+
+function readProgramFormInput(formData: FormData) {
+  return {
+    fullName: readRequiredString(formData, "fullName", "Program full name", 180),
+    abbreviation: readOptionalString(formData, "abbreviation", "Abbreviation", 80),
+    type: readProgramType(formData),
+    programRole: readProgramRoleFromForm(formData),
+    city: readOptionalString(formData, "city", "City", 100),
+    region: readOptionalString(formData, "region", "Region", 100),
+  };
+}
+
+function revalidateProgramSurfaces(programId?: string) {
+  invalidateAdminProgramMembershipCaches();
+  invalidateAdminTeamsCaches();
+  revalidatePath("/admin/programs");
+  if (programId) revalidatePath(`/admin/programs/${programId}`);
+  revalidatePath("/admin/teams");
+  revalidatePublicRankingSurfaces();
+}
+
+export async function createProgram(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const program = await createProgramRecord(readProgramFormInput(formData));
+    revalidateProgramSurfaces(program.id);
+    return { ok: true, message: `Program created: ${program.fullName}.` };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not create program." };
+  }
+}
+
+export async function archiveProgram(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const programId = String(formData.get("programId") ?? "").trim();
+    const confirmText = String(formData.get("confirmText") ?? "").trim();
+    if (!programId) throw new Error("Program id is required.");
+    if (confirmText !== "ARCHIVE") throw new Error("Type ARCHIVE to confirm.");
+
+    const program = await archiveProgramRecord(programId);
+    revalidateProgramSurfaces(programId);
+    return { ok: true, message: `${program.fullName} archived. Linked teams keep their program reference for audit.` };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not archive program." };
+  }
+}
+
+export async function createProgramTeam(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const programId = String(formData.get("programId") ?? "").trim();
+    if (!programId) throw new Error("Program id is required.");
+
+    const team = await createTeamRecord({
+      name: readRequiredString(formData, "name", "Team name", 120),
+      city: readRequiredString(formData, "city", "City", 100),
+      region: readRequiredString(formData, "region", "Region", 100),
+      programId,
+    });
+
+    revalidateProgramSurfaces(programId);
+    invalidateAdminTeamsCaches();
+    revalidatePath("/admin/teams");
+    revalidatePublicRankingSurfaces();
+    return { ok: true, message: `Created ${team.name} under this program.` };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not create team." };
+  }
+}
+
+export async function assignProgramTeam(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const programId = String(formData.get("programId") ?? "").trim();
+    const teamId = String(formData.get("teamId") ?? "").trim();
+    if (!programId || !teamId) throw new Error("Program id and team id are required.");
+
+    const result = await assignTeamToProgram(teamId, programId);
+    revalidateProgramSurfaces(programId);
+    if (result.previousProgramId && result.previousProgramId !== programId) {
+      revalidatePath(`/admin/programs/${result.previousProgramId}`);
+    }
+    return {
+      ok: true,
+      message:
+        result.action === "already_linked"
+          ? "Team is already assigned to this program."
+          : `Team assigned to ${result.program.fullName}.`,
+    };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not assign team to program." };
+  }
+}
+
+export async function removeProgramTeam(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const programId = String(formData.get("programId") ?? "").trim();
+    const teamId = String(formData.get("teamId") ?? "").trim();
+    if (!programId || !teamId) throw new Error("Program id and team id are required.");
+
+    await removeTeamFromProgram(teamId, programId);
+    revalidateProgramSurfaces(programId);
+    return { ok: true, message: "Team removed from program." };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not remove team from program." };
+  }
+}
+
+export async function moveProgramTeam(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const fromProgramId = String(formData.get("fromProgramId") ?? "").trim();
+    const toProgramId = String(formData.get("toProgramId") ?? "").trim();
+    const teamId = String(formData.get("teamId") ?? "").trim();
+    if (!fromProgramId || !toProgramId || !teamId) throw new Error("Source program, target program, and team id are required.");
+
+    const result = await moveTeamBetweenPrograms(teamId, fromProgramId, toProgramId);
+    revalidateProgramSurfaces(fromProgramId);
+    revalidateProgramSurfaces(toProgramId);
+    return { ok: true, message: `Team moved to ${result.program.fullName}.` };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not move team between programs." };
+  }
+}
+
+export async function createProgramWithTeam(
+  _previousState: ProgramActionState = initialProgramState,
+  formData: FormData,
+): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const teamId = String(formData.get("teamId") ?? "").trim();
+    if (!teamId) throw new Error("Team id is required.");
+
+    const { program } = await createProgramAndAssignTeam(readProgramFormInput(formData), teamId);
+    revalidateProgramSurfaces(program.id);
+    return { ok: true, message: `Created ${program.fullName} and assigned the team.` };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not create program and assign team." };
+  }
+}
+
+function revalidateProgramHierarchySurfaces(programId: string) {
+  clearProgramListCache();
+  invalidateAdminProgramMembershipCaches();
+  revalidatePath("/admin/programs");
+  revalidatePath(`/admin/programs/${programId}`);
+}
+
+export async function updateProgramParent(
+  _previousState: ProgramActionState = initialProgramState,
+  formData: FormData,
+): Promise<ProgramActionState> {
+  try {
+    await requireAdminUser();
+    const programId = String(formData.get("programId") ?? "").trim();
+    if (!programId) throw new Error("Program id is required.");
+
+    const parentProgramIdRaw = String(formData.get("parentProgramId") ?? "").trim();
+    const parentProgramId = parentProgramIdRaw || null;
+
+    await updateProgramParentProgramId(programId, parentProgramId);
+    revalidateProgramHierarchySurfaces(programId);
+    return {
+      ok: true,
+      message: parentProgramId ? "Parent program updated." : "Parent program removed.",
+    };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not update parent program." };
+  }
 }
 
 export async function updateProgram(_previousState: ProgramActionState = initialProgramState, formData: FormData): Promise<ProgramActionState> {
@@ -140,10 +325,11 @@ export async function updatePlayerCurrentProgram(_previousState: ProgramActionSt
         where: {
           id: nextProgramId,
           deletedAt: null,
-          ...(changeMode === "TRANSFER" ? { type: ProgramType.SCHOOL } : {})
+          programRole: ProgramRole.OPERATIONAL,
+          ...(changeMode === "TRANSFER" ? { type: ProgramType.SCHOOL } : {}),
         },
-        select: { id: true, fullName: true, type: true }
-      })
+        select: { id: true, fullName: true, type: true },
+      }),
     ]);
 
     if (!player) throw new Error("Player does not exist or has been deleted.");

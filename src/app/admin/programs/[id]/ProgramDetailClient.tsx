@@ -1,6 +1,6 @@
 "use client";
 
-import type { ProgramType } from "@prisma/client";
+import type { ProgramRole, ProgramType } from "@prisma/client";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { type ReactNode,useEffect, useMemo, useState } from "react";
@@ -10,9 +10,14 @@ import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminPlayerEditModal } from "@/components/admin/AdminPlayerEditModal";
 import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
+import type { ProgramManagedTeamRow } from "@/lib/admin/program-team-management";
+import type { ProgramTeamOption } from "@/lib/admin/program-team-membership";
 import { slugify } from "@/lib/format";
 
-import { type ProgramActionState,updateProgram, updateProgramTeam } from "../actions";
+import { type ProgramActionState,updateProgram } from "../actions";
+import { ProgramArchiveForm } from "../ProgramArchiveForm";
+import { ProgramHierarchyCard, type ProgramHierarchyData } from "../ProgramHierarchyCard";
+import { ProgramTeamManagementPanel } from "../ProgramTeamManagementPanel";
 
 const initialState: ProgramActionState = { ok: false, message: "" };
 const inputClassName =
@@ -26,6 +31,7 @@ export type ProgramEditorData = {
   fullName: string;
   abbreviation: string | null;
   type: ProgramType;
+  programRole: ProgramRole;
   city: string | null;
   region: string | null;
 };
@@ -93,15 +99,6 @@ function MetaChip({ children, tone = "neutral" }: { children: ReactNode; tone?: 
   return <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${toneClass}`}>{children}</span>;
 }
 
-function parseContextLine(context: string) {
-  const [ageGender, league, season] = context.split(" / ").map((part) => part.trim());
-  return { ageGender: ageGender || context, league: league || "—", season: season || "—" };
-}
-
-function formatList(values: string[]) {
-  return values.length ? values.join(", ") : "—";
-}
-
 function DetailTabButton({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
   return (
     <button
@@ -151,23 +148,28 @@ function TextField({
 export function ProgramDetailShell({
   programId,
   program,
-  teamRows,
+  hierarchy,
+  managedTeamRows,
+  teamOptions,
+  programOptions,
   teamRosterSections,
   unassignedRoster,
   graduatePlayers,
   managedPlayersById,
-  schoolPrograms,
   cleanupItems,
   stats,
 }: {
   programId: string;
   program: ProgramEditorData;
+  hierarchy: ProgramHierarchyData;
+  managedTeamRows: ProgramManagedTeamRow[];
+  teamOptions: ProgramTeamOption[];
+  programOptions: Array<{ id: string; fullName: string; abbreviation?: string | null; type?: string }>;
   teamRows: TeamEditorData[];
   teamRosterSections: ProgramTeamRosterSection[];
   unassignedRoster: RosterRow[];
   graduatePlayers: ManagedPlayer[];
   managedPlayersById: Record<string, ManagedPlayer>;
-  schoolPrograms: Array<{ id: string; fullName: string }>;
   cleanupItems: CleanupItem[];
   stats: ProgramDetailStats;
 }) {
@@ -203,8 +205,17 @@ export function ProgramDetailShell({
         </div>
 
         <div className="p-4">
-          {activeTab === "program" ? <ProgramPanel program={program} cleanupItems={cleanupItems} /> : null}
-          {activeTab === "teams" ? <ProgramTeamsPanel programId={programId} teams={teamRows} /> : null}
+          {activeTab === "program" ? <ProgramPanel program={program} hierarchy={hierarchy} cleanupItems={cleanupItems} /> : null}
+          {activeTab === "teams" ? (
+            <ProgramTeamManagementPanel
+              programId={programId}
+              programFullName={program.fullName}
+              programRole={program.programRole}
+              teams={managedTeamRows}
+              teamOptions={teamOptions}
+              programOptions={programOptions}
+            />
+          ) : null}
           {activeTab === "roster" ? (
             <PlayerRosterPanel
               sections={teamRosterSections}
@@ -220,7 +231,7 @@ export function ProgramDetailShell({
 
       <AdminPlayerEditModal
         player={editingPlayer}
-        programs={schoolPrograms}
+        programOptions={programOptions}
         open={Boolean(editingPlayer)}
         onClose={() => setEditingPlayerId(null)}
       />
@@ -228,7 +239,15 @@ export function ProgramDetailShell({
   );
 }
 
-function ProgramPanel({ program, cleanupItems }: { program: ProgramEditorData; cleanupItems: CleanupItem[] }) {
+function ProgramPanel({
+  program,
+  hierarchy,
+  cleanupItems,
+}: {
+  program: ProgramEditorData;
+  hierarchy: ProgramHierarchyData;
+  cleanupItems: CleanupItem[];
+}) {
   const [state, formAction] = useFormState(updateProgram, initialState);
 
   useEffect(() => {
@@ -272,6 +291,8 @@ function ProgramPanel({ program, cleanupItems }: { program: ProgramEditorData; c
         </FormSection>
       </form>
 
+      <ProgramHierarchyCard hierarchy={hierarchy} />
+
       {cleanupItems.length ? (
         <FormSection title="Data review">
           <p className="mb-3 text-sm text-ink-600">Read-only diagnostics. Possible duplicates require a separate approved cleanup plan.</p>
@@ -290,132 +311,8 @@ function ProgramPanel({ program, cleanupItems }: { program: ProgramEditorData; c
           </div>
         </FormSection>
       ) : null}
-    </div>
-  );
-}
 
-function ProgramTeamsPanel({ programId, teams }: { programId: string; teams: TeamEditorData[] }) {
-  const [selectedTeamId, setSelectedTeamId] = useState(teams[0]?.id ?? "");
-  const selectedTeam = teams.find((team) => team.id === selectedTeamId) ?? teams[0] ?? null;
-
-  if (!teams.length) {
-    return <p className="rounded-md border border-dashed border-surface-300 bg-surface-50 p-6 text-sm text-ink-600">No current teams linked to this program.</p>;
-  }
-
-  return (
-    <div className="grid gap-4 xl:grid-cols-[minmax(16rem,20rem)_minmax(0,1fr)]">
-      <div className="overflow-hidden rounded-lg border border-surface-200">
-        {teams.map((team) => {
-          const selected = selectedTeam?.id === team.id;
-          const primaryContext = team.contexts[0] ? parseContextLine(team.contexts[0]).ageGender : formatList(team.ageGroups);
-          return (
-            <button
-              key={team.id}
-              type="button"
-              onClick={() => setSelectedTeamId(team.id)}
-              className={`flex w-full flex-col gap-1 border-b border-surface-100 px-3 py-2.5 text-left transition last:border-b-0 hover:bg-surface-50 ${
-                selected ? "bg-orange-50/50 ring-1 ring-inset ring-orange-200" : ""
-              }`}
-            >
-              <strong className="truncate text-sm font-semibold text-ink-900">{team.name}</strong>
-              <span className="truncate text-xs text-ink-500">{primaryContext}</span>
-              <span className="text-xs text-ink-400">
-                {team.officialGames} GP · {team.activeGameStats} stats
-              </span>
-            </button>
-          );
-        })}
-      </div>
-      {selectedTeam ? <TeamMonikerPanel key={selectedTeam.id} programId={programId} team={selectedTeam} /> : null}
-    </div>
-  );
-}
-
-function TeamMonikerPanel({ programId, team }: { programId: string; team: TeamEditorData }) {
-  const [state, formAction] = useFormState(updateProgramTeam, initialState);
-
-  useEffect(() => {
-    if (state.ok) window.location.reload();
-  }, [state.ok]);
-
-  return (
-    <div className="grid gap-4">
-      <div className="rounded-lg border border-surface-200 bg-surface-50 p-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Team record</p>
-        <h3 className="mt-1 font-display text-xl text-navy-900">{team.name}</h3>
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {team.ageGroups.map((value) => (
-            <MetaChip key={value} tone="muted">
-              {value}
-            </MetaChip>
-          ))}
-          {team.genders.map((value) => (
-            <MetaChip key={value}>{value}</MetaChip>
-          ))}
-        </div>
-      </div>
-
-      <FormSection title="Competition context">
-        {team.contexts.length ? (
-          <div className="overflow-hidden rounded-md border border-surface-200">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-surface-50 text-xs font-semibold uppercase tracking-wide text-ink-500">
-                <tr>
-                  <th className="px-3 py-2">Board</th>
-                  <th className="px-3 py-2">League</th>
-                  <th className="px-3 py-2">Season</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-surface-100 text-ink-700">
-                {team.contexts.map((context) => {
-                  const row = parseContextLine(context);
-                  return (
-                    <tr key={context}>
-                      <td className="px-3 py-2 font-medium text-ink-900">{row.ageGender}</td>
-                      <td className="px-3 py-2">{row.league}</td>
-                      <td className="px-3 py-2">{row.season}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className="text-sm text-ink-500">No active competition context.</p>
-        )}
-      </FormSection>
-
-      <FormSection title="Activity">
-        <dl className="grid gap-2 text-sm sm:grid-cols-3">
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Official games</dt>
-            <dd className="mt-1 font-semibold text-ink-900">{team.officialGames}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Stat rows</dt>
-            <dd className="mt-1 font-semibold text-ink-900">{team.activeGameStats}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Latest game</dt>
-            <dd className="mt-1 font-semibold text-ink-900">{team.latestGameDate ?? "—"}</dd>
-          </div>
-        </dl>
-      </FormSection>
-
-      <form action={formAction} className="grid gap-3">
-        <input type="hidden" name="programId" value={programId} />
-        <input type="hidden" name="teamId" value={team.id} />
-        <FormSection title="Edit moniker">
-          <p className="mb-3 text-sm text-ink-600">Renaming updates this internal team record only. It does not merge teams or move official stats.</p>
-          <TextField name="name" label="Team / moniker name" defaultValue={team.name} required maxLength={120} />
-          <div className="mt-3">
-            <AdminFormFeedback state={state} />
-          </div>
-          <div className="mt-3">
-            <AdminSaveButton label="Save team moniker" variant="ops" />
-          </div>
-        </FormSection>
-      </form>
+      <ProgramArchiveForm programId={program.id} programName={program.fullName} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import { AgeGroup, PlayerGender, Prisma, ProgramType, SeasonStatus, type Submission,SubmissionStatus, SubmissionType, VerificationStatus } from "@prisma/client";
+import { AgeGroup, PlayerGender, Prisma, ProgramRole, ProgramType, SeasonStatus, type Submission,SubmissionStatus, SubmissionType, VerificationStatus } from "@prisma/client";
 
+import { assertImportProgramReusable } from "@/lib/admin/program-role";
 import { ensurePlayerRosterFromGameStat } from "@/lib/admin/roster-from-game-evidence";
 import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import {
@@ -133,20 +134,24 @@ async function findOrCreateProgram(
 ) {
   const existing = await tx.program.findFirst({
     where: { fullName: identity.programFullName, deletedAt: null },
-    select: { id: true, fullName: true, abbreviation: true, type: true }
+    select: { id: true, fullName: true, abbreviation: true, type: true, programRole: true },
   });
-  if (existing) return existing;
+  if (existing) {
+    assertImportProgramReusable(existing);
+    return existing;
+  }
 
   return tx.program.create({
     data: {
       fullName: identity.programFullName,
       abbreviation: identity.programAbbreviation || null,
       type: programTypeFromIdentity(identity),
+      programRole: ProgramRole.OPERATIONAL,
       city: location.city || null,
       region: location.region || null,
-      aliases: unique([identity.normalizedAlias, identity.teamDisplayName, identity.programFullName, identity.programAbbreviation])
+      aliases: unique([identity.normalizedAlias, identity.teamDisplayName, identity.programFullName, identity.programAbbreviation]),
     },
-    select: { id: true, fullName: true, abbreviation: true, type: true }
+    select: { id: true, fullName: true, abbreviation: true, type: true },
   });
 }
 

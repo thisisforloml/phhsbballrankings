@@ -18,6 +18,10 @@ type TeamBaseRow = {
   city: string;
   region: string;
   logoUrl: string | null;
+  programId: string | null;
+  explicitProgramFullName: string | null;
+  explicitProgramAbbreviation: string | null;
+  explicitProgramType: string | null;
   historicalHomeGames: number;
   historicalAwayGames: number;
   historicalGameStats: number;
@@ -81,10 +85,15 @@ export async function loadManagedTeamsBaseRows(): Promise<TeamBaseRow[]> {
       t.city AS city,
       t.region AS region,
       t."logoUrl" AS "logoUrl",
+      t."programId" AS "programId",
+      p."fullName" AS "explicitProgramFullName",
+      p.abbreviation AS "explicitProgramAbbreviation",
+      p.type::text AS "explicitProgramType",
       COALESCE(home_counts.count, 0)::int AS "historicalHomeGames",
       COALESCE(away_counts.count, 0)::int AS "historicalAwayGames",
       COALESCE(stat_counts.count, 0)::int AS "historicalGameStats"
     FROM teams t
+    LEFT JOIN programs p ON p.id = t."programId" AND p."deletedAt" IS NULL
     LEFT JOIN (
       SELECT g."homeTeamId" AS team_id, COUNT(*)::int AS count
       FROM games g
@@ -223,16 +232,18 @@ function buildManagedTeams(baseRows: TeamBaseRow[], bundle: ActivityBundle): Man
     };
     const contextKey = [context.ageGroup, context.gender, game.season.leagueId, game.season.id].join("|");
 
-    for (const team of [game.homeTeam, game.awayTeam]) {
-      const identity = resolveProgramIdentity(team.name);
-      const publicName = identity.programFullName;
-      const contextMap = contextsByTeamId.get(team.id) ?? new Map<string, ContextSummary>();
+    for (const teamRef of [game.homeTeam, game.awayTeam]) {
+      const baseTeam = baseRows.find((row) => row.id === teamRef.id);
+      const identity = resolveProgramIdentity(teamRef.name);
+      const publicName = baseTeam?.explicitProgramFullName ?? identity.programFullName;
+      const groupingKey = baseTeam?.programId ?? publicName;
+      const contextMap = contextsByTeamId.get(teamRef.id) ?? new Map<string, ContextSummary>();
       contextMap.set(contextKey, context);
-      contextsByTeamId.set(team.id, contextMap);
+      contextsByTeamId.set(teamRef.id, contextMap);
 
-      const publicContextKey = `${publicName}|${contextKey}`;
+      const publicContextKey = `${groupingKey}|${contextKey}`;
       const contextTeams = teamsByPublicSchoolContext.get(publicContextKey) ?? new Set<string>();
-      contextTeams.add(team.id);
+      contextTeams.add(teamRef.id);
       teamsByPublicSchoolContext.set(publicContextKey, contextTeams);
     }
   }
@@ -246,7 +257,10 @@ function buildManagedTeams(baseRows: TeamBaseRow[], bundle: ActivityBundle): Man
 
   return baseRows.map((team) => {
     const identity = resolveProgramIdentity(team.name);
-    const publicSchoolName = identity.programFullName;
+    const publicSchoolName = team.explicitProgramFullName ?? identity.programFullName;
+    const programAbbreviation = team.explicitProgramAbbreviation ?? identity.programAbbreviation;
+    const programType = team.explicitProgramType ?? identity.programType;
+    const programKey = team.programId ?? identity.programKey;
     const contexts = Array.from(contextsByTeamId.get(team.id)?.values() ?? []);
     const roster = playersByTeamId.get(team.id) ?? new Map<string, string>();
     const homeGames = homeGamesByTeamId.get(team.id) ?? 0;
@@ -257,10 +271,14 @@ function buildManagedTeams(baseRows: TeamBaseRow[], bundle: ActivityBundle): Man
     return {
       id: team.id,
       name: team.name,
+      programId: team.programId,
+      explicitProgramFullName: team.explicitProgramFullName,
+      explicitProgramAbbreviation: team.explicitProgramAbbreviation,
+      explicitProgramType: team.explicitProgramType,
       publicSchoolName,
-      programKey: identity.programKey,
-      programAbbreviation: identity.programAbbreviation,
-      programType: identity.programType,
+      programKey,
+      programAbbreviation,
+      programType,
       teamDisplayName: identity.teamDisplayName,
       needsCleanup: sameContextDuplicateTeamIds.has(team.id),
       isActiveCompetitionTeam,

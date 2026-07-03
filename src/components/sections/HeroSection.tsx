@@ -9,7 +9,6 @@ import { StarRating } from "@/components/ui";
 import { getPlayerProfileHref } from "@/lib/format";
 import { formatPublicRank } from "@/lib/public-rank-display";
 import type { HomeData, HomeLeaderboardRow } from "@/lib/public-site-data";
-import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 function CountUpSpan({ target }: { target: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -39,7 +38,7 @@ function CountUpSpan({ target }: { target: number }) {
 }
 
 function featuredProspect(data: HomeData): HomeLeaderboardRow | null {
-  return data.weeklyBestPerformer ?? data.leaderboardsByAge.U19.boys[0] ?? data.leader ?? null;
+  return data.globalTopProspects[0] ?? null;
 }
 
 function initials(name: string) {
@@ -99,12 +98,12 @@ export function HeroSection({ data }: { data: HomeData }) {
             <div className="animate-hero-enter-delayed">
               <Link
                 href={getPlayerProfileHref(featured)}
-                aria-label={`${featured.displayName}, best performer of the week, rated ${featured.rating.toFixed(1)}`}
+                aria-label={`${featured.displayName}, featured prospect, rated ${featured.rating.toFixed(1)}`}
                 className="home-mobile-tap-card group relative block overflow-hidden rounded-sm border border-white/[0.08] bg-scout-800 text-left transition-colors duration-200 hover:border-scout-orange/40"
               >
                 <div className="absolute left-2.5 top-2.5 z-10 md:left-3 md:top-3">
                   <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-scout-orange-bright">
-                    Best Performer of the Week
+                    Featured Prospect
                   </span>
                 </div>
                 <div className="prospect-portrait-frame relative h-[22rem] overflow-hidden sm:h-96 md:h-[26rem]">
@@ -142,7 +141,7 @@ export function HeroSection({ data }: { data: HomeData }) {
                           {featured.displayName}
                         </h2>
                         <p className="mt-0.5 text-[0.65rem] font-semibold text-scout-500 md:text-[0.7rem]">
-                          {getProgramDisplayName(featured.currentTeam)}
+                          {featured.currentTeam?.trim() || "—"}
                           {featured.classYearLabel ? ` · ${featured.classYearLabel}` : ""}
                         </p>
                       </div>

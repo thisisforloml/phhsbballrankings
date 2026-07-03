@@ -3,6 +3,7 @@
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { loadAdminPlayerFilterContext } from "@/lib/admin/load-admin-player-filter-context";
 import { loadManagedPlayerListPage } from "@/lib/admin/load-managed-player-list";
+import { loadActiveProgramOptions } from "@/lib/admin/program-team-membership";
 import { requireAdminUser } from "@/lib/portal-auth";
 
 import { PlayerManagementClient } from "./PlayerManagementClient";
@@ -67,10 +68,11 @@ export default async function AdminPlayersPage({ searchParams }: PageProps) {
 
   const page = parsePage(searchParams?.page);
 
-  const [, listResult, filterContext] = await Promise.all([
+  const [, listResult, filterContext, programOptions] = await Promise.all([
     requireAdminUser(),
     loadManagedPlayerListPage(filters, page),
     loadAdminPlayerFilterContext(),
+    loadActiveProgramOptions(),
   ]);
 
 
@@ -87,7 +89,7 @@ export default async function AdminPlayersPage({ searchParams }: PageProps) {
 
           players={listResult.players}
 
-          programs={filterContext.programs}
+          programOptions={programOptions}
 
           schoolOptions={filterContext.schoolOptions}
 

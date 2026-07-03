@@ -1,5 +1,6 @@
 ﻿import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { loadManagedTeams } from "@/lib/admin/load-managed-teams";
+import { loadActiveProgramOptions } from "@/lib/admin/program-team-membership";
 import { requireAdminUser } from "@/lib/portal-auth";
 
 import { TeamManagementClient } from "./TeamManagementClient";
@@ -13,22 +14,19 @@ export const metadata = {
 };
 
 export default async function AdminTeamsPage() {
-  const [, serializedTeams] = await Promise.all([requireAdminUser(), loadManagedTeams()]);
-  const activeTeams = serializedTeams.filter((team) => team.isActiveCompetitionTeam);
-  const reviewCount = activeTeams.filter((team) => team.needsCleanup).length;
-
+  const [, serializedTeams, programOptions] = await Promise.all([
+    requireAdminUser(),
+    loadManagedTeams(),
+    loadActiveProgramOptions(),
+  ]);
   return (
     <>
       <AdminPageHeader
         title="Teams"
-        description={
-          reviewCount
-            ? `${reviewCount} active record${reviewCount === 1 ? "" : "s"} need duplicate-context review.`
-            : "Edit team identity and location. Competition usage is read-only."
-        }
+        description="Edit team identity, location, and explicit program assignment. Alias tables remain import-only."
         statusBadge={`${serializedTeams.length} records`}
       />
-      <TeamManagementClient teams={serializedTeams} />
+      <TeamManagementClient teams={serializedTeams} availablePrograms={programOptions} />
     </>
   );
 }

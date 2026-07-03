@@ -1,8 +1,11 @@
+import { clearAdminDashboardCache } from "@/lib/admin/load-admin-dashboard";
 import { clearAdminDataHealthSignalsCache } from "@/lib/admin/load-admin-data-health-signals";
 import { clearAdminLeaguesListCache } from "@/lib/admin/load-admin-leagues-list";
 import { clearAdminOpsPageCache } from "@/lib/admin/load-admin-ops-page-data";
 import { clearAdminPlayerFilterContextCache } from "@/lib/admin/load-admin-player-filter-context";
 import { clearAdminSubmissionQueueCache } from "@/lib/admin/load-admin-submission-queue";
+import { clearCompetitionListCache } from "@/lib/admin/load-competition-list";
+import { clearDataHealthCenterCache } from "@/lib/admin/load-data-health-center";
 import { clearManagedPlayerListPageCache } from "@/lib/admin/load-managed-player-list";
 import { clearManagedTeamsCache } from "@/lib/admin/load-managed-teams";
 import { clearProgramListCache } from "@/lib/admin/load-program-list";
@@ -22,9 +25,10 @@ export function invalidateAdminSubmissionQueueCaches() {
   clearAdminSubmissionQueueCache();
 }
 
-/** /admin/leagues list rows. */
+/** /admin/competitions and legacy /admin/leagues list rows. */
 export function invalidateAdminLeaguesListCaches() {
   clearAdminLeaguesListCache();
+  clearCompetitionListCache();
 }
 
 /** /admin/ops signal counts and recent audit log rows. */
@@ -32,9 +36,10 @@ export function invalidateAdminOpsPageCaches() {
   clearAdminOpsPageCache();
 }
 
-/** /admin/data-health remediation queue counts. */
+/** /admin/data-health remediation queue counts and consolidated center. */
 export function invalidateAdminDataHealthCaches() {
   clearAdminDataHealthSignalsCache();
+  clearDataHealthCenterCache();
 }
 
 /** Player bio fields that affect list rows and remediation counts. */
@@ -43,6 +48,7 @@ export function invalidateAdminPlayerProfileCaches() {
   invalidateAdminPlayerFilterCaches();
   invalidateAdminDataHealthCaches();
   invalidateAdminOpsPageCaches();
+  invalidateAdminDashboardCaches();
 }
 
 /** Program metadata or player membership changes (no new game evidence). */
@@ -52,12 +58,19 @@ export function invalidateAdminProgramMembershipCaches() {
   invalidateAdminPlayerFilterCaches();
   invalidateAdminDataHealthCaches();
   invalidateAdminOpsPageCaches();
+  invalidateAdminDashboardCaches();
 }
 
 /** Submission queue or status changes without imported game evidence. */
 export function invalidateAdminSubmissionListCaches() {
   invalidateAdminSubmissionQueueCaches();
   invalidateAdminOpsPageCaches();
+  invalidateAdminDashboardCaches();
+}
+
+/** /admin dashboard summary and attention counts. */
+export function invalidateAdminDashboardCaches() {
+  clearAdminDashboardCache();
 }
 
 /** Game imports, roster moves, league evidence edits, and derived rating refreshes. */
@@ -69,4 +82,5 @@ export function invalidateAdminEvidenceCaches() {
   invalidateAdminSubmissionListCaches();
   invalidateAdminLeaguesListCaches();
   invalidateAdminDataHealthCaches();
+  invalidateAdminDashboardCaches();
 }

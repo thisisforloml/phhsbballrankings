@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { slugify } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
 import { formatClassYear } from "@/lib/ranking-eligibility";
-import { resolveProgramIdentity } from "@/lib/uaap-school-display";
+import { resolveProgramIdentity, resolvePublicTeamNamesWithProgram } from "@/lib/uaap-school-display";
 
 function inferGender(...values: Array<string | null | undefined>) {
   return values.filter(Boolean).join(" ").toLowerCase().includes("girls") ? "Girls" : "Boys";
@@ -22,7 +22,7 @@ function roundOne(value: number) {
 export async function getPublicTeamProfile(teamId: string) {
   const team = await prisma.team.findFirst({
     where: { id: teamId, deletedAt: null },
-    include: { program: true }
+    include: { program: true },
   });
   if (!team) notFound();
 
@@ -33,8 +33,8 @@ export async function getPublicTeamProfile(teamId: string) {
       season: { deletedAt: null, league: { deletedAt: null } }
     },
     include: {
-      homeTeam: true,
-      awayTeam: true,
+      homeTeam: { include: { program: true } },
+      awayTeam: { include: { program: true } },
       season: { include: { league: true } }
     },
     orderBy: [{ gameDate: "desc" }, { gameNumber: "desc" }]
@@ -61,6 +61,9 @@ export async function getPublicTeamProfile(teamId: string) {
     const teamScore = isHome ? game.homeScore : game.awayScore;
     const opponentScore = isHome ? game.awayScore : game.homeScore;
     const opponent = isHome ? game.awayTeam : game.homeTeam;
+    const opponentNames = resolvePublicTeamNamesWithProgram(opponent.name, opponent.program);
+    const homeNames = resolvePublicTeamNamesWithProgram(game.homeTeam.name, game.homeTeam.program);
+    const awayNames = resolvePublicTeamNamesWithProgram(game.awayTeam.name, game.awayTeam.program);
     if (teamScore > opponentScore) wins += 1;
     else losses += 1;
     return {
@@ -71,9 +74,9 @@ export async function getPublicTeamProfile(teamId: string) {
       seasonName: game.season.name,
       homeScore: game.homeScore,
       awayScore: game.awayScore,
-      homeTeam: game.homeTeam,
-      awayTeam: game.awayTeam,
-      opponentName: opponent.name,
+      homeTeam: { name: homeNames.displayName },
+      awayTeam: { name: awayNames.displayName },
+      opponentName: opponentNames.displayName,
       teamScore,
       opponentScore,
       result: teamScore > opponentScore ? "W" as const : "L" as const
@@ -157,16 +160,19 @@ export async function getPublicTeamProfile(teamId: string) {
   ])).values());
 
   const programIdentity = resolveProgramIdentity(team.name);
+  const activeProgram = team.program && !team.program.deletedAt ? team.program : null;
+  const teamNames = resolvePublicTeamNamesWithProgram(team.name, activeProgram);
 
   return {
     team: {
       id: team.id,
       name: team.name,
+      displayName: teamNames.displayName,
       city: team.city,
       region: team.region,
-      programFullName: team.program?.fullName ?? programIdentity.programFullName,
-      programAbbreviation: team.program?.abbreviation ?? programIdentity.programAbbreviation,
-      programType: team.program?.type ?? programIdentity.programType
+      programFullName: teamNames.programName,
+      programAbbreviation: teamNames.abbreviation,
+      programType: activeProgram?.type ?? programIdentity.programType
     },
     contexts,
     standings: {

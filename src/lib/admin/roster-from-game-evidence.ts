@@ -2,6 +2,7 @@ import type { Prisma } from "@prisma/client";
 import { ProgramType } from "@prisma/client";
 
 import { type AutoRosterMatch,resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
+import { operationalProgramWhere } from "@/lib/admin/program-role";
 import { prisma } from "@/lib/prisma";
 
 type DbClient = Prisma.TransactionClient | typeof prisma;
@@ -15,10 +16,10 @@ async function maybeAssignSchoolProgram(
   programId: string
 ) {
   const program = await db.program.findFirst({
-    where: { id: programId, deletedAt: null },
-    select: { id: true, type: true }
+    where: { id: programId, deletedAt: null, type: ProgramType.SCHOOL, ...operationalProgramWhere },
+    select: { id: true, type: true },
   });
-  if (!program || program.type !== ProgramType.SCHOOL) return;
+  if (!program) return;
 
   const player = await db.player.findFirst({
     where: { id: playerId, deletedAt: null },

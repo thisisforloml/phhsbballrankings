@@ -6,6 +6,7 @@ import { PublicPageShell } from "@/components/public/PublicPageShell";
 import { SectionHeader } from "@/components/public/SectionHeader";
 import { getPublicProgramHub } from "@/lib/program-hub";
 import { formatPublicRank } from "@/lib/public-rank-display";
+import { getTeamDisplayName } from "@/lib/uaap-school-display";
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const hub = await getPublicProgramHub(params.id);
@@ -60,7 +61,7 @@ export default async function ProgramHubPage({ params }: { params: { id: string 
             <div className="mt-5 grid gap-3 md:grid-cols-2">
               {hub.teams.map((team) => (
                 <Link key={team.id} href={`/teams/${team.id}`} className="border border-line-500 bg-white p-4 hover:bg-paper-500">
-                  <strong className="block text-lg font-black text-court-900">{team.name}</strong>
+                  <strong className="block text-lg font-black text-court-900">{getTeamDisplayName(team.name)}</strong>
                   <small className="text-court-500">{team.city ?? "City not listed"} · {team.region ?? "Region not listed"}</small>
                 </Link>
               ))}

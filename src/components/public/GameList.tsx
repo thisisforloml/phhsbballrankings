@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { getTeamDisplayName } from "@/lib/uaap-school-display";
+
 type GameListGame = {
   id: string;
   gameNumber?: string | null;
@@ -36,8 +38,8 @@ export function GameList({ games }: { games: GameListGame[] }) {
               <GameStatusBadge status={game.verificationStatus} />
             </div>
             <span className="grid gap-2">
-              <TeamLine name={game.homeTeam.name} score={game.homeScore} winner={homeWon} />
-              <TeamLine name={game.awayTeam.name} score={game.awayScore} winner={awayWon} />
+              <TeamLine name={getTeamDisplayName(game.homeTeam.name)} score={game.homeScore} winner={homeWon} />
+              <TeamLine name={getTeamDisplayName(game.awayTeam.name)} score={game.awayScore} winner={awayWon} />
             </span>
           </Link>
         );

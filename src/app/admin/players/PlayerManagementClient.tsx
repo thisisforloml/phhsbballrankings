@@ -41,7 +41,7 @@ function MetaChip({ children, tone = "neutral" }: { children: ReactNode; tone?: 
 
 export function PlayerManagementClient({
   players,
-  programs,
+  programOptions,
   schoolOptions,
   filteredCount,
   page,
@@ -50,7 +50,7 @@ export function PlayerManagementClient({
   initialSelectedPlayerId,
 }: {
   players: ManagedPlayer[];
-  programs: Array<{ id: string; fullName: string }>;
+  programOptions: Array<{ id: string; fullName: string; abbreviation?: string | null; type?: string }>;
   schoolOptions: string[];
   filteredCount: number;
   page: number;
@@ -245,7 +245,7 @@ export function PlayerManagementClient({
         {detailLoading && selectedListPlayer ? (
           <div className="rounded-lg border border-surface-200 bg-white p-12 text-center text-sm text-ink-500 shadow-sm">Loading player details…</div>
         ) : panelPlayer ? (
-          <AdminPlayerEditPanel key={panelPlayer.id} player={panelPlayer} programs={programs} formAction={formAction} state={state} onSaved={() => window.location.reload()} />
+          <AdminPlayerEditPanel key={panelPlayer.id} player={panelPlayer} programOptions={programOptions} formAction={formAction} state={state} onSaved={() => window.location.reload()} />
         ) : (
           <div className="rounded-lg border border-dashed border-surface-300 bg-white p-12 text-center text-sm text-ink-500">Select a player from the list.</div>
         )}

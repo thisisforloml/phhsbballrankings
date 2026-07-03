@@ -12,7 +12,9 @@ import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
 import type { ManagedTeam } from "@/lib/admin/managed-team";
 
-import { updateTeamBio, type UpdateTeamState } from "./actions";
+import { createTeam, updateTeamBio, updateTeamProgram, type UpdateTeamState } from "./actions";
+
+type ProgramOption = { id: string; fullName: string; abbreviation: string | null; type: string };
 
 export type { ManagedTeam };
 
@@ -102,12 +104,21 @@ function FormSection({ title, children }: { title: string; children: ReactNode }
   );
 }
 
-export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
+export function TeamManagementClient({
+  teams,
+  availablePrograms,
+}: {
+  teams: ManagedTeam[];
+  availablePrograms: ProgramOption[];
+}) {
   const [query, setQuery] = useState("");
   const [recordFilter, setRecordFilter] = useState<RecordFilter>("ACTIVE");
   const [programFilter, setProgramFilter] = useState("All");
   const [selectedId, setSelectedId] = useState(teams.find((team) => team.isActiveCompetitionTeam)?.id ?? teams[0]?.id ?? "");
   const [state, formAction] = useFormState(updateTeamBio, initialState);
+  const [programState, programAction] = useFormState(updateTeamProgram, initialState);
+  const [createState, createAction] = useFormState(createTeam, initialState);
+  const [showCreateTeam, setShowCreateTeam] = useState(false);
 
   const activeTeams = useMemo(() => teams.filter((team) => team.isActiveCompetitionTeam), [teams]);
   const inactiveTeams = useMemo(() => teams.filter((team) => !team.isActiveCompetitionTeam), [teams]);
@@ -138,8 +149,8 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
   const hasActiveFilters = Boolean(query.trim()) || recordFilter !== "ACTIVE" || programFilter !== "All";
 
   useEffect(() => {
-    if (state.ok) window.location.reload();
-  }, [state.ok]);
+    if (state.ok || programState.ok || createState.ok) window.location.reload();
+  }, [createState.ok, state.ok, programState.ok]);
 
   useEffect(() => {
     if (!selectedTeam && filteredTeams[0]) setSelectedId(filteredTeams[0].id);
@@ -158,7 +169,31 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
   }
 
   return (
-    <div className="grid gap-4 xl:grid-cols-[minmax(18rem,22rem)_minmax(0,1fr)]">
+    <div className="grid gap-4">
+      <section className="rounded-lg border border-surface-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-sm font-semibold text-navy-900">Create team</h2>
+            <p className="mt-1 text-sm text-ink-600">Create under an operational program or as a standalone team with no program link.</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowCreateTeam((open) => !open)}
+            className="border border-navy-800 bg-navy-900 px-3 py-2 text-xs font-semibold text-white hover:bg-navy-800"
+          >
+            {showCreateTeam ? "Hide form" : "Create team"}
+          </button>
+        </div>
+        {showCreateTeam ? (
+          <CreateTeamForm
+            createAction={createAction}
+            createState={createState}
+            programOptions={availablePrograms}
+          />
+        ) : null}
+      </section>
+
+      <div className="grid gap-4 xl:grid-cols-[minmax(18rem,22rem)_minmax(0,1fr)]">
       <aside className="flex min-h-0 flex-col xl:sticky xl:top-4 xl:max-h-[calc(100vh-7rem)]">
         <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
           <div className="relative z-10 shrink-0 border-b border-surface-200 bg-white p-3">
@@ -222,14 +257,92 @@ export function TeamManagementClient({ teams }: { teams: ManagedTeam[] }) {
 
       <main className="min-w-0">
         {selectedTeam ? (
-          <TeamEditPanel key={selectedTeam.id} team={selectedTeam} formAction={formAction} state={state} />
+          <TeamEditPanel
+            key={selectedTeam.id}
+            team={selectedTeam}
+            formAction={formAction}
+            state={state}
+            programAction={programAction}
+            programState={programState}
+            programOptions={availablePrograms}
+          />
         ) : (
           <div className="rounded-lg border border-dashed border-surface-300 bg-white p-12 text-center text-sm text-ink-500">
             Select a team from the list.
           </div>
         )}
       </main>
+      </div>
     </div>
+  );
+}
+
+function CreateTeamForm({
+  createAction,
+  createState,
+  programOptions,
+}: {
+  createAction: (payload: FormData) => void;
+  createState: UpdateTeamState;
+  programOptions: ProgramOption[];
+}) {
+  const [assignmentMode, setAssignmentMode] = useState<"standalone" | "under_program">("standalone");
+
+  return (
+    <form action={createAction} className="mt-4 grid gap-4 border-t border-surface-200 pt-4">
+      <AdminFormFeedback state={createState} />
+      <div className="flex flex-wrap gap-4">
+        <label className="inline-flex items-center gap-2 text-sm font-semibold text-ink-700">
+          <input
+            type="radio"
+            name="assignmentMode"
+            value="standalone"
+            checked={assignmentMode === "standalone"}
+            onChange={() => setAssignmentMode("standalone")}
+          />
+          Standalone team (no program)
+        </label>
+        <label className="inline-flex items-center gap-2 text-sm font-semibold text-ink-700">
+          <input
+            type="radio"
+            name="assignmentMode"
+            value="under_program"
+            checked={assignmentMode === "under_program"}
+            onChange={() => setAssignmentMode("under_program")}
+          />
+          Create under program
+        </label>
+      </div>
+      {assignmentMode === "under_program" ? (
+        <label className="grid max-w-xl gap-1.5">
+          <span className={labelClassName}>Program</span>
+          <select name="programId" required className={inputClassName}>
+            <option value="">Select program…</option>
+            {programOptions.map((program) => (
+              <option key={program.id} value={program.id}>
+                {program.fullName}
+                {program.abbreviation ? ` (${program.abbreviation})` : ""}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
+      <label className="grid max-w-xl gap-1.5">
+        <span className={labelClassName}>Team name</span>
+        <input name="name" required maxLength={120} className={inputClassName} />
+      </label>
+      <div className="grid max-w-2xl gap-3 md:grid-cols-2">
+        <label className="grid gap-1.5">
+          <span className={labelClassName}>City</span>
+          <input name="city" required maxLength={100} className={inputClassName} />
+        </label>
+        <label className="grid gap-1.5">
+          <span className={labelClassName}>Region</span>
+          <input name="region" required maxLength={100} className={inputClassName} />
+        </label>
+      </div>
+      <AdminSaveButton label="Create team" className="w-fit" />
+    </form>
   );
 }
 
@@ -273,13 +386,21 @@ function TeamEditPanel({
   team,
   formAction,
   state,
+  programAction,
+  programState,
+  programOptions,
 }: {
   team: ManagedTeam;
   formAction: (payload: FormData) => void;
   state: UpdateTeamState;
+  programAction: (payload: FormData) => void;
+  programState: UpdateTeamState;
+  programOptions: ProgramOption[];
 }) {
+  const [programActionMode, setProgramActionMode] = useState<"assign" | "change" | "remove" | null>(null);
   const games = team.homeGames + team.awayGames;
   const profileHref = `/teams/${team.id}`;
+  const currentProgramLabel = team.explicitProgramFullName ?? "No program assigned";
 
   return (
     <div className="grid gap-4">
@@ -289,6 +410,11 @@ function TeamEditPanel({
             <p className="text-xs font-semibold uppercase tracking-wide text-orange-600">Team record</p>
             <h2 className="mt-1 font-display text-2xl text-navy-900">{team.teamDisplayName}</h2>
             <p className="mt-1 text-sm text-ink-600">{programSummary(team)}</p>
+            {team.programId ? (
+              <p className="mt-1 text-xs font-semibold text-emerald-800">Explicit program link active</p>
+            ) : (
+              <p className="mt-1 text-xs text-ink-500">No explicit program link — public pages fall back to alias resolution</p>
+            )}
             {team.name !== team.teamDisplayName ? (
               <p className="mt-1 font-mono text-xs text-ink-500">Record: {team.name}</p>
             ) : null}
@@ -410,6 +536,80 @@ function TeamEditPanel({
           This program has more than one active team record in the same competition context. Review before editing or merging.
         </div>
       ) : null}
+
+      <FormSection title="Program">
+        <AdminFormFeedback state={programState} />
+        <div className="rounded-md border border-surface-200 bg-surface-50 p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink-500">Current program</p>
+          <p className="mt-1 text-sm font-semibold text-ink-900">{currentProgramLabel}</p>
+          {team.programId ? (
+            <p className="mt-1 text-xs text-emerald-800">Explicit program link active</p>
+          ) : (
+            <p className="mt-1 text-xs text-ink-500">Standalone team — public pages fall back to alias resolution</p>
+          )}
+        </div>
+
+        <div className="mt-3 flex flex-wrap gap-2">
+          {!team.programId ? (
+            <button
+              type="button"
+              onClick={() => setProgramActionMode(programActionMode === "assign" ? null : "assign")}
+              className="border border-surface-300 px-3 py-1.5 text-xs font-semibold text-ink-700 hover:border-orange-300"
+            >
+              Assign
+            </button>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() => setProgramActionMode(programActionMode === "change" ? null : "change")}
+                className="border border-surface-300 px-3 py-1.5 text-xs font-semibold text-ink-700 hover:border-orange-300"
+              >
+                Change
+              </button>
+              <button
+                type="button"
+                onClick={() => setProgramActionMode(programActionMode === "remove" ? null : "remove")}
+                className="border border-red-300 px-3 py-1.5 text-xs font-semibold text-red-800 hover:bg-red-50"
+              >
+                Remove
+              </button>
+            </>
+          )}
+        </div>
+
+        {programActionMode === "assign" || programActionMode === "change" ? (
+          <form action={programAction} className="mt-3 grid gap-3">
+            <input type="hidden" name="teamId" value={team.id} />
+            <input type="hidden" name="programMode" value={programActionMode} />
+            <label className="grid max-w-xl gap-1.5">
+              <span className={labelClassName}>{programActionMode === "assign" ? "Assign to program" : "Change to program"}</span>
+              <select name="programId" required className={inputClassName} defaultValue="">
+                <option value="">Select program…</option>
+                {programOptions.map((program) => (
+                  <option key={program.id} value={program.id}>
+                    {program.fullName}
+                    {program.abbreviation ? ` (${program.abbreviation})` : ""} · {program.type}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <AdminSaveButton
+              label={programActionMode === "assign" ? "Assign program" : "Change program"}
+              className="w-fit"
+            />
+          </form>
+        ) : null}
+
+        {programActionMode === "remove" ? (
+          <form action={programAction} className="mt-3">
+            <input type="hidden" name="teamId" value={team.id} />
+            <input type="hidden" name="programMode" value="remove" />
+            <p className="mb-3 text-sm text-ink-600">Remove only clears the explicit program link. Games, players, and ratings stay on this team record.</p>
+            <AdminSaveButton label="Remove program" className="w-fit" />
+          </form>
+        ) : null}
+      </FormSection>
 
       <form action={formAction} className="grid gap-4">
         <FormSection title="Edit team">

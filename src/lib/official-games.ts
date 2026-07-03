@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
+import { resolvePublicTeamNamesWithProgram } from "@/lib/uaap-school-display";
 
 import { slugify } from "./format";
 
@@ -20,7 +21,7 @@ export async function getOfficialLeagueDetail(id: string) {
         include: {
           games: {
             where: { deletedAt: null },
-            include: { homeTeam: true, awayTeam: true },
+            include: { homeTeam: { include: { program: true } }, awayTeam: { include: { program: true } } },
             orderBy: [{ gameDate: "desc" }, { gameNumber: "desc" }]
           }
         },
@@ -58,18 +59,43 @@ export async function getOfficialGameDetail(id: string) {
   const game = await prisma.game.findFirst({
     where: { id, deletedAt: null },
     include: {
-      homeTeam: true,
-      awayTeam: true,
+      homeTeam: { include: { program: true } },
+      awayTeam: { include: { program: true } },
       season: { include: { league: true } },
       stats: {
         where: { deletedAt: null },
-        include: { player: true, team: true },
+        include: { player: true, team: { include: { program: true } } },
         orderBy: [{ team: { name: "asc" } }, { player: { displayName: "asc" } }]
       }
     }
   });
   if (!game) notFound();
-  return { ...game, gender: inferGender(game.season.league.name, game.homeTeam.name, game.awayTeam.name) };
+
+  const activeProgram = (team: { program: { deletedAt: Date | null; fullName: string; abbreviation: string | null } | null }) =>
+    team.program && !team.program.deletedAt ? team.program : null;
+
+  const homeTeam = {
+    ...game.homeTeam,
+    ...resolvePublicTeamNamesWithProgram(game.homeTeam.name, activeProgram(game.homeTeam)),
+  };
+  const awayTeam = {
+    ...game.awayTeam,
+    ...resolvePublicTeamNamesWithProgram(game.awayTeam.name, activeProgram(game.awayTeam)),
+  };
+
+  return {
+    ...game,
+    homeTeam,
+    awayTeam,
+    gender: inferGender(game.season.league.name, game.homeTeam.name, game.awayTeam.name),
+    stats: game.stats.map((stat) => ({
+      ...stat,
+      team: {
+        ...stat.team,
+        ...resolvePublicTeamNamesWithProgram(stat.team.name, activeProgram(stat.team)),
+      },
+    })),
+  };
 }
 
 export async function getLeagueTopPerformers(leagueId: string, limit = 8) {

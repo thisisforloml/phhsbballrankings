@@ -66,15 +66,22 @@ export function logUploadFailure(
 }
 
 export function logGlobalError(error: Error, context: Record<string, unknown> = {}) {
-  logger.error(
-    {
-      event: "global_error",
-      err: error,
-      digest: "digest" in error ? (error as Error & { digest?: string }).digest : undefined,
-      ...context,
-    },
-    "unhandled application error",
-  );
+  const payload = {
+    event: "global_error",
+    err: error,
+    digest: "digest" in error ? (error as Error & { digest?: string }).digest : undefined,
+    ...context,
+  };
+
+  try {
+    logger.error(payload, "unhandled application error");
+  } catch (loggingError) {
+    console.error("[global_error] logger failed; falling back to console", {
+      ...payload,
+      loggingError,
+    });
+    console.error(error);
+  }
 }
 
 export function ensureRequestId(existing?: string | null): string {

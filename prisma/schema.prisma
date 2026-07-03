@@ -24,6 +24,7 @@ model User {
   deletedSubmissions           Submission[]            @relation("SubmissionDeletedBy")
   deletedOrganizerApplications OrganizerApplication[] @relation("OrganizerApplicationDeletedBy")
   submissions                  Submission[]
+  importRecords                ImportRecord[]
   leagueAccess          UserLeagueAccess[]
 
   @@index([role])
@@ -33,9 +34,11 @@ model User {
 
 model Program {
   id                      String                   @id @default(uuid()) @db.Uuid
+  parentProgramId         String?                  @db.Uuid
   fullName                String
   abbreviation            String?
   type                    ProgramType              @default(UNKNOWN)
+  programRole             ProgramRole              @default(OPERATIONAL)
   city                    String?
   region                  String?
   aliases                 Json?
@@ -48,7 +51,10 @@ model Program {
   programTeamRatings      ProgramTeamRating[]
   teamRankingSnapshotRows TeamRankingSnapshotRow[]
   teams                   Team[]
+  parentProgram           Program?                 @relation("ProgramHierarchy", fields: [parentProgramId], references: [id])
+  childPrograms           Program[]                @relation("ProgramHierarchy")
 
+  @@index([parentProgramId])
   @@index([fullName])
   @@index([abbreviation])
   @@index([deletedAt])
@@ -215,12 +221,20 @@ model TeamExternalAlias {
 model League {
   id                 String                   @id @default(uuid()) @db.Uuid
   name               String
+  shortName          String?
   ageGroup           AgeGroup
   organizerName      String
+  seasonType         CompetitionSeasonType?
+  country            String?                  @default("Philippines")
+  sport              CompetitionSport?        @default(BASKETBALL)
+  defaultAgeGroups   AgeGroup[]               @default([])
+  defaultGenders     PlayerGender[]           @default([])
+  status             CompetitionStatus        @default(ACTIVE)
   city               String?
   region             String?
   verificationStatus LeagueVerificationStatus @default(PROVISIONAL)
   adminNotes         String?
+  website            String?
   sanctionScore      Int                      @default(0)
   teamCountScore     Int                      @default(0)
   gamesPerTeamScore  Int                      @default(0)
@@ -234,10 +248,12 @@ model League {
   logoUrl            String?
   seasons            Season[]
   userAccess         UserLeagueAccess[]
+  importRecords      ImportRecord[]
 
   @@index([ageGroup])
   @@index([qualityScore, tier])
   @@index([verificationStatus])
+  @@index([status])
   @@index([region, city])
   @@index([deletedAt])
   @@map("leagues")
@@ -262,23 +278,47 @@ model Season {
   id             String               @id @default(uuid()) @db.Uuid
   leagueId       String               @db.Uuid
   name           String
+  seasonNumber   Int?
   seasonYear     Int
   status         SeasonStatus         @default(UPCOMING)
+  isCurrent      Boolean              @default(false)
   startsOn       DateTime
   endsOn         DateTime?
   createdAt      DateTime             @default(now())
   updatedAt      DateTime             @updatedAt
   deletedAt      DateTime?
   games          Game[]
+  divisions      SeasonDivision[]
   leagueAverages LeagueSeasonAverage?
   rosterSeasons  PlayerTeamSeason[]
   league         League               @relation(fields: [leagueId], references: [id])
   teamRatings    TeamRating[]
+  importRecords  ImportRecord[]
 
   @@unique([leagueId, name])
   @@index([seasonYear, status])
+  @@index([leagueId, isCurrent])
   @@index([deletedAt])
   @@map("seasons")
+}
+
+model SeasonDivision {
+  id        String        @id @default(uuid()) @db.Uuid
+  seasonId  String        @db.Uuid
+  name      String
+  ageGroup  AgeGroup?
+  gender    PlayerGender?
+  status    SeasonStatus  @default(ACTIVE)
+  sortOrder Int           @default(0)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  deletedAt DateTime?
+  games     Game[]
+  season    Season        @relation(fields: [seasonId], references: [id])
+
+  @@unique([seasonId, name])
+  @@index([seasonId, deletedAt])
+  @@map("season_divisions")
 }
 
 model LeagueSeasonAverage {
@@ -353,6 +393,7 @@ model PlayerProgramHistory {
 model Game {
   id                 String                 @id @default(uuid()) @db.Uuid
   seasonId           String                 @db.Uuid
+  divisionId         String?                @db.Uuid
   homeTeamId         String                 @db.Uuid
   awayTeamId         String                 @db.Uuid
   gameNumber         String?
@@ -382,11 +423,13 @@ model Game {
   performanceScores  GamePerformanceScore[]
   stats              GameStat[]
   awayTeam           Team                   @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  division           SeasonDivision?        @relation(fields: [divisionId], references: [id])
   homeTeam           Team                   @relation("HomeTeam", fields: [homeTeamId], references: [id])
   season             Season                 @relation(fields: [seasonId], references: [id])
 
   @@index([verificationStatus, gameDate])
   @@index([seasonId, gameDate])
+  @@index([divisionId])
   @@index([deletedAt])
   @@map("games")
 }
@@ -677,6 +720,7 @@ model Submission {
   deletedById       String?                 @db.Uuid
   deletedBy         User?                   @relation("SubmissionDeletedBy", fields: [deletedById], references: [id])
   submittedBy       User                    @relation(fields: [submittedByUserId], references: [id])
+  importRecord      ImportRecord?
 
   @@index([submittedByUserId, createdAt])
   @@index([status, createdAt])
@@ -700,6 +744,36 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([createdAt])
   @@map("audit_log")
+}
+
+model ImportRecord {
+  id                   String             @id @default(uuid()) @db.Uuid
+  sourceType           ImportSourceType
+  submissionId         String?            @unique @db.Uuid
+  title                String
+  status               ImportRecordStatus @default(PENDING)
+  leagueId             String?            @db.Uuid
+  seasonId             String?            @db.Uuid
+  summary              Json?
+  duplicateCount       Int                @default(0)
+  aliasSuggestionCount Int                @default(0)
+  errorMessage         String?
+  submittedByUserId    String?            @db.Uuid
+  publishedAt          DateTime?
+  resolvedAt           DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  deletedAt            DateTime?
+  league               League?            @relation(fields: [leagueId], references: [id])
+  season               Season?            @relation(fields: [seasonId], references: [id])
+  submission           Submission?        @relation(fields: [submissionId], references: [id])
+  submittedBy          User?              @relation(fields: [submittedByUserId], references: [id])
+
+  @@index([status, createdAt])
+  @@index([leagueId])
+  @@index([seasonId])
+  @@index([deletedAt])
+  @@map("import_records")
 }
 
 model ProfileClaim {
@@ -781,6 +855,39 @@ enum SeasonStatus {
   ARCHIVED
 }
 
+enum CompetitionSeasonType {
+  ACADEMIC
+  CALENDAR
+  TOURNAMENT
+  YEAR_ROUND
+}
+
+enum CompetitionSport {
+  BASKETBALL
+}
+
+enum CompetitionStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum ImportSourceType {
+  SUBMISSION
+  URL_IMPORT
+  MANUAL
+}
+
+enum ImportRecordStatus {
+  PENDING
+  NEEDS_REVIEW
+  DUPLICATES
+  ALIAS_SUGGESTIONS
+  FAILED
+  PUBLISHED
+  RESOLVED
+}
+
 enum VerificationStatus {
   DRAFT
   SUBMITTED
@@ -836,6 +943,11 @@ enum ProgramType {
   CLUB
   TEAM
   UNKNOWN
+}
+
+enum ProgramRole {
+  GROUP
+  OPERATIONAL
 }
 
 enum PlayerCommitmentStatus {

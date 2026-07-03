@@ -5,6 +5,17 @@ import { resolveAdminPlayerStats } from "@/lib/admin/resolve-admin-player-stats"
 import { resolvePrimaryRankingAffiliation } from "@/lib/player-display-affiliation";
 import { getAgeBracketAsOfMarch31, getClassYear } from "@/lib/ranking-eligibility";
 
+type ProgramRef = {
+  fullName: string;
+  abbreviation: string | null;
+  type: ProgramType;
+  programRole?: "GROUP" | "OPERATIONAL";
+  parentProgram?: {
+    fullName: string;
+    programRole: "GROUP" | "OPERATIONAL";
+  } | null;
+};
+
 type PlayerForSerialize = {
   id: string;
   displayName: string;
@@ -24,11 +35,7 @@ type PlayerForSerialize = {
   photoUrl: string | null;
   commitmentStatus: "UNDECLARED" | "COMMITTED";
   committedUniversity: string | null;
-  currentProgram: {
-    fullName: string;
-    abbreviation: string | null;
-    type: ProgramType;
-  } | null;
+  currentProgram: ProgramRef | null;
   currentRatings: Array<{ ageGroup: AgeGroup; adjustedRating: unknown; verifiedGameCount: number }>;
   gameStats: Array<{
     team: { name: string; program: { fullName: string; abbreviation: string | null; type: ProgramType } | null };
@@ -60,6 +67,13 @@ export const managedPlayerListSelect = {
       fullName: true,
       abbreviation: true,
       type: true,
+      programRole: true,
+      parentProgram: {
+        select: {
+          fullName: true,
+          programRole: true,
+        },
+      },
     },
   },
   currentRatings: {
@@ -103,6 +117,16 @@ export function serializeManagedPlayer(player: PlayerForSerialize): ManagedPlaye
     currentProgram: player.currentProgram,
     gameStats: player.gameStats,
   });
+  const currentProgramFullName =
+    player.currentProgram &&
+    (player.currentProgram.programRole === undefined || player.currentProgram.programRole === "OPERATIONAL")
+      ? player.currentProgram.fullName
+      : null;
+  const parentGroupProgramFullName =
+    player.currentProgram?.parentProgram?.programRole === "GROUP"
+      ? player.currentProgram.parentProgram.fullName
+      : null;
+  const currentTeamName = resolveCurrentTeamName(player.gameStats);
 
   return {
     id: player.id,
@@ -118,6 +142,9 @@ export function serializeManagedPlayer(player: PlayerForSerialize): ManagedPlaye
     hometown: player.hometown ?? player.city,
     region: player.region,
     currentProgramId: player.currentProgramId,
+    currentProgramFullName,
+    parentGroupProgramFullName,
+    currentTeamName,
     position: player.position,
     heightCm: player.heightCm,
     birthDate: player.birthDate ? player.birthDate.toISOString().slice(0, 10) : "",
@@ -131,13 +158,41 @@ export function serializeManagedPlayer(player: PlayerForSerialize): ManagedPlaye
   };
 }
 
+function resolveCurrentTeamName(
+  gameStats: Array<{ team: { name: string }; game: { gameDate: Date | null } }>,
+): string | null {
+  if (!gameStats.length) return null;
+
+  const latest = [...gameStats].sort((left, right) => {
+    const leftTime = left.game.gameDate?.getTime() ?? 0;
+    const rightTime = right.game.gameDate?.getTime() ?? 0;
+    return rightTime - leftTime;
+  })[0];
+
+  return latest?.team.name ?? null;
+}
+
 /** List row: affiliation from override/currentProgram only; ratings from PlayerRating. */
 export function serializeManagedPlayerListRow(player: PlayerListRowRecord): ManagedPlayer {
   return serializeManagedPlayer({ ...player, gameStats: [] });
 }
 
 export const managedPlayerInclude = {
-  currentProgram: true,
+  currentProgram: {
+    select: {
+      id: true,
+      fullName: true,
+      abbreviation: true,
+      type: true,
+      programRole: true,
+      parentProgram: {
+        select: {
+          fullName: true,
+          programRole: true,
+        },
+      },
+    },
+  },
   currentRatings: {
     orderBy: { ageGroup: "desc" as const },
   },

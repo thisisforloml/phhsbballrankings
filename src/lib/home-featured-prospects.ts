@@ -1,49 +1,41 @@
-import type { HomeData, HomeLeaderboardRow, PublicAgeGroup, PublicGender } from "@/lib/public-site-data";
+import type { HomeData, HomeLeaderboardRow, PublicAgeGroup } from "@/lib/public-site-data";
+import type { LatestNationalRankings } from "@/lib/rankings";
 
 const ageGroups: PublicAgeGroup[] = ["U13", "U16", "U19"];
-const genders: PublicGender[] = ["Boys", "Girls"];
 
-/** Cross-board featured picks — always up to four, excluding the hero spotlight player. */
-export function buildCrossBoardFeaturedProspects(data: HomeData, limit = 4): HomeLeaderboardRow[] {
-  const heroId =
-    data.weeklyBestPerformer?.playerId ??
-    data.leaderboardsByAge.U19.boys[0]?.playerId ??
-    null;
-  const boysRest = data.leaderboardsByAge.U19.boys.slice(1);
-  const girls = data.leaderboardsByAge.U19.girls;
+/** Highest-rated players across every public board (deduped by player, best rating kept). */
+export function collectGlobalRatedProspects(
+  rankings: LatestNationalRankings,
+  limit: number
+): HomeLeaderboardRow[] {
+  const byPlayer = new Map<string, HomeLeaderboardRow>();
 
-  const allPool: HomeLeaderboardRow[] = [];
   for (const ageGroup of ageGroups) {
-    for (const gender of genders) {
-      const board = data.leaderboardsByAge[ageGroup];
-      allPool.push(...(gender === "Girls" ? board.girls : board.boys));
+    const boards = rankings.snapshotsByAge[ageGroup];
+    for (const row of [...boards.boys.rows, ...boards.girls.rows]) {
+      const candidate = row as HomeLeaderboardRow;
+      const existing = byPlayer.get(row.playerId);
+      if (!existing || row.rating > existing.rating) {
+        byPlayer.set(row.playerId, candidate);
+      }
     }
   }
 
-  const seen = new Set<string>();
-  const result: HomeLeaderboardRow[] = [];
+  return [...byPlayer.values()]
+    .sort(
+      (left, right) =>
+        right.rating - left.rating ||
+        right.verifiedGameCount - left.verifiedGameCount ||
+        left.displayName.localeCompare(right.displayName)
+    )
+    .slice(0, limit);
+}
 
-  const push = (row?: HomeLeaderboardRow) => {
-    if (!row || (heroId && row.playerId === heroId) || seen.has(row.playerId)) return;
-    seen.add(row.playerId);
-    result.push(row);
-  };
-
-  // Diversity-first: top boys (ex-#1) + top girls when available
-  push(boysRest[0]);
-  push(boysRest[1]);
-  push(girls[0]);
-  push(girls[1]);
-
-  for (const row of boysRest) {
-    if (result.length >= limit) break;
-    push(row);
-  }
-
-  for (const row of allPool.sort((left, right) => right.rating - left.rating)) {
-    if (result.length >= limit) break;
-    push(row);
-  }
-
-  return result.slice(0, limit);
+/** Next highest-rated prospects after the homepage hero, excluding the hero player. */
+export function buildCrossBoardFeaturedProspects(data: HomeData, limit = 4): HomeLeaderboardRow[] {
+  const heroId = data.globalTopProspects[0]?.playerId ?? null;
+  return data.globalTopProspects
+    .slice(1)
+    .filter((row) => !heroId || row.playerId !== heroId)
+    .slice(0, limit);
 }

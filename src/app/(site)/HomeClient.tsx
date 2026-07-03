@@ -81,7 +81,7 @@ export function HomeClient({ data }: { data: HomeData }) {
           <div className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-end">
             <div className="lg:col-span-2">
               <ScoutSectionLabel>Featured Prospects</ScoutSectionLabel>
-              <h2 className={homeSectionHeadingClass}>Rising Prospects Nationwide</h2>
+              <h2 className={homeSectionHeadingClass}>Top Prospects to Watch</h2>
             </div>
             <div className="flex items-end justify-between gap-3 lg:col-span-1">
               <div>
@@ -93,7 +93,7 @@ export function HomeClient({ data }: { data: HomeData }) {
           </div>
 
           <p className="mb-5 max-w-xl text-sm text-scout-500 lg:max-w-none lg:pr-[34%]">
-            Four ranked players to watch from the boys and girls national boards.
+            Four more ranked standouts from across Peach Basket — prospects we&apos;re featuring right now.
           </p>
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
@@ -101,7 +101,7 @@ export function HomeClient({ data }: { data: HomeData }) {
               {featuredProspects.length ? (
                 <FeaturedProspectsGrid players={featuredProspects} rankDeltaByPlayerId={rankDeltaByPlayerId} />
               ) : (
-                <p className="text-sm text-scout-500">More ranked prospects will appear here as coverage expands.</p>
+                <p className="text-sm text-scout-500">More featured prospects will appear here as verified coverage grows.</p>
               )}
             </div>
 

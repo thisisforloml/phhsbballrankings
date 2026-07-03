@@ -11,8 +11,8 @@ import { getPublicTeamProfile } from "@/lib/team-profile";
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const profile = await getPublicTeamProfile(params.id);
   return {
-    title: `${profile.team.name} Team Profile`,
-    description: `${profile.team.name} record, roster, recent games, and official team stats on Peach Basket Rankings PH.`
+    title: `${profile.team.displayName} Team Profile`,
+    description: `${profile.team.displayName} record, roster, recent games, and official team stats on Peach Basket Rankings PH.`,
   };
 }
 
@@ -25,9 +25,10 @@ export default async function TeamProfilePage({ params }: { params: { id: string
         <div className="container-px grid gap-8 py-14 lg:grid-cols-[1fr_24rem] lg:items-end">
           <div>
             <Link href="/teams" className="text-xs font-black uppercase tracking-[0.14em] text-gold-500 hover:text-white">Back to team rankings</Link>
-            <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.2rem,8vw,6.5rem)] font-black leading-none">{profile.team.name}</h1>
+            <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.2rem,8vw,6.5rem)] font-black leading-none">{profile.team.displayName}</h1>
             <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-white/72">
-              {profile.team.programFullName} {profile.team.programAbbreviation ? `(${profile.team.programAbbreviation})` : ""} | {profile.team.city ?? "City not listed"}, {profile.team.region ?? "Region not listed"}
+              {profile.team.programFullName !== profile.team.displayName ? `${profile.team.programFullName} · ` : ""}
+              {profile.team.city ?? "City not listed"}, {profile.team.region ?? "Region not listed"}
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
               {profile.contexts.map((context) => (

@@ -7,8 +7,14 @@ import path from "node:path";
 import { revalidatePath } from "next/cache";
 
 import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
-import { invalidateAdminPlayerProfileCaches } from "@/lib/admin/invalidate-admin-caches";
+import { buildPlayerIntegrityReport, type PlayerIntegrityReport } from "@/lib/admin/build-player-integrity-report";
+import { invalidateAdminPlayerProfileCaches, invalidateAdminProgramMembershipCaches } from "@/lib/admin/invalidate-admin-caches";
+import { loadPlayerDuplicateCandidates } from "@/lib/admin/load-player-duplicate-candidates";
+import { loadPlayerIntegrityContext } from "@/lib/admin/load-player-integrity-context";
+import { loadPlayerTransferHistory } from "@/lib/admin/load-player-transfer-history";
 import { writeAuditLog } from "@/lib/admin/log-admin-action";
+import { assignPlayerToProgram, removePlayerFromProgram } from "@/lib/admin/player-program-assignment";
+import { transferPlayerToProgram } from "@/lib/admin/player-program-transfer";
 import { updatePlayerSchoolAssignment } from "@/lib/admin/player-school-transfer";
 import { assignPlayerRosterFromAgeBracket } from "@/lib/admin/roster-from-game-evidence";
 import { managedPlayerInclude, serializeManagedPlayer } from "@/lib/admin/serialize-managed-player";
@@ -32,14 +38,44 @@ export async function loadAdminPlayerDetail(playerId: string): Promise<ManagedPl
   const id = playerId.trim();
   if (!id) return null;
 
-  const player = await prisma.player.findFirst({
-    where: { id, deletedAt: null },
-    include: managedPlayerInclude,
-  });
+  const [player, transferHistory] = await Promise.all([
+    prisma.player.findFirst({
+      where: { id, deletedAt: null },
+      include: managedPlayerInclude,
+    }),
+    loadPlayerTransferHistory(id),
+  ]);
 
   if (!player) return null;
 
-  return serializeManagedPlayer(player);
+  return { ...serializeManagedPlayer(player), transferHistory };
+}
+
+export async function loadAdminPlayerIntegrity(playerId: string): Promise<PlayerIntegrityReport | null> {
+  await requireAdminUser();
+
+  const id = playerId.trim();
+  if (!id) return null;
+
+  const [context, transferHistory] = await Promise.all([
+    loadPlayerIntegrityContext(id),
+    loadPlayerTransferHistory(id),
+  ]);
+
+  if (!context) return null;
+
+  return buildPlayerIntegrityReport({ ...context, transferHistory });
+}
+
+export async function loadAdminPlayerDuplicateCandidates(playerId: string) {
+  await requireAdminUser();
+
+  const id = playerId.trim();
+  if (!id) {
+    return { targetPlayerId: id, candidateCount: 0, candidates: [] };
+  }
+
+  return loadPlayerDuplicateCandidates(id);
 }
 
 function readRequiredString(formData: FormData, key: string, label: string, maxLength: number) {
@@ -173,6 +209,122 @@ async function readOptionalPhotoUrl(formData: FormData, playerId: string) {
   }
 
   return value;
+}
+
+function revalidatePlayerProgramSurfaces(
+  player: { id: string; displayName: string },
+  programId?: string | null,
+  previousProgramId?: string | null,
+) {
+  invalidateAdminPlayerProfileCaches();
+  invalidateAdminProgramMembershipCaches();
+  revalidatePath("/admin/players");
+  revalidatePath("/admin/programs");
+  if (programId) revalidatePath(`/admin/programs/${programId}`);
+  if (previousProgramId) revalidatePath(`/admin/programs/${previousProgramId}`);
+  revalidatePublicRankingSurfaces();
+  revalidatePath(`/players/${slugify(player.displayName)}`);
+  revalidatePath(`/players/${player.id}`);
+}
+
+export async function updatePlayerProgram(_previousState: UpdatePlayerBioState, formData: FormData): Promise<UpdatePlayerBioState> {
+  try {
+    await requireAdminUser();
+    const playerId = String(formData.get("playerId") ?? "").trim();
+    const mode = String(formData.get("programMode") ?? "assign").trim();
+    if (!playerId) throw new Error("Player id is required.");
+
+    const existingPlayer = await prisma.player.findFirst({
+      where: { id: playerId, deletedAt: null },
+      select: { id: true, displayName: true, currentProgramId: true },
+    });
+    if (!existingPlayer) throw new Error("Player does not exist or has been deleted.");
+
+    if (mode === "remove") {
+      const result = await removePlayerFromProgram(playerId);
+      revalidatePlayerProgramSurfaces(result.player, null, result.previousProgramId);
+      return { ok: true, message: "Program assignment removed.", playerId };
+    }
+
+    const programId = String(formData.get("programId") ?? "").trim();
+    if (!programId) throw new Error("Program is required.");
+
+    if (mode === "change") {
+      throw new Error("Use Transfer Player instead of Change Program.");
+    }
+
+    if (mode === "assign" && existingPlayer.currentProgramId) {
+      throw new Error("Player already has a program. Use Transfer Player instead.");
+    }
+
+    const result = await assignPlayerToProgram(playerId, programId);
+    revalidatePlayerProgramSurfaces(result.player, programId, result.previousProgramId);
+    return {
+      ok: true,
+      message:
+        result.action === "already_linked"
+          ? "Player is already assigned to that program."
+          : `Assigned to ${result.program.fullName}.`,
+      playerId,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message: error instanceof Error ? error.message : "Could not update program assignment.",
+    };
+  }
+}
+
+export async function transferPlayerProgram(_previousState: UpdatePlayerBioState, formData: FormData): Promise<UpdatePlayerBioState> {
+  try {
+    const user = await requireAdminUser();
+    const playerId = String(formData.get("playerId") ?? "").trim();
+    const destinationProgramId = String(formData.get("destinationProgramId") ?? "").trim();
+    const expectedFromProgramId = String(formData.get("expectedFromProgramId") ?? "").trim();
+    const reason = readRequiredString(formData, "reason", "Transfer reason", 500);
+    const confirmTransfer = String(formData.get("confirmTransfer") ?? "") === "on";
+
+    if (!playerId) throw new Error("Player id is required.");
+    if (!destinationProgramId) throw new Error("Destination program is required.");
+    if (!expectedFromProgramId) throw new Error("Current program is required.");
+    if (!confirmTransfer) throw new Error("Confirm the transfer to continue.");
+
+    const effectiveDate = readTransferDate(formData);
+
+    const result = await transferPlayerToProgram({
+      playerId,
+      destinationProgramId,
+      expectedFromProgramId,
+      effectiveDate,
+      reason,
+    });
+
+    await writeAuditLog({
+      userId: user.id,
+      entityType: "PLAYER",
+      entityId: playerId,
+      action: "TRANSFER_PROGRAM",
+      reason,
+      previousData: { fromProgramId: result.previousProgramId },
+      newData: {
+        toProgramId: destinationProgramId,
+        historyId: result.historyId,
+        effectiveDate: effectiveDate.toISOString(),
+      },
+    });
+
+    revalidatePlayerProgramSurfaces(result.player, destinationProgramId, result.previousProgramId);
+    return {
+      ok: true,
+      message: `Transferred to ${result.program.fullName}. Historical games and ratings were not modified.`,
+      playerId,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message: error instanceof Error ? error.message : "Could not transfer player.",
+    };
+  }
 }
 
 export async function updatePlayerBio(_previousState: UpdatePlayerBioState, formData: FormData): Promise<UpdatePlayerBioState> {

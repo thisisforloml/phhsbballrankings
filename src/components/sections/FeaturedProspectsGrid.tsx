@@ -5,7 +5,6 @@ import { ScoutRankChange } from "@/components/public/ScoutRankChange";
 import { getPlayerProfileHref } from "@/lib/format";
 import { formatBoardRank } from "@/lib/public-rank-display";
 import type { HomeLeaderboardRow } from "@/lib/public-site-data";
-import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 function initials(name: string) {
   return name
@@ -71,7 +70,7 @@ export function FeaturedProspectsGrid({ players, rankDeltaByPlayerId = {} }: Fea
                     {player.displayName}
                   </div>
                   <p className="mt-0.5 truncate text-[0.7rem] font-semibold text-scout-500">
-                    {getProgramDisplayName(player.currentTeam)}
+                    {player.currentTeam?.trim() || "—"}
                   </p>
                 </div>
                 {player.position ? (

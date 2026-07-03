@@ -6,7 +6,9 @@ import { getOfficialGameDetail } from "@/lib/official-games";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const game = await getOfficialGameDetail(params.id);
-  return { title: `${game.gameNumber ?? "Game"} - ${game.homeTeam.name} vs ${game.awayTeam.name}` };
+  return {
+    title: `${game.gameNumber ?? "Game"} - ${game.homeTeam.displayName} vs ${game.awayTeam.displayName}`,
+  };
 }
 
 type StatRow = Awaited<ReturnType<typeof getOfficialGameDetail>>["stats"][number];
@@ -61,9 +63,9 @@ export default async function GameDetailPage({ params }: { params: { id: string 
         <div className="container-px py-14">
           <Link href={`/leagues/${game.season.league.id}`} className="text-xs font-black uppercase tracking-[0.14em] text-gold-500 hover:text-white">Back to league</Link>
           <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-            <TeamScore name={game.homeTeam.name} score={game.homeScore} winner={homeWon} align="left" />
+            <TeamScore name={game.homeTeam.displayName} score={game.homeScore} winner={homeWon} align="left" />
             <span className="hidden text-center text-xs font-black uppercase tracking-[0.16em] text-white/42 lg:block">Final</span>
-            <TeamScore name={game.awayTeam.name} score={game.awayScore} winner={awayWon} align="right" />
+            <TeamScore name={game.awayTeam.displayName} score={game.awayScore} winner={awayWon} align="right" />
           </div>
           <dl className="mt-8 grid gap-3 text-sm text-white/75 md:grid-cols-3">
             <Meta label="League" value={game.season.league.name} />

@@ -1,0 +1,1468 @@
+{
+  "generatedAt": "2026-07-03T06:03:22.847Z",
+  "ruleCount": 23,
+  "normalizationBehavior": {
+    "steps": [
+      "trim",
+      "strip parentheticals",
+      "strip youth age tokens (10U-19U, UNDER N)",
+      "strip BOYS/GIRLS/HS/HIGH SCHOOL",
+      "normalize JUNIOR variants to JRS",
+      "collapse whitespace",
+      "uppercase"
+    ],
+    "matchingOrder": [
+      "exact normalized alias map",
+      "substring match with longest alias wins (min length 3)"
+    ]
+  },
+  "perRule": [
+    {
+      "key": "admu",
+      "fullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "aliases": [
+        "ADMU",
+        "ATENEO",
+        "ATENEO JRS",
+        "ATENEO BLUE EAGLETS",
+        "ATENEO LADY EAGLETS",
+        "BLUE EAGLETS",
+        "LADY EAGLETS"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "ADMU",
+          "normalized": "ADMU"
+        },
+        {
+          "alias": "ATENEO",
+          "normalized": "ATENEO"
+        },
+        {
+          "alias": "ATENEO JRS",
+          "normalized": "ATENEO JRS"
+        },
+        {
+          "alias": "ATENEO BLUE EAGLETS",
+          "normalized": "ATENEO BLUE EAGLETS"
+        },
+        {
+          "alias": "ATENEO LADY EAGLETS",
+          "normalized": "ATENEO LADY EAGLETS"
+        },
+        {
+          "alias": "BLUE EAGLETS",
+          "normalized": "BLUE EAGLETS"
+        },
+        {
+          "alias": "LADY EAGLETS",
+          "normalized": "LADY EAGLETS"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "ADMU",
+        "ATENEO",
+        "BLUE EAGLETS",
+        "LADY EAGLETS"
+      ]
+    },
+    {
+      "key": "feu",
+      "fullName": "Far Eastern University",
+      "abbreviation": "FEU",
+      "aliases": [
+        "FEU",
+        "FEU JRS",
+        "FEU BABY TAMARAWS",
+        "FAR EASTERN UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "FEU",
+          "normalized": "FEU"
+        },
+        {
+          "alias": "FEU JRS",
+          "normalized": "FEU JRS"
+        },
+        {
+          "alias": "FEU BABY TAMARAWS",
+          "normalized": "FEU BABY TAMARAWS"
+        },
+        {
+          "alias": "FAR EASTERN UNIVERSITY",
+          "normalized": "FAR EASTERN UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "FEU"
+      ],
+      "genericAliases": [
+        "FEU"
+      ]
+    },
+    {
+      "key": "feu-d",
+      "fullName": "Far Eastern University Diliman",
+      "abbreviation": "FEU-D",
+      "aliases": [
+        "FEU-D",
+        "FEU DILIMAN",
+        "FEU-DILIMAN",
+        "FAR EASTERN UNIVERSITY DILIMAN"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "FEU-D",
+          "normalized": "FEU-D"
+        },
+        {
+          "alias": "FEU DILIMAN",
+          "normalized": "FEU DILIMAN"
+        },
+        {
+          "alias": "FEU-DILIMAN",
+          "normalized": "FEU-DILIMAN"
+        },
+        {
+          "alias": "FAR EASTERN UNIVERSITY DILIMAN",
+          "normalized": "FAR EASTERN UNIVERSITY DILIMAN"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": []
+    },
+    {
+      "key": "dlsz",
+      "fullName": "De La Salle Santiago Zobel",
+      "abbreviation": "DLSZ",
+      "aliases": [
+        "DLSZ",
+        "DE LA SALLE SANTIAGO ZOBEL",
+        "SANTIAGO ZOBEL",
+        "ZOBEL"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "DLSZ",
+          "normalized": "DLSZ"
+        },
+        {
+          "alias": "DE LA SALLE SANTIAGO ZOBEL",
+          "normalized": "DE LA SALLE SANTIAGO ZOBEL"
+        },
+        {
+          "alias": "SANTIAGO ZOBEL",
+          "normalized": "SANTIAGO ZOBEL"
+        },
+        {
+          "alias": "ZOBEL",
+          "normalized": "ZOBEL"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "DLSZ",
+        "ZOBEL"
+      ]
+    },
+    {
+      "key": "lsgh",
+      "fullName": "La Salle Green Hills",
+      "abbreviation": "LSGH",
+      "aliases": [
+        "LSGH",
+        "LA SALLE GREEN HILLS",
+        "GREEN HILLS"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "LSGH",
+          "normalized": "LSGH"
+        },
+        {
+          "alias": "LA SALLE GREEN HILLS",
+          "normalized": "LA SALLE GREEN HILLS"
+        },
+        {
+          "alias": "GREEN HILLS",
+          "normalized": "GREEN HILLS"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "LSGH",
+        "GREEN HILLS"
+      ]
+    },
+    {
+      "key": "nuns",
+      "fullName": "National University Nazareth School",
+      "abbreviation": "NUNS",
+      "aliases": [
+        "NU",
+        "NUNS",
+        "NU JRS",
+        "NATIONAL UNIVERSITY",
+        "NATIONAL UNIVERSITY NAZARETH SCHOOL"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "NU",
+          "normalized": "NU"
+        },
+        {
+          "alias": "NUNS",
+          "normalized": "NUNS"
+        },
+        {
+          "alias": "NU JRS",
+          "normalized": "NU JRS"
+        },
+        {
+          "alias": "NATIONAL UNIVERSITY",
+          "normalized": "NATIONAL UNIVERSITY"
+        },
+        {
+          "alias": "NATIONAL UNIVERSITY NAZARETH SCHOOL",
+          "normalized": "NATIONAL UNIVERSITY NAZARETH SCHOOL"
+        }
+      ],
+      "shortAliases": [
+        "NU"
+      ],
+      "genericAliases": [
+        "NU",
+        "NUNS"
+      ]
+    },
+    {
+      "key": "ust",
+      "fullName": "University of Santo Tomas",
+      "abbreviation": "UST",
+      "aliases": [
+        "UST",
+        "UST JRS",
+        "UNIVERSITY OF SANTO TOMAS"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "UST",
+          "normalized": "UST"
+        },
+        {
+          "alias": "UST JRS",
+          "normalized": "UST JRS"
+        },
+        {
+          "alias": "UNIVERSITY OF SANTO TOMAS",
+          "normalized": "UNIVERSITY OF SANTO TOMAS"
+        }
+      ],
+      "shortAliases": [
+        "UST"
+      ],
+      "genericAliases": [
+        "UST"
+      ]
+    },
+    {
+      "key": "upis",
+      "fullName": "University of the Philippines Integrated School",
+      "abbreviation": "UPIS",
+      "aliases": [
+        "UP",
+        "UPIS",
+        "UPIS JRS",
+        "UP JUNIOR FIGHTING MAROONS",
+        "UP FIGHTING MAROONS",
+        "UNIVERSITY OF THE PHILIPPINES INTEGRATED SCHOOL"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "UP",
+          "normalized": "UP"
+        },
+        {
+          "alias": "UPIS",
+          "normalized": "UPIS"
+        },
+        {
+          "alias": "UPIS JRS",
+          "normalized": "UPIS JRS"
+        },
+        {
+          "alias": "UP JUNIOR FIGHTING MAROONS",
+          "normalized": "UP JRS FIGHTING MAROONS"
+        },
+        {
+          "alias": "UP FIGHTING MAROONS",
+          "normalized": "UP FIGHTING MAROONS"
+        },
+        {
+          "alias": "UNIVERSITY OF THE PHILIPPINES INTEGRATED SCHOOL",
+          "normalized": "UNIVERSITY OF THE PHILIPPINES INTEGRATED SCHOOL"
+        }
+      ],
+      "shortAliases": [
+        "UP"
+      ],
+      "genericAliases": [
+        "UP"
+      ]
+    },
+    {
+      "key": "ue",
+      "fullName": "University of the East",
+      "abbreviation": "UE",
+      "aliases": [
+        "UE",
+        "UE JRS",
+        "UNIVERSITY OF THE EAST"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "UE",
+          "normalized": "UE"
+        },
+        {
+          "alias": "UE JRS",
+          "normalized": "UE JRS"
+        },
+        {
+          "alias": "UNIVERSITY OF THE EAST",
+          "normalized": "UNIVERSITY OF THE EAST"
+        }
+      ],
+      "shortAliases": [
+        "UE"
+      ],
+      "genericAliases": [
+        "UE"
+      ]
+    },
+    {
+      "key": "adu",
+      "fullName": "Adamson University",
+      "abbreviation": "ADU",
+      "aliases": [
+        "ADU",
+        "ADU JRS",
+        "ADAMSON",
+        "ADAMSON UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "ADU",
+          "normalized": "ADU"
+        },
+        {
+          "alias": "ADU JRS",
+          "normalized": "ADU JRS"
+        },
+        {
+          "alias": "ADAMSON",
+          "normalized": "ADAMSON"
+        },
+        {
+          "alias": "ADAMSON UNIVERSITY",
+          "normalized": "ADAMSON UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "ADU"
+      ],
+      "genericAliases": [
+        "ADU"
+      ]
+    },
+    {
+      "key": "eac",
+      "fullName": "Emilio Aguinaldo College",
+      "abbreviation": "EAC",
+      "aliases": [
+        "EAC",
+        "EMILIO AGUINALDO COLLEGE"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "EAC",
+          "normalized": "EAC"
+        },
+        {
+          "alias": "EMILIO AGUINALDO COLLEGE",
+          "normalized": "EMILIO AGUINALDO COLLEGE"
+        }
+      ],
+      "shortAliases": [
+        "EAC"
+      ],
+      "genericAliases": [
+        "EAC"
+      ]
+    },
+    {
+      "key": "csb",
+      "fullName": "College of Saint Benilde",
+      "abbreviation": "CSB",
+      "aliases": [
+        "CSB",
+        "BENILDE",
+        "COLLEGE OF SAINT BENILDE",
+        "COLLEGE OF ST BENILDE",
+        "DE LA SALLE-COLLEGE OF SAINT BENILDE"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "CSB",
+          "normalized": "CSB"
+        },
+        {
+          "alias": "BENILDE",
+          "normalized": "BENILDE"
+        },
+        {
+          "alias": "COLLEGE OF SAINT BENILDE",
+          "normalized": "COLLEGE OF SAINT BENILDE"
+        },
+        {
+          "alias": "COLLEGE OF ST BENILDE",
+          "normalized": "COLLEGE OF ST BENILDE"
+        },
+        {
+          "alias": "DE LA SALLE-COLLEGE OF SAINT BENILDE",
+          "normalized": "DE LA SALLE-COLLEGE OF SAINT BENILDE"
+        }
+      ],
+      "shortAliases": [
+        "CSB"
+      ],
+      "genericAliases": [
+        "CSB",
+        "BENILDE"
+      ]
+    },
+    {
+      "key": "lpu",
+      "fullName": "Lyceum of the Philippines University",
+      "abbreviation": "LPU",
+      "aliases": [
+        "LPU",
+        "LYCEUM",
+        "LYCEUM OF THE PHILIPPINES UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "LPU",
+          "normalized": "LPU"
+        },
+        {
+          "alias": "LYCEUM",
+          "normalized": "LYCEUM"
+        },
+        {
+          "alias": "LYCEUM OF THE PHILIPPINES UNIVERSITY",
+          "normalized": "LYCEUM OF THE PHILIPPINES UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "LPU"
+      ],
+      "genericAliases": [
+        "LPU",
+        "LYCEUM"
+      ]
+    },
+    {
+      "key": "uphsd",
+      "fullName": "University of Perpetual Help System DALTA",
+      "abbreviation": "UPHSD",
+      "aliases": [
+        "UPHSD",
+        "PERPETUAL",
+        "UNIVERSITY OF PERPETUAL HELP",
+        "UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "UPHSD",
+          "normalized": "UPHSD"
+        },
+        {
+          "alias": "PERPETUAL",
+          "normalized": "PERPETUAL"
+        },
+        {
+          "alias": "UNIVERSITY OF PERPETUAL HELP",
+          "normalized": "UNIVERSITY OF PERPETUAL HELP"
+        },
+        {
+          "alias": "UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA",
+          "normalized": "UNIVERSITY OF PERPETUAL HELP SYSTEM DALTA"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "UPHSD",
+        "PERPETUAL"
+      ]
+    },
+    {
+      "key": "sbu",
+      "fullName": "San Beda University",
+      "abbreviation": "SBU",
+      "aliases": [
+        "SBU",
+        "SAN BEDA",
+        "SAN BEDA UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "SBU",
+          "normalized": "SBU"
+        },
+        {
+          "alias": "SAN BEDA",
+          "normalized": "SAN BEDA"
+        },
+        {
+          "alias": "SAN BEDA UNIVERSITY",
+          "normalized": "SAN BEDA UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "SBU"
+      ],
+      "genericAliases": [
+        "SBU",
+        "SAN BEDA"
+      ]
+    },
+    {
+      "key": "csjl",
+      "fullName": "Colegio de San Juan de Letran",
+      "abbreviation": "CSJL",
+      "aliases": [
+        "CSJL",
+        "LETRAN",
+        "COLEGIO DE SAN JUAN DE LETRAN"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "CSJL",
+          "normalized": "CSJL"
+        },
+        {
+          "alias": "LETRAN",
+          "normalized": "LETRAN"
+        },
+        {
+          "alias": "COLEGIO DE SAN JUAN DE LETRAN",
+          "normalized": "COLEGIO DE SAN JUAN DE LETRAN"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "CSJL",
+        "LETRAN"
+      ]
+    },
+    {
+      "key": "sscr",
+      "fullName": "San Sebastian College-Recoletos",
+      "abbreviation": "SSCR",
+      "aliases": [
+        "SSCR",
+        "SSC-R",
+        "SAN SEBASTIAN",
+        "SAN SEBASTIAN COLLEGE",
+        "SAN SEBASTIAN COLLEGE-RECOLETOS"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "SSCR",
+          "normalized": "SSCR"
+        },
+        {
+          "alias": "SSC-R",
+          "normalized": "SSC-R"
+        },
+        {
+          "alias": "SAN SEBASTIAN",
+          "normalized": "SAN SEBASTIAN"
+        },
+        {
+          "alias": "SAN SEBASTIAN COLLEGE",
+          "normalized": "SAN SEBASTIAN COLLEGE"
+        },
+        {
+          "alias": "SAN SEBASTIAN COLLEGE-RECOLETOS",
+          "normalized": "SAN SEBASTIAN COLLEGE-RECOLETOS"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "SSCR"
+      ]
+    },
+    {
+      "key": "au",
+      "fullName": "Arellano University",
+      "abbreviation": "AU",
+      "aliases": [
+        "AU",
+        "ARELLANO",
+        "ARELLANO UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "AU",
+          "normalized": "AU"
+        },
+        {
+          "alias": "ARELLANO",
+          "normalized": "ARELLANO"
+        },
+        {
+          "alias": "ARELLANO UNIVERSITY",
+          "normalized": "ARELLANO UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "AU"
+      ],
+      "genericAliases": [
+        "AU"
+      ]
+    },
+    {
+      "key": "jru",
+      "fullName": "Jose Rizal University",
+      "abbreviation": "JRU",
+      "aliases": [
+        "JRU",
+        "JOSE RIZAL UNIVERSITY",
+        "JOSE RIZAL",
+        "JOSÉ RIZAL UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "JRU",
+          "normalized": "JRU"
+        },
+        {
+          "alias": "JOSE RIZAL UNIVERSITY",
+          "normalized": "JOSE RIZAL UNIVERSITY"
+        },
+        {
+          "alias": "JOSE RIZAL",
+          "normalized": "JOSE RIZAL"
+        },
+        {
+          "alias": "JOSÉ RIZAL UNIVERSITY",
+          "normalized": "JOSÉ RIZAL UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "JRU"
+      ],
+      "genericAliases": [
+        "JRU"
+      ]
+    },
+    {
+      "key": "mapua",
+      "fullName": "Mapua University",
+      "abbreviation": "MU",
+      "aliases": [
+        "MU",
+        "MAPUA",
+        "MAPUA UNIVERSITY",
+        "MAPÚA UNIVERSITY"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "MU",
+          "normalized": "MU"
+        },
+        {
+          "alias": "MAPUA",
+          "normalized": "MAPUA"
+        },
+        {
+          "alias": "MAPUA UNIVERSITY",
+          "normalized": "MAPUA UNIVERSITY"
+        },
+        {
+          "alias": "MAPÚA UNIVERSITY",
+          "normalized": "MAPÚA UNIVERSITY"
+        }
+      ],
+      "shortAliases": [
+        "MU"
+      ],
+      "genericAliases": [
+        "MU"
+      ]
+    },
+    {
+      "key": "san-beda-alabang-spartans",
+      "fullName": "San Beda Alabang Spartans",
+      "abbreviation": "San Beda Alabang Spartans",
+      "aliases": [
+        "SAN BEDA ALABANG SPARTANS"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "SAN BEDA ALABANG SPARTANS",
+          "normalized": "SAN BEDA ALABANG SPARTANS"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": []
+    },
+    {
+      "key": "smile-360-bullies",
+      "fullName": "SMILE 360 BULLIES",
+      "abbreviation": "SMILE 360 BULLIES",
+      "aliases": [
+        "SMILE 360 BULLIES",
+        "SMILE 360 BULLIES 16 U",
+        "SMILE 360 BULLIES 16U",
+        "SMILE 360"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "SMILE 360 BULLIES",
+          "normalized": "SMILE 360 BULLIES"
+        },
+        {
+          "alias": "SMILE 360 BULLIES 16 U",
+          "normalized": "SMILE 360 BULLIES 16 U"
+        },
+        {
+          "alias": "SMILE 360 BULLIES 16U",
+          "normalized": "SMILE 360 BULLIES"
+        },
+        {
+          "alias": "SMILE 360",
+          "normalized": "SMILE 360"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": []
+    },
+    {
+      "key": "san-pedro-spartans",
+      "fullName": "San Pedro Spartans",
+      "abbreviation": "San Pedro Spartans",
+      "aliases": [
+        "SPARTANS",
+        "SPARTANS 16U",
+        "SPARTANS 16 U",
+        "SAN PEDRO SPARTANS"
+      ],
+      "normalizedAliases": [
+        {
+          "alias": "SPARTANS",
+          "normalized": "SPARTANS"
+        },
+        {
+          "alias": "SPARTANS 16U",
+          "normalized": "SPARTANS"
+        },
+        {
+          "alias": "SPARTANS 16 U",
+          "normalized": "SPARTANS 16 U"
+        },
+        {
+          "alias": "SAN PEDRO SPARTANS",
+          "normalized": "SAN PEDRO SPARTANS"
+        }
+      ],
+      "shortAliases": [],
+      "genericAliases": [
+        "SPARTANS",
+        "SPARTANS 16U"
+      ]
+    }
+  ],
+  "duplicateNormalizedAliases": [
+    {
+      "normalized": "SMILE 360 BULLIES",
+      "owners": [
+        "smile-360-bullies",
+        "smile-360-bullies"
+      ]
+    },
+    {
+      "normalized": "SPARTANS",
+      "owners": [
+        "san-pedro-spartans",
+        "san-pedro-spartans"
+      ]
+    }
+  ],
+  "duplicateAbbreviations": [],
+  "reviewSchoolResults": [
+    {
+      "input": "Ateneo de Manila University",
+      "normalized": "ATENEO DE MANILA UNIVERSITY",
+      "programKey": "admu",
+      "programFullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "viaGetProgramDisplayName": "Ateneo de Manila University"
+    },
+    {
+      "input": "Ateneo de Manila High School",
+      "normalized": "ATENEO DE MANILA",
+      "programKey": "admu",
+      "programFullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "viaGetProgramDisplayName": "Ateneo de Manila University"
+    },
+    {
+      "input": "Ateneo Grade School",
+      "normalized": "ATENEO GRADE SCHOOL",
+      "programKey": "admu",
+      "programFullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "viaGetProgramDisplayName": "Ateneo de Manila University"
+    },
+    {
+      "input": "Ateneo de Naga",
+      "normalized": "ATENEO DE NAGA",
+      "programKey": "admu",
+      "programFullName": "Ateneo de Manila University",
+      "abbreviation": "ADMU",
+      "viaGetProgramDisplayName": "Ateneo de Manila University"
+    },
+    {
+      "input": "De La Salle Santiago Zobel",
+      "normalized": "DE LA SALLE SANTIAGO ZOBEL",
+      "programKey": "dlsz",
+      "programFullName": "De La Salle Santiago Zobel",
+      "abbreviation": "DLSZ",
+      "viaGetProgramDisplayName": "De La Salle Santiago Zobel"
+    },
+    {
+      "input": "La Salle Green Hills",
+      "normalized": "LA SALLE GREEN HILLS",
+      "programKey": "lsgh",
+      "programFullName": "La Salle Green Hills",
+      "abbreviation": "LSGH",
+      "viaGetProgramDisplayName": "La Salle Green Hills"
+    },
+    {
+      "input": "De La Salle University",
+      "normalized": "DE LA SALLE UNIVERSITY",
+      "programKey": "de-la-salle-university",
+      "programFullName": "De La Salle University",
+      "abbreviation": "De La Salle University",
+      "viaGetProgramDisplayName": "De La Salle University"
+    },
+    {
+      "input": "De La Salle Lipa",
+      "normalized": "DE LA SALLE LIPA",
+      "programKey": "de-la-salle-lipa",
+      "programFullName": "De La Salle Lipa",
+      "abbreviation": "De La Salle Lipa",
+      "viaGetProgramDisplayName": "De La Salle Lipa"
+    },
+    {
+      "input": "De La Salle Araneta",
+      "normalized": "DE LA SALLE ARANETA",
+      "programKey": "de-la-salle-araneta",
+      "programFullName": "De La Salle Araneta",
+      "abbreviation": "De La Salle Araneta",
+      "viaGetProgramDisplayName": "De La Salle Araneta"
+    },
+    {
+      "input": "College of Saint Benilde",
+      "normalized": "COLLEGE OF SAINT BENILDE",
+      "programKey": "csb",
+      "programFullName": "College of Saint Benilde",
+      "abbreviation": "CSB",
+      "viaGetProgramDisplayName": "College of Saint Benilde"
+    },
+    {
+      "input": "San Beda University",
+      "normalized": "SAN BEDA UNIVERSITY",
+      "programKey": "sbu",
+      "programFullName": "San Beda University",
+      "abbreviation": "SBU",
+      "viaGetProgramDisplayName": "San Beda University"
+    },
+    {
+      "input": "San Beda Alabang",
+      "normalized": "SAN BEDA ALABANG",
+      "programKey": "sbu",
+      "programFullName": "San Beda University",
+      "abbreviation": "SBU",
+      "viaGetProgramDisplayName": "San Beda University"
+    },
+    {
+      "input": "San Beda Rizal",
+      "normalized": "SAN BEDA RIZAL",
+      "programKey": "sbu",
+      "programFullName": "San Beda University",
+      "abbreviation": "SBU",
+      "viaGetProgramDisplayName": "San Beda University"
+    },
+    {
+      "input": "San Beda Alabang Spartans",
+      "normalized": "SAN BEDA ALABANG SPARTANS",
+      "programKey": "san-beda-alabang-spartans",
+      "programFullName": "San Beda Alabang Spartans",
+      "abbreviation": "San Beda Alabang Spartans",
+      "viaGetProgramDisplayName": "San Beda Alabang Spartans"
+    },
+    {
+      "input": "Xavier School",
+      "normalized": "XAVIER SCHOOL",
+      "programKey": "xavier-school",
+      "programFullName": "Xavier School",
+      "abbreviation": "Xavier School",
+      "viaGetProgramDisplayName": "Xavier School"
+    },
+    {
+      "input": "Xavier School Nuvali",
+      "normalized": "XAVIER SCHOOL NUVALI",
+      "programKey": "xavier-school-nuvali",
+      "programFullName": "Xavier School Nuvali",
+      "abbreviation": "Xavier School Nuvali",
+      "viaGetProgramDisplayName": "Xavier School Nuvali"
+    },
+    {
+      "input": "Chiang Kai Shek College",
+      "normalized": "CHIANG KAI SHEK COLLEGE",
+      "programKey": "chiang-kai-shek-college",
+      "programFullName": "Chiang Kai Shek College",
+      "abbreviation": "Chiang Kai Shek College",
+      "viaGetProgramDisplayName": "Chiang Kai Shek College"
+    },
+    {
+      "input": "National University",
+      "normalized": "NATIONAL UNIVERSITY",
+      "programKey": "nuns",
+      "programFullName": "National University Nazareth School",
+      "abbreviation": "NUNS",
+      "viaGetProgramDisplayName": "National University Nazareth School"
+    },
+    {
+      "input": "National University Nazareth School",
+      "normalized": "NATIONAL UNIVERSITY NAZARETH SCHOOL",
+      "programKey": "nuns",
+      "programFullName": "National University Nazareth School",
+      "abbreviation": "NUNS",
+      "viaGetProgramDisplayName": "National University Nazareth School"
+    },
+    {
+      "input": "NU Bullpups",
+      "normalized": "NU BULLPUPS",
+      "programKey": "nu-bullpups",
+      "programFullName": "NU",
+      "abbreviation": "NU",
+      "viaGetProgramDisplayName": "NU"
+    },
+    {
+      "input": "Sacred Heart Academy",
+      "normalized": "SACRED HEART ACADEMY",
+      "programKey": "sacred-heart-academy",
+      "programFullName": "Sacred Heart Academy",
+      "abbreviation": "Sacred Heart Academy",
+      "viaGetProgramDisplayName": "Sacred Heart Academy"
+    },
+    {
+      "input": "Sacred Heart School-Ateneo de Cebu",
+      "normalized": "SACRED HEART SCHOOL-ATENEO DE CEBU",
+      "programKey": "sacred-heart-school-ateneo-de-cebu",
+      "programFullName": "Sacred Heart School-Ateneo de Cebu",
+      "abbreviation": "Sacred Heart School-Ateneo de Cebu",
+      "viaGetProgramDisplayName": "Sacred Heart School-Ateneo de Cebu"
+    },
+    {
+      "input": "Hope Christian High School",
+      "normalized": "HOPE CHRISTIAN",
+      "programKey": "hope-christian",
+      "programFullName": "Hope Christian High School",
+      "abbreviation": "Hope Christian High School",
+      "viaGetProgramDisplayName": "Hope Christian High School"
+    },
+    {
+      "input": "Immaculate Conception Academy",
+      "normalized": "IMMACULATE CONCEPTION ACADEMY",
+      "programKey": "immaculate-conception-academy",
+      "programFullName": "Immaculate Conception Academy",
+      "abbreviation": "Immaculate Conception Academy",
+      "viaGetProgramDisplayName": "Immaculate Conception Academy"
+    },
+    {
+      "input": "ICA Greenhills",
+      "normalized": "ICA GREENHILLS",
+      "programKey": "ica-greenhills",
+      "programFullName": "ICA Greenhills",
+      "abbreviation": "ICA Greenhills",
+      "viaGetProgramDisplayName": "ICA Greenhills"
+    },
+    {
+      "input": "Miriam College",
+      "normalized": "MIRIAM COLLEGE",
+      "programKey": "miriam-college",
+      "programFullName": "Miriam College",
+      "abbreviation": "Miriam College",
+      "viaGetProgramDisplayName": "Miriam College"
+    },
+    {
+      "input": "Assumption College San Lorenzo",
+      "normalized": "ASSUMPTION COLLEGE SAN LORENZO",
+      "programKey": "assumption-college-san-lorenzo",
+      "programFullName": "Assumption College San Lorenzo",
+      "abbreviation": "Assumption College San Lorenzo",
+      "viaGetProgramDisplayName": "Assumption College San Lorenzo"
+    },
+    {
+      "input": "Assumption Iloilo",
+      "normalized": "ASSUMPTION ILOILO",
+      "programKey": "assumption-iloilo",
+      "programFullName": "Assumption Iloilo",
+      "abbreviation": "Assumption Iloilo",
+      "viaGetProgramDisplayName": "Assumption Iloilo"
+    },
+    {
+      "input": "FEU Diliman",
+      "normalized": "FEU DILIMAN",
+      "programKey": "feu-d",
+      "programFullName": "Far Eastern University Diliman",
+      "abbreviation": "FEU-D",
+      "viaGetProgramDisplayName": "Far Eastern University Diliman"
+    },
+    {
+      "input": "Far Eastern University",
+      "normalized": "FAR EASTERN UNIVERSITY",
+      "programKey": "feu",
+      "programFullName": "Far Eastern University",
+      "abbreviation": "FEU",
+      "viaGetProgramDisplayName": "Far Eastern University"
+    },
+    {
+      "input": "University of the Philippines",
+      "normalized": "UNIVERSITY OF THE PHILIPPINES",
+      "programKey": "university-of-the-philippines",
+      "programFullName": "University of the Philippines",
+      "abbreviation": "University of the Philippines",
+      "viaGetProgramDisplayName": "University of the Philippines"
+    },
+    {
+      "input": "UP Integrated School",
+      "normalized": "UP INTEGRATED SCHOOL",
+      "programKey": "up-integrated-school",
+      "programFullName": "UP",
+      "abbreviation": "UP",
+      "viaGetProgramDisplayName": "UP"
+    },
+    {
+      "input": "Blue Eaglelets",
+      "normalized": "BLUE EAGLELETS",
+      "programKey": "blue-eaglelets",
+      "programFullName": "Blue Eaglelets",
+      "abbreviation": "Blue Eaglelets",
+      "viaGetProgramDisplayName": "Blue Eaglelets"
+    },
+    {
+      "input": "Lady Eaglelets",
+      "normalized": "LADY EAGLELETS",
+      "programKey": "lady-eaglelets",
+      "programFullName": "Lady Eaglelets",
+      "abbreviation": "Lady Eaglelets",
+      "viaGetProgramDisplayName": "Lady Eaglelets"
+    },
+    {
+      "input": "Green Hills",
+      "normalized": "GREEN HILLS",
+      "programKey": "lsgh",
+      "programFullName": "La Salle Green Hills",
+      "abbreviation": "LSGH",
+      "viaGetProgramDisplayName": "La Salle Green Hills"
+    },
+    {
+      "input": "LSGH Greenies",
+      "normalized": "LSGH GREENIES",
+      "programKey": "lsgh",
+      "programFullName": "La Salle Green Hills",
+      "abbreviation": "LSGH",
+      "viaGetProgramDisplayName": "La Salle Green Hills"
+    },
+    {
+      "input": "Zobel Junior Archers",
+      "normalized": "ZOBEL JRS ARCHERS",
+      "programKey": "dlsz",
+      "programFullName": "De La Salle Santiago Zobel",
+      "abbreviation": "DLSZ",
+      "viaGetProgramDisplayName": "De La Salle Santiago Zobel"
+    },
+    {
+      "input": "Spartans",
+      "normalized": "SPARTANS",
+      "programKey": "san-pedro-spartans",
+      "programFullName": "San Pedro Spartans",
+      "abbreviation": "San Pedro Spartans",
+      "viaGetProgramDisplayName": "San Pedro Spartans"
+    },
+    {
+      "input": "Spartans 16U",
+      "normalized": "SPARTANS",
+      "programKey": "san-pedro-spartans",
+      "programFullName": "San Pedro Spartans",
+      "abbreviation": "San Pedro Spartans",
+      "viaGetProgramDisplayName": "San Pedro Spartans"
+    },
+    {
+      "input": "Benilde",
+      "normalized": "BENILDE",
+      "programKey": "csb",
+      "programFullName": "College of Saint Benilde",
+      "abbreviation": "CSB",
+      "viaGetProgramDisplayName": "College of Saint Benilde"
+    },
+    {
+      "input": "Letran",
+      "normalized": "LETRAN",
+      "programKey": "csjl",
+      "programFullName": "Colegio de San Juan de Letran",
+      "abbreviation": "CSJL",
+      "viaGetProgramDisplayName": "Colegio de San Juan de Letran"
+    },
+    {
+      "input": "Perpetual Help",
+      "normalized": "PERPETUAL HELP",
+      "programKey": "uphsd",
+      "programFullName": "University of Perpetual Help System DALTA",
+      "abbreviation": "UPHSD",
+      "viaGetProgramDisplayName": "University of Perpetual Help System DALTA"
+    },
+    {
+      "input": "Lyceum",
+      "normalized": "LYCEUM",
+      "programKey": "lpu",
+      "programFullName": "Lyceum of the Philippines University",
+      "abbreviation": "LPU",
+      "viaGetProgramDisplayName": "Lyceum of the Philippines University"
+    }
+  ],
+  "misclassifiedReviewSchools": [
+    {
+      "probe": "San Beda Alabang",
+      "expectedKey": "san-beda-alabang-spartans",
+      "matchedKey": "sbu",
+      "matchedFullName": "San Beda University",
+      "priority": "High",
+      "reason": "Expected san-beda-alabang-spartans, got sbu"
+    },
+    {
+      "probe": "NU Bullpups",
+      "expectedKey": "nuns",
+      "matchedKey": "nu-bullpups",
+      "matchedFullName": "NU",
+      "priority": "High",
+      "reason": "Expected nuns, got nu-bullpups"
+    }
+  ],
+  "crossAliasSubstringHits": [
+    {
+      "alias": "FAR EASTERN UNIVERSITY",
+      "aliasRule": "feu",
+      "probe": "FAR EASTERN UNIVERSITY DILIMAN",
+      "matchedRule": "feu-d",
+      "matchedFullName": "Far Eastern University Diliman"
+    },
+    {
+      "alias": "SAN BEDA",
+      "aliasRule": "sbu",
+      "probe": "SAN BEDA ALABANG SPARTANS",
+      "matchedRule": "san-beda-alabang-spartans",
+      "matchedFullName": "San Beda Alabang Spartans"
+    },
+    {
+      "alias": "SPARTANS",
+      "aliasRule": "san-pedro-spartans",
+      "probe": "SAN BEDA ALABANG SPARTANS",
+      "matchedRule": "san-beda-alabang-spartans",
+      "matchedFullName": "San Beda Alabang Spartans"
+    },
+    {
+      "alias": "SPARTANS 16U",
+      "aliasRule": "san-pedro-spartans",
+      "probe": "SAN BEDA ALABANG SPARTANS",
+      "matchedRule": "san-beda-alabang-spartans",
+      "matchedFullName": "San Beda Alabang Spartans"
+    }
+  ],
+  "ambiguousRules": [
+    {
+      "rule": "admu",
+      "alias": "ATENEO",
+      "issue": "Generic — matches any Ateneo-branded school (Cebu, Naga, etc.)",
+      "priority": "Critical",
+      "recommendation": "Require ATENEO DE MANILA or drop generic ATENEO; add campus-specific rules if needed"
+    },
+    {
+      "rule": "admu",
+      "alias": "BLUE EAGLETS",
+      "issue": "Mascot-only — could appear in non-ADMU contexts",
+      "priority": "High",
+      "recommendation": "Keep only with ATENEO prefix aliases"
+    },
+    {
+      "rule": "admu",
+      "alias": "LADY EAGLETS",
+      "issue": "Mascot-only",
+      "priority": "High",
+      "recommendation": "Keep only with ATENEO prefix aliases"
+    },
+    {
+      "rule": "nuns",
+      "alias": "NU",
+      "issue": "Two-letter — matches unrelated NU tokens",
+      "priority": "High",
+      "recommendation": "Prefer NUNS; use NU only with NAZARETH or BULLPUPS context"
+    },
+    {
+      "rule": "nuns",
+      "alias": "NATIONAL UNIVERSITY",
+      "issue": "Collides with collegiate NU vs Nazareth School",
+      "priority": "Critical",
+      "recommendation": "Split collegiate NU from NUNS; add separate NU Manila rule if needed"
+    },
+    {
+      "rule": "upis",
+      "alias": "UP",
+      "issue": "Two-letter — extremely generic",
+      "priority": "Critical",
+      "recommendation": "Remove standalone UP; require UPIS or UNIVERSITY OF THE PHILIPPINES INTEGRATED SCHOOL"
+    },
+    {
+      "rule": "upis",
+      "alias": "UP FIGHTING MAROONS",
+      "issue": "Collegiate UP label on HS program rule",
+      "priority": "High",
+      "recommendation": "Move collegiate UP to separate rule or restrict to integrated school variants"
+    },
+    {
+      "rule": "sbu",
+      "alias": "SAN BEDA",
+      "issue": "Matches San Beda Alabang/Rizal/campus teams",
+      "priority": "High",
+      "recommendation": "Add SBU Mendiola-specific aliases; add San Beda Rizal / Alabang campus rules"
+    },
+    {
+      "rule": "san-pedro-spartans",
+      "alias": "SPARTANS",
+      "issue": "Generic mascot — San Beda Alabang also Spartans",
+      "priority": "Critical",
+      "recommendation": "Remove bare SPARTANS; require SAN PEDRO or SAN BEDA ALABANG prefix"
+    },
+    {
+      "rule": "san-beda-alabang-spartans",
+      "alias": "(missing)",
+      "issue": "Only one alias — bare SPARTANS routes to San Pedro",
+      "priority": "High",
+      "recommendation": "Add SAN BEDA ALABANG, SBU ALABANG, BEDAN SPARTANS"
+    },
+    {
+      "rule": "csb",
+      "alias": "BENILDE",
+      "issue": "Single-token mascot/name shared with CSB only but substring risk low",
+      "priority": "Low",
+      "recommendation": "Keep; monitor"
+    },
+    {
+      "rule": "lsgh",
+      "alias": "GREEN HILLS",
+      "issue": "Geographic name — Green Hills Mall/area",
+      "priority": "Medium",
+      "recommendation": "Prefer LA SALLE GREEN HILLS or LSGH as primary"
+    },
+    {
+      "rule": "feu",
+      "alias": "FAR EASTERN UNIVERSITY",
+      "issue": "Substring of FEU-D full alias",
+      "priority": "Medium",
+      "recommendation": "FEU-D longest-match should win for Diliman-specific strings"
+    },
+    {
+      "rule": "sscr",
+      "alias": "SAN SEBASTIAN",
+      "issue": "Could match San Sebastian parish schools",
+      "priority": "Medium",
+      "recommendation": "Prefer full SAN SEBASTIAN COLLEGE-RECOLETOS"
+    },
+    {
+      "rule": "uphsd",
+      "alias": "PERPETUAL",
+      "issue": "Generic — multiple Perpetual campuses",
+      "priority": "High",
+      "recommendation": "Require UPHSD or SYSTEM DALTA in alias"
+    },
+    {
+      "rule": "jru",
+      "alias": "JOSE RIZAL",
+      "issue": "Person name — not unique to JRU",
+      "priority": "Medium",
+      "recommendation": "Prefer JOSE RIZAL UNIVERSITY full string"
+    },
+    {
+      "rule": "mapua",
+      "alias": "MU",
+      "issue": "Two-letter abbreviation collision risk",
+      "priority": "Medium",
+      "recommendation": "Prefer MAPUA token in imports"
+    }
+  ],
+  "missingMajorSchools": [
+    {
+      "name": "Xavier School / Xavier Nuvali",
+      "priority": "High"
+    },
+    {
+      "name": "Chiang Kai Shek College",
+      "priority": "High"
+    },
+    {
+      "name": "Sacred Heart (multiple campuses)",
+      "priority": "Medium"
+    },
+    {
+      "name": "Hope Christian High School",
+      "priority": "Medium"
+    },
+    {
+      "name": "Immaculate Conception Academy (ICA)",
+      "priority": "High"
+    },
+    {
+      "name": "Miriam College",
+      "priority": "High"
+    },
+    {
+      "name": "Assumption (San Lorenzo / Iloilo)",
+      "priority": "High"
+    },
+    {
+      "name": "Ateneo de Cebu / other Ateneo campuses",
+      "priority": "High"
+    },
+    {
+      "name": "De La Salle Lipa / Araneta / University (collegiate)",
+      "priority": "High"
+    },
+    {
+      "name": "San Beda Rizal",
+      "priority": "Medium"
+    },
+    {
+      "name": "National University (collegiate, non-NUNS)",
+      "priority": "High"
+    },
+    {
+      "name": "DLSU (collegiate Taft)",
+      "priority": "Medium"
+    }
+  ],
+  "dbProgramMismatches": [
+    {
+      "dbFullName": "San Beda University - Rizal",
+      "dbAbbreviation": "SBU-R",
+      "dbType": "SCHOOL",
+      "resolvedKey": "sbu",
+      "resolvedDisplay": "San Beda University",
+      "mismatch": true
+    },
+    {
+      "dbFullName": "Smile 360 Bullies",
+      "dbAbbreviation": null,
+      "dbType": "CLUB",
+      "resolvedKey": "smile-360-bullies",
+      "resolvedDisplay": "SMILE 360 BULLIES",
+      "mismatch": true
+    },
+    {
+      "dbFullName": "JPM-TEC San Beda",
+      "dbAbbreviation": "JPM-TEC San Beda",
+      "dbType": "CLUB",
+      "resolvedKey": "sbu",
+      "resolvedDisplay": "San Beda University",
+      "mismatch": true
+    },
+    {
+      "dbFullName": "JMTG Medical Trading Infinite",
+      "dbAbbreviation": "JMTG Medical Trading Infinite",
+      "dbType": "CLUB",
+      "resolvedKey": "jmtg-medical-trading-infinite",
+      "resolvedDisplay": "JMTG",
+      "mismatch": true
+    },
+    {
+      "dbFullName": "Lev Construction Full Potential",
+      "dbAbbreviation": null,
+      "dbType": "CLUB",
+      "resolvedKey": "lev-construction-full-potential",
+      "resolvedDisplay": "LEV",
+      "mismatch": true
+    },
+    {
+      "dbFullName": "Lyceum of the Philippines University Cavite",
+      "dbAbbreviation": "LPU",
+      "dbType": "SCHOOL",
+      "resolvedKey": "lpu",
+      "resolvedDisplay": "Lyceum of the Philippines University",
+      "mismatch": true
+    }
+  ],
+  "dbTeamNameMismatches": [
+    {
+      "teamName": "Mapúa Red Robins",
+      "dbProgram": "Malayan High School of Science",
+      "resolvedFromTeamName": "Mapúa Red Robins",
+      "resolvedFromDbProgram": "Malayan High School of Science",
+      "teamNameMismatchDbProgram": true
+    },
+    {
+      "teamName": "FEU - Diliman Baby Tamaraws 16U",
+      "dbProgram": "Far Eastern University Diliman",
+      "resolvedFromTeamName": "Far Eastern University",
+      "resolvedFromDbProgram": "Far Eastern University Diliman",
+      "teamNameMismatchDbProgram": true
+    },
+    {
+      "teamName": "San Beda Red Cubs",
+      "dbProgram": "San Beda University - Rizal",
+      "resolvedFromTeamName": "San Beda University",
+      "resolvedFromDbProgram": "San Beda University",
+      "teamNameMismatchDbProgram": true
+    },
+    {
+      "teamName": "LPU Junior Pirates",
+      "dbProgram": "Lyceum of the Philippines University Cavite",
+      "resolvedFromTeamName": "Lyceum of the Philippines University",
+      "resolvedFromDbProgram": "Lyceum of the Philippines University",
+      "teamNameMismatchDbProgram": true
+    },
+    {
+      "teamName": "JPM-TEC San Beda",
+      "dbProgram": "JPM-TEC San Beda",
+      "resolvedFromTeamName": "San Beda University",
+      "resolvedFromDbProgram": "San Beda University",
+      "teamNameMismatchDbProgram": true
+    },
+    {
+      "teamName": "FEU - Diliman Baby Tamaraws",
+      "dbProgram": "Far Eastern University Diliman",
+      "resolvedFromTeamName": "Far Eastern University",
+      "resolvedFromDbProgram": "Far Eastern University Diliman",
+      "teamNameMismatchDbProgram": true
+    }
+  ]
+}

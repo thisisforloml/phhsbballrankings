@@ -4,6 +4,7 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { loadProgramListRows } from "@/lib/admin/load-program-list";
 import { requireAdminUser } from "@/lib/portal-auth";
 
+import { ProgramCreateForm } from "./ProgramCreateForm";
 import { ProgramListClient } from "./ProgramListClient";
 
 export const dynamic = "force-dynamic";
@@ -22,9 +23,10 @@ export default async function AdminProgramsPage() {
       <AdminPageHeader
         eyebrow="Program Management"
         title="Schools, Clubs, and Team Programs"
-        description="Use this as the primary structure for school, club, and team organization. Program Management shows only teams currently used by official games or stats; inactive/internal records stay in Internal Team Records for audit review."
+        description="Create and manage school, club, and team programs. Assign teams explicitly instead of relying on alias inference."
         statusBadge={`${rows.length} records`}
       />
+      <ProgramCreateForm />
       <Suspense fallback={null}>
         <ProgramListClient programs={rows} />
       </Suspense>

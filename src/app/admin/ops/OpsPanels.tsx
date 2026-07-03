@@ -60,7 +60,7 @@ export function OpsAuditLog({
 
 export function OpsToolsLinks() {
   const links = [
-    { href: "/admin/data-health", label: "Data health" },
+    { href: "/admin/data-health", label: "Data Health Center" },
     { href: "/admin/data-health/player-duplicates", label: "Duplicate players" },
     { href: "/admin/intake", label: "Public intake queue" },
   ] as const;

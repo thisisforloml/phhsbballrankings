@@ -14,7 +14,6 @@ import { StarRating } from "@/components/ui";
 import { formatHeight } from "@/lib/format";
 import type { PlayerProfile } from "@/lib/player-profile-types";
 import { formatPublicRank, isPublicRankBand } from "@/lib/public-rank-display";
-import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 export const PLAYER_PROFILE_MAX_WIDTH = "max-w-[950px]";
 
@@ -48,7 +47,7 @@ function ageGroupLabel(ageGroup: PlayerProfile["ageGroup"]) {
 
 function schoolName(profile: PlayerProfile) {
   if (profile.schoolOverride?.trim()) return profile.schoolOverride.trim();
-  if (profile.currentTeam?.trim()) return getProgramDisplayName(profile.currentTeam);
+  if (profile.currentTeam?.trim()) return profile.currentTeam.trim();
   return null;
 }
 

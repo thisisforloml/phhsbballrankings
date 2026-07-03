@@ -7,7 +7,6 @@ import { formatHeight, getPlayerProfileHref } from "@/lib/format";
 import { formatBoardRank, isPublicRankBand } from "@/lib/public-rank-display";
 import type { NationalRankingRow } from "@/lib/rankings";
 import type { RankingSortKey, SortDirection } from "@/lib/rankings-url-state";
-import { getProgramDisplayName } from "@/lib/uaap-school-display";
 
 function positionLabel(position: string | null) {
   return position?.trim() || "Not listed";
@@ -18,7 +17,7 @@ function leagueLabel(row: NationalRankingRow) {
 }
 
 function schoolLabel(row: NationalRankingRow) {
-  return getProgramDisplayName(row.currentTeam) || row.currentTeam || "—";
+  return row.currentTeam?.trim() || "—";
 }
 
 type RankingTableProps = {

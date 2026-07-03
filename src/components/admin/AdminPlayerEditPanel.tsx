@@ -2,13 +2,19 @@
 
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { type ReactNode,useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 
-import { type UpdatePlayerBioState, updatePlayerRecruitment, updatePlayerSchool } from "@/app/admin/players/actions";
+import { loadAdminPlayerDuplicateCandidates, loadAdminPlayerIntegrity, type UpdatePlayerBioState, updatePlayerRecruitment } from "@/app/admin/players/actions";
 import { AdminFormFeedback } from "@/components/admin/AdminFormFeedback";
 import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
+import { PlayerDuplicateCandidatesPanel } from "@/components/admin/PlayerDuplicateCandidatesPanel";
+import { PlayerIntegrityPanel } from "@/components/admin/PlayerIntegrityPanel";
 import { PlayerPhotoCropper } from "@/components/admin/PlayerPhotoCropper";
+import { PlayerProgramTransferSection } from "@/components/admin/PlayerProgramTransferSection";
+import type { PlayerIntegrityReport } from "@/lib/admin/build-player-integrity-report";
+import type { PlayerProgramTransferHistoryRow } from "@/lib/admin/load-player-transfer-history";
+import type { PlayerDuplicateCandidateReport } from "@/lib/admin/player-duplicate-detection/types";
 import { slugify } from "@/lib/format";
 
 const initialFormState: UpdatePlayerBioState = { ok: false, message: "" };
@@ -27,6 +33,9 @@ export type ManagedPlayer = {
   hometown: string;
   region: string;
   currentProgramId: string | null;
+  currentProgramFullName: string | null;
+  parentGroupProgramFullName: string | null;
+  currentTeamName: string | null;
   position: string | null;
   heightCm: number | null;
   birthDate: string;
@@ -37,6 +46,7 @@ export type ManagedPlayer = {
   verifiedGameCount: number | null;
   commitmentStatus: "UNDECLARED" | "COMMITTED";
   committedUniversity: string | null;
+  transferHistory?: PlayerProgramTransferHistoryRow[];
 };
 
 const inputClassName =
@@ -112,21 +122,24 @@ export function PlayerAvatar({ photoUrl, name, size = "md" }: { photoUrl: string
 
 export function AdminPlayerEditPanel({
   player,
-  programs,
+  programOptions,
   formAction,
   state,
   onSaved,
 }: {
   player: ManagedPlayer;
-  programs: Array<{ id: string; fullName: string }>;
+  programOptions: Array<{ id: string; fullName: string; abbreviation?: string | null; type?: string }>;
   formAction: (payload: FormData) => void;
   state: UpdatePlayerBioState;
   onSaved?: () => void;
 }) {
-  const [activeTab, setActiveTab] = useState<"profile" | "recruiting" | "school">("profile");
-  const hasSchool = Boolean(player.currentProgramId);
-  const [schoolChangeMode, setSchoolChangeMode] = useState<"assign" | "transfer">(hasSchool ? "transfer" : "assign");
-  const [schoolState, schoolAction] = useFormState(updatePlayerSchool, initialFormState);
+  const [activeTab, setActiveTab] = useState<"profile" | "recruiting" | "integrity" | "duplicates">("profile");
+  const [integrityReport, setIntegrityReport] = useState<PlayerIntegrityReport | null>(null);
+  const [integrityLoading, setIntegrityLoading] = useState(false);
+  const [integrityError, setIntegrityError] = useState<string | null>(null);
+  const [duplicateReport, setDuplicateReport] = useState<PlayerDuplicateCandidateReport | null>(null);
+  const [duplicateLoading, setDuplicateLoading] = useState(false);
+  const [duplicateError, setDuplicateError] = useState<string | null>(null);
   const [recruitmentState, recruitmentAction] = useFormState(updatePlayerRecruitment, initialFormState);
   const [commitmentStatus, setCommitmentStatus] = useState<ManagedPlayer["commitmentStatus"]>(player.commitmentStatus);
   const initialHeight = cmToFeetInches(player.heightCm);
@@ -178,10 +191,6 @@ export function AdminPlayerEditPanel({
   }
 
   useEffect(() => {
-    setSchoolChangeMode(hasSchool ? "transfer" : "assign");
-  }, [player.id, hasSchool]);
-
-  useEffect(() => {
     setCommitmentStatus(player.commitmentStatus);
   }, [player.id, player.commitmentStatus]);
 
@@ -190,12 +199,67 @@ export function AdminPlayerEditPanel({
   }, [state.ok, onSaved]);
 
   useEffect(() => {
-    if (schoolState.ok) onSaved?.();
-  }, [schoolState.ok, onSaved]);
-
-  useEffect(() => {
     if (recruitmentState.ok) onSaved?.();
   }, [recruitmentState.ok, onSaved]);
+
+  useEffect(() => {
+    if (activeTab !== "integrity") return;
+
+    let cancelled = false;
+    setIntegrityLoading(true);
+    setIntegrityError(null);
+
+    void loadAdminPlayerIntegrity(player.id)
+      .then((report) => {
+        if (cancelled) return;
+        if (!report) {
+          setIntegrityError("Could not load integrity report for this player.");
+          setIntegrityReport(null);
+          return;
+        }
+        setIntegrityReport(report);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setIntegrityError("Could not load integrity report.");
+          setIntegrityReport(null);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setIntegrityLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeTab, player.id]);
+
+  useEffect(() => {
+    if (activeTab !== "duplicates") return;
+
+    let cancelled = false;
+    setDuplicateLoading(true);
+    setDuplicateError(null);
+
+    void loadAdminPlayerDuplicateCandidates(player.id)
+      .then((report) => {
+        if (cancelled) return;
+        setDuplicateReport(report);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setDuplicateError("Could not load duplicate candidates.");
+          setDuplicateReport(null);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setDuplicateLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeTab, player.id]);
 
   return (
     <div className="overflow-hidden rounded-lg border border-surface-200 bg-white shadow-sm">
@@ -251,7 +315,8 @@ export function AdminPlayerEditPanel({
           {[
             { id: "profile" as const, label: "Profile" },
             { id: "recruiting" as const, label: "Recruiting" },
-            { id: "school" as const, label: "Assign / Transfer" },
+            { id: "integrity" as const, label: "Integrity" },
+            { id: "duplicates" as const, label: "Duplicates" },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -270,6 +335,8 @@ export function AdminPlayerEditPanel({
       </div>
 
       <div className="max-h-[min(70vh,48rem)] overflow-y-auto bg-surface-50 p-5">
+        <PlayerProgramTransferSection player={player} programOptions={programOptions} onSaved={onSaved} />
+
         {activeTab === "profile" ? (
           <form action={formAction} className="grid gap-4" encType="multipart/form-data">
             <input type="hidden" name="playerId" value={player.id} />
@@ -437,87 +504,27 @@ export function AdminPlayerEditPanel({
 
             <AdminSaveButton label="Save recruitment status" className="w-fit" />
           </form>
-        ) : (
-          <section className="grid max-w-xl gap-4">
-            <div className="rounded-lg border border-surface-200 bg-white p-4">
-              <h3 className="font-semibold text-navy-900">Assign / Transfer school</h3>
-              <p className="mt-1 text-sm text-ink-600">
-                Assign sets a player&apos;s school when none is on record. Transfer moves them from one school to another. Club and team rosters are not changed. Game stats are never rewritten.
-              </p>
-            </div>
-            <AdminFormFeedback state={schoolState} />
-            <form action={schoolAction} className="grid gap-4 rounded-lg border border-surface-200 bg-white p-4">
-              <input type="hidden" name="playerId" value={player.id} />
-              <input type="hidden" name="schoolChangeMode" value={schoolChangeMode.toUpperCase()} />
-              {schoolChangeMode === "transfer" && player.currentProgramId ? (
-                <input type="hidden" name="fromProgramId" value={player.currentProgramId} />
-              ) : null}
-
-              <fieldset className="grid gap-2">
-                <legend className={labelClassName}>Action</legend>
-                <div className="flex flex-wrap gap-4">
-                  <label className="flex items-center gap-2 text-sm font-medium text-ink-800">
-                    <input
-                      type="radio"
-                      name="schoolChangeModeUi"
-                      checked={schoolChangeMode === "assign"}
-                      onChange={() => setSchoolChangeMode("assign")}
-                      disabled={hasSchool}
-                    />
-                    Assign school
-                  </label>
-                  <label className="flex items-center gap-2 text-sm font-medium text-ink-800">
-                    <input
-                      type="radio"
-                      name="schoolChangeModeUi"
-                      checked={schoolChangeMode === "transfer"}
-                      onChange={() => setSchoolChangeMode("transfer")}
-                      disabled={!hasSchool}
-                    />
-                    Transfer school
-                  </label>
-                </div>
-              </fieldset>
-
-              {schoolChangeMode === "transfer" ? <ReadonlyField label="Origin school" value={player.school || "Not assigned"} /> : null}
-
-              <label className="grid gap-1.5">
-                <span className={labelClassName}>{schoolChangeMode === "transfer" ? "Target school" : "School"}</span>
-                <select name="nextProgramId" defaultValue="" required className={inputClassName} key={`${player.id}-${schoolChangeMode}`}>
-                  <option value="" disabled>
-                    Select school
-                  </option>
-                  {programs
-                    .filter((program) => schoolChangeMode !== "transfer" || program.id !== player.currentProgramId)
-                    .map((program) => (
-                      <option key={program.id} value={program.id}>
-                        {program.fullName}
-                      </option>
-                    ))}
-                </select>
-              </label>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <label className="grid gap-1.5">
-                  <span className={labelClassName}>Effective date</span>
-                  <input name="effectiveDate" type="date" required className={inputClassName} />
-                </label>
-                <label className="grid gap-1.5">
-                  <span className={labelClassName}>Note</span>
-                  <input name="transferNote" maxLength={500} className={inputClassName} placeholder="Optional" />
-                </label>
-              </div>
-              <label className="flex items-start gap-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950">
-                <input type="checkbox" name="confirmSchoolChange" required className="mt-0.5" />
-                <span>
-                  {schoolChangeMode === "transfer"
-                    ? "I confirm this school transfer. Historical stats remain on their original teams."
-                    : "I confirm this school assignment. Historical stats remain on their original teams."}
-                </span>
-              </label>
-              <AdminSaveButton label={schoolChangeMode === "transfer" ? "Transfer school" : "Assign school"} className="w-fit" />
-            </form>
-          </section>
-        )}
+        ) : activeTab === "integrity" ? (
+          <div className="grid gap-4">
+            {integrityLoading ? (
+              <p className="text-sm text-ink-600">Loading integrity diagnostics…</p>
+            ) : integrityError ? (
+              <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">{integrityError}</p>
+            ) : integrityReport ? (
+              <PlayerIntegrityPanel report={integrityReport} />
+            ) : null}
+          </div>
+        ) : activeTab === "duplicates" ? (
+          <div className="grid gap-4">
+            {duplicateLoading ? (
+              <p className="text-sm text-ink-600">Loading duplicate candidates…</p>
+            ) : duplicateError ? (
+              <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">{duplicateError}</p>
+            ) : duplicateReport ? (
+              <PlayerDuplicateCandidatesPanel report={duplicateReport} />
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );

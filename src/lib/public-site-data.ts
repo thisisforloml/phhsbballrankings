@@ -6,9 +6,10 @@ import { cache } from "react";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 
 import { slugify } from "./format";
+import { collectGlobalRatedProspects } from "./home-featured-prospects";
 import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { prisma } from "./prisma";
-import { getHomeNationalBoardPreview, type NationalRankingRow } from "./rankings";
+import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
 
@@ -53,6 +54,8 @@ export type HomeData = {
   leader: HomeLeaderboardRow | null;
   boardLeaders: HomeLeaderboardRow[];
   weeklyBestPerformer: HomeLeaderboardRow | null;
+  /** Top-rated prospects across all age groups and genders; [0] is the homepage hero. */
+  globalTopProspects: HomeLeaderboardRow[];
   leaderboards: {
     boys: HomeLeaderboardRow[];
     girls: HomeLeaderboardRow[];
@@ -227,9 +230,11 @@ async function getBoardMovers(limit = 6): Promise<HomeRankMover[]> {
 export const getHomeData = cache(getHomeDataImpl);
 
 async function getHomeDataImpl(): Promise<HomeData> {
-  const rankings = await getHomeNationalBoardPreview();
-  const boysRows = rankings.snapshots.boys.rows.slice(0, 10) as HomeLeaderboardRow[];
-  const girlsRows = rankings.snapshots.girls.rows.slice(0, 10) as HomeLeaderboardRow[];
+  const rankings = await getLatestNationalRankings();
+  const u19 = rankings.snapshotsByAge.U19;
+  const boysRows = u19.boys.rows.slice(0, 10) as HomeLeaderboardRow[];
+  const girlsRows = u19.girls.rows.slice(0, 10) as HomeLeaderboardRow[];
+  const globalTopProspects = collectGlobalRatedProspects(rankings, 5);
   const officialCounts = await getOfficialTeamCompetitionCounts();
   const boardMovers = await getBoardMovers();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
@@ -246,13 +251,14 @@ async function getHomeDataImpl(): Promise<HomeData> {
 
   return {
     counts: {
-      rankedPlayers: rankings.snapshots.boys.totalRows + rankings.snapshots.girls.totalRows,
+      rankedPlayers: u19.boys.totalRows + u19.girls.totalRows,
       verifiedLeagues: officialCounts.verifiedLeagues,
       gamesLogged: officialCounts.gamesLogged
     },
     leader: allTopRows[0] ?? null,
     boardLeaders: allTopRows.slice(0, 6),
     weeklyBestPerformer,
+    globalTopProspects,
     leaderboards: {
       boys: boysRows,
       girls: girlsRows

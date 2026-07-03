@@ -22,7 +22,7 @@ type BoxScoreRow = {
   freeThrowsMade: number | null;
   freeThrowsAttempt: number | null;
   player: { displayName: string; slug?: string | null };
-  team: { name: string };
+  team: { name: string; displayName?: string };
 };
 
 type BoxScoreTotals = {
@@ -65,18 +65,20 @@ function ScoreCheck({ points, expected }: { points: number; expected: number }) 
 }
 
 export function BoxScoreTable({ team, rows, expectedScore, totals, showScoreCheck = false }: {
-  team: { id: string; name: string };
+  team: { id: string; name: string; displayName?: string };
   rows: BoxScoreRow[];
   expectedScore: number;
   totals: BoxScoreTotals;
   showScoreCheck?: boolean;
 }) {
+  const teamLabel = team.displayName ?? team.name;
+
   return (
     <article className="border border-line-500 bg-white">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line-500 p-5">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.12em] text-hardwood-600">Box Score</p>
-          <h2 className="mt-1 font-display text-3xl font-black leading-tight text-court-900">{team.name}</h2>
+          <h2 className="mt-1 font-display text-3xl font-black leading-tight text-court-900">{teamLabel}</h2>
         </div>
         <div className="flex flex-wrap gap-2">
           <span className="border border-court-900 bg-court-900 px-4 py-2 text-xs font-black uppercase tracking-[0.1em] text-white">{expectedScore} points</span>
@@ -95,7 +97,6 @@ export function BoxScoreTable({ team, rows, expectedScore, totals, showScoreChec
               <tr key={stat.id} className="border-b border-line-500 last:border-b-0">
                 <td className="py-3 pl-4 pr-3 font-black text-court-900">
                   {stat.player.slug ? <Link href={`/players/${stat.player.slug}`}>{stat.player.displayName}</Link> : stat.player.displayName}
-                  <small className="block text-xs font-semibold text-court-400">{stat.team.name}</small>
                 </td>
                 <td className="px-3 py-3">{minutes(stat.minutes)}</td>
                 <td className="px-3 py-3 font-black text-court-900">{stat.points}</td>

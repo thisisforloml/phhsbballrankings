@@ -1,8 +1,9 @@
-import { type Prisma,ProgramType } from "@prisma/client";
+import { type Prisma, ProgramType } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 import { resolveAutoRosterAssignment } from "@/lib/admin/auto-roster-assignment";
 import { invalidateAdminProgramMembershipCaches, invalidateAdminTeamsCaches } from "@/lib/admin/invalidate-admin-caches";
+import { operationalProgramWhere } from "@/lib/admin/program-role";
 import {
   resolveCurrentSchoolId,
   validateSchoolAssignmentInput,
@@ -63,9 +64,9 @@ export async function updatePlayerSchoolAssignment(input: SchoolAssignmentInput)
       }
     }),
     prisma.program.findFirst({
-      where: { id: input.nextProgramId, deletedAt: null, type: ProgramType.SCHOOL },
-      select: { id: true, fullName: true }
-    })
+      where: { id: input.nextProgramId, deletedAt: null, type: ProgramType.SCHOOL, ...operationalProgramWhere },
+      select: { id: true, fullName: true },
+    }),
   ]);
 
   if (!player) throw new Error("Player does not exist or has been deleted.");
