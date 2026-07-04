@@ -6,9 +6,8 @@ const primaryItems = [
   { href: "/admin", label: "Dashboard", key: "dashboard" },
   { href: "/admin/players", label: "Players", key: "players" },
   { href: "/admin/teams", label: "Teams", key: "teams" },
-  { href: "/admin/competitions", label: "Competitions", key: "competitions" },
+  { href: "/admin/leagues", label: "Leagues", key: "leagues" },
   { href: "/admin/programs", label: "Programs", key: "programs" },
-  { href: "/admin/imports", label: "Import Center", key: "imports" },
   { href: "/admin/submissions", label: "Game Stats", key: "submissions" },
   { href: "/admin/claims", label: "Profile Claims", key: "claims" },
   { href: "/admin/intake", label: "Public Intake", key: "intake" }

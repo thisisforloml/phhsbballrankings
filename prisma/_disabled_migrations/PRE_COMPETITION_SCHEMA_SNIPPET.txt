@@ -1,0 +1,14 @@
+# Pre-competition-management schema baseline (from commit 3430a1e)
+
+This documents the League / Season / Game models that production uses without
+the 20260703190000_competition_management migration.
+
+Competition Management adds (disabled for this release):
+- League: shortName, seasonType, country, sport, defaultAgeGroups, defaultGenders, status, website
+- Season: seasonNumber, isCurrent
+- Game: divisionId
+- Models: SeasonDivision, ImportRecord
+- Enums: CompetitionSeasonType, CompetitionSport, CompetitionStatus, ImportSourceType, ImportRecordStatus
+
+See prisma/_disabled_migrations/20260703190000_competition_management/migration.sql for the full SQL.
+See src/_disabled/competition-management/README.md for re-enable steps.

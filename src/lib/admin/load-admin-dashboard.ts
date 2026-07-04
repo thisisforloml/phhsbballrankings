@@ -151,9 +151,7 @@ async function loadAdminDashboardUncached(): Promise<AdminDashboardData> {
       },
     }),
     prisma.league.count({
-      where: {
-        OR: [{ deletedAt: { not: null } }, { status: "ARCHIVED" }],
-      },
+      where: { deletedAt: { not: null } },
     }),
     prisma.program.count({ where: { deletedAt: { not: null } } }),
     prisma.season.count({ where: { deletedAt: { not: null } } }),

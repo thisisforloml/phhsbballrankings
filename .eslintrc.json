@@ -16,5 +16,5 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   },
-  "ignorePatterns": [".next/", "node_modules/", "scripts/"]
+  "ignorePatterns": [".next/", "node_modules/", "scripts/", "src/_disabled/"]
 }

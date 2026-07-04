@@ -8,8 +8,7 @@ export function getAdminNavKey(pathname: string): AdminNavKey {
   if (pathname.startsWith("/admin/tools/submissions") || pathname.startsWith("/admin/tools/live-stats")) return "submissions";
   if (pathname.startsWith("/admin/players")) return "players";
   if (pathname.startsWith("/admin/teams")) return "teams";
-  if (pathname.startsWith("/admin/competitions") || pathname.startsWith("/admin/leagues")) return "competitions";
-  if (pathname.startsWith("/admin/imports")) return "imports";
+  if (pathname.startsWith("/admin/leagues")) return "leagues";
   if (pathname.startsWith("/admin/programs")) return "programs";
   if (pathname.startsWith("/admin/claims")) return "claims";
   if (pathname.startsWith("/admin/intake")) return "intake";

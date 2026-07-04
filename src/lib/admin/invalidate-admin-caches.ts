@@ -4,7 +4,6 @@ import { clearAdminLeaguesListCache } from "@/lib/admin/load-admin-leagues-list"
 import { clearAdminOpsPageCache } from "@/lib/admin/load-admin-ops-page-data";
 import { clearAdminPlayerFilterContextCache } from "@/lib/admin/load-admin-player-filter-context";
 import { clearAdminSubmissionQueueCache } from "@/lib/admin/load-admin-submission-queue";
-import { clearCompetitionListCache } from "@/lib/admin/load-competition-list";
 import { clearDataHealthCenterCache } from "@/lib/admin/load-data-health-center";
 import { clearManagedPlayerListPageCache } from "@/lib/admin/load-managed-player-list";
 import { clearManagedTeamsCache } from "@/lib/admin/load-managed-teams";
@@ -25,10 +24,9 @@ export function invalidateAdminSubmissionQueueCaches() {
   clearAdminSubmissionQueueCache();
 }
 
-/** /admin/competitions and legacy /admin/leagues list rows. */
+/** /admin/leagues list rows. */
 export function invalidateAdminLeaguesListCaches() {
   clearAdminLeaguesListCache();
-  clearCompetitionListCache();
 }
 
 /** /admin/ops signal counts and recent audit log rows. */

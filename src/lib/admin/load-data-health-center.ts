@@ -189,20 +189,13 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     programsDuplicateNames,
     programs,
     competitionsWithoutSeasons,
-    seasonsWithoutDivisions,
-    divisionsWithoutGames,
-    gamesWithoutDivision,
-    archivedCompetitionsWithCurrentSeason,
     playersVerifiedNoRating,
     multipleActiveRatings,
     snapshotInconsistencies,
     ratingPolicyMismatches,
     pendingImports,
     failedImports,
-    aliasSuggestionImports,
     duplicateSubmissions,
-    importDuplicateRecords,
-    importFailedRecords,
   ] = await Promise.all([
     prisma.player.count({ where: { deletedAt: null, currentProgramId: null } }),
     prisma.player.count({
@@ -316,29 +309,6 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     prisma.league.count({
       where: { deletedAt: null, seasons: { none: { deletedAt: null } } },
     }),
-    prisma.season.count({
-      where: { deletedAt: null, divisions: { none: { deletedAt: null } } },
-    }),
-    prisma.seasonDivision.count({
-      where: {
-        deletedAt: null,
-        games: { none: { deletedAt: null } },
-      },
-    }),
-    prisma.game.count({
-      where: { deletedAt: null, divisionId: null },
-    }),
-    prisma.season.count({
-      where: {
-        deletedAt: null,
-        isCurrent: true,
-        OR: [
-          { league: { deletedAt: { not: null } } },
-          { league: { status: "ARCHIVED" } },
-          { status: "ARCHIVED" },
-        ],
-      },
-    }),
     prisma.$queryRaw<Array<{ count: bigint }>>`
       SELECT COUNT(DISTINCT gs."playerId")::bigint AS count
       FROM game_stats gs
@@ -390,20 +360,7 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     prisma.submission.count({
       where: { ...activeSubmissionWhere, status: "REJECTED" },
     }),
-    prisma.importRecord.count({
-      where: {
-        deletedAt: null,
-        OR: [{ aliasSuggestionCount: { gt: 0 } }, { status: "ALIAS_SUGGESTIONS" }],
-      },
-    }),
     countDuplicateSubmissions(),
-    prisma.importRecord.count({
-      where: {
-        deletedAt: null,
-        OR: [{ status: "DUPLICATES" }, { duplicateCount: { gt: 0 } }],
-      },
-    }),
-    prisma.importRecord.count({ where: { deletedAt: null, status: "FAILED" } }),
   ]);
 
   const circularHierarchy = detectCircularHierarchy(programs);
@@ -449,13 +406,9 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     },
     {
       id: "competitions",
-      title: "Competitions",
+      title: "Leagues",
       issues: [
-        issue("competitions-without-seasons", "Competitions without seasons", competitionsWithoutSeasons, "warning", "/admin/competitions"),
-        issue("seasons-without-divisions", "Seasons without divisions", seasonsWithoutDivisions, "info", "/admin/competitions"),
-        issue("divisions-without-games", "Divisions without games", divisionsWithoutGames, "info", "/admin/competitions"),
-        issue("games-without-division", "Games without division", gamesWithoutDivision, "info", "/admin/competitions"),
-        issue("archived-current-season", "Archived competitions still marked current", archivedCompetitionsWithCurrentSeason, "critical", "/admin/competitions"),
+        issue("competitions-without-seasons", "Leagues without seasons", competitionsWithoutSeasons, "warning", "/admin/leagues"),
       ],
     },
     {
@@ -472,22 +425,9 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
       id: "imports",
       title: "Imports",
       issues: [
-        issue("pending-imports", "Pending imports", pendingImports, "warning", "/admin/imports"),
-        issue(
-          "failed-imports",
-          "Failed imports",
-          failedImports + importFailedRecords,
-          "critical",
-          "/admin/imports",
-        ),
-        issue("alias-suggestions", "Alias suggestions", aliasSuggestionImports, "info", "/admin/imports"),
-        issue(
-          "duplicate-submissions",
-          "Duplicate submissions",
-          Math.max(duplicateSubmissions, importDuplicateRecords),
-          "warning",
-          "/admin/imports",
-        ),
+        issue("pending-imports", "Pending imports", pendingImports, "warning", "/admin/submissions"),
+        issue("failed-imports", "Failed imports", failedImports, "critical", "/admin/submissions"),
+        issue("duplicate-submissions", "Duplicate submissions", duplicateSubmissions, "warning", "/admin/submissions"),
       ],
     },
   ];

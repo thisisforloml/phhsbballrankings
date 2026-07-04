@@ -87,12 +87,12 @@ function SummaryGrid({ summary }: { summary: AdminDashboardSummary }) {
     { label: "Players", value: summary.players, href: "/admin/players" },
     { label: "Teams", value: summary.teams, href: "/admin/teams" },
     { label: "Programs", value: summary.programs, href: "/admin/programs" },
-    { label: "Competitions", value: summary.competitions, href: "/admin/competitions" },
-    { label: "Seasons", value: summary.seasons, href: "/admin/competitions" },
+    { label: "Leagues", value: summary.competitions, href: "/admin/leagues" },
+    { label: "Seasons", value: summary.seasons, href: "/admin/leagues" },
     { label: "Games", value: summary.games, href: "/admin/submissions" },
-    { label: "Verified games", value: summary.verifiedGames, href: "/admin/competitions" },
+    { label: "Verified games", value: summary.verifiedGames, href: "/admin/leagues" },
     { label: "Ratings", value: summary.ratings, href: "/admin/team-ratings" },
-    { label: "Imports", value: summary.imports, href: "/admin/imports" },
+    { label: "Imports", value: summary.imports, href: "/admin/submissions" },
   ];
 
   return (
@@ -108,7 +108,7 @@ function AttentionPanel({ attention }: { attention: AdminDashboardAttention }) {
   return (
     <Panel title="Needs attention">
       <div className="grid gap-2">
-        <AttentionRow label="Pending imports" value={attention.pendingImports} href="/admin/imports" tone="warning" />
+        <AttentionRow label="Pending imports" value={attention.pendingImports} href="/admin/submissions" tone="warning" />
         <AttentionRow
           label="Duplicate candidates"
           value={attention.duplicateCandidates}
@@ -154,8 +154,8 @@ function RecentImports({ rows }: { rows: AdminDashboardRecentImport[] }) {
       ) : (
         <p className="text-sm text-ink-500">No imports yet.</p>
       )}
-      <Link href="/admin/imports" prefetch={false} className="mt-3 inline-block text-sm font-semibold text-orange-700">
-        Open Import Center
+      <Link href="/admin/submissions" prefetch={false} className="mt-3 inline-block text-sm font-semibold text-orange-700">
+        Open Game Stats
       </Link>
     </Panel>
   );
