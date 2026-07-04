@@ -303,23 +303,28 @@ function AnimatedTrendPath({
     let frameId = 0;
     let timeoutId: number | undefined;
 
+    // Firefox will not interpolate stroke-dashoffset unless start/end units match
+    // and the start state is flushed (Chrome commits via paint; Firefox often batches).
+    const startOffset = `${length}px`;
+
     if (dashed) {
       path.style.transition = "none";
-      path.style.strokeDasharray = `${length}`;
-      path.style.strokeDashoffset = `${length}`;
+      path.style.strokeDasharray = startOffset;
+      path.style.strokeDashoffset = startOffset;
       path.style.opacity = "0.35";
+      void path.getBoundingClientRect();
 
       frameId = requestAnimationFrame(() => {
         lastDrawnKeyRef.current = animateKey;
         path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
-        path.style.strokeDashoffset = "0";
+        path.style.strokeDashoffset = "0px";
         path.style.opacity = "0.9";
 
         timeoutId = window.setTimeout(() => {
           if (pathRef.current !== path) return;
           path.style.transition = "none";
           path.style.strokeDasharray = "8 6";
-          path.style.strokeDashoffset = "0";
+          path.style.strokeDashoffset = "0px";
         }, 920);
       });
 
@@ -330,14 +335,15 @@ function AnimatedTrendPath({
     }
 
     path.style.transition = "none";
-    path.style.strokeDasharray = `${length}`;
-    path.style.strokeDashoffset = `${length}`;
+    path.style.strokeDasharray = startOffset;
+    path.style.strokeDashoffset = startOffset;
     path.style.opacity = "0.35";
+    void path.getBoundingClientRect();
 
     frameId = requestAnimationFrame(() => {
       lastDrawnKeyRef.current = animateKey;
       path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
-      path.style.strokeDashoffset = "0";
+      path.style.strokeDashoffset = "0px";
       path.style.opacity = "1";
     });
 
