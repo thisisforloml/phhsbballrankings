@@ -1,5 +1,5 @@
-import { PublicSiteLoading } from "@/components/public/PublicSiteLoading";
+import { PublicPageLoading } from "@/components/loading";
 
 export default function SiteLoading() {
-  return <PublicSiteLoading />;
+  return <PublicPageLoading />;
 }
