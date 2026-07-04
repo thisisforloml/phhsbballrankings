@@ -296,19 +296,14 @@ function AnimatedTrendPath({
     const length = path.getTotalLength();
     const shouldAnimate = animateKey > lastDrawnKeyRef.current;
 
+    // Effect can re-run after rAF has already started the CSS transition (e.g. when
+    // `d` changes). Forcing the final styles here kills the in-flight animation.
+    if (!shouldAnimate) return;
+
     let frameId = 0;
     let timeoutId: number | undefined;
 
     if (dashed) {
-      if (!shouldAnimate) {
-        path.style.transition = "none";
-        path.style.strokeDasharray = "8 6";
-        path.style.strokeDashoffset = "0";
-        path.style.opacity = "0.9";
-        lastDrawnKeyRef.current = animateKey;
-        return;
-      }
-
       path.style.transition = "none";
       path.style.strokeDasharray = `${length}`;
       path.style.strokeDashoffset = `${length}`;
@@ -336,13 +331,6 @@ function AnimatedTrendPath({
 
     path.style.transition = "none";
     path.style.strokeDasharray = `${length}`;
-
-    if (!shouldAnimate) {
-      path.style.strokeDashoffset = "0";
-      path.style.opacity = "1";
-      return;
-    }
-
     path.style.strokeDashoffset = `${length}`;
     path.style.opacity = "0.35";
 
