@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { PublicPageShell } from "@/components/public/PublicPageShell";
 import { regions } from "@/lib/mock-data";
 
 const coverageOptions = ["U13 Boys", "U13 Girls", "U16 Boys", "U16 Girls", "U19 Boys", "U19 Girls"];
@@ -11,7 +12,7 @@ export default function PartnerPage() {
   const [statusEmail, setStatusEmail] = useState("");
 
   return (
-    <main className="bg-surface-50 pb-20">
+    <PublicPageShell className="bg-surface-50 pb-20 pt-0">
       <section className="hero-brand pt-32 text-white">
         <div className="container-px py-14">
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">League Partnership</p>
@@ -66,6 +67,6 @@ We handle the rankings. You focus on the game.`}</p>
           {statusEmail ? <p className="mt-4 rounded-md bg-surface-100 p-3 text-ink-600">Pending</p> : null}
         </section>
       </section>
-    </main>
+    </PublicPageShell>
   );
 }

@@ -1,7 +1,8 @@
 ﻿"use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useEffect } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+
+import { PublicPageShell } from "@/components/public/PublicPageShell";
 
 export default function SubmitPlayerInfoPage() {
   const [message, setMessage] = useState("");
@@ -43,7 +44,7 @@ export default function SubmitPlayerInfoPage() {
   }
 
   return (
-    <main className="section page-shell">
+    <PublicPageShell className="section page-shell pt-0">
       <div className="section-heading">
         <div>
           <p className="eyebrow">Player request</p>
@@ -75,6 +76,6 @@ export default function SubmitPlayerInfoPage() {
         <button className="button primary" type="submit">Submit request</button>
         {message ? <p className="form-message">{message}</p> : null}
       </form>
-    </main>
+    </PublicPageShell>
   );
 }

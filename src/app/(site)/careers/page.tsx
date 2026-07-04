@@ -1,5 +1,7 @@
 ﻿import type { Metadata } from "next";
 
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+
 export const metadata: Metadata = {
   title: "Careers · Peach Basket Rankings PH",
   description: "Open roles for Peach Basket Rankings PH."
@@ -40,7 +42,7 @@ const roles = [
 
 export default function CareersPage() {
   return (
-    <main className="bg-surface-50 pb-20">
+    <PublicPageShell className="bg-surface-50 pb-20 pt-0">
       <section className="hero-brand pt-32 text-white">
         <div className="container-px py-14">
           <h1 className="font-display text-5xl font-extrabold">Join the Team</h1>
@@ -91,6 +93,6 @@ export default function CareersPage() {
           Don&apos;t see a role that fits? Send your resume and a note about how you&apos;d contribute to careers@oncourtrankings.ph. We read everything.
         </p>
       </section>
-    </main>
+    </PublicPageShell>
   );
 }

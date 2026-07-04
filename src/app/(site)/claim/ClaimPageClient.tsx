@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+
 export function ClaimPageClient() {
   const router = useRouter();
   const params = useSearchParams();
@@ -17,7 +19,7 @@ export function ClaimPageClient() {
   }
 
   return (
-    <main className="bg-surface-50 pb-24">
+    <PublicPageShell className="bg-surface-50 pb-24 pt-0">
       <section className="hero-brand pt-32 text-white">
         <div className="container-px py-14">
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Profile Claim</p>
@@ -56,6 +58,6 @@ export function ClaimPageClient() {
           </div>
         </article>
       </section>
-    </main>
+    </PublicPageShell>
   );
 }

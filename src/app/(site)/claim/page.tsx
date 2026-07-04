@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+
 import { ClaimPageClient } from "./ClaimPageClient";
 
 export const metadata: Metadata = {
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
 
 function ClaimPageFallback() {
   return (
-    <main className="bg-surface-50 pb-24">
+    <PublicPageShell className="bg-surface-50 pb-24 pt-0">
       <section className="hero-brand pt-32 text-white">
         <div className="container-px py-14">
           <p className="font-mono text-label uppercase tracking-[0.12em] text-amber-500">Profile Claim</p>
@@ -19,7 +21,7 @@ function ClaimPageFallback() {
           <p className="mt-4 max-w-2xl text-white/70">Loading…</p>
         </div>
       </section>
-    </main>
+    </PublicPageShell>
   );
 }
 

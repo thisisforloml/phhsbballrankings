@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 
+import { PublicPageShell } from "@/components/public/PublicPageShell";
+
 interface LicensedPlayer {
   id: string;
   displayName: string;
@@ -37,7 +39,7 @@ export default function LicensedAccessPage() {
   }
 
   return (
-    <main className="bg-surface-50 pb-20">
+    <PublicPageShell className="bg-surface-50 pb-20 pt-0">
       <section className="hero-brand pt-32 text-white">
         <div className="container-px grid gap-6 py-14 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
@@ -82,6 +84,6 @@ export default function LicensedAccessPage() {
           </section>
         )}
       </section>
-    </main>
+    </PublicPageShell>
   );
 }
