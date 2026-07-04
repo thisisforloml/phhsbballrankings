@@ -9,6 +9,7 @@ import { slugify } from "./format";
 import { collectGlobalRatedProspects } from "./home-featured-prospects";
 import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { prisma } from "./prisma";
+import { getPublicBoardRows } from "./public-board-ranks";
 import { getLatestNationalRankings, type NationalRankingRow } from "./rankings";
 import { getOfficialTeamCompetitionCounts } from "./team-rankings";
 import { getUaapSchoolDisplayName } from "./uaap-school-display";
@@ -232,8 +233,8 @@ export const getHomeData = cache(getHomeDataImpl);
 async function getHomeDataImpl(): Promise<HomeData> {
   const rankings = await getLatestNationalRankings();
   const u19 = rankings.snapshotsByAge.U19;
-  const boysRows = u19.boys.rows.slice(0, 10) as HomeLeaderboardRow[];
-  const girlsRows = u19.girls.rows.slice(0, 10) as HomeLeaderboardRow[];
+  const boysRows = getPublicBoardRows(u19.boys).slice(0, 10) as HomeLeaderboardRow[];
+  const girlsRows = getPublicBoardRows(u19.girls).slice(0, 10) as HomeLeaderboardRow[];
   const globalTopProspects = collectGlobalRatedProspects(rankings, 5);
   const officialCounts = await getOfficialTeamCompetitionCounts();
   const boardMovers = await getBoardMovers();
