@@ -16,10 +16,7 @@ export function PublicSiteLoading() {
   }, []);
 
   return (
-    <div
-      className="fixed inset-x-0 bottom-0 z-30 flex min-h-[calc(100vh-var(--navbar-height))] flex-col items-center justify-center bg-scout-900"
-      style={{ top: "var(--navbar-height)" }}
-    >
+    <div className="flex min-h-[calc(100vh-var(--navbar-height))] flex-col items-center justify-center bg-scout-900">
       <PeachBasketLoader label="Loading page" />
     </div>
   );
