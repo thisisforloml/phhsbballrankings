@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { FilterToolbar, FilterToolbarControlClass, FilterToolbarField, FilterToolbarRow } from "@/components/public/FilterToolbar";
 import { PaginationToolbar } from "@/components/public/PaginationBar";
-import { PublicPageShell } from "@/components/public/PublicPageShell";
 import { RankingsToolbar } from "@/components/public/RankingsToolbar";
 import { RankingTable } from "@/components/public/RankingTable";
 import { EmptyState } from "@/components/ui";
@@ -292,7 +291,7 @@ export function RankingsClient({
   }
 
   return (
-    <PublicPageShell variant="paper" className="pb-12 pt-20">
+    <>
       <RankingsToolbar
         ageGroup={ageGroup}
         gender={gender}
@@ -530,6 +529,6 @@ export function RankingsClient({
           </aside>
         </div>
       ) : null}
-    </PublicPageShell>
+    </>
   );
 }
