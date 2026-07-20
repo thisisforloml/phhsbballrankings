@@ -18,6 +18,10 @@ const allowedProperties = new Set([
   "destination",
 ]);
 
+const requiredPostHogProperties = new Set(["token", "distinct_id"]);
+
+let lastCapturedPathname: string | null = null;
+
 function analyticsConfigured() {
   return Boolean(
     process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim() &&
@@ -39,39 +43,60 @@ export function normalizePublicRoute(pathname: string) {
 }
 
 export function initPublicAnalytics() {
-  if (typeof window === "undefined" || !analyticsConfigured() || doNotTrackEnabled() || posthog.__loaded) {
+  if (typeof window === "undefined" || !analyticsConfigured() || doNotTrackEnabled()) {
     return false;
   }
 
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-    autocapture: false,
-    capture_pageview: false,
-    capture_pageleave: false,
-    disable_session_recording: true,
-    advanced_disable_feature_flags: true,
-    person_profiles: "never",
-    persistence: "memory",
-    respect_dnt: true,
-    sanitize_properties(properties) {
-      const sanitized: Record<string, unknown> = {};
-      for (const [key, value] of Object.entries(properties)) {
-        if (key.startsWith("$") || allowedProperties.has(key)) sanitized[key] = value;
-      }
-      delete sanitized.$current_url;
-      delete sanitized.$pathname;
-      delete sanitized.$referrer;
-      delete sanitized.$referring_domain;
-      delete sanitized.$ip;
-      return sanitized;
-    },
-  });
-  return true;
+  if (!posthog.__loaded) {
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+      autocapture: false,
+      capture_pageview: false,
+      capture_pageleave: false,
+      disable_session_recording: true,
+      advanced_disable_feature_flags: true,
+      person_profiles: "never",
+      persistence: "memory",
+      respect_dnt: true,
+      before_send(event) {
+        if (!event) return null;
+
+        const sanitized: Record<string, unknown> = {};
+        for (const [key, value] of Object.entries(event.properties)) {
+          if (
+            key.startsWith("$") ||
+            allowedProperties.has(key) ||
+            requiredPostHogProperties.has(key)
+          ) {
+            sanitized[key] = value;
+          }
+        }
+
+        const route = normalizePublicRoute(window.location.pathname);
+        sanitized.$current_url = new URL(route, window.location.origin).toString();
+        sanitized.$pathname = route;
+        delete sanitized.$referrer;
+        delete sanitized.$referring_domain;
+        delete sanitized.$ip;
+
+        return { ...event, properties: sanitized };
+      },
+    });
+  }
+
+  return posthog.__loaded;
 }
 
 export function capturePublicPageView(pathname: string) {
-  if (!posthog.__loaded) return;
-  posthog.capture("$pageview", { route: normalizePublicRoute(pathname) });
+  if (!posthog.__loaded || lastCapturedPathname === pathname) return;
+
+  lastCapturedPathname = pathname;
+  const route = normalizePublicRoute(pathname);
+  posthog.capture("$pageview", {
+    route,
+    $current_url: new URL(route, window.location.origin).toString(),
+    $pathname: route,
+  });
 }
 
 export function capturePublicEvent(
