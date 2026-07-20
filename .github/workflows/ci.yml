@@ -58,6 +58,9 @@ jobs:
       - name: Apply CI database schema
         run: npx prisma db push --skip-generate
 
+      - name: Seed CI formula metadata
+        run: npx tsx scripts/ci-seed-formula-version.ts
+
       - name: Cache Next.js build
         uses: actions/cache@v4
         with:
