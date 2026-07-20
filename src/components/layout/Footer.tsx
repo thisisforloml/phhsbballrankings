@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { BRAND_NAME_FULL } from "@/lib/brand";
+import { BRAND_CONTACT_EMAIL, BRAND_CONTACT_PHONE, BRAND_CONTACT_PHONE_E164, BRAND_NAME_FULL } from "@/lib/brand";
 import type { PublicTrustMeta } from "@/lib/public-rankings-coverage";
 
 import { usePublicTrustMeta } from "./usePublicTrustMeta";
@@ -48,9 +48,9 @@ const footerLinkGroups: Array<{ title: string; links: FooterLink[] }> = [
 const quickLinks = footerLinkGroups.flatMap((group) => group.links);
 
 const connectLinks = [
-  { label: "Facebook", href: "https://facebook.com/oncourtrankingsph", external: true },
-  { label: "WhatsApp", href: "https://wa.me/639762165301", external: true },
-  { label: "Viber", href: "tel:+639762165301", external: false },
+  { label: "Email", href: "mailto:" + BRAND_CONTACT_EMAIL, external: false },
+  { label: "WhatsApp", href: "https://wa.me/" + BRAND_CONTACT_PHONE_E164.slice(1), external: true },
+  { label: BRAND_CONTACT_PHONE, href: "tel:" + BRAND_CONTACT_PHONE_E164, external: false },
 ];
 
 const footerLinkClass = "text-sm font-medium text-white/80 transition hover:text-gold-500";

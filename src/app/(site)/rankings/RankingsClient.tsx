@@ -8,6 +8,7 @@ import { PaginationToolbar } from "@/components/public/PaginationBar";
 import { RankingsToolbar } from "@/components/public/RankingsToolbar";
 import { RankingTable } from "@/components/public/RankingTable";
 import { EmptyState } from "@/components/ui";
+import { capturePublicEvent } from "@/lib/public-analytics";
 import { getPublicBoardRows } from "@/lib/public-board-ranks";
 import type { PublicCoverageAgeGroup } from "@/lib/public-rankings-coverage";
 import { publicRankingsCoverageCopy, RECRUITING_CLASS_FILTER_ENABLED } from "@/lib/public-rankings-coverage";
@@ -116,6 +117,13 @@ export function RankingsClient({
       const currentQs = searchParams.toString();
       const currentUrl = currentQs ? `${pathname}?${currentQs}` : pathname;
       if (nextUrl === currentUrl) return;
+      const changedFilter = Object.keys(patch).find((key) => key !== "page") ?? "board";
+      capturePublicEvent("ranking_filter_changed", {
+        route: "/rankings",
+        filter: changedFilter,
+        ageGroup: nextState.ageGroup,
+        gender: nextState.gender,
+      });
       router.replace(nextUrl, { scroll: false });
     },
     [classYear, pathname, router, searchParams, urlState]

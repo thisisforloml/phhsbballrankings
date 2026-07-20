@@ -1,10 +1,8 @@
 "use server";
 
-import { randomUUID } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
 
 import { revalidatePath } from "next/cache";
+import sharp from "sharp";
 
 import type { ManagedPlayer } from "@/components/admin/AdminPlayerEditPanel";
 import { buildPlayerIntegrityReport, type PlayerIntegrityReport } from "@/lib/admin/build-player-integrity-report";
@@ -18,6 +16,7 @@ import { transferPlayerToProgram } from "@/lib/admin/player-program-transfer";
 import { updatePlayerSchoolAssignment } from "@/lib/admin/player-school-transfer";
 import { assignPlayerRosterFromAgeBracket } from "@/lib/admin/roster-from-game-evidence";
 import { managedPlayerInclude, serializeManagedPlayer } from "@/lib/admin/serialize-managed-player";
+import { storePlayerPhotoObject } from "@/lib/file-storage";
 import { slugify } from "@/lib/format";
 import { logUploadFailure } from "@/lib/monitoring/events";
 import { resolveUniqueProfileSlugForStorage } from "@/lib/player-profile-slug";
@@ -158,10 +157,6 @@ const allowedPhotoTypes = new Map([
   ["image/webp", "webp"]
 ]);
 
-function safeBaseName(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "player-photo";
-}
-
 async function storePlayerPhoto(file: File, playerId: string) {
   try {
     if (!allowedPhotoTypes.has(file.type)) {
@@ -171,13 +166,13 @@ async function storePlayerPhoto(file: File, playerId: string) {
       throw new Error("Player photo must be 3 MB or smaller.");
     }
 
-    const extension = allowedPhotoTypes.get(file.type) ?? "jpg";
-    const uploadDir = path.join(process.cwd(), "public", "uploads", "player-photos");
-    await mkdir(uploadDir, { recursive: true });
-    const filename = `${playerId}-${Date.now()}-${randomUUID()}-${safeBaseName(file.name || `photo.${extension}`)}`;
-    const finalName = filename.includes(".") ? filename : `${filename}.${extension}`;
-    await writeFile(path.join(uploadDir, finalName), Buffer.from(await file.arrayBuffer()));
-    return `/uploads/player-photos/${finalName}`;
+    const compressed = await sharp(Buffer.from(await file.arrayBuffer()))
+      .rotate()
+      .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toBuffer();
+
+    return storePlayerPhotoObject({ playerId, body: compressed });
   } catch (error) {
     logUploadFailure("player_photo", error, { playerId, bytes: file.size, mimeType: file.type });
     throw error;

@@ -1,13 +1,11 @@
 import "server-only";
 
-import { randomUUID } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
 import { inflateRawSync } from "node:zlib";
 
 import { OrganizerSubmissionType } from "@prisma/client";
 
 import { normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { storeSubmissionFileObject } from "@/lib/file-storage";
 import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
 import { withListReviewInValidationSummary } from "@/lib/submission-list-review-snapshot";
 import { buildSubmissionListReview } from "@/lib/submission-review";
@@ -845,18 +843,13 @@ function jsonPreview(value: unknown) {
 }
 
 async function storeUploadedFileBuffer(file: File, buffer: Buffer) {
-  const storageRoot = path.join(process.cwd(), "storage", "submissions");
-  await mkdir(storageRoot, { recursive: true });
+  const storedFilePath = await storeSubmissionFileObject({
+    originalFilename: file.name || "submission",
+    body: buffer,
+    contentType: file.type || "application/octet-stream",
+  });
 
-  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 120) || "submission";
-  const storedFilePath = path.join("storage", "submissions", `${Date.now()}-${randomUUID()}-${safeName}`);
-  const absolutePath = path.join(process.cwd(), storedFilePath);
-  await writeFile(absolutePath, buffer);
-
-  return {
-    storedFilePath,
-    buffer
-  };
+  return { storedFilePath, buffer };
 }
 
 async function _storeUploadedFile(file: File) {

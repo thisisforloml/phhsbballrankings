@@ -8,7 +8,7 @@ import { GamesClient } from "./GamesClient";
 
 export const metadata: Metadata = {
   title: "Games",
-  description: "Browse verified official basketball games, scores, and box scores on Peach Basket Rankings PH."
+  description: "Browse verified official basketball games, scores, and box scores on Peach Basket PH."
 };
 
 export default async function GamesPage() {

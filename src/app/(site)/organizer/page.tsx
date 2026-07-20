@@ -1,4 +1,4 @@
-﻿import { UserRole } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import Link from "next/link";
 
 import { requireOrganizerUser } from "@/lib/portal-auth";
@@ -107,7 +107,7 @@ export default async function OrganizerPage() {
                 <li>Submit only games you are authorized to submit.</li>
                 <li>Use spreadsheet upload or manual entry for structured box scores.</li>
                 <li>Submissions stay separate from official rankings until admin review.</li>
-                <li>Contact Peach Basket Rankings PH admin if a team, player, or league is missing.</li>
+                <li>Contact Peach Basket PH admin if a team, player, or league is missing.</li>
               </ul>
             </article>
           </section>
