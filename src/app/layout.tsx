@@ -1,18 +1,24 @@
-﻿import "../styles/globals.css";
+import "../styles/globals.css";
 
 import type { Metadata } from "next";
 
 import { RootProviders } from "@/components/layout/RootProviders";
-import { BRAND_ASSETS, BRAND_DESCRIPTION, BRAND_NAME, BRAND_NAME_FULL } from "@/lib/brand";
+import { BRAND_ASSETS, BRAND_DESCRIPTION, BRAND_NAME, BRAND_NAME_FULL, BRAND_URL } from "@/lib/brand";
+
+const indexingEnabled = process.env.SITE_INDEXING_ENABLED === "true";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://oncourtrankings.ph"),
+  metadataBase: new URL(BRAND_URL),
   title: {
     default: BRAND_NAME_FULL,
-    template: `%s | ${BRAND_NAME_FULL}`,
+    template: "%s | " + BRAND_NAME_FULL,
   },
   description: BRAND_DESCRIPTION,
   applicationName: BRAND_NAME,
+  alternates: { canonical: "/" },
+  robots: indexingEnabled
+    ? { index: true, follow: true }
+    : { index: false, follow: false, nocache: true },
   icons: {
     icon: [
       { url: BRAND_ASSETS.favicon, sizes: "32x32" },
@@ -23,7 +29,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: BRAND_NAME,
+    url: BRAND_URL,
+    siteName: BRAND_NAME_FULL,
     title: BRAND_NAME_FULL,
     description: BRAND_DESCRIPTION,
     images: [{ url: BRAND_ASSETS.ogImage, width: 1200, height: 630, alt: BRAND_NAME_FULL }],

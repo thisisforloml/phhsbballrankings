@@ -1,4 +1,4 @@
-﻿import { UserRole } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import Link from "next/link";
 
 import { requireOrganizerUser } from "@/lib/portal-auth";
@@ -9,7 +9,7 @@ import { createOrganizerSubmission } from "./actions";
 
 export const metadata = {
   title: "Organizer Submissions",
-  description: "Submit game data for Peach Basket Rankings PH admin review."
+  description: "Submit game data for Peach Basket PH admin review."
 };
 
 type PageProps = {

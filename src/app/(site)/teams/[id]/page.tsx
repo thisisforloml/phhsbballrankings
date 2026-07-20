@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const profile = await getPublicTeamProfile(params.id);
   return {
     title: `${profile.team.displayName} Team Profile`,
-    description: `${profile.team.displayName} record, roster, recent games, and official team stats on Peach Basket Rankings PH.`,
+    description: `${profile.team.displayName} record, roster, recent games, and official team stats on Peach Basket PH.`,
   };
 }
 

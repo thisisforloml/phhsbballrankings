@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { PortraitAvatar } from "@/components/public/PortraitAvatar";
 import { StarRating } from "@/components/ui";
+import { capturePublicEvent } from "@/lib/public-analytics";
 
 type PublicSearchResult =
   | {
@@ -101,9 +102,14 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<PublicSearchResult[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const trackedOpenRef = useRef(false);
 
   useEffect(() => {
     if (!open) return;
+    if (!trackedOpenRef.current) {
+      capturePublicEvent("search_opened", { route: "navbar" });
+      trackedOpenRef.current = true;
+    }
     inputRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -114,6 +120,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
 
   useEffect(() => {
     if (!open) {
+      trackedOpenRef.current = false;
       setQuery("");
       setResults([]);
       setLoading(false);

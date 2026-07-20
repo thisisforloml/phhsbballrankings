@@ -74,6 +74,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
+    "@supabase/supabase-js": "^2.110.7",
     "argon2": "^0.44.0",
     "autoprefixer": "^10.5.0",
     "framer-motion": "^12.38.0",
@@ -81,6 +82,7 @@
     "next": "^14.2.3",
     "pino": "^10.3.1",
     "postcss": "^8.5.13",
+    "posthog-js": "^1.404.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "server-only": "^0.0.1",

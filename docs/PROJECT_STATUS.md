@@ -2894,3 +2894,33 @@ No-change confirmation:
 - Copy was tightened to short operational guardrails such as `Metadata only. No stat moves.`
 - No backend action handlers, server actions, form submission behavior, roster assignment logic, player edit/photo behavior, Program/Team relationship logic, database writes, schema changes, migrations, imports/publish, rating/ranking formula changes, recomputes, snapshots, public UI, submission workflow behavior, manual stats/parser behavior, auth behavior, Premium/licensed behavior, route deletion, or file deletion were changed.
 
+
+## Peach Basket PH Private Soft-Launch Checkpoint
+
+- Canonical public brand is **Peach Basket PH**, shortened to **Peach Basket** where space is limited.
+- Canonical preview URL: https://peachbasket.vercel.app.
+- Peach Basket PH is currently operated by Darwin Joseph F. Santos.
+- Public contact:
+  - darwinjosephs00@gmail.com
+  - +63 976 216 5301
+- Stale OnCourt Facebook promotion was removed until a Peach Basket account exists.
+- Privacy Policy and Terms now use the current operator/contact details and are dated July 20, 2026. Legal/privacy review is still required before a fully public launch.
+- Private-launch indexing is reversible through SITE_INDEXING_ENABLED; the preview uses false, emits noindex, and disallows crawlers while preserving social metadata.
+- Public /login and /register now redirect to a polished /coming-soon page.
+- Mock Premium packages, payment options, hardcoded development credentials, and localStorage member registration were removed.
+- PremiumGate remains dormant with a null-session provider for future product work.
+- Real Admin and Organizer Portal authentication was not changed.
+- A server-only Supabase Storage adapter was added:
+  - public player-photos bucket for compressed WEBP uploads.
+  - private submission-files bucket using supabase:// references.
+  - local storage remains development-only.
+  - production fails closed when Supabase Storage configuration is absent.
+- Existing 10 tracked player photos were not migrated.
+- Existing 11 local submission files were inventoried and remain a separate backup/migration concern.
+- PostHog EU is the only analytics provider. Autocapture, replay, user identification, surveys, and feature flags are disabled.
+- Analytics captures only sanitized public route/categories and approved interaction events, respects Do Not Track, and sends no names, search terms, contacts, internal IDs, or form contents.
+- Public claim/profile/application endpoints now have in-process request limits, body-size limits, and bounded text fields.
+- Player Rankings and Team Standings use five-minute revalidation while existing admin on-demand revalidation remains intact.
+- Admin, portal, search, session, and write responses remain uncached.
+- No Cloudflare or Firebase configuration was added.
+- No database migrations, data imports/publishes, rating recomputes, ranking snapshots, or formula changes were performed.

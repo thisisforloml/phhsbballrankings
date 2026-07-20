@@ -1,13 +1,14 @@
-﻿import type { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { BRAND_CONTACT_EMAIL, BRAND_OPERATOR } from "@/lib/brand";
 
 export const metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Peach Basket Rankings PH."
+  description: "Privacy Policy for Peach Basket PH."
 };
 
-const lastUpdated = "Last updated: [Month Day, Year]";
+const lastUpdated = "Last updated: July 20, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -16,12 +17,12 @@ export default function PrivacyPage() {
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-hardwood-600">{lastUpdated}</p>
         <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-court-900 md:text-5xl">Privacy Policy</h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-court-700">
-          Peach Basket Rankings PH is a basketball player visibility and rankings platform. This policy explains how we collect, use, review, display, and protect information connected to accounts, submissions, players, teams, leagues, and game statistics.
+          Peach Basket PH is a basketball player visibility and rankings platform. This policy explains how we collect, use, review, display, and protect information connected to accounts, submissions, players, teams, leagues, and game statistics.
         </p>
 
         <div className="mt-8 grid gap-7">
           <PolicySection title="Who We Are">
-            <p>Peach Basket Rankings PH is operated by [Legal/Business Name Placeholder]. For privacy questions, correction requests, or youth athlete data concerns, contact [privacy@oncourtrankings.ph].</p>
+            <p>Peach Basket PH is currently operated by {BRAND_OPERATOR}. For privacy questions, correction requests, or youth athlete data concerns, contact <a className="font-semibold text-hardwood-700 underline" href={"mailto:" + BRAND_CONTACT_EMAIL}>{BRAND_CONTACT_EMAIL}</a>.</p>
           </PolicySection>
 
           <PolicySection title="Information We Collect">
@@ -53,7 +54,7 @@ export default function PrivacyPage() {
           </PolicySection>
 
           <PolicySection title="Youth Athlete Data">
-            <p>Because Peach Basket Rankings PH includes youth and high school basketball data, we aim to limit public profiles to sports-relevant information. We prefer year of birth over full birthdate for public display where age context is needed, avoid unnecessary sensitive data, and take correction or removal requests from parents, guardians, schools, coaches, players, and authorized representatives seriously.</p>
+            <p>Because Peach Basket PH includes youth and high school basketball data, we aim to limit public profiles to sports-relevant information. We prefer year of birth over full birthdate for public display where age context is needed, avoid unnecessary sensitive data, and take correction or removal requests from parents, guardians, schools, coaches, players, and authorized representatives seriously.</p>
           </PolicySection>
 
           <PolicySection title="Data Retention">
@@ -69,7 +70,7 @@ export default function PrivacyPage() {
           </PolicySection>
 
           <PolicySection title="Contact">
-            <p>Privacy contact: [privacy@oncourtrankings.ph]. Business/legal name: [Legal/Business Name Placeholder].</p>
+            <p>Privacy contact: <a className="font-semibold text-hardwood-700 underline" href={"mailto:" + BRAND_CONTACT_EMAIL}>{BRAND_CONTACT_EMAIL}</a>. Peach Basket PH is currently operated by {BRAND_OPERATOR}.</p>
           </PolicySection>
         </div>
       </article>

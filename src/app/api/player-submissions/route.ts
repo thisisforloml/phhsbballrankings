@@ -1,36 +1,51 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { limitedText, PublicRequestError, readLimitedPublicJson } from "@/lib/public-request-guard";
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as Record<string, string>;
-  if (!body.firstName || !body.lastName || !body.contact) {
-    return NextResponse.json({ ok: false, message: "First name, last name, and contact are required." }, { status: 400 });
-  }
-
-  const existing = body.playerName
-    ? await prisma.player.findFirst({
-        where: {
-          displayName: { equals: body.playerName, mode: "insensitive" },
-          deletedAt: null
-        }
-      })
-    : null;
-
-  await prisma.playerProfileSubmission.create({
-    data: {
-      playerId: existing?.id,
-      firstName: body.firstName,
-      lastName: body.lastName,
-      position: body.position || null,
-      heightCm: body.heightCm ? Number(body.heightCm) : null,
-      photoUrl: body.photoUrl || null,
-      city: body.city || null,
-      region: body.region || null,
-      contact: body.contact,
-      message: body.message || null
+  try {
+    const body = await readLimitedPublicJson(request, "player-submissions");
+    const firstName = limitedText(body, "firstName", 80);
+    const lastName = limitedText(body, "lastName", 80);
+    const contact = limitedText(body, "contact", 200);
+    if (!firstName || !lastName || !contact) {
+      return NextResponse.json({ ok: false, message: "First name, last name, and contact are required." }, { status: 400 });
     }
-  });
 
-  return NextResponse.json({ ok: true });
+    const playerName = limitedText(body, "playerName", 160);
+    const existing = playerName
+      ? await prisma.player.findFirst({
+          where: { displayName: { equals: playerName, mode: "insensitive" }, deletedAt: null }
+        })
+      : null;
+
+    const heightRaw = limitedText(body, "heightCm", 3);
+    const heightCm = heightRaw ? Number(heightRaw) : null;
+    if (heightCm !== null && (!Number.isInteger(heightCm) || heightCm < 120 || heightCm > 230)) {
+      return NextResponse.json({ ok: false, message: "Height must be between 120 and 230 cm." }, { status: 400 });
+    }
+
+    await prisma.playerProfileSubmission.create({
+      data: {
+        playerId: existing?.id,
+        firstName,
+        lastName,
+        position: limitedText(body, "position", 20) || null,
+        heightCm,
+        photoUrl: limitedText(body, "photoUrl", 500) || null,
+        city: limitedText(body, "city", 100) || null,
+        region: limitedText(body, "region", 100) || null,
+        contact,
+        message: limitedText(body, "message", 1000) || null
+      }
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json(
+      { ok: false, message: error instanceof Error ? error.message : "Could not submit profile." },
+      { status: error instanceof PublicRequestError ? error.status : 500 }
+    );
+  }
 }

@@ -75,3 +75,48 @@ Stack traces and `error.message` are **not** exposed to users in production.
 - [ ] Invalid URL shows branded 404 (not a blank page)
 - [ ] Portal login works with session cookie
 - [ ] Cron endpoint returns 401 without secret, 200 with valid bearer (staging only)
+
+## Private Soft-Launch Configuration (July 20, 2026)
+
+The controlled LinkedIn preview uses https://peachbasket.vercel.app and remains unindexed.
+
+### Vercel variables
+
+Set these server-only values:
+
+- SUPABASE_URL
+- SUPABASE_SERVICE_ROLE_KEY
+- SUPABASE_PLAYER_PHOTOS_BUCKET=player-photos
+- SUPABASE_SUBMISSIONS_BUCKET=submission-files
+- FILE_STORAGE_BACKEND=supabase
+
+Set these public/reversible launch values:
+
+- NEXT_PUBLIC_SITE_URL=https://peachbasket.vercel.app
+- SITE_INDEXING_ENABLED=false
+- NEXT_PUBLIC_POSTHOG_KEY=(EU project key)
+- NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
+
+Keep DATABASE_URL, DIRECT_URL, PORTAL_SESSION_SECRET, and CRON_SECRET configured.
+
+### Supabase buckets
+
+1. Create public bucket player-photos.
+2. Create private bucket submission-files.
+3. A 5 MB object limit is sufficient.
+4. Writes use the server-only service role. Never expose the service role key to the browser.
+
+New player photos are converted to WEBP, bounded to 1600 x 1600, and use immutable UUID paths with a one-year browser cache. New submission files are stored privately and recorded as supabase://submission-files/(object-key).
+
+The 10 tracked public player photos remain in the repository. The 11 existing files under storage/submissions are a separate backup/migration concern and are not migrated by this batch.
+
+### Analytics privacy
+
+PostHog EU is the only analytics provider. Autocapture, replay, identification, surveys, and feature flags are disabled. Events must not include names, search terms, contact data, internal IDs, or form contents. Analytics does not initialize when Do Not Track is enabled or when configuration is absent.
+
+### Rollback
+
+- Analytics: remove the two NEXT_PUBLIC_POSTHOG variables.
+- Storage: production must remain on Supabase; local fallback is development-only.
+- Indexing: keep SITE_INDEXING_ENABLED=false for the private preview. Set it to true only after public-launch and legal approval.
+- Member access: /login and /register intentionally redirect to /coming-soon; Admin and Organizer Portal authentication are separate and remain active.

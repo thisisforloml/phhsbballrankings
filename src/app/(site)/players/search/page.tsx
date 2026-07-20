@@ -9,7 +9,7 @@ import { philippineRegions } from "@/lib/regions";
 
 export const metadata: Metadata = {
   title: "Player Search",
-  description: "Search Peach Basket Rankings PH player profiles by first name, last name, position, and region."
+  description: "Search Peach Basket PH player profiles by first name, last name, position, and region."
 };
 
 export default async function PlayerSearchPage({

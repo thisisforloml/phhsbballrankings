@@ -1,10 +1,11 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { PublicPageShell } from "@/components/public/PublicPageShell";
+import { BRAND_CONTACT_EMAIL } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "Careers · Peach Basket Rankings PH",
-  description: "Open roles for Peach Basket Rankings PH."
+  title: "Careers · Peach Basket PH",
+  description: "Open roles for Peach Basket PH."
 };
 
 const roles = [
@@ -17,7 +18,7 @@ const roles = [
   {
     title: "Junior Web Developer",
     meta: "Part-time or Project-based · Remote",
-    description: "Support frontend and backend development of the Peach Basket Rankings PH platform.",
+    description: "Support frontend and backend development of the Peach Basket PH platform.",
     skills: ["React", "TypeScript", "Next.js", "PostgreSQL"]
   },
   {
@@ -55,7 +56,7 @@ export default function CareersPage() {
       <section className="container-px grid gap-8 pt-10">
         <article className="rounded-lg border border-surface-200 border-l-[3px] border-l-navy-800 bg-navy-50 p-6 shadow-sm">
           <p className="max-w-4xl leading-7 text-ink-700">
-            Peach Basket Rankings PH is a small team doing serious work. We are building infrastructure for Philippine basketball that has never existed before. If you care about sports, data, and doing things right, we want to hear from you.
+            Peach Basket PH is a small team doing serious work. We are building infrastructure for Philippine basketball that has never existed before. If you care about sports, data, and doing things right, we want to hear from you.
           </p>
         </article>
 
@@ -70,7 +71,7 @@ export default function CareersPage() {
                     <p className="mt-1 font-mono text-mono-sm uppercase text-surface-400">{role.meta}</p>
                   </div>
                   <a
-                    href={`mailto:careers@oncourtrankings.ph?subject=${encodeURIComponent(`Application: ${role.title}`)}`}
+                    href={"mailto:" + BRAND_CONTACT_EMAIL + "?subject=" + encodeURIComponent("Application: " + role.title)}
                     className="rounded-md border border-navy-800 px-4 py-2 font-semibold text-navy-800 hover:bg-navy-50"
                   >
                     Apply for This Role
@@ -90,7 +91,7 @@ export default function CareersPage() {
         </section>
 
         <p className="rounded-lg border border-surface-200 bg-white p-5 text-surface-600 shadow-sm">
-          Don&apos;t see a role that fits? Send your resume and a note about how you&apos;d contribute to careers@oncourtrankings.ph. We read everything.
+          Don&apos;t see a role that fits? Send your resume and a note about how you&apos;d contribute to{" "}<a className="font-semibold text-hardwood-700 underline" href={"mailto:" + BRAND_CONTACT_EMAIL}>{BRAND_CONTACT_EMAIL}</a>.
         </p>
       </section>
     </PublicPageShell>

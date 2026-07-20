@@ -4,7 +4,7 @@ import { PlayerCompareClient } from "./PlayerCompareClient";
 
 export const metadata = {
   title: "Compare Players",
-  description: "Head-to-head player comparison on Peach Basket Rankings PH."
+  description: "Head-to-head player comparison on Peach Basket PH."
 };
 
 export default function PlayerComparePage() {

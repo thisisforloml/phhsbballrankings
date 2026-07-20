@@ -2,22 +2,17 @@ import { ProfileClaimStatus } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { limitedText, PublicRequestError, readLimitedPublicJson } from "@/lib/public-request-guard";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as {
-      playerId?: string;
-      claimantName?: string;
-      relationship?: string;
-      contact?: string;
-      message?: string;
-    };
+    const body = await readLimitedPublicJson(request, "profile-claims");
 
-    const playerId = String(body.playerId ?? "").trim();
-    const claimantName = String(body.claimantName ?? "").trim();
-    const relationship = String(body.relationship ?? "").trim();
-    const contact = String(body.contact ?? "").trim();
-    const message = String(body.message ?? "").trim() || null;
+    const playerId = limitedText(body, "playerId", 80);
+    const claimantName = limitedText(body, "claimantName", 120);
+    const relationship = limitedText(body, "relationship", 80);
+    const contact = limitedText(body, "contact", 200);
+    const message = limitedText(body, "message", 1000) || null;
 
     if (!playerId || !claimantName || !relationship || !contact) {
       return NextResponse.json({ ok: false, message: "Player, name, relationship, and contact are required." }, { status: 400 });
@@ -56,7 +51,7 @@ export async function POST(request: Request) {
   } catch (error) {
     return NextResponse.json(
       { ok: false, message: error instanceof Error ? error.message : "Could not submit claim." },
-      { status: 500 }
+      { status: error instanceof PublicRequestError ? error.status : 500 }
     );
   }
 }
