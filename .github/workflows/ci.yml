@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Prisma generate + Next build do not need a live database, but env vars must exist.
+  # CI builds database-backed pages against the disposable PostgreSQL service below.
   DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/peach_basket_ci?schema=public
   DIRECT_URL: postgresql://ci:ci@127.0.0.1:5432/peach_basket_ci?schema=public
   PORTAL_SESSION_SECRET: ci-portal-session-secret-do-not-use-in-production
@@ -27,6 +27,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
 
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: peach_basket_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ci -d peach_basket_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,6 +54,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --include=dev
+
+      - name: Apply CI database schema
+        run: npx prisma db push --skip-generate
 
       - name: Cache Next.js build
         uses: actions/cache@v4
