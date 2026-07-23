@@ -24,6 +24,8 @@ import { getTeamDisplayName, getUaapInternalTeamName, normalizeProgramAlias, typ
 type JsonRecord = Record<string, unknown>;
 type _SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "adminNotes">;
 
+const OFFICIAL_IMPORT_TRANSACTION_TIMEOUT_MS = 120_000;
+
 type ParsedGame = {
   gameNumber: string;
   gameDate: Date;
@@ -409,6 +411,8 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       playerByName.set(normalize(displayName), { id: player.id, displayName: player.displayName });
     }
 
+    const rosterEvidenceByPlayer = new Map<string, { playerId: string; teamId: string; startsOn: Date }>();
+
     for (const submittedGame of games) {
       const homeTeam = teamBySubmittedName.get(normalize(submittedGame.homeTeamName));
       const awayTeam = teamBySubmittedName.get(normalize(submittedGame.awayTeamName));
@@ -476,18 +480,27 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
         }
 
         if (decision.action === "create" || decision.action === "skip") {
-          await ensurePlayerRosterFromGameStat(tx, {
-            playerId: player.id,
-            teamId: team.id,
-            seasonId: season.id,
-            startsOn: submittedGame.gameDate
-          });
+          const currentEvidence = rosterEvidenceByPlayer.get(player.id);
+          if (!currentEvidence || submittedGame.gameDate > currentEvidence.startsOn) {
+            rosterEvidenceByPlayer.set(player.id, {
+              playerId: player.id,
+              teamId: team.id,
+              startsOn: submittedGame.gameDate
+            });
+          }
         }
       }
     }
 
     if (summary.gameStatsBlocked > 0) {
       throw new Error(`Import blocked: ${summary.gameStatsBlocked} GameStat row(s) would modify existing historical evidence. ${JSON.stringify(summary.gameStatBlockedDetails)}`);
+    }
+
+    for (const evidence of rosterEvidenceByPlayer.values()) {
+      await ensurePlayerRosterFromGameStat(tx, {
+        ...evidence,
+        seasonId: season.id
+      });
     }
 
     const importNote = `Official import completed: ${JSON.stringify(summary)}`;
@@ -502,5 +515,5 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     });
 
     return summary;
-  }, { timeout: 30000, isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, { timeout: OFFICIAL_IMPORT_TRANSACTION_TIMEOUT_MS, isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
 }
