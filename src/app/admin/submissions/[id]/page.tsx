@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { AdminAlert } from "@/components/admin/AdminAlert";
 import { AdminBadge } from "@/components/admin/AdminBadge";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { HealthCheckBadge, PassFailBadge } from "@/components/admin/submissionHealthBadges";
 import { SubmissionStatusBadge } from "@/components/admin/submissionStatusBadges";
 import { requireAdminUser } from "@/lib/portal-auth";
@@ -180,11 +179,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
   const editStats = searchParams?.editStats === "1";
 
   return (
-    <main className="min-h-screen bg-surface-50 pt-20">
-      <div className="grid lg:grid-cols-[17rem_1fr]">
-        <AdminSidebar active="submissions" />
-
-        <section className="container-px grid gap-6 py-8">
+    <section className="container-px grid gap-6 py-8">
           <div className="rounded-lg border border-surface-200 bg-white p-6 shadow-panel">
             <Link href="/admin/submissions" prefetch={false} className="font-mono text-mono-sm uppercase text-amber-700 hover:text-amber-800">Back to submissions</Link>
             <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
@@ -664,9 +659,7 @@ export default async function AdminSubmissionDetailPage({ params, searchParams }
               </div>
             </section>
           ) : null}
-        </section>
-      </div>
-    </main>
+    </section>
   );
 }
 
