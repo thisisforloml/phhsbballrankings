@@ -187,7 +187,7 @@ export async function getSubmissionImportPublishAudit(submissionId: string) {
 export async function getSubmissionPipelineStatus(submissionId: string) {
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
-    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true }
+    select: { id: true, status: true, title: true, leagueName: true, rawText: true, parsedPreview: true, validationSummary: true }
   });
 
   if (!submission) throw new Error("Submission not found.");

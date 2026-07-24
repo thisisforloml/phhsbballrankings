@@ -268,7 +268,7 @@ export function scoreDuplicatePair(
   ) {
     signals.push({
       kind: "match",
-      label: "Same parent GROUP program",
+      label: "Same organization group",
       detail: target.parentGroupName ?? target.parentGroupProgramId,
       weight: 8,
     });

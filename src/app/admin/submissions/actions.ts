@@ -343,6 +343,7 @@ async function readSubmissionForPublish(submissionId: string) {
       leagueName: true,
       rawText: true,
       parsedPreview: true,
+      validationSummary: true,
       adminNotes: true,
       deletedAt: true
     }

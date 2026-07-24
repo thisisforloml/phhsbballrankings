@@ -233,7 +233,7 @@ export function ProgramTeamManagementPanel({
                             <input type="hidden" name="programId" value={programId} />
                             <input type="hidden" name="teamId" value={team.id} />
                             <button type="submit" className={dangerButtonClassName}>
-                              Remove
+                              Unassign
                             </button>
                           </form>
                         ) : null}
@@ -245,7 +245,7 @@ export function ProgramTeamManagementPanel({
             </table>
           </div>
         ) : (
-          <p className="px-4 py-6 text-sm text-ink-500">No teams are assigned to this program yet.</p>
+          <p className="px-4 py-6 text-sm text-ink-500">No teams are assigned to this Program yet.</p>
         )}
       </section>
 

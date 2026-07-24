@@ -11,14 +11,16 @@ import {
 } from "@/lib/game-stat-import-integrity";
 import { prepareImportedPlayerName, resolvePlayerForImport } from "@/lib/player-import-identity";
 import { prisma } from "@/lib/prisma";
+import type { StatsImportProviderId } from "@/lib/stats-import/types";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
 import { buildSubmissionReview } from "@/lib/submission-review";
+import { teamNameHasCompetitionContext, teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
 import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
 type PreflightAction = "reuse" | "create" | "update" | "manual_review";
 
-type SubmissionForPreflight = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview">;
+type SubmissionForPreflight = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "validationSummary">;
 
 function asRecord(value: unknown): JsonRecord | null {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as JsonRecord) : null;
@@ -40,6 +42,10 @@ function normalize(value: string) {
   return value.trim().replace(/\s+/g, " ").toUpperCase();
 }
 
+function playerIdentityKey(teamLabel: string, cleanedName: string) {
+  return normalize(teamLabel) + "|" + normalize(cleanedName);
+}
+
 function parseSubmissionJson(submission: Pick<Submission, "rawText" | "parsedPreview">) {
   const result = safeParseSubmissionJson(submission);
   return result.ok ? result.data : null;
@@ -59,6 +65,11 @@ function coerceAgeGroup(value: string | null): AgeGroup | null {
 
 function inferGender(reviewGender: "BOYS" | "GIRLS" | null): PlayerGender {
   return reviewGender === "GIRLS" ? PlayerGender.GIRLS : PlayerGender.BOYS;
+}
+
+function submissionStatsProvider(value: unknown): StatsImportProviderId | null {
+  const provider = stringValue(asRecord(value)?.provider);
+  return provider === "statshub-v1" ? provider : null;
 }
 
 function recommendedLeagueName(submission: SubmissionForPreflight, fallback: string | null) {
@@ -93,6 +104,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const targetLeagueName = recommendedLeagueName(submission, review.summary.leagueName);
   const targetAgeGroup = coerceAgeGroup(review.summary.ageGroup);
   const inferredGender = inferGender(review.recommendations.inferredGender);
+  const statsProvider = submissionStatsProvider(submission.validationSummary);
   const seasonName = stringValue(seasonRecord?.name) || review.summary.seasonName;
   const seasonYear = typeof seasonRecord?.seasonYear === "number" ? seasonRecord.seasonYear : review.summary.seasonYear;
   const blockers: string[] = [];
@@ -152,11 +164,14 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
 
     const targetContext = `${targetAgeGroup}|${inferredGender}`;
     const matchingContextTeams = (program?.teams ?? []).filter((team) => {
+      if (!targetAgeGroup || !teamNameMatchesCompetitionContext(team.name, targetAgeGroup, inferredGender)) return false;
       const games = [...team.homeGames, ...team.awayGames];
       const contextKeys = new Set(games.map((game) =>
         `${game.season.league.ageGroup}|${inferCompetitionGender(undefined, game.season.league.name)}`,
       ));
-      return contextKeys.size <= 1 && (contextKeys.size === 0 || contextKeys.has(targetContext));
+      if (contextKeys.size > 1) return false;
+      if (contextKeys.size === 0) return teamNameHasCompetitionContext(team.name);
+      return contextKeys.has(targetContext);
     });
     const exactMatches = matchingContextTeams.filter((team) => team.name === internalTeamName);
     const submittedKey = teamDisplayMatchKey(submittedTeamName);
@@ -194,14 +209,30 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     };
   }));
 
-  const uniquePlayerNames = review.summary.uniquePlayerNames;
-  const playerPreflight = await Promise.all(uniquePlayerNames.map(async (submittedName) => {
-    const cleanedName = prepareImportedPlayerName(submittedName);
-    const resolved = await resolvePlayerForImport(prisma, { cleanedName, gender: inferredGender });
+  const uniquePlayerIdentities = new Map<string, { submittedName: string; cleanedName: string; teamLabel: string }>();
+  for (const game of games) {
+    const gamePlayers = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);
+    for (const playerRow of gamePlayers) {
+      const submittedName = stringValue(playerRow.name);
+      const cleanedName = prepareImportedPlayerName(submittedName);
+      const teamLabel = stringValue(playerRow.team);
+      if (!cleanedName) continue;
+      uniquePlayerIdentities.set(playerIdentityKey(teamLabel, cleanedName), { submittedName, cleanedName, teamLabel });
+    }
+  }
+
+  const playerPreflight = await Promise.all(Array.from(uniquePlayerIdentities.values()).map(async (identity) => {
+    const resolved = await resolvePlayerForImport(prisma, {
+      cleanedName: identity.cleanedName,
+      gender: inferredGender,
+      externalIdentity: statsProvider && identity.teamLabel
+        ? { provider: statsProvider, teamLabel: identity.teamLabel }
+        : null,
+    });
 
     let action: PreflightAction;
     let matchedPlayer: { id: string; displayName: string; gender: PlayerGender; city: string; region: string } | null = null;
-    let resolvedVia: "displayName" | "alias" | null = null;
+    let resolvedVia: "displayName" | "alias" | "externalAlias" | null = null;
     let blockReason: string | null = null;
 
     if (resolved.action === "blocked") {
@@ -219,12 +250,22 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
       action = "create";
     }
 
-    return { submittedName, cleanedName, gender: inferredGender, matchedPlayer, resolvedVia, blockReason, action };
+    return {
+      submittedName: identity.submittedName,
+      cleanedName: identity.cleanedName,
+      teamLabel: identity.teamLabel,
+      gender: inferredGender,
+      matchedPlayer,
+      resolvedVia,
+      blockReason,
+      action,
+    };
   }));
 
   const teamBySubmittedName = new Map(teamPreflight.map((team) => [normalize(team.submittedTeamName), team]));
-  const playerByCleanedName = new Map(playerPreflight.map((player) => [normalize(player.cleanedName), player]));
-
+  const playerByIdentity = new Map(
+    playerPreflight.map((player) => [playerIdentityKey(player.teamLabel, player.cleanedName), player]),
+  );
   const gamePreflight = await Promise.all(games.map(async (game) => {
     const gameNumber = stringValue(game.gameNumber);
     const homeTeamName = stringValue(game.homeTeamName);
@@ -268,7 +309,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
     for (const playerRow of gamePlayers) {
       const playerName = prepareImportedPlayerName(playerRow.name);
       const playerTeam = stringValue(playerRow.team);
-      const playerPreflightRow = playerByCleanedName.get(normalize(playerName));
+      const playerPreflightRow = playerByIdentity.get(playerIdentityKey(playerTeam, playerName));
       const teamPreflightRow = teamBySubmittedName.get(normalize(playerTeam));
       const reasons: string[] = [];
 

@@ -15,14 +15,16 @@ import {
   resolvePlayerForImport
 } from "@/lib/player-import-identity";
 import { prisma } from "@/lib/prisma";
+import type { StatsImportProviderId } from "@/lib/stats-import/types";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
 import { assertSubmissionReviewable } from "@/lib/submission-lifecycle";
 import { buildSubmissionReview } from "@/lib/submission-review";
+import { teamNameHasCompetitionContext, teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
 import { getTeamDisplayName, getUaapInternalTeamName, normalizeProgramAlias, type ProgramIdentity,resolveProgramIdentity } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
-type _SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "adminNotes">;
+type _SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "validationSummary" | "adminNotes">;
 
 const OFFICIAL_IMPORT_TRANSACTION_TIMEOUT_MS = 120_000;
 
@@ -59,6 +61,10 @@ function normalize(value: string) {
   return value.trim().replace(/\s+/g, " ").toUpperCase();
 }
 
+function playerIdentityKey(teamLabel: string, cleanedName: string) {
+  return normalize(teamLabel) + "|" + normalize(cleanedName);
+}
+
 function parseDate(value: unknown) {
   const raw = stringValue(value);
   if (!raw) throw new Error("Game date is missing.");
@@ -87,6 +93,11 @@ function getPrimaryPackage(submission: Pick<Submission, "rawText" | "parsedPrevi
   const packages = asArray(parsed).map(asRecord).filter((item): item is JsonRecord => item !== null);
   if (packages.length !== 1) throw new Error(`Expected exactly one submission package for v1 import, found ${packages.length}.`);
   return packages[0];
+}
+
+function submissionStatsProvider(value: Prisma.JsonValue | null): StatsImportProviderId | null {
+  const provider = stringValue(asRecord(value)?.provider);
+  return provider === "statshub-v1" ? provider : null;
 }
 
 function nameParts(displayName: string) {
@@ -203,12 +214,14 @@ async function findImportTeamMatch(
         gender: inferCompetitionGender(undefined, game.season.league.name),
       }));
       const contextKeys = new Set(contexts.map((context) => context.ageGroup + "|" + context.gender));
+      if (!teamNameMatchesCompetitionContext(team.name, params.ageGroup, params.gender)) return false;
       if (contextKeys.size > 1) {
         throw new Error(
           "Team " + team.name + " already contains multiple age/gender competition contexts. Split it into specific Team records before importing more games.",
         );
       }
-      return contexts.length === 0 || contexts.some((context) => context.ageGroup === params.ageGroup && context.gender === params.gender);
+      if (contexts.length === 0) return teamNameHasCompetitionContext(team.name);
+      return contexts.some((context) => context.ageGroup === params.ageGroup && context.gender === params.gender);
     });
     const preferredTeam = chooseEquivalentProgramTeam(params.submittedTeamName, equivalentMatches);
     if (preferredTeam) return preferredTeam;
@@ -252,6 +265,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       leagueName: true,
       rawText: true,
       parsedPreview: true,
+      validationSummary: true,
       adminNotes: true,
       deletedAt: true
     }
@@ -273,6 +287,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
 
   const review = buildSubmissionReview(submission);
   const packageRoot = getPrimaryPackage(submission);
+  const statsProvider = submissionStatsProvider(submission.validationSummary);
   const leagueRecord = asRecord(packageRoot.league);
   const seasonRecord = asRecord(packageRoot.season);
   const games = parseGames(packageRoot);
@@ -371,22 +386,37 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       teamBySubmittedName.set(normalize(submittedTeamName), { id: team.id, name: team.name });
     }
 
-    const playerByName = new Map<string, { id: string; displayName: string }>();
-    const uniquePlayerNames = Array.from(new Set(games.flatMap((game) => game.players.map((player) => prepareImportedPlayerName(player.name))).filter(Boolean)));
-    for (const displayName of uniquePlayerNames) {
-      const resolved = await resolvePlayerForImport(tx, { cleanedName: displayName, gender });
+    const playerByIdentity = new Map<string, { id: string; displayName: string }>();
+    const uniquePlayerIdentities = new Map<string, { cleanedName: string; teamLabel: string }>();
+    for (const game of games) {
+      for (const playerRow of game.players) {
+        const cleanedName = prepareImportedPlayerName(playerRow.name);
+        const teamLabel = stringValue(playerRow.team);
+        if (!cleanedName) continue;
+        uniquePlayerIdentities.set(playerIdentityKey(teamLabel, cleanedName), { cleanedName, teamLabel });
+      }
+    }
+
+    for (const identity of uniquePlayerIdentities.values()) {
+      const resolved = await resolvePlayerForImport(tx, {
+        cleanedName: identity.cleanedName,
+        gender,
+        externalIdentity: statsProvider && identity.teamLabel
+          ? { provider: statsProvider, teamLabel: identity.teamLabel }
+          : null,
+      });
       if (resolved.action === "blocked") throw new Error(resolved.reason);
 
       let player: { id: string; displayName: string };
       if (resolved.action === "reuse") {
         player = { id: resolved.playerId, displayName: resolved.displayName };
         summary.playersReused += 1;
-        if (resolved.via === "alias") summary.playersReusedViaAlias += 1;
+        if (resolved.via === "alias" || resolved.via === "externalAlias") summary.playersReusedViaAlias += 1;
       } else {
-        const parts = nameParts(displayName);
+        const parts = nameParts(identity.cleanedName);
         const created = await tx.player.create({
           data: {
-            displayName,
+            displayName: identity.cleanedName,
             firstName: parts.firstName,
             lastName: parts.lastName,
             gender,
@@ -402,9 +432,8 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
         player = created;
         summary.playersCreated += 1;
       }
-      playerByName.set(normalize(displayName), { id: player.id, displayName: player.displayName });
+      playerByIdentity.set(playerIdentityKey(identity.teamLabel, identity.cleanedName), player);
     }
-
     const rosterEvidenceByPlayer = new Map<string, { playerId: string; teamId: string; startsOn: Date }>();
 
     for (const submittedGame of games) {
@@ -440,7 +469,8 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
 
       for (const playerRow of submittedGame.players) {
         const cleanedName = prepareImportedPlayerName(playerRow.name);
-        const player = playerByName.get(normalize(cleanedName));
+        const playerTeamLabel = stringValue(playerRow.team);
+        const player = playerByIdentity.get(playerIdentityKey(playerTeamLabel, cleanedName));
         const team = teamBySubmittedName.get(normalize(stringValue(playerRow.team)));
         if (!player || !team) throw new Error(`Missing player/team mapping for ${cleanedName} in ${submittedGame.gameNumber}.`);
 

@@ -117,7 +117,7 @@ function CandidateRow({ candidate }: { candidate: PlayerDuplicateCandidate }) {
               <dd className="mt-1 text-sm text-ink-800">{candidate.player.currentProgramName ?? "Unassigned"}</dd>
             </div>
             <div>
-              <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Parent GROUP</dt>
+              <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Organization group</dt>
               <dd className="mt-1 text-sm text-ink-800">{candidate.player.parentGroupName ?? "—"}</dd>
             </div>
             <div>

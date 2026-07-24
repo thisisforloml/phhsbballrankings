@@ -1,6 +1,8 @@
 import { PlayerGender, Prisma, type PrismaClient } from "@prisma/client";
 
+import { importedPlayerKey } from "@/lib/player-import-matching";
 import { isMiddleNameVariant, normalizeIdentityTokens } from "@/lib/player-name-identity";
+import type { StatsImportProviderId } from "@/lib/stats-import/types";
 
 type PlayerImportClient = PrismaClient | Prisma.TransactionClient;
 
@@ -34,7 +36,7 @@ export function normalizeImportedPlayerNameKey(value: string): string {
 }
 
 export type PlayerImportResolveResult =
-  | { action: "reuse"; playerId: string; displayName: string; via: "displayName" | "alias" }
+  | { action: "reuse"; playerId: string; displayName: string; via: "displayName" | "alias" | "externalAlias" }
   | { action: "create" }
   | { action: "blocked"; reason: string };
 
@@ -45,9 +47,50 @@ export type PlayerImportResolveResult =
  */
 export async function resolvePlayerForImport(
   client: PlayerImportClient,
-  params: { cleanedName: string; gender: PlayerGender }
+  params: {
+    cleanedName: string;
+    gender: PlayerGender;
+    externalIdentity?: { provider: StatsImportProviderId; teamLabel: string } | null;
+  }
 ): Promise<PlayerImportResolveResult> {
-  const { cleanedName, gender } = params;
+  const { cleanedName, gender, externalIdentity } = params;
+
+  if (externalIdentity) {
+    const normalizedExternalLabel = importedPlayerKey(externalIdentity.teamLabel, cleanedName);
+    const externalAlias = await client.playerExternalAlias.findUnique({
+      where: {
+        provider_normalizedExternalLabel: {
+          provider: externalIdentity.provider,
+          normalizedExternalLabel,
+        },
+      },
+      select: {
+        player: { select: { id: true, displayName: true, gender: true, deletedAt: true } },
+      },
+    });
+
+    if (externalAlias) {
+      if (externalAlias.player.deletedAt !== null) {
+        return {
+          action: "blocked",
+          reason: "Saved import mapping for " + cleanedName + " points to a merged-away player (" + externalAlias.player.displayName + ").",
+        };
+      }
+      if (externalAlias.player.gender !== gender) {
+        return {
+          action: "blocked",
+          reason: "Saved import mapping for " + cleanedName + " has a gender mismatch (" + externalAlias.player.displayName + ").",
+        };
+      }
+
+      return {
+        action: "reuse",
+        playerId: externalAlias.player.id,
+        displayName: externalAlias.player.displayName,
+        via: "externalAlias",
+      };
+    }
+  }
 
   const displayMatches = await client.player.findMany({
     where: { displayName: cleanedName, gender, deletedAt: null },

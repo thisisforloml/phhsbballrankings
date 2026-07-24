@@ -2939,3 +2939,13 @@ No-change confirmation:
   - `npm.cmd run audit:player-name-fragments-team-context`
   - `npm.cmd run plan:split-multi-context-teams`
 - No database writes, Player merges, Team splits, schema changes, migrations, imports/publishes, rating recomputes, or ranking snapshots were run.
+
+## Submission Identity and Team Context Stabilization Checkpoint (July 24, 2026)
+
+- Saved **Use suggested** player mappings are now consumed by official import preflight and publish using provider + submitted Team label + cleaned player name.
+- Import identity is keyed by Team and player name, preventing same-name rows from overwriting one another inside a submission.
+- Saved mappings to deleted players or a conflicting gender now block import for manual review.
+- Same-Program Team reuse now rejects conflicting age-group or gender context. Specific U13, U16/U15, and U19 Teams remain separate operational Teams under one Program.
+- The player-name fragment audit was refreshed as a read-only review report. Candidate pairs still require explicit human confirmation; no automatic player merge path was added.
+- Program Management copy now uses operations language such as **Organization group** and **Unassign** instead of developer-oriented relationship wording.
+- No database writes, player/team merges, historical stat rewrites, rating recomputes, or snapshot generation were performed during this stabilization pass.
