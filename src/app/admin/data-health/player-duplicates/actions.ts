@@ -18,11 +18,6 @@ export type PlayerMergeActionState = {
   canonicalPlayerId?: string;
 };
 
-export const initialPlayerMergeActionState: PlayerMergeActionState = {
-  ok: false,
-  message: "",
-};
-
 function required(formData: FormData, key: string, label: string) {
   const value = String(formData.get(key) ?? "").trim();
   if (!value) throw new Error(`${label} is required.`);

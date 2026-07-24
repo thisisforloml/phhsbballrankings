@@ -5,9 +5,14 @@ import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import {
-  initialPlayerMergeActionState,
   mergeDuplicatePlayer,
+  type PlayerMergeActionState,
 } from "./actions";
+
+const initialPlayerMergeActionState: PlayerMergeActionState = {
+  ok: false,
+  message: "",
+};
 
 function SubmitButton({ duplicateCount }: { duplicateCount: number }) {
   const { pending } = useFormStatus();
