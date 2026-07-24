@@ -12,6 +12,7 @@ import { PlayerMergeExecuteForm } from "./PlayerMergeExecuteForm";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const maxDuration = 60;
 
 export const metadata = {
   title: "Player Matches - Peach Basket Admin",
@@ -21,15 +22,23 @@ export const metadata = {
 type SearchParams = {
   canonical?: string;
   duplicate?: string;
+  duplicates?: string;
   merged?: string;
   mode?: string;
 };
 
-async function loadPreview(searchParams: SearchParams) {
-  if (!searchParams.canonical || !searchParams.duplicate) return { preview: null, error: null };
+function selectedDuplicateIds(searchParams: SearchParams) {
+  const rawValue = searchParams.duplicates ?? searchParams.duplicate ?? "";
+  return Array.from(new Set(
+    rawValue.split(",").map((value) => value.trim()).filter(Boolean),
+  ));
+}
+
+async function loadPreview(canonicalPlayerId: string | undefined, duplicatePlayerIds: string[]) {
+  if (!canonicalPlayerId || duplicatePlayerIds.length === 0) return { preview: null, error: null };
   try {
     return {
-      preview: await buildPlayerMergePreview(searchParams.canonical, searchParams.duplicate),
+      preview: await buildPlayerMergePreview(canonicalPlayerId, duplicatePlayerIds),
       error: null,
     };
   } catch (error) {
@@ -42,12 +51,12 @@ async function loadPreview(searchParams: SearchParams) {
 
 function MergePreview({ preview }: { preview: PlayerMergePreview }) {
   const impactRows = [
+    ["Profiles", preview.duplicates.length],
     ["Game stats", preview.impact.gameStats],
     ["Scores", preview.impact.performanceScores],
     ["Rosters", preview.impact.rosterAssignments],
     ["Ratings", preview.impact.ratings],
     ["Snapshots", preview.impact.snapshotRows],
-    ["Aliases", preview.impact.aliases + preview.impact.externalAliases],
   ] as const;
 
   return (
@@ -55,11 +64,12 @@ function MergePreview({ preview }: { preview: PlayerMergePreview }) {
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-orange-200 bg-orange-50 p-4">
         <div>
           <p className="text-xs font-semibold text-orange-700">Merge preview</p>
-          <h2 className="mt-1 text-xl font-bold text-navy-900">
-            Keep {preview.canonical.displayName}; archive {preview.duplicate.displayName}
-          </h2>
+          <h2 className="mt-1 text-xl font-bold text-navy-900">Keep {preview.canonical.displayName}</h2>
+          <p className="mt-1 text-sm text-ink-600">
+            Archive {preview.duplicates.map((player) => player.displayName).join(", ")}
+          </p>
         </div>
-        <Link href="/admin/data-health/player-duplicates" className="text-sm font-semibold text-navy-700 hover:underline">
+        <Link href="/admin/data-health/player-duplicates?mode=manual" className="text-sm font-semibold text-navy-700 hover:underline">
           Cancel
         </Link>
       </div>
@@ -89,14 +99,16 @@ function MergePreview({ preview }: { preview: PlayerMergePreview }) {
             </ul>
           </AdminAlert>
         ) : (
-          <AdminAlert variant="success" size="md">Checks passed. The same scope is checked again before merging.</AdminAlert>
+          <AdminAlert variant="success" size="md">
+            Checks passed for all selected profiles. The complete merge either succeeds or rolls back.
+          </AdminAlert>
         )}
       </div>
 
       {preview.canMerge ? (
         <PlayerMergeExecuteForm
           canonicalPlayerId={preview.canonical.id}
-          duplicatePlayerId={preview.duplicate.id}
+          duplicatePlayerIds={preview.duplicates.map((player) => player.id)}
           expectedFingerprint={preview.fingerprint}
         />
       ) : null}
@@ -106,10 +118,13 @@ function MergePreview({ preview }: { preview: PlayerMergePreview }) {
 
 export default async function PlayerDuplicateReviewPage({ searchParams }: { searchParams: SearchParams }) {
   await requireAdminUser();
-  const hasPreview = Boolean(searchParams.canonical && searchParams.duplicate);
+  const duplicatePlayerIds = selectedDuplicateIds(searchParams);
+  const hasPreview = Boolean(searchParams.canonical && duplicatePlayerIds.length);
   const manualMode = searchParams.mode === "manual" && !hasPreview;
 
-  const previewResult = hasPreview ? await loadPreview(searchParams) : { preview: null, error: null };
+  const previewResult = hasPreview
+    ? await loadPreview(searchParams.canonical, duplicatePlayerIds)
+    : { preview: null, error: null };
   const mergeOptions = manualMode ? await loadPlayerMergeOptions() : [];
   const pairs = !manualMode && !hasPreview ? await loadAllPlayerDuplicateCandidates() : [];
 
@@ -117,7 +132,7 @@ export default async function PlayerDuplicateReviewPage({ searchParams }: { sear
     <>
       <AdminPageHeader
         title="Player Matches"
-        description="Review likely duplicate records or open a manual merge."
+        description="Review likely matches or merge selected profiles manually."
         actions={(
           <div className="flex gap-2">
             <Link href="/admin/data-health/player-duplicates" className="button secondary">Matches</Link>

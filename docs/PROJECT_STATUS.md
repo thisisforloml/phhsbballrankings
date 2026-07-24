@@ -3008,3 +3008,14 @@ No-change confirmation:
 - `getHomeData()` now loads recent active official games again instead of returning an empty `recentGames` array.
 - The restore keeps the existing compact sports-database homepage style and does not change ranking, rating, admin, import, or database behavior.
 - No database writes, imports/publishes, rating recomputes, ranking snapshots, schema changes, or admin workflow changes were run.
+
+
+## Atomic Multi-Profile Player Merge Checkpoint (July 24, 2026)
+
+- Fixed the guarded Player merge path to avoid long-lived interactive Prisma transactions through the Supabase transaction pooler.
+- Merge execution now uses one atomic Prisma batch transaction, so every selected profile is consolidated or the complete operation rolls back.
+- Manual merge now supports one retained profile plus up to 10 duplicate profiles in one preview and confirmation.
+- Multi-profile validation checks all selected records for gender differences, same-game GameStat collisions, same-season Team conflicts, claimed-profile conflicts, alias ownership, and changed preview scope.
+- Historical Game/Team context and box-score values remain unchanged. Existing performance rows are consolidated and Player ratings are rebuilt with the current policies; no formula or snapshot generation behavior changed.
+- Read-only validation confirmed both `Dean Riley Paras + Dean Paras` and `Dean Riley Paras + Dean Paras + Dean Parasa` are mergeable with no current blockers.
+- No Player merge, database write, import/publish, rating recompute, or ranking snapshot generation was run during this fix.

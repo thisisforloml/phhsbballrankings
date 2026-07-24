@@ -29,6 +29,17 @@ function required(formData: FormData, key: string, label: string) {
   return value;
 }
 
+function duplicatePlayerIds(formData: FormData) {
+  const playerIds = formData.getAll("duplicatePlayerIds")
+    .flatMap((value) => String(value).split(","))
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const uniquePlayerIds = Array.from(new Set(playerIds));
+  if (!uniquePlayerIds.length) throw new Error("Select at least one duplicate Player.");
+  if (uniquePlayerIds.length > 10) throw new Error("Merge at most 10 duplicate profiles at one time.");
+  return uniquePlayerIds;
+}
+
 export async function mergeDuplicatePlayer(
   _previousState: PlayerMergeActionState,
   formData: FormData,
@@ -36,7 +47,7 @@ export async function mergeDuplicatePlayer(
   try {
     const user = await requireAdminUser();
     const canonicalPlayerId = required(formData, "canonicalPlayerId", "Player to keep");
-    const duplicatePlayerId = required(formData, "duplicatePlayerId", "Duplicate Player");
+    const selectedDuplicatePlayerIds = duplicatePlayerIds(formData);
     const expectedFingerprint = required(formData, "expectedFingerprint", "Preview fingerprint");
     const reason = required(formData, "reason", "Merge reason");
     const confirmText = required(formData, "confirmText", "Confirmation");
@@ -50,7 +61,7 @@ export async function mergeDuplicatePlayer(
 
     const result = await executePlayerMerge({
       canonicalPlayerId,
-      duplicatePlayerId,
+      duplicatePlayerIds: selectedDuplicatePlayerIds,
       expectedFingerprint,
       reason,
       userId: user.id,
@@ -66,12 +77,12 @@ export async function mergeDuplicatePlayer(
     revalidatePath("/admin/data-health");
     revalidatePath("/admin/data-health/player-duplicates");
     revalidatePath(`/players/${result.canonicalPlayerId}`);
-    revalidatePath(`/players/${result.duplicatePlayerId}`);
+    for (const playerId of result.duplicatePlayerIds) revalidatePath(`/players/${playerId}`);
     revalidatePublicRankingSurfaces();
 
     return {
       ok: true,
-      message: `${result.duplicateDisplayName} merged into ${result.canonicalDisplayName}. ${result.reassigned.gameStats} GameStat rows reassigned.`,
+      message: `${result.duplicateDisplayNames.length} profile(s) merged into ${result.canonicalDisplayName}. ${result.reassigned.gameStats} GameStat rows reassigned.`,
       canonicalPlayerId: result.canonicalPlayerId,
     };
   } catch (error) {

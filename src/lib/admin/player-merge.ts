@@ -2,7 +2,7 @@ import "server-only";
 
 import { createHash } from "node:crypto";
 
-import { type AgeGroup, PlayerGender } from "@prisma/client";
+import { type AgeGroup, PlayerGender, type Prisma } from "@prisma/client";
 
 import {
   buildCumulativePlayerRatingTarget,
@@ -22,7 +22,7 @@ import {
 
 export type PlayerMergePreview = {
   canonical: PlayerMergeRecord;
-  duplicate: PlayerMergeRecord;
+  duplicates: PlayerMergeRecord[];
   impact: {
     gameStats: number;
     performanceScores: number;
@@ -67,8 +67,8 @@ export type PlayerMergeRecord = {
 export type PlayerMergeResult = {
   canonicalPlayerId: string;
   canonicalDisplayName: string;
-  duplicatePlayerId: string;
-  duplicateDisplayName: string;
+  duplicatePlayerIds: string[];
+  duplicateDisplayNames: string[];
   reassigned: {
     gameStats: number;
     performanceScores: number;
@@ -89,6 +89,23 @@ export type PlayerMergeResult = {
   ratingsUpdated: number;
 };
 
+type PlayerMergePlan = {
+  preview: PlayerMergePreview;
+  duplicatePlayerIds: string[];
+  redundantRosterIds: string[];
+  movableRosterIds: string[];
+  redundantSnapshotRowIds: string[];
+  movableSnapshotRowIds: string[];
+  displayAliasesToCreate: Array<{
+    playerId: string;
+    aliasName: string;
+    gender: PlayerGender;
+    source: string;
+    note: string;
+  }>;
+  claimProfilePlayerId: string | null;
+};
+
 const playerSelect = {
   id: true,
   displayName: true,
@@ -102,6 +119,7 @@ const playerSelect = {
   deletedAt: true,
   currentProgram: { select: { fullName: true } },
 } as const;
+
 export async function loadPlayerMergeOptions() {
   const players = await prisma.player.findMany({
     where: { deletedAt: null },
@@ -151,155 +169,23 @@ function fingerprint(value: unknown) {
   return createHash("sha256").update(JSON.stringify(value)).digest("hex");
 }
 
-export async function buildPlayerMergePreview(
-  canonicalPlayerId: string,
-  duplicatePlayerId: string,
-): Promise<PlayerMergePreview> {
-  if (!canonicalPlayerId || !duplicatePlayerId || canonicalPlayerId === duplicatePlayerId) {
-    throw new Error("Choose two different active Player records.");
+function normalizeDuplicatePlayerIds(canonicalPlayerId: string, duplicatePlayerIds: string | string[]) {
+  const normalized = Array.from(new Set(
+    (Array.isArray(duplicatePlayerIds) ? duplicatePlayerIds : [duplicatePlayerIds])
+      .map((playerId) => playerId.trim())
+      .filter(Boolean),
+  )).sort();
+
+  if (!canonicalPlayerId || normalized.length === 0) {
+    throw new Error("Choose a Player to keep and at least one duplicate Player.");
   }
-
-  const [canonical, duplicate] = await Promise.all([
-    prisma.player.findUnique({ where: { id: canonicalPlayerId }, select: playerSelect }),
-    prisma.player.findUnique({ where: { id: duplicatePlayerId }, select: playerSelect }),
-  ]);
-
-  if (!canonical || canonical.deletedAt) throw new Error("The Player record to keep is missing or archived.");
-  if (!duplicate || duplicate.deletedAt) throw new Error("The duplicate Player record is missing or already archived.");
-
-  const [
-    canonicalStats,
-    duplicateStats,
-    performanceScores,
-    canonicalRosters,
-    duplicateRosters,
-    programHistory,
-    profileSubmissions,
-    profileClaims,
-    canonicalClaimProfile,
-    duplicateClaimProfile,
-    aliases,
-    externalAliases,
-    ratings,
-    canonicalSnapshotRows,
-    duplicateSnapshotRows,
-    sourceNameAlias,
-  ] = await Promise.all([
-    prisma.gameStat.findMany({ where: { playerId: canonicalPlayerId }, select: { gameId: true } }),
-    prisma.gameStat.findMany({ where: { playerId: duplicatePlayerId }, select: { gameId: true } }),
-    prisma.gamePerformanceScore.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.playerTeamSeason.findMany({
-      where: { playerId: canonicalPlayerId },
-      select: { id: true, seasonId: true, teamId: true, team: { select: { name: true } }, season: { select: { name: true } } },
-    }),
-    prisma.playerTeamSeason.findMany({
-      where: { playerId: duplicatePlayerId },
-      select: { id: true, seasonId: true, teamId: true, team: { select: { name: true } }, season: { select: { name: true } } },
-    }),
-    prisma.playerProgramHistory.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.playerProfileSubmission.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.profileClaim.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.playerClaimProfile.findUnique({ where: { playerId: canonicalPlayerId }, select: { playerId: true } }),
-    prisma.playerClaimProfile.findUnique({ where: { playerId: duplicatePlayerId }, select: { playerId: true } }),
-    prisma.playerAlias.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.playerExternalAlias.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.playerRating.count({ where: { playerId: duplicatePlayerId } }),
-    prisma.rankingSnapshotRow.findMany({ where: { playerId: canonicalPlayerId }, select: { snapshotId: true } }),
-    prisma.rankingSnapshotRow.findMany({ where: { playerId: duplicatePlayerId }, select: { snapshotId: true } }),
-    prisma.playerAlias.findUnique({
-      where: { aliasName_gender: { aliasName: duplicate.displayName, gender: duplicate.gender } },
-      select: { playerId: true },
-    }),
-  ]);
-
-  const blockers: string[] = [];
-  const warnings: string[] = [];
-  if (canonical.gender !== duplicate.gender) blockers.push("Players have different genders.");
-
-  const canonicalGameIds = new Set(canonicalStats.map((row) => row.gameId));
-  const sameGameCollisions = Array.from(
-    new Set(duplicateStats.filter((row) => canonicalGameIds.has(row.gameId)).map((row) => row.gameId)),
-  );
-  if (sameGameCollisions.length) {
-    blockers.push(`${sameGameCollisions.length} same-game GameStat collision(s) require manual stat review first.`);
+  if (normalized.includes(canonicalPlayerId)) {
+    throw new Error("The Player to keep cannot also be selected as a duplicate.");
   }
-
-  const canonicalRosterBySeason = new Map(canonicalRosters.map((row) => [row.seasonId, row]));
-  const redundantRosterAssignments = duplicateRosters.filter((row) => {
-    const existing = canonicalRosterBySeason.get(row.seasonId);
-    return existing?.teamId === row.teamId;
-  });
-  const rosterConflicts = duplicateRosters.flatMap((row) => {
-    const existing = canonicalRosterBySeason.get(row.seasonId);
-    if (!existing || existing.teamId === row.teamId) return [];
-    return [{
-      seasonId: row.seasonId,
-      seasonName: row.season.name,
-      canonicalTeam: existing.team.name,
-      duplicateTeam: row.team.name,
-    }];
-  });
-  if (rosterConflicts.length) {
-    blockers.push(`${rosterConflicts.length} same-season roster assignment conflict(s) require a manual roster decision.`);
+  if (normalized.length > 10) {
+    throw new Error("Merge at most 10 duplicate profiles at one time.");
   }
-  if (canonicalClaimProfile && duplicateClaimProfile) {
-    blockers.push("Both records have claimed-profile settings. Resolve ownership before merging.");
-  }
-  if (sourceNameAlias && sourceNameAlias.playerId !== canonicalPlayerId && sourceNameAlias.playerId !== duplicatePlayerId) {
-    blockers.push(`The alias ${duplicate.displayName} is assigned to another Player record.`);
-  }
-
-  if (canonical.birthDate && duplicate.birthDate && canonical.birthDate.getTime() !== duplicate.birthDate.getTime()) {
-    warnings.push("Birth dates differ. The retained record's birth date will remain unchanged.");
-  }
-  if (canonical.currentProgramId !== duplicate.currentProgramId) {
-    warnings.push("Current Programs differ. The retained record's current Program will remain unchanged.");
-  }
-  if (canonical.heightCm && duplicate.heightCm && canonical.heightCm !== duplicate.heightCm) {
-    warnings.push("Heights differ. The retained record's height will remain unchanged.");
-  }
-  warnings.push("Historical GameStat team IDs and stat values are preserved; only Player references are consolidated.");
-
-  const canonicalSnapshotIds = new Set(canonicalSnapshotRows.map((row) => row.snapshotId));
-  const collidingSnapshotRows = duplicateSnapshotRows.filter((row) => canonicalSnapshotIds.has(row.snapshotId)).length;
-  const impact = {
-    gameStats: duplicateStats.length,
-    performanceScores,
-    rosterAssignments: duplicateRosters.length,
-    redundantRosterAssignments: redundantRosterAssignments.length,
-    programHistory,
-    profileSubmissions,
-    profileClaims,
-    claimProfile: duplicateClaimProfile ? 1 : 0,
-    aliases,
-    externalAliases,
-    ratings,
-    snapshotRows: duplicateSnapshotRows.length,
-    collidingSnapshotRows,
-  };
-
-  const previewFingerprint = fingerprint({
-    canonicalId: canonical.id,
-    canonicalUpdatedAt: canonical.updatedAt.toISOString(),
-    duplicateId: duplicate.id,
-    duplicateUpdatedAt: duplicate.updatedAt.toISOString(),
-    impact,
-    sameGameCollisions,
-    rosterConflicts,
-    blockers,
-  });
-
-  return {
-    canonical: serializePlayer(canonical),
-    duplicate: serializePlayer(duplicate),
-    impact,
-    blockers,
-    warnings,
-    sameGameCollisions,
-    rosterConflicts,
-    canMerge: blockers.length === 0,
-    fingerprint: previewFingerprint,
-  };
+  return normalized;
 }
 
 function combineCumulativeTargets(
@@ -323,8 +209,8 @@ function combineCumulativeTargets(
   );
 }
 
-async function buildMergedRatingTargets(canonicalPlayerId: string, duplicatePlayerId: string) {
-  const playerIds = [canonicalPlayerId, duplicatePlayerId];
+async function buildMergedRatingTargets(canonicalPlayerId: string, duplicatePlayerIds: string[]) {
+  const playerIds = [canonicalPlayerId, ...duplicatePlayerIds];
   const [formulaVersionId, cumulativeRows, tierGames] = await Promise.all([
     resolveFormulaV1VersionId(),
     loadCumulativeFormulaV1Gps({ playerIds }),
@@ -339,217 +225,418 @@ async function buildMergedRatingTargets(canonicalPlayerId: string, duplicatePlay
   };
 }
 
+async function buildPlayerMergePlan(
+  canonicalPlayerId: string,
+  duplicatePlayerIdsInput: string | string[],
+): Promise<PlayerMergePlan> {
+  const duplicatePlayerIds = normalizeDuplicatePlayerIds(canonicalPlayerId, duplicatePlayerIdsInput);
+  const selectedPlayerIds = [canonicalPlayerId, ...duplicatePlayerIds];
+  const selectedPlayerIdSet = new Set(selectedPlayerIds);
+
+  const players = await prisma.player.findMany({
+    where: { id: { in: selectedPlayerIds } },
+    select: playerSelect,
+  });
+  const canonical = players.find((player) => player.id === canonicalPlayerId);
+  const duplicates = duplicatePlayerIds.map((playerId) => players.find((player) => player.id === playerId));
+
+  if (!canonical || canonical.deletedAt) throw new Error("The Player record to keep is missing or archived.");
+  if (duplicates.some((player) => !player || player.deletedAt)) {
+    throw new Error("One or more duplicate Player records are missing or already archived.");
+  }
+  const activeDuplicates = duplicates.filter((player): player is NonNullable<typeof player> => Boolean(player));
+
+  const [
+    selectedStats,
+    performanceScores,
+    selectedRosters,
+    programHistory,
+    profileSubmissions,
+    profileClaims,
+    claimProfiles,
+    aliases,
+    externalAliases,
+    ratings,
+    selectedSnapshotRows,
+    displayNameAliases,
+  ] = await Promise.all([
+    prisma.gameStat.findMany({
+      where: { playerId: { in: selectedPlayerIds } },
+      select: { playerId: true, gameId: true },
+    }),
+    prisma.gamePerformanceScore.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.playerTeamSeason.findMany({
+      where: { playerId: { in: selectedPlayerIds } },
+      orderBy: [{ seasonId: "asc" }, { playerId: "asc" }, { id: "asc" }],
+      select: {
+        id: true,
+        playerId: true,
+        seasonId: true,
+        teamId: true,
+        team: { select: { name: true } },
+        season: { select: { name: true } },
+      },
+    }),
+    prisma.playerProgramHistory.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.playerProfileSubmission.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.profileClaim.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.playerClaimProfile.findMany({
+      where: { playerId: { in: selectedPlayerIds } },
+      select: { playerId: true },
+    }),
+    prisma.playerAlias.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.playerExternalAlias.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.playerRating.count({ where: { playerId: { in: duplicatePlayerIds } } }),
+    prisma.rankingSnapshotRow.findMany({
+      where: { playerId: { in: selectedPlayerIds } },
+      orderBy: [{ snapshotId: "asc" }, { playerId: "asc" }, { id: "asc" }],
+      select: { id: true, playerId: true, snapshotId: true },
+    }),
+    prisma.playerAlias.findMany({
+      where: {
+        aliasName: { in: activeDuplicates.map((player) => player.displayName) },
+        gender: canonical.gender,
+      },
+      select: { playerId: true, aliasName: true },
+    }),
+  ]);
+
+  const blockers: string[] = [];
+  const warnings: string[] = [];
+
+  if (activeDuplicates.some((duplicate) => canonical.gender !== duplicate.gender)) {
+    blockers.push("Selected Players have different genders.");
+  }
+
+  const playersByGame = new Map<string, Set<string>>();
+  for (const row of selectedStats) {
+    const playerIds = playersByGame.get(row.gameId) ?? new Set<string>();
+    playerIds.add(row.playerId);
+    playersByGame.set(row.gameId, playerIds);
+  }
+  const sameGameCollisions = Array.from(playersByGame.entries())
+    .filter(([, playerIds]) => playerIds.size > 1)
+    .map(([gameId]) => gameId)
+    .sort();
+  if (sameGameCollisions.length) {
+    blockers.push(`${sameGameCollisions.length} same-game GameStat collision(s) require manual stat review first.`);
+  }
+
+  const redundantRosterIds: string[] = [];
+  const movableRosterIds: string[] = [];
+  const rosterConflicts: PlayerMergePreview["rosterConflicts"] = [];
+  const rostersBySeason = new Map<string, typeof selectedRosters>();
+  for (const roster of selectedRosters) {
+    const rows = rostersBySeason.get(roster.seasonId) ?? [];
+    rows.push(roster);
+    rostersBySeason.set(roster.seasonId, rows);
+  }
+  for (const rows of rostersBySeason.values()) {
+    const teamIds = new Set(rows.map((row) => row.teamId));
+    if (teamIds.size > 1) {
+      const retained = rows.find((row) => row.playerId === canonicalPlayerId) ?? rows[0];
+      for (const row of rows.filter((candidate) => candidate.teamId !== retained.teamId)) {
+        rosterConflicts.push({
+          seasonId: row.seasonId,
+          seasonName: row.season.name,
+          canonicalTeam: retained.team.name,
+          duplicateTeam: row.team.name,
+        });
+      }
+      continue;
+    }
+
+    const retained = rows.find((row) => row.playerId === canonicalPlayerId) ?? rows[0];
+    for (const row of rows) {
+      if (row.playerId === canonicalPlayerId) continue;
+      if (row.id === retained.id) movableRosterIds.push(row.id);
+      else redundantRosterIds.push(row.id);
+    }
+  }
+  if (rosterConflicts.length) {
+    blockers.push(`${rosterConflicts.length} same-season roster assignment conflict(s) require a manual roster decision.`);
+  }
+
+  if (claimProfiles.length > 1) {
+    blockers.push("Multiple selected records have claimed-profile settings. Resolve ownership before merging.");
+  }
+  for (const alias of displayNameAliases) {
+    if (!selectedPlayerIdSet.has(alias.playerId)) {
+      blockers.push(`The alias ${alias.aliasName} is assigned to another Player record.`);
+    }
+  }
+
+  for (const duplicate of activeDuplicates) {
+    if (canonical.birthDate && duplicate.birthDate && canonical.birthDate.getTime() !== duplicate.birthDate.getTime()) {
+      warnings.push(`${duplicate.displayName}: birth date differs; the retained record's value remains unchanged.`);
+    }
+    if (canonical.currentProgramId !== duplicate.currentProgramId) {
+      warnings.push(`${duplicate.displayName}: current Program differs; the retained record's Program remains unchanged.`);
+    }
+    if (canonical.heightCm && duplicate.heightCm && canonical.heightCm !== duplicate.heightCm) {
+      warnings.push(`${duplicate.displayName}: height differs; the retained record's height remains unchanged.`);
+    }
+  }
+  warnings.push("Historical GameStat team IDs and stat values are preserved; only Player references are consolidated.");
+
+  const redundantSnapshotRowIds: string[] = [];
+  const movableSnapshotRowIds: string[] = [];
+  const snapshotRowsBySnapshot = new Map<string, typeof selectedSnapshotRows>();
+  for (const row of selectedSnapshotRows) {
+    const rows = snapshotRowsBySnapshot.get(row.snapshotId) ?? [];
+    rows.push(row);
+    snapshotRowsBySnapshot.set(row.snapshotId, rows);
+  }
+  for (const rows of snapshotRowsBySnapshot.values()) {
+    const retained = rows.find((row) => row.playerId === canonicalPlayerId) ?? rows[0];
+    for (const row of rows) {
+      if (row.playerId === canonicalPlayerId) continue;
+      if (row.id === retained.id) movableSnapshotRowIds.push(row.id);
+      else redundantSnapshotRowIds.push(row.id);
+    }
+  }
+
+  const claimProfilePlayerId = claimProfiles.find((row) => row.playerId !== canonicalPlayerId)?.playerId ?? null;
+  const displayAliasNames = new Set(displayNameAliases.map((alias) => alias.aliasName));
+  const displayAliasesToCreate = activeDuplicates
+    .filter((duplicate) => !displayAliasNames.has(duplicate.displayName))
+    .map((duplicate) => ({
+      playerId: canonicalPlayerId,
+      aliasName: duplicate.displayName,
+      gender: duplicate.gender,
+      source: "admin-player-merge",
+      note: `Former duplicate Player ${duplicate.id}`,
+    }));
+
+  const impact = {
+    gameStats: selectedStats.filter((row) => row.playerId !== canonicalPlayerId).length,
+    performanceScores,
+    rosterAssignments: selectedRosters.filter((row) => row.playerId !== canonicalPlayerId).length,
+    redundantRosterAssignments: redundantRosterIds.length,
+    programHistory,
+    profileSubmissions,
+    profileClaims,
+    claimProfile: claimProfilePlayerId ? 1 : 0,
+    aliases,
+    externalAliases,
+    ratings,
+    snapshotRows: selectedSnapshotRows.filter((row) => row.playerId !== canonicalPlayerId).length,
+    collidingSnapshotRows: redundantSnapshotRowIds.length,
+  };
+
+  const previewFingerprint = fingerprint({
+    canonicalId: canonical.id,
+    canonicalUpdatedAt: canonical.updatedAt.toISOString(),
+    duplicates: activeDuplicates.map((duplicate) => ({
+      id: duplicate.id,
+      updatedAt: duplicate.updatedAt.toISOString(),
+    })),
+    impact,
+    sameGameCollisions,
+    rosterConflicts,
+    blockers,
+    redundantRosterIds,
+    movableRosterIds,
+    redundantSnapshotRowIds,
+    movableSnapshotRowIds,
+  });
+
+  return {
+    preview: {
+      canonical: serializePlayer(canonical),
+      duplicates: activeDuplicates.map(serializePlayer),
+      impact,
+      blockers,
+      warnings,
+      sameGameCollisions,
+      rosterConflicts,
+      canMerge: blockers.length === 0,
+      fingerprint: previewFingerprint,
+    },
+    duplicatePlayerIds,
+    redundantRosterIds,
+    movableRosterIds,
+    redundantSnapshotRowIds,
+    movableSnapshotRowIds,
+    displayAliasesToCreate,
+    claimProfilePlayerId,
+  };
+}
+
+export async function buildPlayerMergePreview(
+  canonicalPlayerId: string,
+  duplicatePlayerIds: string | string[],
+): Promise<PlayerMergePreview> {
+  return (await buildPlayerMergePlan(canonicalPlayerId, duplicatePlayerIds)).preview;
+}
+
 export async function executePlayerMerge(input: {
   canonicalPlayerId: string;
-  duplicatePlayerId: string;
+  duplicatePlayerIds: string[];
   expectedFingerprint: string;
   reason: string;
   userId: string;
 }): Promise<PlayerMergeResult> {
-  const preview = await buildPlayerMergePreview(input.canonicalPlayerId, input.duplicatePlayerId);
+  const plan = await buildPlayerMergePlan(input.canonicalPlayerId, input.duplicatePlayerIds);
+  const { preview, duplicatePlayerIds } = plan;
+
   if (!preview.canMerge) throw new Error(preview.blockers.join(" "));
   if (preview.fingerprint !== input.expectedFingerprint) {
     throw new Error("Player records changed after preview. Refresh and review the merge again.");
   }
 
-  const ratingTargets = await buildMergedRatingTargets(input.canonicalPlayerId, input.duplicatePlayerId);
-  const result = await prisma.$transaction(async (tx) => {
-    const currentPlayers = await tx.player.findMany({
-      where: { id: { in: [input.canonicalPlayerId, input.duplicatePlayerId] }, deletedAt: null },
-      select: { id: true, displayName: true, gender: true },
-    });
-    if (currentPlayers.length !== 2) throw new Error("One of the Player records is no longer active.");
+  const ratingTargets = await buildMergedRatingTargets(input.canonicalPlayerId, duplicatePlayerIds);
+  const duplicateDisplayNames = preview.duplicates.map((player) => player.displayName);
+  const result: PlayerMergeResult = {
+    canonicalPlayerId: preview.canonical.id,
+    canonicalDisplayName: preview.canonical.displayName,
+    duplicatePlayerIds,
+    duplicateDisplayNames,
+    reassigned: {
+      gameStats: preview.impact.gameStats,
+      performanceScores: preview.impact.performanceScores,
+      rosterAssignments: plan.movableRosterIds.length,
+      programHistory: preview.impact.programHistory,
+      profileSubmissions: preview.impact.profileSubmissions,
+      profileClaims: preview.impact.profileClaims,
+      claimProfile: preview.impact.claimProfile,
+      aliases: preview.impact.aliases + plan.displayAliasesToCreate.length,
+      externalAliases: preview.impact.externalAliases,
+      snapshotRows: plan.movableSnapshotRowIds.length,
+    },
+    removedRedundant: {
+      rosterAssignments: plan.redundantRosterIds.length,
+      snapshotRows: plan.redundantSnapshotRowIds.length,
+      ratings: preview.impact.ratings,
+    },
+    ratingsUpdated: ratingTargets.productionTargets.length + ratingTargets.tierTargets.length,
+  };
 
-    const canonical = currentPlayers.find((row) => row.id === input.canonicalPlayerId)!;
-    const duplicate = currentPlayers.find((row) => row.id === input.duplicatePlayerId)!;
-    if (canonical.gender !== duplicate.gender) throw new Error("Players have different genders.");
+  const operations: Prisma.PrismaPromise<unknown>[] = [
+    prisma.playerAlias.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+  ];
 
-    const [canonicalGameIds, duplicateGameIds] = await Promise.all([
-      tx.gameStat.findMany({ where: { playerId: canonical.id }, select: { gameId: true } }),
-      tx.gameStat.findMany({ where: { playerId: duplicate.id }, select: { gameId: true } }),
-    ]);
-    const canonicalGames = new Set(canonicalGameIds.map((row) => row.gameId));
-    if (duplicateGameIds.some((row) => canonicalGames.has(row.gameId))) {
-      throw new Error("A same-game GameStat collision appeared after preview. Merge cancelled.");
-    }
+  if (plan.displayAliasesToCreate.length) {
+    operations.push(prisma.playerAlias.createMany({ data: plan.displayAliasesToCreate }));
+  }
 
-    const [canonicalRosters, duplicateRosters] = await Promise.all([
-      tx.playerTeamSeason.findMany({ where: { playerId: canonical.id }, select: { id: true, seasonId: true, teamId: true } }),
-      tx.playerTeamSeason.findMany({ where: { playerId: duplicate.id }, select: { id: true, seasonId: true, teamId: true } }),
-    ]);
-    const canonicalRosterBySeason = new Map(canonicalRosters.map((row) => [row.seasonId, row]));
-    const redundantRosterIds: string[] = [];
-    const movableRosterIds: string[] = [];
-    for (const roster of duplicateRosters) {
-      const existing = canonicalRosterBySeason.get(roster.seasonId);
-      if (!existing) movableRosterIds.push(roster.id);
-      else if (existing.teamId === roster.teamId) redundantRosterIds.push(roster.id);
-      else throw new Error("A same-season roster conflict appeared after preview. Merge cancelled.");
-    }
+  operations.push(
+    prisma.playerExternalAlias.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+    prisma.gameStat.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+    prisma.gamePerformanceScore.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+    prisma.playerProgramHistory.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+    prisma.playerProfileSubmission.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+    prisma.profileClaim.updateMany({
+      where: { playerId: { in: duplicatePlayerIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }),
+  );
 
-    const canonicalSnapshotRows = await tx.rankingSnapshotRow.findMany({
-      where: { playerId: canonical.id }, select: { snapshotId: true },
-    });
-    const canonicalSnapshotIds = new Set(canonicalSnapshotRows.map((row) => row.snapshotId));
-    const duplicateSnapshotRows = await tx.rankingSnapshotRow.findMany({
-      where: { playerId: duplicate.id }, select: { id: true, snapshotId: true },
-    });
-    const collidingSnapshotIds = duplicateSnapshotRows
-      .filter((row) => canonicalSnapshotIds.has(row.snapshotId))
-      .map((row) => row.id);
-    const movableSnapshotIds = duplicateSnapshotRows
-      .filter((row) => !canonicalSnapshotIds.has(row.snapshotId))
-      .map((row) => row.id);
+  if (plan.claimProfilePlayerId) {
+    operations.push(prisma.playerClaimProfile.update({
+      where: { playerId: plan.claimProfilePlayerId },
+      data: { playerId: input.canonicalPlayerId },
+    }));
+  }
+  if (plan.redundantRosterIds.length) {
+    operations.push(prisma.playerTeamSeason.deleteMany({ where: { id: { in: plan.redundantRosterIds } } }));
+  }
+  if (plan.movableRosterIds.length) {
+    operations.push(prisma.playerTeamSeason.updateMany({
+      where: { id: { in: plan.movableRosterIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }));
+  }
+  if (plan.redundantSnapshotRowIds.length) {
+    operations.push(prisma.rankingSnapshotRow.deleteMany({
+      where: { id: { in: plan.redundantSnapshotRowIds } },
+    }));
+  }
+  if (plan.movableSnapshotRowIds.length) {
+    operations.push(prisma.rankingSnapshotRow.updateMany({
+      where: { id: { in: plan.movableSnapshotRowIds } },
+      data: { playerId: input.canonicalPlayerId },
+    }));
+  }
 
-    const aliasOwner = await tx.playerAlias.findUnique({
-      where: { aliasName_gender: { aliasName: duplicate.displayName, gender: duplicate.gender } },
-      select: { id: true, playerId: true },
-    });
-    if (aliasOwner && aliasOwner.playerId !== canonical.id && aliasOwner.playerId !== duplicate.id) {
-      throw new Error(`Alias ${duplicate.displayName} belongs to another Player record.`);
-    }
+  operations.push(prisma.playerRating.deleteMany({ where: { playerId: { in: duplicatePlayerIds } } }));
 
-    const aliasUpdate = await tx.playerAlias.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    if (!aliasOwner) {
-      await tx.playerAlias.create({
-        data: {
-          playerId: canonical.id,
-          aliasName: duplicate.displayName,
-          gender: duplicate.gender,
-          source: "admin-player-merge",
-          note: `Former duplicate Player ${duplicate.id}`,
-        },
-      });
-    }
-
-    const externalAliasUpdate = await tx.playerExternalAlias.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    const gameStatUpdate = await tx.gameStat.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    const performanceUpdate = await tx.gamePerformanceScore.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    const historyUpdate = await tx.playerProgramHistory.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    const profileSubmissionUpdate = await tx.playerProfileSubmission.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    const claimUpdate = await tx.profileClaim.updateMany({
-      where: { playerId: duplicate.id }, data: { playerId: canonical.id },
-    });
-    const duplicateClaimProfile = await tx.playerClaimProfile.findUnique({ where: { playerId: duplicate.id } });
-    let claimProfileUpdated = 0;
-    if (duplicateClaimProfile) {
-      const canonicalClaimProfile = await tx.playerClaimProfile.findUnique({ where: { playerId: canonical.id } });
-      if (canonicalClaimProfile) throw new Error("Both records have claimed-profile settings.");
-      await tx.playerClaimProfile.update({ where: { playerId: duplicate.id }, data: { playerId: canonical.id } });
-      claimProfileUpdated = 1;
-    }
-
-    const redundantRosterDelete = redundantRosterIds.length
-      ? await tx.playerTeamSeason.deleteMany({ where: { id: { in: redundantRosterIds } } })
-      : { count: 0 };
-    const rosterUpdate = movableRosterIds.length
-      ? await tx.playerTeamSeason.updateMany({ where: { id: { in: movableRosterIds } }, data: { playerId: canonical.id } })
-      : { count: 0 };
-    const snapshotDelete = collidingSnapshotIds.length
-      ? await tx.rankingSnapshotRow.deleteMany({ where: { id: { in: collidingSnapshotIds } } })
-      : { count: 0 };
-    const snapshotUpdate = movableSnapshotIds.length
-      ? await tx.rankingSnapshotRow.updateMany({ where: { id: { in: movableSnapshotIds } }, data: { playerId: canonical.id } })
-      : { count: 0 };
-    const ratingsDelete = await tx.playerRating.deleteMany({ where: { playerId: duplicate.id } });
-
-    let ratingsUpdated = 0;
-    for (const [policyVersionId, targets] of [
-      [FORMULA_V1_POLICY_ID, ratingTargets.productionTargets],
-      [FORMULA_TIER_NORMALIZED_V1_POLICY_ID, ratingTargets.tierTargets],
-    ] as const) {
-      for (const target of targets) {
-        await tx.playerRating.upsert({
-          where: {
-            playerId_ageGroup_formulaVersionId_policyVersionId: {
-              playerId: canonical.id,
-              ageGroup: target.ageGroup,
-              formulaVersionId: ratingTargets.formulaVersionId,
-              policyVersionId,
-            },
-          },
-          update: {
-            observedRating: target.observedRating,
-            adjustedRating: target.adjustedRating,
-            verifiedGameCount: target.verifiedGameCount,
-            starRating: target.starRating,
-            computedAt: new Date(),
-          },
-          create: {
-            playerId: canonical.id,
+  for (const [policyVersionId, targets] of [
+    [FORMULA_V1_POLICY_ID, ratingTargets.productionTargets],
+    [FORMULA_TIER_NORMALIZED_V1_POLICY_ID, ratingTargets.tierTargets],
+  ] as const) {
+    for (const target of targets) {
+      operations.push(prisma.playerRating.upsert({
+        where: {
+          playerId_ageGroup_formulaVersionId_policyVersionId: {
+            playerId: input.canonicalPlayerId,
             ageGroup: target.ageGroup,
             formulaVersionId: ratingTargets.formulaVersionId,
             policyVersionId,
-            observedRating: target.observedRating,
-            adjustedRating: target.adjustedRating,
-            verifiedGameCount: target.verifiedGameCount,
-            starRating: target.starRating,
           },
-        });
-        ratingsUpdated += 1;
-      }
+        },
+        update: {
+          observedRating: target.observedRating,
+          adjustedRating: target.adjustedRating,
+          verifiedGameCount: target.verifiedGameCount,
+          starRating: target.starRating,
+          computedAt: new Date(),
+        },
+        create: {
+          playerId: input.canonicalPlayerId,
+          ageGroup: target.ageGroup,
+          formulaVersionId: ratingTargets.formulaVersionId,
+          policyVersionId,
+          observedRating: target.observedRating,
+          adjustedRating: target.adjustedRating,
+          verifiedGameCount: target.verifiedGameCount,
+          starRating: target.starRating,
+        },
+      }));
     }
+  }
 
-    const archived = await tx.player.updateMany({
-      where: { id: duplicate.id, deletedAt: null }, data: { deletedAt: new Date() },
-    });
-    if (archived.count !== 1) throw new Error("Duplicate Player could not be archived.");
-
-    const result: PlayerMergeResult = {
-      canonicalPlayerId: canonical.id,
-      canonicalDisplayName: canonical.displayName,
-      duplicatePlayerId: duplicate.id,
-      duplicateDisplayName: duplicate.displayName,
-      reassigned: {
-        gameStats: gameStatUpdate.count,
-        performanceScores: performanceUpdate.count,
-        rosterAssignments: rosterUpdate.count,
-        programHistory: historyUpdate.count,
-        profileSubmissions: profileSubmissionUpdate.count,
-        profileClaims: claimUpdate.count,
-        claimProfile: claimProfileUpdated,
-        aliases: aliasUpdate.count + (aliasOwner ? 0 : 1),
-        externalAliases: externalAliasUpdate.count,
-        snapshotRows: snapshotUpdate.count,
-      },
-      removedRedundant: {
-        rosterAssignments: redundantRosterDelete.count,
-        snapshotRows: snapshotDelete.count,
-        ratings: ratingsDelete.count,
-      },
-      ratingsUpdated,
-    };
-
-    await tx.auditLog.create({
+  operations.push(
+    prisma.player.updateMany({
+      where: { id: { in: duplicatePlayerIds }, deletedAt: null },
+      data: { deletedAt: new Date() },
+    }),
+    prisma.auditLog.create({
       data: {
         userId: input.userId,
         entityType: "PLAYER",
-        entityId: canonical.id,
-        action: "MERGE_DUPLICATE_PLAYER",
+        entityId: input.canonicalPlayerId,
+        action: duplicatePlayerIds.length === 1 ? "MERGE_DUPLICATE_PLAYER" : "MERGE_DUPLICATE_PLAYERS",
         reason: input.reason,
         previousData: {
-          canonicalPlayerId: canonical.id,
-          duplicatePlayerId: duplicate.id,
+          canonicalPlayerId: input.canonicalPlayerId,
+          duplicatePlayerIds,
           previewFingerprint: input.expectedFingerprint,
         },
         newData: result,
       },
-    });
+    }),
+  );
 
-    return result;
-  }, { timeout: 60_000, maxWait: 10_000 });
-
+  // A batch transaction avoids long-lived interactive transaction IDs through Supabase's pooler.
+  await prisma.$transaction(operations);
   return result;
 }

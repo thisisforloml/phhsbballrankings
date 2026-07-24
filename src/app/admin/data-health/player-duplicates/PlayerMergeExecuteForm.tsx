@@ -9,18 +9,18 @@ import {
   mergeDuplicatePlayer,
 } from "./actions";
 
-function SubmitButton() {
+function SubmitButton({ duplicateCount }: { duplicateCount: number }) {
   const { pending } = useFormStatus();
   return (
     <button type="submit" disabled={pending} className="button danger disabled:cursor-wait disabled:opacity-60">
-      {pending ? "Merging..." : "Merge duplicate Player"}
+      {pending ? "Merging..." : `Merge ${duplicateCount} duplicate ${duplicateCount === 1 ? "profile" : "profiles"}`}
     </button>
   );
 }
 
 export function PlayerMergeExecuteForm(props: {
   canonicalPlayerId: string;
-  duplicatePlayerId: string;
+  duplicatePlayerIds: string[];
   expectedFingerprint: string;
 }) {
   const router = useRouter();
@@ -35,7 +35,7 @@ export function PlayerMergeExecuteForm(props: {
   return (
     <form action={action} className="grid gap-3 border-t border-red-200 bg-red-50 p-4">
       <input type="hidden" name="canonicalPlayerId" value={props.canonicalPlayerId} />
-      <input type="hidden" name="duplicatePlayerId" value={props.duplicatePlayerId} />
+      <input type="hidden" name="duplicatePlayerIds" value={props.duplicatePlayerIds.join(",")} />
       <input type="hidden" name="expectedFingerprint" value={props.expectedFingerprint} />
 
       <label className="grid gap-1.5 text-sm font-semibold text-ink-800">
@@ -45,7 +45,7 @@ export function PlayerMergeExecuteForm(props: {
           required
           maxLength={500}
           rows={2}
-          placeholder="Confirmed same athlete; duplicate created from name variation."
+          placeholder="Confirmed same athlete; duplicates created from name variations."
           className="rounded-md border border-surface-300 bg-white px-3 py-2 font-normal"
         />
       </label>
@@ -66,7 +66,7 @@ export function PlayerMergeExecuteForm(props: {
         </p>
       ) : null}
 
-      <div><SubmitButton /></div>
+      <div><SubmitButton duplicateCount={props.duplicatePlayerIds.length} /></div>
     </form>
   );
 }
