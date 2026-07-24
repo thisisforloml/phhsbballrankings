@@ -43,26 +43,25 @@ export function ProgramHierarchyCard({ hierarchy }: { hierarchy: ProgramHierarch
   }, [state.ok]);
 
   return (
-    <section className="rounded-lg border border-surface-200 bg-white p-4 shadow-sm">
-      <h3 className="text-sm font-semibold text-navy-900">Hierarchy</h3>
-      <p className="mt-1 text-sm text-ink-600">
-        Parent-child program structure for admin grouping only. Only group programs can be parents. Teams and players are unchanged.
-      </p>
-
-      <div className="mt-4 grid gap-4">
+    <details className="rounded-lg border border-surface-200 bg-white shadow-sm">
+      <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-navy-900">
+        Organization grouping <span className="ml-2 font-normal text-ink-500">Optional</span>
+      </summary>
+      <div className="grid gap-4 border-t border-surface-200 p-4">
+        <p className="text-sm text-ink-600">Group related Programs without moving Teams, players, games, or stats.</p>
         <div>
-          <p className={labelClassName}>Breadcrumb</p>
+          <p className={labelClassName}>Program path</p>
           {hierarchy.breadcrumb.length ? (
             <p className="mt-2 text-sm text-ink-800">
               {hierarchy.breadcrumb.map((item, index) => (
                 <span key={item.id}>
-                  {index > 0 ? <span className="px-1 text-ink-400">›</span> : null}
+                  {index > 0 ? <span className="px-1 text-ink-400">/</span> : null}
                   <Link href={`/admin/programs/${item.id}`} prefetch={false} className="font-semibold text-orange-700 hover:text-orange-800">
                     {item.fullName}
                   </Link>
                 </span>
               ))}
-              <span className="px-1 text-ink-400">›</span>
+              <span className="px-1 text-ink-400">/</span>
               <span className="font-semibold text-navy-900">{hierarchy.programFullName}</span>
             </p>
           ) : (
@@ -71,20 +70,20 @@ export function ProgramHierarchyCard({ hierarchy }: { hierarchy: ProgramHierarch
         </div>
 
         <div>
-          <p className={labelClassName}>Current parent</p>
+          <p className={labelClassName}>Belongs to</p>
           <p className="mt-2 text-sm text-ink-800">
             {hierarchy.parentProgram ? (
               <Link href={`/admin/programs/${hierarchy.parentProgram.id}`} prefetch={false} className="font-semibold text-orange-700 hover:text-orange-800">
                 {hierarchy.parentProgram.fullName}
               </Link>
             ) : (
-              "None"
+              "Independent"
             )}
           </p>
         </div>
 
         <div>
-          <p className={labelClassName}>Child programs</p>
+          <p className={labelClassName}>Programs in this organization</p>
           {hierarchy.childPrograms.length ? (
             <ul className="mt-2 grid gap-1 text-sm">
               {hierarchy.childPrograms.map((child) => (
@@ -104,23 +103,23 @@ export function ProgramHierarchyCard({ hierarchy }: { hierarchy: ProgramHierarch
           <input type="hidden" name="programId" value={hierarchy.programId} />
           <AdminFormFeedback state={state} />
           <label className="grid gap-1.5">
-            <span className={labelClassName}>Search group parent</span>
+            <span className={labelClassName}>Search organizations</span>
             <input
               value={parentQuery}
               onChange={(event) => setParentQuery(event.target.value)}
-              placeholder="Filter group programs"
+              placeholder="Filter organizations"
               className={inputClassName}
             />
           </label>
           <label className="grid gap-1.5">
-            <span className={labelClassName}>Group parent program</span>
+            <span className={labelClassName}>Organization</span>
             <select
               name="parentProgramId"
               value={selectedParentId}
               onChange={(event) => setSelectedParentId(event.target.value)}
               className={inputClassName}
             >
-              <option value="">No parent (root program)</option>
+              <option value="">Independent program</option>
               {filteredParentOptions.map((option) => (
                 <option key={option.id} value={option.id}>
                   {option.fullName}
@@ -130,7 +129,7 @@ export function ProgramHierarchyCard({ hierarchy }: { hierarchy: ProgramHierarch
             </select>
           </label>
           <div className="flex flex-wrap gap-2">
-            <AdminSaveButton label="Save parent" variant="ops" className="w-fit" />
+            <AdminSaveButton label="Save organization" variant="ops" className="w-fit" />
             {hierarchy.parentProgramId ? (
               <button
                 type="button"
@@ -143,6 +142,6 @@ export function ProgramHierarchyCard({ hierarchy }: { hierarchy: ProgramHierarch
           </div>
         </form>
       </div>
-    </section>
+    </details>
   );
 }

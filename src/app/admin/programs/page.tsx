@@ -1,4 +1,4 @@
-﻿import { Suspense } from "react";
+import { Suspense } from "react";
 
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { loadProgramListRows } from "@/lib/admin/load-program-list";
@@ -22,8 +22,8 @@ export default async function AdminProgramsPage() {
     <>
       <AdminPageHeader
         eyebrow="Program Management"
-        title="Schools, Clubs, and Team Programs"
-        description="Create and manage school, club, and team programs. Assign teams explicitly instead of relying on alias inference."
+        title="Programs"
+        description="Create a Program, then manage its Teams and roster."
         statusBadge={`${rows.length} records`}
       />
       <ProgramCreateForm />

@@ -4,7 +4,7 @@ import { ProgramRole as ProgramRoleEnum } from "@prisma/client";
 import { AdminBadge } from "@/components/admin/AdminBadge";
 
 export function programRoleLabel(role: ProgramRole) {
-  return role === ProgramRoleEnum.GROUP ? "Group" : "Operational";
+  return role === ProgramRoleEnum.GROUP ? "Organization" : "Program";
 }
 
 export function ProgramRoleBadge({ role, className = "" }: { role: ProgramRole; className?: string }) {

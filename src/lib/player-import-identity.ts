@@ -1,5 +1,7 @@
 import { PlayerGender, Prisma, type PrismaClient } from "@prisma/client";
 
+import { isMiddleNameVariant, normalizeIdentityTokens } from "@/lib/player-name-identity";
+
 type PlayerImportClient = PrismaClient | Prisma.TransactionClient;
 
 function stringValue(value: unknown): string {
@@ -39,7 +41,7 @@ export type PlayerImportResolveResult =
 /**
  * Resolve an imported player name to an existing Player or signal create/blocked.
  * Order: exact displayName match → PlayerAlias lookup → create.
- * No fuzzy matching, merges, or identity scoring.
+ * A likely middle-name variant blocks import for admin review; it is never merged automatically.
  */
 export async function resolvePlayerForImport(
   client: PlayerImportClient,
@@ -93,5 +95,36 @@ export async function resolvePlayerForImport(
     };
   }
 
+  const identityTokens = normalizeIdentityTokens(cleanedName);
+  const firstToken = identityTokens[0] ?? "";
+  const lastToken = identityTokens.at(-1) ?? "";
+  const possibleVariants = firstToken && lastToken
+    ? await client.player.findMany({
+        where: {
+          gender,
+          deletedAt: null,
+          OR: [
+            { firstName: { contains: firstToken, mode: "insensitive" } },
+            { lastName: { contains: lastToken, mode: "insensitive" } },
+            { displayName: { contains: lastToken, mode: "insensitive" } },
+          ],
+        },
+        select: { id: true, displayName: true },
+        orderBy: { displayName: "asc" },
+        take: 50,
+      })
+    : [];
+  const middleNameVariants = possibleVariants.filter((player) =>
+    isMiddleNameVariant(cleanedName, player.displayName),
+  );
+
+  if (middleNameVariants.length) {
+    return {
+      action: "blocked",
+      reason: `Possible existing Player for ${cleanedName}: ${middleNameVariants
+        .map((player) => player.displayName)
+        .join(", ")}. Review the duplicate candidate and add a PlayerAlias after confirming identity.`,
+    };
+  }
   return { action: "create" };
 }

@@ -7,6 +7,8 @@
   },
   "description": "Verified Philippine basketball rankings website built with Next.js, TypeScript, PostgreSQL, and Prisma.",
   "scripts": {
+    "audit:player-name-fragments-team-context": "tsx scripts/audit-player-name-fragments-team-context.ts",
+    "plan:split-multi-context-teams": "tsx scripts/plan-split-multi-context-teams.ts",
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",

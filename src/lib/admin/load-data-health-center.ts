@@ -397,8 +397,8 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
       title: "Programs",
       issues: [
         issue("programs-without-teams", "Programs without teams", programsWithoutTeams, "warning", "/admin/programs"),
-        issue("group-without-children", "GROUP programs without children", groupProgramsWithoutChildren, "warning", "/admin/programs"),
-        issue("archived-with-active-children", "Archived programs with active children", archivedProgramsWithActiveChildren, "critical", "/admin/programs"),
+        issue("group-without-children", "Organizations without Programs", groupProgramsWithoutChildren, "warning", "/admin/programs"),
+        issue("archived-with-active-children", "Archived organizations with active Programs", archivedProgramsWithActiveChildren, "critical", "/admin/programs"),
         issue("circular-hierarchy", "Circular hierarchy attempts", circularHierarchy, "critical", "/admin/programs"),
         issue("programs-duplicate-abbreviations", "Duplicate abbreviations", programsDuplicateAbbreviations, "warning", "/admin/programs"),
         issue("programs-duplicate-names", "Duplicate names", programsDuplicateNames, "warning", "/admin/programs"),
@@ -465,7 +465,7 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     {
       id: "hierarchy-validator",
       name: "Program hierarchy validator",
-      description: "GROUP/OPERATIONAL hierarchy and parent assignment rules.",
+      description: "Organization and Program grouping rules.",
       href: "/admin/programs",
       lastRunAt: auditedAt,
     },

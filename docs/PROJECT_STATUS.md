@@ -2924,3 +2924,18 @@ No-change confirmation:
 - Admin, portal, search, session, and write responses remain uncached.
 - No Cloudflare or Firebase configuration was added.
 - No database migrations, data imports/publishes, rating recomputes, ranking snapshots, or formula changes were performed.
+
+## Player Identity and Team Context Integrity Checkpoint
+
+- Added a read-only player name-fragment audit for likely duplicate identities caused by middle names, second names, punctuation, or diacritics.
+- Current audit found 42 token-subset candidate pairs: 11 possible review candidates and 31 low-confidence candidates. No players were merged automatically.
+- Official import now blocks likely middle-name variants for admin review instead of silently creating another Player. Confirmed variants can be resolved with a PlayerAlias before retrying import.
+- Added a read-only mixed-context Team planner. It found 8 active Teams spanning more than one age/gender competition context.
+- Smile 360 Bullies currently combines U13 and U15 competition evidence in one Team record. The dry-run proposes separate `Smile 360 Bullies U13` and `Smile 360 Bullies U15` contexts with exact game and GameStat references; no split was executed.
+- Official import Team resolution now requires the Team to belong to the configured Program and match the incoming age/gender context. A mixed-context Team blocks import until reviewed.
+- Programs and age/gender-specific Teams must be created or assigned in Admin Program Management before official publish. Import no longer silently creates or attaches Programs/Teams.
+- Program Management copy now uses operational terms: Program, Team, roster, and optional Organization grouping. User-facing parent/children terminology was removed.
+- Added commands:
+  - `npm.cmd run audit:player-name-fragments-team-context`
+  - `npm.cmd run plan:split-multi-context-teams`
+- No database writes, Player merges, Team splits, schema changes, migrations, imports/publishes, rating recomputes, or ranking snapshots were run.

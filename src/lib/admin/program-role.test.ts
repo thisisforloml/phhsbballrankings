@@ -53,7 +53,7 @@ describe("program-role", () => {
   it("rejects group create with parent, teams, or players", () => {
     assert.throws(
       () => validateProgramCreateInput({ programRole: ProgramRole.GROUP, parentProgramId: "parent-id" }),
-      /cannot have a parent program/i,
+      /cannot belong to another organization/i,
     );
     assert.throws(
       () => validateProgramCreateInput({ programRole: ProgramRole.GROUP, teamCount: 1 }),

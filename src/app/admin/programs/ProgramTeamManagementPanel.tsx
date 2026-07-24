@@ -50,7 +50,7 @@ export function ProgramTeamManagementPanel({
   const canManageTeams = programRole === "OPERATIONAL";
   const disabledReason =
     programRole === "GROUP"
-      ? "Group programs cannot own teams. Assign teams to operational child programs instead."
+      ? "Select the Program that owns each Team and roster."
       : null;
 
   const [panel, setPanel] = useState<"create" | "assign" | null>(null);
@@ -168,11 +168,11 @@ export function ProgramTeamManagementPanel({
                 onChange={(event) => setAddTeamId(event.target.value)}
                 className={inputClassName}
               >
-                <option value="">Select team…</option>
+                <option value="">Select team...</option>
                 {addableTeams.map((team) => (
                   <option key={team.id} value={team.id}>
                     {team.name}
-                    {team.programFullName ? ` · currently ${team.programFullName}` : " · unassigned"}
+                    {team.programFullName ? ` - currently ${team.programFullName}` : " - unassigned"}
                   </option>
                 ))}
               </select>
@@ -186,7 +186,7 @@ export function ProgramTeamManagementPanel({
         <div className="border-b border-surface-200 bg-surface-50 px-4 py-3">
           <h3 className="text-sm font-semibold text-navy-900">Teams ({teams.length})</h3>
           <p className="mt-1 text-sm text-ink-600">
-            Program-owned team records. Moving a team only updates its program link — players, games, and ratings are untouched.
+            Current Teams. Moving a Team changes its Program only; game history stays unchanged.
           </p>
         </div>
 
@@ -210,7 +210,7 @@ export function ProgramTeamManagementPanel({
                     <td className="px-4 py-3">
                       <strong className="font-semibold text-ink-900">{team.name}</strong>
                       <p className="mt-0.5 text-xs text-ink-500">
-                        {[team.city, team.region].filter(Boolean).join(", ")} · {team.officialGames} GP
+                        {[team.city, team.region].filter(Boolean).join(", ")} - {team.officialGames} GP
                       </p>
                     </td>
                     <td className="px-4 py-3">{team.genders}</td>

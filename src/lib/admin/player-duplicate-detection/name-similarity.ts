@@ -1,4 +1,5 @@
 import { normalizeImportedPlayerNameKey } from "@/lib/player-import-identity";
+export { isMiddleNameVariant } from "@/lib/player-name-identity";
 
 export function normalizeDuplicateName(value: string) {
   return normalizeImportedPlayerNameKey(value);

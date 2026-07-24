@@ -214,7 +214,7 @@ export function buildPlayerIntegrityReport(input: BuildInput): PlayerIntegrityRe
       severity: "ERROR",
       title: "Group program assigned",
       why: "Group programs are hierarchy containers and must not own players directly.",
-      howToFix: "Transfer or assign the player to an operational child program.",
+      howToFix: "Transfer or assign the player to an operational Program.",
     });
   }
 

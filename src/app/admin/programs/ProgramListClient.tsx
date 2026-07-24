@@ -27,15 +27,15 @@ const TYPE_CHIP_ITEMS = [
 ] as const;
 
 const HIERARCHY_CHIP_ITEMS = [
-  { key: "ALL", label: "All programs" },
-  { key: "ROOTS_ONLY", label: "Roots only" },
-  { key: "HAS_PARENT", label: "Has parent" },
-  { key: "HAS_CHILDREN", label: "Has children" },
+  { key: "ALL", label: "All" },
+  { key: "ROOTS_ONLY", label: "Independent" },
+  { key: "HAS_PARENT", label: "In organization" },
+  { key: "HAS_CHILDREN", label: "Organizations" },
 ] as const;
 
 const VIEW_CHIP_ITEMS = [
-  { key: "flat", label: "Flat table" },
-  { key: "tree", label: "Tree view" },
+  { key: "flat", label: "List" },
+  { key: "tree", label: "Grouped" },
 ] as const;
 
 function searchText(program: ProgramListRow) {
@@ -93,7 +93,7 @@ function ProgramListRowContent({
                   onToggle?.();
                 }}
                 className="rounded border border-surface-200 bg-white p-0.5 text-ink-600 hover:bg-surface-50"
-                aria-label={collapsed ? "Expand children" : "Collapse children"}
+                aria-label={collapsed ? "Expand related programs" : "Collapse related programs"}
               >
                 {collapsed ? <ChevronRight className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
               </button>
@@ -112,7 +112,7 @@ function ProgramListRowContent({
       </span>
     </span>
     <span className="hidden font-mono text-sm text-ink-700 lg:block">{program.abbreviation || "-"}</span>
-    <span className="hidden text-sm text-ink-600 lg:block">{program.parentProgramFullName || "—"}</span>
+    <span className="hidden text-sm text-ink-600 lg:block">{program.parentProgramFullName || "Independent"}</span>
     <span className="hidden border border-surface-200 bg-surface-50 px-2 py-1 text-center font-mono text-[0.65rem] uppercase text-ink-700 lg:block">{program.type}</span>
     <span className="hidden text-center font-display text-xl text-navy-900 lg:block">{program.teamCount}</span>
     <span className="hidden text-center font-display text-xl text-navy-900 lg:block">{program.derivedPlayerCount}</span>
@@ -226,19 +226,19 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
           items={hierarchyChipItems}
           activeKey={hierarchy}
           onSelect={(key) => patchFilters({ hierarchy: key })}
-          aria-label="Program hierarchy filters"
+          aria-label="Program organization filters"
           className="mt-2"
         />
         <AdminFilterChipBar
           items={VIEW_CHIP_ITEMS.map((item) => ({ ...item, count: undefined }))}
           activeKey={view}
           onSelect={(key) => patchFilters({ view: key })}
-          aria-label="Program list view"
+          aria-label="Program directory view"
           className="mt-2"
         />
         <AdminFilterRow
           withTopDivider
-          searchPlaceholder="Program, parent, abbreviation"
+          searchPlaceholder="Program, organization, abbreviation"
           searchValue={query}
           onSearchChange={(value) => patchFilters({ search: value })}
           onClear={clearFilters}
@@ -251,7 +251,7 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
         <div className={`hidden gap-3 border-b border-surface-200 bg-navy-950 px-4 py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.1em] text-white lg:grid ${gridClassName}`}>
           <span>Program</span>
           <span>Abbrev.</span>
-          <span>Parent</span>
+          <span>Organization</span>
           <span>Type</span>
           <span className="text-center">Teams</span>
           <span className="text-center">Players</span>

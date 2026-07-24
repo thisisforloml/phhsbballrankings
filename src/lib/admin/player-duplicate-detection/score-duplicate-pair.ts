@@ -2,6 +2,7 @@ import { confidenceBandForScore } from "@/lib/admin/player-duplicate-detection/c
 import {
   displayNameSimilarity,
   fullNameLabel,
+  isMiddleNameVariant,
   normalizeDuplicateLastName,
   normalizeDuplicateName,
 } from "@/lib/admin/player-duplicate-detection/name-similarity";
@@ -102,6 +103,16 @@ export function scoreDuplicatePair(
     }
   }
 
+
+  if (isMiddleNameVariant(target.displayName, candidate.displayName)) {
+    signals.push({
+      kind: "match",
+      label: "Same first and last name with added middle name",
+      detail: `${target.displayName} / ${candidate.displayName}`,
+      weight: 24,
+    });
+    confidence += 24;
+  }
   const targetFullKey = normalizeDuplicateName(targetFullName);
   const candidateFullKey = normalizeDuplicateName(candidateFullName);
   if (targetFullKey && targetFullKey === candidateFullKey) {
@@ -413,6 +424,7 @@ export function passesDuplicatePrefilter(target: DuplicatePlayerRecord, candidat
   if (target.gender !== candidate.gender) return false;
 
   if (normalizeDuplicateName(target.displayName) === normalizeDuplicateName(candidate.displayName)) return true;
+  if (isMiddleNameVariant(target.displayName, candidate.displayName)) return true;
   if (
     normalizeDuplicateLastName(target.lastName) === normalizeDuplicateLastName(candidate.lastName) &&
     target.firstName[0]?.toUpperCase() === candidate.firstName[0]?.toUpperCase()

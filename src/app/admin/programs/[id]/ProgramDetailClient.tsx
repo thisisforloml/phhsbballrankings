@@ -378,7 +378,7 @@ function PlayerRosterPanel({
 }) {
   const rosterSections = useMemo(() => {
     const items = sections.map((section) => ({ key: section.team.id, label: section.team.name, players: section.players }));
-    if (unassigned.length) items.push({ key: "unassigned", label: "Unassigned", players: unassigned });
+    if (unassigned.length) items.push({ key: "unassigned", label: "Program roster (no Team)", players: unassigned });
     return items;
   }, [sections, unassigned]);
 

@@ -1,0 +1,820 @@
+{
+  "generatedAt": "2026-07-23T13:05:26.233Z",
+  "readOnly": true,
+  "summary": {
+    "activeTeamsInspected": 85,
+    "mixedContextTeams": 8
+  },
+  "plans": [
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "a4921d86-a618-4199-b92a-b68628d89013",
+        "name": "Amsteel"
+      },
+      "sourceTeam": {
+        "id": "b09feec4-1603-4ded-b2e4-b6a25da8b6c4",
+        "name": "Amsteel",
+        "activeRosterRows": 23,
+        "officialGames": 15,
+        "officialGameStats": 156
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "Amsteel U17",
+          "competition": "Stallion Cup – 17U",
+          "season": "5th Edition — Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U17",
+          "gender": "BOYS",
+          "seasonIds": [
+            "ad8c32e3-9c9e-4191-aa87-9c403fbd10f2"
+          ],
+          "gameIds": [
+            "01cf4563-32d3-44b3-ae10-fbad0ac60605",
+            "023abe30-769f-46c2-8355-c5cbdadfb029",
+            "34e289ce-ca92-43d3-bb09-747b4ff28ae3",
+            "422273f7-32c1-4937-8bd6-26afee485c45",
+            "4aff9ae3-3ba1-425f-b398-b86721510645",
+            "73e40c6d-7081-40f4-bef1-6b19e80c9f04",
+            "8a37d43a-4f67-4ef9-ba02-2bb7b992b84e",
+            "eeaf3489-614a-4ef5-8e15-1eda3db2a939",
+            "f3ce9732-652d-4e7a-ba0b-653ce33e62b8"
+          ],
+          "gameRefs": [
+            "SH-47472-2767115",
+            "SH-47472-2769709",
+            "SH-47472-2771132",
+            "SH-47472-2771137",
+            "SH-47472-2771139",
+            "SH-47472-2771142",
+            "SH-47472-2771145",
+            "SH-47472-2789103",
+            "SH-47472-2789904"
+          ],
+          "gameStats": 93
+        },
+        {
+          "proposedName": "Amsteel U18",
+          "competition": "Stallion Cup - 18U",
+          "season": "Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U18",
+          "gender": "BOYS",
+          "seasonIds": [
+            "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a"
+          ],
+          "gameIds": [
+            "51223218-eb9d-4fe7-b670-eb20b8b9cd88",
+            "876880ca-506e-4eba-87b0-79d755342f4c",
+            "bee44377-6840-4de5-bf7a-21cdc6f31b1e",
+            "df465275-1748-4fff-ac70-ce13e4a53bf3",
+            "ecd02a70-a13f-4fd7-b1dd-0d47c6645a2e",
+            "fe1b480d-fb71-433e-9759-c9046e3ccdfd"
+          ],
+          "gameRefs": [
+            "SH-48385-2819849",
+            "SH-48385-2826485",
+            "SH-48385-2826487",
+            "SH-48385-2826500",
+            "SH-48385-2826506",
+            "SH-48385-2826507"
+          ],
+          "gameStats": 63
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "5c4d8120-fa39-4403-858e-66d6f31585c1",
+        "name": "BBC"
+      },
+      "sourceTeam": {
+        "id": "3b79a415-f481-4dc0-aae5-3f2987e946f3",
+        "name": "BBC",
+        "activeRosterRows": 46,
+        "officialGames": 32,
+        "officialGameStats": 313
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "BBC U17",
+          "competition": "Stallion Cup – 17U",
+          "season": "5th Edition — Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U17",
+          "gender": "BOYS",
+          "seasonIds": [
+            "40a580af-9bb7-4cb3-9c7f-04c1da153b82",
+            "ad8c32e3-9c9e-4191-aa87-9c403fbd10f2",
+            "b2797e91-ac78-4b09-82f8-13c979ed0a94"
+          ],
+          "gameIds": [
+            "0cd39192-46ba-4bdf-8cab-44395ad46605",
+            "1540f250-703a-41f0-ac2e-3ca1aa780663",
+            "1e8a6282-3dc0-46da-ab16-2ab316288c2c",
+            "34b42b2b-e758-4e13-99d1-553bbf4098f4",
+            "4893c848-38de-44fd-846e-656bd4176c27",
+            "4f360e0e-4028-4dc4-be81-3a5d98847b10",
+            "50c1b579-3723-40c8-8514-a806a0bad721",
+            "5b0b28e2-4376-4156-b9f6-aa44c6564795",
+            "62e5f1ab-af5c-4d57-bbd4-54f940f247eb",
+            "64ec4bad-2610-4dc0-9abb-63c474498d7d",
+            "6cd6a6c5-d23c-4a37-9c91-a5737507c827",
+            "73e40c6d-7081-40f4-bef1-6b19e80c9f04",
+            "786a6587-a496-48c2-8e7f-e94a1f26d8bf",
+            "7b6bf9e6-503e-4658-9675-6a5224d61852",
+            "8fd6b31b-acc1-4e37-b5cb-ed4e6a6c3ae4",
+            "b4579f9e-091d-43f1-a57b-e2c0eb2a8012",
+            "baa56207-22ea-4a80-99ca-22c521c55f9c",
+            "d40a2471-4682-4bc5-99c7-c1e3fa5873bc",
+            "e0dd1d6f-daac-43f0-9583-87977d9c0e15",
+            "e4eda278-8626-4634-871b-e8628d4eb166",
+            "e9a3ff13-4feb-44ef-9463-8d5d77c2382a",
+            "f400d475-ee92-46fd-b218-c82abebeed36",
+            "fbfebe8f-ba88-4cf0-bcf6-c70eef239fa4",
+            "fd1714af-a816-4aec-85c5-af1f5831de8e"
+          ],
+          "gameRefs": [
+            "SH-40774-2631888",
+            "SH-40774-2631891",
+            "SH-40774-2631892",
+            "SH-40774-2631900",
+            "SH-40774-2631901",
+            "SH-40774-2631905",
+            "SH-40774-2651175",
+            "SH-40774-2654825",
+            "SH-41710-2679169",
+            "SH-41710-2679172",
+            "SH-41710-2679177",
+            "SH-41710-2679179",
+            "SH-41710-2679184",
+            "SH-41710-2679186",
+            "SH-41710-2679192",
+            "SH-41710-2704985",
+            "SH-41710-2706653",
+            "SH-47472-2767119",
+            "SH-47472-2769709",
+            "SH-47472-2771129",
+            "SH-47472-2771130",
+            "SH-47472-2771138",
+            "SH-47472-2771140",
+            "SH-47472-2771147"
+          ],
+          "gameStats": 238
+        },
+        {
+          "proposedName": "BBC U18",
+          "competition": "Stallion Cup - 18U",
+          "season": "Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U18",
+          "gender": "BOYS",
+          "seasonIds": [
+            "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a"
+          ],
+          "gameIds": [
+            "0c764eda-1997-41ff-b951-e0fd292eb033",
+            "1e0d4584-abfd-4129-b7d8-550ae28e27fb",
+            "2c8eb131-9c9b-4242-83c0-b33b67e72d4f",
+            "36732502-9c2f-45a2-9631-2136d4fb5717",
+            "46a29bfe-6402-4ea2-819f-23fc7fa3fc73",
+            "7125a459-0e28-49dc-ae10-91a0dd0f47aa",
+            "b9ddcf87-fae1-4577-9b04-f4023607a5d9",
+            "df465275-1748-4fff-ac70-ce13e4a53bf3"
+          ],
+          "gameRefs": [
+            "SH-48385-2819849",
+            "SH-48385-2826481",
+            "SH-48385-2826491",
+            "SH-48385-2826495",
+            "SH-48385-2826501",
+            "SH-48385-2826510",
+            "SH-48385-2843896",
+            "SH-48385-2845882"
+          ],
+          "gameStats": 75
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "d3544fbc-1cd6-4e0c-8798-a4c17af0691b",
+        "name": "Charm"
+      },
+      "sourceTeam": {
+        "id": "03269a6b-49d1-4c18-bc6c-d21281a01382",
+        "name": "Charm",
+        "activeRosterRows": 34,
+        "officialGames": 24,
+        "officialGameStats": 208
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "Charm U17",
+          "competition": "Stallion Cup – 17U",
+          "season": "5th Edition — Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U17",
+          "gender": "BOYS",
+          "seasonIds": [
+            "ad8c32e3-9c9e-4191-aa87-9c403fbd10f2",
+            "b2797e91-ac78-4b09-82f8-13c979ed0a94"
+          ],
+          "gameIds": [
+            "01cf4563-32d3-44b3-ae10-fbad0ac60605",
+            "0be7d50b-2f59-4ffd-b41c-7c8c63e19365",
+            "28bac113-cfd6-4e63-80a5-b36c0f56b530",
+            "3bed88d3-6152-41e8-b2f5-5a85d1b519b3",
+            "3e374ffe-5de4-41c6-85c0-7e5fae12514c",
+            "4196e1c9-8d21-422f-b15a-7a02e3be2b50",
+            "422273f7-32c1-4937-8bd6-26afee485c45",
+            "4f360e0e-4028-4dc4-be81-3a5d98847b10",
+            "53d4fd4c-6ea2-4d00-89ba-df45d28eb0bd",
+            "542b5c89-ca20-4b2e-9524-f289bd7b8f7a",
+            "9fd0c96d-dddf-4818-80b3-beb2aebb86fb",
+            "a60d489f-e065-438c-9f5b-e7212b4aea58",
+            "ada39e88-fd0b-44ad-a079-52c5a790cb21",
+            "d02f0a0a-32bc-4207-963e-48caecad67af",
+            "d14426f4-bb04-4f07-8e80-32c8cd43184c",
+            "f400d475-ee92-46fd-b218-c82abebeed36"
+          ],
+          "gameRefs": [
+            "SH-41710-2679168",
+            "SH-41710-2679174",
+            "SH-41710-2679179",
+            "SH-41710-2679180",
+            "SH-41710-2679182",
+            "SH-41710-2679191",
+            "SH-41710-2679195",
+            "SH-47472-2767118",
+            "SH-47472-2769745",
+            "SH-47472-2771131",
+            "SH-47472-2771133",
+            "SH-47472-2771137",
+            "SH-47472-2771140",
+            "SH-47472-2771148",
+            "SH-47472-2789103",
+            "SH-47472-2789905"
+          ],
+          "gameStats": 138
+        },
+        {
+          "proposedName": "Charm U18",
+          "competition": "Stallion Cup - 18U",
+          "season": "Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U18",
+          "gender": "BOYS",
+          "seasonIds": [
+            "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a"
+          ],
+          "gameIds": [
+            "04792faa-27a1-4dde-ab20-5b5d3fbf1f6b",
+            "18e3f158-17a3-47f6-ab0e-932016702872",
+            "523a4bb3-3d07-4d84-b8e3-bf8d9ce62f76",
+            "7429b2ea-f0b0-4972-8917-c427c8edcf77",
+            "98633cb8-5ae7-4980-956f-4e9ae1fcc256",
+            "b9ddcf87-fae1-4577-9b04-f4023607a5d9",
+            "ecd02a70-a13f-4fd7-b1dd-0d47c6645a2e",
+            "f46c3c9e-9d0c-4777-9ba2-510828b497cd"
+          ],
+          "gameRefs": [
+            "SH-48385-2819850",
+            "SH-48385-2826483",
+            "SH-48385-2826487",
+            "SH-48385-2826497",
+            "SH-48385-2826498",
+            "SH-48385-2826510",
+            "SH-48385-2843895",
+            "SH-48385-2845881"
+          ],
+          "gameStats": 70
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "d75fe1e6-a5a3-415d-8dfe-fa80799b3e5f",
+        "name": "Chatime"
+      },
+      "sourceTeam": {
+        "id": "baa2a62d-5e63-47b8-9e2a-1c8076c10ebf",
+        "name": "Chatime",
+        "activeRosterRows": 24,
+        "officialGames": 16,
+        "officialGameStats": 157
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "Chatime U17",
+          "competition": "Stallion Cup – 17U",
+          "season": "3rd Edition — Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U17",
+          "gender": "BOYS",
+          "seasonIds": [
+            "40a580af-9bb7-4cb3-9c7f-04c1da153b82"
+          ],
+          "gameIds": [
+            "040ddbcb-2cc0-4217-b856-f3428a6d152d",
+            "34b42b2b-e758-4e13-99d1-553bbf4098f4",
+            "46367d03-dec1-4ab8-8ca6-cf882422eae2",
+            "5b0b28e2-4376-4156-b9f6-aa44c6564795",
+            "c701acc1-e9d5-4edc-becd-1843c8fdb1dc",
+            "e1d9b425-624a-45a4-b55b-3b8f45ab1411",
+            "f2d04eb8-d52e-4f70-95a2-f641d6be3787",
+            "fdbe436f-e3b5-4415-837d-7ec9646d803d"
+          ],
+          "gameRefs": [
+            "SH-40774-2631886",
+            "SH-40774-2631890",
+            "SH-40774-2631892",
+            "SH-40774-2631895",
+            "SH-40774-2631899",
+            "SH-40774-2631906",
+            "SH-40774-2651175",
+            "SH-40774-2654824"
+          ],
+          "gameStats": 83
+        },
+        {
+          "proposedName": "Chatime U18",
+          "competition": "Stallion Cup - 18U",
+          "season": "Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U18",
+          "gender": "BOYS",
+          "seasonIds": [
+            "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a"
+          ],
+          "gameIds": [
+            "183d2a93-8b69-4212-a992-cd3bafa0eac1",
+            "18e3f158-17a3-47f6-ab0e-932016702872",
+            "1e0d4584-abfd-4129-b7d8-550ae28e27fb",
+            "33ec9829-5433-4128-af7b-265f89332765",
+            "46a29bfe-6402-4ea2-819f-23fc7fa3fc73",
+            "4930f041-ff73-4f0f-adf6-7e9485ee452b",
+            "bee44377-6840-4de5-bf7a-21cdc6f31b1e",
+            "f46c3c9e-9d0c-4777-9ba2-510828b497cd"
+          ],
+          "gameRefs": [
+            "SH-48385-2819845",
+            "SH-48385-2826489",
+            "SH-48385-2826495",
+            "SH-48385-2826498",
+            "SH-48385-2826507",
+            "SH-48385-2826509",
+            "SH-48385-2843896",
+            "SH-48385-2845881"
+          ],
+          "gameStats": 74
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "4b4e59ac-1765-4207-ada6-a205e385ab43",
+        "name": "Gold Cross"
+      },
+      "sourceTeam": {
+        "id": "eb3afc39-536f-4557-80c2-636017e4eea0",
+        "name": "Gold Cross",
+        "activeRosterRows": 34,
+        "officialGames": 22,
+        "officialGameStats": 201
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "Gold Cross U17",
+          "competition": "Stallion Cup – 17U",
+          "season": "4th Edition — Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U17",
+          "gender": "BOYS",
+          "seasonIds": [
+            "ad8c32e3-9c9e-4191-aa87-9c403fbd10f2",
+            "b2797e91-ac78-4b09-82f8-13c979ed0a94"
+          ],
+          "gameIds": [
+            "01d5af28-fdf9-457d-9ed4-44353c4bbc38",
+            "023abe30-769f-46c2-8355-c5cbdadfb029",
+            "490c3b1e-885d-41c3-8e35-a3f69aea6f61",
+            "50c1b579-3723-40c8-8514-a806a0bad721",
+            "649bd20b-12a1-4bd7-be59-c9727db499dc",
+            "78836752-9351-4bc0-92e8-04f740e79291",
+            "85bb7d33-7f35-4369-a34b-4eff0478dfe2",
+            "87da3882-3c12-4320-8c5e-4bde966b16c7",
+            "88b7721c-e3dc-461f-992e-9588e7dcd2b8",
+            "8ed63c7f-c488-4421-8789-db2657352c38",
+            "9906209e-67b6-4772-9036-5a882f86adf6",
+            "a2c82ca8-c7f5-41b4-b285-9f2f0bb69478",
+            "a60d489f-e065-438c-9f5b-e7212b4aea58",
+            "ada39e88-fd0b-44ad-a079-52c5a790cb21",
+            "d40a2471-4682-4bc5-99c7-c1e3fa5873bc",
+            "eeaf3489-614a-4ef5-8e15-1eda3db2a939"
+          ],
+          "gameRefs": [
+            "SH-41710-2679167",
+            "SH-41710-2679172",
+            "SH-41710-2679178",
+            "SH-41710-2679180",
+            "SH-41710-2679187",
+            "SH-41710-2679188",
+            "SH-41710-2679194",
+            "SH-47472-2767114",
+            "SH-47472-2767119",
+            "SH-47472-2771132",
+            "SH-47472-2771136",
+            "SH-47472-2771141",
+            "SH-47472-2771144",
+            "SH-47472-2771148",
+            "SH-47472-2789110",
+            "SH-47472-2789904"
+          ],
+          "gameStats": 150
+        },
+        {
+          "proposedName": "Gold Cross U18",
+          "competition": "Stallion Cup - 18U",
+          "season": "Season 2026",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U18",
+          "gender": "BOYS",
+          "seasonIds": [
+            "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a"
+          ],
+          "gameIds": [
+            "04792faa-27a1-4dde-ab20-5b5d3fbf1f6b",
+            "33ec9829-5433-4128-af7b-265f89332765",
+            "4a7b54e6-a69b-42c3-8b2e-eac5a9c64d3f",
+            "51223218-eb9d-4fe7-b670-eb20b8b9cd88",
+            "7125a459-0e28-49dc-ae10-91a0dd0f47aa",
+            "8053d75c-457d-40b2-a02a-db684832883e"
+          ],
+          "gameRefs": [
+            "SH-48385-2819845",
+            "SH-48385-2826483",
+            "SH-48385-2826491",
+            "SH-48385-2826493",
+            "SH-48385-2826500",
+            "SH-48385-2826504"
+          ],
+          "gameStats": 51
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "65908829-cfda-4053-821c-47435a45e33e",
+        "name": "JPM-TEC San Beda"
+      },
+      "sourceTeam": {
+        "id": "8af1de8f-7e66-436b-9e2e-6c22d9add869",
+        "name": "JPM-TEC San Beda",
+        "activeRosterRows": 43,
+        "officialGames": 18,
+        "officialGameStats": 244
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "JPM-TEC San Beda U13",
+          "competition": "Philippine Youth Basketball Championship – 13U",
+          "season": "Season 2026",
+          "ageGroup": "U13",
+          "publicAgeLabel": "U13",
+          "gender": "BOYS",
+          "seasonIds": [
+            "757fb031-d320-46a5-b9b6-e05fa321c0e7"
+          ],
+          "gameIds": [
+            "2c2ee68f-a8e8-46ae-8427-4bb4f41ffe02",
+            "4fd76077-91aa-4834-b656-6b4fec3beae6",
+            "50d00c2d-5a2b-4080-a5d7-379f4f87c7ec",
+            "83bff88e-cba9-4bb6-8a77-d4a6bb453c9e",
+            "a83bfcb3-233e-44bb-846a-972b528affde",
+            "ade956d4-6ebf-4be4-bcc9-f58857917c1d",
+            "b87c7cd4-60dd-42b3-8349-b1351db95d4e",
+            "c688ad3d-fe12-4a10-938a-505a0f6d6ccc",
+            "e8c3a153-c933-498f-8efb-d6afbc6242f3"
+          ],
+          "gameRefs": [
+            "SH-47340-2743093",
+            "SH-47340-2755578",
+            "SH-47340-2768643",
+            "SH-47340-2776848",
+            "SH-47340-2779285",
+            "SH-47340-2779286",
+            "SH-47340-2782120",
+            "SH-47340-2785684",
+            "SH-47340-2787986"
+          ],
+          "gameStats": 116
+        },
+        {
+          "proposedName": "JPM-TEC San Beda U15",
+          "competition": "Philippine Youth Basketball Championship – 15U",
+          "season": "Season 2025",
+          "ageGroup": "U16",
+          "publicAgeLabel": "U15",
+          "gender": "BOYS",
+          "seasonIds": [
+            "e7269f1b-0b16-4929-93cb-24683b87db44"
+          ],
+          "gameIds": [
+            "0364ab17-ae29-4bf1-bbdb-fc0e4b558a4f",
+            "5124c26d-4cc4-4b84-b800-d60b8b142c54",
+            "7d7ecc5d-b571-4d5a-bce3-1333f09ac293",
+            "9039598c-bf70-471e-a506-4fe06dd36510",
+            "bdaf9fdf-7b07-4af9-9040-1b7e857c3b2c",
+            "c1573632-572b-4261-84cb-b697633fb272",
+            "df102bcc-00d0-4ff7-8654-bdb04f1ee2e3",
+            "edd1f2d5-84c4-458f-b2c5-2f77a35d1035",
+            "eeb752b9-f4a7-409d-a6c1-963d2fb58a73"
+          ],
+          "gameRefs": [
+            "G-2025-007",
+            "G-2025-010",
+            "G-2025-016",
+            "G-2025-019",
+            "G-2025-021",
+            "G-2025-022",
+            "G-2025-027",
+            "G-2025-029",
+            "G-2025-033"
+          ],
+          "gameStats": 128
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "b5c79a29-bd7b-47ce-ac9c-4d15f1fbb711",
+        "name": "San Pedro Spartans"
+      },
+      "sourceTeam": {
+        "id": "26ce5dc4-0667-4710-ab1b-53d4a13d8d61",
+        "name": "San Pedro Spartans",
+        "activeRosterRows": 33,
+        "officialGames": 18,
+        "officialGameStats": 235
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "San Pedro Spartans U15",
+          "competition": "Philippine Youth Basketball Championship – 15U",
+          "season": "Season 2025",
+          "ageGroup": "U16",
+          "publicAgeLabel": "U15",
+          "gender": "BOYS",
+          "seasonIds": [
+            "e7269f1b-0b16-4929-93cb-24683b87db44"
+          ],
+          "gameIds": [
+            "0364ab17-ae29-4bf1-bbdb-fc0e4b558a4f",
+            "0af7e17e-a0d1-4857-81d3-a3a3eecb5161",
+            "1e2aceab-fd29-4940-8a39-7bd445da1252",
+            "41457f6a-41df-4dee-a7a1-2a24eba09c49",
+            "7349c380-013d-481e-9985-0d9a2cbe3e9f",
+            "76677307-71a4-4595-a93a-9fd6f6edabfe",
+            "7d7ecc5d-b571-4d5a-bce3-1333f09ac293",
+            "a50c10f5-c52f-4a83-941a-2775f600009a",
+            "bbb2cb30-1345-44b3-85b8-b8a7e4f7d078",
+            "bdaf9fdf-7b07-4af9-9040-1b7e857c3b2c",
+            "be1862be-882b-4244-bd88-50175b00b21f",
+            "faeca1aa-2f8d-43c2-971a-b14c8ea998af"
+          ],
+          "gameRefs": [
+            "G-2025-008",
+            "G-2025-011",
+            "G-2025-017",
+            "G-2025-021",
+            "G-2025-023",
+            "G-2025-028",
+            "G-2025-029",
+            "G-2025-033",
+            "G-2025-035",
+            "G-2025-036",
+            "G-2025-037",
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "gameStats": 153
+        },
+        {
+          "proposedName": "San Pedro Spartans U18",
+          "competition": "Junior MPBL Season 4 – 18u",
+          "season": "Season 4",
+          "ageGroup": "U19",
+          "publicAgeLabel": "U18",
+          "gender": "BOYS",
+          "seasonIds": [
+            "20a1251b-36c3-422b-a054-d537d4a5491c"
+          ],
+          "gameIds": [
+            "464eae1e-c79b-4d90-a46c-cbf7b922e4d4",
+            "5a210ad9-4efb-4c6c-a246-b7ab2b14c4ed",
+            "66637cce-f5f4-4678-82bb-6bf8b154dd27",
+            "8af0eb14-5065-488a-9ea6-ae5b71a073bd",
+            "f197ee3d-25fb-4af4-ba10-abbc797af93f",
+            "f86f36df-9a14-4c43-bbbc-ce63a5963a23"
+          ],
+          "gameRefs": [
+            "SH-48757-2848822",
+            "SH-48757-2852737",
+            "SH-48757-2854130",
+            "SH-48757-2861287",
+            "SH-48757-2866808",
+            "SH-48757-2870211"
+          ],
+          "gameStats": 82
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    },
+    {
+      "status": "NEEDS_APPROVAL",
+      "program": {
+        "id": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+        "name": "Smile 360 Bullies"
+      },
+      "sourceTeam": {
+        "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+        "name": "Smile 360 Bullies",
+        "activeRosterRows": 36,
+        "officialGames": 18,
+        "officialGameStats": 229
+      },
+      "reason": "One Team record is referenced by multiple age/gender competition contexts.",
+      "proposedTeams": [
+        {
+          "proposedName": "Smile 360 Bullies U15",
+          "competition": "Philippine Youth Basketball Championship – 15U",
+          "season": "Season 2025",
+          "ageGroup": "U16",
+          "publicAgeLabel": "U15",
+          "gender": "BOYS",
+          "seasonIds": [
+            "e7269f1b-0b16-4929-93cb-24683b87db44"
+          ],
+          "gameIds": [
+            "2db0b225-3d5c-44bf-9254-001e16fa39ae",
+            "492bca6b-842e-4ff9-955c-5bd6f3f0f6fd",
+            "512401b5-f286-40fd-902e-7e093962155b",
+            "59f8e2d6-d1cc-4cbe-b0ff-2c2ef19efdd2",
+            "5c1a612a-6dcc-4d8d-a556-d0a482e70046",
+            "8623f5ea-f088-4275-ad6f-61b8a7c41ebc",
+            "9039598c-bf70-471e-a506-4fe06dd36510",
+            "be1862be-882b-4244-bd88-50175b00b21f",
+            "e3d7787c-9acb-4ac1-9a87-b764f5a670ad"
+          ],
+          "gameRefs": [
+            "G-2025-005",
+            "G-2025-007",
+            "G-2025-009",
+            "G-2025-014",
+            "G-2025-024",
+            "G-2025-025",
+            "G-2025-030",
+            "G-2025-034",
+            "PYBC-DRAFT-4864a2c8"
+          ],
+          "gameStats": 113
+        },
+        {
+          "proposedName": "Smile 360 Bullies U13",
+          "competition": "Philippine Youth Basketball Championship – 13U",
+          "season": "Season 2026",
+          "ageGroup": "U13",
+          "publicAgeLabel": "U13",
+          "gender": "BOYS",
+          "seasonIds": [
+            "757fb031-d320-46a5-b9b6-e05fa321c0e7"
+          ],
+          "gameIds": [
+            "0c195e0c-fd64-44fc-a96d-f11889e94b77",
+            "4ccb7be4-1409-46a5-9b6e-09d9338cfe7e",
+            "551a2122-f75f-4b3e-bcec-1f15bce41630",
+            "5ccac90d-d849-4624-99ea-3d4aaec176b3",
+            "6e8733d3-55fb-4950-b441-3bd8c89c48c8",
+            "83bff88e-cba9-4bb6-8a77-d4a6bb453c9e",
+            "8cbf95bb-6f74-4a52-8065-2b01701a5603",
+            "a1545b57-8c60-49a6-a634-a6747b146c4b",
+            "fb0cdb8b-e748-4952-886f-1b296def025f"
+          ],
+          "gameRefs": [
+            "SH-47340-2743093",
+            "SH-47340-2743096",
+            "SH-47340-2755577",
+            "SH-47340-2768644",
+            "SH-47340-2776846",
+            "SH-47340-2779282",
+            "SH-47340-2779284",
+            "SH-47340-2785685",
+            "SH-47340-2787987"
+          ],
+          "gameStats": 116
+        }
+      ],
+      "allowedFutureRepair": [
+        "create/reuse one Team per listed context",
+        "update PlayerTeamSeason.teamId when season context matches",
+        "update Game.homeTeamId/Game.awayTeamId and GameStat.teamId only for listed games"
+      ],
+      "forbidden": [
+        "cross-program moves",
+        "cross-gender moves",
+        "player/stat/rating/snapshot changes",
+        "deleting the source Team before all references are zero"
+      ]
+    }
+  ]
+}

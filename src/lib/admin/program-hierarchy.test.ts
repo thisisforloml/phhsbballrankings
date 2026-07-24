@@ -65,11 +65,11 @@ describe("program-hierarchy", () => {
 
     assert.throws(
       () => validateProgramParentAssignment("child", "child", programsById, childrenByParentId),
-      /cannot be its own parent/i,
+      /cannot belong to itself/i,
     );
     assert.throws(
       () => validateProgramParentAssignment("root", "grandchild", programsById, childrenByParentId),
-      /circular hierarchy/i,
+      /circular grouping/i,
     );
   });
 
@@ -91,7 +91,7 @@ describe("program-hierarchy", () => {
 
     assert.throws(
       () => validateProgramParentAssignment("child", "campus", programsById, childrenByParentId),
-      /only group programs can be assigned as a parent/i,
+      /only organizations can group programs/i,
     );
   });
 

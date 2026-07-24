@@ -1,8 +1,8 @@
-import { AgeGroup, PlayerGender, Prisma, ProgramRole, ProgramType, SeasonStatus, type Submission,SubmissionStatus, SubmissionType, VerificationStatus } from "@prisma/client";
+import { AgeGroup, PlayerGender, Prisma, SeasonStatus, type Submission, SubmissionStatus, SubmissionType, VerificationStatus } from "@prisma/client";
 
 import { assertImportProgramReusable } from "@/lib/admin/program-role";
 import { ensurePlayerRosterFromGameStat } from "@/lib/admin/roster-from-game-evidence";
-import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { inferCompetitionGender, isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import {
   buildGameStatBoxScoreFromPlayerRow,
   evaluateGameStatImmutability,
@@ -99,16 +99,6 @@ function appendAdminNotes(existing: string | null, summary: string) {
   return [existing, summary].filter(Boolean).join("\n\n");
 }
 
-function unique(values: Array<string | null | undefined>) {
-  return Array.from(new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))).sort((left, right) => left.localeCompare(right));
-}
-
-function programTypeFromIdentity(identity: ProgramIdentity): ProgramType {
-  if (identity.programType === "School") return ProgramType.SCHOOL;
-  if (identity.programType === "Club / Team") return ProgramType.CLUB;
-  return ProgramType.UNKNOWN;
-}
-
 function programKeyFromName(value: string) {
   return normalizeProgramAlias(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "unknown-program";
 }
@@ -129,10 +119,9 @@ function importProgramIdentity(submittedTeamName: string, leagueName: string): P
   return resolveProgramIdentity(submittedTeamName);
 }
 
-async function findOrCreateProgram(
+async function findConfiguredProgram(
   tx: Prisma.TransactionClient,
-  identity: ProgramIdentity,
-  location: { city: string; region: string }
+  identity: ProgramIdentity
 ) {
   const existing = await tx.program.findFirst({
     where: { fullName: identity.programFullName, deletedAt: null },
@@ -143,33 +132,9 @@ async function findOrCreateProgram(
     return existing;
   }
 
-  return tx.program.create({
-    data: {
-      fullName: identity.programFullName,
-      abbreviation: identity.programAbbreviation || null,
-      type: programTypeFromIdentity(identity),
-      programRole: ProgramRole.OPERATIONAL,
-      city: location.city || null,
-      region: location.region || null,
-      aliases: unique([identity.normalizedAlias, identity.teamDisplayName, identity.programFullName, identity.programAbbreviation]),
-    },
-    select: { id: true, fullName: true, abbreviation: true, type: true },
-  });
-}
-
-async function ensureTeamProgram(
-  tx: Prisma.TransactionClient,
-  team: { id: string; name: string; programId: string | null },
-  identity: ProgramIdentity,
-  location: { city: string; region: string }
-) {
-  const program = await findOrCreateProgram(tx, identity, location);
-  if (!team.programId) {
-    await tx.team.update({ where: { id: team.id }, data: { programId: program.id } });
-    return { program, action: "linked" as const };
-  }
-  if (team.programId === program.id) return { program, action: "already_linked" as const };
-  return { program, action: "kept_existing" as const };
+  throw new Error(
+    `Program ${identity.programFullName} is not configured. Create it in Admin > Programs before publishing this submission.`,
+  );
 }
 
 function teamDisplayMatchKey(value: string) {
@@ -211,15 +176,40 @@ async function findImportTeamMatch(
     internalTeamName: string;
     programId: string;
     allowProgramDisplayMatch: boolean;
+    ageGroup: AgeGroup;
+    gender: PlayerGender;
   }
 ) {
   if (params.allowProgramDisplayMatch) {
     const submittedKey = teamDisplayMatchKey(params.submittedTeamName);
     const programTeams = await tx.team.findMany({
       where: { deletedAt: null, programId: params.programId },
+      include: {
+        homeGames: {
+          where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+          select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+        },
+        awayGames: {
+          where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+          select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+        },
+      },
       orderBy: { name: "asc" }
     });
-    const equivalentMatches = programTeams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey);
+    const equivalentMatches = programTeams.filter((team) => {
+      if (teamDisplayMatchKey(team.name) !== submittedKey) return false;
+      const contexts = [...team.homeGames, ...team.awayGames].map((game) => ({
+        ageGroup: game.season.league.ageGroup,
+        gender: inferCompetitionGender(undefined, game.season.league.name),
+      }));
+      const contextKeys = new Set(contexts.map((context) => context.ageGroup + "|" + context.gender));
+      if (contextKeys.size > 1) {
+        throw new Error(
+          "Team " + team.name + " already contains multiple age/gender competition contexts. Split it into specific Team records before importing more games.",
+        );
+      }
+      return contexts.length === 0 || contexts.some((context) => context.ageGroup === params.ageGroup && context.gender === params.gender);
+    });
     const preferredTeam = chooseEquivalentProgramTeam(params.submittedTeamName, equivalentMatches);
     if (preferredTeam) return preferredTeam;
     if (equivalentMatches.length === 1) return equivalentMatches[0];
@@ -229,7 +219,7 @@ async function findImportTeamMatch(
   }
 
   const exactMatches = await tx.team.findMany({
-    where: { deletedAt: null, name: params.internalTeamName },
+    where: { deletedAt: null, name: params.internalTeamName, programId: params.programId },
     orderBy: { name: "asc" }
   });
   if (exactMatches.length > 1) throw new Error(`Multiple active Team matches found for ${params.internalTeamName}.`);
@@ -361,18 +351,22 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     for (const submittedTeamName of submittedTeamNames) {
       const internalTeamName = getUaapInternalTeamName(submittedTeamName, ageGroup, gender);
       const identity = importProgramIdentity(submittedTeamName, targetLeagueName);
-      const program = await findOrCreateProgram(tx, identity, { city: leagueCity, region: leagueRegion });
-      let team = await findImportTeamMatch(tx, { submittedTeamName, internalTeamName, programId: program.id, allowProgramDisplayMatch: identity.programType === "Club / Team" });
+      const program = await findConfiguredProgram(tx, identity);
+      const team = await findImportTeamMatch(tx, {
+        submittedTeamName,
+        internalTeamName,
+        programId: program.id,
+        allowProgramDisplayMatch: identity.programType === "Club / Team",
+        ageGroup,
+        gender,
+      });
       if (!team) {
-        team = await tx.team.create({ data: { name: internalTeamName, city: "Metro Manila", region: "NCR", programId: program.id } });
-        summary.teamsCreated += 1;
-        summary.teamsProgramLinked += 1;
+        throw new Error(
+          `Team ${internalTeamName} is not configured under ${program.fullName}. Create or assign the age/gender-specific Team in Admin > Programs before publishing.`,
+        );
       } else {
         summary.teamsReused += 1;
-        const result = await ensureTeamProgram(tx, team, identity, { city: leagueCity, region: leagueRegion });
-        if (result.action === "linked") summary.teamsProgramLinked += 1;
-        if (result.action === "already_linked") summary.teamsProgramAlreadyLinked += 1;
-        if (result.action === "kept_existing") summary.teamsProgramKeptExisting += 1;
+        summary.teamsProgramAlreadyLinked += 1;
       }
       teamBySubmittedName.set(normalize(submittedTeamName), { id: team.id, name: team.name });
     }

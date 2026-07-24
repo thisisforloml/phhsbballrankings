@@ -2,6 +2,7 @@ import { ProgramRole } from "@prisma/client";
 
 import { normalizeDuplicateLastName, normalizeDuplicateName } from "@/lib/admin/player-duplicate-detection/name-similarity";
 import type { DuplicatePlayerRecord } from "@/lib/admin/player-duplicate-detection/types";
+import { firstLastIdentityKey } from "@/lib/player-name-identity";
 
 export type DuplicateDetectionCorpus = {
   players: DuplicatePlayerRecord[];
@@ -11,6 +12,7 @@ export type DuplicateDetectionCorpus = {
 
 export type DuplicateDetectionIndex = {
   byNameKey: Map<string, string[]>;
+  byFirstLastKey: Map<string, string[]>;
   byLastNameKey: Map<string, string[]>;
   byBirthYear: Map<string, string[]>;
   byProgramId: Map<string, string[]>;
@@ -39,6 +41,7 @@ function pushMany(map: Map<string, string[]>, keys: Iterable<string>, playerId: 
 export function buildDuplicateDetectionIndex(players: DuplicatePlayerRecord[]): DuplicateDetectionIndex {
   const index: DuplicateDetectionIndex = {
     byNameKey: new Map(),
+    byFirstLastKey: new Map(),
     byLastNameKey: new Map(),
     byBirthYear: new Map(),
     byProgramId: new Map(),
@@ -50,6 +53,8 @@ export function buildDuplicateDetectionIndex(players: DuplicatePlayerRecord[]): 
 
   for (const player of players) {
     pushIndex(index.byNameKey, normalizeDuplicateName(player.displayName), player.id);
+    const firstLastKey = firstLastIdentityKey(player.displayName);
+    if (firstLastKey) pushIndex(index.byFirstLastKey, firstLastKey, player.id);
     pushIndex(index.byLastNameKey, normalizeDuplicateLastName(player.lastName), player.id);
 
     if (player.birthDate) {
@@ -82,6 +87,8 @@ export function collectIndexedCandidateIds(
   };
 
   addBucket(index.byNameKey.get(normalizeDuplicateName(target.displayName)));
+  const firstLastKey = firstLastIdentityKey(target.displayName);
+  if (firstLastKey) addBucket(index.byFirstLastKey.get(firstLastKey));
   addBucket(index.byLastNameKey.get(normalizeDuplicateLastName(target.lastName)));
 
   if (target.birthDate) {

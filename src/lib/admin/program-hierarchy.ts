@@ -105,28 +105,28 @@ export function validateProgramParentAssignment(
   if (!nextParentProgramId) return;
 
   if (nextParentProgramId === programId) {
-    throw new Error("A program cannot be its own parent.");
+    throw new Error("A Program cannot belong to itself.");
   }
 
   const parent = programsById.get(nextParentProgramId);
   if (!parent || parent.deletedAt) {
-    throw new Error("Parent program does not exist or has been archived.");
+    throw new Error("Selected organization does not exist or has been archived.");
   }
 
   if (parent.programRole !== GROUP_PROGRAM_ROLE) {
-    throw new Error("Only group programs can be assigned as a parent.");
+    throw new Error("Only Organizations can group Programs.");
   }
 
   const descendants = collectDescendantProgramIds(programId, childrenByParentId);
   if (descendants.has(nextParentProgramId)) {
-    throw new Error("Cannot assign a descendant as parent — that would create a circular hierarchy.");
+    throw new Error("This organization assignment would create a circular grouping.");
   }
 
   const visited = new Set<string>();
   let cursor: string | null = nextParentProgramId;
   while (cursor) {
     if (cursor === programId) {
-      throw new Error("Cannot assign a descendant as parent — that would create a circular hierarchy.");
+      throw new Error("This organization assignment would create a circular grouping.");
     }
     if (visited.has(cursor)) {
       throw new Error("Invalid hierarchy: circular reference detected.");

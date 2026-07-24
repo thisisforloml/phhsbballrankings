@@ -1,0 +1,1101 @@
+{
+  "generatedAt": "2026-07-23T13:05:23.917Z",
+  "readOnly": true,
+  "playerCandidateSummary": {
+    "total": 42,
+    "highConfidenceReview": 0,
+    "possibleReview": 11,
+    "lowConfidence": 31
+  },
+  "playerCandidates": [
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "0eaf4e7f-1f14-41a3-b94a-0963d9cd8a87",
+        "displayName": "Christiane Chan",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "655760d2-044f-47e3-93de-80c072489e00",
+        "displayName": "Christiane Dion Chan",
+        "program": null,
+        "gameCount": 5,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "b3937782-97f7-4154-a5b9-4d65afee0d1b",
+        "displayName": "Inigo Garcia",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "6a631ea3-d7fe-4186-a107-877fb4627c03",
+        "displayName": "Iñigo Garcia",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+        "displayName": "Jaidel Daa",
+        "program": "Far Eastern University Diliman",
+        "gameCount": 17,
+        "aliases": []
+      },
+      "right": {
+        "id": "01fd1c78-0059-4cfc-88db-2fc1a01b457a",
+        "displayName": "Jaidel Dennis Daa",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "4a00fee2-67de-422c-bc28-b7c9199be5d0",
+        "displayName": "Jaime Antonio Teodoro",
+        "program": null,
+        "gameCount": 6,
+        "aliases": []
+      },
+      "right": {
+        "id": "3f45f7a1-f307-4f69-9977-765628e0f6d2",
+        "displayName": "Jaime Teodoro",
+        "program": "La Salle Green Hills",
+        "gameCount": 16,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "e8a34f0b-e458-4252-8b92-7d16f9d2e9cc",
+        "displayName": "Jake Alfaro",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "21e57d76-8bb6-4186-aff9-8bb9d39d39a5",
+        "displayName": "Jake Alfaro",
+        "program": null,
+        "gameCount": 5,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "4e2e2e07-eb52-4caa-a461-b7395b7d5f88",
+        "displayName": "Josef Calo-Oy",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "right": {
+        "id": "fab71afb-79ef-4d85-ac2c-63f802799b44",
+        "displayName": "Josef Conrad Calo-Oy",
+        "program": null,
+        "gameCount": 6,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "951f6533-692c-4655-b968-39a16f34dff0",
+        "displayName": "Lorenz Aben Cinco",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "right": {
+        "id": "a9c7a48c-8248-4c2b-bf9d-26823a3f16fe",
+        "displayName": "Lorenz Cinco",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "85b34b4a-bc46-4090-91fb-d048b4958753",
+        "displayName": "Michael Rae Coranes",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "be908d71-cf76-473a-909c-3634002c7345",
+        "displayName": "Michael Rae Corañes",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "4a3fb04a-2920-4da3-827a-6f4c0ec786aa",
+        "displayName": "Patrick Laurence Pasinos",
+        "program": null,
+        "gameCount": 3,
+        "aliases": []
+      },
+      "right": {
+        "id": "dd55e494-5313-4df3-8fd4-4153b1ca21ed",
+        "displayName": "Patrick Pasinos",
+        "program": "La Salle Green Hills",
+        "gameCount": 16,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 4,
+      "left": {
+        "id": "f88dc10d-c0f3-4e58-bbfc-9389d1c0db96",
+        "displayName": "Roberto Sancho Sison",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "right": {
+        "id": "64675cbe-abdb-423d-99e3-1b9d4bc9a6fe",
+        "displayName": "Roberto Sison",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "POSSIBLE_REVIEW",
+      "evidenceScore": 3,
+      "left": {
+        "id": "666d018d-7bec-4046-92f3-92ecb81e7fc0",
+        "displayName": "Bangelo Abo-Abo",
+        "program": null,
+        "gameCount": 12,
+        "aliases": []
+      },
+      "right": {
+        "id": "3b0baa37-0a6b-4aae-8001-7fb6075a8994",
+        "displayName": "Bangelo Louisse Abo-Abo",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 1,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 1,
+      "left": {
+        "id": "b92a898f-76bb-481d-943c-db663521ec30",
+        "displayName": "Andres Braganza",
+        "program": null,
+        "gameCount": 8,
+        "aliases": []
+      },
+      "right": {
+        "id": "72a234a5-4dc6-4110-9fdc-4add0aa37bda",
+        "displayName": "Andres Thaddeus Braganza",
+        "program": null,
+        "gameCount": 6,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 1,
+      "left": {
+        "id": "3f59df23-68b4-49f1-a3c3-924b23e57e50",
+        "displayName": "Josh Chua",
+        "program": null,
+        "gameCount": 10,
+        "aliases": []
+      },
+      "right": {
+        "id": "5f3425b2-3536-42eb-b4f0-e39226d955fc",
+        "displayName": "Josh Hayden Chua",
+        "program": null,
+        "gameCount": 12,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 2,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 1,
+      "left": {
+        "id": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+        "displayName": "Joshua Chua",
+        "program": null,
+        "gameCount": 14,
+        "aliases": []
+      },
+      "right": {
+        "id": "eafa0f85-54a5-4fa1-864a-b1362f7a6c0f",
+        "displayName": "Joshua Hayden Chua",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 1,
+      "left": {
+        "id": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+        "displayName": "Joshua Chua",
+        "program": null,
+        "gameCount": 14,
+        "aliases": []
+      },
+      "right": {
+        "id": "0bb42b18-09d0-4287-bb58-22a79fcc8b38",
+        "displayName": "Joshua Miguel Chua",
+        "program": null,
+        "gameCount": 9,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 1,
+      "left": {
+        "id": "90d1b6d2-ae9c-4525-975f-5039e42007e7",
+        "displayName": "Nhian Seff Sy",
+        "program": null,
+        "gameCount": 6,
+        "aliases": []
+      },
+      "right": {
+        "id": "32a55a86-e67f-470d-925e-06b8a1edc405",
+        "displayName": "Nhian Sy",
+        "program": null,
+        "gameCount": 5,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 1,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "049f44f9-7655-493c-bbe3-9294c30bd0f0",
+        "displayName": "Alfonso Gabriel Sy",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "right": {
+        "id": "e3542079-17fb-48af-8126-381a5ecf7905",
+        "displayName": "Alfonso Sy",
+        "program": null,
+        "gameCount": 14,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "6d6f2eb2-9ed7-4a81-9c3f-7fbda414206d",
+        "displayName": "Alvin Grant Ngo",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "right": {
+        "id": "851d08ef-81b7-44d7-88c0-1fd8ab714491",
+        "displayName": "Alvin Ngo",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "dbd9c730-6188-470e-ab96-4275706f33c7",
+        "displayName": "Arkin Cristobal",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 15,
+        "aliases": []
+      },
+      "right": {
+        "id": "55f6188d-5de3-4226-8494-86a0e7c8d236",
+        "displayName": "Arkin Kristoff Cristobal",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "bf7c39f9-e2bb-410d-9ba9-9d2f841502fe",
+        "displayName": "Clark Dwayne Khobuntin",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "right": {
+        "id": "9a85569b-9f79-4214-aa11-af4edf94073e",
+        "displayName": "Clark Khobuntin",
+        "program": "National University Nazareth School",
+        "gameCount": 16,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "7615ea63-1485-4eb3-b9cd-b1a0430c6dce",
+        "displayName": "Dean Paras",
+        "program": "La Salle Green Hills",
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "0f54733b-40a6-4de0-ace2-c120fc070cbe",
+        "displayName": "Dean Riley Paras",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "b98af24f-84f3-4264-bc06-10913c5c1f02",
+        "displayName": "Duke Andrew Santos",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "right": {
+        "id": "907425c8-8390-4418-8ef3-1aafed01bf42",
+        "displayName": "Duke Santos",
+        "program": "Far Eastern University Diliman",
+        "gameCount": 10,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "039c4cdd-fa78-45c8-9a98-3dbec690a54d",
+        "displayName": "Dwayne Canete",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "c4f42e37-9aea-4027-9b16-119b3ef07582",
+        "displayName": "Dwayne Cañete",
+        "program": "Far Eastern University Diliman",
+        "gameCount": 18,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "0349c698-e1ee-4ce2-a8e5-4c4d42697488",
+        "displayName": "Francis Brent Rosales",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "right": {
+        "id": "1171714d-bf38-4b7c-a243-d19dee3a341c",
+        "displayName": "Francis Rosales",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 4,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "bdd07be3-e604-4858-9883-6a9d623306ca",
+        "displayName": "Gab Delos Reyes",
+        "program": "University of the East",
+        "gameCount": 13,
+        "aliases": []
+      },
+      "right": {
+        "id": "2c6c4144-5204-4ab8-a7e3-f2091d936405",
+        "displayName": "Gab Reyes",
+        "program": null,
+        "gameCount": 5,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "01bcbbfe-b0dd-447c-89c7-99dc06fb744b",
+        "displayName": "Huey Caleb Vergara",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "d238d971-008d-4d57-934e-ac0cb0c7d634",
+        "displayName": "Huey Vergara",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "cfcf5a3b-fed6-42a7-9b83-cb167f5af359",
+        "displayName": "John Rayven Restificar",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "right": {
+        "id": "2248b156-2adc-4045-aca5-9be73d1cafd4",
+        "displayName": "John Restificar",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 10,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "d8088e94-7662-43fd-877e-8cce1c21a8b6",
+        "displayName": "Jordan Isaac Yeng",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "609cb013-9ba7-4c72-8230-201f839c8e05",
+        "displayName": "Jordan Yeng",
+        "program": null,
+        "gameCount": 3,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+        "displayName": "Josef Calo-oy",
+        "program": "La Salle Green Hills",
+        "gameCount": 14,
+        "aliases": []
+      },
+      "right": {
+        "id": "4e2e2e07-eb52-4caa-a461-b7395b7d5f88",
+        "displayName": "Josef Calo-Oy",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+        "displayName": "Josef Calo-oy",
+        "program": "La Salle Green Hills",
+        "gameCount": 14,
+        "aliases": []
+      },
+      "right": {
+        "id": "fab71afb-79ef-4d85-ac2c-63f802799b44",
+        "displayName": "Josef Conrad Calo-Oy",
+        "program": null,
+        "gameCount": 6,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "211a12a7-d2c0-4a7b-a4ee-57c9c84219cd",
+        "displayName": "Jp Eiman",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "fc00e70b-8cfa-42b4-9fb3-ede60799cb6c",
+        "displayName": "JP Eiman",
+        "program": "Adamson University",
+        "gameCount": 5,
+        "aliases": [
+          "J. Eiman"
+        ]
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "20c258ca-4d74-4a75-b6b2-4aadf336f294",
+        "displayName": "Kaleb Hwang",
+        "program": "Ateneo de Manila University",
+        "gameCount": 13,
+        "aliases": []
+      },
+      "right": {
+        "id": "515fd45b-2cd6-4682-b564-85fda169b5c8",
+        "displayName": "Kaleb Sieg Hwang",
+        "program": null,
+        "gameCount": 3,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "98c2a218-d20f-4be4-a47c-c3325c48b1c2",
+        "displayName": "Kenzo Centeno",
+        "program": null,
+        "gameCount": 25,
+        "aliases": []
+      },
+      "right": {
+        "id": "b49e07d6-b3e4-4a64-800b-006792ab6c82",
+        "displayName": "Kenzo Rui Centeno",
+        "program": null,
+        "gameCount": 8,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "26f41f6e-c5f7-48ed-9902-fdc8199b3a96",
+        "displayName": "Lord Daniel Dulanas",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "right": {
+        "id": "9689f91b-544e-463f-893d-655ff322f83d",
+        "displayName": "Lord Dulanas",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 13,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "924b7a61-2a95-425e-a932-e0ae7ced13a8",
+        "displayName": "Prince Carino",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+        "displayName": "Prince Cariño",
+        "program": "Far Eastern University Diliman",
+        "gameCount": 34,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "8894ed32-5a80-4d3b-8a58-30addc7c91aa",
+        "displayName": "Rione Jiandrich Nyven Sy",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "4eaad781-be2d-4947-b0ee-9bcb9ee938a0",
+        "displayName": "Rione Sy",
+        "program": null,
+        "gameCount": 5,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "56696739-5b8f-4ae7-9d56-0b335315afc8",
+        "displayName": "Sam Emmanuel Villaruel",
+        "program": null,
+        "gameCount": 2,
+        "aliases": []
+      },
+      "right": {
+        "id": "897d2344-362c-47f5-9d68-07aabef8b717",
+        "displayName": "Sam Villaruel",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 7,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "10583f1f-46b0-4f3e-b74d-82b624a05c23",
+        "displayName": "Shaun Haw",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "right": {
+        "id": "a0d292d1-699a-4b6f-bc14-2f9deb6fa9fc",
+        "displayName": "Shaun Jordan Haw",
+        "program": null,
+        "gameCount": 7,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "556b4609-437d-427e-875f-1ae8af62f2ca",
+        "displayName": "Sizco Jean Roquid",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "ff47da56-5702-4107-a1f2-0ba5a358d2be",
+        "displayName": "Sizco Roquid",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 14,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "83753317-4e85-47ad-a74d-f96558c77165",
+        "displayName": "Vandolf Franky Urdaneta",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "right": {
+        "id": "59dbc830-bc2a-4ab4-a7fb-2e2dffba343f",
+        "displayName": "Vandolf Urdaneta",
+        "program": "University of Perpetual Help System DALTA",
+        "gameCount": 2,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "5108ea0d-9303-4f15-9326-925016ba7402",
+        "displayName": "Xyriel Luis Macahipay",
+        "program": null,
+        "gameCount": 1,
+        "aliases": []
+      },
+      "right": {
+        "id": "cce0c1c6-0170-45ed-bb28-6b7382821e82",
+        "displayName": "Xyriel Macahipay",
+        "program": "Emilio Aguinaldo College",
+        "gameCount": 15,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    },
+    {
+      "status": "LOW_CONFIDENCE",
+      "evidenceScore": 0,
+      "left": {
+        "id": "d9421f32-a2f4-40c3-ad1d-55371294f869",
+        "displayName": "Zedrick Cole Victorioso",
+        "program": null,
+        "gameCount": 4,
+        "aliases": []
+      },
+      "right": {
+        "id": "8a65386e-f9c2-4a48-a550-dfbc80d5701f",
+        "displayName": "Zedrick Victorioso",
+        "program": "La Salle Green Hills",
+        "gameCount": 6,
+        "aliases": []
+      },
+      "evidence": {
+        "sameProgram": false,
+        "sharedTeams": 0,
+        "sharedLeagues": 0,
+        "sameBirthDate": false,
+        "conflictingBirthDate": false
+      }
+    }
+  ],
+  "smile360": [
+    {
+      "id": "58f9e2a2-fe97-44bf-b4d7-caf0164637d9",
+      "fullName": "Smile 360 Bullies",
+      "teams": [
+        {
+          "id": "48b03b46-91b7-4acb-9b85-1a8278c33773",
+          "name": "Smile 360 Bullies",
+          "activeRosterRows": 36,
+          "officialGames": 18,
+          "officialGameStats": 229,
+          "contexts": [
+            "Philippine Youth Basketball Championship – 13U | Season 2026 | U13",
+            "Philippine Youth Basketball Championship – 15U | Season 2025 | U16"
+          ],
+          "gameRefs": [
+            "G-2025-005",
+            "G-2025-007",
+            "G-2025-009",
+            "G-2025-014",
+            "G-2025-024",
+            "G-2025-030",
+            "G-2025-034",
+            "PYBC-DRAFT-4864a2c8",
+            "SH-47340-2743093",
+            "SH-47340-2743096",
+            "SH-47340-2755577",
+            "SH-47340-2768644",
+            "SH-47340-2776846",
+            "SH-47340-2779282",
+            "SH-47340-2779284",
+            "SH-47340-2787987"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -24,7 +24,7 @@ export function validateProgramCreateInput(input: {
   if (input.programRole !== GROUP_PROGRAM_ROLE) return;
 
   if (input.parentProgramId) {
-    throw new Error("Group programs cannot have a parent program.");
+    throw new Error("Organizations cannot belong to another organization.");
   }
   if ((input.teamCount ?? 0) > 0) {
     throw new Error("Group programs cannot own teams.");

@@ -240,10 +240,10 @@ export async function updateProgramParent(
     revalidateProgramHierarchySurfaces(programId);
     return {
       ok: true,
-      message: parentProgramId ? "Parent program updated." : "Parent program removed.",
+      message: parentProgramId ? "Organization assignment updated." : "Organization assignment removed.",
     };
   } catch (error) {
-    return { ok: false, message: error instanceof Error ? error.message : "Could not update parent program." };
+    return { ok: false, message: error instanceof Error ? error.message : "Could not update organization assignment." };
   }
 }
 

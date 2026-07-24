@@ -1,6 +1,6 @@
-import { AgeGroup, PlayerGender, type Submission } from "@prisma/client";
+import { AgeGroup, PlayerGender, type Submission,VerificationStatus } from "@prisma/client";
 
-import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { inferCompetitionGender, isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import {
   buildGameStatBoxScoreFromPlayerRow,
   evaluateGameStatImmutability,
@@ -123,30 +123,75 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const teamPreflight = await Promise.all(submittedTeams.map(async (submittedTeamName) => {
     const normalizedPublicName = getUaapSchoolDisplayName(submittedTeamName);
     const internalTeamName = getUaapInternalTeamName(submittedTeamName, targetAgeGroup, inferredGender);
-    const exactMatches = await prisma.team.findMany({
-      where: { deletedAt: null, name: internalTeamName },
-      select: { id: true, name: true, city: true, region: true },
-      orderBy: { name: "asc" }
-    });
     const programName = submittedProgramName(submittedTeamName, targetLeagueName);
     const canUseProgramDisplayMatch = allowProgramDisplayTeamMatch(targetLeagueName);
-    const program = exactMatches.length || !canUseProgramDisplayMatch ? null : await prisma.program.findFirst({
+    const program = await prisma.program.findFirst({
       where: { fullName: programName, deletedAt: null },
       select: {
         id: true,
         teams: {
           where: { deletedAt: null },
-          select: { id: true, name: true, city: true, region: true },
-          orderBy: { name: "asc" }
-        }
-      }
+          select: {
+            id: true,
+            name: true,
+            city: true,
+            region: true,
+            homeGames: {
+              where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+              select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+            },
+            awayGames: {
+              where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+              select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+            },
+          },
+          orderBy: { name: "asc" },
+        },
+      },
     });
-    const submittedKey = teamDisplayMatchKey(submittedTeamName);
-    const programDisplayMatches = program?.teams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey) ?? [];
-    const matches = exactMatches.length ? exactMatches : programDisplayMatches;
 
-    const action: PreflightAction = matches.length === 1 ? "reuse" : matches.length === 0 ? "create" : "manual_review";
-    return { submittedTeamName, internalTeamName, normalizedPublicName, programName, matches, action };
+    const targetContext = `${targetAgeGroup}|${inferredGender}`;
+    const matchingContextTeams = (program?.teams ?? []).filter((team) => {
+      const games = [...team.homeGames, ...team.awayGames];
+      const contextKeys = new Set(games.map((game) =>
+        `${game.season.league.ageGroup}|${inferCompetitionGender(undefined, game.season.league.name)}`,
+      ));
+      return contextKeys.size <= 1 && (contextKeys.size === 0 || contextKeys.has(targetContext));
+    });
+    const exactMatches = matchingContextTeams.filter((team) => team.name === internalTeamName);
+    const submittedKey = teamDisplayMatchKey(submittedTeamName);
+    const programDisplayMatches = canUseProgramDisplayMatch
+      ? matchingContextTeams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey)
+      : [];
+    const matches = exactMatches.length ? exactMatches : programDisplayMatches;
+    const mixedContextMatches = (program?.teams ?? []).filter((team) => {
+      if (teamDisplayMatchKey(team.name) !== submittedKey) return false;
+      const games = [...team.homeGames, ...team.awayGames];
+      return new Set(games.map((game) =>
+        `${game.season.league.ageGroup}|${inferCompetitionGender(undefined, game.season.league.name)}`,
+      )).size > 1;
+    });
+
+    const action: PreflightAction = !program || mixedContextMatches.length || matches.length !== 1
+      ? "manual_review"
+      : "reuse";
+    return {
+      submittedTeamName,
+      internalTeamName,
+      normalizedPublicName,
+      programName,
+      matches,
+      action,
+      blockReason: !program
+        ? `Program ${programName} is not configured. Create it in Admin > Programs before publishing.`
+        : mixedContextMatches.length
+          ? `Existing Team has mixed age/gender contexts: ${mixedContextMatches.map((team) => team.name).join(", ")}. Split it before import.`
+          : matches.length === 0
+            ? `No ${internalTeamName} Team is configured under ${programName}. Create or assign it in Admin > Programs.`
+            : matches.length > 1
+              ? `Multiple Team matches require review: ${matches.map((team) => team.name).join(", ")}.`
+              : null,
+    };
   }));
 
   const uniquePlayerNames = review.summary.uniquePlayerNames;
@@ -286,7 +331,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const wouldCreate = {
     leagues: existingLeague ? 0 : 1,
     seasons: existingSeason ? 0 : 1,
-    teams: teamPreflight.filter((team) => team.action === "create").length,
+    teams: 0,
     players: playerPreflight.filter((player) => player.action === "create").length,
     games: gamePreflight.filter((game) => game.action === "create").length,
     gameStats: gameStatsWouldCreate
