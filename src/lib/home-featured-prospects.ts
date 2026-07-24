@@ -1,3 +1,4 @@
+import { getPublicBoardRows } from "@/lib/public-board-ranks";
 import type { HomeData, HomeLeaderboardRow, PublicAgeGroup } from "@/lib/public-site-data";
 import type { LatestNationalRankings } from "@/lib/rankings";
 
@@ -12,7 +13,11 @@ export function collectGlobalRatedProspects(
 
   for (const ageGroup of ageGroups) {
     const boards = rankings.snapshotsByAge[ageGroup];
-    for (const row of [...boards.boys.rows, ...boards.girls.rows]) {
+    const publicRows = [
+      ...getPublicBoardRows(boards.boys),
+      ...getPublicBoardRows(boards.girls),
+    ];
+    for (const row of publicRows) {
       const candidate = row as HomeLeaderboardRow;
       const existing = byPlayer.get(row.playerId);
       if (!existing || row.rating > existing.rating) {
@@ -29,6 +34,19 @@ export function collectGlobalRatedProspects(
         left.displayName.localeCompare(right.displayName)
     )
     .slice(0, limit);
+}
+
+/** Keep the homepage hero aligned with the default U19 Boys public board. */
+export function prioritizeHomepageLeader(
+  prospects: HomeLeaderboardRow[],
+  publicBoardLeader: HomeLeaderboardRow | null,
+  limit: number
+): HomeLeaderboardRow[] {
+  if (!publicBoardLeader) return prospects.slice(0, limit);
+  return [
+    publicBoardLeader,
+    ...prospects.filter((row) => row.playerId !== publicBoardLeader.playerId),
+  ].slice(0, limit);
 }
 
 /** Next highest-rated prospects after the homepage hero, excluding the hero player. */

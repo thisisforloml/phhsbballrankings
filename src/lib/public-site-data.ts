@@ -6,7 +6,10 @@ import { cache } from "react";
 import { getActivePolicyVersionId } from "@/lib/ratings/active-formula";
 
 import { slugify } from "./format";
-import { collectGlobalRatedProspects } from "./home-featured-prospects";
+import {
+  collectGlobalRatedProspects,
+  prioritizeHomepageLeader,
+} from "./home-featured-prospects";
 import { resolveWeeklyBestPerformer } from "./home-weekly-performer";
 import { prisma } from "./prisma";
 import { getPublicBoardRows } from "./public-board-ranks";
@@ -55,7 +58,7 @@ export type HomeData = {
   leader: HomeLeaderboardRow | null;
   boardLeaders: HomeLeaderboardRow[];
   weeklyBestPerformer: HomeLeaderboardRow | null;
-  /** Top-rated prospects across all age groups and genders; [0] is the homepage hero. */
+  /** Public-board prospects; [0] is the canonical U19 Boys homepage leader. */
   globalTopProspects: HomeLeaderboardRow[];
   leaderboards: {
     boys: HomeLeaderboardRow[];
@@ -235,7 +238,11 @@ async function getHomeDataImpl(): Promise<HomeData> {
   const u19 = rankings.snapshotsByAge.U19;
   const boysRows = getPublicBoardRows(u19.boys).slice(0, 10) as HomeLeaderboardRow[];
   const girlsRows = getPublicBoardRows(u19.girls).slice(0, 10) as HomeLeaderboardRow[];
-  const globalTopProspects = collectGlobalRatedProspects(rankings, 5);
+  const globalTopProspects = prioritizeHomepageLeader(
+    collectGlobalRatedProspects(rankings, 5),
+    boysRows[0] ?? null,
+    5
+  );
   const officialCounts = await getOfficialTeamCompetitionCounts();
   const boardMovers = await getBoardMovers();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);

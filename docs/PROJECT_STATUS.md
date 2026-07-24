@@ -2990,3 +2990,13 @@ No-change confirmation:
 - Final read-only production audit returned 67 reviewable pairs. A cold duplicate corpus/query completed in approximately 3-6 seconds; the five-minute server cache avoids repeating that work on normal navigation.
 - TypeScript and duplicate-detection regression tests passed.
 - No Player merge, database write, schema change, import/publish, rating recompute, or snapshot generation was run.
+
+## Homepage / Public Rankings Consistency Checkpoint (July 24, 2026)
+
+- Root cause: the homepage hero selected the highest raw rating across every age/gender board, while the public Rankings page uses the canonical eligibility-filtered U19 Boys board by default.
+- The homepage primary prospect now uses the same canonical U19 Boys public board leader as `/rankings?gender=Boys&age=U19`.
+- The cross-board featured prospect pool now passes through the same public-board eligibility and rank normalization helper used by Player Rankings.
+- Jude Eriobu is rendered as the homepage primary prospect and remains the public U19 Boys #1; Xyriel Macahipay is no longer selected as the homepage primary prospect solely from a different board/raw rating.
+- Cross-board prospects remain available in the secondary featured modules without overriding the default-board leader.
+- Local Next.js runtime validation confirmed Jude Eriobu is present as the homepage leader and on the U19 Boys rankings page.
+- No database write, rating/ranking formula change, recompute, snapshot generation, import/publish, or admin workflow change was made.
