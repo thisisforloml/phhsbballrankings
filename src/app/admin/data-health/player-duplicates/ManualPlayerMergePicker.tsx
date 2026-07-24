@@ -23,17 +23,12 @@ export function ManualPlayerMergePicker({ players }: { players: PlayerMergeOptio
 
   return (
     <section className="border border-surface-200 bg-white p-4 shadow-sm">
-      <div className="flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <h2 className="text-base font-bold text-navy-900">Manual duplicate review</h2>
-          <p className="mt-1 text-sm text-ink-600">Choose any two active Player records. This opens a read-only impact preview first.</p>
-        </div>
-        <span className="font-mono text-xs text-ink-500">{players.length} active players</span>
-      </div>
+      <h2 className="text-base font-bold text-navy-900">Manual merge</h2>
+      <p className="mt-1 text-sm text-ink-600">Choose two records. Nothing changes until confirmation.</p>
 
       <form action="/admin/data-health/player-duplicates" method="get" className="mt-3 grid gap-3 lg:grid-cols-[1fr_1fr_auto] lg:items-end">
         <label className="grid gap-1.5 text-sm font-semibold text-ink-800">
-          Player record to keep
+          Keep
           <select
             name="canonical"
             value={canonicalPlayerId}
@@ -51,7 +46,7 @@ export function ManualPlayerMergePicker({ players }: { players: PlayerMergeOptio
         </label>
 
         <label className="grid gap-1.5 text-sm font-semibold text-ink-800">
-          Duplicate record to archive
+          Archive
           <select
             name="duplicate"
             value={duplicatePlayerId}
@@ -69,7 +64,7 @@ export function ManualPlayerMergePicker({ players }: { players: PlayerMergeOptio
           disabled={!canonicalPlayerId || !duplicatePlayerId || canonicalPlayerId === duplicatePlayerId}
           className="button secondary disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Preview merge
+          Preview
         </button>
       </form>
     </section>

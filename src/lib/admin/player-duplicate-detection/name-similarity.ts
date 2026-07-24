@@ -1,8 +1,27 @@
-import { normalizeImportedPlayerNameKey } from "@/lib/player-import-identity";
+import { normalizeIdentityTokens } from "@/lib/player-name-identity";
 export { isMiddleNameVariant } from "@/lib/player-name-identity";
 
+const NAME_SUFFIXES = new Set(["JR", "SR", "II", "III", "IV", "V"]);
+
+export type DuplicateNameEvidence = {
+  exactName: boolean;
+  middleNameVariant: boolean;
+  exactFirstLast: boolean;
+  fuzzyFirstLast: boolean;
+  sharedTokenCount: number;
+  firstNameSimilarity: number;
+  lastNameSimilarity: number;
+  hasConflictingAdditionalNames: boolean;
+  hasIdentityAnchor: boolean;
+};
+
+export function duplicateNameTokens(value: string) {
+  const tokens = normalizeIdentityTokens(value);
+  return tokens.filter((token, index) => index < 2 || !NAME_SUFFIXES.has(token));
+}
+
 export function normalizeDuplicateName(value: string) {
-  return normalizeImportedPlayerNameKey(value);
+  return duplicateNameTokens(value).join(" ");
 }
 
 export function normalizeDuplicateLastName(lastName: string) {
@@ -10,11 +29,7 @@ export function normalizeDuplicateLastName(lastName: string) {
 }
 
 function tokenSet(value: string) {
-  return new Set(
-    normalizeDuplicateName(value)
-      .split(/\s+/)
-      .filter(Boolean),
-  );
+  return new Set(duplicateNameTokens(value));
 }
 
 export function tokenOverlapSimilarity(left: string, right: string) {
@@ -121,6 +136,56 @@ export function displayNameSimilarity(left: string, right: string) {
     levenshteinSimilarity(left, right),
     tokenOverlapSimilarity(left, right),
   );
+}
+
+export function duplicateNameEvidence(left: string, right: string): DuplicateNameEvidence {
+  const leftTokens = duplicateNameTokens(left);
+  const rightTokens = duplicateNameTokens(right);
+  const leftKey = leftTokens.join(" ");
+  const rightKey = rightTokens.join(" ");
+  const leftSet = new Set(leftTokens);
+  const sharedTokenCount = rightTokens.filter((token) => leftSet.has(token)).length;
+  const leftFirst = leftTokens[0] ?? "";
+  const rightFirst = rightTokens[0] ?? "";
+  const leftLast = leftTokens.at(-1) ?? "";
+  const rightLast = rightTokens.at(-1) ?? "";
+  const firstNameSimilarity = jaroWinklerSimilarity(leftFirst, rightFirst);
+  const lastNameSimilarity = jaroWinklerSimilarity(leftLast, rightLast);
+  const exactName = Boolean(leftKey && leftKey === rightKey);
+  const exactFirstLast = Boolean(
+    leftFirst && rightFirst && leftLast && rightLast && leftFirst === rightFirst && leftLast === rightLast,
+  );
+  const fuzzyFirstLast = Boolean(
+    leftFirst &&
+      rightFirst &&
+      leftLast &&
+      rightLast &&
+      firstNameSimilarity >= 0.88 &&
+      lastNameSimilarity >= 0.88 &&
+      (leftFirst === rightFirst || leftLast === rightLast),
+  );
+  const middleNameVariant = exactFirstLast && !exactName && (
+    leftTokens.every((token) => rightTokens.includes(token)) ||
+    rightTokens.every((token) => leftTokens.includes(token))
+  );
+  const leftAdditional = leftTokens.slice(1, -1).filter((token) => !rightTokens.includes(token));
+  const rightAdditional = rightTokens.slice(1, -1).filter((token) => !leftTokens.includes(token));
+  const hasConflictingAdditionalNames = leftAdditional.length > 0 && rightAdditional.length > 0 &&
+    leftAdditional.every((leftToken) =>
+      rightAdditional.every((rightToken) => jaroWinklerSimilarity(leftToken, rightToken) < 0.88),
+    );
+
+  return {
+    exactName,
+    middleNameVariant,
+    exactFirstLast,
+    fuzzyFirstLast,
+    sharedTokenCount,
+    firstNameSimilarity,
+    lastNameSimilarity,
+    hasConflictingAdditionalNames,
+    hasIdentityAnchor: exactName || exactFirstLast || fuzzyFirstLast || sharedTokenCount >= 3,
+  };
 }
 
 export function fullNameLabel(firstName: string, lastName: string) {

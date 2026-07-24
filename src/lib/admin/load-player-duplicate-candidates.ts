@@ -2,10 +2,16 @@ import { VerificationStatus } from "@prisma/client";
 
 import {
   buildDuplicateDetectionCorpus,
+  collectIndexedCandidateIds,
   type DuplicateDetectionCorpus,
   mapRawDuplicatePlayerRow,
 } from "@/lib/admin/player-duplicate-detection/build-corpus";
 import { findDuplicateCandidatesForPlayer } from "@/lib/admin/player-duplicate-detection/find-duplicate-candidates";
+import {
+  passesDuplicatePrefilter,
+  scoreDuplicatePair,
+  toDuplicateCandidate,
+} from "@/lib/admin/player-duplicate-detection/score-duplicate-pair";
 import type { PlayerDuplicateCandidateReport } from "@/lib/admin/player-duplicate-detection/types";
 import { prisma } from "@/lib/prisma";
 
@@ -13,9 +19,7 @@ const officialVerificationStatuses: VerificationStatus[] = [
   VerificationStatus.VERIFIED,
   VerificationStatus.SUBMITTED,
 ];
-
 const CORPUS_CACHE_MS = 5 * 60 * 1000;
-
 let duplicateDetectionCorpusCache: { value: DuplicateDetectionCorpus; loadedAt: number } | null = null;
 
 export function clearDuplicateDetectionCorpusCache() {
@@ -38,31 +42,15 @@ const duplicatePlayerSelect = {
       fullName: true,
       programRole: true,
       deletedAt: true,
-      parentProgram: {
-        select: {
-          id: true,
-          fullName: true,
-          programRole: true,
-        },
-      },
+      parentProgram: { select: { id: true, fullName: true, programRole: true } },
     },
   },
-  aliases: {
-    select: { aliasName: true },
-  },
-  externalAliases: {
-    select: {
-      provider: true,
-      normalizedExternalLabel: true,
-    },
-  },
+  aliases: { select: { aliasName: true } },
+  externalAliases: { select: { provider: true, normalizedExternalLabel: true } },
   gameStats: {
     where: {
       deletedAt: null,
-      game: {
-        deletedAt: null,
-        verificationStatus: { in: officialVerificationStatuses },
-      },
+      game: { deletedAt: null, verificationStatus: { in: officialVerificationStatuses } },
     },
     select: {
       teamId: true,
@@ -70,17 +58,7 @@ const duplicatePlayerSelect = {
       game: {
         select: {
           id: true,
-          season: {
-            select: {
-              name: true,
-              league: {
-                select: {
-                  id: true,
-                  name: true,
-                },
-              },
-            },
-          },
+          season: { select: { name: true, league: { select: { id: true, name: true } } } },
         },
       },
     },
@@ -102,9 +80,7 @@ export async function loadDuplicateDetectionCorpus(options?: { bypassCache?: boo
     select: duplicatePlayerSelect,
     orderBy: { displayName: "asc" },
   });
-
-  const players = rows.map((row) => mapRawDuplicatePlayerRow(row));
-  const corpus = buildDuplicateDetectionCorpus(players);
+  const corpus = buildDuplicateDetectionCorpus(rows.map((row) => mapRawDuplicatePlayerRow(row)));
   duplicateDetectionCorpusCache = { value: corpus, loadedAt: now };
   return corpus;
 }
@@ -137,27 +113,26 @@ export type PlayerDuplicateReviewPair = {
   explanation: string;
 };
 
-/** Build one de-duplicated admin review queue from the same live engine used on Player records. */
+/** Build each name-anchored pair once; contextual evidence only adjusts certainty. */
 export async function loadAllPlayerDuplicateCandidates(options?: {
   bypassCache?: boolean;
   minConfidence?: number;
 }): Promise<PlayerDuplicateReviewPair[]> {
   const corpus = await loadDuplicateDetectionCorpus({ bypassCache: options?.bypassCache });
-  const pairs = new Map<string, PlayerDuplicateReviewPair>();
+  const pairs: PlayerDuplicateReviewPair[] = [];
+  const minConfidence = options?.minConfidence ?? 60;
 
   for (const target of corpus.players) {
-    const report = findDuplicateCandidatesForPlayer(target.id, corpus, {
-      minConfidence: options?.minConfidence ?? 20,
-    });
+    for (const candidateId of collectIndexedCandidateIds(target, corpus.index)) {
+      if (target.id.localeCompare(candidateId) >= 0) continue;
+      const candidateRecord = corpus.playersById.get(candidateId);
+      if (!candidateRecord || !passesDuplicatePrefilter(target, candidateRecord)) continue;
+      const scored = scoreDuplicatePair(target, candidateRecord);
+      if (!scored || scored.confidence < minConfidence) continue;
+      const candidate = toDuplicateCandidate(candidateRecord, scored);
 
-    for (const candidate of report.candidates) {
-      const ids = [target.id, candidate.player.playerId].sort();
-      const pairId = ids.join(":");
-      const existing = pairs.get(pairId);
-      if (existing && existing.confidence >= candidate.confidence) continue;
-
-      pairs.set(pairId, {
-        pairId,
+      pairs.push({
+        pairId: `${target.id}:${candidateId}`,
         left: {
           playerId: target.id,
           displayName: target.displayName,
@@ -178,9 +153,8 @@ export async function loadAllPlayerDuplicateCandidates(options?: {
     }
   }
 
-  return Array.from(pairs.values()).sort(
+  return pairs.sort(
     (left, right) =>
-      right.confidence - left.confidence ||
-      left.left.displayName.localeCompare(right.left.displayName),
+      right.confidence - left.confidence || left.left.displayName.localeCompare(right.left.displayName),
   );
 }

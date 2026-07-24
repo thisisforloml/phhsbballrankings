@@ -2974,3 +2974,19 @@ No-change confirmation:
 - Regression tests cover mapped Team-label variants and explicit create-on-import decisions.
 - No Player merge was executed while implementing this workflow.
 - No schema change, migration, import/publish, rating recompute, or snapshot generation was run.
+
+## Player Duplicate Review Performance and Certainty Checkpoint (July 24, 2026)
+
+- The live duplicate queue no longer performs a per-player scan across every context-related Player pair.
+- Candidate generation is now name-anchored and evaluates each pair once; Program, Team, competition, age, and profile metadata adjust certainty only after a plausible name match exists.
+- Surname-only matches such as `Gabo Yoro` / `Migo Yoro` are excluded.
+- Added-middle-name matches such as `Patrick Pasinos` / `Patrick Laurence Pasinos`, diacritic variants, and conservative spelling variants such as `Dean Paras` / `Dean Parasa` remain reviewable.
+- Conflicting additional names and two non-exact records appearing in the same official game reduce certainty instead of creating false confidence.
+- The default queue shows only Possible-or-higher pairs. Any two active Players can still be selected through **Manual merge** when human review finds a case outside the automated queue.
+- Queue, manual selection, and merge preview now load as separate modes instead of loading the corpus, two full Player selectors, and merge impact data together.
+- The review UI now uses compact rows with collapsed evidence instead of large repeated cards.
+- The global Admin loading state uses a full-width compact skeleton instead of the narrow logo loader.
+- Admin navigation and page headers were tightened to reduce repeated branding, secondary labels, and explanatory copy while preserving operational routes.
+- Final read-only production audit returned 67 reviewable pairs. A cold duplicate corpus/query completed in approximately 3-6 seconds; the five-minute server cache avoids repeating that work on normal navigation.
+- TypeScript and duplicate-detection regression tests passed.
+- No Player merge, database write, schema change, import/publish, rating recompute, or snapshot generation was run.

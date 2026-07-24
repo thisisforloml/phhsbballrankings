@@ -1,9 +1,7 @@
 import { confidenceBandForScore } from "@/lib/admin/player-duplicate-detection/confidence-band";
 import {
   displayNameSimilarity,
-  fullNameLabel,
-  isMiddleNameVariant,
-  normalizeDuplicateLastName,
+  duplicateNameEvidence,
   normalizeDuplicateName,
 } from "@/lib/admin/player-duplicate-detection/name-similarity";
 import type {
@@ -18,13 +16,6 @@ function formatDate(date: Date | null) {
 
 function birthYear(date: Date | null) {
   return date ? date.getUTCFullYear() : null;
-}
-
-function intersects(left: Set<string>, right: Set<string>) {
-  for (const value of left) {
-    if (right.has(value)) return true;
-  }
-  return false;
 }
 
 function sharedValues(left: Set<string>, right: Set<string>) {
@@ -61,100 +52,72 @@ export function scoreDuplicatePair(
   const signals: DuplicateSignal[] = [];
   let confidence = 0;
 
-  const targetDisplayKey = normalizeDuplicateName(target.displayName);
-  const candidateDisplayKey = normalizeDuplicateName(candidate.displayName);
-  const targetFullName = fullNameLabel(target.firstName, target.lastName);
-  const candidateFullName = fullNameLabel(candidate.firstName, candidate.lastName);
+  const nameEvidence = duplicateNameEvidence(target.displayName, candidate.displayName);
+  const aliasCrossMatch =
+    aliasMatchesName(target.aliases, candidate.displayName) ||
+    aliasMatchesName(candidate.aliases, target.displayName);
+  if (!nameEvidence.hasIdentityAnchor && !aliasCrossMatch) return null;
 
-  if (targetDisplayKey && targetDisplayKey === candidateDisplayKey) {
+  if (nameEvidence.exactName) {
     signals.push({
       kind: "match",
       label: "Exact display name",
       detail: target.displayName,
-      weight: 35,
+      weight: 78,
     });
-    confidence += 35;
-  } else {
-    const similarity = displayNameSimilarity(target.displayName, candidate.displayName);
-    if (similarity >= 0.92) {
-      signals.push({
-        kind: "match",
-        label: "Very similar display name",
-        detail: `${Math.round(similarity * 100)}% similarity`,
-        weight: 24,
-      });
-      confidence += 24;
-    } else if (similarity >= 0.85) {
-      signals.push({
-        kind: "match",
-        label: "Similar display name",
-        detail: `${Math.round(similarity * 100)}% similarity`,
-        weight: 18,
-      });
-      confidence += 18;
-    } else if (similarity >= 0.75) {
-      signals.push({
-        kind: "match",
-        label: "Approximate display name",
-        detail: `${Math.round(similarity * 100)}% similarity`,
-        weight: 10,
-      });
-      confidence += 10;
-    }
-  }
-
-
-  if (isMiddleNameVariant(target.displayName, candidate.displayName)) {
+    confidence += 78;
+  } else if (nameEvidence.sharedTokenCount >= 3 && !nameEvidence.hasConflictingAdditionalNames) {
     signals.push({
       kind: "match",
-      label: "Same first and last name with added middle name",
+      label: "Three or more shared name tokens",
+      detail: `${nameEvidence.sharedTokenCount} shared names`,
+      weight: 82,
+    });
+    confidence += 82;
+  } else if (nameEvidence.middleNameVariant) {
+    signals.push({
+      kind: "match",
+      label: "Same first and last name; middle name differs",
       detail: `${target.displayName} / ${candidate.displayName}`,
-      weight: 24,
+      weight: 72,
     });
-    confidence += 24;
-  }
-  const targetFullKey = normalizeDuplicateName(targetFullName);
-  const candidateFullKey = normalizeDuplicateName(candidateFullName);
-  if (targetFullKey && targetFullKey === candidateFullKey) {
+    confidence += 72;
+  } else if (nameEvidence.exactFirstLast) {
     signals.push({
       kind: "match",
-      label: "Exact first and last name",
-      detail: targetFullName,
-      weight: 28,
+      label: "Same first and last name",
+      detail: `${target.displayName} / ${candidate.displayName}`,
+      weight: 68,
     });
-    confidence += 28;
-  }
-
-  const targetLastKey = normalizeDuplicateLastName(target.lastName);
-  const candidateLastKey = normalizeDuplicateLastName(candidate.lastName);
-  if (
-    targetLastKey &&
-    candidateLastKey &&
-    targetLastKey === candidateLastKey &&
-    target.firstName[0]?.toUpperCase() === candidate.firstName[0]?.toUpperCase()
-  ) {
+    confidence += 68;
+  } else if (nameEvidence.fuzzyFirstLast) {
     signals.push({
       kind: "match",
-      label: "Same surname and first initial",
-      detail: `${target.lastName}, ${target.firstName[0]}.`,
-      weight: 8,
+      label: "Likely first/last name spelling variant",
+      detail: `${target.displayName} / ${candidate.displayName}`,
+      weight: 62,
     });
-    confidence += 8;
+    confidence += 62;
   }
 
-  const aliasCrossMatch =
-    aliasMatchesName(target.aliases, candidate.displayName) ||
-    aliasMatchesName(candidate.aliases, target.displayName) ||
-    aliasMatchesName(target.aliases, candidateFullName) ||
-    aliasMatchesName(candidate.aliases, targetFullName);
+  if (nameEvidence.hasConflictingAdditionalNames) {
+    signals.push({
+      kind: "conflict",
+      label: "Different additional names",
+      detail: `${target.displayName} / ${candidate.displayName}`,
+      weight: -35,
+    });
+    confidence -= 35;
+  }
+
   if (aliasCrossMatch) {
     signals.push({
       kind: "match",
       label: "Nickname or alias overlap",
       detail: "A saved alias matches the other player's name",
-      weight: 18,
+      weight: nameEvidence.hasIdentityAnchor ? 18 : 70,
     });
-    confidence += 18;
+    confidence += nameEvidence.hasIdentityAnchor ? 18 : 70;
   } else {
     const aliasSimilarity = bestAliasSimilarity(target.aliases, candidate.displayName, candidate.aliases);
     if (aliasSimilarity >= 0.9) {
@@ -278,12 +241,12 @@ export function scoreDuplicatePair(
   const sharedGames = sharedValues(target.gameIds, candidate.gameIds);
   if (sharedGames.length > 0) {
     signals.push({
-      kind: "match",
-      label: "Same verified game evidence",
+      kind: "conflict",
+      label: "Both appear in the same official game",
       detail: `${sharedGames.length} shared game${sharedGames.length === 1 ? "" : "s"}`,
-      weight: 22,
+      weight: -35,
     });
-    confidence += 22;
+    confidence -= 35;
   }
 
   const sharedTeams = sharedValues(target.teamIds, candidate.teamIds);
@@ -354,19 +317,31 @@ export function scoreDuplicatePair(
     confidence += 20;
   }
 
-  const hasStrongIdentity =
-    targetDisplayKey === candidateDisplayKey ||
-    displayNameSimilarity(target.displayName, candidate.displayName) >= 0.85 ||
-    aliasCrossMatch;
-
   if (
     target.birthDate &&
     candidate.birthDate &&
     target.birthDate.getTime() !== candidate.birthDate.getTime() &&
-    !hasStrongIdentity &&
-    !sharedGames.length
+    !sharedGames.length &&
+    !sharedExternalIds.length
   ) {
-    confidence = Math.min(confidence, 55);
+    confidence = Math.min(confidence, 45);
+  }
+
+  if (
+    nameEvidence.hasConflictingAdditionalNames &&
+    !sharedExternalIds.length
+  ) {
+    confidence = Math.min(confidence, 59);
+  }
+
+  if (
+    sharedGames.length > 0 &&
+    !nameEvidence.exactName &&
+    !nameEvidence.middleNameVariant &&
+    !aliasCrossMatch &&
+    !sharedExternalIds.length
+  ) {
+    confidence = Math.min(confidence, 59);
   }
 
   if (!signals.some((signal) => signal.kind === "match")) {
@@ -423,16 +398,7 @@ export function passesDuplicatePrefilter(target: DuplicatePlayerRecord, candidat
   if (target.id === candidate.id) return false;
   if (target.gender !== candidate.gender) return false;
 
-  if (normalizeDuplicateName(target.displayName) === normalizeDuplicateName(candidate.displayName)) return true;
-  if (isMiddleNameVariant(target.displayName, candidate.displayName)) return true;
-  if (
-    normalizeDuplicateLastName(target.lastName) === normalizeDuplicateLastName(candidate.lastName) &&
-    target.firstName[0]?.toUpperCase() === candidate.firstName[0]?.toUpperCase()
-  ) {
-    return true;
-  }
-
-  if (displayNameSimilarity(target.displayName, candidate.displayName) >= 0.75) return true;
+  if (duplicateNameEvidence(target.displayName, candidate.displayName).hasIdentityAnchor) return true;
 
   if (
     aliasMatchesName(target.aliases, candidate.displayName) ||
@@ -440,26 +406,6 @@ export function passesDuplicatePrefilter(target: DuplicatePlayerRecord, candidat
   ) {
     return true;
   }
-
-  const targetYear = birthYear(target.birthDate);
-  const candidateYear = birthYear(candidate.birthDate);
-  if (targetYear && candidateYear && targetYear === candidateYear) return true;
-
-  if (target.currentProgramId && candidate.currentProgramId && target.currentProgramId === candidate.currentProgramId) {
-    return true;
-  }
-
-  if (
-    target.parentGroupProgramId &&
-    candidate.parentGroupProgramId &&
-    target.parentGroupProgramId === candidate.parentGroupProgramId
-  ) {
-    return true;
-  }
-
-  if (intersects(target.teamIds, candidate.teamIds)) return true;
-  if (intersects(target.leagueIds, candidate.leagueIds)) return true;
-  if (intersects(target.gameIds, candidate.gameIds)) return true;
 
   return false;
 }

@@ -40,8 +40,8 @@ function record(overrides: Partial<DuplicatePlayerRecord> & Pick<DuplicatePlayer
 
 describe("confidenceBandForScore", () => {
   it("maps score ranges to bands", () => {
-    assert.equal(confidenceBandForScore(98), "Almost Certain");
-    assert.equal(confidenceBandForScore(85), "Very Likely");
+    assert.equal(confidenceBandForScore(93), "Almost Certain");
+    assert.equal(confidenceBandForScore(76), "Very Likely");
     assert.equal(confidenceBandForScore(70), "Possible");
     assert.equal(confidenceBandForScore(40), "Low Confidence");
   });
@@ -96,13 +96,71 @@ describe("scoreDuplicatePair", () => {
     assert.ok(scored);
     assert.ok(scored.signals.some((signal) => signal.kind === "conflict" && signal.label === "Different birthdate"));
   });
+
+  it("treats an added middle name as a strong identity match", () => {
+    const scored = scoreDuplicatePair(
+      record({ id: "a", displayName: "Patrick Pasinos", currentProgramId: "program-a" }),
+      record({ id: "b", displayName: "Patrick Laurence Pasinos", currentProgramId: "program-a" }),
+    );
+    assert.ok(scored);
+    assert.ok(scored.confidence >= 75);
+    assert.ok(scored.signals.some((signal) => signal.label.includes("middle name")));
+  });
+
+  it("rejects pairs that share only a surname", () => {
+    const left = record({ id: "a", displayName: "Gabo Yoro", currentProgramId: "program-a" });
+    const right = record({ id: "b", displayName: "Migo Yoro", currentProgramId: "program-a" });
+    assert.equal(passesDuplicatePrefilter(left, right), false);
+    assert.equal(scoreDuplicatePair(left, right), null);
+  });
+
+  it("keeps a small last-name spelling difference when the first name matches", () => {
+    const scored = scoreDuplicatePair(
+      record({ id: "a", displayName: "Dean Paras" }),
+      record({ id: "b", displayName: "Dean Parasa" }),
+    );
+    assert.ok(scored);
+    assert.ok(scored.confidence >= 60);
+    assert.ok(scored.signals.some((signal) => signal.label.includes("spelling variant")));
+  });
+
+  it("normalizes diacritics before comparing names", () => {
+    const scored = scoreDuplicatePair(
+      record({ id: "a", displayName: "Iñigo Garcia" }),
+      record({ id: "b", displayName: "Inigo Garcia" }),
+    );
+    assert.ok(scored);
+    assert.ok(scored.confidence >= 75);
+  });
+
+  it("does not treat compound surnames as shared middle-name evidence", () => {
+    const scored = scoreDuplicatePair(
+      record({ id: "a", displayName: "Prince Edizon Dela Cruz", currentProgramId: "program-a" }),
+      record({ id: "b", displayName: "Prince Kean Jhamez Dela Cruz", currentProgramId: "program-a" }),
+    );
+    assert.ok(scored);
+    assert.ok(scored.confidence < 60);
+    assert.ok(scored.signals.some((signal) => signal.label === "Different additional names"));
+  });
+
+  it("treats two non-exact records in one official game as conflicting players", () => {
+    const scored = scoreDuplicatePair(
+      record({ id: "a", displayName: "Dwyne Enriquez", gameIds: new Set(["game-1"]) }),
+      record({ id: "b", displayName: "Dwayne Enriquez", gameIds: new Set(["game-1"]) }),
+    );
+    assert.ok(scored);
+    assert.ok(scored.confidence < 60);
+    assert.ok(
+      scored.signals.some((signal) => signal.label === "Both appear in the same official game"),
+    );
+  });
 });
 
 describe("duplicate detection index", () => {
-  it("prefilters by surname and scores only indexed candidates", () => {
+  it("prefilters by first/last identity and scores only indexed candidates", () => {
     const players = [
       record({ id: "a", displayName: "Juan Dela Cruz", lastName: "Dela Cruz" }),
-      record({ id: "b", displayName: "Juan DC", lastName: "Dela Cruz" }),
+      record({ id: "b", displayName: "Juan Mateo Dela Cruz", lastName: "Dela Cruz" }),
       record({ id: "c", displayName: "Maria Lopez", lastName: "Lopez" }),
     ];
     const corpus = buildDuplicateDetectionCorpus(players);
@@ -119,14 +177,13 @@ describe("duplicate detection index", () => {
     assert.ok(!report.candidates.some((candidate) => candidate.player.playerId === "c"));
   });
 
-  it("keeps low-confidence candidates visible", () => {
+  it("does not surface context-only matches", () => {
     const players = [
-      record({ id: "a", displayName: "Chris Gomez", lastName: "Gomez", currentProgramId: "prog-1" }),
-      record({ id: "b", displayName: "Chrys Gomez", lastName: "Gomez", currentProgramId: "prog-1" }),
+      record({ id: "a", displayName: "Gabo Yoro", lastName: "Yoro", currentProgramId: "prog-1" }),
+      record({ id: "b", displayName: "Migo Yoro", lastName: "Yoro", currentProgramId: "prog-1" }),
     ];
     const corpus = buildDuplicateDetectionCorpus(players);
     const report = findDuplicateCandidatesForPlayer("a", corpus);
-    assert.ok(report.candidates.length > 0);
-    assert.ok(report.candidates.every((candidate) => candidate.confidence >= 0));
+    assert.equal(report.candidates.length, 0);
   });
 });

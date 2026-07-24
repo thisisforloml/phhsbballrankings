@@ -1,6 +1,10 @@
 import { ProgramRole } from "@prisma/client";
 
-import { normalizeDuplicateLastName, normalizeDuplicateName } from "@/lib/admin/player-duplicate-detection/name-similarity";
+import {
+  duplicateNameTokens,
+  normalizeDuplicateLastName,
+  normalizeDuplicateName,
+} from "@/lib/admin/player-duplicate-detection/name-similarity";
 import type { DuplicatePlayerRecord } from "@/lib/admin/player-duplicate-detection/types";
 import { firstLastIdentityKey } from "@/lib/player-name-identity";
 
@@ -13,6 +17,7 @@ export type DuplicateDetectionCorpus = {
 export type DuplicateDetectionIndex = {
   byNameKey: Map<string, string[]>;
   byFirstLastKey: Map<string, string[]>;
+  byFirstNameKey: Map<string, string[]>;
   byLastNameKey: Map<string, string[]>;
   byBirthYear: Map<string, string[]>;
   byProgramId: Map<string, string[]>;
@@ -42,6 +47,7 @@ export function buildDuplicateDetectionIndex(players: DuplicatePlayerRecord[]): 
   const index: DuplicateDetectionIndex = {
     byNameKey: new Map(),
     byFirstLastKey: new Map(),
+    byFirstNameKey: new Map(),
     byLastNameKey: new Map(),
     byBirthYear: new Map(),
     byProgramId: new Map(),
@@ -53,19 +59,24 @@ export function buildDuplicateDetectionIndex(players: DuplicatePlayerRecord[]): 
 
   for (const player of players) {
     pushIndex(index.byNameKey, normalizeDuplicateName(player.displayName), player.id);
+    const tokens = duplicateNameTokens(player.displayName);
+    if (tokens[0]) pushIndex(index.byFirstNameKey, tokens[0], player.id);
     const firstLastKey = firstLastIdentityKey(player.displayName);
     if (firstLastKey) pushIndex(index.byFirstLastKey, firstLastKey, player.id);
     pushIndex(index.byLastNameKey, normalizeDuplicateLastName(player.lastName), player.id);
 
-    if (player.birthDate) {
-      pushIndex(index.byBirthYear, String(player.birthDate.getUTCFullYear()), player.id);
+    for (const alias of player.aliases) {
+      pushIndex(index.byNameKey, normalizeDuplicateName(alias), player.id);
+      const aliasTokens = duplicateNameTokens(alias);
+      if (aliasTokens[0]) pushIndex(index.byFirstNameKey, aliasTokens[0], player.id);
+      if (aliasTokens.at(-1)) pushIndex(index.byLastNameKey, aliasTokens.at(-1)!, player.id);
+      const aliasFirstLastKey = firstLastIdentityKey(alias);
+      if (aliasFirstLastKey) pushIndex(index.byFirstLastKey, aliasFirstLastKey, player.id);
     }
-    if (player.currentProgramId) {
-      pushIndex(index.byProgramId, player.currentProgramId, player.id);
-    }
-    if (player.parentGroupProgramId) {
-      pushIndex(index.byParentGroupId, player.parentGroupProgramId, player.id);
-    }
+
+    if (player.birthDate) pushIndex(index.byBirthYear, String(player.birthDate.getUTCFullYear()), player.id);
+    if (player.currentProgramId) pushIndex(index.byProgramId, player.currentProgramId, player.id);
+    if (player.parentGroupProgramId) pushIndex(index.byParentGroupId, player.parentGroupProgramId, player.id);
     pushMany(index.byTeamId, player.teamIds, player.id);
     pushMany(index.byLeagueId, player.leagueIds, player.id);
     pushMany(index.byGameId, player.gameIds, player.id);
@@ -79,7 +90,6 @@ export function collectIndexedCandidateIds(
   index: DuplicateDetectionIndex,
 ) {
   const candidateIds = new Set<string>();
-
   const addBucket = (ids: string[] | undefined) => {
     for (const id of ids ?? []) {
       if (id !== target.id) candidateIds.add(id);
@@ -87,23 +97,12 @@ export function collectIndexedCandidateIds(
   };
 
   addBucket(index.byNameKey.get(normalizeDuplicateName(target.displayName)));
+  for (const alias of target.aliases) addBucket(index.byNameKey.get(normalizeDuplicateName(alias)));
+  const tokens = duplicateNameTokens(target.displayName);
+  if (tokens[0]) addBucket(index.byFirstNameKey.get(tokens[0]));
   const firstLastKey = firstLastIdentityKey(target.displayName);
   if (firstLastKey) addBucket(index.byFirstLastKey.get(firstLastKey));
   addBucket(index.byLastNameKey.get(normalizeDuplicateLastName(target.lastName)));
-
-  if (target.birthDate) {
-    addBucket(index.byBirthYear.get(String(target.birthDate.getUTCFullYear())));
-  }
-  if (target.currentProgramId) {
-    addBucket(index.byProgramId.get(target.currentProgramId));
-  }
-  if (target.parentGroupProgramId) {
-    addBucket(index.byParentGroupId.get(target.parentGroupProgramId));
-  }
-
-  for (const teamId of target.teamIds) addBucket(index.byTeamId.get(teamId));
-  for (const leagueId of target.leagueIds) addBucket(index.byLeagueId.get(leagueId));
-  for (const gameId of target.gameIds) addBucket(index.byGameId.get(gameId));
 
   return candidateIds;
 }

@@ -10,7 +10,7 @@ export function AdminPageHeader({
   description,
   actions,
   statusBadge,
-  children
+  children,
 }: {
   backLink?: { href: string; label: string };
   eyebrow?: string;
@@ -21,27 +21,29 @@ export function AdminPageHeader({
   children?: ReactNode;
 }) {
   const statusBadgeLabel = typeof statusBadge === "string" ? statusBadge : statusBadge?.label;
-  const statusBadgeClassName = typeof statusBadge === "string" ? defaultStatusBadgeClassName : statusBadge?.className ?? defaultStatusBadgeClassName;
+  const statusBadgeClassName = typeof statusBadge === "string"
+    ? defaultStatusBadgeClassName
+    : statusBadge?.className ?? defaultStatusBadgeClassName;
 
   return (
-    <div className="border border-surface-200 bg-white p-4 shadow-sm">
+    <div className="border border-surface-200 bg-white p-3.5 shadow-sm">
       {backLink ? (
-        <Link href={backLink.href} prefetch={false} className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-orange-700 hover:text-orange-800">
+        <Link href={backLink.href} prefetch={false} className="text-xs font-semibold text-orange-700 hover:text-orange-800">
           {backLink.label}
         </Link>
       ) : null}
-      <div className={`flex flex-wrap items-end justify-between gap-4 ${backLink ? "mt-3" : ""}`}>
+      <div className={`flex flex-wrap items-end justify-between gap-4 ${backLink ? "mt-2" : ""}`}>
         <div className="min-w-0">
-          <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.16em] text-orange-600">{eyebrow}</p>
-          <h1 className="mt-1 font-display text-3xl leading-tight text-navy-900 md:text-4xl">{title}</h1>
-          {description ? <p className="mt-1 max-w-3xl text-sm text-ink-600">{description}</p> : null}
+          {eyebrow ? <p className="text-xs font-semibold text-orange-700">{eyebrow}</p> : null}
+          <h1 className="mt-0.5 font-display text-2xl leading-tight text-navy-900 md:text-3xl">{title}</h1>
+          {description ? <p className="mt-1 max-w-3xl text-xs text-ink-600 sm:text-sm">{description}</p> : null}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {statusBadgeLabel ? <span className={statusBadgeClassName}>{statusBadgeLabel}</span> : null}
           {actions}
         </div>
       </div>
-      {children ? <div className="mt-4">{children}</div> : null}
+      {children ? <div className="mt-3">{children}</div> : null}
     </div>
   );
 }
