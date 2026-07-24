@@ -4,6 +4,8 @@ import { getPublicLeagues } from "@/lib/public-site-data";
 
 import { LeaguesClient } from "./LeaguesClient";
 
+export const dynamic = "force-dynamic";
+
 export default async function LeaguesPage() {
   const leagues = await getPublicLeagues();
 

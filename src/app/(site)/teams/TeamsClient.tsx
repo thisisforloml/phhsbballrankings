@@ -95,7 +95,7 @@ export function TeamsClient({
     return nationalData.rows
       .filter((row) => row.ageGroup === ageGroup)
       .filter((row) => row.gender === playerGender);
-  }, [ageGroup, gender, nationalData, playerGender]);
+  }, [ageGroup, nationalData, playerGender]);
 
   const scopeRows = useMemo(() => competitionData.rows
     .filter((team) => team.ageGroup === ageGroup)

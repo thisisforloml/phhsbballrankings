@@ -7,7 +7,7 @@ import { getLatestNationalRankings } from "@/lib/rankings";
 
 import { RankingsClient } from "./RankingsClient";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "National Rankings",

@@ -2949,3 +2949,12 @@ No-change confirmation:
 - The player-name fragment audit was refreshed as a read-only review report. Candidate pairs still require explicit human confirmation; no automatic player merge path was added.
 - Program Management copy now uses operations language such as **Organization group** and **Unassign** instead of developer-oriented relationship wording.
 - No database writes, player/team merges, historical stat rewrites, rating recomputes, or snapshot generation were performed during this stabilization pass.
+
+## Vercel Build Connection-Pool Stabilization Checkpoint (July 24, 2026)
+
+- Root cause of the failed deployment was Prisma P2024 connection-pool exhaustion while Vercel prerendered multiple database-backed public routes concurrently against a three-connection pool.
+- Homepage, Player Rankings, Games, Leagues, and the public players/rankings/trust APIs now render on request instead of querying Prisma during `next build`.
+- The production build completes with those routes marked dynamic; no database/query/formula behavior changed.
+- Refreshed the read-only player identity and mixed-context Team reports. The player audit remains 42 candidates (11 possible review, 31 low confidence).
+- Eight mixed-context Teams remain `NEEDS_APPROVAL`: Amsteel, BBC, Charm, Chatime, Gold Cross, JPM-TEC San Beda, San Pedro Spartans, and Smile 360 Bullies.
+- No Team split, player merge, database write, import/publish, rating recompute, or snapshot generation was run.

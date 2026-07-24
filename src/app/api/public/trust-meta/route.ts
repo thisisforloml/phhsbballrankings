@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getPublicTrustMeta } from "@/lib/public-trust-meta";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const trustMeta = await getPublicTrustMeta();

@@ -184,9 +184,8 @@ PostgreSQL via Prisma. Primary models (see `prisma/schema.prisma`):
 
 | Route | Strategy |
 |-------|----------|
-| `/` | `revalidate = 300` (ISR, 5 min) |
-| `/rankings` | `force-dynamic` (always fresh) |
-| `/teams` | `force-dynamic` + `revalidate = 0` |
+| `/`, `/rankings`, `/teams`, `/games`, `/leagues` | `force-dynamic` (request-time DB reads; no build-time Prisma access) |
+| `/api/players`, `/api/rankings`, `/api/public/trust-meta` | `force-dynamic` |
 | Player profiles | Dynamic per slug (default) |
 
 On-demand revalidation: `revalidatePublicRankingSurfaces()` after admin publish/import.
