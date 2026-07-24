@@ -181,6 +181,29 @@ async function getValidatedDbGames() {
   });
 }
 
+async function getHomeRecentGames(limit = 9): Promise<HomeRecentGame[]> {
+  const games = await prisma.game.findMany({
+    where: officialPublicGameWhere(),
+    include: {
+      homeTeam: true,
+      awayTeam: true,
+      season: { include: { league: true } },
+    },
+    orderBy: [{ gameDate: "desc" }, { createdAt: "desc" }],
+    take: limit,
+  });
+
+  return games.map((game) => ({
+    id: game.id,
+    gameDate: game.gameDate.toISOString().slice(0, 10),
+    leagueName: game.season.league.name,
+    seasonName: game.season.name,
+    homeTeamName: getUaapSchoolDisplayName(game.homeTeam.name),
+    awayTeamName: getUaapSchoolDisplayName(game.awayTeam.name),
+    homeScore: game.homeScore,
+    awayScore: game.awayScore,
+  }));
+}
 async function getBoardMovers(limit = 6): Promise<HomeRankMover[]> {
   const snapshots = await prisma.rankingSnapshot.findMany({
     where: { ageGroup: AgeGroup.U19, gender: PlayerGender.BOYS, scope: RankingScope.NATIONAL },
@@ -245,6 +268,7 @@ async function getHomeDataImpl(): Promise<HomeData> {
   );
   const officialCounts = await getOfficialTeamCompetitionCounts();
   const boardMovers = await getBoardMovers();
+  const recentGames = await getHomeRecentGames();
   const allTopRows = [...boysRows, ...girlsRows].sort((left, right) => right.rating - left.rating);
   const weeklyBestPerformer = await resolveWeeklyBestPerformer(
     [...boysRows, ...girlsRows],
@@ -273,7 +297,7 @@ async function getHomeDataImpl(): Promise<HomeData> {
     },
     leaderboardsByAge,
     teamPreview: [],
-    recentGames: [],
+    recentGames,
     boardMovers
   };
 }

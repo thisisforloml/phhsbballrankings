@@ -3000,3 +3000,11 @@ No-change confirmation:
 - Cross-board prospects remain available in the secondary featured modules without overriding the default-board leader.
 - Local Next.js runtime validation confirmed Jude Eriobu is present as the homepage leader and on the U19 Boys rankings page.
 - No database write, rating/ranking formula change, recompute, snapshot generation, import/publish, or admin workflow change was made.
+
+## Homepage Bottom Sections Restore Checkpoint (July 24, 2026)
+
+- Restored the homepage latest verified games section below the featured prospects and national board modules.
+- Restored the homepage methodology/trust band before the footer so visitors can continue into How We Rank.
+- `getHomeData()` now loads recent active official games again instead of returning an empty `recentGames` array.
+- The restore keeps the existing compact sports-database homepage style and does not change ranking, rating, admin, import, or database behavior.
+- No database writes, imports/publishes, rating recomputes, ranking snapshots, schema changes, or admin workflow changes were run.
