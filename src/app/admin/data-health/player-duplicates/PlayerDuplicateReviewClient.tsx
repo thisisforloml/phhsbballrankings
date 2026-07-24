@@ -7,204 +7,162 @@ import { AdminBadge } from "@/components/admin/AdminBadge";
 import { AdminEmptyState } from "@/components/admin/AdminEmptyState";
 import { AdminFilterChipBar } from "@/components/admin/AdminFilterChipBar";
 import { AdminFilterRow } from "@/components/admin/AdminFilterRow";
+import type { PlayerDuplicateReviewPair } from "@/lib/admin/load-player-duplicate-candidates";
 import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
 
-export type DuplicatePlayer = {
-  playerId: string;
-  displayName: string;
-  currentProgram: { programId: string; fullName: string; abbreviation: string | null } | null;
-  gender: string;
-  birthDate: string | null;
-  classYear: number | null;
-  height: number | null;
-  position: string | null;
-  gameStatCount: number;
-  playerRatingCount: number;
-  rankingSnapshotRowCount: number;
-};
-
-export type DuplicatePlayerGroup = {
-  groupId: string;
-  detectionType: string;
-  similarityScore?: number;
-  classification: "MERGE_SAFE" | "NEEDS_REVIEW" | "KEEP_SEPARATE";
-  normalizedName?: string;
-  playerIds: string[];
-  displayNames: string[];
-  players: DuplicatePlayer[];
-  recommendedCanonicalPlayer: { playerId: string; displayName: string } | null;
-  sourcePlayerToMergeIfSafe: Array<{ playerId: string; displayName: string }>;
-  exactAffectedRecordsIfMerged: {
-    gameStats: number;
-    playerRatings: number;
-    rankingSnapshotRows: number;
-  };
-};
-
-const FILTER_DEFAULTS = { search: "", program: "ALL", classification: "ALL" };
-
-const CLASSIFICATION_CHIP_ITEMS = [
+const FILTER_DEFAULTS = { search: "", program: "ALL", confidence: "ALL" };
+const CONFIDENCE_ITEMS = [
   { key: "ALL", label: "All" },
-  { key: "MERGE_SAFE", label: "MERGE_SAFE" },
-  { key: "NEEDS_REVIEW", label: "NEEDS_REVIEW" },
-  { key: "KEEP_SEPARATE", label: "KEEP_SEPARATE" }
+  { key: "Almost Certain", label: "Almost certain" },
+  { key: "Very Likely", label: "Very likely" },
+  { key: "Possible", label: "Possible" },
+  { key: "Low Confidence", label: "Low confidence" },
 ] as const;
 
-function groupSearchText(group: DuplicatePlayerGroup) {
-  return [
-    group.groupId,
-    group.detectionType,
-    group.classification,
-    group.normalizedName,
-    ...group.displayNames,
-    ...group.playerIds,
-    ...group.players.flatMap((player) => [player.displayName, player.currentProgram?.fullName, player.currentProgram?.abbreviation, player.gender, player.position])
-  ].filter(Boolean).join(" ").toLowerCase();
+function programName(value: PlayerDuplicateReviewPair["left"] | PlayerDuplicateReviewPair["right"]) {
+  return value.currentProgramName ?? "Unassigned";
 }
 
-function programLabel(player: DuplicatePlayer) {
-  if (!player.currentProgram) return "Not set";
-  return `${player.currentProgram.fullName}${player.currentProgram.abbreviation ? ` (${player.currentProgram.abbreviation})` : ""}`;
+function playerSearchText(value: PlayerDuplicateReviewPair["left"] | PlayerDuplicateReviewPair["right"]) {
+  return [value.playerId, value.displayName, value.currentProgramName, value.parentGroupName, value.gender]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 }
 
-function formatHeight(height: number | null) {
-  return height === null ? "Not listed" : `${height} cm`;
+function PlayerCell({ player, label }: {
+  player: PlayerDuplicateReviewPair["left"] | PlayerDuplicateReviewPair["right"];
+  label: string;
+}) {
+  return (
+    <div className="min-w-0 border border-surface-200 bg-surface-50 p-3">
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-ink-500">{label}</p>
+      <p className="mt-1 truncate font-semibold text-navy-900">{player.displayName}</p>
+      <p className="mt-0.5 truncate text-sm text-ink-600">{programName(player)}</p>
+      <dl className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-ink-600">
+        <div><dt className="inline text-ink-400">Birth: </dt><dd className="inline">{player.birthDate ?? "-"}</dd></div>
+        <div><dt className="inline text-ink-400">Height: </dt><dd className="inline">{player.heightCm ? `${player.heightCm} cm` : "-"}</dd></div>
+        <div><dt className="inline text-ink-400">Games: </dt><dd className="inline">{player.verifiedGameCount}</dd></div>
+        <div><dt className="inline text-ink-400">Gender: </dt><dd className="inline">{player.gender}</dd></div>
+      </dl>
+      <Link href={`/admin/players?player=${player.playerId}`} className="mt-2 inline-block text-xs font-semibold text-navy-700 hover:underline">
+        Open record
+      </Link>
+    </div>
+  );
 }
 
-export function PlayerDuplicateReviewClient({ groups }: { groups: DuplicatePlayerGroup[] }) {
+export function PlayerDuplicateReviewClient({ pairs }: { pairs: PlayerDuplicateReviewPair[] }) {
   const { filters, patchFilters, clearFilters } = useAdminFilterParams({
     defaults: FILTER_DEFAULTS,
-    keys: ["search", "program", "classification"],
-    debounceKey: "search"
+    keys: ["search", "program", "confidence"],
+    debounceKey: "search",
   });
 
-  const query = filters.search;
-  const program = filters.program;
-  const classification = filters.classification;
-
-  const programOptions = useMemo(() => Array.from(new Set(groups.flatMap((group) => group.players.map((player) => programLabel(player))))).sort(), [groups]);
-
-  const classificationCounts = useMemo(() => ({
-    ALL: groups.length,
-    MERGE_SAFE: groups.filter((group) => group.classification === "MERGE_SAFE").length,
-    NEEDS_REVIEW: groups.filter((group) => group.classification === "NEEDS_REVIEW").length,
-    KEEP_SEPARATE: groups.filter((group) => group.classification === "KEEP_SEPARATE").length
-  }), [groups]);
-
-  const chipItems = CLASSIFICATION_CHIP_ITEMS.map((item) => ({
+  const programOptions = useMemo(
+    () => Array.from(new Set(pairs.flatMap((pair) => [programName(pair.left), programName(pair.right)]))).sort(),
+    [pairs],
+  );
+  const confidenceCounts = useMemo(() => Object.fromEntries(
+    CONFIDENCE_ITEMS.map((item) => [
+      item.key,
+      item.key === "ALL" ? pairs.length : pairs.filter((pair) => pair.band === item.key).length,
+    ]),
+  ), [pairs]);
+  const chipItems = CONFIDENCE_ITEMS.map((item) => ({
     ...item,
-    count: classificationCounts[item.key as keyof typeof classificationCounts]
+    count: confidenceCounts[item.key] ?? 0,
   }));
 
-  const filteredGroups = useMemo(() => {
-    const value = query.trim().toLowerCase();
-    return groups
-      .filter((group) => classification === "ALL" || group.classification === classification)
-      .filter((group) => program === "ALL" || group.players.some((player) => programLabel(player) === program))
-      .filter((group) => !value || groupSearchText(group).includes(value));
-  }, [classification, groups, program, query]);
-
-  const hasActiveFilters = Boolean(query.trim()) || program !== "ALL" || classification !== "ALL";
+  const filtered = useMemo(() => {
+    const query = filters.search.trim().toLowerCase();
+    return pairs
+      .filter((pair) => filters.confidence === "ALL" || pair.band === filters.confidence)
+      .filter((pair) => filters.program === "ALL" || [programName(pair.left), programName(pair.right)].includes(filters.program))
+      .filter((pair) => !query || `${playerSearchText(pair.left)} ${playerSearchText(pair.right)}`.includes(query));
+  }, [filters, pairs]);
+  const hasFilters = Boolean(filters.search.trim()) || filters.program !== "ALL" || filters.confidence !== "ALL";
 
   return (
     <div className="grid gap-4">
       <section className="border border-surface-200 bg-white p-4 shadow-sm">
         <AdminFilterChipBar
           items={chipItems}
-          activeKey={classification}
-          onSelect={(key) => patchFilters({ classification: key })}
-          aria-label="Duplicate classification filters"
+          activeKey={filters.confidence}
+          onSelect={(confidence) => patchFilters({ confidence })}
+          aria-label="Duplicate confidence filters"
         />
         <AdminFilterRow
           withTopDivider
-          searchLabel="Search players"
-          searchPlaceholder="Player name, id, program"
-          searchValue={query}
-          onSearchChange={(value) => patchFilters({ search: value })}
-          selects={[
-            {
-              name: "program",
-              label: "Program",
-              value: program,
-              options: [{ value: "ALL", label: "All programs" }, ...programOptions.map((option) => ({ value: option, label: option }))]
-            }
-          ]}
+          searchLabel="Search"
+          searchPlaceholder="Player or Program"
+          searchValue={filters.search}
+          onSearchChange={(search) => patchFilters({ search })}
+          selects={[{
+            name: "program",
+            label: "Program",
+            value: filters.program,
+            options: [{ value: "ALL", label: "All programs" }, ...programOptions.map((value) => ({ value, label: value }))],
+          }]}
           onSelectChange={(name, value) => patchFilters({ [name]: value } as Partial<typeof FILTER_DEFAULTS>)}
           onClear={clearFilters}
-          showClear={hasActiveFilters}
-          resultCount={filteredGroups.length}
-          resultLabel="groups shown"
+          showClear={hasFilters}
+          resultCount={filtered.length}
+          resultLabel="pairs shown"
         />
       </section>
 
-      <section className="grid gap-4">
-        {filteredGroups.map((group) => (
-          <article key={group.groupId} className="overflow-hidden border border-surface-200 bg-white shadow-sm">
-            <div className="border-b border-surface-200 p-5">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <p className="label">{group.detectionType.replaceAll("_", " ")}</p>
-                  <h2 className="mt-2 font-display text-2xl text-navy-800">{group.displayNames.join(" / ")}</h2>
-                  <p className="mt-2 text-sm font-semibold text-amber-800">Do not change player records unless identity is verified.</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <AdminBadge variant="warning" size="sm" className="text-mono-sm">{group.classification}</AdminBadge>
-                  {typeof group.similarityScore === "number" ? <span className="rounded-full bg-surface-100 px-3 py-1 font-mono text-mono-sm uppercase text-ink-600">Similarity {group.similarityScore}</span> : null}
-                </div>
+      <section className="grid gap-3">
+        {filtered.map((pair) => (
+          <article key={pair.pairId} className="border border-surface-200 bg-white shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-surface-200 px-4 py-3">
+              <div className="flex items-center gap-2">
+                <AdminBadge variant={pair.band === "Low Confidence" ? "readOnly" : "warning"} size="sm">{pair.band}</AdminBadge>
+                <span className="font-mono text-xs text-ink-600">{pair.confidence}% confidence</span>
               </div>
-              <div className="mt-4 grid gap-2 rounded-md bg-surface-100 p-4 text-sm text-ink-700 md:grid-cols-3">
-                <span>Suggested canonical: <strong>{group.recommendedCanonicalPlayer?.displayName ?? "None"}</strong></span>
-                <span>GameStats affected if repaired: <strong>{group.exactAffectedRecordsIfMerged.gameStats}</strong></span>
-                <span>Ranking rows affected if repaired: <strong>{group.exactAffectedRecordsIfMerged.rankingSnapshotRows}</strong></span>
+              <p className="text-xs text-ink-500">Review the records, then choose which identity to keep.</p>
+            </div>
+
+            <div className="grid gap-3 p-4 lg:grid-cols-2">
+              <PlayerCell player={pair.left} label="Player A" />
+              <PlayerCell player={pair.right} label="Player B" />
+            </div>
+
+            <div className="grid gap-3 border-t border-surface-200 px-4 py-3 text-sm lg:grid-cols-2">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-green-800">Matching evidence</p>
+                <p className="mt-1 text-ink-600">{pair.matchingSignals.join("; ") || "No strong matching evidence."}</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-red-800">Conflicts</p>
+                <p className="mt-1 text-ink-600">{pair.conflictingSignals.join("; ") || "No detected conflicts."}</p>
               </div>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[64rem] text-left text-sm">
-                <thead className="bg-surface-100 font-mono text-mono-sm uppercase text-ink-500">
-                  <tr>
-                    <th className="px-4 py-3">Player</th>
-                    <th className="px-4 py-3">Player ID</th>
-                    <th className="px-4 py-3">Current Program</th>
-                    <th className="px-4 py-3">Gender</th>
-                    <th className="px-4 py-3">Birth Date</th>
-                    <th className="px-4 py-3">Class</th>
-                    <th className="px-4 py-3">Height</th>
-                    <th className="px-4 py-3">Position</th>
-                    <th className="px-4 py-3">GameStats</th>
-                    <th className="px-4 py-3">Ratings</th>
-                    <th className="px-4 py-3">Snapshot Rows</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {group.players.map((player) => (
-                    <tr key={player.playerId} className="border-t border-surface-200">
-                      <td className="px-4 py-3 font-semibold text-ink-900">{player.displayName}</td>
-                      <td className="px-4 py-3 font-mono text-xs text-ink-600">{player.playerId}</td>
-                      <td className="px-4 py-3 text-ink-700">{programLabel(player)}</td>
-                      <td className="px-4 py-3 font-mono text-xs uppercase text-ink-600">{player.gender}</td>
-                      <td className="px-4 py-3 text-ink-700">{player.birthDate ?? "Not listed"}</td>
-                      <td className="px-4 py-3 text-ink-700">{player.classYear ?? "Not listed"}</td>
-                      <td className="px-4 py-3 text-ink-700">{formatHeight(player.height)}</td>
-                      <td className="px-4 py-3 text-ink-700">{player.position ?? "Not listed"}</td>
-                      <td className="px-4 py-3 font-mono text-xs text-ink-700">{player.gameStatCount}</td>
-                      <td className="px-4 py-3 font-mono text-xs text-ink-700">{player.playerRatingCount}</td>
-                      <td className="px-4 py-3 font-mono text-xs text-ink-700">{player.rankingSnapshotRowCount}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-surface-200 p-4">
-              <Link href={`/admin/players?search=${encodeURIComponent(group.displayNames[0] ?? "")}`} prefetch={false} className="text-sm font-semibold text-navy-700 hover:text-navy-900">Open Player Search</Link>
-              <button type="button" disabled className="button secondary cursor-not-allowed opacity-60">Repair requires approved plan</button>
+
+            <div className="flex flex-wrap gap-2 border-t border-surface-200 bg-surface-50 px-4 py-3">
+              <Link
+                href={`/admin/data-health/player-duplicates?canonical=${pair.left.playerId}&duplicate=${pair.right.playerId}`}
+                className="button secondary"
+                prefetch={false}
+              >
+                Keep {pair.left.displayName}
+              </Link>
+              <Link
+                href={`/admin/data-health/player-duplicates?canonical=${pair.right.playerId}&duplicate=${pair.left.playerId}`}
+                className="button secondary"
+                prefetch={false}
+              >
+                Keep {pair.right.displayName}
+              </Link>
             </div>
           </article>
         ))}
-        {!filteredGroups.length ? (
+
+        {!filtered.length ? (
           <AdminEmptyState
-            variant={groups.length ? "no-matches" : "no-records"}
-            subject="duplicate groups"
-            onClearFilters={groups.length && hasActiveFilters ? clearFilters : undefined}
+            variant={pairs.length ? "no-matches" : "no-records"}
+            subject="duplicate candidates"
+            onClearFilters={pairs.length && hasFilters ? clearFilters : undefined}
           />
         ) : null}
       </section>

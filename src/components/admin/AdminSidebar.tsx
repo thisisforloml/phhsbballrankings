@@ -14,9 +14,11 @@ const primaryItems = [
 ] as const;
 
 const opsItem = { href: "/admin/ops", label: "Ops", key: "ops" } as const;
+const dataHealthItem = { href: "/admin/data-health", label: "Data Health", key: "dataHealth" } as const;
 
 export type AdminNavKey =
   | typeof primaryItems[number]["key"]
+  | typeof dataHealthItem["key"]
   | typeof opsItem["key"];
 
 export function AdminSidebar({ active }: { active: AdminNavKey }) {
@@ -36,6 +38,15 @@ export function AdminSidebar({ active }: { active: AdminNavKey }) {
         })}
       </nav>
       <nav className="mt-6 border-t border-white/10 pt-4 text-sm" aria-label="Admin utilities">
+        <Link
+          href={dataHealthItem.href}
+          prefetch={false}
+          className={`block rounded-md px-2.5 py-2 transition ${active === dataHealthItem.key ? "bg-accent-500/15 font-semibold text-accent-300" : "text-white/45 hover:bg-white/10 hover:text-white/80"}`}
+        >
+          {dataHealthItem.label}
+        </Link>
+
+
         <Link
           href={opsItem.href}
           prefetch={false}

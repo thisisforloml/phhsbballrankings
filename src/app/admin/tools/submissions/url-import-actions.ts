@@ -28,6 +28,7 @@ import type {
   UrlImportTeamMapping
 } from "@/lib/stats-import/types";
 import { submissionReviewToListSnapshot } from "@/lib/submission-list-review-snapshot";
+import { serializePlayerMappingDecisions } from "@/lib/submission-player-mapping-decisions";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { persistTeamExternalAliases } from "@/lib/team-external-alias";
 import {
@@ -549,7 +550,8 @@ export async function createUrlImportSubmission(formData: FormData) {
                     reuse: playerMappings.filter((mapping) => mapping.action === "mapped_existing").length,
                     create: playerMappings.filter((mapping) => mapping.action === "create_on_import").length,
                     aliasesSaved: playerAliasPersistence.newAliasesCreated + playerAliasPersistence.aliasesUpdated
-                  }
+                  },
+                  importPlayerMappingDecisions: serializePlayerMappingDecisions(playerMappings)
                 }
               : {})
         },

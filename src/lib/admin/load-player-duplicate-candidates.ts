@@ -116,3 +116,71 @@ export async function loadPlayerDuplicateCandidates(
   const corpus = await loadDuplicateDetectionCorpus(options);
   return findDuplicateCandidatesForPlayer(playerId, corpus);
 }
+
+export type PlayerDuplicateReviewPair = {
+  pairId: string;
+  left: {
+    playerId: string;
+    displayName: string;
+    gender: string;
+    birthDate: string | null;
+    heightCm: number | null;
+    currentProgramName: string | null;
+    parentGroupName: string | null;
+    verifiedGameCount: number;
+  };
+  right: PlayerDuplicateCandidateReport["candidates"][number]["player"];
+  confidence: number;
+  band: PlayerDuplicateCandidateReport["candidates"][number]["band"];
+  matchingSignals: string[];
+  conflictingSignals: string[];
+  explanation: string;
+};
+
+/** Build one de-duplicated admin review queue from the same live engine used on Player records. */
+export async function loadAllPlayerDuplicateCandidates(options?: {
+  bypassCache?: boolean;
+  minConfidence?: number;
+}): Promise<PlayerDuplicateReviewPair[]> {
+  const corpus = await loadDuplicateDetectionCorpus({ bypassCache: options?.bypassCache });
+  const pairs = new Map<string, PlayerDuplicateReviewPair>();
+
+  for (const target of corpus.players) {
+    const report = findDuplicateCandidatesForPlayer(target.id, corpus, {
+      minConfidence: options?.minConfidence ?? 20,
+    });
+
+    for (const candidate of report.candidates) {
+      const ids = [target.id, candidate.player.playerId].sort();
+      const pairId = ids.join(":");
+      const existing = pairs.get(pairId);
+      if (existing && existing.confidence >= candidate.confidence) continue;
+
+      pairs.set(pairId, {
+        pairId,
+        left: {
+          playerId: target.id,
+          displayName: target.displayName,
+          gender: target.gender,
+          birthDate: target.birthDate?.toISOString().slice(0, 10) ?? null,
+          heightCm: target.heightCm,
+          currentProgramName: target.currentProgramName,
+          parentGroupName: target.parentGroupName,
+          verifiedGameCount: target.gameIds.size,
+        },
+        right: candidate.player,
+        confidence: candidate.confidence,
+        band: candidate.band,
+        matchingSignals: candidate.matchingSignals,
+        conflictingSignals: candidate.conflictingSignals,
+        explanation: candidate.explanation,
+      });
+    }
+  }
+
+  return Array.from(pairs.values()).sort(
+    (left, right) =>
+      right.confidence - left.confidence ||
+      left.left.displayName.localeCompare(right.left.displayName),
+  );
+}

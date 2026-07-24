@@ -19,6 +19,7 @@ import type { StatsImportProviderId } from "@/lib/stats-import/types";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
 import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/submission-json";
 import { assertSubmissionReviewable } from "@/lib/submission-lifecycle";
+import { findPlayerMappingDecision, readPlayerMappingDecisionMap } from "@/lib/submission-player-mapping-decisions";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { teamNameHasCompetitionContext, teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
 import { getTeamDisplayName, getUaapInternalTeamName, normalizeProgramAlias, type ProgramIdentity,resolveProgramIdentity } from "@/lib/uaap-school-display";
@@ -288,6 +289,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
   const review = buildSubmissionReview(submission);
   const packageRoot = getPrimaryPackage(submission);
   const statsProvider = submissionStatsProvider(submission.validationSummary);
+  const playerMappingDecisions = readPlayerMappingDecisionMap(submission.validationSummary);
   const leagueRecord = asRecord(packageRoot.league);
   const seasonRecord = asRecord(packageRoot.season);
   const games = parseGames(packageRoot);
@@ -405,10 +407,29 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
           ? { provider: statsProvider, teamLabel: identity.teamLabel }
           : null,
       });
-      if (resolved.action === "blocked") throw new Error(resolved.reason);
+      const mappingDecision = findPlayerMappingDecision(playerMappingDecisions, identity.teamLabel, identity.cleanedName);
+      const selectedMappingPlayer = mappingDecision?.action === "mapped_existing" && mappingDecision.playerId
+        ? await tx.player.findFirst({
+            where: {
+              id: mappingDecision.playerId,
+              gender,
+              deletedAt: null,
+            },
+            select: { id: true, displayName: true },
+          })
+        : null;
+      if (mappingDecision?.action === "mapped_existing" && !selectedMappingPlayer) {
+        throw new Error(
+          `The saved mapping for ${identity.cleanedName} points to an inactive, missing, or gender-mismatched Player. Review the submission mapping again.`,
+        );
+      }
+      if (!mappingDecision && resolved.action === "blocked") throw new Error(resolved.reason);
 
       let player: { id: string; displayName: string };
-      if (resolved.action === "reuse") {
+      if (selectedMappingPlayer) {
+        player = selectedMappingPlayer;
+        summary.playersReused += 1;
+      } else if (!mappingDecision && resolved.action === "reuse") {
         player = { id: resolved.playerId, displayName: resolved.displayName };
         summary.playersReused += 1;
         if (resolved.via === "alias" || resolved.via === "externalAlias") summary.playersReusedViaAlias += 1;

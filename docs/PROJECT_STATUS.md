@@ -2958,3 +2958,19 @@ No-change confirmation:
 - Refreshed the read-only player identity and mixed-context Team reports. The player audit remains 42 candidates (11 possible review, 31 low confidence).
 - Eight mixed-context Teams remain `NEEDS_APPROVAL`: Amsteel, BBC, Charm, Chatime, Gold Cross, JPM-TEC San Beda, San Pedro Spartans, and Smile 360 Bullies.
 - No Team split, player merge, database write, import/publish, rating recompute, or snapshot generation was run.
+
+## Guarded Player Duplicate Operations Checkpoint (July 24, 2026)
+
+- Admin duplicate review is available at `/admin/data-health/player-duplicates` and through the **Data Health** sidebar item.
+- The duplicate queue now uses the live Player duplicate-detection engine instead of the stale generated cleanup-plan JSON.
+- Admins can review detected pairs or manually select any two active Player records, including cases the detector did not surface.
+- Every merge starts with a read-only impact preview and requires an explicit retained record, reason, history acknowledgement, and typed `MERGE` confirmation.
+- Merge execution revalidates the preview fingerprint and blocks cross-gender records, same-game GameStat collisions, conflicting same-season rosters, claim conflicts, and changed records.
+- Historical Team IDs, Game records, and box-score values are not rewritten by the Player merge workflow.
+- Formula v1 and tier-normalized ratings are consolidated from existing performance rows; no rating formula or snapshot generation logic changed.
+- The read-only name-fragment audit still reports 42 candidate pairs: 11 possible-review and 31 low-confidence pairs.
+- URL-import **Use suggested** decisions are now stored on the Submission and used as authoritative Player IDs by both preflight and official publish.
+- Saved mappings to missing, archived, or gender-mismatched Players block publish instead of falling back to duplicate creation.
+- Regression tests cover mapped Team-label variants and explicit create-on-import decisions.
+- No Player merge was executed while implementing this workflow.
+- No schema change, migration, import/publish, rating recompute, or snapshot generation was run.

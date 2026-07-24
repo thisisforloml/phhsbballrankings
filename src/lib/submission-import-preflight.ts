@@ -13,6 +13,7 @@ import { prepareImportedPlayerName, resolvePlayerForImport } from "@/lib/player-
 import { prisma } from "@/lib/prisma";
 import type { StatsImportProviderId } from "@/lib/stats-import/types";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
+import { findPlayerMappingDecision, readPlayerMappingDecisionMap } from "@/lib/submission-player-mapping-decisions";
 import { buildSubmissionReview } from "@/lib/submission-review";
 import { teamNameHasCompetitionContext, teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
 import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
@@ -105,6 +106,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const targetAgeGroup = coerceAgeGroup(review.summary.ageGroup);
   const inferredGender = inferGender(review.recommendations.inferredGender);
   const statsProvider = submissionStatsProvider(submission.validationSummary);
+  const playerMappingDecisions = readPlayerMappingDecisionMap(submission.validationSummary);
   const seasonName = stringValue(seasonRecord?.name) || review.summary.seasonName;
   const seasonYear = typeof seasonRecord?.seasonYear === "number" ? seasonRecord.seasonYear : review.summary.seasonYear;
   const blockers: string[] = [];
@@ -229,13 +231,37 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
         ? { provider: statsProvider, teamLabel: identity.teamLabel }
         : null,
     });
+    const mappingDecision = findPlayerMappingDecision(playerMappingDecisions, identity.teamLabel, identity.cleanedName);
 
     let action: PreflightAction;
     let matchedPlayer: { id: string; displayName: string; gender: PlayerGender; city: string; region: string } | null = null;
-    let resolvedVia: "displayName" | "alias" | "externalAlias" | null = null;
+    let resolvedVia: "displayName" | "alias" | "externalAlias" | "savedMapping" | null = null;
     let blockReason: string | null = null;
 
-    if (resolved.action === "blocked") {
+    if (mappingDecision?.action === "mapped_existing") {
+      if (!mappingDecision.playerId) {
+        action = "manual_review";
+        blockReason = "The saved player mapping has no Player ID. Return to the import review and select the player again.";
+      } else {
+        matchedPlayer = await prisma.player.findFirst({
+          where: {
+            id: mappingDecision.playerId,
+            gender: inferredGender,
+            deletedAt: null,
+          },
+          select: { id: true, displayName: true, gender: true, city: true, region: true },
+        });
+        if (matchedPlayer) {
+          action = "reuse";
+          resolvedVia = "savedMapping";
+        } else {
+          action = "manual_review";
+          blockReason = "The Player selected during import review is no longer active or does not match the submission gender.";
+        }
+      }
+    } else if (mappingDecision?.action === "create_on_import") {
+      action = "create";
+    } else if (resolved.action === "blocked") {
       action = "manual_review";
       blockReason = resolved.reason;
     } else if (resolved.action === "reuse") {

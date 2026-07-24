@@ -62,7 +62,7 @@ function SignalList({
   );
 }
 
-function CandidateRow({ candidate }: { candidate: PlayerDuplicateCandidate }) {
+function CandidateRow({ candidate, targetPlayerId }: { candidate: PlayerDuplicateCandidate; targetPlayerId: string }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -136,8 +136,9 @@ function CandidateRow({ candidate }: { candidate: PlayerDuplicateCandidate }) {
               Open player record
             </Link>
             {" · "}
-            Read-only detection. No merge or mutation actions are available here.
+            Review both records before opening the guarded merge preview.
           </p>
+          <Link href={`/admin/data-health/player-duplicates?canonical=${targetPlayerId}&duplicate=${candidate.player.playerId}`} className="mt-2 inline-block text-sm font-semibold text-orange-700 hover:underline" prefetch={false}>Preview guarded merge</Link>
         </div>
       ) : null}
     </article>
@@ -191,7 +192,7 @@ export function PlayerDuplicateCandidatesPanel({ report }: { report: PlayerDupli
       ) : (
         <div className="grid gap-3">
           {sortedCandidates.map((candidate) => (
-            <CandidateRow key={candidate.player.playerId} candidate={candidate} />
+            <CandidateRow key={candidate.player.playerId} candidate={candidate} targetPlayerId={report.targetPlayerId} />
           ))}
         </div>
       )}
