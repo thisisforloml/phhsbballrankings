@@ -7,7 +7,9 @@ import { getNationalTeamRankings } from "@/lib/team-ratings/get-national-team-ra
 
 import { TeamsClient } from "./TeamsClient";
 
-export const revalidate = 300;
+// Team standings fan out across several live Prisma queries. Rendering this route
+// at request time prevents static builds from exhausting the small production pool.
+export const dynamic = "force-dynamic";
 
 export default async function TeamsPage() {
   const competitionData = await getDynamicTeamStandings();
