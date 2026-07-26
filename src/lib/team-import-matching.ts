@@ -1,6 +1,6 @@
 import { AgeGroup, PlayerGender } from "@prisma/client";
 
-import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
+import { inferCompetitionGender, isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
 import type { StatsImportProviderId, TeamCreationPreview, UrlImportTeamMapping } from "@/lib/stats-import/types";
 import {
@@ -8,6 +8,7 @@ import {
   normalizeExternalTeamLabel,
   type TeamExternalAliasRecord
 } from "@/lib/team-external-alias";
+import { inferTeamAgeGroupFromName, inferTeamGenderFromName } from "@/lib/team-import-context";
 import {
   getTeamDisplayName,
   getUaapInternalTeamName,
@@ -68,6 +69,12 @@ type TeamRecord = {
     abbreviation: string | null;
     aliases: unknown;
   } | null;
+  homeGames: Array<{
+    season: { league: { name: string; ageGroup: AgeGroup } };
+  }>;
+  awayGames: Array<{
+    season: { league: { name: string; ageGroup: AgeGroup } };
+  }>;
 };
 
 type ProgramRecord = {
@@ -83,6 +90,44 @@ type TeamMatchDbContext = {
   programs: ProgramRecord[];
   externalAliases: Map<string, TeamExternalAliasRecord>;
 };
+
+type TeamImportContextEvidence = {
+  name: string;
+  competitionContexts: Array<{ ageGroup: AgeGroup; gender: PlayerGender }>;
+};
+
+export function teamMatchesImportContext(
+  team: TeamImportContextEvidence,
+  ageGroup: AgeGroup,
+  gender: PlayerGender
+) {
+  const namedAgeGroup = inferTeamAgeGroupFromName(team.name);
+  const namedGender = inferTeamGenderFromName(team.name);
+  if (namedAgeGroup && namedAgeGroup !== ageGroup) return false;
+  if (namedGender && namedGender !== gender) return false;
+
+  const contextKeys = new Set(
+    team.competitionContexts.map((context) => context.ageGroup + "|" + context.gender)
+  );
+  if (!contextKeys.size) return true;
+  return contextKeys.size === 1 && contextKeys.has(ageGroup + "|" + gender);
+}
+
+function teamRecordMatchesImportContext(team: TeamRecord, input: TeamMatchInput) {
+  return teamMatchesImportContext(
+    {
+      name: team.name,
+      competitionContexts: [...team.homeGames, ...team.awayGames].map((game) => ({
+        ageGroup: game.season.league.ageGroup,
+        gender: inferCompetitionGender(undefined, game.season.league.name) === "GIRLS"
+          ? PlayerGender.GIRLS
+          : PlayerGender.BOYS
+      }))
+    },
+    input.ageGroup,
+    input.gender
+  );
+}
 
 function aliasesToStrings(value: unknown): string[] {
   if (!value) return [];
@@ -592,6 +637,14 @@ export async function loadTeamMatchDbContext(provider: StatsImportProviderId = "
             abbreviation: true,
             aliases: true
           }
+        },
+        homeGames: {
+          where: { deletedAt: null },
+          select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } }
+        },
+        awayGames: {
+          where: { deletedAt: null },
+          select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } }
         }
       },
       orderBy: { name: "asc" }
@@ -655,7 +708,8 @@ export function matchExternalTeam(input: TeamMatchInput, db: TeamMatchDbContext)
   const identity = importProgramIdentity(matchingInput, input.leagueName);
 
   const savedTeam = resolveSavedTeamAlias(input, db);
-  if (savedTeam) {
+  const savedTeamRecord = savedTeam ? db.teams.find((team) => team.id === savedTeam.teamId) : null;
+  if (savedTeam && savedTeamRecord && teamRecordMatchesImportContext(savedTeamRecord, input)) {
     const savedCandidate: TeamMatchCandidate = {
       teamId: savedTeam.teamId,
       teamName: savedTeam.teamName,
@@ -703,7 +757,12 @@ export function matchExternalTeam(input: TeamMatchInput, db: TeamMatchDbContext)
     });
   }
 
-  const candidates = Array.from(candidateBucket.values()).sort(
+  const candidates = Array.from(candidateBucket.values())
+    .filter((candidate) => {
+      const team = db.teams.find((item) => item.id === candidate.teamId);
+      return team ? teamRecordMatchesImportContext(team, input) : false;
+    })
+    .sort(
     (left, right) =>
       right.score - left.score ||
       TIER_PRIORITY[left.tier] - TIER_PRIORITY[right.tier] ||

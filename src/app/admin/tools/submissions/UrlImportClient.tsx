@@ -182,6 +182,10 @@ export function UrlImportClient() {
   }
 
   function onContinueFromMissingTeams() {
+    if (teamsToCreateCount > 0) {
+      setError("Create the required Programs and Teams before continuing to player matching.");
+      return;
+    }
     setPlayerPreview(null);
     setPlayerMappingByKey({});
     setWizardStep(4);
@@ -415,6 +419,11 @@ export function UrlImportClient() {
 
   function onImport() {
     if (!discovery || !teamPreview || !playerPreview) return;
+    if (teamsToCreateCount > 0) {
+      setError("Create the required Programs and Teams before creating this draft submission.");
+      setWizardStep(3);
+      return;
+    }
     setError(null);
     const formData = new FormData();
     formData.set("sourceUrl", discovery.sourceUrl);
@@ -667,10 +676,14 @@ export function UrlImportClient() {
                 <button
                   type="button"
                   onClick={onContinueFromMissingTeams}
-                  disabled={isPreviewingPlayers}
+                  disabled={isPreviewingPlayers || teamsToCreateCount > 0}
                   className="button primary min-h-10 px-4 py-2 text-sm disabled:opacity-60"
                 >
-                  {isPreviewingPlayers ? "Loading player matching…" : "Continue to player matching"}
+                  {teamsToCreateCount > 0
+                    ? "Create " + teamsToCreateCount + " required team" + (teamsToCreateCount === 1 ? "" : "s") + " first"
+                    : isPreviewingPlayers
+                      ? "Loading player matching…"
+                      : "Continue to player matching"}
                 </button>
               </div>
             </>
@@ -759,7 +772,7 @@ export function UrlImportClient() {
                   ) : null}
                 </dl>
                 <p className="mt-2 text-sm text-ink-600">
-                  The draft will include team, player, and missing-organization notes for review. No Program, Team, or Player records are created until approved import.
+                  Programs and Teams are already configured. The draft will preserve the reviewed team and player mappings; new Player records are created only during approved import.
                 </p>
               </AdminAlert>
 
@@ -767,7 +780,7 @@ export function UrlImportClient() {
                 <button
                   type="button"
                   onClick={onImport}
-                  disabled={isImporting || !allTeamsResolved || !allPlayersResolved}
+                  disabled={isImporting || !allTeamsResolved || !allPlayersResolved || teamsToCreateCount > 0}
                   className="button primary min-h-10 px-4 py-2 text-sm disabled:opacity-60"
                 >
                   {isImporting ? "Creating draft…" : `Create draft submission (${selectedCount})`}
