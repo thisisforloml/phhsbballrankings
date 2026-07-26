@@ -22,7 +22,7 @@ function roundOne(value: number) {
 export async function getPublicTeamProfile(teamId: string) {
   const team = await prisma.team.findFirst({
     where: { id: teamId, deletedAt: null },
-    include: { program: true },
+    include: { program: { include: { parentProgram: true } } },
   });
   if (!team) notFound();
 
@@ -171,6 +171,7 @@ export async function getPublicTeamProfile(teamId: string) {
       city: team.city,
       region: team.region,
       programFullName: teamNames.programName,
+      organizationName: activeProgram?.parentProgram && !activeProgram.parentProgram.deletedAt ? activeProgram.parentProgram.fullName : null,
       programAbbreviation: teamNames.abbreviation,
       programType: activeProgram?.type ?? programIdentity.programType
     },

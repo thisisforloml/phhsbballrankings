@@ -1,7 +1,6 @@
 import { type Prisma, ProgramRole, ProgramType } from "@prisma/client";
 
 import { assertImportProgramReusable } from "@/lib/admin/program-role";
-import { isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
 import type {
   ImportProgramCreationCandidate,
@@ -11,8 +10,7 @@ import type {
   UrlImportCreationPlan
 } from "@/lib/stats-import/types";
 import { labelsForExternalAlias, upsertTeamExternalAliasBatch } from "@/lib/team-external-alias";
-import { teamDisplayMatchKey } from "@/lib/team-import-matching";
-import { getUaapInternalTeamName, normalizeProgramAlias } from "@/lib/uaap-school-display";
+import { normalizeProgramAlias } from "@/lib/uaap-school-display";
 
 const PROVIDER = "statshub-v1" as const;
 
@@ -33,11 +31,10 @@ function programTypeFromLabel(value: "School" | "Club / Team"): ProgramType {
   return ProgramType.UNKNOWN;
 }
 
-function resolveTeamNameForCreation(team: ImportTeamCreationCandidate, leagueName: string) {
-  if (isPybcCompetitionName(normalizeCompetitionDisplayName(leagueName))) {
-    return team.suggestedTeamName.trim();
-  }
-  return getUaapInternalTeamName(team.suggestedTeamName, team.suggestedAgeGroup, team.suggestedGender);
+function resolveTeamNameForCreation(team: ImportTeamCreationCandidate, _leagueName: string) {
+  // The reviewed creation preview already contains the exact competition bracket.
+  // Do not collapse U15/U18 back into the broader U16/U19 ranking board here.
+  return team.suggestedTeamName.trim();
 }
 
 function findProgramByName(programs: ProgramRecord[], fullName: string) {
@@ -49,26 +46,8 @@ function findProgramByName(programs: ProgramRecord[], fullName: string) {
   );
 }
 
-function findTeamUnderProgram(
-  teams: TeamRecord[],
-  programId: string,
-  resolvedTeamName: string,
-  submittedTeamName: string,
-  leagueName: string
-) {
-  const exact = teams.find((team) => team.programId === programId && team.name === resolvedTeamName);
-  if (exact) return exact;
-
-  if (!isPybcCompetitionName(normalizeCompetitionDisplayName(leagueName))) {
-    return null;
-  }
-
-  const submittedKey = teamDisplayMatchKey(submittedTeamName);
-  const matches = teams.filter(
-    (team) => team.programId === programId && teamDisplayMatchKey(team.name) === submittedKey
-  );
-  if (matches.length === 1) return matches[0];
-  return null;
+function findTeamUnderProgram(teams: TeamRecord[], programId: string, resolvedTeamName: string) {
+  return teams.find((team) => team.programId === programId && team.name === resolvedTeamName) ?? null;
 }
 
 function buildConfirmationPhrase(programCount: number, teamCount: number) {
@@ -147,7 +126,7 @@ export async function previewMissingOrganizationsFromImport(
       const resolvedTeamName = resolveTeamNameForCreation(team, plan.leagueName);
       const existingTeam =
         programId &&
-        findTeamUnderProgram(teams, programId, resolvedTeamName, team.suggestedTeamName, plan.leagueName);
+        findTeamUnderProgram(teams, programId, resolvedTeamName);
 
       if (existingTeam) {
         teamsSkipped.push({
@@ -241,17 +220,6 @@ async function findOrCreateTeamInTx(
   });
   if (existing) return { team: existing, created: false, resolvedTeamName };
 
-  if (isPybcCompetitionName(normalizeCompetitionDisplayName(input.leagueName))) {
-    const submittedKey = teamDisplayMatchKey(input.team.suggestedTeamName);
-    const programTeams = await tx.team.findMany({
-      where: { deletedAt: null, programId: input.programId },
-      select: { id: true, name: true, programId: true }
-    });
-    const equivalent = programTeams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey);
-    if (equivalent.length === 1) {
-      return { team: equivalent[0], created: false, resolvedTeamName };
-    }
-  }
 
   const created = await tx.team.create({
     data: {

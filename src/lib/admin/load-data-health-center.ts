@@ -181,6 +181,7 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     teamsOnGroupPrograms,
     teamsWithoutCompetitions,
     teamsDuplicateNames,
+    teamsMixedContexts,
     teamsMissingCities,
     programsWithoutTeams,
     groupProgramsWithoutChildren,
@@ -249,6 +250,27 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
         )
     `.then((rows) => Number(rows[0]?.count ?? 0)),
     countTeamDuplicateNameGroups(),
+    prisma.$queryRaw<Array<{ count: bigint }>>`
+      SELECT COUNT(*)::bigint AS count
+      FROM (
+        SELECT t.id
+        FROM teams t
+        INNER JOIN games g ON (g."homeTeamId" = t.id OR g."awayTeamId" = t.id)
+        INNER JOIN seasons s ON s.id = g."seasonId"
+        INNER JOIN leagues l ON l.id = s."leagueId"
+        WHERE t."deletedAt" IS NULL
+          AND g."deletedAt" IS NULL
+          AND g."verificationStatus" IN ('VERIFIED', 'SUBMITTED')
+        GROUP BY t.id
+        HAVING COUNT(DISTINCT (
+          COALESCE(
+            SUBSTRING(UPPER(l.name) FROM 'U\s*(1[3-9])'),
+            SUBSTRING(UPPER(l.name) FROM '(1[3-9])\s*U'),
+            l."ageGroup"::text
+          ) || '|' || CASE WHEN UPPER(l.name) ~ '(GIRLS?|LADY|TIGRESS)' THEN 'GIRLS' ELSE 'BOYS' END
+        )) > 1
+      ) mixed
+    `.then((rows) => Number(rows[0]?.count ?? 0)),
     prisma.$queryRaw<Array<{ count: bigint }>>`
       SELECT COUNT(*)::bigint AS count
       FROM teams t
@@ -373,7 +395,7 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
         issue("players-without-programs", "Players without programs", playersWithoutPrograms, "warning", "/admin/players?program=Program%20pending"),
         issue("players-without-ratings", "Players without ratings", playersWithoutRatings, "info", "/admin/players"),
         issue("players-duplicate-candidates", "Players with duplicate candidates", playersDuplicateGroups, "warning", "/admin/data-health/player-duplicates"),
-        issue("players-group-programs", "Players assigned to GROUP programs", playersOnGroupPrograms, "critical", "/admin/players"),
+        issue("players-group-programs", "Players assigned directly to Organizations", playersOnGroupPrograms, "critical", "/admin/players"),
         issue("players-archived-programs", "Players with archived programs", playersOnArchivedPrograms, "critical", "/admin/players"),
         issue("players-missing-dob", "Players missing DOB", playersMissingDob, "info", "/admin/players"),
         issue("players-missing-class", "Players missing recruiting class", playersMissingRecruitingClass, "info", "/admin/players"),
@@ -386,9 +408,10 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
       issues: [
         issue("teams-without-programs", "Teams without programs", teamsWithoutPrograms, "warning", "/admin/teams"),
         issue("teams-archived-programs", "Teams assigned to archived programs", teamsOnArchivedPrograms, "critical", "/admin/teams"),
-        issue("teams-group-programs", "Teams under GROUP programs", teamsOnGroupPrograms, "critical", "/admin/teams"),
+        issue("teams-group-programs", "Teams assigned directly to Organizations", teamsOnGroupPrograms, "critical", "/admin/teams"),
         issue("teams-without-competitions", "Teams without competitions", teamsWithoutCompetitions, "warning", "/admin/teams"),
         issue("teams-duplicate-names", "Teams with duplicate names", teamsDuplicateNames, "warning", "/admin/teams"),
+        issue("teams-mixed-contexts", "Teams spanning multiple brackets", teamsMixedContexts, "critical", "/admin/teams"),
         issue("teams-missing-cities", "Teams with missing cities", teamsMissingCities, "info", "/admin/teams"),
       ],
     },
@@ -406,7 +429,7 @@ async function loadDataHealthCenterUncached(): Promise<DataHealthCenterData> {
     },
     {
       id: "competitions",
-      title: "Leagues",
+      title: "Leagues & Competitions",
       issues: [
         issue("competitions-without-seasons", "Leagues without seasons", competitionsWithoutSeasons, "warning", "/admin/leagues"),
       ],

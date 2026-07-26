@@ -9,6 +9,8 @@
   "scripts": {
     "audit:player-name-fragments-team-context": "tsx scripts/audit-player-name-fragments-team-context.ts",
     "plan:split-multi-context-teams": "tsx scripts/plan-split-multi-context-teams.ts",
+    "split:multi-context-teams:dry-run": "tsx scripts/execute-split-multi-context-teams.ts",
+    "split:multi-context-teams:execute": "tsx scripts/execute-split-multi-context-teams.ts --execute --expected-ready=8",
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",

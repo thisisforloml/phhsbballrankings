@@ -22,7 +22,7 @@ export function validatePlayerProgramTransfer(input: PlayerProgramTransferValida
   }
 
   if (input.destinationProgramRole !== ProgramRole.OPERATIONAL) {
-    return "Destination program must be operational. Group programs cannot receive player transfers.";
+    return "Select an operational Program, school, or club. Organizations cannot receive player transfers.";
   }
 
   if (input.currentProgramId === input.destinationProgramId) {

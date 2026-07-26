@@ -80,6 +80,7 @@ function readProgramFormInput(formData: FormData) {
     abbreviation: readOptionalString(formData, "abbreviation", "Abbreviation", 80),
     type: readProgramType(formData),
     programRole: readProgramRoleFromForm(formData),
+    parentProgramId: readOptionalString(formData, "parentProgramId", "Organization", 64),
     city: readOptionalString(formData, "city", "City", 100),
     region: readOptionalString(formData, "region", "Region", 100),
   };
@@ -132,6 +133,8 @@ export async function createProgramTeam(_previousState: ProgramActionState = ini
       city: readRequiredString(formData, "city", "City", 100),
       region: readRequiredString(formData, "region", "Region", 100),
       programId,
+      ageLabel: readRequiredString(formData, "ageLabel", "Age group", 3),
+      gender: readRequiredString(formData, "gender", "Gender", 5),
     });
 
     revalidateProgramSurfaces(programId);
@@ -289,7 +292,7 @@ export async function updateProgramTeam(_previousState: ProgramActionState = ini
     const team = await prisma.team.findFirst({ where: { id: teamId, programId, deletedAt: null }, select: { id: true } });
     if (!team) throw new Error("Team does not belong to this Program or has been deleted.");
 
-    const name = readRequiredString(formData, "name", "Team / Moniker Name", 120);
+    const name = readRequiredString(formData, "name", "Team name", 120);
     await prisma.team.update({ where: { id: teamId }, data: { name } });
 
     invalidateAdminTeamsCaches();
@@ -298,7 +301,7 @@ export async function updateProgramTeam(_previousState: ProgramActionState = ini
     revalidatePath(`/admin/programs/${programId}`);
     revalidatePath("/admin/teams");
     revalidatePublicRankingSurfaces();
-    return { ok: true, message: "Team / moniker updated." };
+    return { ok: true, message: "Team updated." };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update team." };
   }

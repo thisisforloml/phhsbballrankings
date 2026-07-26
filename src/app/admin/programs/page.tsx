@@ -11,8 +11,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Programs | Admin",
-  description: "Edit school and club programs.",
+  title: "Organizations & Programs | Admin",
+  description: "Manage organizations, schools, clubs, and their Teams.",
 };
 
 export default async function AdminProgramsPage() {
@@ -21,12 +21,12 @@ export default async function AdminProgramsPage() {
   return (
     <>
       <AdminPageHeader
-        eyebrow="Program Management"
-        title="Programs"
-        description="Create a Program, then manage its Teams and roster."
+        eyebrow="Directory"
+        title="Organizations & Programs"
+        description="Organizations group related school and club Programs. Programs own Teams and rosters."
         statusBadge={`${rows.length} records`}
       />
-      <ProgramCreateForm />
+      <ProgramCreateForm organizations={rows.filter((row) => row.programRole === "GROUP").map((row) => ({ id: row.id, fullName: row.fullName }))} />
       <Suspense fallback={null}>
         <ProgramListClient programs={rows} />
       </Suspense>

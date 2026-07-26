@@ -1,4 +1,4 @@
-﻿# Project Status and Guardrails
+# Project Status and Guardrails
 
 Last updated: 2026-05-18
 
@@ -3019,3 +3019,29 @@ No-change confirmation:
 - Historical Game/Team context and box-score values remain unchanged. Existing performance rows are consolidated and Player ratings are rebuilt with the current policies; no formula or snapshot generation behavior changed.
 - Read-only validation confirmed both `Dean Riley Paras + Dean Paras` and `Dean Riley Paras + Dean Paras + Dean Parasa` are mergeable with no current blockers.
 - No Player merge, database write, import/publish, rating recompute, or ranking snapshot generation was run during this fix.
+
+## Initial Organizations, Teams, and Competition Hierarchy Audit (July 26, 2026)
+
+- Admin navigation now follows the operations structure: Dashboard, Submissions, Players, Organizations & Programs, Teams, Leagues & Competitions, Profile Claims Request, Organizer Submissions & Applications, and Operations & Data Health.
+- Organizations & Programs now uses the existing `ProgramRole` and `parentProgramId` model: Organizations are top-level groups, while Programs, Schools, and Clubs appear inside an Organization or remain standalone.
+- Manual admin creation now supports Organizations, Programs/Schools/Clubs, context-specific Teams, and a League competition with its first Season.
+- Manual Team creation requires an explicit age/bracket label and gender. Submission creation/reuse now uses exact competition-bracket and gender Team names so U13, U15, U16, U17, U18, and U19 contexts are not silently collapsed into a generic Team.
+- Admin and public League directories now present the existing records as League family -> Season -> bracket while preserving current database IDs, routes, and ranking age-group normalization. A fully normalized League/Season/Bracket storage model remains a future schema design task.
+- Read-only Team context audit inspected 86 active Teams and found 8 mixed-context Team records requiring separate approval: Amsteel, BBC, Charm, Chatime, Gold Cross, JPM-TEC San Beda, San Pedro Spartans, and Smile 360 Bullies.
+- San Pedro Spartans currently has one Team record spanning U15 and U18: 18 official games, 235 GameStats, and 33 roster rows. U15 accounts for 12 games / 153 GameStats; U18 accounts for 6 games / 82 GameStats. This is a data canonicalization issue, not a Program-detail rendering error.
+- The initial dry-run report was available through `npm.cmd run plan:split-multi-context-teams`; no Team split had been executed at this audit stage.
+- No database writes, schema changes, migrations, imports/publishes, deletes, merges, rating recomputes, ranking snapshots, or formula changes were performed during the initial audit.
+## Organization, Team, and Competition Operations Release Checkpoint (July 26, 2026)
+
+- The guarded multi-context Team split was dry-run, revalidated, and executed for all 8 exact cases: Amsteel, BBC, Charm, Chatime, Gold Cross, JPM-TEC San Beda, San Pedro Spartans, and Smile 360 Bullies.
+- One source Team was retained per Program context and 8 additional context-specific Teams were created. Canonical names now include the exact competition bracket and gender, such as `San Pedro Spartans U15 Boys`, `San Pedro Spartans U18 Boys`, `Smile 360 Bullies U13 Boys`, and `Smile 360 Bullies U15 Boys`.
+- Only Team identity and exact contextual references were changed: Team names/creation, Game home/away Team IDs, GameStat Team IDs, PlayerTeamSeason Team IDs, and any matching TeamRating Team IDs. No Team or historical game/stat record was deleted.
+- Protected counts remained unchanged for Games (499), GameStats (11,404), GamePerformanceScores (10,784), PlayerRatings (2,479), RankingSnapshots (11), RankingSnapshotRows (1,297), Players (1,489), Programs (80), Leagues (15), Seasons (19), and TeamRatings (0). Teams increased from 121 to 129 as planned.
+- The post-execute planner now reports 94 active Teams, 0 mixed-context Teams, 0 review cases, and 0 additional Teams required.
+- Future import matching now requires explicit Team bracket/gender context. A generic Program-level Team is not suggested for an explicit bracket, and exact U15/U18 creation names are no longer collapsed back into broader U16/U19 ranking-board labels.
+- URL submission intake can create reviewed missing Programs and context-specific Teams; existing exact Teams are reused only under the same Program and competition context.
+- Admin navigation and management now follow Organization -> Program/school/club -> Team. Organizations & Programs uses a nested operations directory, and admins can manually create Organizations, Programs, exact Teams, League competitions, and their first Season.
+- Admin and public League directories present existing records as League family -> Season -> competition bracket. This is a view over the current schema; a normalized persistent League/Season/Bracket model remains a future migration decision.
+- Submission review warnings are consolidated by Team and reason instead of repeating one message for every player stat row.
+- Operations & Data Health now monitors Teams spanning multiple brackets so future regressions are visible before publish.
+- TypeScript and all automated tests passed. No rating formula change, rating recompute, ranking snapshot generation, import/publish, Program merge, Player merge, or schema migration was performed by the release implementation.

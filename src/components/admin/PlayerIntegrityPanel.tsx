@@ -125,7 +125,7 @@ export function PlayerIntegrityPanel({ report }: { report: PlayerIntegrityReport
         <IntegritySection title="Program integrity">
           <FieldGrid>
             <Field label="Current program" value={report.program.currentProgram} />
-            <Field label="Organization group" value={report.program.parentGroup} />
+            <Field label="Organization" value={report.program.parentGroup} />
             <Field label="Current team (verified evidence)" value={report.program.currentTeam} />
             <Field label="Assignment status" value={report.program.assignmentStatus} />
           </FieldGrid>

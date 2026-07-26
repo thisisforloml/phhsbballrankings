@@ -3,6 +3,7 @@ import { AgeGroup, PlayerGender } from "@prisma/client";
 import { inferCompetitionGender, isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import { prisma } from "@/lib/prisma";
 import type { StatsImportProviderId, TeamCreationPreview, UrlImportTeamMapping } from "@/lib/stats-import/types";
+import { buildContextualTeamName, extractCompetitionAgeLabel, inferCompetitionAgeLabel } from "@/lib/team-context-name";
 import {
   loadTeamExternalAliasMap,
   normalizeExternalTeamLabel,
@@ -14,7 +15,8 @@ import {
   getUaapInternalTeamName,
   normalizeProgramAlias,
   type ProgramIdentity,
-  resolveProgramIdentity} from "@/lib/uaap-school-display";
+  resolveProgramIdentity,
+} from "@/lib/uaap-school-display";
 
 export type TeamMatchTier = "T0" | "T1" | "T2" | "T3" | "T4" | "T5" | "T6" | "none";
 export type TeamConfidenceBand = "Exact" | "Strong Match" | "Review Needed" | "Unmatched";
@@ -114,10 +116,30 @@ export function teamMatchesImportContext(
 }
 
 function teamRecordMatchesImportContext(team: TeamRecord, input: TeamMatchInput) {
+  const requestedAgeLabel = inferCompetitionAgeLabel(input.leagueName, input.ageGroup);
+  const namedAgeLabel = extractCompetitionAgeLabel(team.name);
+  if (namedAgeLabel && namedAgeLabel !== requestedAgeLabel) return false;
+
+  const gameEvidence = [...team.homeGames, ...team.awayGames];
+  const exactContextKeys = new Set(gameEvidence.map((game) => {
+    const gender = inferCompetitionGender(undefined, game.season.league.name) === "GIRLS"
+      ? PlayerGender.GIRLS
+      : PlayerGender.BOYS;
+    return inferCompetitionAgeLabel(game.season.league.name, game.season.league.ageGroup) + "|" + gender;
+  }));
+  if (exactContextKeys.size > 1) return false;
+  if (exactContextKeys.size === 1 && !exactContextKeys.has(requestedAgeLabel + "|" + input.gender)) return false;
+
+  // A Team without age/gender naming or official game context is a Program-level
+  // identity, not a safe target for an explicit competition bracket.
+  if (exactContextKeys.size === 0 && (!namedAgeLabel || !inferTeamGenderFromName(team.name))) {
+    return false;
+  }
+
   return teamMatchesImportContext(
     {
       name: team.name,
-      competitionContexts: [...team.homeGames, ...team.awayGames].map((game) => ({
+      competitionContexts: gameEvidence.map((game) => ({
         ageGroup: game.season.league.ageGroup,
         gender: inferCompetitionGender(undefined, game.season.league.name) === "GIRLS"
           ? PlayerGender.GIRLS
@@ -196,9 +218,14 @@ export function inferTeamCreationPreview(input: {
   const identity = importProgramIdentity(labelSource, input.leagueName);
   const pybc = allowProgramDisplayTeamMatch(input.leagueName);
   const suggestedProgramName = pybc ? getTeamDisplayName(labelSource) : identity.programFullName;
-  const suggestedTeamName = pybc
-    ? labelSource
+  const baseTeamName = pybc
+    ? getTeamDisplayName(labelSource)
     : getUaapInternalTeamName(labelSource, input.ageGroup, input.gender);
+  const suggestedTeamName = buildContextualTeamName(
+    baseTeamName,
+    inferCompetitionAgeLabel(input.leagueName, input.ageGroup),
+    input.gender,
+  );
 
   return {
     externalLabel: input.externalLabel,
@@ -346,7 +373,7 @@ function collectProgramIdentityCandidates(
     });
   }
 
-  const ageToken = input.ageGroup.toUpperCase();
+  const ageToken = inferCompetitionAgeLabel(input.leagueName, input.ageGroup);
   const genderToken = input.gender === PlayerGender.GIRLS ? "GIRLS" : "BOYS";
   const contextualTeam = program.teams.find((team) => {
     const normalizedTeamName = normalizeName(team.name);
@@ -435,7 +462,7 @@ function collectScheduleExactCandidates(
     const primaryTeam =
       program.teams.find((team) => normalizeName(team.name) === normalizeName(program.fullName)) ??
       program.teams.find((team) => normalizedMatchKey(team.name) === normalizedMatchKey(program.fullName));
-    const ageToken = input.ageGroup.toUpperCase();
+    const ageToken = inferCompetitionAgeLabel(input.leagueName, input.ageGroup);
     const genderToken = input.gender === PlayerGender.GIRLS ? "GIRLS" : "BOYS";
     const contextualTeam = program.teams.find((team) => {
       const normalizedTeamName = normalizeName(team.name);
@@ -492,7 +519,11 @@ function collectLabelCandidates(
   options: { fromSchedule: boolean; scorePenalty?: number }
 ) {
   const identity = importProgramIdentity(label, input.leagueName);
-  const internalTeamName = getUaapInternalTeamName(label, input.ageGroup, input.gender);
+  const internalTeamName = buildContextualTeamName(
+    getUaapInternalTeamName(label, input.ageGroup, input.gender),
+    inferCompetitionAgeLabel(input.leagueName, input.ageGroup),
+    input.gender,
+  );
   const submittedKey = teamDisplayMatchKey(label);
   const normalizedLabelKey = normalizedMatchKey(label);
   const methodPrefix = options.fromSchedule ? "schedule_" : "fiba_";

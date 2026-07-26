@@ -178,12 +178,15 @@ export function ProgramDetailShell({
   const reviewCount = cleanupItems.length;
   const editingPlayer = editingPlayerId ? managedPlayersById[editingPlayerId] ?? null : null;
 
-  const tabs: Array<{ id: DetailTab; label: string }> = [
-    { id: "program", label: "Program" },
-    { id: "teams", label: `Teams (${stats.teamCount})` },
-    { id: "roster", label: `Roster (${stats.playerCount})` },
-    { id: "graduates", label: `Graduates (${stats.graduateCount})` },
-  ];
+  const tabs: Array<{ id: DetailTab; label: string }> =
+    program.programRole === "GROUP"
+      ? [{ id: "program", label: "Organization" }]
+      : [
+          { id: "program", label: "Program" },
+          { id: "teams", label: "Teams (" + stats.teamCount + ")" },
+          { id: "roster", label: "Roster (" + stats.playerCount + ")" },
+          { id: "graduates", label: "Graduates (" + stats.graduateCount + ")" },
+        ];
 
   return (
     <>

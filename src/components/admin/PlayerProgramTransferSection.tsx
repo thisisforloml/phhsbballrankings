@@ -42,7 +42,7 @@ function ContextSummary({ player }: { player: ManagedPlayer }) {
           <dd className="mt-1 font-semibold text-ink-900">{player.currentProgramFullName ?? "No program assigned"}</dd>
         </div>
         <div>
-          <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Organization group</dt>
+          <dt className="text-xs font-semibold uppercase tracking-wide text-ink-500">Organization</dt>
           <dd className="mt-1 font-semibold text-ink-900">{player.parentGroupProgramFullName ?? "—"}</dd>
         </div>
         <div>

@@ -16,7 +16,7 @@ import { useAdminFilterParams } from "@/lib/admin/useAdminFilterParams";
 
 export type { ProgramListRow };
 
-const FILTER_DEFAULTS = { search: "", type: "ALL", hierarchy: "ALL", view: "flat" };
+const FILTER_DEFAULTS = { search: "", type: "ALL", hierarchy: "ALL" };
 
 const TYPE_CHIP_ITEMS = [
   { key: "ALL", label: "All" },
@@ -31,11 +31,6 @@ const HIERARCHY_CHIP_ITEMS = [
   { key: "ROOTS_ONLY", label: "Independent" },
   { key: "HAS_PARENT", label: "In organization" },
   { key: "HAS_CHILDREN", label: "Organizations" },
-] as const;
-
-const VIEW_CHIP_ITEMS = [
-  { key: "flat", label: "List" },
-  { key: "tree", label: "Grouped" },
 ] as const;
 
 function searchText(program: ProgramListRow) {
@@ -128,7 +123,7 @@ function ProgramListRowContent({
 export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) {
   const { filters, patchFilters, clearFilters } = useAdminFilterParams({
     defaults: FILTER_DEFAULTS,
-    keys: ["search", "type", "hierarchy", "view"],
+    keys: ["search", "type", "hierarchy"],
     debounceKey: "search",
   });
 
@@ -136,7 +131,6 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
 
   const type = filters.type as ProgramType | "ALL";
   const hierarchy = filters.hierarchy;
-  const view = filters.view === "tree" ? "tree" : "flat";
   const query = filters.search;
 
   const typeCounts = useMemo(
@@ -199,16 +193,16 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
   const treeRows = useMemo(
     () =>
       flattenProgramTreeRows(
-        filtered,
+        programs,
         visibleIds,
         childrenByParentId,
         collapsedIds,
         forceExpandIds,
       ),
-    [filtered, visibleIds, childrenByParentId, collapsedIds, forceExpandIds],
+    [programs, visibleIds, childrenByParentId, collapsedIds, forceExpandIds],
   );
 
-  const hasActiveFilters = Boolean(query.trim()) || type !== "ALL" || hierarchy !== "ALL" || view !== "flat";
+  const hasActiveFilters = Boolean(query.trim()) || type !== "ALL" || hierarchy !== "ALL";
 
   const gridClassName =
     "lg:grid-cols-[minmax(20rem,1fr)_6rem_minmax(10rem,0.9fr)_7rem_5rem_6rem_6rem_9rem_6rem]";
@@ -229,13 +223,6 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
           aria-label="Program organization filters"
           className="mt-2"
         />
-        <AdminFilterChipBar
-          items={VIEW_CHIP_ITEMS.map((item) => ({ ...item, count: undefined }))}
-          activeKey={view}
-          onSelect={(key) => patchFilters({ view: key })}
-          aria-label="Program directory view"
-          className="mt-2"
-        />
         <AdminFilterRow
           withTopDivider
           searchPlaceholder="Program, organization, abbreviation"
@@ -243,13 +230,13 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
           onSearchChange={(value) => patchFilters({ search: value })}
           onClear={clearFilters}
           showClear={hasActiveFilters}
-          resultCount={view === "tree" ? treeRows.length : filtered.length}
+          resultCount={treeRows.length}
         />
       </section>
 
       <section className="overflow-hidden border border-surface-200 bg-white shadow-sm">
         <div className={`hidden gap-3 border-b border-surface-200 bg-navy-950 px-4 py-2.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.1em] text-white lg:grid ${gridClassName}`}>
-          <span>Program</span>
+          <span>Organization / Program</span>
           <span>Abbrev.</span>
           <span>Organization</span>
           <span>Type</span>
@@ -260,43 +247,31 @@ export function ProgramListClient({ programs }: { programs: ProgramListRow[] }) 
           <span className="text-right">Action</span>
         </div>
 
-        {view === "tree"
-          ? treeRows.map(({ program, depth, hasChildren }) => (
-              <Link
-                key={program.id}
-                href={`/admin/programs/${program.id}`}
-                prefetch={false}
-                className={`grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:items-center ${gridClassName}`}
-              >
-                <ProgramListRowContent
-                  program={program}
-                  depth={depth}
-                  hasChildren={hasChildren}
-                  collapsed={collapsedIds.has(program.id)}
-                  treeMode
-                  onToggle={() =>
-                    setCollapsedIds((previous) => {
-                      const next = new Set(previous);
-                      if (next.has(program.id)) next.delete(program.id);
-                      else next.add(program.id);
-                      return next;
-                    })
-                  }
-                />
-              </Link>
-            ))
-          : filtered.map((program) => (
-              <Link
-                key={program.id}
-                href={`/admin/programs/${program.id}`}
-                prefetch={false}
-                className={`grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:items-center ${gridClassName}`}
-              >
-                <ProgramListRowContent program={program} />
-              </Link>
-            ))}
-
-        {!(view === "tree" ? treeRows.length : filtered.length) ? (
+        {treeRows.map(({ program, depth, hasChildren }) => (
+          <Link
+            key={program.id}
+            href={`/admin/programs/${program.id}`}
+            prefetch={false}
+            className={`grid gap-2 border-b border-surface-200 px-4 py-3 transition last:border-b-0 hover:bg-navy-50 lg:items-center ${gridClassName}`}
+          >
+            <ProgramListRowContent
+              program={program}
+              depth={depth}
+              hasChildren={hasChildren}
+              collapsed={collapsedIds.has(program.id)}
+              treeMode
+              onToggle={() =>
+                setCollapsedIds((previous) => {
+                  const next = new Set(previous);
+                  if (next.has(program.id)) next.delete(program.id);
+                  else next.add(program.id);
+                  return next;
+                })
+              }
+            />
+          </Link>
+        ))}
+        {!treeRows.length ? (
           <AdminEmptyState
             variant={programs.length ? "no-matches" : "no-records"}
             subject="programs"

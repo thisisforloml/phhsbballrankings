@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ExternalLink, Search } from "lucide-react";
 import Link from "next/link";
@@ -174,7 +174,7 @@ export function TeamManagementClient({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-sm font-semibold text-navy-900">Create team</h2>
-            <p className="mt-1 text-sm text-ink-600">Create under an operational program or as a standalone team with no program link.</p>
+            <p className="mt-1 text-sm text-ink-600">Create a specific age and gender Team under a Program, or a standalone club Team.</p>
           </div>
           <button
             type="button"
@@ -330,6 +330,26 @@ function CreateTeamForm({
       <label className="grid max-w-xl gap-1.5">
         <span className={labelClassName}>Team name</span>
         <input name="name" required maxLength={120} className={inputClassName} />
+      <div className="grid max-w-2xl gap-3 sm:grid-cols-2">
+        <label className="grid gap-1.5">
+          <span className={labelClassName}>Age group</span>
+          <select name="ageLabel" required defaultValue="U19" className={inputClassName}>
+            <option value="U13">U13</option>
+            <option value="U15">U15</option>
+            <option value="U16">U16</option>
+            <option value="U17">U17</option>
+            <option value="U18">U18</option>
+            <option value="U19">U19</option>
+          </select>
+        </label>
+        <label className="grid gap-1.5">
+          <span className={labelClassName}>Gender</span>
+          <select name="gender" required defaultValue="BOYS" className={inputClassName}>
+            <option value="BOYS">Boys</option>
+            <option value="GIRLS">Girls</option>
+          </select>
+        </label>
+      </div>
       </label>
       <div className="grid max-w-2xl gap-3 md:grid-cols-2">
         <label className="grid gap-1.5">
@@ -616,7 +636,7 @@ function TeamEditPanel({
           <AdminFormFeedback state={state} />
           <div className="grid gap-4">
             <label className="grid gap-1.5">
-              <span className={labelClassName}>Team / moniker name</span>
+              <span className={labelClassName}>Team name</span>
               <input name="name" required maxLength={120} defaultValue={team.name} className={inputClassName} />
             </label>
             <div className="grid max-w-2xl gap-4 md:grid-cols-2">

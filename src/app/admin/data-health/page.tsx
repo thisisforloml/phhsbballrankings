@@ -13,8 +13,8 @@ export default async function AdminDataHealthPage() {
 
   return (
     <AdminPageTemplate
-      title="Data Health Center"
-      description="Consolidated read-only integrity workspace. Every signal links to the proper admin page — no edits or automatic fixes from here."
+      title="Operations & Data Health"
+      description="Review duplicate players, mixed-context Teams, and other integrity issues before running guarded operations."
     >
       <DataHealthCenter data={data} />
     </AdminPageTemplate>

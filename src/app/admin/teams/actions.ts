@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { revalidatePath } from "next/cache";
 
@@ -50,6 +50,8 @@ export async function createTeam(_previousState: UpdateTeamState, formData: Form
       city: readRequiredString(formData, "city", "City", 100),
       region: readRequiredString(formData, "region", "Region", 100),
       programId,
+      ageLabel: readRequiredString(formData, "ageLabel", "Age group", 3),
+      gender: readRequiredString(formData, "gender", "Gender", 5),
     });
 
     revalidateTeamProgramSurfaces(programId);

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { invalidateAdminLeaguesListCaches } from "@/lib/admin/invalidate-admin-caches";
 import { writeAuditLog } from "@/lib/admin/log-admin-action";
+import { rankingAgeGroupForBracket } from "@/lib/competition-hierarchy";
 import { recomputeSeasonFormulaScores } from "@/lib/formula-v1/compute-game-performance-scores";
 import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
@@ -81,6 +82,70 @@ async function refreshDerivedRatingsAfterLeagueEvidenceChange(input: {
   revalidatePath(`/admin/leagues/${input.leagueId}`);
 }
 
+export async function createLeagueCompetition(
+  _previous: LeagueActionState,
+  formData: FormData,
+): Promise<LeagueActionState> {
+  try {
+    const user = await requireAdminUser();
+    const familyName = readRequiredString(formData, "familyName", "League / organizer", 160);
+    const bracketLabel = readRequiredString(formData, "bracketLabel", "Bracket", 40).toUpperCase();
+    const seasonName = readRequiredString(formData, "seasonName", "Season", 120);
+    const seasonYear = readInt(formData, "seasonYear", "Season year", 2000, 2100);
+    const startsOn = readDate(formData, "startsOn", "Start date");
+    const endsOnRaw = String(formData.get("endsOn") ?? "").trim();
+    const endsOn = endsOnRaw ? readDate(formData, "endsOn", "End date") : null;
+    const city = readOptionalString(formData, "city", 100);
+    const region = readOptionalString(formData, "region", 100);
+    const tier = readInt(formData, "tier", "Tier", 1, 4);
+    const name = familyName + " - " + bracketLabel;
+
+    if (endsOn && endsOn < startsOn) throw new Error("End date cannot be before the start date.");
+
+    const duplicate = await prisma.league.findFirst({
+      where: { deletedAt: null, name: { equals: name, mode: "insensitive" } },
+      select: { id: true },
+    });
+    if (duplicate) throw new Error("This League and bracket already exists.");
+
+    const league = await prisma.league.create({
+      data: {
+        name,
+        organizerName: familyName,
+        ageGroup: rankingAgeGroupForBracket(bracketLabel),
+        city,
+        region,
+        tier,
+        seasons: {
+          create: {
+            name: seasonName,
+            seasonYear,
+            startsOn,
+            endsOn,
+            status: "UPCOMING",
+          },
+        },
+      },
+      select: { id: true, name: true },
+    });
+
+    await writeAuditLog({
+      userId: user.id,
+      entityType: "LEAGUE",
+      entityId: league.id,
+      action: "CREATE_COMPETITION",
+      reason: "League, season, and bracket created manually",
+      newData: { familyName, bracketLabel, seasonName, seasonYear },
+    });
+
+    invalidateAdminLeaguesListCaches();
+    revalidatePath("/admin/leagues");
+    revalidatePath("/leagues");
+    return { ok: true, message: "Created " + league.name + " with " + seasonName + "." };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not create League and competition." };
+  }
+}
 export async function updateLeagueMetadata(_previous: LeagueActionState, formData: FormData): Promise<LeagueActionState> {
   try {
     const user = await requireAdminUser();

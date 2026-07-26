@@ -13,7 +13,7 @@ export function getAdminNavKey(pathname: string): AdminNavKey {
   if (pathname.startsWith("/admin/claims")) return "claims";
   if (pathname.startsWith("/admin/intake")) return "intake";
   if (pathname.startsWith("/admin/data-health")) return "dataHealth";
-  if (pathname.startsWith("/admin/ops") || pathname.startsWith("/admin/team-ratings")) return "ops";
+  if (pathname.startsWith("/admin/ops") || pathname.startsWith("/admin/team-ratings")) return "dataHealth";
   return "dashboard";
 }
 

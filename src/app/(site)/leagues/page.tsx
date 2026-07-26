@@ -13,7 +13,7 @@ export default async function LeaguesPage() {
     <PublicPageShell variant="scout" className="pb-12 pt-20">
       <ScoutPageHeader
         eyebrow="Competitions"
-        title="Leagues"
+        title="Leagues & Competitions"
       />
       <LeaguesClient leagues={leagues} />
     </PublicPageShell>

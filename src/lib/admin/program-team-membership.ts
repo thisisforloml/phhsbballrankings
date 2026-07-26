@@ -2,6 +2,7 @@ import type { ProgramRole, ProgramType } from "@prisma/client";
 import { ProgramRole as ProgramRoleEnum } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { buildContextualTeamName } from "@/lib/team-context-name";
 
 import {
   assertOperationalProgramRole,
@@ -14,6 +15,7 @@ export type ProgramFormInput = {
   abbreviation: string | null;
   type: ProgramType;
   programRole?: ProgramRole;
+  parentProgramId?: string | null;
   city: string | null;
   region: string | null;
 };
@@ -65,7 +67,16 @@ export function serializeProgramTeamOptions(
 
 export async function createProgramRecord(input: ProgramFormInput) {
   const programRole = input.programRole ?? ProgramRoleEnum.OPERATIONAL;
-  validateProgramCreateInput({ programRole, parentProgramId: null });
+  const parentProgramId = programRole === ProgramRoleEnum.GROUP ? null : input.parentProgramId ?? null;
+  validateProgramCreateInput({ programRole, parentProgramId });
+
+  if (parentProgramId) {
+    const parent = await prisma.program.findFirst({
+      where: { id: parentProgramId, deletedAt: null, programRole: ProgramRoleEnum.GROUP },
+      select: { id: true },
+    });
+    if (!parent) throw new Error("Selected organization does not exist or is not an Organization.");
+  }
 
   const duplicate = await prisma.program.findFirst({
     where: { deletedAt: null, fullName: { equals: input.fullName, mode: "insensitive" } },
@@ -81,6 +92,7 @@ export async function createProgramRecord(input: ProgramFormInput) {
       abbreviation: input.abbreviation,
       type: input.type,
       programRole,
+      parentProgramId,
       city: input.city,
       region: input.region,
     },
@@ -191,8 +203,12 @@ export async function createTeamRecord(input: {
   city: string;
   region: string;
   programId?: string | null;
+  ageLabel?: string | null;
+  gender?: string | null;
 }) {
-  const name = input.name.trim();
+  const name = input.ageLabel && input.gender
+    ? buildContextualTeamName(input.name, input.ageLabel, input.gender)
+    : input.name.trim();
   if (!name) {
     throw new Error("Team name is required.");
   }
@@ -218,6 +234,16 @@ export async function createTeamRecord(input: {
   if (input.programId) {
     await assertActiveProgram(input.programId);
   }
+
+  const duplicate = await prisma.team.findFirst({
+    where: {
+      deletedAt: null,
+      programId: input.programId ?? null,
+      name: { equals: name, mode: "insensitive" },
+    },
+    select: { id: true },
+  });
+  if (duplicate) throw new Error("This Team already exists under the selected Program.");
 
   return prisma.team.create({
     data: {

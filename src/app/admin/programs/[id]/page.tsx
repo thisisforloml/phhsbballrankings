@@ -1,4 +1,4 @@
-﻿import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { ProgramRoleBadge } from "@/components/admin/ProgramRoleBadge";
@@ -282,8 +282,8 @@ export default async function AdminProgramDetailPage({ params }: { params: { id:
   return (
     <div className="grid gap-4">
       <AdminPageHeader
-        backLink={{ href: "/admin/programs", label: "Back to Program Management" }}
-        eyebrow="Program Detail"
+        backLink={{ href: "/admin/programs", label: "Organizations & Programs" }}
+        eyebrow={program.programRole === "GROUP" ? "Organization" : "Program"}
         title={
           <span className="flex flex-wrap items-center gap-3">
             {program.fullName}

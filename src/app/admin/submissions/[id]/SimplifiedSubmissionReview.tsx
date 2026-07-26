@@ -185,11 +185,21 @@ function plainValidationMessages(review: SubmissionReview, preflight: ImportPref
     if (team.action === "manual_review") messages.push(`Team name needs review: ${team.submittedTeamName}.`);
   }
 
+  const statIssueGroups = new Map<string, { team: string; reason: string; count: number; games: Set<string> }>();
   for (const issue of preflight?.gameStats?.issues ?? []) {
-    messages.push(`Stat row needs review: ${issue.playerName} in ${issue.gameNumber} (${issue.reason}).`);
+    const key = `${issue.team}|${issue.reason}`;
+    const group = statIssueGroups.get(key) ?? { team: issue.team, reason: issue.reason, count: 0, games: new Set<string>() };
+    group.count += 1;
+    group.games.add(issue.gameNumber);
+    statIssueGroups.set(key, group);
+  }
+  for (const group of statIssueGroups.values()) {
+    const gameCount = group.games.size;
+    messages.push(`${group.count} stat row${group.count === 1 ? "" : "s"} for ${group.team} await ${group.reason} across ${gameCount} game${gameCount === 1 ? "" : "s"}.`);
   }
 
   for (const blocker of preflight?.overallSummary?.blockers ?? []) {
+    if (blocker === "One or more teams, players, games, or stat rows require manual review.") continue;
     messages.push(blocker);
   }
 

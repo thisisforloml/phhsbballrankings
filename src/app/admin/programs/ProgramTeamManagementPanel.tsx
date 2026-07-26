@@ -139,6 +139,26 @@ export function ProgramTeamManagementPanel({
               <span className={labelClassName}>Team name</span>
               <input name="name" required maxLength={120} className={inputClassName} />
             </label>
+            <div className="grid max-w-2xl gap-3 sm:grid-cols-2">
+              <label className="grid gap-1.5">
+                <span className={labelClassName}>Age group</span>
+                <select name="ageLabel" required defaultValue="U19" className={inputClassName}>
+                  <option value="U13">U13</option>
+                  <option value="U15">U15</option>
+                  <option value="U16">U16</option>
+                  <option value="U17">U17</option>
+                  <option value="U18">U18</option>
+                  <option value="U19">U19</option>
+                </select>
+              </label>
+              <label className="grid gap-1.5">
+                <span className={labelClassName}>Gender</span>
+                <select name="gender" required defaultValue="BOYS" className={inputClassName}>
+                  <option value="BOYS">Boys</option>
+                  <option value="GIRLS">Girls</option>
+                </select>
+              </label>
+            </div>
             <div className="grid max-w-2xl gap-3 md:grid-cols-2">
               <label className="grid gap-1.5">
                 <span className={labelClassName}>City</span>
@@ -186,7 +206,7 @@ export function ProgramTeamManagementPanel({
         <div className="border-b border-surface-200 bg-surface-50 px-4 py-3">
           <h3 className="text-sm font-semibold text-navy-900">Teams ({teams.length})</h3>
           <p className="mt-1 text-sm text-ink-600">
-            Current Teams. Moving a Team changes its Program only; game history stays unchanged.
+            Each age and gender context should have its own Team. Moving a Team changes its Program only.
           </p>
         </div>
 
@@ -209,6 +229,9 @@ export function ProgramTeamManagementPanel({
                   <tr key={team.id} className="align-top">
                     <td className="px-4 py-3">
                       <strong className="font-semibold text-ink-900">{team.name}</strong>
+                      {team.ageGroups.includes(",") || team.genders.includes(",") ? (
+                        <span className="ml-2 inline-flex border border-amber-300 bg-amber-50 px-1.5 py-0.5 text-[0.65rem] font-semibold uppercase text-amber-900">Split required</span>
+                      ) : null}
                       <p className="mt-0.5 text-xs text-ink-500">
                         {[team.city, team.region].filter(Boolean).join(", ")} - {team.officialGames} GP
                       </p>

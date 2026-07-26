@@ -26,9 +26,8 @@ export default async function TeamProfilePage({ params }: { params: { id: string
           <div>
             <Link href="/teams" className="text-xs font-black uppercase tracking-[0.14em] text-gold-500 hover:text-white">Back to team rankings</Link>
             <h1 className="mt-6 max-w-5xl font-display text-[clamp(3.2rem,8vw,6.5rem)] font-black leading-none">{profile.team.displayName}</h1>
-            <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-white/72">
-              {profile.team.programFullName !== profile.team.displayName ? `${profile.team.programFullName} · ` : ""}
-              {profile.team.city ?? "City not listed"}, {profile.team.region ?? "Region not listed"}
+            <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-white/70">
+              {[profile.team.organizationName, profile.team.programFullName !== profile.team.displayName ? profile.team.programFullName : null, profile.team.city, profile.team.region].filter(Boolean).join(" · ")}
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
               {profile.contexts.map((context) => (

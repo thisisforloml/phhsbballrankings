@@ -181,7 +181,7 @@ export function buildPlayerIntegrityReport(input: BuildInput): PlayerIntegrityRe
 
   let assignmentStatus = "Unassigned";
   if (currentProgram?.deletedAt) assignmentStatus = "Archived program linked";
-  else if (currentProgram?.programRole === ProgramRole.GROUP) assignmentStatus = "Group program linked (invalid)";
+  else if (currentProgram?.programRole === ProgramRole.GROUP) assignmentStatus = "Organization linked directly (invalid)";
   else if (player.currentProgramId) assignmentStatus = "Explicit operational program";
   else assignmentStatus = "No explicit program";
 
@@ -212,8 +212,8 @@ export function buildPlayerIntegrityReport(input: BuildInput): PlayerIntegrityRe
       id: "program-group-linked",
       section: "Program Integrity",
       severity: "ERROR",
-      title: "Group program assigned",
-      why: "Group programs are hierarchy containers and must not own players directly.",
+      title: "Organization assigned directly",
+      why: "Organizations group Programs and must not own players directly.",
       howToFix: "Transfer or assign the player to an operational Program.",
     });
   }
