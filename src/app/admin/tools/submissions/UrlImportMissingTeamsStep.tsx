@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
 
 import {
   createMissingOrganizationsFromImportAction,
@@ -63,9 +63,10 @@ export function UrlImportMissingTeamsStep(props: {
     );
   }
 
-  function onPreviewCreation() {
+  const onPreviewCreation = useCallback(() => {
     setError(null);
     setSuccessMessage(null);
+    setDryRun(null);
     startPreview(async () => {
       try {
         const preview = await previewMissingOrganizationsFromImportAction(props.plan);
@@ -76,7 +77,11 @@ export function UrlImportMissingTeamsStep(props: {
         setError(previewError instanceof Error ? previewError.message : "Creation preview failed.");
       }
     });
-  }
+  }, [props.plan]);
+
+  useEffect(() => {
+    onPreviewCreation();
+  }, [onPreviewCreation]);
 
   function onOpenConfirmDialog() {
     if (!dryRun || !canCreate) return;
@@ -111,9 +116,9 @@ export function UrlImportMissingTeamsStep(props: {
   return (
     <div className="grid gap-4">
       <AdminAlert variant="info" size="sm" className="rounded-md">
-        <p className="font-semibold">Missing organizations workspace</p>
+        <p className="font-semibold">Missing Programs and Teams</p>
         <p className="mt-1 text-sm">
-          Review inferred names, preview what will be created, then create programs and teams in Peach Basket before continuing to player matching.
+          Review the inferred names. Peach Basket validates the current database before enabling creation.
         </p>
         <dl className="mt-3 grid gap-1 text-sm sm:grid-cols-3">
           <div>
@@ -150,15 +155,15 @@ export function UrlImportMissingTeamsStep(props: {
           disabled={isPreviewing || !props.plan.summary.teamCount}
           className="button secondary min-h-9 px-3 py-1.5 text-sm disabled:opacity-60"
         >
-          {isPreviewing ? "Previewing…" : "Preview organization creation"}
+          {isPreviewing ? "Validating..." : dryRun ? "Refresh validation" : "Validate creation"}
         </button>
         <button
           type="button"
           onClick={onOpenConfirmDialog}
-          disabled={!canCreate || isCreating}
+          disabled={!canCreate || isCreating || isPreviewing}
           className="button primary min-h-9 px-3 py-1.5 text-sm disabled:opacity-60"
         >
-          Create organizations
+          Create Programs & Teams
         </button>
         <button type="button" onClick={onDownloadJson} className="button secondary min-h-9 px-3 py-1.5 text-sm">
           Download creation plan (JSON)
@@ -167,6 +172,10 @@ export function UrlImportMissingTeamsStep(props: {
           Download creation plan (Markdown)
         </button>
       </div>
+
+      {!dryRun && !error ? (
+        <p className="text-sm text-ink-600">Validating the current Programs and Teams before creation...</p>
+      ) : null}
 
       {dryRun ? (
         <AdminAlert variant="readOnly" size="sm" className="rounded-md">
@@ -283,9 +292,9 @@ export function UrlImportMissingTeamsStep(props: {
       {showConfirmDialog && dryRun ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="w-full max-w-lg rounded-lg border border-surface-200 bg-white p-4 shadow-lg">
-            <h3 className="font-display text-xl text-navy-800">Confirm organization creation</h3>
+            <h3 className="font-display text-xl text-navy-800">Confirm Program and Team creation</h3>
             <p className="mt-2 text-sm text-ink-700">
-              This will create programs and teams in Peach Basket and save team aliases for future imports.
+              This creates the reviewed Programs and Teams and saves their import aliases.
             </p>
             <p className="mt-3 text-sm text-ink-900">
               Type <span className="font-mono font-semibold">{dryRun.confirmationPhrase}</span> to confirm.
@@ -311,7 +320,7 @@ export function UrlImportMissingTeamsStep(props: {
                 disabled={isCreating || confirmationPhrase.trim() !== dryRun.confirmationPhrase}
                 className="button primary min-h-9 px-3 py-1.5 text-sm disabled:opacity-60"
               >
-                {isCreating ? "Creating…" : dryRun.confirmationPhrase}
+                {isCreating ? "Creating..." : dryRun.confirmationPhrase}
               </button>
             </div>
           </div>

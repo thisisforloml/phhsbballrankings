@@ -1,15 +1,16 @@
+import { randomUUID } from "node:crypto";
+
 import { type Prisma, ProgramRole, ProgramType } from "@prisma/client";
 
 import { assertImportProgramReusable } from "@/lib/admin/program-role";
 import { prisma } from "@/lib/prisma";
 import type {
-  ImportProgramCreationCandidate,
   ImportTeamCreationCandidate,
   OrganizationCreationPreview,
   OrganizationCreationResult,
   UrlImportCreationPlan
 } from "@/lib/stats-import/types";
-import { labelsForExternalAlias, upsertTeamExternalAliasBatch } from "@/lib/team-external-alias";
+import { labelsForExternalAlias, normalizeExternalTeamLabel } from "@/lib/team-external-alias";
 import { normalizeProgramAlias } from "@/lib/uaap-school-display";
 
 const PROVIDER = "statshub-v1" as const;
@@ -17,6 +18,7 @@ const PROVIDER = "statshub-v1" as const;
 type ProgramRecord = {
   id: string;
   fullName: string;
+  programRole: ProgramRole;
 };
 
 type TeamRecord = {
@@ -47,7 +49,10 @@ function findProgramByName(programs: ProgramRecord[], fullName: string) {
 }
 
 function findTeamUnderProgram(teams: TeamRecord[], programId: string, resolvedTeamName: string) {
-  return teams.find((team) => team.programId === programId && team.name === resolvedTeamName) ?? null;
+  const normalizedName = resolvedTeamName.trim().toLocaleLowerCase();
+  return teams.find(
+    (team) => team.programId === programId && team.name.trim().toLocaleLowerCase() === normalizedName,
+  ) ?? null;
 }
 
 function buildConfirmationPhrase(programCount: number, teamCount: number) {
@@ -90,7 +95,7 @@ export async function previewMissingOrganizationsFromImport(
   const [programs, teams] = await Promise.all([
     prisma.program.findMany({
       where: { deletedAt: null },
-      select: { id: true, fullName: true }
+      select: { id: true, fullName: true, programRole: true }
     }),
     prisma.team.findMany({
       where: { deletedAt: null },
@@ -106,6 +111,7 @@ export async function previewMissingOrganizationsFromImport(
   for (const program of plan.programs) {
     const existingProgram = findProgramByName(programs, program.suggestedProgramName);
     if (existingProgram) {
+      assertImportProgramReusable(existingProgram);
       programsSkipped.push({
         kind: "program",
         name: program.suggestedProgramName,
@@ -165,74 +171,6 @@ export async function previewMissingOrganizationsFromImport(
   };
 }
 
-async function findOrCreateProgramInTx(
-  tx: Prisma.TransactionClient,
-  program: ImportProgramCreationCandidate,
-  location: { city: string; region: string },
-  programCache: Map<string, ProgramRecord>
-) {
-  const cached = programCache.get(program.suggestedProgramName);
-  if (cached) return { program: cached, created: false };
-
-  const existing = await tx.program.findFirst({
-    where: { fullName: program.suggestedProgramName, deletedAt: null },
-    select: { id: true, fullName: true, programRole: true },
-  });
-  if (existing) {
-    assertImportProgramReusable(existing);
-    programCache.set(program.suggestedProgramName, existing);
-    return { program: existing, created: false };
-  }
-
-  const created = await tx.program.create({
-    data: {
-      fullName: program.suggestedProgramName,
-      abbreviation: program.suggestedAbbreviation || null,
-      type: programTypeFromLabel(program.suggestedProgramType),
-      programRole: ProgramRole.OPERATIONAL,
-      city: location.city || null,
-      region: location.region || null,
-      aliases: [program.normalizedAlias, program.suggestedProgramName, program.suggestedAbbreviation].filter(Boolean),
-    },
-    select: { id: true, fullName: true },
-  });
-  programCache.set(program.suggestedProgramName, created);
-  return { program: created, created: true };
-}
-
-async function findOrCreateTeamInTx(
-  tx: Prisma.TransactionClient,
-  input: {
-    programId: string;
-    team: ImportTeamCreationCandidate;
-    leagueName: string;
-    location: { city: string; region: string };
-  }
-) {
-  const resolvedTeamName = resolveTeamNameForCreation(input.team, input.leagueName);
-  const existing = await tx.team.findFirst({
-    where: {
-      deletedAt: null,
-      programId: input.programId,
-      name: resolvedTeamName
-    },
-    select: { id: true, name: true, programId: true }
-  });
-  if (existing) return { team: existing, created: false, resolvedTeamName };
-
-
-  const created = await tx.team.create({
-    data: {
-      name: resolvedTeamName,
-      city: input.location.city,
-      region: input.location.region,
-      programId: input.programId
-    },
-    select: { id: true, name: true, programId: true }
-  });
-  return { team: created, created: true, resolvedTeamName };
-}
-
 export async function createMissingOrganizationsFromImport(input: {
   plan: UrlImportCreationPlan;
   city?: string;
@@ -246,92 +184,121 @@ export async function createMissingOrganizationsFromImport(input: {
       teamsCreated: 0,
       teamsReused: preview.summary.teamsSkipped,
       aliasesSaved: 0,
-      auditNotes: ""
+      auditNotes: "",
     };
   }
 
   const location = {
     city: input.city?.trim() || "Metro Manila",
-    region: input.region?.trim() || "NCR"
+    region: input.region?.trim() || "NCR",
   };
+
+  const [programRecords, teamRecords] = await Promise.all([
+    prisma.program.findMany({
+      where: { deletedAt: null },
+      select: { id: true, fullName: true, programRole: true },
+    }),
+    prisma.team.findMany({
+      where: { deletedAt: null },
+      select: { id: true, name: true, programId: true },
+    }),
+  ]);
 
   const programsCreated: string[] = [];
   const programsReused: string[] = [];
   const teamsCreated: string[] = [];
   const teamsReused: string[] = [];
   const aliasCandidates: Array<{ externalLabel: string; scheduleLabel?: string | null; teamId: string }> = [];
+  const operations: Prisma.PrismaPromise<unknown>[] = [];
 
-  const summary = await prisma.$transaction(async (tx) => {
-    const programCache = new Map<string, ProgramRecord>();
-    let programsCreatedCount = 0;
-    let programsReusedCount = 0;
-    let teamsCreatedCount = 0;
-    let teamsReusedCount = 0;
-    let aliasesSaved = 0;
+  for (const program of input.plan.programs) {
+    let programRecord = findProgramByName(programRecords, program.suggestedProgramName);
+    if (programRecord) {
+      assertImportProgramReusable(programRecord);
+      programsReused.push(program.suggestedProgramName);
+    } else {
+      programRecord = {
+        id: randomUUID(),
+        fullName: program.suggestedProgramName,
+        programRole: ProgramRole.OPERATIONAL,
+      };
+      programRecords.push(programRecord);
+      programsCreated.push(program.suggestedProgramName);
+      operations.push(prisma.program.create({
+        data: {
+          id: programRecord.id,
+          fullName: program.suggestedProgramName,
+          abbreviation: program.suggestedAbbreviation || null,
+          type: programTypeFromLabel(program.suggestedProgramType),
+          programRole: ProgramRole.OPERATIONAL,
+          city: location.city || null,
+          region: location.region || null,
+          aliases: [program.normalizedAlias, program.suggestedProgramName, program.suggestedAbbreviation].filter(Boolean),
+        },
+      }));
+    }
 
-    for (const program of input.plan.programs) {
-      const programResult = await findOrCreateProgramInTx(tx, program, location, programCache);
-      if (programResult.created) {
-        programsCreatedCount += 1;
-        programsCreated.push(program.suggestedProgramName);
+    for (const team of program.teams) {
+      const resolvedTeamName = resolveTeamNameForCreation(team, input.plan.leagueName);
+      let teamRecord = findTeamUnderProgram(teamRecords, programRecord.id, resolvedTeamName);
+      if (teamRecord) {
+        teamsReused.push(resolvedTeamName);
       } else {
-        programsReusedCount += 1;
-        programsReused.push(program.suggestedProgramName);
+        teamRecord = { id: randomUUID(), name: resolvedTeamName, programId: programRecord.id };
+        teamRecords.push(teamRecord);
+        teamsCreated.push(resolvedTeamName);
+        operations.push(prisma.team.create({
+          data: {
+            id: teamRecord.id,
+            name: resolvedTeamName,
+            city: location.city,
+            region: location.region,
+            programId: programRecord.id,
+          },
+        }));
       }
 
-      for (const team of program.teams) {
-        const teamResult = await findOrCreateTeamInTx(tx, {
-          programId: programResult.program.id,
-          team,
-          leagueName: input.plan.leagueName,
-          location
+      for (const sourceMapping of team.sourceMappings) {
+        aliasCandidates.push({
+          externalLabel: sourceMapping.externalLabel,
+          scheduleLabel: sourceMapping.scheduleLabel,
+          teamId: teamRecord.id,
         });
-
-        if (teamResult.created) {
-          teamsCreatedCount += 1;
-          teamsCreated.push(teamResult.resolvedTeamName);
-        } else {
-          teamsReusedCount += 1;
-          teamsReused.push(teamResult.resolvedTeamName);
-        }
-
-        for (const sourceMapping of team.sourceMappings) {
-          aliasCandidates.push({
-            externalLabel: sourceMapping.externalLabel,
-            scheduleLabel: sourceMapping.scheduleLabel,
-            teamId: teamResult.team.id
-          });
-        }
       }
     }
+  }
 
-    const aliasBatch: Array<{ externalLabel: string; teamId: string }> = [];
-    for (const mapping of aliasCandidates) {
-      for (const label of labelsForExternalAlias(mapping.externalLabel, mapping.scheduleLabel)) {
-        aliasBatch.push({ externalLabel: label, teamId: mapping.teamId });
-      }
+  const aliasByKey = new Map<string, { externalLabel: string; normalizedExternalLabel: string; teamId: string }>();
+  for (const mapping of aliasCandidates) {
+    for (const label of labelsForExternalAlias(mapping.externalLabel, mapping.scheduleLabel)) {
+      const externalLabel = label.trim();
+      if (!externalLabel) continue;
+      const normalizedExternalLabel = normalizeExternalTeamLabel(externalLabel);
+      aliasByKey.set(normalizedExternalLabel, { externalLabel, normalizedExternalLabel, teamId: mapping.teamId });
     }
-    const aliasResult = await upsertTeamExternalAliasBatch(tx, PROVIDER, aliasBatch);
-    aliasesSaved = aliasResult.aliasesSaved;
+  }
 
-    return {
-      programsCreatedCount,
-      programsReusedCount,
-      teamsCreatedCount,
-      teamsReusedCount,
-      aliasesSaved
-    };
-  });
+  for (const alias of aliasByKey.values()) {
+    operations.push(prisma.teamExternalAlias.upsert({
+      where: {
+        provider_normalizedExternalLabel: {
+          provider: PROVIDER,
+          normalizedExternalLabel: alias.normalizedExternalLabel,
+        },
+      },
+      create: { provider: PROVIDER, ...alias },
+      update: { externalLabel: alias.externalLabel, teamId: alias.teamId },
+    }));
+  }
+
+  await prisma.$transaction(operations);
 
   return {
-    programsCreated: summary.programsCreatedCount,
-    programsReused: summary.programsReusedCount,
-    teamsCreated: summary.teamsCreatedCount,
-    teamsReused: summary.teamsReusedCount,
-    aliasesSaved: summary.aliasesSaved,
-    auditNotes: buildOrganizationCreationAuditNotes({
-      programsCreated,
-      teamsCreated
-    })
+    programsCreated: programsCreated.length,
+    programsReused: programsReused.length,
+    teamsCreated: teamsCreated.length,
+    teamsReused: teamsReused.length,
+    aliasesSaved: aliasByKey.size,
+    auditNotes: buildOrganizationCreationAuditNotes({ programsCreated, teamsCreated }),
   };
 }

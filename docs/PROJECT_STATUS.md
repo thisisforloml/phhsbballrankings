@@ -3045,3 +3045,14 @@ No-change confirmation:
 - Submission review warnings are consolidated by Team and reason instead of repeating one message for every player stat row.
 - Operations & Data Health now monitors Teams spanning multiple brackets so future regressions are visible before publish.
 - TypeScript and all automated tests passed. No rating formula change, rating recompute, ranking snapshot generation, import/publish, Program merge, Player merge, or schema migration was performed by the release implementation.
+
+## Submission Program/Team Creation Gate Fix Checkpoint (July 27, 2026)
+
+- Fixed the missing Programs/Teams submission step so its read-only server validation runs automatically instead of leaving **Create Programs & Teams** disabled until an unexplained manual preview.
+- The inferred plan remains visible immediately; the action enables only after the current database is revalidated and the exact create/reuse scope is confirmed safe.
+- Labels and confirmation copy now describe Programs and Teams directly instead of the broader `organizations` wording.
+- Program reuse rejects Organization-only records, and Team reuse is case-insensitive within the same Program to prevent accidental duplicate Team creation from capitalization differences.
+- The guarded creation write path now uses one atomic Prisma batch transaction with preallocated IDs instead of a long interactive transaction, making it compatible with the Supabase transaction pooler.
+- Existing confirmation, scope fingerprint, and exact-count guardrails remain in place.
+- TypeScript, 169 automated tests, lint, and the production build passed. Lint retains only the repository's pre-existing image/font warnings.
+- No Program/Team creation, submission publish/import, database write, rating recompute, or ranking snapshot generation was run while implementing this fix.
