@@ -26,7 +26,8 @@ import {
   computeImportedSubmissionPlayerRatings,
   generateImportedSubmissionMonthlyRankings,
   refreshImportedSubmissionDerivedRatings,
-  validateImportedSubmissionRankings
+  validateImportedSubmissionLeagueTier,
+  validateImportedSubmissionRankings,
 } from "@/lib/submission-post-import-processing";
 import { buildSubmissionListReview, buildSubmissionReview } from "@/lib/submission-review";
 import { parseSubmissionPayload, readSubmissionMetadata } from "@/lib/submission-utils";
@@ -353,14 +354,6 @@ async function readSubmissionForPublish(submissionId: string) {
   return submission;
 }
 
-async function setSubmissionStatusForPublish(submissionId: string, status: SubmissionStatus, note: string) {
-  const current = await prisma.submission.findUnique({ where: { id: submissionId }, select: { adminNotes: true } });
-  await prisma.submission.update({
-    where: { id: submissionId },
-    data: { status, adminNotes: appendAdminNotes(current?.adminNotes ?? null, note) },
-    select: { id: true }
-  });
-}
 
 export async function publishSubmission(formData: FormData) {
   const user = await requireAdminUser();
@@ -387,22 +380,8 @@ export async function publishSubmission(formData: FormData) {
       throw new Error(`Invalid JSON: ${review.parseError ?? "Fix the draft JSON before publishing."}`);
     }
 
-    if (submission.status === SubmissionStatus.DRAFT) {
-      await setSubmissionStatusForPublish(submission.id, SubmissionStatus.SUBMITTED, "Publish workflow: draft submitted for review.");
-      completedSteps.push("submitted");
-      submission = await readSubmissionForPublish(submission.id);
-    }
-
-    if (submission.status === SubmissionStatus.SUBMITTED) {
-      await setSubmissionStatusForPublish(submission.id, SubmissionStatus.UNDER_REVIEW, "Publish workflow: marked under review.");
-      completedSteps.push("under review");
-      submission = await readSubmissionForPublish(submission.id);
-    }
-
-    if (submission.status === SubmissionStatus.UNDER_REVIEW) {
-      await setSubmissionStatusForPublish(submission.id, SubmissionStatus.APPROVED, "Publish workflow: approved for official import.");
-      completedSteps.push("approved");
-      submission = await readSubmissionForPublish(submission.id);
+    if (submission.status !== SubmissionStatus.APPROVED && submission.status !== SubmissionStatus.IMPORTED) {
+      throw new Error("Complete Games, Teams, and Players review, then approve the submission before publishing.");
     }
 
     if (submission.status === SubmissionStatus.APPROVED) {
@@ -424,7 +403,10 @@ export async function publishSubmission(formData: FormData) {
     completedSteps.push("scores");
 
     await refreshImportedSubmissionDerivedRatings(submission.id);
-    completedSteps.push("ratings, team-ratings, rankings");
+    completedSteps.push("player ratings, team ratings, rankings");
+
+    await validateImportedSubmissionLeagueTier(submission.id);
+    completedSteps.push("league tier validated");
 
     const validation = await validateImportedSubmissionRankings(submission.id);
     completedSteps.push("validation");

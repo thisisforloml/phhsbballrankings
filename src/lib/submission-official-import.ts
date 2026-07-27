@@ -27,7 +27,7 @@ import { getTeamDisplayName, getUaapInternalTeamName, normalizeProgramAlias, typ
 type JsonRecord = Record<string, unknown>;
 type _SubmissionForImport = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "validationSummary" | "adminNotes">;
 
-const OFFICIAL_IMPORT_TRANSACTION_TIMEOUT_MS = 120_000;
+type DbClient = Prisma.TransactionClient | typeof prisma;
 
 type ParsedGame = {
   gameNumber: string;
@@ -132,12 +132,12 @@ function importProgramIdentity(submittedTeamName: string, leagueName: string): P
 }
 
 async function findConfiguredProgram(
-  tx: Prisma.TransactionClient,
+  tx: DbClient,
   identity: ProgramIdentity
 ) {
   const existing = await tx.program.findFirst({
     where: { fullName: identity.programFullName, deletedAt: null },
-    select: { id: true, fullName: true, abbreviation: true, type: true, programRole: true },
+    select: { id: true, fullName: true, abbreviation: true, type: true, programRole: true, city: true, region: true },
   });
   if (existing) {
     assertImportProgramReusable(existing);
@@ -182,7 +182,7 @@ function chooseEquivalentProgramTeam(
 }
 
 async function findImportTeamMatch(
-  tx: Prisma.TransactionClient,
+  tx: DbClient,
   params: {
     submittedTeamName: string;
     internalTeamName: string;
@@ -310,7 +310,11 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
   const startsOn = games.reduce((earliest, game) => game.gameDate < earliest ? game.gameDate : earliest, games[0].gameDate);
   const endsOn = games.reduce((latest, game) => game.gameDate > latest ? game.gameDate : latest, games[0].gameDate);
 
-  return prisma.$transaction(async (tx) => {
+  // The import is deliberately idempotent and retryable. Avoid one long
+  // interactive transaction because production uses a transaction pooler and
+  // large multi-game submissions can outlive a pinned transaction.
+  const tx = prisma;
+  {
     const summary = {
       alreadyImported: false,
       league: { action: "reuse" as "reuse" | "create", id: "" },
@@ -369,7 +373,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
       const internalTeamName = getUaapInternalTeamName(submittedTeamName, ageGroup, gender);
       const identity = importProgramIdentity(submittedTeamName, targetLeagueName);
       const program = await findConfiguredProgram(tx, identity);
-      const team = await findImportTeamMatch(tx, {
+      let team = await findImportTeamMatch(tx, {
         submittedTeamName,
         internalTeamName,
         programId: program.id,
@@ -378,9 +382,16 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
         gender,
       });
       if (!team) {
-        throw new Error(
-          `Team ${internalTeamName} is not configured under ${program.fullName}. Create or assign the age/gender-specific Team in Admin > Programs before publishing.`,
-        );
+        team = await tx.team.create({
+          data: {
+            name: internalTeamName,
+            programId: program.id,
+            city: program.city ?? leagueCity,
+            region: program.region ?? leagueRegion,
+          },
+        });
+        summary.teamsCreated += 1;
+        summary.teamsProgramLinked += 1;
       } else {
         summary.teamsReused += 1;
         summary.teamsProgramAlreadyLinked += 1;
@@ -560,5 +571,5 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     });
 
     return summary;
-  }, { timeout: OFFICIAL_IMPORT_TRANSACTION_TIMEOUT_MS, isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }
 }

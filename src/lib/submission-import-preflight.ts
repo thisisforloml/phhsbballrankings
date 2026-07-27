@@ -21,6 +21,18 @@ import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, 
 type JsonRecord = Record<string, unknown>;
 type PreflightAction = "reuse" | "create" | "update" | "manual_review";
 
+export function classifySubmissionTeamResolution(input: {
+  programExists: boolean;
+  hasMixedContextMatch: boolean;
+  matchCount: number;
+}): Extract<PreflightAction, "reuse" | "create" | "manual_review"> {
+  if (!input.programExists || input.hasMixedContextMatch || input.matchCount > 1) {
+    return "manual_review";
+  }
+
+  return input.matchCount === 1 ? "reuse" : "create";
+}
+
 type SubmissionForPreflight = Pick<Submission, "id" | "status" | "title" | "leagueName" | "rawText" | "parsedPreview" | "validationSummary">;
 
 function asRecord(value: unknown): JsonRecord | null {
@@ -189,9 +201,11 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
       )).size > 1;
     });
 
-    const action: PreflightAction = !program || mixedContextMatches.length || matches.length !== 1
-      ? "manual_review"
-      : "reuse";
+    const action: PreflightAction = classifySubmissionTeamResolution({
+      programExists: Boolean(program),
+      hasMixedContextMatch: mixedContextMatches.length > 0,
+      matchCount: matches.length,
+    });
     return {
       submittedTeamName,
       internalTeamName,
@@ -204,7 +218,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
         : mixedContextMatches.length
           ? `Existing Team has mixed age/gender contexts: ${mixedContextMatches.map((team) => team.name).join(", ")}. Split it before import.`
           : matches.length === 0
-            ? `No ${internalTeamName} Team is configured under ${programName}. Create or assign it in Admin > Programs.`
+            ? null
             : matches.length > 1
               ? `Multiple Team matches require review: ${matches.map((team) => team.name).join(", ")}.`
               : null,
@@ -398,7 +412,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const wouldCreate = {
     leagues: existingLeague ? 0 : 1,
     seasons: existingSeason ? 0 : 1,
-    teams: 0,
+    teams: teamPreflight.filter((team) => team.action === "create").length,
     players: playerPreflight.filter((player) => player.action === "create").length,
     games: gamePreflight.filter((game) => game.action === "create").length,
     gameStats: gameStatsWouldCreate
@@ -416,8 +430,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
 
   const manualReviewCount = teamPreflight.filter((team) => team.action === "manual_review").length
     + playerPreflight.filter((player) => player.action === "manual_review").length
-    + gamePreflight.filter((game) => game.action === "manual_review").length
-    + gameStatsManualReview;
+    + gameStatsWouldBlock;
 
   if (manualReviewCount > 0) blockers.push("One or more teams, players, games, or stat rows require manual review.");
 
@@ -460,6 +473,7 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
       wouldCreate,
       wouldReuse,
       manualReviewCount,
+      dependentRowsWaiting: gameStatsManualReview,
       importBlocked: blockers.length > 0,
       blockers
     }

@@ -3056,3 +3056,17 @@ No-change confirmation:
 - Existing confirmation, scope fingerprint, and exact-count guardrails remain in place.
 - TypeScript, 169 automated tests, lint, and the production build passed. Lint retains only the repository's pre-existing image/font warnings.
 - No Program/Team creation, submission publish/import, database write, rating recompute, or ranking snapshot generation was run while implementing this fix.
+
+## Unified Submission Review and Publish Pipeline Checkpoint (July 27, 2026)
+
+- Admin submission detail now uses one staged workflow: Games -> Teams -> Players -> Review Decision -> Publish.
+- The duplicate advanced action console and separate import/formula/rating/snapshot controls were removed from the detail screen, reducing repeated queries and competing write paths.
+- Existing Teams are matched only when one same-Program, same competition-context Team is unambiguous.
+- When the Program already exists and no safe Team match exists, preflight marks the context-specific Team for creation during publishing instead of blocking every dependent stat row.
+- Missing Programs, mixed-context Teams, multiple Team candidates, ambiguous Players, and immutable historical GameStat conflicts still block publishing for manual review.
+- Saved Player review choices, external aliases, official aliases, and exact active profiles are reused before a new Player profile is created.
+- Publish now requires explicit APPROVED status; it no longer auto-advances Draft, Submitted, or Under Review records.
+- Official import was changed from one long interactive Prisma transaction to retryable idempotent writes, avoiding transaction-pooler timeouts while preserving existing immutable GameStat checks.
+- Publish recomputes game performance scores, Player Ratings, home-board projections, Team Ratings, public ranking snapshots, and cache revalidation.
+- League tier is validated during publishing but remains admin-governed. Automatic tier mutation is intentionally deferred until an approved competition-tier rubric exists.
+- No database write, submission import/publish, rating recompute, ranking snapshot generation, schema change, migration, delete, or merge was run while implementing this workflow.

@@ -218,7 +218,7 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
   const canEditGameStats = canEditDraft && !jsonInvalid && games.length > 0;
   const blockers = publishBlockers(submission, review, preflight, jsonInvalid, jsonParseResult);
   const isPublished = Boolean(pipelineStatus?.published);
-  const canPublish = !isPublished && blockers.length === 0 && ["SUBMITTED", "UNDER_REVIEW", "APPROVED", "IMPORTED"].includes(submission.status);
+  const canPublish = !isPublished && blockers.length === 0 && ["APPROVED", "IMPORTED"].includes(submission.status);
 
   return (
     <div className="grid gap-6">
@@ -247,34 +247,9 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
           <div className="rounded-md bg-surface-100 p-3"><dt className="font-semibold text-surface-500">Submitted by</dt><dd>{submission.submittedBy.name}</dd></div>
         </dl>
 
-        {submission.status === "IMPORTED" ? (
-          <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-900">This submission has been imported and is read-only. To correct official stats, use a future official stat correction workflow.</p>
+        {submission.status === "IMPORTED" && !isPublished ? (
+          <p className="rounded-md bg-navy-50 p-4 text-sm font-semibold text-navy-900">Official records are imported. Step 5 can safely resume any remaining ratings, rankings, tier validation, and cache refresh work.</p>
         ) : null}
-
-        {isPublished ? (
-          <div className="rounded-md border border-green-200 bg-green-50 p-4 text-sm text-green-900">
-            <strong className="block">Published</strong>
-            <p className="mt-1">This submission has completed import, processing, and publishing checks.</p>
-          </div>
-        ) : canPublish ? (
-          <form action={publishSubmission} className="rounded-md border border-green-200 bg-green-50 p-4 text-sm text-green-900">
-            <input type="hidden" name="submissionId" value={submission.id} />
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <strong className="block">Publish</strong>
-                <p className="mt-1">Runs review approval, official import, ratings, rankings, and validation when ready.</p>
-              </div>
-              <button type="submit" className="rounded-md bg-green-700 px-5 py-2 font-semibold text-white hover:bg-green-800">Publish</button>
-            </div>
-          </form>
-        ) : (
-          <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-            <strong className="block">Cannot publish yet</strong>
-            <ul className="mt-2 grid gap-1">
-              {blockers.length ? blockers.map((blocker) => <li key={blocker}>{blocker}</li>) : <li>Publish is not available for this submission state.</li>}
-            </ul>
-          </div>
-        )}
       </section>
 
       {jsonInvalid ? (
@@ -295,8 +270,11 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
       <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h2 className="font-display text-3xl text-navy-800">Validation Messages</h2>
-            <p className="mt-1 text-sm text-ink-600">Plain-language checks for the submitted game data.</p>
+            <StepHeading
+              step="Step 1"
+              title="Games"
+              description="Review game details, scores, and submitted player stat rows."
+            />
           </div>
           <AdminBadge variant={messages.length ? "warning" : "success"} size="sm">{messages.length ? "Needs Review" : "Passed"}</AdminBadge>
         </div>
@@ -385,62 +363,127 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
         )}
       </section>
 
+      <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <StepHeading
+            step="Step 2"
+            title="Teams"
+            description="Existing teams are matched automatically. Clear new teams are created only when publishing."
+          />
+          <div className="flex gap-2 text-xs font-semibold">
+            <span className="rounded-full bg-green-50 px-3 py-1 text-green-800">{preflight.overallSummary.wouldReuse.teams} matched</span>
+            <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-800">{preflight.overallSummary.wouldCreate.teams} new</span>
+          </div>
+        </div>
+        <div className="overflow-x-auto rounded-md border border-surface-200">
+          <table className="w-full min-w-[48rem] text-left text-sm">
+            <thead className="bg-surface-100 text-xs font-semibold text-surface-600">
+              <tr>
+                <th className="px-3 py-2">Submitted team</th>
+                <th className="px-3 py-2">Program</th>
+                <th className="px-3 py-2">Resolution</th>
+                <th className="px-3 py-2">Official team</th>
+              </tr>
+            </thead>
+            <tbody>
+              {preflight.teams.map((team) => (
+                <tr key={team.submittedTeamName} className="border-t border-surface-200">
+                  <td className="px-3 py-2 font-semibold text-ink-900">{team.submittedTeamName}</td>
+                  <td className="px-3 py-2 text-ink-600">{team.programName}</td>
+                  <td className="px-3 py-2">
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${team.action === "reuse" ? "bg-green-50 text-green-800" : team.action === "create" ? "bg-blue-50 text-blue-800" : "bg-amber-50 text-amber-900"}`}>
+                      {team.action === "reuse" ? "Matched" : team.action === "create" ? "Create on publish" : "Needs review"}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-ink-700">{team.action === "reuse" ? team.matches[0]?.name : team.action === "create" ? team.internalTeamName : team.blockReason}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="grid gap-4 rounded-lg border border-surface-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <StepHeading
+            step="Step 3"
+            title="Players"
+            description="Saved review choices, official aliases, and exact profiles are reused before a new player is created."
+          />
+          <div className="flex gap-2 text-xs font-semibold">
+            <span className="rounded-full bg-green-50 px-3 py-1 text-green-800">{preflight.overallSummary.wouldReuse.players} matched</span>
+            <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-800">{preflight.overallSummary.wouldCreate.players} new</span>
+          </div>
+        </div>
+        <div className="max-h-[32rem] overflow-auto rounded-md border border-surface-200">
+          <table className="w-full min-w-[48rem] text-left text-sm">
+            <thead className="sticky top-0 bg-surface-100 text-xs font-semibold text-surface-600">
+              <tr>
+                <th className="px-3 py-2">Submitted player</th>
+                <th className="px-3 py-2">Team</th>
+                <th className="px-3 py-2">Resolution</th>
+                <th className="px-3 py-2">Official profile</th>
+              </tr>
+            </thead>
+            <tbody>
+              {preflight.players.map((player) => (
+                <tr key={`${player.teamLabel}|${player.cleanedName}`} className="border-t border-surface-200">
+                  <td className="px-3 py-2 font-semibold text-ink-900">{player.submittedName}</td>
+                  <td className="px-3 py-2 text-ink-600">{player.teamLabel}</td>
+                  <td className="px-3 py-2">
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${player.action === "reuse" ? "bg-green-50 text-green-800" : player.action === "create" ? "bg-blue-50 text-blue-800" : "bg-amber-50 text-amber-900"}`}>
+                      {player.action === "reuse" ? "Matched" : player.action === "create" ? "Create on publish" : "Needs review"}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-ink-700">{player.matchedPlayer?.displayName ?? (player.action === "create" ? player.cleanedName : player.blockReason)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section id="review-decision" className="scroll-mt-28 grid gap-3 border border-surface-200 bg-white p-4 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <StepHeading
             step="Step 4"
             title="Review Decision"
-            description="Record your review decision and admin notes before publishing."
+            description="Approve only after Games, Teams, and Players are resolved."
           />
           <span className={`border px-2.5 py-1 font-mono text-[0.65rem] font-bold uppercase tracking-[0.1em] ${submissionStatusBadge(submission.status)}`}>{displaySubmissionStatus(submission.status)}</span>
         </div>
         {submission.status === "IMPORTED" ? (
-          <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Imported submissions are locked. Review decisions cannot be changed after official import.</p>
+          <p className="rounded-md bg-surface-100 p-4 text-sm font-semibold text-ink-600">Official records are already imported. The review decision is locked.</p>
         ) : (
           <form action={updateSubmissionReviewStatus} className="grid gap-4">
-            <p className="text-sm text-ink-600">
-              Approve records your review decision. Official data is written only after approval — either here or automatically when you publish.
-            </p>
+            <p className="text-sm text-ink-600">Approval unlocks publishing. It does not write official game, team, player, or rating data.</p>
             {submission.status === "SUBMITTED" ? (
-              <p className="rounded-md bg-amber-50 p-3 text-sm font-semibold text-amber-900">Approve and Reject become available after the submission is marked Under Review.</p>
+              <p className="rounded-md bg-amber-50 p-3 text-sm font-semibold text-amber-900">Mark the submission Under Review before approving or rejecting it.</p>
             ) : null}
             {submission.status === "APPROVED" ? (
-              <p className="rounded-md bg-green-50 p-3 text-sm font-semibold text-green-800">Submission is approved. Proceed to Step 5 to publish official records.</p>
+              <p className="rounded-md bg-green-50 p-3 text-sm font-semibold text-green-800">Approved. Step 5 is ready.</p>
             ) : null}
             <input type="hidden" name="submissionId" value={submission.id} />
             {submission.adminNotes ? (
               <div className="grid gap-2">
-                <span className="text-xs font-semibold uppercase tracking-[0.08em] text-ink-500">Note history</span>
-                <div className="whitespace-pre-wrap break-words rounded-md border border-surface-200 bg-surface-50 px-3 py-2 text-sm font-normal text-ink-700">
-                  {submission.adminNotes}
-                </div>
+                <span className="text-xs font-semibold text-ink-500">Note history</span>
+                <div className="whitespace-pre-wrap break-words rounded-md border border-surface-200 bg-surface-50 px-3 py-2 text-sm font-normal text-ink-700">{submission.adminNotes}</div>
               </div>
             ) : null}
             <label className="grid gap-2 text-sm font-semibold text-navy-800">
-              Add note for this decision
-              <textarea
-                name="adminNotes"
-                rows={4}
-                className="rounded-md border border-surface-300 px-3 py-2 text-sm font-normal text-ink-700 outline-none focus:border-amber-500"
-                placeholder="Leave blank to keep existing notes."
-              />
+              Admin note
+              <textarea name="adminNotes" rows={3} className="rounded-md border border-surface-300 px-3 py-2 text-sm font-normal text-ink-700 outline-none focus:border-amber-500" placeholder="Optional" />
             </label>
             <div className="flex flex-wrap gap-3">
-              {submission.status === "DRAFT" ? (
-                <button type="submit" name="targetStatus" value="SUBMITTED" className="button primary">Submit for Review</button>
-              ) : null}
-              {submission.status === "SUBMITTED" ? (
-                <button type="submit" name="targetStatus" value="UNDER_REVIEW" className="button primary">Mark Under Review</button>
-              ) : null}
+              {submission.status === "DRAFT" ? <button type="submit" name="targetStatus" value="SUBMITTED" className="button primary">Submit for Review</button> : null}
+              {submission.status === "SUBMITTED" ? <button type="submit" name="targetStatus" value="UNDER_REVIEW" className="button primary">Mark Under Review</button> : null}
               {submission.status === "UNDER_REVIEW" ? (
                 <>
                   <button type="submit" name="targetStatus" value="APPROVED" className="button primary">Approve</button>
                   <button type="submit" name="targetStatus" value="REJECTED" className="rounded-md border border-red-200 bg-red-50 px-4 py-2 font-semibold text-red-800 hover:bg-red-100">Reject</button>
                 </>
               ) : null}
-              {submission.status === "APPROVED" || submission.status === "REJECTED" ? (
-                <button type="submit" name="targetStatus" value="UNDER_REVIEW" className="button secondary">Reopen Review</button>
-              ) : null}
+              {submission.status === "APPROVED" || submission.status === "REJECTED" ? <button type="submit" name="targetStatus" value="UNDER_REVIEW" className="button secondary">Reopen Review</button> : null}
             </div>
           </form>
         )}
@@ -450,31 +493,19 @@ export function SimplifiedSubmissionReview({ submission, review, preflight, pipe
         <StepHeading
           step="Step 5"
           title="Publish"
-          description="Import official records and run ratings/rankings. Confirm only after reviewing parsed games and approving."
+          description="Write approved records, refresh ratings and rankings, validate the league tier, and refresh public pages."
         />
-        {submission.status === "IMPORTED" ? (
-          <AdminAlert variant="readOnly" size="sm" title="Imported / read-only">
-            Official import is disabled from this review panel.
-          </AdminAlert>
-        ) : isPublished ? (
+        {isPublished ? (
           <AdminAlert variant="success" size="md" className="p-4" title="Published">
             This submission has completed import, processing, and publishing checks.
           </AdminAlert>
         ) : canPublish ? (
           <form action={publishSubmission} className="grid gap-3 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-950">
             <input type="hidden" name="submissionId" value={submission.id} />
-            {submission.status === "DRAFT" || submission.status === "SUBMITTED" || submission.status === "UNDER_REVIEW" ? (
-              <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-amber-950">
-                <strong className="block">Auto-approval</strong>
-                <p className="mt-1">Publishing will automatically advance this submission through review and approval before import.</p>
-                <p className="mt-1 font-semibold">Preferred path: Submit for Review → Mark Under Review → Approve → Publish.</p>
-              </div>
-            ) : submission.status === "APPROVED" ? (
-              <p className="rounded-md border border-green-200 bg-green-50 p-3 font-semibold text-green-900">Submission is approved. Publish will import official records and run ratings and rankings.</p>
-            ) : null}
+            <p className="rounded-md border border-green-200 bg-green-50 p-3 font-semibold text-green-900">{submission.status === "IMPORTED" ? "Official import is complete. Publish will resume and validate derived data." : "Submission is approved and ready for official import."}</p>
             <div>
               <strong className="block">Publish this submission</strong>
-              <p className="mt-1">This guided action may mark the submission under review/approved, create official League/Season/Team/Player/Game/GameStat records, compute Formula v1 scores and PlayerRatings, generate monthly rankings, run validation, and revalidate public views.</p>
+              <p className="mt-1">Matches existing teams and players, creates clear new teams and profiles, imports Games and GameStats, recalculates player and team ratings, refreshes public ranking snapshots, validates the configured league tier, and revalidates public pages.</p>
             </div>
             <label className="flex max-w-4xl items-start gap-2 font-semibold">
               <input type="checkbox" required className="mt-1" />

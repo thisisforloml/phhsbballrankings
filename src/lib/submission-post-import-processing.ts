@@ -296,6 +296,29 @@ export async function refreshImportedSubmissionDerivedRatings(submissionId: stri
   });
 }
 
+export async function validateImportedSubmissionLeagueTier(submissionId: string) {
+  const context = await getImportedSubmissionContext(submissionId);
+  const league = await prisma.league.findUnique({
+    where: { id: context.leagueId },
+    select: {
+      id: true,
+      name: true,
+      tier: true,
+      verificationStatus: true,
+      qualityScore: true,
+    },
+  });
+  if (!league) throw new Error("Imported competition was not found while validating its tier.");
+  if (!Number.isInteger(league.tier) || league.tier < 1 || league.tier > 4) {
+    throw new Error(`Competition tier must be between 1 and 4 for ${league.name}.`);
+  }
+  return {
+    ...league,
+    action: "validated_unchanged" as const,
+    note: "Competition tier remains admin-governed until the tier rubric is approved.",
+  };
+}
+
 export async function computeImportedSubmissionPlayerRatings(submissionId: string) {
   const context = await getImportedSubmissionContext(submissionId);
   const formulaVersion = await getExistingFormulaVersion();
