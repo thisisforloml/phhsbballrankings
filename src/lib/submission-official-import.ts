@@ -21,7 +21,8 @@ import { formatSubmissionJsonParseError, safeParseSubmissionJson } from "@/lib/s
 import { assertSubmissionReviewable } from "@/lib/submission-lifecycle";
 import { findPlayerMappingDecision, readPlayerMappingDecisionMap } from "@/lib/submission-player-mapping-decisions";
 import { buildSubmissionReview } from "@/lib/submission-review";
-import { teamNameHasCompetitionContext, teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
+import { normalizeTeamRecordName, selectPreferredSubmissionTeamMatches } from "@/lib/submission-team-resolution";
+import { teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
 import { getTeamDisplayName, getUaapInternalTeamName, normalizeProgramAlias, type ProgramIdentity,resolveProgramIdentity } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
@@ -133,52 +134,46 @@ function importProgramIdentity(submittedTeamName: string, leagueName: string): P
 
 async function findConfiguredProgram(
   tx: DbClient,
-  identity: ProgramIdentity
+  identity: ProgramIdentity,
+  submittedTeamName: string,
 ) {
+  const programSelect = {
+    id: true,
+    fullName: true,
+    abbreviation: true,
+    type: true,
+    programRole: true,
+    city: true,
+    region: true,
+  } satisfies Prisma.ProgramSelect;
   const existing = await tx.program.findFirst({
     where: { fullName: identity.programFullName, deletedAt: null },
-    select: { id: true, fullName: true, abbreviation: true, type: true, programRole: true, city: true, region: true },
+    select: programSelect,
   });
   if (existing) {
     assertImportProgramReusable(existing);
     return existing;
   }
 
-  throw new Error(
-    `Program ${identity.programFullName} is not configured. Create it in Admin > Programs before publishing this submission.`,
+  const submittedRecordKey = normalizeTeamRecordName(submittedTeamName);
+  const teamOwners = await tx.team.findMany({
+    where: { deletedAt: null, program: { deletedAt: null } },
+    select: { name: true, program: { select: programSelect } },
+  });
+  const matchingPrograms = new Map(
+    teamOwners
+      .filter((team) => normalizeTeamRecordName(team.name) === submittedRecordKey && team.program)
+      .map((team) => [team.program!.id, team.program!]),
   );
-}
-
-function teamDisplayMatchKey(value: string) {
-  return normalizeProgramAlias(getTeamDisplayName(value));
-}
-
-function hasTeamContextSuffix(value: string) {
-  return /\b(?:U|UNDER)[ -]?(?:1[0-9]|12)\b/i.test(value)
-    || /\b(?:1[0-9]|12)U\b/i.test(value)
-    || /\b(?:U|UNDER)[ -]?(?:13|16|19)\s*(?:BOYS|GIRLS)?\b/i.test(value)
-    || /\b(?:13U|16U|19U)\s*(?:BOYS|GIRLS)?\b/i.test(value)
-    || /\b(?:BOYS|GIRLS)\b$/i.test(value);
-}
-
-function chooseEquivalentProgramTeam(
-  submittedTeamName: string,
-  teams: Array<{ id: string; name: string; programId: string | null }>
-) {
-  const submittedDisplayName = getTeamDisplayName(submittedTeamName);
-  const exactDisplayMatches = teams.filter((team) => normalizeProgramAlias(team.name) === normalizeProgramAlias(submittedDisplayName));
-  if (exactDisplayMatches.length === 1) return exactDisplayMatches[0];
-  if (exactDisplayMatches.length > 1) {
-    throw new Error(`Multiple active clean Team matches found under the same Program for ${submittedTeamName}: ${exactDisplayMatches.map((team) => team.name).join(", ")}.`);
+  if (matchingPrograms.size === 1) {
+    const program = Array.from(matchingPrograms.values())[0];
+    assertImportProgramReusable(program);
+    return program;
   }
 
-  const cleanMatches = teams.filter((team) => !hasTeamContextSuffix(team.name));
-  if (cleanMatches.length === 1) return cleanMatches[0];
-  if (cleanMatches.length > 1) {
-    throw new Error(`Multiple active clean Team matches found under the same Program for ${submittedTeamName}: ${cleanMatches.map((team) => team.name).join(", ")}.`);
-  }
-
-  return null;
+  throw new Error(
+    `Program ${identity.programFullName} is not configured and no exact existing Team owns the submitted label ${submittedTeamName}.`,
+  );
 }
 
 async function findImportTeamMatch(
@@ -190,57 +185,48 @@ async function findImportTeamMatch(
     allowProgramDisplayMatch: boolean;
     ageGroup: AgeGroup;
     gender: PlayerGender;
-  }
+  },
 ) {
-  if (params.allowProgramDisplayMatch) {
-    const submittedKey = teamDisplayMatchKey(params.submittedTeamName);
-    const programTeams = await tx.team.findMany({
-      where: { deletedAt: null, programId: params.programId },
-      include: {
-        homeGames: {
-          where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
-          select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
-        },
-        awayGames: {
-          where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
-          select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
-        },
+  const programTeams = await tx.team.findMany({
+    where: { deletedAt: null, programId: params.programId },
+    include: {
+      homeGames: {
+        where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+        select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
       },
-      orderBy: { name: "asc" }
-    });
-    const equivalentMatches = programTeams.filter((team) => {
-      if (teamDisplayMatchKey(team.name) !== submittedKey) return false;
-      const contexts = [...team.homeGames, ...team.awayGames].map((game) => ({
-        ageGroup: game.season.league.ageGroup,
-        gender: inferCompetitionGender(undefined, game.season.league.name),
-      }));
-      const contextKeys = new Set(contexts.map((context) => context.ageGroup + "|" + context.gender));
-      if (!teamNameMatchesCompetitionContext(team.name, params.ageGroup, params.gender)) return false;
-      if (contextKeys.size > 1) {
-        throw new Error(
-          "Team " + team.name + " already contains multiple age/gender competition contexts. Split it into specific Team records before importing more games.",
-        );
-      }
-      if (contexts.length === 0) return teamNameHasCompetitionContext(team.name);
-      return contexts.some((context) => context.ageGroup === params.ageGroup && context.gender === params.gender);
-    });
-    const preferredTeam = chooseEquivalentProgramTeam(params.submittedTeamName, equivalentMatches);
-    if (preferredTeam) return preferredTeam;
-    if (equivalentMatches.length === 1) return equivalentMatches[0];
-    if (equivalentMatches.length > 1) {
-      throw new Error(`Multiple active Team matches found under the same Program for ${params.submittedTeamName}: ${equivalentMatches.map((team) => team.name).join(", ")}.`);
-    }
-  }
-
-  const exactMatches = await tx.team.findMany({
-    where: { deletedAt: null, name: params.internalTeamName, programId: params.programId },
-    orderBy: { name: "asc" }
+      awayGames: {
+        where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+        select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+      },
+    },
+    orderBy: { name: "asc" },
   });
-  if (exactMatches.length > 1) throw new Error(`Multiple active Team matches found for ${params.internalTeamName}.`);
-  if (exactMatches.length === 1) return exactMatches[0];
-  return null;
-}
 
+  const targetContext = params.ageGroup + "|" + params.gender;
+  const compatibleTeams = programTeams.filter((team) => {
+    const contextKeys = new Set([...team.homeGames, ...team.awayGames].map((game) =>
+      game.season.league.ageGroup + "|" + inferCompetitionGender(undefined, game.season.league.name),
+    ));
+    if (contextKeys.size > 1) return false;
+    if (contextKeys.size === 1) return contextKeys.has(targetContext);
+    return teamNameMatchesCompetitionContext(team.name, params.ageGroup, params.gender);
+  });
+  const matches = selectPreferredSubmissionTeamMatches(
+    params.submittedTeamName,
+    params.internalTeamName,
+    compatibleTeams,
+    params.allowProgramDisplayMatch,
+  );
+  if (matches.length > 1) {
+    throw new Error(
+      `Multiple active Team matches found under the same Program for ${params.submittedTeamName}: ${matches.map((team) => team.name).join(", ")}.`,
+    );
+  }
+  const match = matches[0];
+  if (!match) return null;
+  const { homeGames: _homeGames, awayGames: _awayGames, ...team } = match;
+  return team;
+}
 function parseGames(packageRoot: JsonRecord): ParsedGame[] {
   return asArray(packageRoot.games).map(asRecord).filter((game): game is JsonRecord => game !== null).map((game) => ({
     gameNumber: stringValue(game.gameNumber),
@@ -372,7 +358,7 @@ export async function importApprovedSubmissionOfficialData(submissionId: string)
     for (const submittedTeamName of submittedTeamNames) {
       const internalTeamName = getUaapInternalTeamName(submittedTeamName, ageGroup, gender);
       const identity = importProgramIdentity(submittedTeamName, targetLeagueName);
-      const program = await findConfiguredProgram(tx, identity);
+      const program = await findConfiguredProgram(tx, identity, submittedTeamName);
       let team = await findImportTeamMatch(tx, {
         submittedTeamName,
         internalTeamName,

@@ -9,7 +9,15 @@ import { archiveProgram, type ProgramActionState } from "./actions";
 
 const initialState: ProgramActionState = { ok: false, message: "" };
 
-export function ProgramArchiveForm({ programId, programName }: { programId: string; programName: string }) {
+export function ProgramArchiveForm({
+  programId,
+  programName,
+  entityLabel = "program",
+}: {
+  programId: string;
+  programName: string;
+  entityLabel?: "organization" | "program";
+}) {
   const [open, setOpen] = useState(false);
   const [confirmText, setConfirmText] = useState("");
   const [state, formAction] = useFormState(archiveProgram, initialState);
@@ -28,7 +36,7 @@ export function ProgramArchiveForm({ programId, programName }: { programId: stri
         onClick={() => setOpen(true)}
         className="border border-red-300 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-red-800 hover:bg-red-50"
       >
-        Archive program
+        Archive {entityLabel}
       </button>
     );
   }
@@ -39,7 +47,7 @@ export function ProgramArchiveForm({ programId, programName }: { programId: stri
         <input type="hidden" name="programId" value={programId} />
         <AdminFormFeedback state={state} />
         <p className="text-sm text-red-900">
-          Archives <strong>{programName}</strong>. Team links and historical records are preserved. The program is hidden from active admin lists.
+          Archives <strong>{programName}</strong> only when it has no active teams, current players, or child programs. Referenced records must be reassigned first.
         </p>
         <label className="grid gap-1.5 text-xs font-semibold text-red-950">
           Type ARCHIVE to confirm
@@ -58,7 +66,7 @@ export function ProgramArchiveForm({ programId, programName }: { programId: stri
             disabled={!canArchive}
             className="bg-red-700 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white disabled:cursor-not-allowed disabled:bg-red-300"
           >
-            Archive program
+            Archive {entityLabel}
           </button>
           <button
             type="button"

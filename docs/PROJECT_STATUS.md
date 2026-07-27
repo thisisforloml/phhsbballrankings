@@ -3070,3 +3070,14 @@ No-change confirmation:
 - Publish recomputes game performance scores, Player Ratings, home-board projections, Team Ratings, public ranking snapshots, and cache revalidation.
 - League tier is validated during publishing but remains admin-governed. Automatic tier mutation is intentionally deferred until an approved competition-tier rubric exists.
 - No database write, submission import/publish, rating recompute, ranking snapshot generation, schema change, migration, delete, or merge was run while implementing this workflow.
+## Submission Team Resolution and Guarded Archive Checkpoint (2026-07-27)
+
+- Submission preview and official publish now share one Team-resolution priority: exact submitted Team name, exact generated Team name, then safe display-name matching.
+- Diacritic-insensitive Team matching allows labels such as Mapua to resolve to Mapúa records.
+- When an imported Team label differs from the Program name, one unique exact active Team owner can supply the configured Program.
+- This fixes Mapúa U19 reuse and prevents San Pedro Spartans U18 Boys from being treated as ambiguous with the empty U19 record.
+- Admin Team Management now offers guarded Team archival.
+- Organization and Program archival now refuses records with active child Programs, Teams, or current Players.
+- Team archival refuses records with Games, GameStats, roster assignments, import aliases, or TeamRating references.
+- These controls soft-archive eligible records through deletedAt; they do not hard-delete historical data.
+- No database writes, imports, publishes, rating recomputes, or snapshot generation were run while implementing this checkpoint.

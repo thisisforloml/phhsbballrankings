@@ -13,6 +13,7 @@ import { AdminSaveButton } from "@/components/admin/AdminSaveButton";
 import type { ManagedTeam } from "@/lib/admin/managed-team";
 
 import { createTeam, updateTeamBio, updateTeamProgram, type UpdateTeamState } from "./actions";
+import { TeamArchiveForm } from "./TeamArchiveForm";
 
 type ProgramOption = { id: string; fullName: string; abbreviation: string | null; type: string };
 
@@ -658,6 +659,11 @@ function TeamEditPanel({
           </div>
         </FormSection>
       </form>
+
+      <FormSection title="Archive">
+        <p className="mb-3 text-sm text-ink-600">Only unreferenced Team records can be archived. Historical and active competition data must be canonicalized first.</p>
+        <TeamArchiveForm teamId={team.id} teamName={team.name} />
+      </FormSection>
     </div>
   );
 }

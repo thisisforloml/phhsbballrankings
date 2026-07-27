@@ -116,7 +116,7 @@ export async function archiveProgram(_previousState: ProgramActionState = initia
 
     const program = await archiveProgramRecord(programId);
     revalidateProgramSurfaces(programId);
-    return { ok: true, message: `${program.fullName} archived. Linked teams keep their program reference for audit.` };
+    return { ok: true, message: `${program.fullName} archived.` };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not archive program." };
   }

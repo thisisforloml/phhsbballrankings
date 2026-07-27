@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { invalidateAdminProgramMembershipCaches, invalidateAdminTeamsCaches } from "@/lib/admin/invalidate-admin-caches";
 import {
+  archiveTeamRecord,
   assignTeamToProgram,
   createTeamRecord,
   removeTeamFromProgram,
@@ -140,5 +141,20 @@ export async function updateTeamBio(_previousState: UpdateTeamState, formData: F
     return { ok: true, message: "Team updated.", teamId };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not update team." };
+  }
+}
+export async function archiveTeam(_previousState: UpdateTeamState, formData: FormData): Promise<UpdateTeamState> {
+  try {
+    await requireAdminUser();
+    const teamId = String(formData.get("teamId") ?? "").trim();
+    const confirmText = String(formData.get("confirmText") ?? "").trim();
+    if (!teamId) throw new Error("Team id is required.");
+    if (confirmText !== "ARCHIVE") throw new Error("Type ARCHIVE to confirm.");
+
+    const team = await archiveTeamRecord(teamId);
+    revalidateTeamProgramSurfaces(team.programId);
+    return { ok: true, message: `${team.name} archived.`, teamId };
+  } catch (error) {
+    return { ok: false, message: error instanceof Error ? error.message : "Could not archive team." };
   }
 }

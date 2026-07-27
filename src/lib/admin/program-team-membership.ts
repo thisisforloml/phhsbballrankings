@@ -102,10 +102,32 @@ export async function createProgramRecord(input: ProgramFormInput) {
 export async function archiveProgramRecord(programId: string) {
   const program = await prisma.program.findFirst({
     where: { id: programId, deletedAt: null },
-    select: { id: true, fullName: true },
+    select: {
+      id: true,
+      fullName: true,
+      programRole: true,
+      _count: {
+        select: {
+          childPrograms: { where: { deletedAt: null } },
+          teams: { where: { deletedAt: null } },
+          currentPlayers: { where: { deletedAt: null } },
+        },
+      },
+    },
   });
   if (!program) {
-    throw new Error("Program does not exist or is already archived.");
+    throw new Error("Program or organization does not exist or is already archived.");
+  }
+
+  const references = [
+    program._count.childPrograms ? `${program._count.childPrograms} active programs` : null,
+    program._count.teams ? `${program._count.teams} active teams` : null,
+    program._count.currentPlayers ? `${program._count.currentPlayers} current players` : null,
+  ].filter(Boolean);
+  if (references.length) {
+    throw new Error(
+      `Cannot archive ${program.fullName}. Reassign or archive its active records first: ${references.join(", ")}.`,
+    );
   }
 
   await prisma.program.update({
@@ -116,6 +138,49 @@ export async function archiveProgramRecord(programId: string) {
   return program;
 }
 
+export async function archiveTeamRecord(teamId: string) {
+  const team = await prisma.team.findFirst({
+    where: { id: teamId, deletedAt: null },
+    select: {
+      id: true,
+      name: true,
+      programId: true,
+      _count: {
+        select: {
+          homeGames: true,
+          awayGames: true,
+          gameStats: true,
+          rosterSeasons: true,
+          externalAliases: true,
+          teamRatings: true,
+        },
+      },
+    },
+  });
+  if (!team) {
+    throw new Error("Team does not exist or is already archived.");
+  }
+
+  const references = [
+    team._count.homeGames ? `${team._count.homeGames} home games` : null,
+    team._count.awayGames ? `${team._count.awayGames} away games` : null,
+    team._count.gameStats ? `${team._count.gameStats} stat rows` : null,
+    team._count.rosterSeasons ? `${team._count.rosterSeasons} roster assignments` : null,
+    team._count.externalAliases ? `${team._count.externalAliases} import aliases` : null,
+    team._count.teamRatings ? `${team._count.teamRatings} team ratings` : null,
+  ].filter(Boolean);
+  if (references.length) {
+    throw new Error(
+      `Cannot archive ${team.name}. Canonicalize its references first: ${references.join(", ")}.`,
+    );
+  }
+
+  await prisma.team.update({
+    where: { id: teamId },
+    data: { deletedAt: new Date() },
+  });
+  return team;
+}
 async function assertActiveProgram(programId: string) {
   const program = await prisma.program.findFirst({
     where: { id: programId, deletedAt: null },

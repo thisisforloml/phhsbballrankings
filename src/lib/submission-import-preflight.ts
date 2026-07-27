@@ -1,4 +1,4 @@
-import { AgeGroup, PlayerGender, type Submission,VerificationStatus } from "@prisma/client";
+import { AgeGroup, PlayerGender, Prisma, type Submission,VerificationStatus } from "@prisma/client";
 
 import { inferCompetitionGender, isPybcCompetitionName, normalizeCompetitionDisplayName } from "@/lib/competition-naming";
 import {
@@ -15,8 +15,9 @@ import type { StatsImportProviderId } from "@/lib/stats-import/types";
 import { safeParseSubmissionJson } from "@/lib/submission-json";
 import { findPlayerMappingDecision, readPlayerMappingDecisionMap } from "@/lib/submission-player-mapping-decisions";
 import { buildSubmissionReview } from "@/lib/submission-review";
-import { teamNameHasCompetitionContext, teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
-import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName, normalizeProgramAlias } from "@/lib/uaap-school-display";
+import { normalizeTeamRecordName, selectPreferredSubmissionTeamMatches } from "@/lib/submission-team-resolution";
+import { teamNameMatchesCompetitionContext } from "@/lib/team-import-context";
+import { getTeamDisplayName, getUaapInternalTeamName, getUaapSchoolDisplayName } from "@/lib/uaap-school-display";
 
 type JsonRecord = Record<string, unknown>;
 type PreflightAction = "reuse" | "create" | "update" | "manual_review";
@@ -100,11 +101,30 @@ function allowProgramDisplayTeamMatch(leagueName: string) {
   return isPybcCompetitionName(normalizeCompetitionDisplayName(leagueName));
 }
 
-function teamDisplayMatchKey(value: string) {
-  return normalizeProgramAlias(getTeamDisplayName(value));
-}
 
 export type SubmissionImportPreflight = Awaited<ReturnType<typeof buildSubmissionImportPreflight>>;
+const submissionProgramSelect = {
+  id: true,
+  fullName: true,
+  teams: {
+    where: { deletedAt: null },
+    select: {
+      id: true,
+      name: true,
+      city: true,
+      region: true,
+      homeGames: {
+        where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+        select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+      },
+      awayGames: {
+        where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
+        select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
+      },
+    },
+    orderBy: { name: "asc" },
+  },
+} satisfies Prisma.ProgramSelect;
 
 export async function buildSubmissionImportPreflight(submission: SubmissionForPreflight) {
   const review = buildSubmissionReview(submission);
@@ -149,52 +169,47 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
   const teamPreflight = await Promise.all(submittedTeams.map(async (submittedTeamName) => {
     const normalizedPublicName = getUaapSchoolDisplayName(submittedTeamName);
     const internalTeamName = getUaapInternalTeamName(submittedTeamName, targetAgeGroup, inferredGender);
-    const programName = submittedProgramName(submittedTeamName, targetLeagueName);
+    const requestedProgramName = submittedProgramName(submittedTeamName, targetLeagueName);
     const canUseProgramDisplayMatch = allowProgramDisplayTeamMatch(targetLeagueName);
-    const program = await prisma.program.findFirst({
-      where: { fullName: programName, deletedAt: null },
-      select: {
-        id: true,
-        teams: {
-          where: { deletedAt: null },
-          select: {
-            id: true,
-            name: true,
-            city: true,
-            region: true,
-            homeGames: {
-              where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
-              select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
-            },
-            awayGames: {
-              where: { deletedAt: null, verificationStatus: { in: [VerificationStatus.SUBMITTED, VerificationStatus.VERIFIED] } },
-              select: { season: { select: { league: { select: { name: true, ageGroup: true } } } } },
-            },
-          },
-          orderBy: { name: "asc" },
-        },
-      },
+    let program = await prisma.program.findFirst({
+      where: { fullName: requestedProgramName, deletedAt: null },
+      select: submissionProgramSelect,
     });
+
+    // Imported labels can be a Team identity (for example Mapua) rather than the Program's legal name.
+    if (!program) {
+      const teamOwners = await prisma.team.findMany({
+        where: { deletedAt: null, program: { deletedAt: null } },
+        select: { name: true, program: { select: submissionProgramSelect } },
+      });
+      const submittedRecordKey = normalizeTeamRecordName(submittedTeamName);
+      const matchingPrograms = new Map(
+        teamOwners
+          .filter((team) => normalizeTeamRecordName(team.name) === submittedRecordKey && team.program)
+          .map((team) => [team.program!.id, team.program!]),
+      );
+      if (matchingPrograms.size === 1) {
+        program = Array.from(matchingPrograms.values())[0];
+      }
+    }
 
     const targetContext = `${targetAgeGroup}|${inferredGender}`;
     const matchingContextTeams = (program?.teams ?? []).filter((team) => {
-      if (!targetAgeGroup || !teamNameMatchesCompetitionContext(team.name, targetAgeGroup, inferredGender)) return false;
       const games = [...team.homeGames, ...team.awayGames];
       const contextKeys = new Set(games.map((game) =>
         `${game.season.league.ageGroup}|${inferCompetitionGender(undefined, game.season.league.name)}`,
       ));
       if (contextKeys.size > 1) return false;
-      if (contextKeys.size === 0) return teamNameHasCompetitionContext(team.name);
-      return contextKeys.has(targetContext);
+      if (contextKeys.size === 1) return contextKeys.has(targetContext);
+      return Boolean(targetAgeGroup && teamNameMatchesCompetitionContext(team.name, targetAgeGroup, inferredGender));
     });
-    const exactMatches = matchingContextTeams.filter((team) => team.name === internalTeamName);
-    const submittedKey = teamDisplayMatchKey(submittedTeamName);
-    const programDisplayMatches = canUseProgramDisplayMatch
-      ? matchingContextTeams.filter((team) => teamDisplayMatchKey(team.name) === submittedKey)
-      : [];
-    const matches = exactMatches.length ? exactMatches : programDisplayMatches;
-    const mixedContextMatches = (program?.teams ?? []).filter((team) => {
-      if (teamDisplayMatchKey(team.name) !== submittedKey) return false;
+    const matches = selectPreferredSubmissionTeamMatches(
+      submittedTeamName,
+      internalTeamName,
+      matchingContextTeams,
+      canUseProgramDisplayMatch,
+    );
+    const mixedContextMatches = matches.filter((team) => {
       const games = [...team.homeGames, ...team.awayGames];
       return new Set(games.map((game) =>
         `${game.season.league.ageGroup}|${inferCompetitionGender(undefined, game.season.league.name)}`,
@@ -210,11 +225,11 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
       submittedTeamName,
       internalTeamName,
       normalizedPublicName,
-      programName,
+      programName: program?.fullName ?? requestedProgramName,
       matches,
       action,
       blockReason: !program
-        ? `Program ${programName} is not configured. Create it in Admin > Programs before publishing.`
+        ? `Program ${requestedProgramName} is not configured and no exact existing Team owns that label.`
         : mixedContextMatches.length
           ? `Existing Team has mixed age/gender contexts: ${mixedContextMatches.map((team) => team.name).join(", ")}. Split it before import.`
           : matches.length === 0
@@ -224,7 +239,6 @@ export async function buildSubmissionImportPreflight(submission: SubmissionForPr
               : null,
     };
   }));
-
   const uniquePlayerIdentities = new Map<string, { submittedName: string; cleanedName: string; teamLabel: string }>();
   for (const game of games) {
     const gamePlayers = asArray(game.players).map(asRecord).filter((player): player is JsonRecord => player !== null);

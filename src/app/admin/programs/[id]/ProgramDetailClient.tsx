@@ -315,7 +315,11 @@ function ProgramPanel({
         </FormSection>
       ) : null}
 
-      <ProgramArchiveForm programId={program.id} programName={program.fullName} />
+      <ProgramArchiveForm
+        programId={program.id}
+        programName={program.fullName}
+        entityLabel={program.programRole === "GROUP" ? "organization" : "program"}
+      />
     </div>
   );
 }

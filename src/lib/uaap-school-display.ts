@@ -50,6 +50,8 @@ export function normalizeProgramAlias(value: string): string {
   const youthAgeSuffix = /\b(?:U|UNDER)[ -]?(?:1[0-9]|12)\b/gi;
   const youthAgeToken = /\b(?:1[0-9]|12)U\b/gi;
   return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .trim()
     .replace(/\([^)]*\)/g, " ")
     .replace(youthAgeSuffix, " ")
