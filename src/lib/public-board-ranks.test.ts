@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import type { NationalRankingRow } from "./rankings";
 import { sortPublicRankingRows } from "./public-board-ranks";
+import type { NationalRankingRow } from "./rankings";
 
 function row(playerId: string, displayName: string, rank: number, rating: number): NationalRankingRow {
   return {
