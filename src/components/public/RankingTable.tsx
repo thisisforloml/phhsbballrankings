@@ -245,7 +245,7 @@ export function RankingTable({
 
         {rows.map((row, index) => {
           const rank = rankByPlayerId?.[row.playerId] ?? row.rank;
-          const hideNumericRating = isPublicRankBand(rank);
+          const hideNumericRating = isPublicRankBand(rank) || row.starRating <= 1;
           const rowBorder = isLight ? "border-b border-line-500" : "border-b border-white/[0.08]";
           const rankClass = isLight
             ? rank <= 3
@@ -426,6 +426,7 @@ export function RankingTable({
       </div>
       {rows.map((row) => {
         const rank = rankByPlayerId?.[row.playerId] ?? row.rank;
+        const hideNumericRating = isPublicRankBand(rank) || row.starRating <= 1;
         return (
           <Link key={row.playerId} href={getPlayerProfileHref(row)} className={`${rowClass} ${paperRowGrid} lg:items-center`}>
             <span className="flex items-center justify-center lg:justify-center">
@@ -447,9 +448,11 @@ export function RankingTable({
             </span>
             <span className="text-center text-sm font-semibold text-court-600">{positionLabel(row.position)}</span>
             <span className="flex flex-col items-center text-center">
-              <span className="font-numeric block text-2xl font-bold italic leading-none text-court-900">
-                {row.rating.toFixed(2)}
-              </span>
+              {!hideNumericRating ? (
+                <span className="font-numeric block text-2xl font-bold italic leading-none text-court-900">
+                  {row.rating.toFixed(2)}
+                </span>
+              ) : null}
               <span className="mt-1 block">
                 <StarRating stars={row.starRating} />
               </span>

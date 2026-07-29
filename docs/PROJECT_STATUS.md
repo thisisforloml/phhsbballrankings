@@ -3081,3 +3081,11 @@ No-change confirmation:
 - Team archival refuses records with Games, GameStats, roster assignments, import aliases, or TeamRating references.
 - These controls soft-archive eligible records through deletedAt; they do not hard-delete historical data.
 - No database writes, imports, publishes, rating recomputes, or snapshot generation were run while implementing this checkpoint.
+
+## Public Rank Band and One-Star Privacy Checkpoint (2026-07-29)
+
+- Public Player Rankings retain canonical rank-band order after rank 100: the `101-150`, `151-200`, and later bands remain sequential, while player names are alphabetized within each visible band.
+- Rating sorting does not use hidden numeric ratings to reorder rank-banded players.
+- Exact numeric ratings are now hidden for every one-star player on public Player Rankings and the public player-profile header; their star treatment remains visible.
+- Exact ratings for ranks 1-100 with two or more stars remain unchanged.
+- No database write, rating/ranking formula change, recompute, snapshot generation, import/publish, or admin workflow change was run.

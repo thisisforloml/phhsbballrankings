@@ -9,7 +9,7 @@ import { RankingsToolbar } from "@/components/public/RankingsToolbar";
 import { RankingTable } from "@/components/public/RankingTable";
 import { EmptyState } from "@/components/ui";
 import { capturePublicEvent } from "@/lib/public-analytics";
-import { getPublicBoardRows } from "@/lib/public-board-ranks";
+import { getPublicBoardRows, sortPublicRankingRows } from "@/lib/public-board-ranks";
 import type { PublicCoverageAgeGroup } from "@/lib/public-rankings-coverage";
 import { publicRankingsCoverageCopy, RECRUITING_CLASS_FILTER_ENABLED } from "@/lib/public-rankings-coverage";
 import type { LatestNationalRankings, NationalRankingRow } from "@/lib/rankings";
@@ -204,25 +204,7 @@ export function RankingsClient({
   const recruitingFilterActive = showRecruitingFilter && classYear !== "all";
 
   const sortedRows = useMemo(() => {
-    const direction = sortDirection === "asc" ? 1 : -1;
-    const boardRank = (row: NationalRankingRow) => boardRankByPlayerId[row.playerId] ?? row.rank;
-
-    if (sortKey === "rank") {
-      const top100 = filteredRows
-        .filter((row) => boardRank(row) <= 100)
-        .sort((left, right) => (boardRank(left) - boardRank(right)) * direction);
-      const banded = filteredRows
-        .filter((row) => boardRank(row) > 100)
-        .sort((left, right) => left.displayName.localeCompare(right.displayName) * direction);
-      return direction === 1 ? [...top100, ...banded] : [...banded, ...top100];
-    }
-
-    return filteredRows.slice().sort((left, right) => {
-      if (sortKey === "athlete") return left.displayName.localeCompare(right.displayName) * direction || boardRank(left) - boardRank(right);
-      if (sortKey === "height") return ((left.heightCm ?? 0) - (right.heightCm ?? 0)) * direction || boardRank(left) - boardRank(right);
-      if (sortKey === "position") return positionLabel(left.position).localeCompare(positionLabel(right.position)) * direction || boardRank(left) - boardRank(right);
-      return (left.rating - right.rating) * direction || boardRank(left) - boardRank(right);
-    });
+    return sortPublicRankingRows(filteredRows, boardRankByPlayerId, sortKey, sortDirection);
   }, [boardRankByPlayerId, filteredRows, sortDirection, sortKey]);
 
   const visibleRows = sortedRows.slice(0, maxPublicRows);

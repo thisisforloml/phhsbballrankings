@@ -227,6 +227,7 @@ function RankRow({
 }
 
 function DossierRating({ profile }: { profile: PlayerProfile }) {
+  const hideNumericRating = profile.starRating <= 1;
   const ranks = [
     {
       icon: Trophy,
@@ -251,12 +252,14 @@ function DossierRating({ profile }: { profile: PlayerProfile }) {
   return (
     <div className="flex h-full w-full flex-col justify-between gap-3 pt-5 pb-2 pl-3 pr-4">
       <div className="text-center">
-        <p
-          className="font-numeric text-[clamp(2.5rem,5vw,3.5rem)] font-black italic leading-none text-hardwood-600"
-          aria-label={`Overall rating ${profile.rating.toFixed(2)}`}
-        >
-          {profile.rating.toFixed(2)}
-        </p>
+        {!hideNumericRating ? (
+          <p
+            className="font-numeric text-[clamp(2.5rem,5vw,3.5rem)] font-black italic leading-none text-hardwood-600"
+            aria-label={`Overall rating ${profile.rating.toFixed(2)}`}
+          >
+            {profile.rating.toFixed(2)}
+          </p>
+        ) : null}
         <div className="mt-1.5 flex justify-center">
           <StarRating stars={profile.starRating} />
         </div>
