@@ -1,6 +1,25 @@
 # Project Status and Guardrails
+## Formula v3.3 Continuous Strength Shadow Checkpoint (2026-08-05)
 
-Last updated: 2026-05-18
+- Added a read-only integrated rating ecosystem preview covering Formula v3.3 player ratings, Team TPI v2, and Competition Strength v1.1.
+- Formula v3.3 prices box-score production and missed-shot, turnover, and foul costs; uses honest advanced box-score metrics where inputs exist; and adds bounded prior-game opponent, teammate, and Team context.
+- Same-game and same-day leakage are prevented. Opponent, teammate, and roster estimates use only games completed before the current game date.
+- Direct age/play-up bonus points were removed. Playing-up years remain an audit field, while actual opponent and competition evidence carries the difficulty signal.
+- The former 89.99 elite ceiling was removed. Candidate ability remains continuous; the displayed candidate rating is estimated ability minus a measured uncertainty adjustment.
+- Competition quality is a continuous 0-100 strength score. Tier 1-4 is now only a display/governance label derived from score bands; crossing a tier label cannot create a rating jump.
+- Competition strength blends the governed tier/quality prior with crossover-player evidence and reports confidence separately. Within-pool player and Team depth remain diagnostics because they cannot establish national strength without bridge evidence.
+- Team TPI v2 uses actual Team identity, score margin per 100 estimated possessions where available, iterative opponent strength, smooth recency, and minutes-weighted prior estimates for the main eight-player rotation.
+- Official team-result-only default/forfeit games are supported as Team outcome evidence and correctly create no player performance score. The current evaluated pools contain 463 official Team results, all with player stat rows.
+- The integrated preview is report-only. It writes no GamePerformanceScore, PlayerRating, TeamRating, ProgramTeamRating, League, FormulaVersion, RankingSnapshot, Game, or GameStat rows.
+- Production remains on the current approved formula and public board source. No production switch, recompute, snapshot, migration, schema change, or public ranking change was performed.
+- Integrated inventory: 10,198 official GameStat rows, 463 official stat-bearing games, 1,395 players, 97 Teams, 12 competition pools, 105 Team candidates, and 1,412 Player candidates.
+- Quality-eligible candidate boards: U13 Boys 17, U16 Boys 108, U19 Boys 249, and U19 Girls 45.
+- Formula v3.3 integrated leaders: Xander Dulfo 81.45 (U13 Boys), Goodluck Okebata 94.20 (U16 Boys), Jude Eriobu 98.33 (U19 Boys), and Aubrey Lapasaran 88.46 (U19 Girls). These are shadow results only.
+- Promotion gates passed for read-only execution, monotonic competition direction, actual Team identity, same-day leakage prevention, and removal of the artificial rating ceiling.
+- Promotion remains blocked: U16 Boys and U19 Boys each have two disconnected competition components; UAAP Season 88 HS Girls confidence is 0.406; and 17 players appear on multiple candidate age boards and require age/identity review.
+- Before production: resolve board/data conflicts, improve cross-competition connectivity, perform held-out calibration and expert review, then add a separately approved versioned write/promotion path with rollback. Do not overwrite v1 rows or generate public snapshots from v3.3 yet.
+
+Last updated: 2026-08-05
 
 ## Stable Database Counts
 
@@ -3089,3 +3108,34 @@ No-change confirmation:
 - Exact numeric ratings are now hidden for every one-star player on public Player Rankings and the public player-profile header; their star treatment remains visible.
 - Exact ratings for ranks 1-100 with two or more stars remain unchanged.
 - No database write, rating/ranking formula change, recompute, snapshot generation, import/publish, or admin workflow change was run.
+
+## Formula v3 Contextual Shadow Preview Checkpoint (August 5, 2026)
+
+- Added a read-only Formula v3 candidate under policy `formula-v3-contextual-shadow-v1`; the current public production formula and leaderboard source remain unchanged.
+- Formula v3 starts with possession-informed box-score value, including scoring, missed-shot and missed-free-throw costs, rebounds, assists, steals, blocks, turnovers, fouls, and fouls drawn.
+- Honest advanced inputs are limited to TS%, eFG%, AST/TO, and defensive activity. Missing inputs are omitted and reweighted. Plus-minus, official-style ORTG/DRTG, BPM, PER, and Win Shares are not used.
+- Opponent and teammate individual strength is derived only from games completed before the game being scored. Team strength is the average reliability-adjusted prior rating of players previously seen for that Team and Season.
+- Team baseline and current-game lineup deviation are separate terms to avoid counting the same player-strength signal twice. Same-game and same-day results cannot leak into pregame context.
+- Context adjustments are deliberately small and bounded to a maximum total of 4.5 rating points. The displayed candidate rating remains a recency-weighted average with no Bayesian shrinkage.
+- The read-only preview inspected 10,198 official active stat rows from 463 games, 1,395 distinct players, and 12 competition pools. It produced 1,412 candidate player-board ratings with no missing-input warnings.
+- Seventeen players appear on more than one candidate board because current age-group fallback data differs across their competition evidence; this requires identity/age metadata review before any promotion.
+- Eligible-board rank correlations versus current production were U13 Boys 1.000, U16 Boys 0.988, U19 Boys 0.993, and U19 Girls 0.998.
+- The preliminary temporal next-game diagnostic used 8,749 samples: independent-score MAE 25.208 versus contextual-score MAE 25.194, an improvement of 0.014. This passes the initial non-regression gate but is not strong enough by itself to justify promotion.
+- Formula v3 remains shadow-only pending rolling/held-out calibration, expert basketball review of meaningful movers, multi-board age-data cleanup, versioned persistence planning, and explicit approval to recompute or switch public rankings.
+- Preview command: `npm.cmd run ratings:v3:preview`.
+- Reports: `scripts/reports/formula-v3-contextual-preview.md` and `scripts/reports/formula-v3-contextual-preview.json`.
+- No database writes, production rating recomputes, ranking snapshots, imports/publishes, schema changes, migrations, or public ranking changes were run.
+
+## Formula v3.1 Competition Strength and Evidence Checkpoint (August 5, 2026)
+
+- Formula v3.1 remains a read-only shadow candidate; the public production formula and leaderboard source are unchanged.
+- League strength now translates within-competition scores onto a national scale using the admin-governed League tier as a conservative prior. Tier 1 is unchanged; lower tiers have progressively lower national ceilings.
+- Lower-tier games contribute fewer quality-game equivalents, preventing repeated weak-schedule games from creating the same evidence confidence as flagship competition games.
+- Opponent players, opponent Team, teammates, and own Team still use only ratings available before the game date. Same-game and same-day leakage remain blocked.
+- Per-minute production is capped at 12%, requires at least eight minutes, and scales with minutes reliability.
+- Play-up context is capped at 1.5 points and fades as reliable opponent history becomes available. Age is context, not a direct talent bonus.
+- Recency remains 1.00 / 0.80 / 0.60. Consistency is reported through game-score standard deviation and confidence rather than directly reducing ability.
+- The preview now reports competition connectivity, crossover-player evidence, tier exposure, quality-game equivalents, elite-evidence readiness, and explicit promotion gates.
+- TS%, eFG%, AST/TO, and defensive activity remain the only advanced box-score inputs. ORTG, DRTG, BPM, PER, Win Shares, usage, and on/off remain excluded without the required possession/lineup data.
+- Preview command: `npm.cmd run ratings:v3.1:preview`.
+- No database writes, production recomputes, snapshots, imports/publishes, migrations, or public formula changes were run.

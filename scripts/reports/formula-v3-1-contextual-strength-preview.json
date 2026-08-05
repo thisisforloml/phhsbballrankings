@@ -1,0 +1,2741 @@
+{
+  "generatedAt": "2026-08-05T15:08:57.384Z",
+  "command": "npm.cmd run ratings:v3.1:preview",
+  "mode": "read-only-shadow",
+  "policyVersionId": "formula-v3.3-continuous-strength-shadow-v1",
+  "databaseWrites": false,
+  "productionRatingsChanged": false,
+  "snapshotsGenerated": false,
+  "inventory": {
+    "officialStatRows": 10198,
+    "officialGames": 463,
+    "players": 1395,
+    "pools": 12,
+    "candidateRatings": 1412,
+    "currentProductionRatings": 1500,
+    "playersOnMultipleCandidateBoards": 17
+  },
+  "coverage": {
+    "totalStatRows": 10198,
+    "minutes": 10198,
+    "fieldGoalAttempts": 10198,
+    "threePointAttempts": 10198,
+    "freeThrowAttempts": 10198,
+    "turnovers": 10198,
+    "steals": 10198,
+    "blocks": 10198,
+    "fouls": 10198,
+    "foulsDrawn": 10198
+  },
+  "coveragePercent": {
+    "minutes": 100,
+    "fieldGoalAttempts": 100,
+    "threePointAttempts": 100,
+    "freeThrowAttempts": 100,
+    "turnovers": 100,
+    "steals": 100,
+    "blocks": 100,
+    "fouls": 100,
+    "foulsDrawn": 100
+  },
+  "temporalNextGameDiagnostic": {
+    "samples": 8749,
+    "independentMae": 25.208,
+    "contextualMae": 24.655,
+    "improvement": 0.553,
+    "passesInitialGate": true
+  },
+  "competitionStrength": {
+    "provisionalAdminTierPrior": true,
+    "translations": {
+      "1": {
+        "scale": 1,
+        "offset": 0,
+        "evidenceWeight": 1
+      },
+      "2": {
+        "scale": 0.94,
+        "offset": -1,
+        "evidenceWeight": 0.85
+      },
+      "3": {
+        "scale": 0.82,
+        "offset": -4,
+        "evidenceWeight": 0.6
+      },
+      "4": {
+        "scale": 0.68,
+        "offset": -7,
+        "evidenceWeight": 0.4
+      }
+    },
+    "competitions": [
+      {
+        "key": "f14b052d-6786-4173-85b2-979b3b6f0781|c4884785-34a9-4b1b-8841-06a390cfc74a|U19|BOYS",
+        "league": "NCAA Season 101 Junior's Basketball",
+        "tier": 1,
+        "qualityScore": 0,
+        "age": "U19",
+        "gender": "BOYS",
+        "games": 81,
+        "players": 136,
+        "statRows": 1518
+      },
+      {
+        "key": "8b7084c8-e21e-4adb-997b-a40efa2abd55|dc6cf367-da52-4385-8f3d-4b9fcff713f6|U18|BOYS",
+        "league": "Philippine Youth Basketball Championship – 18U",
+        "tier": 1,
+        "qualityScore": 0,
+        "age": "U18",
+        "gender": "BOYS",
+        "games": 15,
+        "players": 99,
+        "statRows": 374
+      },
+      {
+        "key": "c112c09d-75ac-46ed-96e4-ce2852bfba75|39a4a46c-6362-411f-ae85-6f631414f30b|U16|BOYS",
+        "league": "UAAP Season 88 16U Boys Basketball",
+        "tier": 1,
+        "qualityScore": 0,
+        "age": "U16",
+        "gender": "BOYS",
+        "games": 60,
+        "players": 118,
+        "statRows": 1464
+      },
+      {
+        "key": "d721a82a-f182-4a54-983a-01453650ec9e|77858fdc-9a0b-4b4a-8820-4ad0a105a8a9|U19|BOYS",
+        "league": "UAAP Season 88 HS Boys Basketball",
+        "tier": 1,
+        "qualityScore": 85,
+        "age": "U19",
+        "gender": "BOYS",
+        "games": 62,
+        "players": 97,
+        "statRows": 1150
+      },
+      {
+        "key": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef|308c354b-3f3e-418e-ba34-5d6f7de9485e|U19|GIRLS",
+        "league": "UAAP Season 88 HS Girls Basketball",
+        "tier": 1,
+        "qualityScore": 85,
+        "age": "U19",
+        "gender": "GIRLS",
+        "games": 14,
+        "players": 56,
+        "statRows": 331
+      },
+      {
+        "key": "a886f9a2-35e5-4cd0-a0bf-4a2c1e20ab53|20a1251b-36c3-422b-a054-d537d4a5491c|U18|BOYS",
+        "league": "Junior MPBL Season 4 – 18U",
+        "tier": 2,
+        "qualityScore": 0,
+        "age": "U18",
+        "gender": "BOYS",
+        "games": 48,
+        "players": 534,
+        "statRows": 1393
+      },
+      {
+        "key": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad|757fb031-d320-46a5-b9b6-e05fa321c0e7|U13|BOYS",
+        "league": "Philippine Youth Basketball Championship – 13U",
+        "tier": 3,
+        "qualityScore": 0,
+        "age": "U13",
+        "gender": "BOYS",
+        "games": 35,
+        "players": 129,
+        "statRows": 900
+      },
+      {
+        "key": "636a2e94-13d9-4c6b-8d6a-becfb8db764b|e7269f1b-0b16-4929-93cb-24683b87db44|U15|BOYS",
+        "league": "Philippine Youth Basketball Championship – 15U",
+        "tier": 3,
+        "qualityScore": 0,
+        "age": "U15",
+        "gender": "BOYS",
+        "games": 36,
+        "players": 133,
+        "statRows": 930
+      },
+      {
+        "key": "8a446be5-fab1-4f60-9bb1-28f05f766f94|5a9fbea3-ca68-4d65-9e84-dd03cdfa572a|U18|BOYS",
+        "league": "Stallion Cup - 18U",
+        "tier": 3,
+        "qualityScore": 0,
+        "age": "U18",
+        "gender": "BOYS",
+        "games": 25,
+        "players": 81,
+        "statRows": 456
+      },
+      {
+        "key": "97522351-bfe3-47fb-9bb5-0ec66e32fb42|40a580af-9bb7-4cb3-9c7f-04c1da153b82|U17|BOYS",
+        "league": "Stallion Cup – 17U",
+        "tier": 3,
+        "qualityScore": 0,
+        "age": "U17",
+        "gender": "BOYS",
+        "games": 25,
+        "players": 83,
+        "statRows": 517
+      },
+      {
+        "key": "97522351-bfe3-47fb-9bb5-0ec66e32fb42|b2797e91-ac78-4b09-82f8-13c979ed0a94|U17|BOYS",
+        "league": "Stallion Cup – 17U",
+        "tier": 3,
+        "qualityScore": 0,
+        "age": "U17",
+        "gender": "BOYS",
+        "games": 32,
+        "players": 96,
+        "statRows": 657
+      },
+      {
+        "key": "97522351-bfe3-47fb-9bb5-0ec66e32fb42|ad8c32e3-9c9e-4191-aa87-9c403fbd10f2|U17|BOYS",
+        "league": "Stallion Cup – 17U",
+        "tier": 3,
+        "qualityScore": 0,
+        "age": "U17",
+        "gender": "BOYS",
+        "games": 30,
+        "players": 81,
+        "statRows": 508
+      }
+    ],
+    "artificialCeilingPileup": 0
+  },
+  "connectivity": [
+    {
+      "board": "U19|BOYS",
+      "pools": 9,
+      "crossoverPlayers": 140,
+      "connectedComponents": 2,
+      "largestComponentPools": 8,
+      "promotionConnected": false
+    },
+    {
+      "board": "U16|BOYS",
+      "pools": 7,
+      "crossoverPlayers": 16,
+      "connectedComponents": 2,
+      "largestComponentPools": 6,
+      "promotionConnected": false
+    },
+    {
+      "board": "U13|BOYS",
+      "pools": 1,
+      "crossoverPlayers": 0,
+      "connectedComponents": 1,
+      "largestComponentPools": 1,
+      "promotionConnected": true
+    },
+    {
+      "board": "U19|GIRLS",
+      "pools": 1,
+      "crossoverPlayers": 0,
+      "connectedComponents": 1,
+      "largestComponentPools": 1,
+      "promotionConnected": true
+    }
+  ],
+  "promotionGates": {
+    "noWrites": true,
+    "temporalNonRegression": true,
+    "allMultiPoolBoardsConnected": false,
+    "noMultiBoardIdentityConflicts": false,
+    "tierGovernanceReviewRequired": true,
+    "readyForPublicPromotion": false
+  },
+  "context": {
+    "minimum": -1.194,
+    "maximum": 1.363,
+    "average": 0.013,
+    "absoluteAverage": 0.195,
+    "nonNeutralPercent": 91.2,
+    "cappedAt": 4.5,
+    "sameGameLeakagePrevented": true,
+    "sameDayLeakagePrevented": true
+  },
+  "warnings": [],
+  "boards": [
+    {
+      "key": "U13|BOYS",
+      "label": "U13 Boys",
+      "minimumGames": 10,
+      "candidateCount": 128,
+      "candidateEligibleCount": 21,
+      "productionCount": 129,
+      "productionEligibleCount": 21,
+      "overlapCount": 21,
+      "rankCorrelation": 0.999,
+      "candidateStarDistribution": {
+        "1": 14,
+        "2": 4,
+        "3": 3
+      },
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Xander Dulfo",
+          "productionRating": 81.98,
+          "v3": "Xander Dulfo",
+          "v3Rating": 74.76,
+          "v3Games": 12
+        },
+        {
+          "rank": 2,
+          "production": "Syrus Demate",
+          "productionRating": 80.71,
+          "v3": "Syrus Demate",
+          "v3Rating": 74.12,
+          "v3Games": 12
+        },
+        {
+          "rank": 3,
+          "production": "Patrick Tumbaga",
+          "productionRating": 80.25,
+          "v3": "Patrick Tumbaga",
+          "v3Rating": 72.41,
+          "v3Games": 12
+        },
+        {
+          "rank": 4,
+          "production": "Kirov Acedo",
+          "productionRating": 77.58,
+          "v3": "Kirov Acedo",
+          "v3Rating": 69.84,
+          "v3Games": 10
+        },
+        {
+          "rank": 5,
+          "production": "Ethan Suangco",
+          "productionRating": 75.06,
+          "v3": "Ethan Suangco",
+          "v3Rating": 69.14,
+          "v3Games": 12
+        },
+        {
+          "rank": 6,
+          "production": "Reign Driz",
+          "productionRating": 70.83,
+          "v3": "Reign Driz",
+          "v3Rating": 63.42,
+          "v3Games": 11
+        },
+        {
+          "rank": 7,
+          "production": "Zach Agustin",
+          "productionRating": 67.42,
+          "v3": "Zach Agustin",
+          "v3Rating": 60.47,
+          "v3Games": 11
+        },
+        {
+          "rank": 8,
+          "production": "Gian Castro",
+          "productionRating": 67.1,
+          "v3": "Gian Castro",
+          "v3Rating": 59.32,
+          "v3Games": 10
+        },
+        {
+          "rank": 9,
+          "production": "Jordan Dela Rosa",
+          "productionRating": 55.92,
+          "v3": "Jordan Dela Rosa",
+          "v3Rating": 50.3,
+          "v3Games": 12
+        },
+        {
+          "rank": 10,
+          "production": "Kian Antonio",
+          "productionRating": 54.61,
+          "v3": "Kian Antonio",
+          "v3Rating": 49.41,
+          "v3Games": 11
+        }
+      ],
+      "biggestRisers": [
+        {
+          "playerId": "f1e17f00-adf6-4cd1-aa3e-1d693c94ec5f",
+          "displayName": "Kailie Tiu",
+          "v3Rank": 12,
+          "productionRank": 13,
+          "rankDelta": 1,
+          "v3Rating": 40.71,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 46.28,
+          "games": 11
+        },
+        {
+          "playerId": "2ab4677c-a760-4d20-95b2-fdff78df2af5",
+          "displayName": "Xander Dulfo",
+          "v3Rank": 1,
+          "productionRank": 1,
+          "rankDelta": 0,
+          "v3Rating": 74.76,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 81.98,
+          "games": 12
+        },
+        {
+          "playerId": "6829099a-a04b-4eb8-90b8-cdefb2e051e6",
+          "displayName": "Syrus Demate",
+          "v3Rank": 2,
+          "productionRank": 2,
+          "rankDelta": 0,
+          "v3Rating": 74.12,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 80.71,
+          "games": 12
+        },
+        {
+          "playerId": "7be0cbf7-4f25-4045-859f-af422d17b179",
+          "displayName": "Patrick Tumbaga",
+          "v3Rank": 3,
+          "productionRank": 3,
+          "rankDelta": 0,
+          "v3Rating": 72.41,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 80.25,
+          "games": 12
+        },
+        {
+          "playerId": "b2c5b620-0841-414c-8451-339b8aa2cb4f",
+          "displayName": "Kirov Acedo",
+          "v3Rank": 4,
+          "productionRank": 4,
+          "rankDelta": 0,
+          "v3Rating": 69.84,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 77.58,
+          "games": 10
+        },
+        {
+          "playerId": "17043d96-f8ec-4e45-9e40-71e371c4fe39",
+          "displayName": "Ethan Suangco",
+          "v3Rank": 5,
+          "productionRank": 5,
+          "rankDelta": 0,
+          "v3Rating": 69.14,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 75.06,
+          "games": 12
+        },
+        {
+          "playerId": "5cb0d303-041d-4663-9c3b-8423a62da07b",
+          "displayName": "Reign Driz",
+          "v3Rank": 6,
+          "productionRank": 6,
+          "rankDelta": 0,
+          "v3Rating": 63.42,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 70.83,
+          "games": 11
+        },
+        {
+          "playerId": "1317eacc-3779-4adf-a348-dcabd8441407",
+          "displayName": "Zach Agustin",
+          "v3Rank": 7,
+          "productionRank": 7,
+          "rankDelta": 0,
+          "v3Rating": 60.47,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 67.42,
+          "games": 11
+        },
+        {
+          "playerId": "ce6315a9-f139-4b88-b443-af2ce1aa8c3e",
+          "displayName": "Gian Castro",
+          "v3Rank": 8,
+          "productionRank": 8,
+          "rankDelta": 0,
+          "v3Rating": 59.32,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 67.1,
+          "games": 10
+        },
+        {
+          "playerId": "1a1abed0-b942-43c2-bdc0-2d85975b46a7",
+          "displayName": "Jordan Dela Rosa",
+          "v3Rank": 9,
+          "productionRank": 9,
+          "rankDelta": 0,
+          "v3Rating": 50.3,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 55.92,
+          "games": 12
+        },
+        {
+          "playerId": "468eda3c-de54-4ed4-baf3-ee43a09b455d",
+          "displayName": "Kian Antonio",
+          "v3Rank": 10,
+          "productionRank": 10,
+          "rankDelta": 0,
+          "v3Rating": 49.41,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 54.61,
+          "games": 11
+        },
+        {
+          "playerId": "6c57e47b-bff4-451b-a456-a0e347ebb3b6",
+          "displayName": "Tim Cruz",
+          "v3Rank": 11,
+          "productionRank": 11,
+          "rankDelta": 0,
+          "v3Rating": 47.98,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 54.22,
+          "games": 12
+        },
+        {
+          "playerId": "df475c3d-36ea-4cc2-af4b-261587fbaeba",
+          "displayName": "Crixus Quijano",
+          "v3Rank": 14,
+          "productionRank": 14,
+          "rankDelta": 0,
+          "v3Rating": 37.32,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 42.55,
+          "games": 11
+        },
+        {
+          "playerId": "c8f61751-cd2a-48f7-8c75-38fd49f0d09c",
+          "displayName": "Khalyl Reyes",
+          "v3Rank": 15,
+          "productionRank": 15,
+          "rankDelta": 0,
+          "v3Rating": 36.38,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 42.31,
+          "games": 10
+        },
+        {
+          "playerId": "01d4ea7a-3bb9-4ac0-8edb-c67d429c82af",
+          "displayName": "Caleb De Los Angeles",
+          "v3Rank": 16,
+          "productionRank": 16,
+          "rankDelta": 0,
+          "v3Rating": 34.6,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 40.5,
+          "games": 10
+        }
+      ],
+      "biggestFallers": [
+        {
+          "playerId": "5b43ebf0-140b-48ab-81b8-5a428e24b183",
+          "displayName": "Ibrahim Salem",
+          "v3Rank": 13,
+          "productionRank": 12,
+          "rankDelta": -1,
+          "v3Rating": 39.57,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 46.65,
+          "games": 11
+        },
+        {
+          "playerId": "2ab4677c-a760-4d20-95b2-fdff78df2af5",
+          "displayName": "Xander Dulfo",
+          "v3Rank": 1,
+          "productionRank": 1,
+          "rankDelta": 0,
+          "v3Rating": 74.76,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 81.98,
+          "games": 12
+        },
+        {
+          "playerId": "6829099a-a04b-4eb8-90b8-cdefb2e051e6",
+          "displayName": "Syrus Demate",
+          "v3Rank": 2,
+          "productionRank": 2,
+          "rankDelta": 0,
+          "v3Rating": 74.12,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 80.71,
+          "games": 12
+        },
+        {
+          "playerId": "7be0cbf7-4f25-4045-859f-af422d17b179",
+          "displayName": "Patrick Tumbaga",
+          "v3Rank": 3,
+          "productionRank": 3,
+          "rankDelta": 0,
+          "v3Rating": 72.41,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 80.25,
+          "games": 12
+        },
+        {
+          "playerId": "b2c5b620-0841-414c-8451-339b8aa2cb4f",
+          "displayName": "Kirov Acedo",
+          "v3Rank": 4,
+          "productionRank": 4,
+          "rankDelta": 0,
+          "v3Rating": 69.84,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 77.58,
+          "games": 10
+        },
+        {
+          "playerId": "17043d96-f8ec-4e45-9e40-71e371c4fe39",
+          "displayName": "Ethan Suangco",
+          "v3Rank": 5,
+          "productionRank": 5,
+          "rankDelta": 0,
+          "v3Rating": 69.14,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 75.06,
+          "games": 12
+        },
+        {
+          "playerId": "5cb0d303-041d-4663-9c3b-8423a62da07b",
+          "displayName": "Reign Driz",
+          "v3Rank": 6,
+          "productionRank": 6,
+          "rankDelta": 0,
+          "v3Rating": 63.42,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 70.83,
+          "games": 11
+        },
+        {
+          "playerId": "1317eacc-3779-4adf-a348-dcabd8441407",
+          "displayName": "Zach Agustin",
+          "v3Rank": 7,
+          "productionRank": 7,
+          "rankDelta": 0,
+          "v3Rating": 60.47,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 67.42,
+          "games": 11
+        },
+        {
+          "playerId": "ce6315a9-f139-4b88-b443-af2ce1aa8c3e",
+          "displayName": "Gian Castro",
+          "v3Rank": 8,
+          "productionRank": 8,
+          "rankDelta": 0,
+          "v3Rating": 59.32,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 67.1,
+          "games": 10
+        },
+        {
+          "playerId": "1a1abed0-b942-43c2-bdc0-2d85975b46a7",
+          "displayName": "Jordan Dela Rosa",
+          "v3Rank": 9,
+          "productionRank": 9,
+          "rankDelta": 0,
+          "v3Rating": 50.3,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 55.92,
+          "games": 12
+        },
+        {
+          "playerId": "468eda3c-de54-4ed4-baf3-ee43a09b455d",
+          "displayName": "Kian Antonio",
+          "v3Rank": 10,
+          "productionRank": 10,
+          "rankDelta": 0,
+          "v3Rating": 49.41,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 54.61,
+          "games": 11
+        },
+        {
+          "playerId": "6c57e47b-bff4-451b-a456-a0e347ebb3b6",
+          "displayName": "Tim Cruz",
+          "v3Rank": 11,
+          "productionRank": 11,
+          "rankDelta": 0,
+          "v3Rating": 47.98,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 54.22,
+          "games": 12
+        },
+        {
+          "playerId": "df475c3d-36ea-4cc2-af4b-261587fbaeba",
+          "displayName": "Crixus Quijano",
+          "v3Rank": 14,
+          "productionRank": 14,
+          "rankDelta": 0,
+          "v3Rating": 37.32,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 42.55,
+          "games": 11
+        },
+        {
+          "playerId": "c8f61751-cd2a-48f7-8c75-38fd49f0d09c",
+          "displayName": "Khalyl Reyes",
+          "v3Rank": 15,
+          "productionRank": 15,
+          "rankDelta": 0,
+          "v3Rating": 36.38,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 42.31,
+          "games": 10
+        },
+        {
+          "playerId": "01d4ea7a-3bb9-4ac0-8edb-c67d429c82af",
+          "displayName": "Caleb De Los Angeles",
+          "v3Rank": 16,
+          "productionRank": 16,
+          "rankDelta": 0,
+          "v3Rating": 34.6,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 40.5,
+          "games": 10
+        }
+      ],
+      "lowSampleOutliers": [
+        {
+          "rank": 1,
+          "player": "Liam Santo",
+          "rating": 81.37,
+          "games": 4,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 2,
+          "player": "Andre Kitong",
+          "rating": 81.13,
+          "games": 6,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 3,
+          "player": "Aiden Kitong",
+          "rating": 80.24,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 4,
+          "player": "Cristhop Calvero",
+          "rating": 80.07,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 5,
+          "player": "Liam Santos",
+          "rating": 73.18,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 6,
+          "player": "Philip Jr. Punzalan",
+          "rating": 70.71,
+          "games": 6,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 7,
+          "player": "Coi Aver Moncal",
+          "rating": 69.54,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 8,
+          "player": "Xian Latay",
+          "rating": 67.17,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 9,
+          "player": "Oscar Bagion",
+          "rating": 66.88,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 10,
+          "player": "Leiam Osorio",
+          "rating": 66.41,
+          "games": 9,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 11,
+          "player": "Cristoff Layco",
+          "rating": 65.14,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 12,
+          "player": "Yubert Enciso",
+          "rating": 64.98,
+          "games": 9,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 13,
+          "player": "Matthew Paraiso",
+          "rating": 63.39,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 14,
+          "player": "Mark Denver Corcuera",
+          "rating": 62.92,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 15,
+          "player": "Bryce Shaw",
+          "rating": 61.28,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 16,
+          "player": "Ram Angelo Lebornio",
+          "rating": 61.14,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 17,
+          "player": "Ray Cuyler Tan",
+          "rating": 60.35,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 18,
+          "player": "Calvin Ezekiel Zules",
+          "rating": 59.47,
+          "games": 6,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 19,
+          "player": "Carl Rose Rodil",
+          "rating": 57.32,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 20,
+          "player": "Juan Martin Espeleta",
+          "rating": 57.15,
+          "games": 3,
+          "confidence": "PROVISIONAL"
+        }
+      ]
+    },
+    {
+      "key": "U16|BOYS",
+      "label": "U16 Boys",
+      "minimumGames": 10,
+      "candidateCount": 253,
+      "candidateEligibleCount": 114,
+      "productionCount": 259,
+      "productionEligibleCount": 121,
+      "overlapCount": 114,
+      "rankCorrelation": 0.991,
+      "candidateStarDistribution": {
+        "1": 89,
+        "2": 11,
+        "3": 12,
+        "4": 1,
+        "5": 1
+      },
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Goodluck Okebata",
+          "productionRating": 96.58,
+          "v3": "Goodluck Okebata",
+          "v3Rating": 92.52,
+          "v3Games": 14
+        },
+        {
+          "rank": 2,
+          "production": "Prince Cariño",
+          "productionRating": 92.5,
+          "v3": "Moussa Diakite",
+          "v3Rating": 87.18,
+          "v3Games": 33
+        },
+        {
+          "rank": 3,
+          "production": "Moussa Diakite",
+          "productionRating": 89.91,
+          "v3": "Francel Flores",
+          "v3Rating": 77.89,
+          "v3Games": 28
+        },
+        {
+          "rank": 4,
+          "production": "Francel Flores",
+          "productionRating": 88.11,
+          "v3": "JD Juangco",
+          "v3Rating": 77.21,
+          "v3Games": 11
+        },
+        {
+          "rank": 5,
+          "production": "Xyriel Macahipay",
+          "productionRating": 84.13,
+          "v3": "Mark Perdigon",
+          "v3Rating": 76.44,
+          "v3Games": 14
+        },
+        {
+          "rank": 6,
+          "production": "Akhiro Franz Reynon",
+          "productionRating": 83.78,
+          "v3": "CJ Tabbuga",
+          "v3Rating": 75.2,
+          "v3Games": 15
+        },
+        {
+          "rank": 7,
+          "production": "Denden Enriquez",
+          "productionRating": 83.14,
+          "v3": "Gab Castro",
+          "v3Rating": 74.5,
+          "v3Games": 15
+        },
+        {
+          "rank": 8,
+          "production": "Keefe Iledan",
+          "productionRating": 82.19,
+          "v3": "Keefe Iledan",
+          "v3Rating": 73.4,
+          "v3Games": 25
+        },
+        {
+          "rank": 9,
+          "production": "Sky Jazul",
+          "productionRating": 81.13,
+          "v3": "Lorenzo Purugganan",
+          "v3Rating": 72.34,
+          "v3Games": 14
+        },
+        {
+          "rank": 10,
+          "production": "CJ Tabbuga",
+          "productionRating": 80.41,
+          "v3": "Rowie Cabañero",
+          "v3Rating": 72.07,
+          "v3Games": 17
+        }
+      ],
+      "biggestRisers": [
+        {
+          "playerId": "bf3c17dd-3511-40e9-b478-4ad2e596d0fa",
+          "displayName": "Marvic Mesina",
+          "v3Rank": 79,
+          "productionRank": 99,
+          "rankDelta": 20,
+          "v3Rating": 33.2,
+          "qualityGames": 13,
+          "highQualityGames": 13,
+          "consistency": "VARIABLE",
+          "productionRating": 30.26,
+          "games": 13
+        },
+        {
+          "playerId": "bdde0d77-a39a-4264-bd20-f203353e5dc1",
+          "displayName": "Louise Sinda",
+          "v3Rank": 90,
+          "productionRank": 103,
+          "rankDelta": 13,
+          "v3Rating": 27.42,
+          "qualityGames": 10,
+          "highQualityGames": 10,
+          "consistency": "VARIABLE",
+          "productionRating": 29.07,
+          "games": 10
+        },
+        {
+          "playerId": "d59ed414-f29b-4527-abb2-5e04a3c9d94b",
+          "displayName": "Jaidel Daa",
+          "v3Rank": 70,
+          "productionRank": 82,
+          "rankDelta": 12,
+          "v3Rating": 37.98,
+          "qualityGames": 19.55,
+          "highQualityGames": 19.55,
+          "consistency": "VARIABLE",
+          "productionRating": 38.81,
+          "games": 20
+        },
+        {
+          "playerId": "0180b75e-e877-414c-a912-65c10a181865",
+          "displayName": "Loin Lalong-Isip",
+          "v3Rank": 76,
+          "productionRank": 88,
+          "rankDelta": 12,
+          "v3Rating": 35.19,
+          "qualityGames": 15,
+          "highQualityGames": 15,
+          "consistency": "VARIABLE",
+          "productionRating": 36.77,
+          "games": 15
+        },
+        {
+          "playerId": "411acd67-e69b-4e91-8fb9-7d89aba5a9b4",
+          "displayName": "Rain Gabryle Cajilig",
+          "v3Rank": 60,
+          "productionRank": 70,
+          "rankDelta": 10,
+          "v3Rating": 41.74,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 44.93,
+          "games": 11
+        },
+        {
+          "playerId": "09a6ab2f-7bd7-4f9a-88ca-c78c6640e17b",
+          "displayName": "Jordan Cayabyab",
+          "v3Rank": 96,
+          "productionRank": 106,
+          "rankDelta": 10,
+          "v3Rating": 24.74,
+          "qualityGames": 12,
+          "highQualityGames": 12,
+          "consistency": "VARIABLE",
+          "productionRating": 28.08,
+          "games": 12
+        },
+        {
+          "playerId": "0a77dde8-4623-4473-8ffb-6f901a31c566",
+          "displayName": "Ryley Floirendo",
+          "v3Rank": 102,
+          "productionRank": 112,
+          "rankDelta": 10,
+          "v3Rating": 21.6,
+          "qualityGames": 12,
+          "highQualityGames": 12,
+          "consistency": "MIXED",
+          "productionRating": 25,
+          "games": 12
+        },
+        {
+          "playerId": "1431baef-bcc4-4111-9b23-3e633be1702b",
+          "displayName": "Nicus Calma",
+          "v3Rank": 105,
+          "productionRank": 115,
+          "rankDelta": 10,
+          "v3Rating": 20.19,
+          "qualityGames": 12,
+          "highQualityGames": 12,
+          "consistency": "VARIABLE",
+          "productionRating": 24.27,
+          "games": 12
+        },
+        {
+          "playerId": "b1747ea7-ddc2-46e6-95dd-227a28954e89",
+          "displayName": "Max Romero",
+          "v3Rank": 108,
+          "productionRank": 118,
+          "rankDelta": 10,
+          "v3Rating": 18.43,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 22.68,
+          "games": 14
+        },
+        {
+          "playerId": "84ac3127-a447-416d-909b-e889aeec026c",
+          "displayName": "Juan Mallabo",
+          "v3Rank": 14,
+          "productionRank": 23,
+          "rankDelta": 9,
+          "v3Rating": 70.04,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "MIXED",
+          "productionRating": 72.03,
+          "games": 14
+        },
+        {
+          "playerId": "155a5df4-9cd8-4a71-b85e-5a386bf6b354",
+          "displayName": "Majiq Padrejuan",
+          "v3Rank": 49,
+          "productionRank": 57,
+          "rankDelta": 8,
+          "v3Rating": 48.33,
+          "qualityGames": 16.7,
+          "highQualityGames": 16.7,
+          "consistency": "VARIABLE",
+          "productionRating": 51.22,
+          "games": 17
+        },
+        {
+          "playerId": "04d2298b-2195-43db-956c-da5f40d0589f",
+          "displayName": "Jayson Mercado",
+          "v3Rank": 71,
+          "productionRank": 79,
+          "rankDelta": 8,
+          "v3Rating": 37.55,
+          "qualityGames": 13,
+          "highQualityGames": 13,
+          "consistency": "VARIABLE",
+          "productionRating": 40.64,
+          "games": 13
+        },
+        {
+          "playerId": "77822554-0e0a-4e72-a99e-ef6746389477",
+          "displayName": "Gabo Yoro",
+          "v3Rank": 75,
+          "productionRank": 83,
+          "rankDelta": 8,
+          "v3Rating": 35.29,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 38.68,
+          "games": 14
+        },
+        {
+          "playerId": "2079752d-b711-434f-a7d9-38bbc689270a",
+          "displayName": "Rafael Dela Cruz",
+          "v3Rank": 85,
+          "productionRank": 93,
+          "rankDelta": 8,
+          "v3Rating": 30.05,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 32.35,
+          "games": 11
+        },
+        {
+          "playerId": "4f48c0db-c2e7-4657-9595-a33758686a6d",
+          "displayName": "Warren Delos Reyes",
+          "v3Rank": 100,
+          "productionRank": 108,
+          "rankDelta": 8,
+          "v3Rating": 23.19,
+          "qualityGames": 12,
+          "highQualityGames": 12,
+          "consistency": "VARIABLE",
+          "productionRating": 27.7,
+          "games": 12
+        }
+      ],
+      "biggestFallers": [
+        {
+          "playerId": "9d948f3f-9dd7-460b-ba1b-d60608d4e31f",
+          "displayName": "Prince Cariño",
+          "v3Rank": 18,
+          "productionRank": 2,
+          "rankDelta": -16,
+          "v3Rating": 66.76,
+          "qualityGames": 34.85,
+          "highQualityGames": 34.85,
+          "consistency": "VARIABLE",
+          "productionRating": 92.5,
+          "games": 35
+        },
+        {
+          "playerId": "2d58ecfa-e62f-404d-95a7-c8a340d65e54",
+          "displayName": "Sky Jazul",
+          "v3Rank": 24,
+          "productionRank": 9,
+          "rankDelta": -15,
+          "v3Rating": 60.24,
+          "qualityGames": 18,
+          "highQualityGames": 18,
+          "consistency": "VARIABLE",
+          "productionRating": 81.13,
+          "games": 18
+        },
+        {
+          "playerId": "77f56cb5-a29f-4c91-9b64-05a074151743",
+          "displayName": "Denden Enriquez",
+          "v3Rank": 21,
+          "productionRank": 7,
+          "rankDelta": -14,
+          "v3Rating": 63.68,
+          "qualityGames": 34.55,
+          "highQualityGames": 34.55,
+          "consistency": "VARIABLE",
+          "productionRating": 83.14,
+          "games": 35
+        },
+        {
+          "playerId": "318a9aed-4889-40b0-b084-05404ff55520",
+          "displayName": "Akhiro Franz Reynon",
+          "v3Rank": 15,
+          "productionRank": 6,
+          "rankDelta": -9,
+          "v3Rating": 69.23,
+          "qualityGames": 10,
+          "highQualityGames": 3.4,
+          "consistency": "VARIABLE",
+          "productionRating": 83.78,
+          "games": 15
+        },
+        {
+          "playerId": "f4fe64f2-882d-46c6-8e77-c31d56090208",
+          "displayName": "Eiron Shan Ramos",
+          "v3Rank": 32,
+          "productionRank": 26,
+          "rankDelta": -6,
+          "v3Rating": 57.71,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 68.39,
+          "games": 10
+        },
+        {
+          "playerId": "fd894239-859c-4780-b3ff-1a1bed146130",
+          "displayName": "Austin Delos Santos",
+          "v3Rank": 54,
+          "productionRank": 48,
+          "rankDelta": -6,
+          "v3Rating": 46.91,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 54.57,
+          "games": 14
+        },
+        {
+          "playerId": "54c9d6ba-3836-43fc-af8f-d97d3edd800b",
+          "displayName": "Zandro Lugatiman",
+          "v3Rank": 83,
+          "productionRank": 77,
+          "rankDelta": -6,
+          "v3Rating": 31.84,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 40.85,
+          "games": 14
+        },
+        {
+          "playerId": "88b0bc38-0e1d-4d0b-9bbf-e09892f2f2c8",
+          "displayName": "Marcus Stephen Uy",
+          "v3Rank": 47,
+          "productionRank": 45,
+          "rankDelta": -2,
+          "v3Rating": 49.3,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 55.37,
+          "games": 10
+        },
+        {
+          "playerId": "9af775ea-9d4d-42ee-818d-73e738a0ecfb",
+          "displayName": "Khryz Alexandr Samson",
+          "v3Rank": 31,
+          "productionRank": 30,
+          "rankDelta": -1,
+          "v3Rating": 58.08,
+          "qualityGames": 6.6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 64.97,
+          "games": 11
+        },
+        {
+          "playerId": "fac2ebfd-4e85-4003-a2c7-cdba900f6371",
+          "displayName": "John Addatu",
+          "v3Rank": 36,
+          "productionRank": 35,
+          "rankDelta": -1,
+          "v3Rating": 54.16,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 62.53,
+          "games": 14
+        },
+        {
+          "playerId": "a74746cb-362d-4faa-99c4-c3bda00262ce",
+          "displayName": "Kean Poquiz",
+          "v3Rank": 41,
+          "productionRank": 40,
+          "rankDelta": -1,
+          "v3Rating": 50.05,
+          "qualityGames": 28,
+          "highQualityGames": 28,
+          "consistency": "VARIABLE",
+          "productionRating": 58.41,
+          "games": 28
+        },
+        {
+          "playerId": "f9dd9a78-9a19-4c24-abb0-6bff9bade904",
+          "displayName": "Migo Marasigan",
+          "v3Rank": 77,
+          "productionRank": 76,
+          "rankDelta": -1,
+          "v3Rating": 35.17,
+          "qualityGames": 7.2,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 40.94,
+          "games": 12
+        },
+        {
+          "playerId": "eacb642f-e2f6-40cf-b9d2-36e114295953",
+          "displayName": "Yojan Manguerra",
+          "v3Rank": 82,
+          "productionRank": 81,
+          "rankDelta": -1,
+          "v3Rating": 32.3,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 38.93,
+          "games": 14
+        },
+        {
+          "playerId": "39dc7d93-f4e4-4445-ae68-4f51e2c471fa",
+          "displayName": "Adrian Dela Cruz",
+          "v3Rank": 92,
+          "productionRank": 91,
+          "rankDelta": -1,
+          "v3Rating": 25.97,
+          "qualityGames": 6,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 32.6,
+          "games": 10
+        },
+        {
+          "playerId": "bc45c007-960f-4c93-8cc7-ab57201a1347",
+          "displayName": "Goodluck Okebata",
+          "v3Rank": 1,
+          "productionRank": 1,
+          "rankDelta": 0,
+          "v3Rating": 92.52,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "STEADY",
+          "productionRating": 96.58,
+          "games": 14
+        }
+      ],
+      "lowSampleOutliers": [
+        {
+          "rank": 1,
+          "player": "Jesse Arellano",
+          "rating": 78.53,
+          "games": 9,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 2,
+          "player": "Rye Teodor Villaruz",
+          "rating": 78,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 3,
+          "player": "Thadeus Angeles",
+          "rating": 76.2,
+          "games": 6,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 4,
+          "player": "Kurt Devron Benitez",
+          "rating": 74.83,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 5,
+          "player": "Riley Yuan Dela Cruz",
+          "rating": 74.12,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 6,
+          "player": "Allain Escober",
+          "rating": 69.61,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 7,
+          "player": "Derict Reyes",
+          "rating": 69.07,
+          "games": 6,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 8,
+          "player": "Lawrence Tombocon",
+          "rating": 68.74,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 9,
+          "player": "Xerone Dizon",
+          "rating": 66.09,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 10,
+          "player": "Royette Villareal",
+          "rating": 65.67,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 11,
+          "player": "Chester Cruz",
+          "rating": 64.32,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 12,
+          "player": "Dennis Yojan Necesario",
+          "rating": 63.55,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 13,
+          "player": "Juan Xian Coronel",
+          "rating": 63.27,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 14,
+          "player": "Clint Gerero",
+          "rating": 63.02,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 15,
+          "player": "Roan Lee Ancheta",
+          "rating": 62.64,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 16,
+          "player": "Mcryan Demsart Macasarte",
+          "rating": 61.47,
+          "games": 9,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 17,
+          "player": "Von Dalangin",
+          "rating": 61.06,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 18,
+          "player": "Philip Andrei Ong",
+          "rating": 60.75,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 19,
+          "player": "Marco Clauna",
+          "rating": 58.32,
+          "games": 7,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 20,
+          "player": "Tristan Teoc",
+          "rating": 58.09,
+          "games": 4,
+          "confidence": "PROVISIONAL"
+        }
+      ]
+    },
+    {
+      "key": "U19|BOYS",
+      "label": "U19 Boys",
+      "minimumGames": 10,
+      "candidateCount": 975,
+      "candidateEligibleCount": 250,
+      "productionCount": 1056,
+      "productionEligibleCount": 312,
+      "overlapCount": 247,
+      "rankCorrelation": 0.985,
+      "candidateStarDistribution": {
+        "1": 193,
+        "2": 28,
+        "3": 21,
+        "4": 6,
+        "5": 2
+      },
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Jude Eriobu",
+          "productionRating": 98.33,
+          "v3": "Jude Eriobu",
+          "v3Rating": 95.55,
+          "v3Games": 16
+        },
+        {
+          "rank": 2,
+          "production": "Josef Calo-oy",
+          "productionRating": 91.82,
+          "v3": "Mark Esperanza",
+          "v3Rating": 90.36,
+          "v3Games": 12
+        },
+        {
+          "rank": 3,
+          "production": "Mark Esperanza",
+          "productionRating": 90.61,
+          "v3": "Josef Calo-oy",
+          "v3Rating": 89.46,
+          "v3Games": 22
+        },
+        {
+          "rank": 4,
+          "production": "Sean Franco",
+          "productionRating": 88.82,
+          "v3": "Steven Creus",
+          "v3Rating": 88.28,
+          "v3Games": 14
+        },
+        {
+          "rank": 5,
+          "production": "Steven Creus",
+          "productionRating": 88.41,
+          "v3": "Xyriel Macahipay",
+          "v3Rating": 86.48,
+          "v3Games": 16
+        },
+        {
+          "rank": 6,
+          "production": "John Ray Ladica",
+          "productionRating": 88.34,
+          "v3": "Jetlee Melano",
+          "v3Rating": 85.73,
+          "v3Games": 14
+        },
+        {
+          "rank": 7,
+          "production": "Cabs Cabonilas",
+          "productionRating": 88.19,
+          "v3": "Patrick Pasinos",
+          "v3Rating": 82.15,
+          "v3Games": 19
+        },
+        {
+          "rank": 8,
+          "production": "Lucas Kaw",
+          "productionRating": 87.4,
+          "v3": "Jaime Teodoro",
+          "v3Rating": 80.73,
+          "v3Games": 22
+        },
+        {
+          "rank": 9,
+          "production": "Moussa Diakite",
+          "productionRating": 87.27,
+          "v3": "Yuan Ramirez",
+          "v3Rating": 79.94,
+          "v3Games": 22
+        },
+        {
+          "rank": 10,
+          "production": "Maco Dabao",
+          "productionRating": 87.15,
+          "v3": "Lucas Kaw",
+          "v3Rating": 79.93,
+          "v3Games": 22
+        }
+      ],
+      "biggestRisers": [
+        {
+          "playerId": "16230ab1-d67f-4f41-8105-c24c47119c8a",
+          "displayName": "Dustin Bathan",
+          "v3Rank": 122,
+          "productionRank": 206,
+          "rankDelta": 84,
+          "v3Rating": 44.55,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 42.04,
+          "games": 14
+        },
+        {
+          "playerId": "a3f4f50e-6db3-4ffd-b78d-4ed12e64ad7d",
+          "displayName": "Johari Domingo",
+          "v3Rank": 97,
+          "productionRank": 180,
+          "rankDelta": 83,
+          "v3Rating": 50.48,
+          "qualityGames": 17,
+          "highQualityGames": 17,
+          "consistency": "VARIABLE",
+          "productionRating": 46.17,
+          "games": 17
+        },
+        {
+          "playerId": "833091ab-0ccf-47b0-add7-3bb02fe63b4f",
+          "displayName": "John Dela Cruz",
+          "v3Rank": 121,
+          "productionRank": 201,
+          "rankDelta": 80,
+          "v3Rating": 44.7,
+          "qualityGames": 17,
+          "highQualityGames": 17,
+          "consistency": "VARIABLE",
+          "productionRating": 42.75,
+          "games": 17
+        },
+        {
+          "playerId": "6c8aa80f-1c6c-4b10-956d-6409a04dcccf",
+          "displayName": "Romnick Araneta",
+          "v3Rank": 183,
+          "productionRank": 261,
+          "rankDelta": 78,
+          "v3Rating": 32.2,
+          "qualityGames": 10,
+          "highQualityGames": 10,
+          "consistency": "VARIABLE",
+          "productionRating": 30.29,
+          "games": 10
+        },
+        {
+          "playerId": "dd2bd020-a67f-4426-91d6-1ae19b9796cc",
+          "displayName": "Ethan Carniyan",
+          "v3Rank": 188,
+          "productionRank": 266,
+          "rankDelta": 78,
+          "v3Rating": 31.34,
+          "qualityGames": 13,
+          "highQualityGames": 13,
+          "consistency": "VARIABLE",
+          "productionRating": 29.82,
+          "games": 13
+        },
+        {
+          "playerId": "9646d96e-db03-4e4f-9732-3493531836b2",
+          "displayName": "Kobe Urbina",
+          "v3Rank": 194,
+          "productionRank": 272,
+          "rankDelta": 78,
+          "v3Rating": 30.27,
+          "qualityGames": 13,
+          "highQualityGames": 13,
+          "consistency": "VARIABLE",
+          "productionRating": 28.91,
+          "games": 13
+        },
+        {
+          "playerId": "d8e721c5-d9e1-4143-9f0b-0dcae623b2cd",
+          "displayName": "Raphael Bautista",
+          "v3Rank": 159,
+          "productionRank": 235,
+          "rankDelta": 76,
+          "v3Rating": 38.59,
+          "qualityGames": 11,
+          "highQualityGames": 11,
+          "consistency": "VARIABLE",
+          "productionRating": 35.52,
+          "games": 11
+        },
+        {
+          "playerId": "0607af31-4b55-4107-a4cb-0df3042e681f",
+          "displayName": "Yan Tagorda",
+          "v3Rank": 165,
+          "productionRank": 241,
+          "rankDelta": 76,
+          "v3Rating": 36.89,
+          "qualityGames": 19,
+          "highQualityGames": 19,
+          "consistency": "VARIABLE",
+          "productionRating": 34.17,
+          "games": 19
+        },
+        {
+          "playerId": "79d09809-1e06-44e6-a854-0d37bc606d20",
+          "displayName": "Adi Alagaban",
+          "v3Rank": 129,
+          "productionRank": 204,
+          "rankDelta": 75,
+          "v3Rating": 43.22,
+          "qualityGames": 19,
+          "highQualityGames": 19,
+          "consistency": "VARIABLE",
+          "productionRating": 42.51,
+          "games": 19
+        },
+        {
+          "playerId": "54d376cb-819b-464e-9aa0-fab8acff7623",
+          "displayName": "Jermaine Sapo",
+          "v3Rank": 145,
+          "productionRank": 220,
+          "rankDelta": 75,
+          "v3Rating": 40.97,
+          "qualityGames": 18,
+          "highQualityGames": 18,
+          "consistency": "VARIABLE",
+          "productionRating": 39.03,
+          "games": 18
+        },
+        {
+          "playerId": "59a98b7e-7e8d-48e0-af15-26f078b7b077",
+          "displayName": "Shawn Vergara",
+          "v3Rank": 174,
+          "productionRank": 248,
+          "rankDelta": 74,
+          "v3Rating": 33.5,
+          "qualityGames": 18,
+          "highQualityGames": 18,
+          "consistency": "VARIABLE",
+          "productionRating": 32.77,
+          "games": 18
+        },
+        {
+          "playerId": "bdd07be3-e604-4858-9883-6a9d623306ca",
+          "displayName": "Gab Delos Reyes",
+          "v3Rank": 112,
+          "productionRank": 185,
+          "rankDelta": 73,
+          "v3Rating": 46.2,
+          "qualityGames": 13,
+          "highQualityGames": 13,
+          "consistency": "VARIABLE",
+          "productionRating": 44.66,
+          "games": 13
+        },
+        {
+          "playerId": "1cb84e5f-a1a2-43b8-aa59-236c0f94dab0",
+          "displayName": "Isiah Chua",
+          "v3Rank": 191,
+          "productionRank": 264,
+          "rankDelta": 73,
+          "v3Rating": 30.82,
+          "qualityGames": 20,
+          "highQualityGames": 20,
+          "consistency": "VARIABLE",
+          "productionRating": 30.05,
+          "games": 20
+        },
+        {
+          "playerId": "b2d4bd51-4551-45b0-ba2f-e0bde0b6fccf",
+          "displayName": "Javi Dimayuga",
+          "v3Rank": 226,
+          "productionRank": 299,
+          "rankDelta": 73,
+          "v3Rating": 22.13,
+          "qualityGames": 10.85,
+          "highQualityGames": 10.85,
+          "consistency": "VARIABLE",
+          "productionRating": 22.51,
+          "games": 11
+        },
+        {
+          "playerId": "a64b03d9-06f0-417e-9003-94547555a1f3",
+          "displayName": "LJ Lapastora",
+          "v3Rank": 128,
+          "productionRank": 200,
+          "rankDelta": 72,
+          "v3Rating": 43.38,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "VARIABLE",
+          "productionRating": 42.96,
+          "games": 14
+        }
+      ],
+      "biggestFallers": [
+        {
+          "playerId": "7d4bf62d-ee82-4ec7-87d1-6b2ea92ce5db",
+          "displayName": "Lucas Kaw",
+          "v3Rank": 10,
+          "productionRank": 8,
+          "rankDelta": -2,
+          "v3Rating": 79.93,
+          "qualityGames": 13.2,
+          "highQualityGames": 0,
+          "consistency": "STEADY",
+          "productionRating": 87.4,
+          "games": 22
+        },
+        {
+          "playerId": "4bdbb9df-6b7a-4bf6-b275-386a77ba4435",
+          "displayName": "Josef Calo-oy",
+          "v3Rank": 3,
+          "productionRank": 2,
+          "rankDelta": -1,
+          "v3Rating": 89.46,
+          "qualityGames": 20.8,
+          "highQualityGames": 20.8,
+          "consistency": "STEADY",
+          "productionRating": 91.82,
+          "games": 22
+        },
+        {
+          "playerId": "f577b054-2284-4433-8bb7-2dbdc541ec4e",
+          "displayName": "Jude Eriobu",
+          "v3Rank": 1,
+          "productionRank": 1,
+          "rankDelta": 0,
+          "v3Rating": 95.55,
+          "qualityGames": 16,
+          "highQualityGames": 16,
+          "consistency": "STEADY",
+          "productionRating": 98.33,
+          "games": 16
+        },
+        {
+          "playerId": "155da59e-233b-443b-a0aa-4056d6aa7439",
+          "displayName": "Mark Esperanza",
+          "v3Rank": 2,
+          "productionRank": 3,
+          "rankDelta": 1,
+          "v3Rating": 90.36,
+          "qualityGames": 12,
+          "highQualityGames": 12,
+          "consistency": "STEADY",
+          "productionRating": 90.61,
+          "games": 12
+        },
+        {
+          "playerId": "f0b248fe-d417-4628-9807-9c84c94c3e78",
+          "displayName": "Steven Creus",
+          "v3Rank": 4,
+          "productionRank": 5,
+          "rankDelta": 1,
+          "v3Rating": 88.28,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "MIXED",
+          "productionRating": 88.41,
+          "games": 14
+        },
+        {
+          "playerId": "483a768a-4853-4d53-80fe-fd206523d2cd",
+          "displayName": "Allen Te",
+          "v3Rank": 16,
+          "productionRank": 17,
+          "rankDelta": 1,
+          "v3Rating": 76.45,
+          "qualityGames": 10.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 83.02,
+          "games": 17
+        },
+        {
+          "playerId": "3a16eaf6-f1f6-4ad5-a501-448c9b83ddc3",
+          "displayName": "Yuan Ramirez",
+          "v3Rank": 9,
+          "productionRank": 11,
+          "rankDelta": 2,
+          "v3Rating": 79.94,
+          "qualityGames": 13.2,
+          "highQualityGames": 0,
+          "consistency": "STEADY",
+          "productionRating": 87.06,
+          "games": 22
+        },
+        {
+          "playerId": "991f148c-3273-4c07-8b54-02a79be96e25",
+          "displayName": "Joaquin Escudero",
+          "v3Rank": 20,
+          "productionRank": 23,
+          "rankDelta": 3,
+          "v3Rating": 74.59,
+          "qualityGames": 10.8,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 80.77,
+          "games": 18
+        },
+        {
+          "playerId": "0e0e1ed7-4625-4459-892e-9728bc7674f0",
+          "displayName": "Joshua Chua",
+          "v3Rank": 21,
+          "productionRank": 24,
+          "rankDelta": 3,
+          "v3Rating": 73.72,
+          "qualityGames": 13.8,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 80.6,
+          "games": 23
+        },
+        {
+          "playerId": "daa9216f-a9f8-4e8c-bae9-bd08bab3881e",
+          "displayName": "Christian Pedarce",
+          "v3Rank": 25,
+          "productionRank": 28,
+          "rankDelta": 3,
+          "v3Rating": 72.12,
+          "qualityGames": 9.6,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 78.82,
+          "games": 16
+        },
+        {
+          "playerId": "09b4eae4-f094-483b-b443-ebdf196e003a",
+          "displayName": "Joe Bayobay",
+          "v3Rank": 11,
+          "productionRank": 15,
+          "rankDelta": 4,
+          "v3Rating": 79.41,
+          "qualityGames": 10.25,
+          "highQualityGames": 10.25,
+          "consistency": "VARIABLE",
+          "productionRating": 84.03,
+          "games": 11
+        },
+        {
+          "playerId": "819b5460-d9b0-4b41-930d-287f1a35983a",
+          "displayName": "Prince Cayl Lumbre",
+          "v3Rank": 17,
+          "productionRank": 21,
+          "rankDelta": 4,
+          "v3Rating": 76.22,
+          "qualityGames": 9.25,
+          "highQualityGames": 9.25,
+          "consistency": "VARIABLE",
+          "productionRating": 80.97,
+          "games": 10
+        },
+        {
+          "playerId": "d8188ac8-4ff6-4e45-b336-a6459155f472",
+          "displayName": "Gabe Jorge",
+          "v3Rank": 34,
+          "productionRank": 38,
+          "rankDelta": 4,
+          "v3Rating": 68.97,
+          "qualityGames": 10.2,
+          "highQualityGames": 0,
+          "consistency": "MIXED",
+          "productionRating": 75.28,
+          "games": 17
+        },
+        {
+          "playerId": "e3c2f382-6279-40df-9d0a-b0bb808a3a4f",
+          "displayName": "Jetlee Melano",
+          "v3Rank": 6,
+          "productionRank": 12,
+          "rankDelta": 6,
+          "v3Rating": 85.73,
+          "qualityGames": 14,
+          "highQualityGames": 14,
+          "consistency": "MIXED",
+          "productionRating": 86.36,
+          "games": 14
+        },
+        {
+          "playerId": "43478ae0-3792-4e8f-8b46-7b7b73dcc461",
+          "displayName": "Hans Go",
+          "v3Rank": 23,
+          "productionRank": 31,
+          "rankDelta": 8,
+          "v3Rating": 72.73,
+          "qualityGames": 16.8,
+          "highQualityGames": 0,
+          "consistency": "VARIABLE",
+          "productionRating": 78.19,
+          "games": 28
+        }
+      ],
+      "lowSampleOutliers": [
+        {
+          "rank": 1,
+          "player": "Julian Villano",
+          "rating": 89.56,
+          "games": 3,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 2,
+          "player": "Reimune Andrei Aldep",
+          "rating": 87.04,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 3,
+          "player": "Jaime Jacob Iii Hizon",
+          "rating": 86.92,
+          "games": 8,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 4,
+          "player": "Dairick Emmanuel Duterte",
+          "rating": 86.74,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 5,
+          "player": "Dwayne Canete",
+          "rating": 86.43,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 6,
+          "player": "Prince Torres",
+          "rating": 85.51,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 7,
+          "player": "Andwel Cabanero",
+          "rating": 85.4,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 8,
+          "player": "Justine Santos",
+          "rating": 85.2,
+          "games": 6,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 9,
+          "player": "Mark Lester Rosales",
+          "rating": 84.19,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 10,
+          "player": "Jd Turko",
+          "rating": 83.48,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 11,
+          "player": "Harold Flores",
+          "rating": 83.18,
+          "games": 3,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 12,
+          "player": "Nicholas Sibayan",
+          "rating": 83,
+          "games": 3,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 13,
+          "player": "Greggy Calma",
+          "rating": 81.18,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 14,
+          "player": "Botch Raymundo",
+          "rating": 80.67,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 15,
+          "player": "Julius Cody Pili",
+          "rating": 80.59,
+          "games": 5,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 16,
+          "player": "Joren Garcia",
+          "rating": 80.23,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 17,
+          "player": "Duke Andrew Santos",
+          "rating": 79.98,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 18,
+          "player": "Pablo Reguera",
+          "rating": 79.69,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 19,
+          "player": "Prince Edizon Dela Cruz",
+          "rating": 79.57,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 20,
+          "player": "Querubin Fulgencio",
+          "rating": 79.42,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        }
+      ]
+    },
+    {
+      "key": "U19|GIRLS",
+      "label": "U19 Girls",
+      "minimumGames": 5,
+      "candidateCount": 56,
+      "candidateEligibleCount": 45,
+      "productionCount": 56,
+      "productionEligibleCount": 45,
+      "overlapCount": 45,
+      "rankCorrelation": 0.998,
+      "candidateStarDistribution": {
+        "1": 31,
+        "2": 6,
+        "3": 5,
+        "4": 3
+      },
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Aubrey Lapasaran",
+          "productionRating": 89.8,
+          "v3": "Aubrey Lapasaran",
+          "v3Rating": 87.44,
+          "v3Games": 8
+        },
+        {
+          "rank": 2,
+          "production": "Adin Rosano",
+          "productionRating": 87.7,
+          "v3": "Adin Rosano",
+          "v3Rating": 84.19,
+          "v3Games": 8
+        },
+        {
+          "rank": 3,
+          "production": "Riri Perez",
+          "productionRating": 87.44,
+          "v3": "Riri Perez",
+          "v3Rating": 83.26,
+          "v3Games": 8
+        },
+        {
+          "rank": 4,
+          "production": "Janice Oczon",
+          "productionRating": 78.92,
+          "v3": "Janice Oczon",
+          "v3Rating": 74.78,
+          "v3Games": 8
+        },
+        {
+          "rank": 5,
+          "production": "Pia Petalcorin",
+          "productionRating": 78.31,
+          "v3": "Pia Petalcorin",
+          "v3Rating": 74.71,
+          "v3Games": 7
+        },
+        {
+          "rank": 6,
+          "production": "Lea Pinuela",
+          "productionRating": 77.91,
+          "v3": "Lea Pinuela",
+          "v3Rating": 73.57,
+          "v3Games": 8
+        },
+        {
+          "rank": 7,
+          "production": "Koukou Talla",
+          "productionRating": 74.99,
+          "v3": "Koukou Talla",
+          "v3Rating": 70.31,
+          "v3Games": 8
+        },
+        {
+          "rank": 8,
+          "production": "Apyang Dulay",
+          "productionRating": 74.6,
+          "v3": "Apyang Dulay",
+          "v3Rating": 70.05,
+          "v3Games": 6
+        },
+        {
+          "rank": 9,
+          "production": "Ima Navarro",
+          "productionRating": 72.7,
+          "v3": "Ruiza Olmos",
+          "v3Rating": 68.32,
+          "v3Games": 8
+        },
+        {
+          "rank": 10,
+          "production": "Ruiza Olmos",
+          "productionRating": 71.84,
+          "v3": "Ima Navarro",
+          "v3Rating": 66.66,
+          "v3Games": 6
+        }
+      ],
+      "biggestRisers": [
+        {
+          "playerId": "e89fcccd-7ed4-433a-b257-e77cf6220492",
+          "displayName": "Zia Onate",
+          "v3Rank": 24,
+          "productionRank": 26,
+          "rankDelta": 2,
+          "v3Rating": 44.08,
+          "qualityGames": 7,
+          "highQualityGames": 7,
+          "consistency": "VARIABLE",
+          "productionRating": 49.21,
+          "games": 7
+        },
+        {
+          "playerId": "7e368e4a-e0aa-4647-8596-7ea0ffd14c44",
+          "displayName": "Ruiza Olmos",
+          "v3Rank": 9,
+          "productionRank": 10,
+          "rankDelta": 1,
+          "v3Rating": 68.32,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "MIXED",
+          "productionRating": 71.84,
+          "games": 8
+        },
+        {
+          "playerId": "f5f3ff63-ec12-4788-a3ab-680b6cac1ab9",
+          "displayName": "Zane Singson",
+          "v3Rank": 11,
+          "productionRank": 12,
+          "rankDelta": 1,
+          "v3Rating": 64.49,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 68.99,
+          "games": 8
+        },
+        {
+          "playerId": "c29f4fa4-68fb-4c4a-90cf-9066b0b7ae75",
+          "displayName": "Bri Katigbak",
+          "v3Rank": 17,
+          "productionRank": 18,
+          "rankDelta": 1,
+          "v3Rating": 51.55,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "MIXED",
+          "productionRating": 55.49,
+          "games": 8
+        },
+        {
+          "playerId": "922a5522-3987-42ab-80cd-e2a5ce8a5c52",
+          "displayName": "Nadine Labay",
+          "v3Rank": 23,
+          "productionRank": 24,
+          "rankDelta": 1,
+          "v3Rating": 44.65,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 49.75,
+          "games": 6
+        },
+        {
+          "playerId": "1f2b7a27-a613-432b-8953-a98e74a02d91",
+          "displayName": "Sophia Townes",
+          "v3Rank": 26,
+          "productionRank": 27,
+          "rankDelta": 1,
+          "v3Rating": 42.6,
+          "qualityGames": 5,
+          "highQualityGames": 5,
+          "consistency": "VARIABLE",
+          "productionRating": 49,
+          "games": 5
+        },
+        {
+          "playerId": "be99fc5f-5246-441f-9836-a4c899ee82e4",
+          "displayName": "Tyler Templo",
+          "v3Rank": 35,
+          "productionRank": 36,
+          "rankDelta": 1,
+          "v3Rating": 24.64,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 28.4,
+          "games": 6
+        },
+        {
+          "playerId": "54b26352-93f6-427b-87f1-0149dc0561d6",
+          "displayName": "Zoe Ablang",
+          "v3Rank": 37,
+          "productionRank": 38,
+          "rankDelta": 1,
+          "v3Rating": 22.26,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 26.95,
+          "games": 6
+        },
+        {
+          "playerId": "09c4dc79-fdb1-4a91-b4dc-717e099bf517",
+          "displayName": "Louise Doque",
+          "v3Rank": 40,
+          "productionRank": 41,
+          "rankDelta": 1,
+          "v3Rating": 16.8,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "MIXED",
+          "productionRating": 21.63,
+          "games": 6
+        },
+        {
+          "playerId": "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+          "displayName": "Aubrey Lapasaran",
+          "v3Rank": 1,
+          "productionRank": 1,
+          "rankDelta": 0,
+          "v3Rating": 87.44,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "STEADY",
+          "productionRating": 89.8,
+          "games": 8
+        },
+        {
+          "playerId": "7ed85dd3-7f49-4761-a5f5-708015df611d",
+          "displayName": "Adin Rosano",
+          "v3Rank": 2,
+          "productionRank": 2,
+          "rankDelta": 0,
+          "v3Rating": 84.19,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "MIXED",
+          "productionRating": 87.7,
+          "games": 8
+        },
+        {
+          "playerId": "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+          "displayName": "Riri Perez",
+          "v3Rank": 3,
+          "productionRank": 3,
+          "rankDelta": 0,
+          "v3Rating": 83.26,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "MIXED",
+          "productionRating": 87.44,
+          "games": 8
+        },
+        {
+          "playerId": "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+          "displayName": "Janice Oczon",
+          "v3Rank": 4,
+          "productionRank": 4,
+          "rankDelta": 0,
+          "v3Rating": 74.78,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 78.92,
+          "games": 8
+        },
+        {
+          "playerId": "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+          "displayName": "Pia Petalcorin",
+          "v3Rank": 5,
+          "productionRank": 5,
+          "rankDelta": 0,
+          "v3Rating": 74.71,
+          "qualityGames": 7,
+          "highQualityGames": 7,
+          "consistency": "MIXED",
+          "productionRating": 78.31,
+          "games": 7
+        },
+        {
+          "playerId": "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+          "displayName": "Lea Pinuela",
+          "v3Rank": 6,
+          "productionRank": 6,
+          "rankDelta": 0,
+          "v3Rating": 73.57,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 77.91,
+          "games": 8
+        }
+      ],
+      "biggestFallers": [
+        {
+          "playerId": "9d516d88-00a5-44c2-9f83-5b0db3d2747f",
+          "displayName": "Ice Gerona",
+          "v3Rank": 25,
+          "productionRank": 23,
+          "rankDelta": -2,
+          "v3Rating": 43.73,
+          "qualityGames": 5,
+          "highQualityGames": 5,
+          "consistency": "VARIABLE",
+          "productionRating": 50.08,
+          "games": 5
+        },
+        {
+          "playerId": "62d91284-330a-432c-9c33-1d1433bdc83b",
+          "displayName": "Cheska Gozum",
+          "v3Rank": 27,
+          "productionRank": 25,
+          "rankDelta": -2,
+          "v3Rating": 41.34,
+          "qualityGames": 5,
+          "highQualityGames": 5,
+          "consistency": "VARIABLE",
+          "productionRating": 49.54,
+          "games": 5
+        },
+        {
+          "playerId": "cb839d5d-e6e8-4e11-96d9-50920c9717c5",
+          "displayName": "Ima Navarro",
+          "v3Rank": 10,
+          "productionRank": 9,
+          "rankDelta": -1,
+          "v3Rating": 66.66,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 72.7,
+          "games": 6
+        },
+        {
+          "playerId": "534ed135-5db6-4d2d-9d70-d56430642d1e",
+          "displayName": "Ching Ching Gales",
+          "v3Rank": 12,
+          "productionRank": 11,
+          "rankDelta": -1,
+          "v3Rating": 64.27,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 70.7,
+          "games": 6
+        },
+        {
+          "playerId": "2386148f-33ef-47fc-8d6e-729bbc84c806",
+          "displayName": "Hasly Mallari",
+          "v3Rank": 18,
+          "productionRank": 17,
+          "rankDelta": -1,
+          "v3Rating": 50.53,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 55.52,
+          "games": 8
+        },
+        {
+          "playerId": "75ca49b2-bde9-47fe-8b19-8f9e6203bf2b",
+          "displayName": "Rhys Luzana",
+          "v3Rank": 36,
+          "productionRank": 35,
+          "rankDelta": -1,
+          "v3Rating": 23.94,
+          "qualityGames": 7,
+          "highQualityGames": 7,
+          "consistency": "VARIABLE",
+          "productionRating": 29.65,
+          "games": 7
+        },
+        {
+          "playerId": "b7934aa1-7937-4b22-b16f-137e320c4eb4",
+          "displayName": "Chloe Mariano",
+          "v3Rank": 38,
+          "productionRank": 37,
+          "rankDelta": -1,
+          "v3Rating": 22.09,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 28.23,
+          "games": 6
+        },
+        {
+          "playerId": "ff1be5ad-0a71-4d22-8c5a-febe3bb4a6a7",
+          "displayName": "Alessia Palmiey",
+          "v3Rank": 41,
+          "productionRank": 40,
+          "rankDelta": -1,
+          "v3Rating": 15.53,
+          "qualityGames": 6,
+          "highQualityGames": 6,
+          "consistency": "VARIABLE",
+          "productionRating": 22.18,
+          "games": 6
+        },
+        {
+          "playerId": "8ff5dec2-edc1-4e85-ba46-bd9ca1d9e986",
+          "displayName": "Aubrey Lapasaran",
+          "v3Rank": 1,
+          "productionRank": 1,
+          "rankDelta": 0,
+          "v3Rating": 87.44,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "STEADY",
+          "productionRating": 89.8,
+          "games": 8
+        },
+        {
+          "playerId": "7ed85dd3-7f49-4761-a5f5-708015df611d",
+          "displayName": "Adin Rosano",
+          "v3Rank": 2,
+          "productionRank": 2,
+          "rankDelta": 0,
+          "v3Rating": 84.19,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "MIXED",
+          "productionRating": 87.7,
+          "games": 8
+        },
+        {
+          "playerId": "5163644e-5a9a-48fc-8be4-a2be40ced9da",
+          "displayName": "Riri Perez",
+          "v3Rank": 3,
+          "productionRank": 3,
+          "rankDelta": 0,
+          "v3Rating": 83.26,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "MIXED",
+          "productionRating": 87.44,
+          "games": 8
+        },
+        {
+          "playerId": "3de8fcdb-6d4e-4c60-a369-9948f59a9574",
+          "displayName": "Janice Oczon",
+          "v3Rank": 4,
+          "productionRank": 4,
+          "rankDelta": 0,
+          "v3Rating": 74.78,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 78.92,
+          "games": 8
+        },
+        {
+          "playerId": "402fb92f-4e9a-4725-b078-e84cc1ee6c8f",
+          "displayName": "Pia Petalcorin",
+          "v3Rank": 5,
+          "productionRank": 5,
+          "rankDelta": 0,
+          "v3Rating": 74.71,
+          "qualityGames": 7,
+          "highQualityGames": 7,
+          "consistency": "MIXED",
+          "productionRating": 78.31,
+          "games": 7
+        },
+        {
+          "playerId": "1d310334-b30a-4c02-b1b6-09c6c1d90161",
+          "displayName": "Lea Pinuela",
+          "v3Rank": 6,
+          "productionRank": 6,
+          "rankDelta": 0,
+          "v3Rating": 73.57,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 77.91,
+          "games": 8
+        },
+        {
+          "playerId": "98826725-620c-4417-9f41-349da347c811",
+          "displayName": "Koukou Talla",
+          "v3Rank": 7,
+          "productionRank": 7,
+          "rankDelta": 0,
+          "v3Rating": 70.31,
+          "qualityGames": 8,
+          "highQualityGames": 8,
+          "consistency": "VARIABLE",
+          "productionRating": 74.99,
+          "games": 8
+        }
+      ],
+      "lowSampleOutliers": [
+        {
+          "rank": 1,
+          "player": "Yuyi Capinpin",
+          "rating": 34.67,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 2,
+          "player": "Queennie Cordero",
+          "rating": 34.11,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 3,
+          "player": "Trishma Arciaga",
+          "rating": 30.58,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 4,
+          "player": "Laela Mateo",
+          "rating": 27.81,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 5,
+          "player": "Fritz Cuaresma",
+          "rating": 22.46,
+          "games": 2,
+          "confidence": "PROVISIONAL"
+        },
+        {
+          "rank": 6,
+          "player": "CJ Luz Roque",
+          "rating": 20.28,
+          "games": 3,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 7,
+          "player": "Zia Kallos",
+          "rating": 19.97,
+          "games": 3,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 8,
+          "player": "Bela Chuidian",
+          "rating": 19.26,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 9,
+          "player": "Sophie Sanares",
+          "rating": 16.55,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 10,
+          "player": "Denise Calig-onan",
+          "rating": 11.81,
+          "games": 4,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 11,
+          "player": "Irish Notarte",
+          "rating": 1,
+          "games": 1,
+          "confidence": "PROVISIONAL"
+        }
+      ]
+    }
+  ]
+}

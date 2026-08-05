@@ -1,0 +1,2599 @@
+{
+  "generatedAt": "2026-08-05T15:21:32.132Z",
+  "command": "npm.cmd run ratings:ecosystem:preview",
+  "mode": "read-only-shadow",
+  "policies": {
+    "player": "formula-v3.3-continuous-strength-shadow-v1",
+    "team": "TPI-v2-team-context-shadow",
+    "competition": "competition-strength-v1.1-continuous-shadow"
+  },
+  "databaseWrites": false,
+  "productionRatingsChanged": false,
+  "snapshotsGenerated": false,
+  "inventory": {
+    "officialStatRows": 10198,
+    "statBearingGames": 463,
+    "officialTeamResultGames": 463,
+    "teamResultOnlyGames": 0,
+    "players": 1395,
+    "teams": 97,
+    "competitionPools": 12,
+    "teamRatings": 105,
+    "playerRatings": 1412
+  },
+  "competitionProfiles": [
+    {
+      "poolKey": "c4884785-34a9-4b1b-8841-06a390cfc74a|U19|BOYS",
+      "leagueId": "f14b052d-6786-4173-85b2-979b3b6f0781",
+      "seasonId": "c4884785-34a9-4b1b-8841-06a390cfc74a",
+      "label": "NCAA Season 101 Junior's Basketball / U19 / BOYS",
+      "governancePrior": 92,
+      "observedStrength": 98,
+      "strengthRating": 95.9,
+      "displayTier": 1,
+      "confidence": 1,
+      "provisional": false,
+      "translationScale": 0.9836,
+      "translationOffset": 2.508,
+      "evidenceWeight": 0.9734,
+      "highQualityEvidence": true,
+      "diagnostics": {
+        "gameCount": 81,
+        "teamCount": 10,
+        "playerCount": 136,
+        "crossoverPlayerCount": 29,
+        "teamStrength": 52.59,
+        "playerDepth": 51.67,
+        "crossoverStrength": 98
+      }
+    },
+    {
+      "poolKey": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9|U19|BOYS",
+      "leagueId": "d721a82a-f182-4a54-983a-01453650ec9e",
+      "seasonId": "77858fdc-9a0b-4b4a-8820-4ad0a105a8a9",
+      "label": "UAAP Season 88 HS Boys Basketball / U19 / BOYS",
+      "governancePrior": 89.2,
+      "observedStrength": 98,
+      "strengthRating": 94.92,
+      "displayTier": 1,
+      "confidence": 1,
+      "provisional": false,
+      "translationScale": 0.9797,
+      "translationOffset": 2.3904,
+      "evidenceWeight": 0.967,
+      "highQualityEvidence": true,
+      "diagnostics": {
+        "gameCount": 62,
+        "teamCount": 8,
+        "playerCount": 97,
+        "crossoverPlayerCount": 15,
+        "teamStrength": 52.64,
+        "playerDepth": 52.17,
+        "crossoverStrength": 98
+      }
+    },
+    {
+      "poolKey": "308c354b-3f3e-418e-ba34-5d6f7de9485e|U19|GIRLS",
+      "leagueId": "ea377aba-7d8a-48b9-acb1-0ecaa1e12aef",
+      "seasonId": "308c354b-3f3e-418e-ba34-5d6f7de9485e",
+      "label": "UAAP Season 88 HS Girls Basketball / U19 / GIRLS",
+      "governancePrior": 89.2,
+      "observedStrength": 89.2,
+      "strengthRating": 89.2,
+      "displayTier": 1,
+      "confidence": 0.406,
+      "provisional": true,
+      "translationScale": 0.9568,
+      "translationOffset": 1.704,
+      "evidenceWeight": 0.9298,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 14,
+        "teamCount": 4,
+        "playerCount": 56,
+        "crossoverPlayerCount": 0,
+        "teamStrength": 51.75,
+        "playerDepth": 55.42,
+        "crossoverStrength": null
+      }
+    },
+    {
+      "poolKey": "39a4a46c-6362-411f-ae85-6f631414f30b|U16|BOYS",
+      "leagueId": "c112c09d-75ac-46ed-96e4-ce2852bfba75",
+      "seasonId": "39a4a46c-6362-411f-ae85-6f631414f30b",
+      "label": "UAAP Season 88 16U Boys Basketball / U16 / BOYS",
+      "governancePrior": 92,
+      "observedStrength": 85.62,
+      "strengthRating": 87.86,
+      "displayTier": 1,
+      "confidence": 1,
+      "provisional": false,
+      "translationScale": 0.9514,
+      "translationOffset": 1.5427,
+      "evidenceWeight": 0.9211,
+      "highQualityEvidence": true,
+      "diagnostics": {
+        "gameCount": 60,
+        "teamCount": 8,
+        "playerCount": 118,
+        "crossoverPlayerCount": 14,
+        "teamStrength": 52.42,
+        "playerDepth": 53.17,
+        "crossoverStrength": 85.62
+      }
+    },
+    {
+      "poolKey": "dc6cf367-da52-4385-8f3d-4b9fcff713f6|U19|BOYS",
+      "leagueId": "8b7084c8-e21e-4adb-997b-a40efa2abd55",
+      "seasonId": "dc6cf367-da52-4385-8f3d-4b9fcff713f6",
+      "label": "Philippine Youth Basketball Championship – 18U / U18 / BOYS",
+      "governancePrior": 92,
+      "observedStrength": 85.5,
+      "strengthRating": 87.77,
+      "displayTier": 1,
+      "confidence": 0.791,
+      "provisional": false,
+      "translationScale": 0.9511,
+      "translationOffset": 1.5326,
+      "evidenceWeight": 0.9205,
+      "highQualityEvidence": true,
+      "diagnostics": {
+        "gameCount": 15,
+        "teamCount": 6,
+        "playerCount": 99,
+        "crossoverPlayerCount": 28,
+        "teamStrength": 51.5,
+        "playerDepth": 57.19,
+        "crossoverStrength": 85.5
+      }
+    },
+    {
+      "poolKey": "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a|U19|BOYS",
+      "leagueId": "8a446be5-fab1-4f60-9bb1-28f05f766f94",
+      "seasonId": "5a9fbea3-ca68-4d65-9e84-dd03cdfa572a",
+      "label": "Stallion Cup - 18U / U18 / BOYS",
+      "governancePrior": 67,
+      "observedStrength": 79,
+      "strengthRating": 74.8,
+      "displayTier": 2,
+      "confidence": 0.909,
+      "provisional": false,
+      "translationScale": 0.8992,
+      "translationOffset": -0.024,
+      "evidenceWeight": 0.8362,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 25,
+        "teamCount": 7,
+        "playerCount": 81,
+        "crossoverPlayerCount": 52,
+        "teamStrength": 50.91,
+        "playerDepth": 60.9,
+        "crossoverStrength": 79
+      }
+    },
+    {
+      "poolKey": "20a1251b-36c3-422b-a054-d537d4a5491c|U19|BOYS",
+      "leagueId": "a886f9a2-35e5-4cd0-a0bf-4a2c1e20ab53",
+      "seasonId": "20a1251b-36c3-422b-a054-d537d4a5491c",
+      "label": "Junior MPBL Season 4 – 18U / U18 / BOYS",
+      "governancePrior": 80,
+      "observedStrength": 68,
+      "strengthRating": 72.2,
+      "displayTier": 2,
+      "confidence": 1,
+      "provisional": false,
+      "translationScale": 0.8888,
+      "translationOffset": -0.336,
+      "evidenceWeight": 0.8193,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 48,
+        "teamCount": 23,
+        "playerCount": 534,
+        "crossoverPlayerCount": 54,
+        "teamStrength": 50.45,
+        "playerDepth": 57.53,
+        "crossoverStrength": 68
+      }
+    },
+    {
+      "poolKey": "757fb031-d320-46a5-b9b6-e05fa321c0e7|U13|BOYS",
+      "leagueId": "87e9d0c6-d5d4-41f5-9d1c-e495cd16baad",
+      "seasonId": "757fb031-d320-46a5-b9b6-e05fa321c0e7",
+      "label": "Philippine Youth Basketball Championship – 13U / U13 / BOYS",
+      "governancePrior": 67,
+      "observedStrength": 67,
+      "strengthRating": 67,
+      "displayTier": 3,
+      "confidence": 0.75,
+      "provisional": false,
+      "translationScale": 0.868,
+      "translationOffset": -0.96,
+      "evidenceWeight": 0.7855,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 35,
+        "teamCount": 8,
+        "playerCount": 129,
+        "crossoverPlayerCount": 0,
+        "teamStrength": 50.28,
+        "playerDepth": 56.51,
+        "crossoverStrength": null
+      }
+    },
+    {
+      "poolKey": "e7269f1b-0b16-4929-93cb-24683b87db44|U16|BOYS",
+      "leagueId": "636a2e94-13d9-4c6b-8d6a-becfb8db764b",
+      "seasonId": "e7269f1b-0b16-4929-93cb-24683b87db44",
+      "label": "Philippine Youth Basketball Championship – 15U / U15 / BOYS",
+      "governancePrior": 67,
+      "observedStrength": 55,
+      "strengthRating": 66.35,
+      "displayTier": 3,
+      "confidence": 0.771,
+      "provisional": false,
+      "translationScale": 0.8654,
+      "translationOffset": -1.038,
+      "evidenceWeight": 0.7813,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 36,
+        "teamCount": 8,
+        "playerCount": 133,
+        "crossoverPlayerCount": 1,
+        "teamStrength": 50.36,
+        "playerDepth": 57.52,
+        "crossoverStrength": 55
+      }
+    },
+    {
+      "poolKey": "ad8c32e3-9c9e-4191-aa87-9c403fbd10f2|U19|BOYS",
+      "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+      "seasonId": "ad8c32e3-9c9e-4191-aa87-9c403fbd10f2",
+      "label": "Stallion Cup – 17U / U17 / BOYS",
+      "governancePrior": 67,
+      "observedStrength": 65.86,
+      "strengthRating": 66.26,
+      "displayTier": 3,
+      "confidence": 0.981,
+      "provisional": false,
+      "translationScale": 0.865,
+      "translationOffset": -1.0487,
+      "evidenceWeight": 0.7807,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 30,
+        "teamCount": 8,
+        "playerCount": 81,
+        "crossoverPlayerCount": 65,
+        "teamStrength": 50.19,
+        "playerDepth": 61.32,
+        "crossoverStrength": 65.86
+      }
+    },
+    {
+      "poolKey": "b2797e91-ac78-4b09-82f8-13c979ed0a94|U19|BOYS",
+      "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+      "seasonId": "b2797e91-ac78-4b09-82f8-13c979ed0a94",
+      "label": "Stallion Cup – 17U / U17 / BOYS",
+      "governancePrior": 67,
+      "observedStrength": 61.47,
+      "strengthRating": 63.41,
+      "displayTier": 3,
+      "confidence": 1,
+      "provisional": false,
+      "translationScale": 0.8536,
+      "translationOffset": -1.3911,
+      "evidenceWeight": 0.7621,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 32,
+        "teamCount": 8,
+        "playerCount": 96,
+        "crossoverPlayerCount": 74,
+        "teamStrength": 50.01,
+        "playerDepth": 59.52,
+        "crossoverStrength": 61.47
+      }
+    },
+    {
+      "poolKey": "40a580af-9bb7-4cb3-9c7f-04c1da153b82|U19|BOYS",
+      "leagueId": "97522351-bfe3-47fb-9bb5-0ec66e32fb42",
+      "seasonId": "40a580af-9bb7-4cb3-9c7f-04c1da153b82",
+      "label": "Stallion Cup – 17U / U17 / BOYS",
+      "governancePrior": 67,
+      "observedStrength": 60.95,
+      "strengthRating": 63.07,
+      "displayTier": 3,
+      "confidence": 0.909,
+      "provisional": false,
+      "translationScale": 0.8523,
+      "translationOffset": -1.4315,
+      "evidenceWeight": 0.76,
+      "highQualityEvidence": false,
+      "diagnostics": {
+        "gameCount": 25,
+        "teamCount": 7,
+        "playerCount": 83,
+        "crossoverPlayerCount": 55,
+        "teamStrength": 49.91,
+        "playerDepth": 57.42,
+        "crossoverStrength": 60.95
+      }
+    }
+  ],
+  "connectivity": [
+    {
+      "board": "U19|BOYS",
+      "pools": 9,
+      "crossoverPlayers": 140,
+      "connectedComponents": 2,
+      "connected": false
+    },
+    {
+      "board": "U16|BOYS",
+      "pools": 7,
+      "crossoverPlayers": 16,
+      "connectedComponents": 2,
+      "connected": false
+    },
+    {
+      "board": "U13|BOYS",
+      "pools": 1,
+      "crossoverPlayers": 0,
+      "connectedComponents": 1,
+      "connected": true
+    },
+    {
+      "board": "U19|GIRLS",
+      "pools": 1,
+      "crossoverPlayers": 0,
+      "connectedComponents": 1,
+      "connected": true
+    }
+  ],
+  "teamPools": [
+    {
+      "pool": "Junior MPBL Season 4 – 18U / U18 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "San Juan U19 Boys",
+          "rating": 52.46,
+          "games": 8,
+          "confidence": 0.766,
+          "uncertainty": 5.27
+        },
+        {
+          "rank": 2,
+          "team": "Antipolo U19 Boys",
+          "rating": 51.73,
+          "games": 3,
+          "confidence": 0.374,
+          "uncertainty": 10.76
+        },
+        {
+          "rank": 3,
+          "team": "Palawan U19 Boys",
+          "rating": 51.63,
+          "games": 4,
+          "confidence": 0.489,
+          "uncertainty": 9.15
+        },
+        {
+          "rank": 4,
+          "team": "N. Ecija U19 Boys",
+          "rating": 51.62,
+          "games": 4,
+          "confidence": 0.498,
+          "uncertainty": 9.02
+        },
+        {
+          "rank": 5,
+          "team": "Valenzuela U19 Boys",
+          "rating": 51.19,
+          "games": 4,
+          "confidence": 0.484,
+          "uncertainty": 9.23
+        },
+        {
+          "rank": 6,
+          "team": "San Pedro Spartans U18 Boys",
+          "rating": 51.02,
+          "games": 6,
+          "confidence": 0.672,
+          "uncertainty": 6.59
+        },
+        {
+          "rank": 7,
+          "team": "Batangas U19 Boys",
+          "rating": 51.01,
+          "games": 6,
+          "confidence": 0.666,
+          "uncertainty": 6.67
+        },
+        {
+          "rank": 8,
+          "team": "Biñan U19 Boys",
+          "rating": 50.35,
+          "games": 3,
+          "confidence": 0.365,
+          "uncertainty": 10.89
+        },
+        {
+          "rank": 9,
+          "team": "Muntinlupa U19 Boys",
+          "rating": 50.24,
+          "games": 4,
+          "confidence": 0.497,
+          "uncertainty": 9.04
+        },
+        {
+          "rank": 10,
+          "team": "Bulacan U19 Boys",
+          "rating": 50.21,
+          "games": 5,
+          "confidence": 0.597,
+          "uncertainty": 7.65
+        }
+      ]
+    },
+    {
+      "pool": "UAAP Season 88 HS Girls Basketball / U19 / GIRLS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "UST Tigress Cubs",
+          "rating": 52.31,
+          "games": 8,
+          "confidence": 0.482,
+          "uncertainty": 9.26
+        },
+        {
+          "rank": 2,
+          "team": "NUNS Lady Bullpups",
+          "rating": 52.27,
+          "games": 8,
+          "confidence": 0.481,
+          "uncertainty": 9.26
+        },
+        {
+          "rank": 3,
+          "team": "De La Salle Zobel Lady Junior Archers",
+          "rating": 50.37,
+          "games": 6,
+          "confidence": 0.404,
+          "uncertainty": 10.35
+        },
+        {
+          "rank": 4,
+          "team": "Ateneo Lady Eaglets",
+          "rating": 49.05,
+          "games": 6,
+          "confidence": 0.404,
+          "uncertainty": 10.34
+        }
+      ]
+    },
+    {
+      "pool": "UAAP Season 88 16U Boys Basketball / U16 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "NUNS Bullpups 16U",
+          "rating": 54.02,
+          "games": 16,
+          "confidence": 0.818,
+          "uncertainty": 4.55
+        },
+        {
+          "rank": 2,
+          "team": "FEU - Diliman Baby Tamaraws 16U",
+          "rating": 52.65,
+          "games": 18,
+          "confidence": 0.877,
+          "uncertainty": 3.73
+        },
+        {
+          "rank": 3,
+          "team": "UST Tiger Cubs 16U",
+          "rating": 52.63,
+          "games": 15,
+          "confidence": 0.789,
+          "uncertainty": 4.96
+        },
+        {
+          "rank": 4,
+          "team": "Adamson Baby Falcons 16U",
+          "rating": 52.46,
+          "games": 15,
+          "confidence": 0.789,
+          "uncertainty": 4.96
+        },
+        {
+          "rank": 5,
+          "team": "UE Junior Warriors 16U",
+          "rating": 52.04,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        },
+        {
+          "rank": 6,
+          "team": "Ateneo Blue Eaglets 16U",
+          "rating": 50.88,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        },
+        {
+          "rank": 7,
+          "team": "De La Salle Zobel Junior Archers 16U",
+          "rating": 49.34,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        },
+        {
+          "rank": 8,
+          "team": "UP Junior Fighting Maroons 16U",
+          "rating": 49.3,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        }
+      ]
+    },
+    {
+      "pool": "Stallion Cup – 17U / U17 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "Bistrot Le Coucou U19 Boys",
+          "rating": 51.01,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 2,
+          "team": "Chatime U17 Boys",
+          "rating": 49.99,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 3,
+          "team": "Celsius",
+          "rating": 49.9,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 4,
+          "team": "BBC U17 Boys",
+          "rating": 49.89,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 5,
+          "team": "Ogalala U19 Boys",
+          "rating": 49.3,
+          "games": 6,
+          "confidence": 0.525,
+          "uncertainty": 8.64
+        },
+        {
+          "rank": 6,
+          "team": "Torch",
+          "rating": 49.28,
+          "games": 6,
+          "confidence": 0.525,
+          "uncertainty": 8.64
+        },
+        {
+          "rank": 7,
+          "team": "Fruteria",
+          "rating": 48.94,
+          "games": 6,
+          "confidence": 0.525,
+          "uncertainty": 8.64
+        }
+      ]
+    },
+    {
+      "pool": "Stallion Cup - 18U / U18 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "BBC U18 Boys",
+          "rating": 51.71,
+          "games": 8,
+          "confidence": 0.68,
+          "uncertainty": 6.48
+        },
+        {
+          "rank": 2,
+          "team": "JJ Sports",
+          "rating": 51.67,
+          "games": 8,
+          "confidence": 0.683,
+          "uncertainty": 6.44
+        },
+        {
+          "rank": 3,
+          "team": "Chatime U18 Boys",
+          "rating": 51.43,
+          "games": 8,
+          "confidence": 0.684,
+          "uncertainty": 6.42
+        },
+        {
+          "rank": 4,
+          "team": "Charm U18 Boys",
+          "rating": 50.38,
+          "games": 8,
+          "confidence": 0.679,
+          "uncertainty": 6.5
+        },
+        {
+          "rank": 5,
+          "team": "Azarias",
+          "rating": 50.25,
+          "games": 6,
+          "confidence": 0.594,
+          "uncertainty": 7.69
+        },
+        {
+          "rank": 6,
+          "team": "Amsteel U18 Boys",
+          "rating": 49.81,
+          "games": 6,
+          "confidence": 0.591,
+          "uncertainty": 7.73
+        },
+        {
+          "rank": 7,
+          "team": "Gold Cross U18 Boys",
+          "rating": 49.47,
+          "games": 6,
+          "confidence": 0.586,
+          "uncertainty": 7.8
+        }
+      ]
+    },
+    {
+      "pool": "Philippine Youth Basketball Championship – 13U / U13 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "Chef's Magic MLO Basketball 13U",
+          "rating": 51.39,
+          "games": 12,
+          "confidence": 0.701,
+          "uncertainty": 6.19
+        },
+        {
+          "rank": 2,
+          "team": "Jet's Barbershop 13U",
+          "rating": 51.19,
+          "games": 12,
+          "confidence": 0.701,
+          "uncertainty": 6.19
+        },
+        {
+          "rank": 3,
+          "team": "Smile 360 Bullies U13 Boys",
+          "rating": 50.59,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 4,
+          "team": "JPM-TEC San Beda U13 Boys",
+          "rating": 50.04,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 5,
+          "team": "Aces Solar Locked In 13U",
+          "rating": 49.78,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 6,
+          "team": "GTG Foundation Los Baños Gallants 13U",
+          "rating": 49.59,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 7,
+          "team": "TOPS Mordeno 13U",
+          "rating": 48.69,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 8,
+          "team": "EMDS Rizal Knights 13U",
+          "rating": 48.16,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        }
+      ]
+    },
+    {
+      "pool": "UAAP Season 88 HS Boys Basketball / U19 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "NUNS Bullpups",
+          "rating": 54.67,
+          "games": 18,
+          "confidence": 0.96,
+          "uncertainty": 2.57
+        },
+        {
+          "rank": 2,
+          "team": "Ateneo Blue Eaglets",
+          "rating": 53.82,
+          "games": 16,
+          "confidence": 0.879,
+          "uncertainty": 3.69
+        },
+        {
+          "rank": 3,
+          "team": "FEU - Diliman Baby Tamaraws",
+          "rating": 53.63,
+          "games": 19,
+          "confidence": 0.996,
+          "uncertainty": 2.05
+        },
+        {
+          "rank": 4,
+          "team": "UE Junior Warriors",
+          "rating": 51.81,
+          "games": 14,
+          "confidence": 0.805,
+          "uncertainty": 4.73
+        },
+        {
+          "rank": 5,
+          "team": "De La Salle Zobel Junior Archers",
+          "rating": 51.79,
+          "games": 15,
+          "confidence": 0.843,
+          "uncertainty": 4.2
+        },
+        {
+          "rank": 6,
+          "team": "Adamson Baby Falcons",
+          "rating": 51.54,
+          "games": 14,
+          "confidence": 0.805,
+          "uncertainty": 4.73
+        },
+        {
+          "rank": 7,
+          "team": "UST Tiger Cubs",
+          "rating": 51.53,
+          "games": 14,
+          "confidence": 0.805,
+          "uncertainty": 4.73
+        },
+        {
+          "rank": 8,
+          "team": "UP Junior Fighting Maroons",
+          "rating": 49.56,
+          "games": 14,
+          "confidence": 0.805,
+          "uncertainty": 4.73
+        }
+      ]
+    },
+    {
+      "pool": "Stallion Cup – 17U / U17 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "Amsteel U17 Boys",
+          "rating": 50.91,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 2,
+          "team": "Gold Cross U17 Boys",
+          "rating": 50.64,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 3,
+          "team": "Torch",
+          "rating": 50.22,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 4,
+          "team": "Auto-Gard",
+          "rating": 50.19,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 5,
+          "team": "Charm U17 Boys",
+          "rating": 49.97,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 6,
+          "team": "BBC U17 Boys",
+          "rating": 49.6,
+          "games": 6,
+          "confidence": 0.525,
+          "uncertainty": 8.64
+        },
+        {
+          "rank": 7,
+          "team": "Celsius",
+          "rating": 49.12,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 8,
+          "team": "Tapa Mama",
+          "rating": 48.9,
+          "games": 5,
+          "confidence": 0.496,
+          "uncertainty": 9.05
+        }
+      ]
+    },
+    {
+      "pool": "Stallion Cup – 17U / U17 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "BBC U17 Boys",
+          "rating": 50.88,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 2,
+          "team": "Boysen",
+          "rating": 50.83,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 3,
+          "team": "Firestone",
+          "rating": 50.25,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 4,
+          "team": "Charm U17 Boys",
+          "rating": 49.75,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 5,
+          "team": "Buttery & Co",
+          "rating": 49.64,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 6,
+          "team": "Gold Cross U17 Boys",
+          "rating": 49.64,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 7,
+          "team": "MARCars U19 Boys",
+          "rating": 49.29,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 8,
+          "team": "Fair N Square",
+          "rating": 48.74,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        }
+      ]
+    },
+    {
+      "pool": "NCAA Season 101 Junior's Basketball / U19 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "Mapúa Red Robins",
+          "rating": 53.3,
+          "games": 18,
+          "confidence": 0.877,
+          "uncertainty": 3.73
+        },
+        {
+          "rank": 2,
+          "team": "EAC Brigadiers",
+          "rating": 53.09,
+          "games": 18,
+          "confidence": 0.877,
+          "uncertainty": 3.73
+        },
+        {
+          "rank": 3,
+          "team": "Arellano Braves",
+          "rating": 52.92,
+          "games": 19,
+          "confidence": 0.906,
+          "uncertainty": 3.32
+        },
+        {
+          "rank": 4,
+          "team": "Letran Squires",
+          "rating": 52.81,
+          "games": 20,
+          "confidence": 0.935,
+          "uncertainty": 2.91
+        },
+        {
+          "rank": 5,
+          "team": "LSGH Greenies",
+          "rating": 52.76,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        },
+        {
+          "rank": 6,
+          "team": "Perpetual Junior Daltas",
+          "rating": 51.93,
+          "games": 15,
+          "confidence": 0.789,
+          "uncertainty": 4.96
+        },
+        {
+          "rank": 7,
+          "team": "San Sebastian Golden Staglets",
+          "rating": 51.81,
+          "games": 15,
+          "confidence": 0.789,
+          "uncertainty": 4.96
+        },
+        {
+          "rank": 8,
+          "team": "LPU Junior Pirates",
+          "rating": 51.46,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        },
+        {
+          "rank": 9,
+          "team": "San Beda Red Cubs",
+          "rating": 51.43,
+          "games": 15,
+          "confidence": 0.789,
+          "uncertainty": 4.96
+        },
+        {
+          "rank": 10,
+          "team": "JRU Light Bombers",
+          "rating": 50.85,
+          "games": 14,
+          "confidence": 0.76,
+          "uncertainty": 5.37
+        }
+      ]
+    },
+    {
+      "pool": "Philippine Youth Basketball Championship – 18U / U18 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "Mapúa Red Robins",
+          "rating": 52.67,
+          "games": 5,
+          "confidence": 0.601,
+          "uncertainty": 7.58
+        },
+        {
+          "rank": 2,
+          "team": "Grupong Bedista - San Beda U18 Boys",
+          "rating": 51.77,
+          "games": 6,
+          "confidence": 0.674,
+          "uncertainty": 6.56
+        },
+        {
+          "rank": 3,
+          "team": "San Pedro Spartans U18 Boys",
+          "rating": 51.77,
+          "games": 6,
+          "confidence": 0.673,
+          "uncertainty": 6.58
+        },
+        {
+          "rank": 4,
+          "team": "D'Generals x Pro Dimes U18 Boys",
+          "rating": 50.77,
+          "games": 5,
+          "confidence": 0.62,
+          "uncertainty": 7.33
+        },
+        {
+          "rank": 5,
+          "team": "Pria CPA Review Center U18 Boys",
+          "rating": 49.29,
+          "games": 4,
+          "confidence": 0.495,
+          "uncertainty": 9.07
+        },
+        {
+          "rank": 6,
+          "team": "1118 Autospa Dragons U18 Boys",
+          "rating": 49.21,
+          "games": 4,
+          "confidence": 0.478,
+          "uncertainty": 9.31
+        }
+      ]
+    },
+    {
+      "pool": "Philippine Youth Basketball Championship – 15U / U15 / BOYS",
+      "topTeams": [
+        {
+          "rank": 1,
+          "team": "San Pedro Spartans U15 Boys",
+          "rating": 50.73,
+          "games": 12,
+          "confidence": 0.701,
+          "uncertainty": 6.19
+        },
+        {
+          "rank": 2,
+          "team": "Prime Ascencion Medical Supplies San Anton",
+          "rating": 50.57,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 3,
+          "team": "Migrafix Doc Boleros",
+          "rating": 50.54,
+          "games": 10,
+          "confidence": 0.643,
+          "uncertainty": 7
+        },
+        {
+          "rank": 4,
+          "team": "JPM-TEC San Beda U15 Boys",
+          "rating": 50.4,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        },
+        {
+          "rank": 5,
+          "team": "Smile 360 Bullies U15 Boys",
+          "rating": 50.01,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 6,
+          "team": "LEV Construction Full Potential",
+          "rating": 49.87,
+          "games": 7,
+          "confidence": 0.555,
+          "uncertainty": 8.23
+        },
+        {
+          "rank": 7,
+          "team": "JMTG Medical Trading Infinite",
+          "rating": 49.5,
+          "games": 8,
+          "confidence": 0.584,
+          "uncertainty": 7.82
+        },
+        {
+          "rank": 8,
+          "team": "Migueluz Trading Moderno",
+          "rating": 48.3,
+          "games": 9,
+          "confidence": 0.613,
+          "uncertainty": 7.41
+        }
+      ]
+    }
+  ],
+  "boards": [
+    {
+      "board": "U13 Boys",
+      "rawMinimumGames": 10,
+      "players": 128,
+      "eligiblePlayers": 17,
+      "fiveStars": 0,
+      "exactCeilingPileup": 0,
+      "productionPlayers": 21,
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Xander Dulfo",
+          "productionRating": 81.98,
+          "candidate": "Xander Dulfo",
+          "candidateRating": 81.45
+        },
+        {
+          "rank": 2,
+          "production": "Syrus Demate",
+          "productionRating": 80.71,
+          "candidate": "Syrus Demate",
+          "candidateRating": 80.67
+        },
+        {
+          "rank": 3,
+          "production": "Patrick Tumbaga",
+          "productionRating": 80.25,
+          "candidate": "Patrick Tumbaga",
+          "candidateRating": 78.79
+        },
+        {
+          "rank": 4,
+          "production": "Kirov Acedo",
+          "productionRating": 77.58,
+          "candidate": "Ethan Suangco",
+          "candidateRating": 75.29
+        },
+        {
+          "rank": 5,
+          "production": "Ethan Suangco",
+          "productionRating": 75.06,
+          "candidate": "Reign Driz",
+          "candidateRating": 69.04
+        },
+        {
+          "rank": 6,
+          "production": "Reign Driz",
+          "productionRating": 70.83,
+          "candidate": "Zach Agustin",
+          "candidateRating": 65.98
+        },
+        {
+          "rank": 7,
+          "production": "Zach Agustin",
+          "productionRating": 67.42,
+          "candidate": "Jordan Dela Rosa",
+          "candidateRating": 55.19
+        },
+        {
+          "rank": 8,
+          "production": "Gian Castro",
+          "productionRating": 67.1,
+          "candidate": "Kian Antonio",
+          "candidateRating": 54.33
+        },
+        {
+          "rank": 9,
+          "production": "Jordan Dela Rosa",
+          "productionRating": 55.92,
+          "candidate": "Tim Cruz",
+          "candidateRating": 52.67
+        },
+        {
+          "rank": 10,
+          "production": "Kian Antonio",
+          "productionRating": 54.61,
+          "candidate": "Kailie Tiu",
+          "candidateRating": 45.05
+        }
+      ],
+      "biggestRisers": [
+        {
+          "player": "Enzo Araneta",
+          "productionRank": 17,
+          "candidateRank": 13,
+          "rankChange": 4,
+          "productionRating": 31.72,
+          "candidateRating": 30.54
+        },
+        {
+          "player": "Charles Panaligan",
+          "productionRank": 18,
+          "candidateRank": 14,
+          "rankChange": 4,
+          "productionRating": 28.61,
+          "candidateRating": 26.66
+        },
+        {
+          "player": "Orion Norwood",
+          "productionRank": 19,
+          "candidateRank": 15,
+          "rankChange": 4,
+          "productionRating": 25.88,
+          "candidateRating": 26.18
+        },
+        {
+          "player": "Liam Mooney",
+          "productionRank": 20,
+          "candidateRank": 16,
+          "rankChange": 4,
+          "productionRating": 25.14,
+          "candidateRating": 25.96
+        },
+        {
+          "player": "Kyrie Batac",
+          "productionRank": 21,
+          "candidateRank": 17,
+          "rankChange": 4,
+          "productionRating": 24.32,
+          "candidateRating": 24.75
+        },
+        {
+          "player": "Kailie Tiu",
+          "productionRank": 13,
+          "candidateRank": 10,
+          "rankChange": 3,
+          "productionRating": 46.28,
+          "candidateRating": 45.05
+        },
+        {
+          "player": "Jordan Dela Rosa",
+          "productionRank": 9,
+          "candidateRank": 7,
+          "rankChange": 2,
+          "productionRating": 55.92,
+          "candidateRating": 55.19
+        },
+        {
+          "player": "Kian Antonio",
+          "productionRank": 10,
+          "candidateRank": 8,
+          "rankChange": 2,
+          "productionRating": 54.61,
+          "candidateRating": 54.33
+        },
+        {
+          "player": "Tim Cruz",
+          "productionRank": 11,
+          "candidateRank": 9,
+          "rankChange": 2,
+          "productionRating": 54.22,
+          "candidateRating": 52.67
+        },
+        {
+          "player": "Crixus Quijano",
+          "productionRank": 14,
+          "candidateRank": 12,
+          "rankChange": 2,
+          "productionRating": 42.55,
+          "candidateRating": 41.4
+        }
+      ],
+      "biggestFallers": [
+        {
+          "player": "Xander Dulfo",
+          "productionRank": 1,
+          "candidateRank": 1,
+          "rankChange": 0,
+          "productionRating": 81.98,
+          "candidateRating": 81.45
+        },
+        {
+          "player": "Syrus Demate",
+          "productionRank": 2,
+          "candidateRank": 2,
+          "rankChange": 0,
+          "productionRating": 80.71,
+          "candidateRating": 80.67
+        },
+        {
+          "player": "Patrick Tumbaga",
+          "productionRank": 3,
+          "candidateRank": 3,
+          "rankChange": 0,
+          "productionRating": 80.25,
+          "candidateRating": 78.79
+        },
+        {
+          "player": "Ethan Suangco",
+          "productionRank": 5,
+          "candidateRank": 4,
+          "rankChange": 1,
+          "productionRating": 75.06,
+          "candidateRating": 75.29
+        },
+        {
+          "player": "Reign Driz",
+          "productionRank": 6,
+          "candidateRank": 5,
+          "rankChange": 1,
+          "productionRating": 70.83,
+          "candidateRating": 69.04
+        },
+        {
+          "player": "Zach Agustin",
+          "productionRank": 7,
+          "candidateRank": 6,
+          "rankChange": 1,
+          "productionRating": 67.42,
+          "candidateRating": 65.98
+        },
+        {
+          "player": "Ibrahim Salem",
+          "productionRank": 12,
+          "candidateRank": 11,
+          "rankChange": 1,
+          "productionRating": 46.65,
+          "candidateRating": 43.76
+        },
+        {
+          "player": "Jordan Dela Rosa",
+          "productionRank": 9,
+          "candidateRank": 7,
+          "rankChange": 2,
+          "productionRating": 55.92,
+          "candidateRating": 55.19
+        },
+        {
+          "player": "Kian Antonio",
+          "productionRank": 10,
+          "candidateRank": 8,
+          "rankChange": 2,
+          "productionRating": 54.61,
+          "candidateRating": 54.33
+        },
+        {
+          "player": "Tim Cruz",
+          "productionRank": 11,
+          "candidateRank": 9,
+          "rankChange": 2,
+          "productionRating": 54.22,
+          "candidateRating": 52.67
+        }
+      ],
+      "top10": [
+        {
+          "rank": 1,
+          "player": "Xander Dulfo",
+          "estimatedRating": 83.12,
+          "rating": 81.45,
+          "uncertainty": 3.34,
+          "range": "74.89-88.01",
+          "games": 12,
+          "qualityGames": 9.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 2,
+          "player": "Syrus Demate",
+          "estimatedRating": 82.61,
+          "rating": 80.67,
+          "uncertainty": 3.87,
+          "range": "73.09-88.26",
+          "games": 12,
+          "qualityGames": 9.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 3,
+          "player": "Patrick Tumbaga",
+          "estimatedRating": 81.05,
+          "rating": 78.79,
+          "uncertainty": 4.51,
+          "range": "69.95-87.63",
+          "games": 12,
+          "qualityGames": 9.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 4,
+          "player": "Ethan Suangco",
+          "estimatedRating": 77.62,
+          "rating": 75.29,
+          "uncertainty": 4.66,
+          "range": "66.16-84.42",
+          "games": 12,
+          "qualityGames": 9.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 5,
+          "player": "Reign Driz",
+          "estimatedRating": 72.66,
+          "rating": 69.04,
+          "uncertainty": 7.25,
+          "range": "54.83-83.24",
+          "games": 11,
+          "qualityGames": 8.64,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 6,
+          "player": "Zach Agustin",
+          "estimatedRating": 68.98,
+          "rating": 65.98,
+          "uncertainty": 6,
+          "range": "54.22-77.75",
+          "games": 11,
+          "qualityGames": 8.64,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 7,
+          "player": "Jordan Dela Rosa",
+          "estimatedRating": 58.48,
+          "rating": 55.19,
+          "uncertainty": 6.59,
+          "range": "42.27-68.1",
+          "games": 12,
+          "qualityGames": 9.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 8,
+          "player": "Kian Antonio",
+          "estimatedRating": 57.09,
+          "rating": 54.33,
+          "uncertainty": 5.53,
+          "range": "43.48-65.17",
+          "games": 11,
+          "qualityGames": 8.64,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 9,
+          "player": "Tim Cruz",
+          "estimatedRating": 56.62,
+          "rating": 52.67,
+          "uncertainty": 7.9,
+          "range": "37.19-68.16",
+          "games": 12,
+          "qualityGames": 9.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 10,
+          "player": "Kailie Tiu",
+          "estimatedRating": 48.29,
+          "rating": 45.05,
+          "uncertainty": 6.49,
+          "range": "32.32-57.77",
+          "games": 11,
+          "qualityGames": 8.64,
+          "confidence": "ESTABLISHED"
+        }
+      ]
+    },
+    {
+      "board": "U16 Boys",
+      "rawMinimumGames": 10,
+      "players": 253,
+      "eligiblePlayers": 108,
+      "fiveStars": 1,
+      "exactCeilingPileup": 0,
+      "productionPlayers": 121,
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Goodluck Okebata",
+          "productionRating": 96.58,
+          "candidate": "Goodluck Okebata",
+          "candidateRating": 94.2
+        },
+        {
+          "rank": 2,
+          "production": "Prince Cariño",
+          "productionRating": 92.5,
+          "candidate": "Moussa Diakite",
+          "candidateRating": 89.82
+        },
+        {
+          "rank": 3,
+          "production": "Moussa Diakite",
+          "productionRating": 89.91,
+          "candidate": "Francel Flores",
+          "candidateRating": 80.45
+        },
+        {
+          "rank": 4,
+          "production": "Francel Flores",
+          "productionRating": 88.11,
+          "candidate": "JD Juangco",
+          "candidateRating": 78.68
+        },
+        {
+          "rank": 5,
+          "production": "Xyriel Macahipay",
+          "productionRating": 84.13,
+          "candidate": "Mark Perdigon",
+          "candidateRating": 78.34
+        },
+        {
+          "rank": 6,
+          "production": "Akhiro Franz Reynon",
+          "productionRating": 83.78,
+          "candidate": "CJ Tabbuga",
+          "candidateRating": 76.46
+        },
+        {
+          "rank": 7,
+          "production": "Denden Enriquez",
+          "productionRating": 83.14,
+          "candidate": "Gab Castro",
+          "candidateRating": 76.01
+        },
+        {
+          "rank": 8,
+          "production": "Keefe Iledan",
+          "productionRating": 82.19,
+          "candidate": "Keefe Iledan",
+          "candidateRating": 75.69
+        },
+        {
+          "rank": 9,
+          "production": "Sky Jazul",
+          "productionRating": 81.13,
+          "candidate": "Akhiro Franz Reynon",
+          "candidateRating": 74.64
+        },
+        {
+          "rank": 10,
+          "production": "CJ Tabbuga",
+          "productionRating": 80.41,
+          "candidate": "Lorenzo Purugganan",
+          "candidateRating": 73.74
+        }
+      ],
+      "biggestRisers": [
+        {
+          "player": "Marvic Mesina",
+          "productionRank": 99,
+          "candidateRank": 73,
+          "rankChange": 26,
+          "productionRating": 30.26,
+          "candidateRating": 37.28
+        },
+        {
+          "player": "Louise Sinda",
+          "productionRank": 103,
+          "candidateRank": 85,
+          "rankChange": 18,
+          "productionRating": 29.07,
+          "candidateRating": 31.35
+        },
+        {
+          "player": "Jaidel Daa",
+          "productionRank": 82,
+          "candidateRank": 65,
+          "rankChange": 17,
+          "productionRating": 38.81,
+          "candidateRating": 41.37
+        },
+        {
+          "player": "Ryley Floirendo",
+          "productionRank": 112,
+          "candidateRank": 95,
+          "rankChange": 17,
+          "productionRating": 25,
+          "candidateRating": 26.22
+        },
+        {
+          "player": "Nicus Calma",
+          "productionRank": 115,
+          "candidateRank": 98,
+          "rankChange": 17,
+          "productionRating": 24.27,
+          "candidateRating": 24.41
+        },
+        {
+          "player": "Loin Lalong-Isip",
+          "productionRank": 88,
+          "candidateRank": 72,
+          "rankChange": 16,
+          "productionRating": 36.77,
+          "candidateRating": 38.76
+        },
+        {
+          "player": "Jordan Cayabyab",
+          "productionRank": 106,
+          "candidateRank": 90,
+          "rankChange": 16,
+          "productionRating": 28.08,
+          "candidateRating": 28.72
+        },
+        {
+          "player": "Sorin Sebastian",
+          "productionRank": 117,
+          "candidateRank": 102,
+          "rankChange": 15,
+          "productionRating": 22.85,
+          "candidateRating": 22.88
+        },
+        {
+          "player": "Max Romero",
+          "productionRank": 118,
+          "candidateRank": 103,
+          "rankChange": 15,
+          "productionRating": 22.68,
+          "candidateRating": 22.87
+        },
+        {
+          "player": "Rain Gabryle Cajilig",
+          "productionRank": 70,
+          "candidateRank": 56,
+          "rankChange": 14,
+          "productionRating": 44.93,
+          "candidateRating": 46.07
+        }
+      ],
+      "biggestFallers": [
+        {
+          "player": "Sky Jazul",
+          "productionRank": 9,
+          "candidateRank": 28,
+          "rankChange": -19,
+          "productionRating": 81.13,
+          "candidateRating": 62.15
+        },
+        {
+          "player": "Prince Cariño",
+          "productionRank": 2,
+          "candidateRank": 18,
+          "rankChange": -16,
+          "productionRating": 92.5,
+          "candidateRating": 68.65
+        },
+        {
+          "player": "Denden Enriquez",
+          "productionRank": 7,
+          "candidateRank": 22,
+          "rankChange": -15,
+          "productionRating": 83.14,
+          "candidateRating": 65.52
+        },
+        {
+          "player": "Austin Delos Santos",
+          "productionRank": 48,
+          "candidateRank": 52,
+          "rankChange": -4,
+          "productionRating": 54.57,
+          "candidateRating": 49.64
+        },
+        {
+          "player": "Akhiro Franz Reynon",
+          "productionRank": 6,
+          "candidateRank": 9,
+          "rankChange": -3,
+          "productionRating": 83.78,
+          "candidateRating": 74.64
+        },
+        {
+          "player": "Zandro Lugatiman",
+          "productionRank": 77,
+          "candidateRank": 79,
+          "rankChange": -2,
+          "productionRating": 40.85,
+          "candidateRating": 35.02
+        },
+        {
+          "player": "John Addatu",
+          "productionRank": 35,
+          "candidateRank": 36,
+          "rankChange": -1,
+          "productionRating": 62.53,
+          "candidateRating": 56.44
+        },
+        {
+          "player": "Goodluck Okebata",
+          "productionRank": 1,
+          "candidateRank": 1,
+          "rankChange": 0,
+          "productionRating": 96.58,
+          "candidateRating": 94.2
+        },
+        {
+          "player": "Keefe Iledan",
+          "productionRank": 8,
+          "candidateRank": 8,
+          "rankChange": 0,
+          "productionRating": 82.19,
+          "candidateRating": 75.69
+        },
+        {
+          "player": "Karl Yeshua Vengco",
+          "productionRank": 31,
+          "candidateRank": 31,
+          "rankChange": 0,
+          "productionRating": 63.9,
+          "candidateRating": 60.86
+        }
+      ],
+      "top10": [
+        {
+          "rank": 1,
+          "player": "Goodluck Okebata",
+          "estimatedRating": 94.95,
+          "rating": 94.2,
+          "uncertainty": 1.5,
+          "range": "91.26-97.14",
+          "games": 14,
+          "qualityGames": 12.9,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 2,
+          "player": "Moussa Diakite",
+          "estimatedRating": 90.93,
+          "rating": 89.82,
+          "uncertainty": 2.21,
+          "range": "85.48-94.16",
+          "games": 33,
+          "qualityGames": 31.18,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 3,
+          "player": "Francel Flores",
+          "estimatedRating": 81.9,
+          "rating": 80.45,
+          "uncertainty": 2.91,
+          "range": "74.74-86.16",
+          "games": 28,
+          "qualityGames": 26.43,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 4,
+          "player": "JD Juangco",
+          "estimatedRating": 81.19,
+          "rating": 78.68,
+          "uncertainty": 5.02,
+          "range": "68.84-88.51",
+          "games": 11,
+          "qualityGames": 10.13,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 5,
+          "player": "Mark Perdigon",
+          "estimatedRating": 79.98,
+          "rating": 78.34,
+          "uncertainty": 3.28,
+          "range": "71.91-84.76",
+          "games": 14,
+          "qualityGames": 12.9,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 6,
+          "player": "CJ Tabbuga",
+          "estimatedRating": 79.93,
+          "rating": 76.46,
+          "uncertainty": 6.94,
+          "range": "62.86-90.05",
+          "games": 15,
+          "qualityGames": 13.82,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 7,
+          "player": "Gab Castro",
+          "estimatedRating": 78.75,
+          "rating": 76.01,
+          "uncertainty": 5.48,
+          "range": "65.28-86.74",
+          "games": 15,
+          "qualityGames": 13.82,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 8,
+          "player": "Keefe Iledan",
+          "estimatedRating": 77.83,
+          "rating": 75.69,
+          "uncertainty": 4.28,
+          "range": "67.3-84.07",
+          "games": 25,
+          "qualityGames": 23.49,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 9,
+          "player": "Akhiro Franz Reynon",
+          "estimatedRating": 77.33,
+          "rating": 74.64,
+          "uncertainty": 5.38,
+          "range": "64.08-85.19",
+          "games": 15,
+          "qualityGames": 11.87,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 10,
+          "player": "Lorenzo Purugganan",
+          "estimatedRating": 77.19,
+          "rating": 73.74,
+          "uncertainty": 6.91,
+          "range": "60.2-87.28",
+          "games": 14,
+          "qualityGames": 12.9,
+          "confidence": "ESTABLISHED"
+        }
+      ]
+    },
+    {
+      "board": "U19 Boys",
+      "rawMinimumGames": 10,
+      "players": 975,
+      "eligiblePlayers": 249,
+      "fiveStars": 4,
+      "exactCeilingPileup": 0,
+      "productionPlayers": 312,
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Jude Eriobu",
+          "productionRating": 98.33,
+          "candidate": "Jude Eriobu",
+          "candidateRating": 98.33
+        },
+        {
+          "rank": 2,
+          "production": "Josef Calo-oy",
+          "productionRating": 91.82,
+          "candidate": "Mark Esperanza",
+          "candidateRating": 94.09
+        },
+        {
+          "rank": 3,
+          "production": "Mark Esperanza",
+          "productionRating": 90.61,
+          "candidate": "Josef Calo-oy",
+          "candidateRating": 91.97
+        },
+        {
+          "rank": 4,
+          "production": "Sean Franco",
+          "productionRating": 88.82,
+          "candidate": "Steven Creus",
+          "candidateRating": 91.79
+        },
+        {
+          "rank": 5,
+          "production": "Steven Creus",
+          "productionRating": 88.41,
+          "candidate": "Xyriel Macahipay",
+          "candidateRating": 89.92
+        },
+        {
+          "rank": 6,
+          "production": "John Ray Ladica",
+          "productionRating": 88.34,
+          "candidate": "Jetlee Melano",
+          "candidateRating": 89.3
+        },
+        {
+          "rank": 7,
+          "production": "Cabs Cabonilas",
+          "productionRating": 88.19,
+          "candidate": "Yuan Ramirez",
+          "candidateRating": 87.93
+        },
+        {
+          "rank": 8,
+          "production": "Lucas Kaw",
+          "productionRating": 87.4,
+          "candidate": "Lucas Kaw",
+          "candidateRating": 87.19
+        },
+        {
+          "rank": 9,
+          "production": "Moussa Diakite",
+          "productionRating": 87.27,
+          "candidate": "Patrick Pasinos",
+          "candidateRating": 84.68
+        },
+        {
+          "rank": 10,
+          "production": "Maco Dabao",
+          "productionRating": 87.15,
+          "candidate": "Jaime Teodoro",
+          "candidateRating": 83.3
+        }
+      ],
+      "biggestRisers": [
+        {
+          "player": "Johari Domingo",
+          "productionRank": 180,
+          "candidateRank": 96,
+          "rankChange": 84,
+          "productionRating": 46.17,
+          "candidateRating": 54.15
+        },
+        {
+          "player": "Dustin Bathan",
+          "productionRank": 206,
+          "candidateRank": 124,
+          "rankChange": 82,
+          "productionRating": 42.04,
+          "candidateRating": 48.32
+        },
+        {
+          "player": "Ethan Carniyan",
+          "productionRank": 266,
+          "candidateRank": 185,
+          "rankChange": 81,
+          "productionRating": 29.82,
+          "candidateRating": 35.48
+        },
+        {
+          "player": "Kobe Urbina",
+          "productionRank": 272,
+          "candidateRank": 191,
+          "rankChange": 81,
+          "productionRating": 28.91,
+          "candidateRating": 34.62
+        },
+        {
+          "player": "Romnick Araneta",
+          "productionRank": 261,
+          "candidateRank": 181,
+          "rankChange": 80,
+          "productionRating": 30.29,
+          "candidateRating": 36.29
+        },
+        {
+          "player": "John Dela Cruz",
+          "productionRank": 201,
+          "candidateRank": 122,
+          "rankChange": 79,
+          "productionRating": 42.75,
+          "candidateRating": 48.5
+        },
+        {
+          "player": "Jermaine Sapo",
+          "productionRank": 220,
+          "candidateRank": 143,
+          "rankChange": 77,
+          "productionRating": 39.03,
+          "candidateRating": 45.15
+        },
+        {
+          "player": "Raphael Bautista",
+          "productionRank": 235,
+          "candidateRank": 158,
+          "rankChange": 77,
+          "productionRating": 35.52,
+          "candidateRating": 42.53
+        },
+        {
+          "player": "Yan Tagorda",
+          "productionRank": 241,
+          "candidateRank": 164,
+          "rankChange": 77,
+          "productionRating": 34.17,
+          "candidateRating": 40.89
+        },
+        {
+          "player": "Isiah Chua",
+          "productionRank": 264,
+          "candidateRank": 189,
+          "rankChange": 75,
+          "productionRating": 30.05,
+          "candidateRating": 34.88
+        }
+      ],
+      "biggestFallers": [
+        {
+          "player": "Prince Cayl Lumbre",
+          "productionRank": 21,
+          "candidateRank": 24,
+          "rankChange": -3,
+          "productionRating": 80.97,
+          "candidateRating": 76.79
+        },
+        {
+          "player": "Josef Calo-oy",
+          "productionRank": 2,
+          "candidateRank": 3,
+          "rankChange": -1,
+          "productionRating": 91.82,
+          "candidateRating": 91.97
+        },
+        {
+          "player": "Joe Bayobay",
+          "productionRank": 15,
+          "candidateRank": 16,
+          "rankChange": -1,
+          "productionRating": 84.03,
+          "candidateRating": 80.29
+        },
+        {
+          "player": "Jude Eriobu",
+          "productionRank": 1,
+          "candidateRank": 1,
+          "rankChange": 0,
+          "productionRating": 98.33,
+          "candidateRating": 98.33
+        },
+        {
+          "player": "Lucas Kaw",
+          "productionRank": 8,
+          "candidateRank": 8,
+          "rankChange": 0,
+          "productionRating": 87.4,
+          "candidateRating": 87.19
+        },
+        {
+          "player": "Mark Esperanza",
+          "productionRank": 3,
+          "candidateRank": 2,
+          "rankChange": 1,
+          "productionRating": 90.61,
+          "candidateRating": 94.09
+        },
+        {
+          "player": "Steven Creus",
+          "productionRank": 5,
+          "candidateRank": 4,
+          "rankChange": 1,
+          "productionRating": 88.41,
+          "candidateRating": 91.79
+        },
+        {
+          "player": "Yuan Ramirez",
+          "productionRank": 11,
+          "candidateRank": 7,
+          "rankChange": 4,
+          "productionRating": 87.06,
+          "candidateRating": 87.93
+        },
+        {
+          "player": "Joshua Chua",
+          "productionRank": 24,
+          "candidateRank": 19,
+          "rankChange": 5,
+          "productionRating": 80.6,
+          "candidateRating": 79.71
+        },
+        {
+          "player": "Jetlee Melano",
+          "productionRank": 12,
+          "candidateRank": 6,
+          "rankChange": 6,
+          "productionRating": 86.36,
+          "candidateRating": 89.3
+        }
+      ],
+      "top10": [
+        {
+          "rank": 1,
+          "player": "Jude Eriobu",
+          "estimatedRating": 99.08,
+          "rating": 98.33,
+          "uncertainty": 1.5,
+          "range": "95.39-100",
+          "games": 16,
+          "qualityGames": 15.47,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 2,
+          "player": "Mark Esperanza",
+          "estimatedRating": 95.18,
+          "rating": 94.09,
+          "uncertainty": 2.17,
+          "range": "89.83-98.35",
+          "games": 12,
+          "qualityGames": 11.68,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 3,
+          "player": "Josef Calo-oy",
+          "estimatedRating": 92.73,
+          "rating": 91.97,
+          "uncertainty": 1.52,
+          "range": "88.99-94.94",
+          "games": 22,
+          "qualityGames": 20.18,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 4,
+          "player": "Steven Creus",
+          "estimatedRating": 93.07,
+          "rating": 91.79,
+          "uncertainty": 2.55,
+          "range": "86.79-96.79",
+          "games": 14,
+          "qualityGames": 13.63,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 5,
+          "player": "Xyriel Macahipay",
+          "estimatedRating": 91.13,
+          "rating": 89.92,
+          "uncertainty": 2.42,
+          "range": "85.17-94.67",
+          "games": 16,
+          "qualityGames": 15.42,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 6,
+          "player": "Jetlee Melano",
+          "estimatedRating": 90.39,
+          "rating": 89.3,
+          "uncertainty": 2.19,
+          "range": "85-93.59",
+          "games": 14,
+          "qualityGames": 13.54,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 7,
+          "player": "Yuan Ramirez",
+          "estimatedRating": 88.68,
+          "rating": 87.93,
+          "uncertainty": 1.5,
+          "range": "84.99-90.87",
+          "games": 22,
+          "qualityGames": 17.49,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 8,
+          "player": "Lucas Kaw",
+          "estimatedRating": 87.94,
+          "rating": 87.19,
+          "uncertainty": 1.5,
+          "range": "84.25-90.13",
+          "games": 22,
+          "qualityGames": 17.19,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 9,
+          "player": "Patrick Pasinos",
+          "estimatedRating": 86.37,
+          "rating": 84.68,
+          "uncertainty": 3.38,
+          "range": "78.06-91.3",
+          "games": 19,
+          "qualityGames": 17.72,
+          "confidence": "ESTABLISHED"
+        },
+        {
+          "rank": 10,
+          "player": "Jaime Teodoro",
+          "estimatedRating": 84.57,
+          "rating": 83.3,
+          "uncertainty": 2.54,
+          "range": "78.33-88.28",
+          "games": 22,
+          "qualityGames": 20.18,
+          "confidence": "ESTABLISHED"
+        }
+      ]
+    },
+    {
+      "board": "U19 Girls",
+      "rawMinimumGames": 5,
+      "players": 56,
+      "eligiblePlayers": 45,
+      "fiveStars": 0,
+      "exactCeilingPileup": 0,
+      "productionPlayers": 45,
+      "top10SideBySide": [
+        {
+          "rank": 1,
+          "production": "Aubrey Lapasaran",
+          "productionRating": 89.8,
+          "candidate": "Aubrey Lapasaran",
+          "candidateRating": 88.46
+        },
+        {
+          "rank": 2,
+          "production": "Adin Rosano",
+          "productionRating": 87.7,
+          "candidate": "Adin Rosano",
+          "candidateRating": 85.32
+        },
+        {
+          "rank": 3,
+          "production": "Riri Perez",
+          "productionRating": 87.44,
+          "candidate": "Riri Perez",
+          "candidateRating": 84.21
+        },
+        {
+          "rank": 4,
+          "production": "Janice Oczon",
+          "productionRating": 78.92,
+          "candidate": "Pia Petalcorin",
+          "candidateRating": 76.11
+        },
+        {
+          "rank": 5,
+          "production": "Pia Petalcorin",
+          "productionRating": 78.31,
+          "candidate": "Janice Oczon",
+          "candidateRating": 75.97
+        },
+        {
+          "rank": 6,
+          "production": "Lea Pinuela",
+          "productionRating": 77.91,
+          "candidate": "Lea Pinuela",
+          "candidateRating": 74.9
+        },
+        {
+          "rank": 7,
+          "production": "Koukou Talla",
+          "productionRating": 74.99,
+          "candidate": "Koukou Talla",
+          "candidateRating": 71.61
+        },
+        {
+          "rank": 8,
+          "production": "Apyang Dulay",
+          "productionRating": 74.6,
+          "candidate": "Apyang Dulay",
+          "candidateRating": 71.31
+        },
+        {
+          "rank": 9,
+          "production": "Ima Navarro",
+          "productionRating": 72.7,
+          "candidate": "Ruiza Olmos",
+          "candidateRating": 70.04
+        },
+        {
+          "rank": 10,
+          "production": "Ruiza Olmos",
+          "productionRating": 71.84,
+          "candidate": "Ima Navarro",
+          "candidateRating": 68.1
+        }
+      ],
+      "biggestRisers": [
+        {
+          "player": "Zia Onate",
+          "productionRank": 26,
+          "candidateRank": 24,
+          "rankChange": 2,
+          "productionRating": 49.21,
+          "candidateRating": 46.43
+        },
+        {
+          "player": "Pia Petalcorin",
+          "productionRank": 5,
+          "candidateRank": 4,
+          "rankChange": 1,
+          "productionRating": 78.31,
+          "candidateRating": 76.11
+        },
+        {
+          "player": "Ruiza Olmos",
+          "productionRank": 10,
+          "candidateRank": 9,
+          "rankChange": 1,
+          "productionRating": 71.84,
+          "candidateRating": 70.04
+        },
+        {
+          "player": "Zane Singson",
+          "productionRank": 12,
+          "candidateRank": 11,
+          "rankChange": 1,
+          "productionRating": 68.99,
+          "candidateRating": 66.07
+        },
+        {
+          "player": "Bri Katigbak",
+          "productionRank": 18,
+          "candidateRank": 17,
+          "rankChange": 1,
+          "productionRating": 55.49,
+          "candidateRating": 53.9
+        },
+        {
+          "player": "Nadine Labay",
+          "productionRank": 24,
+          "candidateRank": 23,
+          "rankChange": 1,
+          "productionRating": 49.75,
+          "candidateRating": 46.84
+        },
+        {
+          "player": "Sophia Townes",
+          "productionRank": 27,
+          "candidateRank": 26,
+          "rankChange": 1,
+          "productionRating": 49,
+          "candidateRating": 44.95
+        },
+        {
+          "player": "Tyler Templo",
+          "productionRank": 36,
+          "candidateRank": 35,
+          "rankChange": 1,
+          "productionRating": 28.4,
+          "candidateRating": 27.72
+        },
+        {
+          "player": "Zoe Ablang",
+          "productionRank": 38,
+          "candidateRank": 37,
+          "rankChange": 1,
+          "productionRating": 26.95,
+          "candidateRating": 25.57
+        },
+        {
+          "player": "Louise Doque",
+          "productionRank": 41,
+          "candidateRank": 40,
+          "rankChange": 1,
+          "productionRating": 21.63,
+          "candidateRating": 20.59
+        }
+      ],
+      "biggestFallers": [
+        {
+          "player": "Ice Gerona",
+          "productionRank": 23,
+          "candidateRank": 25,
+          "rankChange": -2,
+          "productionRating": 50.08,
+          "candidateRating": 46.16
+        },
+        {
+          "player": "Cheska Gozum",
+          "productionRank": 25,
+          "candidateRank": 27,
+          "rankChange": -2,
+          "productionRating": 49.54,
+          "candidateRating": 43.62
+        },
+        {
+          "player": "Janice Oczon",
+          "productionRank": 4,
+          "candidateRank": 5,
+          "rankChange": -1,
+          "productionRating": 78.92,
+          "candidateRating": 75.97
+        },
+        {
+          "player": "Ima Navarro",
+          "productionRank": 9,
+          "candidateRank": 10,
+          "rankChange": -1,
+          "productionRating": 72.7,
+          "candidateRating": 68.1
+        },
+        {
+          "player": "Ching Ching Gales",
+          "productionRank": 11,
+          "candidateRank": 12,
+          "rankChange": -1,
+          "productionRating": 70.7,
+          "candidateRating": 65.88
+        },
+        {
+          "player": "Hasly Mallari",
+          "productionRank": 17,
+          "candidateRank": 18,
+          "rankChange": -1,
+          "productionRating": 55.52,
+          "candidateRating": 52.67
+        },
+        {
+          "player": "Rhys Luzana",
+          "productionRank": 35,
+          "candidateRank": 36,
+          "rankChange": -1,
+          "productionRating": 29.65,
+          "candidateRating": 27.22
+        },
+        {
+          "player": "Chloe Mariano",
+          "productionRank": 37,
+          "candidateRank": 38,
+          "rankChange": -1,
+          "productionRating": 28.23,
+          "candidateRating": 25.41
+        },
+        {
+          "player": "Alessia Palmiey",
+          "productionRank": 40,
+          "candidateRank": 41,
+          "rankChange": -1,
+          "productionRating": 22.18,
+          "candidateRating": 19.3
+        },
+        {
+          "player": "Aubrey Lapasaran",
+          "productionRank": 1,
+          "candidateRank": 1,
+          "rankChange": 0,
+          "productionRating": 89.8,
+          "candidateRating": 88.46
+        }
+      ],
+      "top10": [
+        {
+          "rank": 1,
+          "player": "Aubrey Lapasaran",
+          "estimatedRating": 90.69,
+          "rating": 88.46,
+          "uncertainty": 4.47,
+          "range": "79.7-97.21",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 2,
+          "player": "Adin Rosano",
+          "estimatedRating": 87.64,
+          "rating": 85.32,
+          "uncertainty": 4.64,
+          "range": "76.22-94.42",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 3,
+          "player": "Riri Perez",
+          "estimatedRating": 87.36,
+          "rating": 84.21,
+          "uncertainty": 6.31,
+          "range": "71.85-96.57",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 4,
+          "player": "Pia Petalcorin",
+          "estimatedRating": 78.9,
+          "rating": 76.11,
+          "uncertainty": 5.58,
+          "range": "65.18-87.05",
+          "games": 7,
+          "qualityGames": 6.51,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 5,
+          "player": "Janice Oczon",
+          "estimatedRating": 79.7,
+          "rating": 75.97,
+          "uncertainty": 7.45,
+          "range": "61.38-90.57",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 6,
+          "player": "Lea Pinuela",
+          "estimatedRating": 78.23,
+          "rating": 74.9,
+          "uncertainty": 6.67,
+          "range": "61.83-87.97",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 7,
+          "player": "Koukou Talla",
+          "estimatedRating": 75.85,
+          "rating": 71.61,
+          "uncertainty": 8.49,
+          "range": "54.97-88.24",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 8,
+          "player": "Apyang Dulay",
+          "estimatedRating": 75.8,
+          "rating": 71.31,
+          "uncertainty": 8.98,
+          "range": "53.7-88.92",
+          "games": 6,
+          "qualityGames": 5.58,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 9,
+          "player": "Ruiza Olmos",
+          "estimatedRating": 72.66,
+          "rating": 70.04,
+          "uncertainty": 5.23,
+          "range": "59.79-80.3",
+          "games": 8,
+          "qualityGames": 7.44,
+          "confidence": "DEVELOPING"
+        },
+        {
+          "rank": 10,
+          "player": "Ima Navarro",
+          "estimatedRating": 72.42,
+          "rating": 68.1,
+          "uncertainty": 8.66,
+          "range": "51.13-85.06",
+          "games": 6,
+          "qualityGames": 5.58,
+          "confidence": "DEVELOPING"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "Team v2 includes official team-result-only defaults/forfeits as outcome evidence; those games correctly create no player performance rows.",
+    "Competition strength remains a guarded estimate until connected cross-competition evidence and administrator governance review are sufficient.",
+    "Current box scores do not support possession-level lineup impact, true usage, on/off, BPM, PER, or Win Shares."
+  ],
+  "promotionGates": {
+    "noDatabaseWrites": true,
+    "monotonicCompetitionDirection": true,
+    "actualTeamIdentityUsed": true,
+    "sameDayLeakagePrevented": true,
+    "noArtificialRatingCeiling": true,
+    "allMultiPoolBoardsConnected": false,
+    "allCompetitionProfilesConfident": false,
+    "readyForProduction": false
+  }
+}
