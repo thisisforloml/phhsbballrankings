@@ -78,7 +78,10 @@
     "competition:strength:validate-p0": "tsx scripts/validate-competition-strength-p0.ts",
     "migrate:supabase": "tsx scripts/migrate-local-to-supabase.ts",
     "migrate:supabase:dry": "tsx scripts/migrate-local-to-supabase.ts --dry-run",
-    "migrate:supabase:resume": "tsx scripts/migrate-local-to-supabase.ts --resume"
+    "migrate:supabase:resume": "tsx scripts/migrate-local-to-supabase.ts --resume",
+    "ratings:v3.3:production:dry-run": "tsx scripts/promote-formula-v33.ts",
+    "ratings:v3.3:production:execute": "tsx scripts/promote-formula-v33.ts --execute --expected-scores=10198 --expected-ratings=1395",
+    "ratings:v3.3:production:validate": "tsx scripts/promote-formula-v33.ts --validate"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",

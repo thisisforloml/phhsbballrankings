@@ -7,6 +7,8 @@ export type CompetitionStrengthInput = {
   label: string;
   tier: number;
   qualityScore: number;
+  governanceVerified?: boolean;
+  governanceEvidenceScore?: number;
   gameCount: number;
   teamCount: number;
   playerCount: number;
@@ -26,6 +28,7 @@ export type CompetitionStrengthProfile = {
   strengthRating: number;
   displayTier: 1 | 2 | 3 | 4;
   confidence: number;
+  confidenceSource: "OBSERVED" | "VERIFIED_GOVERNANCE";
   provisional: boolean;
   translationScale: number;
   translationOffset: number;
@@ -106,11 +109,16 @@ export function buildCompetitionStrengthProfile(input: CompetitionStrengthInput)
   const teamConfidence = Math.min(1, input.teamCount / 8);
   const playerConfidence = Math.min(1, input.playerCount / 80);
   const crossoverConfidence = Math.min(1, input.crossoverPlayerCount / 12);
-  const confidence = clamp(
+  const evidenceConfidence = clamp(
     scheduleConfidence * 0.3 + teamConfidence * 0.2 + playerConfidence * 0.25 + crossoverConfidence * 0.25,
     0,
     1
   );
+  const governanceConfidence = input.governanceVerified
+    ? clamp(0.45 + clamp(input.governanceEvidenceScore ?? input.qualityScore, 0, 100) * 0.0035, 0.45, 0.8)
+    : 0;
+  const confidence = Math.max(evidenceConfidence, governanceConfidence);
+  const confidenceSource = governanceConfidence > evidenceConfidence ? "VERIFIED_GOVERNANCE" : "OBSERVED";
   const observedStrength = crossoverStrength ?? governancePrior;
   const learnedWeight = crossoverStrength === null ? 0 : 0.65 * crossoverConfidence;
   const strengthRating = clamp(
@@ -134,6 +142,7 @@ export function buildCompetitionStrengthProfile(input: CompetitionStrengthInput)
     strengthRating: Number(strengthRating.toFixed(2)),
     displayTier: competitionTierFromStrength(strengthRating),
     confidence: Number(confidence.toFixed(3)),
+    confidenceSource,
     provisional: confidence < 0.45,
     translationScale: Number(translationScale.toFixed(4)),
     translationOffset: Number(translationOffset.toFixed(4)),

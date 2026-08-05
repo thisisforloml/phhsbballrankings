@@ -10,12 +10,17 @@ function numberOrNull(value: { toString(): string } | number | null) {
   return value === null ? null : Number(value);
 }
 
-function fallbackRatingAgeGroup(value: string | null, competitionAgeGroup: AgeGroup) {
+function fallbackRatingAgeGroup(value: string | null, oldestObservedAgeGroup: AgeGroup) {
   return value === AgeGroup.U13 || value === AgeGroup.U16 || value === AgeGroup.U19
     ? value
-    : competitionAgeGroup;
+    : oldestObservedAgeGroup;
 }
 
+const AGE_GROUP_ORDER: Record<AgeGroup, number> = {
+  [AgeGroup.U13]: 13,
+  [AgeGroup.U16]: 16,
+  [AgeGroup.U19]: 19
+};
 export async function loadFormulaV3Evidence(asOfDate = new Date()): Promise<{
   rows: FormulaV3StatLine[];
   coverage: FormulaV3Coverage;
@@ -72,7 +77,19 @@ export async function loadFormulaV3Evidence(asOfDate = new Date()): Promise<{
           season: {
             select: {
               leagueId: true,
-              league: { select: { name: true, ageGroup: true, tier: true, qualityScore: true } }
+              league: {
+                select: {
+                  name: true,
+                  ageGroup: true,
+                  tier: true,
+                  qualityScore: true,
+                  verificationStatus: true,
+                  sanctionScore: true,
+                  teamCountScore: true,
+                  gamesPerTeamScore: true,
+                  complianceScore: true
+                }
+              }
             }
           }
         }
@@ -83,6 +100,15 @@ export async function loadFormulaV3Evidence(asOfDate = new Date()): Promise<{
 
   const warnings: string[] = [];
   const rows: FormulaV3StatLine[] = [];
+  const oldestObservedAgeGroupByPlayer = new Map<string, AgeGroup>();
+  for (const stat of stats) {
+    const observed = stat.game.season.league.ageGroup;
+    const current = oldestObservedAgeGroupByPlayer.get(stat.player.id);
+    if (!current || AGE_GROUP_ORDER[observed] > AGE_GROUP_ORDER[current]) {
+      oldestObservedAgeGroupByPlayer.set(stat.player.id, observed);
+    }
+  }
+
   for (const stat of stats) {
     const competitionAgeGroup = stat.game.season.league.ageGroup;
     const competitionAgeLabel = inferCompetitionAgeLabel(
@@ -96,7 +122,8 @@ export async function loadFormulaV3Evidence(asOfDate = new Date()): Promise<{
       competitionAgeGroup
     );
     if (calculated === "OUT_OF_RANGE") continue;
-    const ratingAgeGroup = calculated ?? fallbackRatingAgeGroup(stat.player.ageGroupOverride, competitionAgeGroup);
+    const oldestObservedAgeGroup = oldestObservedAgeGroupByPlayer.get(stat.player.id) ?? competitionAgeGroup;
+    const ratingAgeGroup = calculated ?? fallbackRatingAgeGroup(stat.player.ageGroupOverride, oldestObservedAgeGroup);
     const opponentTeamId = stat.teamId === stat.game.homeTeamId
       ? stat.game.awayTeamId
       : stat.teamId === stat.game.awayTeamId
@@ -116,6 +143,12 @@ export async function loadFormulaV3Evidence(asOfDate = new Date()): Promise<{
       leagueName: stat.game.season.league.name,
       leagueTier: Math.min(4, Math.max(1, stat.game.season.league.tier ?? 1)),
       leagueQualityScore: stat.game.season.league.qualityScore ?? 0,
+      leagueVerificationStatus: stat.game.season.league.verificationStatus,
+      leagueGovernanceEvidenceScore:
+        (stat.game.season.league.sanctionScore ?? 0) +
+        (stat.game.season.league.teamCountScore ?? 0) +
+        (stat.game.season.league.gamesPerTeamScore ?? 0) +
+        (stat.game.season.league.complianceScore ?? 0),
       competitionAgeLabel,
       competitionAgeGroup,
       ratingAgeGroup,

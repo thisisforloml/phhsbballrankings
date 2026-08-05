@@ -1,6 +1,7 @@
-import type { AgeGroup, PlayerGender } from "@prisma/client";
+import type { AgeGroup, LeagueVerificationStatus, PlayerGender } from "@prisma/client";
 
-export const FORMULA_V3_POLICY_ID = "formula-v3.3-continuous-strength-shadow-v1";
+export const FORMULA_V3_VERSION_NUMBER = 3;
+export const FORMULA_V3_POLICY_ID = "formula-v3.3-continuous-strength-production-v1";
 
 export type FormulaV3StatLine = {
   gameStatId: string;
@@ -11,6 +12,8 @@ export type FormulaV3StatLine = {
   leagueName: string;
   leagueTier: number;
   leagueQualityScore: number;
+  leagueVerificationStatus?: LeagueVerificationStatus;
+  leagueGovernanceEvidenceScore?: number;
   competitionAgeLabel: string;
   competitionAgeGroup: AgeGroup;
   ratingAgeGroup: AgeGroup;

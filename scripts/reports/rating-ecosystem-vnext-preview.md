@@ -1,6 +1,6 @@
 # Rating Ecosystem vNext Preview
 
-Generated: 2026-08-05T15:21:32.132Z
+Generated: 2026-08-05T16:00:52.741Z
 
 This report evaluates player, team, and competition ratings together. It is read-only: no database rows, production ratings, tiers, snapshots, games, or stats were changed.
 
@@ -26,7 +26,7 @@ This report evaluates player, team, and competition ratings together. It is read
   "teams": 97,
   "competitionPools": 12,
   "teamRatings": 105,
-  "playerRatings": 1412
+  "playerRatings": 1395
 }
 ```
 
@@ -40,7 +40,7 @@ This report evaluates player, team, and competition ratings together. It is read
   "sameDayLeakagePrevented": true,
   "noArtificialRatingCeiling": true,
   "allMultiPoolBoardsConnected": false,
-  "allCompetitionProfilesConfident": false,
+  "allCompetitionProfilesConfident": true,
   "readyForProduction": false
 }
 ```
@@ -50,26 +50,26 @@ This report evaluates player, team, and competition ratings together. It is read
 | competition | strength | confidence | games | teams | players | crossover | tier | provisional | highQuality |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | NCAA Season 101 Junior's Basketball / U19 / BOYS | 95.9 | 1 | 81 | 10 | 136 | 29 | 1 | false | true |
-| UAAP Season 88 HS Boys Basketball / U19 / BOYS | 94.92 | 1 | 62 | 8 | 97 | 15 | 1 | false | true |
-| UAAP Season 88 HS Girls Basketball / U19 / GIRLS | 89.2 | 0.406 | 14 | 4 | 56 | 0 | 1 | true | false |
-| UAAP Season 88 16U Boys Basketball / U16 / BOYS | 87.86 | 1 | 60 | 8 | 118 | 14 | 1 | false | true |
-| Philippine Youth Basketball Championship – 18U / U18 / BOYS | 87.77 | 0.791 | 15 | 6 | 99 | 28 | 1 | false | true |
+| UAAP Season 88 HS Boys Basketball / U19 / BOYS | 94.92 | 1 | 62 | 8 | 97 | 21 | 1 | false | true |
+| UAAP Season 88 HS Girls Basketball / U19 / GIRLS | 89.2 | 0.688 | 14 | 4 | 56 | 0 | 1 | false | true |
+| Philippine Youth Basketball Championship – 18U / U18 / BOYS | 88.88 | 0.791 | 15 | 6 | 99 | 29 | 1 | false | true |
+| UAAP Season 88 16U Boys Basketball / U16 / BOYS | 84.2 | 1 | 60 | 8 | 118 | 25 | 2 | false | true |
+| Junior MPBL Season 4 – 18U / U18 / BOYS | 75.84 | 1 | 48 | 23 | 534 | 64 | 2 | false | false |
 | Stallion Cup - 18U / U18 / BOYS | 74.8 | 0.909 | 25 | 7 | 81 | 52 | 2 | false | false |
-| Junior MPBL Season 4 – 18U / U18 / BOYS | 72.2 | 1 | 48 | 23 | 534 | 54 | 2 | false | false |
 | Philippine Youth Basketball Championship – 13U / U13 / BOYS | 67 | 0.75 | 35 | 8 | 129 | 0 | 3 | false | false |
-| Philippine Youth Basketball Championship – 15U / U15 / BOYS | 66.35 | 0.771 | 36 | 8 | 133 | 1 | 3 | false | false |
 | Stallion Cup – 17U / U17 / BOYS | 66.26 | 0.981 | 30 | 8 | 81 | 65 | 3 | false | false |
 | Stallion Cup – 17U / U17 / BOYS | 63.41 | 1 | 32 | 8 | 96 | 74 | 3 | false | false |
 | Stallion Cup – 17U / U17 / BOYS | 63.07 | 0.909 | 25 | 7 | 83 | 55 | 3 | false | false |
+| Philippine Youth Basketball Championship – 15U / U15 / BOYS | 62.45 | 0.896 | 36 | 8 | 133 | 7 | 3 | false | false |
 
 ## Connectivity
 
-| board | pools | crossoverPlayers | connectedComponents | connected |
-| --- | --- | --- | --- | --- |
-| U19\|BOYS | 9 | 140 | 2 | false |
-| U16\|BOYS | 7 | 16 | 2 | false |
-| U13\|BOYS | 1 | 0 | 1 | true |
-| U19\|GIRLS | 1 | 0 | 1 | true |
+| board | pools | currentBoardPools | carryoverPools | crossoverPlayers | connectedComponents | connected |
+| --- | --- | --- | --- | --- | --- | --- |
+| U19\|BOYS | 10 | 8 | 2 | 140 | 1 | true |
+| U16\|BOYS | 7 | 2 | 5 | 0 | 2 | false |
+| U13\|BOYS | 1 | 1 | 0 | 0 | 1 | true |
+| U19\|GIRLS | 1 | 1 | 0 | 0 | 1 | true |
 
 ## U13 Boys
 
@@ -107,41 +107,41 @@ Candidate players: 128; quality-eligible: 17; five-stars: 0; exact 89.99 ceiling
 
 ## U16 Boys
 
-Candidate players: 253; quality-eligible: 108; five-stars: 1; exact 89.99 ceiling pileup: 0.
+Candidate players: 236; quality-eligible: 96; five-stars: 1; exact 89.99 ceiling pileup: 0.
 
 ### Production vs Formula v3.3
 
 | rank | production | productionRating | candidate | candidateRating |
 | --- | --- | --- | --- | --- |
-| 1 | Goodluck Okebata | 96.58 | Goodluck Okebata | 94.2 |
-| 2 | Prince Cariño | 92.5 | Moussa Diakite | 89.82 |
-| 3 | Moussa Diakite | 89.91 | Francel Flores | 80.45 |
-| 4 | Francel Flores | 88.11 | JD Juangco | 78.68 |
-| 5 | Xyriel Macahipay | 84.13 | Mark Perdigon | 78.34 |
-| 6 | Akhiro Franz Reynon | 83.78 | CJ Tabbuga | 76.46 |
-| 7 | Denden Enriquez | 83.14 | Gab Castro | 76.01 |
-| 8 | Keefe Iledan | 82.19 | Keefe Iledan | 75.69 |
-| 9 | Sky Jazul | 81.13 | Akhiro Franz Reynon | 74.64 |
-| 10 | CJ Tabbuga | 80.41 | Lorenzo Purugganan | 73.74 |
+| 1 | Goodluck Okebata | 96.58 | Goodluck Okebata | 93.09 |
+| 2 | Prince Cariño | 92.5 | Moussa Diakite | 89.33 |
+| 3 | Moussa Diakite | 89.91 | Francel Flores | 79.89 |
+| 4 | Francel Flores | 88.11 | Mark Perdigon | 77.46 |
+| 5 | Xyriel Macahipay | 84.13 | CJ Tabbuga | 75.59 |
+| 6 | Akhiro Franz Reynon | 83.78 | Gab Castro | 75.16 |
+| 7 | Denden Enriquez | 83.14 | Keefe Iledan | 75.12 |
+| 8 | Keefe Iledan | 82.19 | Akhiro Franz Reynon | 73.98 |
+| 9 | Sky Jazul | 81.13 | Rowie Cabañero | 72.91 |
+| 10 | CJ Tabbuga | 80.41 | Lorenzo Purugganan | 72.91 |
 
 ### Formula v3.3 evidence detail
 
 | rank | player | estimatedRating | rating | uncertainty | range | games | qualityGames | confidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Goodluck Okebata | 94.95 | 94.2 | 1.5 | 91.26-97.14 | 14 | 12.9 | ESTABLISHED |
-| 2 | Moussa Diakite | 90.93 | 89.82 | 2.21 | 85.48-94.16 | 33 | 31.18 | ESTABLISHED |
-| 3 | Francel Flores | 81.9 | 80.45 | 2.91 | 74.74-86.16 | 28 | 26.43 | ESTABLISHED |
-| 4 | JD Juangco | 81.19 | 78.68 | 5.02 | 68.84-88.51 | 11 | 10.13 | ESTABLISHED |
-| 5 | Mark Perdigon | 79.98 | 78.34 | 3.28 | 71.91-84.76 | 14 | 12.9 | ESTABLISHED |
-| 6 | CJ Tabbuga | 79.93 | 76.46 | 6.94 | 62.86-90.05 | 15 | 13.82 | ESTABLISHED |
-| 7 | Gab Castro | 78.75 | 76.01 | 5.48 | 65.28-86.74 | 15 | 13.82 | ESTABLISHED |
-| 8 | Keefe Iledan | 77.83 | 75.69 | 4.28 | 67.3-84.07 | 25 | 23.49 | ESTABLISHED |
-| 9 | Akhiro Franz Reynon | 77.33 | 74.64 | 5.38 | 64.08-85.19 | 15 | 11.87 | ESTABLISHED |
-| 10 | Lorenzo Purugganan | 77.19 | 73.74 | 6.91 | 60.2-87.28 | 14 | 12.9 | ESTABLISHED |
+| 1 | Goodluck Okebata | 93.84 | 93.09 | 1.5 | 90.15-96.03 | 14 | 12.56 | ESTABLISHED |
+| 2 | Moussa Diakite | 90.43 | 89.33 | 2.21 | 85-93.65 | 33 | 30.8 | ESTABLISHED |
+| 3 | Francel Flores | 81.33 | 79.89 | 2.88 | 74.24-85.54 | 28 | 26.1 | ESTABLISHED |
+| 4 | Mark Perdigon | 79.1 | 77.46 | 3.27 | 71.05-83.87 | 14 | 12.56 | ESTABLISHED |
+| 5 | CJ Tabbuga | 79.05 | 75.59 | 6.92 | 62.02-89.15 | 15 | 13.46 | ESTABLISHED |
+| 6 | Gab Castro | 77.89 | 75.16 | 5.46 | 64.45-85.86 | 15 | 13.46 | ESTABLISHED |
+| 7 | Keefe Iledan | 77.25 | 75.12 | 4.25 | 66.79-83.45 | 25 | 23.13 | ESTABLISHED |
+| 8 | Akhiro Franz Reynon | 76.62 | 73.98 | 5.27 | 63.65-84.31 | 15 | 11.69 | ESTABLISHED |
+| 9 | Rowie Cabañero | 75.75 | 72.91 | 5.68 | 61.77-84.04 | 17 | 15.31 | ESTABLISHED |
+| 10 | Lorenzo Purugganan | 76.35 | 72.91 | 6.89 | 59.4-86.42 | 14 | 12.56 | ESTABLISHED |
 
 ## U19 Boys
 
-Candidate players: 975; quality-eligible: 249; five-stars: 4; exact 89.99 ceiling pileup: 0.
+Candidate players: 975; quality-eligible: 258; five-stars: 5; exact 89.99 ceiling pileup: 0.
 
 ### Production vs Formula v3.3
 
@@ -149,14 +149,14 @@ Candidate players: 975; quality-eligible: 249; five-stars: 4; exact 89.99 ceilin
 | --- | --- | --- | --- | --- |
 | 1 | Jude Eriobu | 98.33 | Jude Eriobu | 98.33 |
 | 2 | Josef Calo-oy | 91.82 | Mark Esperanza | 94.09 |
-| 3 | Mark Esperanza | 90.61 | Josef Calo-oy | 91.97 |
+| 3 | Mark Esperanza | 90.61 | Josef Calo-oy | 92.35 |
 | 4 | Sean Franco | 88.82 | Steven Creus | 91.79 |
-| 5 | Steven Creus | 88.41 | Xyriel Macahipay | 89.92 |
-| 6 | John Ray Ladica | 88.34 | Jetlee Melano | 89.3 |
+| 5 | Steven Creus | 88.41 | Xyriel Macahipay | 90.01 |
+| 6 | John Ray Ladica | 88.34 | Jetlee Melano | 89.29 |
 | 7 | Cabs Cabonilas | 88.19 | Yuan Ramirez | 87.93 |
 | 8 | Lucas Kaw | 87.4 | Lucas Kaw | 87.19 |
-| 9 | Moussa Diakite | 87.27 | Patrick Pasinos | 84.68 |
-| 10 | Maco Dabao | 87.15 | Jaime Teodoro | 83.3 |
+| 9 | Moussa Diakite | 87.27 | Patrick Pasinos | 85 |
+| 10 | Maco Dabao | 87.15 | Jaime Teodoro | 83.75 |
 
 ### Formula v3.3 evidence detail
 
@@ -164,14 +164,14 @@ Candidate players: 975; quality-eligible: 249; five-stars: 4; exact 89.99 ceilin
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Jude Eriobu | 99.08 | 98.33 | 1.5 | 95.39-100 | 16 | 15.47 | ESTABLISHED |
 | 2 | Mark Esperanza | 95.18 | 94.09 | 2.17 | 89.83-98.35 | 12 | 11.68 | ESTABLISHED |
-| 3 | Josef Calo-oy | 92.73 | 91.97 | 1.52 | 88.99-94.94 | 22 | 20.18 | ESTABLISHED |
+| 3 | Josef Calo-oy | 93.1 | 92.35 | 1.5 | 89.41-95.29 | 22 | 20.37 | ESTABLISHED |
 | 4 | Steven Creus | 93.07 | 91.79 | 2.55 | 86.79-96.79 | 14 | 13.63 | ESTABLISHED |
-| 5 | Xyriel Macahipay | 91.13 | 89.92 | 2.42 | 85.17-94.67 | 16 | 15.42 | ESTABLISHED |
-| 6 | Jetlee Melano | 90.39 | 89.3 | 2.19 | 85-93.59 | 14 | 13.54 | ESTABLISHED |
+| 5 | Xyriel Macahipay | 91.22 | 90.01 | 2.43 | 85.25-94.77 | 16 | 15.44 | ESTABLISHED |
+| 6 | Jetlee Melano | 90.39 | 89.29 | 2.19 | 85-93.59 | 14 | 13.54 | ESTABLISHED |
 | 7 | Yuan Ramirez | 88.68 | 87.93 | 1.5 | 84.99-90.87 | 22 | 17.49 | ESTABLISHED |
 | 8 | Lucas Kaw | 87.94 | 87.19 | 1.5 | 84.25-90.13 | 22 | 17.19 | ESTABLISHED |
-| 9 | Patrick Pasinos | 86.37 | 84.68 | 3.38 | 78.06-91.3 | 19 | 17.72 | ESTABLISHED |
-| 10 | Jaime Teodoro | 84.57 | 83.3 | 2.54 | 78.33-88.28 | 22 | 20.18 | ESTABLISHED |
+| 9 | Patrick Pasinos | 86.68 | 85 | 3.37 | 78.39-91.61 | 19 | 17.84 | ESTABLISHED |
+| 10 | Jaime Teodoro | 85.03 | 83.75 | 2.56 | 78.73-88.76 | 22 | 20.37 | ESTABLISHED |
 
 ## U19 Girls
 
@@ -181,46 +181,46 @@ Candidate players: 56; quality-eligible: 45; five-stars: 0; exact 89.99 ceiling 
 
 | rank | production | productionRating | candidate | candidateRating |
 | --- | --- | --- | --- | --- |
-| 1 | Aubrey Lapasaran | 89.8 | Aubrey Lapasaran | 88.46 |
-| 2 | Adin Rosano | 87.7 | Adin Rosano | 85.32 |
-| 3 | Riri Perez | 87.44 | Riri Perez | 84.21 |
-| 4 | Janice Oczon | 78.92 | Pia Petalcorin | 76.11 |
-| 5 | Pia Petalcorin | 78.31 | Janice Oczon | 75.97 |
-| 6 | Lea Pinuela | 77.91 | Lea Pinuela | 74.9 |
-| 7 | Koukou Talla | 74.99 | Koukou Talla | 71.61 |
-| 8 | Apyang Dulay | 74.6 | Apyang Dulay | 71.31 |
-| 9 | Ima Navarro | 72.7 | Ruiza Olmos | 70.04 |
-| 10 | Ruiza Olmos | 71.84 | Ima Navarro | 68.1 |
+| 1 | Aubrey Lapasaran | 89.8 | Aubrey Lapasaran | 89.05 |
+| 2 | Adin Rosano | 87.7 | Adin Rosano | 85.88 |
+| 3 | Riri Perez | 87.44 | Riri Perez | 84.6 |
+| 4 | Janice Oczon | 78.92 | Pia Petalcorin | 76.56 |
+| 5 | Pia Petalcorin | 78.31 | Janice Oczon | 76.3 |
+| 6 | Lea Pinuela | 77.91 | Lea Pinuela | 75.26 |
+| 7 | Koukou Talla | 74.99 | Koukou Talla | 71.89 |
+| 8 | Apyang Dulay | 74.6 | Apyang Dulay | 71.58 |
+| 9 | Ima Navarro | 72.7 | Ruiza Olmos | 70.53 |
+| 10 | Ruiza Olmos | 71.84 | Ima Navarro | 68.37 |
 
 ### Formula v3.3 evidence detail
 
 | rank | player | estimatedRating | rating | uncertainty | range | games | qualityGames | confidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Aubrey Lapasaran | 90.69 | 88.46 | 4.47 | 79.7-97.21 | 8 | 7.44 | DEVELOPING |
-| 2 | Adin Rosano | 87.64 | 85.32 | 4.64 | 76.22-94.42 | 8 | 7.44 | DEVELOPING |
-| 3 | Riri Perez | 87.36 | 84.21 | 6.31 | 71.85-96.57 | 8 | 7.44 | DEVELOPING |
-| 4 | Pia Petalcorin | 78.9 | 76.11 | 5.58 | 65.18-87.05 | 7 | 6.51 | DEVELOPING |
-| 5 | Janice Oczon | 79.7 | 75.97 | 7.45 | 61.38-90.57 | 8 | 7.44 | DEVELOPING |
-| 6 | Lea Pinuela | 78.23 | 74.9 | 6.67 | 61.83-87.97 | 8 | 7.44 | DEVELOPING |
-| 7 | Koukou Talla | 75.85 | 71.61 | 8.49 | 54.97-88.24 | 8 | 7.44 | DEVELOPING |
-| 8 | Apyang Dulay | 75.8 | 71.31 | 8.98 | 53.7-88.92 | 6 | 5.58 | DEVELOPING |
-| 9 | Ruiza Olmos | 72.66 | 70.04 | 5.23 | 59.79-80.3 | 8 | 7.44 | DEVELOPING |
-| 10 | Ima Navarro | 72.42 | 68.1 | 8.66 | 51.13-85.06 | 6 | 5.58 | DEVELOPING |
+| 1 | Aubrey Lapasaran | 90.69 | 89.05 | 3.28 | 82.63-95.48 | 8 | 7.44 | DEVELOPING |
+| 2 | Adin Rosano | 87.64 | 85.88 | 3.52 | 78.99-92.77 | 8 | 7.44 | DEVELOPING |
+| 3 | Riri Perez | 87.36 | 84.6 | 5.53 | 73.76-95.44 | 8 | 7.44 | DEVELOPING |
+| 4 | Pia Petalcorin | 78.9 | 76.56 | 4.68 | 67.39-85.74 | 7 | 6.51 | DEVELOPING |
+| 5 | Janice Oczon | 79.7 | 76.3 | 6.8 | 62.96-89.63 | 8 | 7.44 | DEVELOPING |
+| 6 | Lea Pinuela | 78.23 | 75.26 | 5.94 | 63.62-86.9 | 8 | 7.44 | DEVELOPING |
+| 7 | Koukou Talla | 75.85 | 71.89 | 7.93 | 56.35-87.43 | 8 | 7.44 | DEVELOPING |
+| 8 | Apyang Dulay | 75.8 | 71.58 | 8.46 | 55-88.15 | 6 | 5.58 | DEVELOPING |
+| 9 | Ruiza Olmos | 72.66 | 70.53 | 4.27 | 62.17-78.89 | 8 | 7.44 | DEVELOPING |
+| 10 | Ima Navarro | 72.42 | 68.37 | 8.11 | 52.48-84.26 | 6 | 5.58 | DEVELOPING |
 
 ## Team preview: Junior MPBL Season 4 – 18U / U18 / BOYS
 
 | rank | team | rating | games | confidence | uncertainty |
 | --- | --- | --- | --- | --- | --- |
-| 1 | San Juan U19 Boys | 52.46 | 8 | 0.766 | 5.27 |
-| 2 | Antipolo U19 Boys | 51.73 | 3 | 0.374 | 10.76 |
-| 3 | Palawan U19 Boys | 51.63 | 4 | 0.489 | 9.15 |
-| 4 | N. Ecija U19 Boys | 51.62 | 4 | 0.498 | 9.02 |
-| 5 | Valenzuela U19 Boys | 51.19 | 4 | 0.484 | 9.23 |
-| 6 | San Pedro Spartans U18 Boys | 51.02 | 6 | 0.672 | 6.59 |
-| 7 | Batangas U19 Boys | 51.01 | 6 | 0.666 | 6.67 |
-| 8 | Biñan U19 Boys | 50.35 | 3 | 0.365 | 10.89 |
-| 9 | Muntinlupa U19 Boys | 50.24 | 4 | 0.497 | 9.04 |
-| 10 | Bulacan U19 Boys | 50.21 | 5 | 0.597 | 7.65 |
+| 1 | San Juan U19 Boys | 52.68 | 8 | 0.766 | 5.27 |
+| 2 | Antipolo U19 Boys | 51.87 | 3 | 0.374 | 10.76 |
+| 3 | N. Ecija U19 Boys | 51.79 | 4 | 0.498 | 9.02 |
+| 4 | Palawan U19 Boys | 51.79 | 4 | 0.489 | 9.15 |
+| 5 | Valenzuela U19 Boys | 51.35 | 4 | 0.484 | 9.23 |
+| 6 | Batangas U19 Boys | 51.22 | 6 | 0.666 | 6.67 |
+| 7 | San Pedro Spartans U18 Boys | 51.22 | 6 | 0.672 | 6.59 |
+| 8 | Biñan U19 Boys | 50.49 | 3 | 0.365 | 10.89 |
+| 9 | Muntinlupa U19 Boys | 50.41 | 4 | 0.497 | 9.04 |
+| 10 | Bulacan U19 Boys | 50.39 | 5 | 0.597 | 7.65 |
 
 ## Team preview: UAAP Season 88 HS Girls Basketball / U19 / GIRLS
 
@@ -235,14 +235,14 @@ Candidate players: 56; quality-eligible: 45; five-stars: 0; exact 89.99 ceiling 
 
 | rank | team | rating | games | confidence | uncertainty |
 | --- | --- | --- | --- | --- | --- |
-| 1 | NUNS Bullpups 16U | 54.02 | 16 | 0.818 | 4.55 |
-| 2 | FEU - Diliman Baby Tamaraws 16U | 52.65 | 18 | 0.877 | 3.73 |
-| 3 | UST Tiger Cubs 16U | 52.63 | 15 | 0.789 | 4.96 |
-| 4 | Adamson Baby Falcons 16U | 52.46 | 15 | 0.789 | 4.96 |
-| 5 | UE Junior Warriors 16U | 52.04 | 14 | 0.76 | 5.37 |
-| 6 | Ateneo Blue Eaglets 16U | 50.88 | 14 | 0.76 | 5.37 |
-| 7 | De La Salle Zobel Junior Archers 16U | 49.34 | 14 | 0.76 | 5.37 |
-| 8 | UP Junior Fighting Maroons 16U | 49.3 | 14 | 0.76 | 5.37 |
+| 1 | NUNS Bullpups 16U | 53.79 | 16 | 0.818 | 4.55 |
+| 2 | FEU - Diliman Baby Tamaraws 16U | 52.41 | 18 | 0.877 | 3.73 |
+| 3 | UST Tiger Cubs 16U | 52.4 | 15 | 0.789 | 4.96 |
+| 4 | Adamson Baby Falcons 16U | 52.23 | 15 | 0.789 | 4.96 |
+| 5 | UE Junior Warriors 16U | 51.81 | 14 | 0.76 | 5.37 |
+| 6 | Ateneo Blue Eaglets 16U | 50.65 | 14 | 0.76 | 5.37 |
+| 7 | De La Salle Zobel Junior Archers 16U | 49.12 | 14 | 0.76 | 5.37 |
+| 8 | UP Junior Fighting Maroons 16U | 49.08 | 14 | 0.76 | 5.37 |
 
 ## Team preview: Stallion Cup – 17U / U17 / BOYS
 
@@ -285,11 +285,11 @@ Candidate players: 56; quality-eligible: 45; five-stars: 0; exact 89.99 ceiling 
 
 | rank | team | rating | games | confidence | uncertainty |
 | --- | --- | --- | --- | --- | --- |
-| 1 | NUNS Bullpups | 54.67 | 18 | 0.96 | 2.57 |
+| 1 | NUNS Bullpups | 54.67 | 18 | 0.959 | 2.57 |
 | 2 | Ateneo Blue Eaglets | 53.82 | 16 | 0.879 | 3.69 |
 | 3 | FEU - Diliman Baby Tamaraws | 53.63 | 19 | 0.996 | 2.05 |
 | 4 | UE Junior Warriors | 51.81 | 14 | 0.805 | 4.73 |
-| 5 | De La Salle Zobel Junior Archers | 51.79 | 15 | 0.843 | 4.2 |
+| 5 | De La Salle Zobel Junior Archers | 51.79 | 15 | 0.842 | 4.21 |
 | 6 | Adamson Baby Falcons | 51.54 | 14 | 0.805 | 4.73 |
 | 7 | UST Tiger Cubs | 51.53 | 14 | 0.805 | 4.73 |
 | 8 | UP Junior Fighting Maroons | 49.56 | 14 | 0.805 | 4.73 |
@@ -339,25 +339,25 @@ Candidate players: 56; quality-eligible: 45; five-stars: 0; exact 89.99 ceiling 
 
 | rank | team | rating | games | confidence | uncertainty |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Mapúa Red Robins | 52.67 | 5 | 0.601 | 7.58 |
-| 2 | Grupong Bedista - San Beda U18 Boys | 51.77 | 6 | 0.674 | 6.56 |
-| 3 | San Pedro Spartans U18 Boys | 51.77 | 6 | 0.673 | 6.58 |
-| 4 | D'Generals x Pro Dimes U18 Boys | 50.77 | 5 | 0.62 | 7.33 |
-| 5 | Pria CPA Review Center U18 Boys | 49.29 | 4 | 0.495 | 9.07 |
-| 6 | 1118 Autospa Dragons U18 Boys | 49.21 | 4 | 0.478 | 9.31 |
+| 1 | Mapúa Red Robins | 52.72 | 5 | 0.601 | 7.58 |
+| 2 | Grupong Bedista - San Beda U18 Boys | 51.83 | 6 | 0.674 | 6.56 |
+| 3 | San Pedro Spartans U18 Boys | 51.83 | 6 | 0.673 | 6.58 |
+| 4 | D'Generals x Pro Dimes U18 Boys | 50.83 | 5 | 0.62 | 7.33 |
+| 5 | Pria CPA Review Center U18 Boys | 49.34 | 4 | 0.495 | 9.08 |
+| 6 | 1118 Autospa Dragons U18 Boys | 49.26 | 4 | 0.478 | 9.31 |
 
 ## Team preview: Philippine Youth Basketball Championship – 15U / U15 / BOYS
 
 | rank | team | rating | games | confidence | uncertainty |
 | --- | --- | --- | --- | --- | --- |
-| 1 | San Pedro Spartans U15 Boys | 50.73 | 12 | 0.701 | 6.19 |
-| 2 | Prime Ascencion Medical Supplies San Anton | 50.57 | 9 | 0.613 | 7.41 |
-| 3 | Migrafix Doc Boleros | 50.54 | 10 | 0.643 | 7 |
-| 4 | JPM-TEC San Beda U15 Boys | 50.4 | 9 | 0.613 | 7.41 |
-| 5 | Smile 360 Bullies U15 Boys | 50.01 | 8 | 0.584 | 7.82 |
-| 6 | LEV Construction Full Potential | 49.87 | 7 | 0.555 | 8.23 |
-| 7 | JMTG Medical Trading Infinite | 49.5 | 8 | 0.584 | 7.82 |
-| 8 | Migueluz Trading Moderno | 48.3 | 9 | 0.613 | 7.41 |
+| 1 | San Pedro Spartans U15 Boys | 50.5 | 12 | 0.701 | 6.19 |
+| 2 | Prime Ascencion Medical Supplies San Anton | 50.37 | 9 | 0.613 | 7.41 |
+| 3 | Migrafix Doc Boleros | 50.32 | 10 | 0.643 | 7 |
+| 4 | JPM-TEC San Beda U15 Boys | 50.2 | 9 | 0.613 | 7.41 |
+| 5 | Smile 360 Bullies U15 Boys | 49.82 | 8 | 0.584 | 7.82 |
+| 6 | LEV Construction Full Potential | 49.7 | 7 | 0.555 | 8.23 |
+| 7 | JMTG Medical Trading Infinite | 49.31 | 8 | 0.584 | 7.82 |
+| 8 | Migueluz Trading Moderno | 48.09 | 9 | 0.613 | 7.41 |
 
 ## Recommendation
 

@@ -35,6 +35,7 @@ export type BuildSnapshotBoardRowsParams = {
   gender: PlayerGender;
   evaluationDate: Date;
   formulaVersionId: string;
+  policyVersionId?: string;
   city?: string | null;
   region?: string | null;
 };
@@ -56,7 +57,7 @@ export async function buildSnapshotBoardRows(params: BuildSnapshotBoardRowsParam
     where: {
       ageGroup: params.ageGroup,
       formulaVersionId: ratingFilter.formulaVersionId ?? params.formulaVersionId,
-      policyVersionId: ratingFilter.policyVersionId,
+      policyVersionId: params.policyVersionId ?? ratingFilter.policyVersionId,
       verifiedGameCount: { gte: minimumGames },
       player: {
         gender: params.gender,

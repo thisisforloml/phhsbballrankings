@@ -2,7 +2,7 @@ import { AgeGroup, PlayerGender, RankingScope } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import { getMonthStart } from "@/lib/ranking-eligibility";
-import { FORMULA_V1_VERSION_NUMBER } from "@/lib/ratings/formula-constants";
+import { getActivePlayerFormulaConfig } from "@/lib/ratings/active-formula";
 import { buildSnapshotBoardRows } from "@/lib/snapshot-board-rows";
 
 export const NATIONAL_RANKING_BOARDS = [
@@ -28,6 +28,7 @@ async function upsertNationalRankingSnapshot(params: {
   ageGroup: AgeGroup;
   gender: PlayerGender;
   formulaVersionId: string;
+  policyVersionId: string;
   snapshotDate: Date;
   evaluationDate: Date;
 }): Promise<UpsertNationalSnapshotResult> {
@@ -35,7 +36,8 @@ async function upsertNationalRankingSnapshot(params: {
     ageGroup: params.ageGroup,
     gender: params.gender,
     evaluationDate: params.evaluationDate,
-    formulaVersionId: params.formulaVersionId
+    formulaVersionId: params.formulaVersionId,
+    policyVersionId: params.policyVersionId
   });
 
   const existing = await prisma.rankingSnapshot.findMany({
@@ -44,6 +46,7 @@ async function upsertNationalRankingSnapshot(params: {
       ageGroup: params.ageGroup,
       gender: params.gender,
       formulaVersionId: params.formulaVersionId,
+      policyVersionId: params.policyVersionId,
       weekOf: params.snapshotDate,
       city: null,
       region: null
@@ -101,6 +104,7 @@ async function upsertNationalRankingSnapshot(params: {
       ageGroup: params.ageGroup,
       gender: params.gender,
       formulaVersionId: params.formulaVersionId,
+      policyVersionId: params.policyVersionId,
       weekOf: params.snapshotDate,
       city: null,
       region: null,
@@ -124,12 +128,17 @@ export async function regenerateNationalRankingSnapshots(options: {
   snapshotDate?: Date;
   /** Eligibility evaluation date for row membership. Defaults to now so refreshed snapshots match the live public board. */
   evaluationDate?: Date;
+  formulaVersionNumber?: number;
+  policyVersionId?: string;
 } = {}) {
+  const activeFormula = getActivePlayerFormulaConfig();
+  const formulaVersionNumber = options.formulaVersionNumber ?? activeFormula.formulaVersionNumber;
+  const policyVersionId = options.policyVersionId ?? activeFormula.policyVersionId;
   const formulaVersion = await prisma.formulaVersion.findUnique({
-    where: { versionNumber: FORMULA_V1_VERSION_NUMBER },
+    where: { versionNumber: formulaVersionNumber },
     select: { id: true }
   });
-  if (!formulaVersion) throw new Error("Formula v1 version row not found.");
+  if (!formulaVersion) throw new Error("Formula version row not found: " + formulaVersionNumber);
 
   const snapshotDate = options.snapshotDate ?? getMonthStart(new Date());
   const evaluationDate = options.evaluationDate ?? new Date();
@@ -141,6 +150,7 @@ export async function regenerateNationalRankingSnapshots(options: {
       await upsertNationalRankingSnapshot({
         ...board,
         formulaVersionId: formulaVersion.id,
+        policyVersionId,
         snapshotDate,
         evaluationDate
       })

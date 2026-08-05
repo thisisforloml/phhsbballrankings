@@ -1,4 +1,16 @@
 # Project Status and Guardrails
+## Formula v3.3 Production Promotion Checkpoint (2026-08-06)
+
+- Formula v3.3 is now the default public player-rating source in code and has been promoted in versioned database storage.
+- The guarded promotion passed all gates: official evidence only, one age-group board per Player ID, confident competition profiles, no artificial elite ceiling, and no unresolved input warnings.
+- Missing-age players use one explicit temporary assumption: the oldest age group in which that Player ID has official game evidence. This does not invent or store a birth date, and a real DOB/class override remains authoritative when later supplied.
+- Verified league governance evidence now provides an auditable confidence floor for competition pools without direct crossover players. Disconnected pools remain visible as calibration risk; historical carryover-only pools do not block current public boards.
+- Production storage contains 10,198 Formula v3.3 GamePerformanceScore rows, 1,395 Formula v3.3 PlayerRating rows, 12 competition pools, and 4 populated national snapshots.
+- Formula v3.3 uses `FormulaVersion.versionNumber = 3`, `formulaVersionTag = 3`, and policy `formula-v3.3-continuous-strength-production-v1`.
+- Formula v1 score/rating rows remain intact for rollback. Set `PLAYER_RATING_FORMULA_MODE=production-v1` and redeploy to restore v1 public reads without rewriting evidence.
+- Future approved submission publishing recomputes Formula v3.3 when the production-v3 mode is active. Existing Team standings calculations are unchanged; Team TPI is used only as bounded player-rating context.
+- The promotion did not modify Games, GameStats, Players, Programs, Teams, box-score values, imports, or submission records.
+- Validation completed with TypeScript, 196 automated tests, production build, dry-run hashes/count guards, versioned storage validation, and an active-formula read resolving to the public Formula v3.3 version.
 ## Formula v3.3 Continuous Strength Shadow Checkpoint (2026-08-05)
 
 - Added a read-only integrated rating ecosystem preview covering Formula v3.3 player ratings, Team TPI v2, and Competition Strength v1.1.

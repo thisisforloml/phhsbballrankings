@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-08-05T16:42:16.609Z",
+  "mode": "validate",
+  "ready": true,
+  "gates": {
+    "officialEvidenceOnly": true,
+    "noDuplicatePlayerBoards": true,
+    "allCompetitionProfilesConfident": true,
+    "noArtificialCeiling": true,
+    "warningsClear": true
+  },
+  "counts": {
+    "performanceScores": 10198,
+    "playerRatings": 1395,
+    "competitionPools": 12
+  },
+  "hashes": {
+    "gameStatIds": "e60227cc15b79b0b7133533a36daa1b29782d8ba97606117a960319eea3cefd8",
+    "ratingKeys": "b51d95ba3c868b29e121115613ee30d0993b7eb31ec881a7cca1d89dcb5847a6"
+  },
+  "lowConfidence": [],
+  "policies": {
+    "formulaVersion": 3,
+    "policyVersionId": "formula-v3.3-continuous-strength-production-v1"
+  },
+  "stored": {
+    "version": {
+      "id": "bf885896-8349-4a72-8c6e-fb74ef7a81ed",
+      "isPublic": true
+    },
+    "scores": 10198,
+    "ratings": 1395,
+    "snapshots": 4
+  }
+}

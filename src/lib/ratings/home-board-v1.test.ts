@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 
 import { AgeGroup } from "@prisma/client";
 
-import { FORMULA_TIER_NORMALIZED_V1_POLICY_ID } from "@/lib/ratings/formula-constants";
+import { FORMULA_V3_POLICY_ID } from "@/lib/ratings/formula-v3/types";
 import { buildProjectedV1HomeTarget, isPlayingUp } from "@/lib/ratings/home-board-v1";
 import { selectPublicPlayerRating } from "@/lib/ratings/resolve-public-player-rating";
 
@@ -35,7 +35,7 @@ describe("home-board v1", () => {
           ageGroup: AgeGroup.U19,
           adjustedRating: 84.13 as never,
           verifiedGameCount: 15,
-          policyVersionId: FORMULA_TIER_NORMALIZED_V1_POLICY_ID,
+          policyVersionId: FORMULA_V3_POLICY_ID,
           ratingBasis: "DIRECT",
           observedRating: 84.13 as never,
           starRating: 4
@@ -44,7 +44,7 @@ describe("home-board v1", () => {
           ageGroup: AgeGroup.U16,
           adjustedRating: 84.13 as never,
           verifiedGameCount: 15,
-          policyVersionId: FORMULA_TIER_NORMALIZED_V1_POLICY_ID,
+          policyVersionId: FORMULA_V3_POLICY_ID,
           ratingBasis: "PROJECTED_V1",
           observedRating: 84.13 as never,
           starRating: 4

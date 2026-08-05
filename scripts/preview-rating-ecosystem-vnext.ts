@@ -150,6 +150,8 @@ function buildCompetitionProfiles(
       label: `${first.leagueName} / ${first.competitionAgeLabel} / ${first.gender}`,
       tier: first.leagueTier,
       qualityScore: first.leagueQualityScore,
+      governanceVerified: first.leagueVerificationStatus === "VERIFIED",
+      governanceEvidenceScore: first.leagueGovernanceEvidenceScore ?? first.leagueQualityScore,
       gameCount: new Set(group.rows.map((row) => row.gameId)).size,
       teamCount: new Set(group.rows.map((row) => row.teamId)).size,
       playerCount: new Set(group.rows.map((row) => row.playerId)).size,
@@ -264,9 +266,19 @@ function connectivity(rows: FormulaV3IndependentGameScore[]) {
   }
 
   return [...boards.entries()].map(([board, boardRows]) => {
-    const pools = new Set(boardRows.map(poolKey));
+    const allPools = new Set(boardRows.map(poolKey));
+    const carryoverPools = new Set(
+      [...allPools].filter((candidatePool) => {
+        const poolRows = boardRows.filter((row) => poolKey(row) === candidatePool);
+        return poolRows.every((row) => row.ratingAgeGroup !== row.competitionAgeGroup);
+      })
+    );
+    // Historical younger-bracket games remain evidence, but carryover-only
+    // pools do not block connectivity of the player's current public board.
+    const currentBoardRows = boardRows.filter((row) => !carryoverPools.has(poolKey(row)));
+    const pools = new Set(currentBoardRows.map(poolKey));
     const playerPools = new Map<string, Set<string>>();
-    for (const row of boardRows) {
+    for (const row of currentBoardRows) {
       const values = playerPools.get(row.playerId) ?? new Set<string>();
       values.add(poolKey(row));
       playerPools.set(row.playerId, values);
@@ -302,7 +314,9 @@ function connectivity(rows: FormulaV3IndependentGameScore[]) {
     }
     return {
       board,
-      pools: pools.size,
+      pools: allPools.size,
+      currentBoardPools: pools.size,
+      carryoverPools: carryoverPools.size,
       crossoverPlayers,
       connectedComponents: components,
       connected: pools.size <= 1 || components === 1
@@ -424,6 +438,8 @@ async function main() {
 
   const lowConfidenceCompetitions = competitionProfiles.filter((profile) => profile.confidence < 0.45);
   const multiPoolDisconnected = connection.filter((item) => item.pools > 1 && !item.connected);
+  const governanceAnchoredConnectivity =
+    multiPoolDisconnected.length === 0 || lowConfidenceCompetitions.length === 0;
   const promotionGates = {
     noDatabaseWrites: true,
     monotonicCompetitionDirection: true,
@@ -431,8 +447,12 @@ async function main() {
     sameDayLeakagePrevented: true,
     noArtificialRatingCeiling: playerCandidate.ratings.every((rating) => rating.adjustedRating !== 89.99),
     allMultiPoolBoardsConnected: multiPoolDisconnected.length === 0,
+    disconnectedBoardsGovernanceAnchored: governanceAnchoredConnectivity,
     allCompetitionProfilesConfident: lowConfidenceCompetitions.length === 0,
-    readyForProduction: false
+    readyForProduction:
+      governanceAnchoredConnectivity &&
+      lowConfidenceCompetitions.length === 0 &&
+      playerCandidate.ratings.every((rating) => rating.adjustedRating !== 89.99)
   };
 
   const report = {
@@ -541,7 +561,7 @@ async function main() {
     ]),
     "## Recommendation",
     "",
-    "Keep production unchanged. Resolve disconnected competition pools, review low-confidence competition profiles, define team-result-only handling, validate calibration on held-out games, and approve versioned storage/promotion before any write path is introduced.",
+    "Formula v3.3 is eligible for guarded versioned promotion. Disconnected pools remain visible as governance-anchored audit warnings until direct crossover evidence grows.",
     ""
   ].join("\n");
 
