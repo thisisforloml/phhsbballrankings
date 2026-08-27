@@ -10,7 +10,7 @@ import { requireAdminUser } from "@/lib/portal-auth";
 import { prisma } from "@/lib/prisma";
 import { assertRateLimit, RATE_LIMIT_PRESETS } from "@/lib/rate-limit";
 import { buildSubmissionImportPreflight } from "@/lib/submission-import-preflight";
-import { formatSubmissionJsonParseError, safeJsonParse } from "@/lib/submission-json";
+import { formatSubmissionJsonParseError, safeJsonParse, safeParseSubmissionJson } from "@/lib/submission-json";
 import {
   assertSubmissionReviewable,
   canDeleteDraftSubmission,
@@ -245,7 +245,7 @@ export async function updateSubmissionStructuredDraft(formData: FormData) {
     redirect(reviewRedirectUrl(submission.id, { reviewError: "Imported submissions are locked. Draft game stats can only be edited before import." }));
   }
 
-  const parsed = safeJsonParse(submission.rawText ?? "");
+  const parsed = safeParseSubmissionJson(submission);
   if (!parsed.ok) {
     redirect(reviewRedirectUrl(submission.id, { reviewError: `Current draft JSON is invalid: ${formatSubmissionJsonParseError(parsed) ?? "JSON could not be parsed."}` }));
   }

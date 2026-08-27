@@ -1,4 +1,13 @@
 # Project Status and Guardrails
+## Flexible Submission JSON Checkpoint (2026-08-27)
+
+- Added shared in-memory normalization for nested game objects, same-competition game arrays, and games/matches/fixtures envelopes.
+- Recognized field aliases cover snake_case/camelCase, team-contained or flat player rows, and nested or flat shooting/rebounding/foul statistics. Numeric strings are accepted; missing statistics are not invented as zero.
+- Existing canonical packages remain supported. Mixed competition/season/explicit-gender batches are not consolidated; unsupported shapes remain subject to review validation.
+- Review, preflight, import reads, and structured draft editing use the shared parser. Original raw JSON remains unchanged until an explicit admin edit is saved.
+- Removed the hardcoded UAAP Season 88 recommendation so Season 89 submissions retain their source season.
+- No database writes, imports, publishes, recomputes, snapshots, schema changes, or rating formula changes were performed during implementation.
+
 ## Formula v3.3 Production Promotion Checkpoint (2026-08-06)
 
 - Formula v3.3 is now the default public player-rating source in code and has been promoted in versioned database storage.

@@ -165,6 +165,16 @@ function displayTeamName(value: string): string {
   return schoolDisplayMap[normalizeTeamName(value)] ?? value;
 }
 
+function recommendedCompetitionName(rawLeagueName: string | null, normalizedLeague: string, inferredGender: "BOYS" | "GIRLS" | null) {
+  let recommendation = normalizedLeague.replace(/\b16u\b/gi, "16U");
+  if (inferredGender === "BOYS" && !hasExplicitBoysCompetitionContext(recommendation)) {
+    recommendation = /\bBasketball\s*$/i.test(recommendation)
+      ? recommendation.replace(/\bBasketball\s*$/i, "Boys Basketball")
+      : `${recommendation} Boys`;
+  }
+  return recommendation !== rawLeagueName ? recommendation : null;
+}
+
 function missingFields(record: JsonRecord, fields: readonly string[]) {
   return fields.filter((field) => {
     const value = record[field];
@@ -450,11 +460,7 @@ export function buildSubmissionReview(submission: Pick<Submission, "rawText" | "
   if (/16u/i.test(normalizedLeague)) leagueNameIssues.push('Use uppercase "16U" in league naming.');
   if (!hasExplicitBoysCompetitionContext(normalizedLeague) && inferredGender === "BOYS") leagueNameIssues.push('Gender is not explicit; confirm and include "Boys" before import.');
 
-  const recommendedLeagueName = /uaap/i.test(normalizedLeague) && /16u/i.test(normalizedLeague)
-    ? "UAAP Season 88 16U Boys Basketball"
-    : rawLeagueName && normalizeCompetitionDisplayName(rawLeagueName) !== rawLeagueName
-      ? normalizeCompetitionDisplayName(rawLeagueName)
-      : null;
+  const recommendedLeagueName = recommendedCompetitionName(rawLeagueName, normalizedLeague, inferredGender);
   const teamDisplayMapping = Array.from(detectedTeams)
     .sort((left, right) => left.localeCompare(right))
     .map((sourceName) => ({ sourceName, displayName: displayTeamName(sourceName) }));

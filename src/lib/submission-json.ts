@@ -1,3 +1,5 @@
+import { normalizeSubmissionJsonShape } from "@/lib/submission-json-normalization";
+
 export type SubmissionJsonParseResult =
   | { ok: true; data: unknown }
   | { ok: false; errorMessage: string; position?: number; line?: number; column?: number };
@@ -48,13 +50,16 @@ export function safeJsonParse(text: string): SubmissionJsonParseResult {
 }
 
 export function safeParseSubmissionJson(submission: { rawText: string | null; parsedPreview: unknown }): SubmissionJsonParseResult {
-  if (submission.rawText?.trim()) return safeJsonParse(submission.rawText);
+  if (submission.rawText?.trim()) {
+    const result = safeJsonParse(submission.rawText);
+    return result.ok ? { ok: true, data: normalizeSubmissionJsonShape(result.data) } : result;
+  }
 
   if (submission.parsedPreview && typeof submission.parsedPreview === "object") {
     const preview = submission.parsedPreview as JsonRecord;
-    if ("league" in preview || "season" in preview || "games" in preview) return { ok: true, data: preview };
-    if (Array.isArray(preview.sample)) return { ok: true, data: preview.sample };
-    if (preview.sample && typeof preview.sample === "object") return { ok: true, data: preview.sample };
+    if ("league" in preview || "season" in preview || "games" in preview) return { ok: true, data: normalizeSubmissionJsonShape(preview) };
+    if (Array.isArray(preview.sample)) return { ok: true, data: normalizeSubmissionJsonShape(preview.sample) };
+    if (preview.sample && typeof preview.sample === "object") return { ok: true, data: normalizeSubmissionJsonShape(preview.sample) };
   }
 
   return { ok: false, errorMessage: "Full submission JSON is not available." };
